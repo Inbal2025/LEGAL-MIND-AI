@@ -643,6 +643,24 @@ html, body{
 @supports (overflow:clip){
   html, body{overflow-x:clip}
 }
+
+/* === Hero LEGAL MIND wordmark — accent A and I in teal === */
+.hero-brand-wordmark{
+  font-family:"Assistant",sans-serif;
+  font-weight:700;
+  font-size:clamp(22px, 5.5vw, 32px);
+  letter-spacing:4px;
+  color:var(--ink);
+  text-align:center;
+  margin:0 auto 14px;
+  direction:ltr;
+  -webkit-user-select:none;
+  user-select:none;
+  line-height:1.1;
+}
+.hero-brand-wordmark .accent{
+  color:var(--c-teal);
+}
 </style>
 </head>
 <body>
@@ -953,6 +971,7 @@ html, body{
             <rect x="240" y="490" width="40" height="14" rx="6" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
           </svg>
         </div>
+        <div class="hero-brand-wordmark reveal" aria-label="Legal Mind">LEG<span class="accent">A</span>L M<span class="accent">I</span>ND</div>
       </div>
     </div>
   </div>
