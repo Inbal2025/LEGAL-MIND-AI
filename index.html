@@ -1,0 +1,1527 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Legal Mind — AI שעובד באמת בעבודה המשפטית</title>
+<meta name="description" content="Legal Mind — הדרכה, ליווי והטמעה של AI בעבודה המשפטית. עו״ד שעובדים עם AI ברמה הגבוהה ביותר." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap">
+<style>
+:root{
+  /* Brand palette — exact values from spec */
+  --c-navy:#031637;
+  --c-teal:#25A99C;
+  --c-teal-soft:#A8D9D5;
+  --c-slate:#6B7589;
+  --c-white:#FFFFFF;
+
+  /* Mapped roles */
+  --canvas:var(--c-navy);
+  --canvas-soft:#0a2148;
+  --canvas-mid:#0e2a55;
+  --canvas-elevated:#143468;
+  --surface-card:rgba(14,42,85,0.55);
+  --surface-strong:#143468;
+  --ink:var(--c-white);
+  --body:var(--c-teal-soft);
+  --muted:var(--c-slate);
+  --muted-soft:#4a5567;
+  --hairline:rgba(168,217,213,0.14);
+  --hairline-soft:rgba(168,217,213,0.06);
+  --hairline-strong:rgba(168,217,213,0.22);
+  --primary:var(--c-teal);
+  --on-primary:var(--c-white);
+  --primary-alt:var(--c-white);
+  --on-primary-alt:var(--c-navy);
+
+  /* Aurora / gradient atmosphere stops */
+  --grad-teal:var(--c-teal);
+  --grad-teal-soft:var(--c-teal-soft);
+  --grad-slate:var(--c-slate);
+  --grad-deep:#052555;
+
+  --serif:"Assistant",sans-serif;
+  --sans:"Assistant",sans-serif;
+  --container:1200px;
+  --section-pad:clamp(64px,10vw,128px) clamp(20px,5vw,48px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{background:var(--c-navy);scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{
+  font-family:"Assistant",sans-serif;
+  font-weight:400;
+  letter-spacing:0.16px;
+  line-height:1.5;
+  color:var(--body);
+  background:var(--canvas);
+  overflow-x:hidden;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--c-teal);outline-offset:3px;border-radius:6px}
+
+/* ---------- atmospheric layers ---------- */
+.aurora{
+  position:fixed;inset:-10vmax;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(60vmax 50vmax at 15% 20%, rgba(37,169,156,0.10), transparent 60%),
+    radial-gradient(50vmax 45vmax at 85% 30%, rgba(168,217,213,0.08), transparent 60%),
+    radial-gradient(55vmax 50vmax at 50% 80%, rgba(5,37,85,0.15), transparent 65%),
+    radial-gradient(45vmax 40vmax at 20% 90%, rgba(107,117,137,0.06), transparent 60%),
+    var(--c-navy);
+  background-size:120% 120%, 120% 120%, 120% 120%, 120% 120%, auto;
+  animation:drift 40s ease-in-out infinite alternate, bgShift 30s ease-in-out infinite alternate;
+  transform-origin:center;
+  will-change:transform,background-position;
+}
+@keyframes drift{
+  from{transform:scale(1) rotate(0deg)}
+  to{transform:scale(1.15) rotate(8deg)}
+}
+@keyframes bgShift{
+  from{background-position:0% 0%, 100% 0%, 50% 100%, 0% 100%, 0 0}
+  to  {background-position:20% 30%, 80% 20%, 60% 80%, 10% 80%, 0 0}
+}
+.starfield{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  width:100%;height:100%;
+}
+
+/* ---------- drifting pastel orbs (CSS) ---------- */
+.orb{
+  position:fixed;pointer-events:none;z-index:-1;
+  border-radius:50%;
+  filter:blur(60px);
+  opacity:0.55;
+  mix-blend-mode:screen;
+  will-change:transform;
+}
+.orb.o1{width:70vmax;height:70vmax;background:radial-gradient(circle at 50% 50%, rgba(37,169,156,0.35), transparent 60%);top:-25vmax;inset-inline-start:-20vmax;animation:floatA 90s ease-in-out infinite alternate}
+.orb.o2{width:60vmax;height:60vmax;background:radial-gradient(circle at 50% 50%, rgba(168,217,213,0.30), transparent 60%);top:30vmax;inset-inline-end:-20vmax;animation:floatB 110s ease-in-out infinite alternate}
+.orb.o3{width:65vmax;height:65vmax;background:radial-gradient(circle at 50% 50%, rgba(37,169,156,0.25), transparent 60%);top:80vmax;inset-inline-start:-15vmax;animation:floatC 120s ease-in-out infinite alternate}
+.orb.o4{width:55vmax;height:55vmax;background:radial-gradient(circle at 50% 50%, rgba(168,217,213,0.22), transparent 60%);top:130vmax;inset-inline-end:-10vmax;animation:floatA 100s ease-in-out infinite alternate}
+.orb.o5{width:50vmax;height:50vmax;background:radial-gradient(circle at 50% 50%, rgba(5,37,85,0.45), transparent 60%);top:180vmax;inset-inline-start:-10vmax;animation:floatB 130s ease-in-out infinite alternate}
+@keyframes floatA{
+  0%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  50%{transform:translate3d(6vmax,4vmax,0) rotate(40deg) scale(1.1)}
+  100%{transform:translate3d(-4vmax,8vmax,0) rotate(-30deg) scale(1.05)}
+}
+@keyframes floatB{
+  0%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  50%{transform:translate3d(-7vmax,5vmax,0) rotate(-50deg) scale(1.12)}
+  100%{transform:translate3d(5vmax,-5vmax,0) rotate(30deg) scale(0.95)}
+}
+@keyframes floatC{
+  0%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  50%{transform:translate3d(8vmax,-3vmax,0) rotate(60deg) scale(1.08)}
+  100%{transform:translate3d(-3vmax,6vmax,0) rotate(-40deg) scale(1.02)}
+}
+
+/* ---------- typography ---------- */
+.serif{font-family:"Assistant",sans-serif;font-weight:300;font-style:normal}
+.display-mega{font-family:"Assistant",sans-serif;font-weight:300;font-size:clamp(40px,7vw,84px);line-height:1.02;letter-spacing:-0.02em;color:var(--ink);margin:0}
+.display-xl{font-family:"Assistant",sans-serif;font-weight:300;font-size:clamp(34px,5vw,56px);line-height:1.06;letter-spacing:-0.015em;color:var(--ink);margin:0}
+.display-lg{font-family:"Assistant",sans-serif;font-weight:300;font-size:clamp(28px,3.5vw,40px);line-height:1.12;letter-spacing:-0.01em;color:var(--ink);margin:0}
+.display-sm{font-family:"Assistant",sans-serif;font-weight:300;font-size:24px;line-height:1.2;color:var(--ink);margin:0}
+.title-md{font-family:"Assistant",sans-serif;font-weight:500;font-size:20px;line-height:1.35;color:var(--ink);margin:0}
+.body-md{font-family:"Assistant",sans-serif;font-weight:400;font-size:16px;line-height:1.6;letter-spacing:0.16px;color:var(--body);margin:0}
+.body-lead{font-family:"Assistant",sans-serif;font-weight:400;font-size:clamp(16px,1.4vw,18px);line-height:1.65;letter-spacing:0.16px;color:var(--body);margin:0}
+.caption-uc{font-family:"Assistant",sans-serif;font-weight:600;font-size:12px;line-height:1.4;letter-spacing:0.96px;text-transform:uppercase;color:var(--muted)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:9999px;border:1px solid var(--hairline);background:rgba(14,42,85,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);font-family:"Assistant",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:0.96px;text-transform:uppercase}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c-teal);box-shadow:0 0 10px rgba(37,169,156,0.7)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:44px;padding:0 22px;border-radius:9999px;
+  font-family:"Assistant",sans-serif;font-weight:500;font-size:15px;letter-spacing:0;
+  transition:transform .25s ease,background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .35s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--c-teal);color:var(--c-white)}
+.btn-primary:hover{background:#1f968a;box-shadow:0 0 0 1px rgba(168,217,213,0.45),0 8px 30px rgba(37,169,156,0.45);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--ink);border:1px solid var(--hairline-strong)}
+.btn-outline:hover{border-color:rgba(168,217,213,0.55);background:rgba(168,217,213,0.06)}
+.btn-white{background:var(--c-white);color:var(--c-navy)}
+.btn-white:hover{background:#f3f9f8;box-shadow:0 0 0 1px rgba(255,255,255,0.4),0 8px 30px rgba(37,169,156,0.30);transform:translateY(-1px)}
+.btn .arr{display:inline-block;transform:scaleX(-1);transition:transform .25s ease}
+.btn:hover .arr{transform:scaleX(-1) translateX(-3px)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(20px,4vw,40px);
+  background:rgba(3,22,55,0.55);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid var(--hairline-soft);
+  transition:background-color .3s ease,border-color .3s ease;
+}
+.nav.scrolled{background:rgba(3,22,55,0.78);border-bottom-color:var(--hairline)}
+.brand{display:inline-flex;align-items:center;gap:10px;font-family:"Assistant",sans-serif;font-weight:600;font-size:20px;color:var(--ink);letter-spacing:0.01em}
+.brand-dot{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.45), var(--c-teal) 55%, #0d6660 100%);box-shadow:0 0 18px rgba(37,169,156,0.7)}
+.brand-mark{font-family:"Assistant",sans-serif;font-weight:500;font-size:20px;letter-spacing:0.02em}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-family:"Assistant",sans-serif;font-weight:500;font-size:14px;color:var(--body);transition:color .2s ease}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:10px}
+@media (max-width:880px){
+  .nav-links{display:none}
+}
+
+/* ---------- container ---------- */
+.container{max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,48px);position:relative;z-index:1}
+section{padding:var(--section-pad);position:relative;z-index:1}
+
+/* ---------- reveal ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  filter:blur(6px);
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s cubic-bezier(.2,.7,.2,1);
+  will-change:transform,opacity,filter;
+}
+.reveal.revealed{opacity:1;transform:none;filter:none}
+.stagger > *{transition-delay:0ms}
+.stagger > *:nth-child(2){transition-delay:120ms}
+.stagger > *:nth-child(3){transition-delay:240ms}
+.stagger > *:nth-child(4){transition-delay:360ms}
+.stagger > *:nth-child(5){transition-delay:480ms}
+.stagger > *:nth-child(6){transition-delay:600ms}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  padding-top:clamp(140px,18vw,200px);
+  padding-bottom:clamp(80px,10vw,140px);
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(32px,5vw,72px);
+  align-items:center;
+}
+.hero-copy{position:relative;z-index:2}
+.hero-h1{margin-top:18px;margin-bottom:24px}
+.hero-h1 .ink-grad{
+  background:linear-gradient(95deg, var(--c-teal-soft) 0%, var(--c-teal) 50%, var(--c-white) 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  animation:hueShift 9s ease-in-out infinite;
+}
+@keyframes hueShift{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+.hero-sub{max-width:560px;margin-bottom:32px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero-trust{margin-top:36px;display:flex;align-items:center;gap:14px;color:var(--muted);font-size:13px;letter-spacing:0.08em}
+.hero-trust .dots{display:inline-flex;gap:4px}
+.hero-trust .dots i{width:8px;height:8px;border-radius:50%;background:var(--c-teal);opacity:.9;display:inline-block;box-shadow:0 0 8px rgba(37,169,156,0.6)}
+.hero-trust .dots i:nth-child(2){background:var(--c-teal-soft);box-shadow:0 0 8px rgba(168,217,213,0.6)}
+.hero-trust .dots i:nth-child(3){background:var(--c-teal);box-shadow:0 0 8px rgba(37,169,156,0.6)}
+
+.hero-orb-wrap{
+  position:relative;
+  width:100%;
+  max-width:560px;
+  aspect-ratio:520 / 600;
+  margin-inline-start:auto;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-orb-glow{
+  position:absolute;inset:-30%;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(37,169,156,0.35) 0%, rgba(168,217,213,0.18) 30%, transparent 70%);
+  filter:blur(80px);
+  z-index:0;
+  animation:breathe 7s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes breathe{
+  from{transform:scale(0.95);opacity:0.75}
+  to{transform:scale(1.10);opacity:1}
+}
+.logo-svg-wrap{
+  position:relative;z-index:1;
+  width:100%;
+  max-width:clamp(320px,44vw,540px);
+  aspect-ratio:520 / 600;
+  display:flex;align-items:center;justify-content:center;
+  animation:logoFloat 6s ease-in-out infinite alternate;
+}
+.logo-svg-wrap svg{
+  width:100%;height:auto;display:block;
+  filter:drop-shadow(0 0 30px rgba(37,169,156,0.30));
+}
+.logo-rotate{
+  transform-origin:260px 240px;
+  animation:logoRotate 20s ease-in-out infinite;
+}
+@keyframes logoFloat{
+  from{transform:translateY(-8px)}
+  to{transform:translateY(8px)}
+}
+@keyframes logoRotate{
+  0%{transform:rotate(0deg)}
+  50%{transform:rotate(8deg)}
+  100%{transform:rotate(0deg)}
+}
+@keyframes nodePulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+.logo-node{
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:nodePulse 3s ease-in-out infinite alternate;
+}
+.hero-orb-ring{
+  position:absolute;inset:-6%;
+  border-radius:50%;
+  border:1px dashed rgba(168,217,213,0.12);
+  animation:spinSlow 60s linear infinite;
+  pointer-events:none;
+}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@media (max-width:880px){
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .hero-orb-wrap{max-width:380px;margin:0 auto}
+}
+
+/* ---------- logo marquee ---------- */
+.marquee{
+  position:relative;
+  padding:48px 0;
+  border-top:1px solid var(--hairline-soft);
+  border-bottom:1px solid var(--hairline-soft);
+  overflow:hidden;
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+.marquee-track{
+  display:flex;align-items:center;gap:64px;
+  width:max-content;
+  animation:marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(50%)}}
+.marquee-item{
+  font-family:"Assistant",sans-serif;font-weight:400;font-size:22px;
+  color:var(--muted-soft);
+  white-space:nowrap;
+  letter-spacing:0.02em;
+  transition:color .25s ease;
+}
+.marquee-item:hover{color:var(--ink)}
+.marquee-sep{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--hairline-strong);
+}
+
+/* ---------- generic section heading ---------- */
+.section-head{display:flex;flex-direction:column;gap:18px;max-width:760px;margin-bottom:64px}
+.section-head .display-lg,.section-head .display-xl{margin:0}
+.section-head .lead{color:var(--body)}
+.center{align-items:center;text-align:center;margin-left:auto;margin-right:auto}
+
+/* ---------- glass card base ---------- */
+.glass{
+  position:relative;
+  background:rgba(14,42,85,0.55);
+  border:1px solid var(--hairline);
+  border-radius:16px;
+  backdrop-filter:blur(20px) saturate(130%);
+  -webkit-backdrop-filter:blur(20px) saturate(130%);
+  transition:transform .4s ease-out,border-color .35s ease,box-shadow .4s ease;
+  will-change:transform;
+  overflow:hidden;
+  isolation:isolate;
+}
+.glass::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(180deg, rgba(168,217,213,0.06), transparent 45%);
+  pointer-events:none;z-index:0;
+}
+.glass > *{position:relative;z-index:1}
+
+/* ---------- services ---------- */
+.services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:980px){.services-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:680px){.services-grid{grid-template-columns:1fr}}
+.feature-card{padding:32px;min-height:320px;display:flex;flex-direction:column;gap:16px;cursor:default}
+.feature-card .mini-label{color:var(--c-teal);font-family:"Assistant",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:0.96px;text-transform:uppercase}
+.feature-card .title{font-family:"Assistant",sans-serif;font-weight:300;font-size:28px;line-height:1.15;color:var(--ink);letter-spacing:-0.005em;margin:0}
+.feature-card .body{color:var(--body);font-size:15.5px;line-height:1.62}
+.feature-card .link{margin-top:auto;display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:500;font-size:14.5px;border-bottom:1px solid var(--hairline-strong);padding-bottom:4px;align-self:flex-start;transition:gap .25s ease,border-color .25s ease}
+.feature-card .link .arr{display:inline-block;transform:scaleX(-1);transition:transform .25s ease}
+.feature-card .link:hover{border-color:var(--c-teal)}
+.feature-card .link:hover .arr{transform:scaleX(-1) translateX(-3px)}
+.feature-card .pip{
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.45), rgba(37,169,156,0.55) 40%, #0d6660 100%);
+  box-shadow:0 0 30px rgba(37,169,156,0.45), inset 0 0 12px rgba(255,255,255,0.18);
+  margin-bottom:4px;
+}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center}
+@media (max-width:880px){.about-grid{grid-template-columns:1fr}}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+.stat{padding:18px 20px;border-radius:14px;border:1px solid var(--hairline);background:rgba(14,42,85,0.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.stat .num{font-family:"Assistant",sans-serif;font-weight:300;font-size:34px;line-height:1;color:var(--ink);letter-spacing:-0.015em}
+.stat .num .plus{color:var(--c-teal)}
+.stat .lab{font-family:"Assistant",sans-serif;font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:0.04em}
+
+.founders{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.founder{padding:0;overflow:hidden;border-radius:20px}
+.founder .photo{position:relative;aspect-ratio:1/1.05;overflow:hidden}
+.founder .photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.85) contrast(0.95) brightness(0.95);transition:transform .8s ease,filter .8s ease}
+.founder:hover .photo img{transform:scale(1.05);filter:saturate(1) contrast(1) brightness(1)}
+.founder .photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(3,22,55,0.88) 100%);
+  pointer-events:none;
+}
+.founder .meta{position:absolute;inset-inline-start:18px;inset-inline-end:18px;bottom:18px;z-index:2;display:flex;flex-direction:column;gap:4px}
+.founder .name{font-family:"Assistant",sans-serif;font-weight:500;font-size:22px;color:var(--ink);letter-spacing:-0.005em}
+.founder .role{font-family:"Assistant",sans-serif;font-size:13px;color:var(--c-teal-soft);letter-spacing:0.04em}
+.founder{position:relative}
+
+/* ---------- bulb bullet list (used in about stats + pricing tiers) ---------- */
+.bulb-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;color:var(--body);font-size:14.5px;line-height:1.55}
+.bulb-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding-block:4px;
+  color:var(--body);
+}
+.bulb-list li > svg.bulb-icon{
+  flex-shrink:0;
+  width:20px;
+  height:26px;
+  margin-top:1px;
+  transform-origin:center;
+  transition:transform .6s cubic-bezier(.34,1.56,.64,1);
+  filter:drop-shadow(0 0 6px rgba(37,169,156,0.35));
+}
+.bulb-list li.bulb-pulsed > svg.bulb-icon{
+  animation:bulbPulse 0.6s cubic-bezier(.34,1.56,.64,1) 1;
+}
+@keyframes bulbPulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
+
+/* ---------- process ---------- */
+.process-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:980px){.process-grid{grid-template-columns:1fr}}
+.step-card{padding:36px 32px;min-height:300px;display:flex;flex-direction:column;gap:20px;position:relative;overflow:hidden}
+.step-card .step-num{font-family:"Assistant",sans-serif;font-weight:200;font-size:96px;line-height:0.9;color:transparent;-webkit-text-stroke:1px rgba(168,217,213,0.30);letter-spacing:-0.03em;align-self:flex-start}
+.step-card .step-label{font-family:"Assistant",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:0.96px;text-transform:uppercase;color:var(--c-teal)}
+.step-card .step-title{font-family:"Assistant",sans-serif;font-weight:300;font-size:26px;line-height:1.18;color:var(--ink);letter-spacing:-0.005em;margin:0}
+.step-card .step-body{color:var(--body);font-size:15.5px;line-height:1.62}
+.step-card::after{
+  content:"";position:absolute;inset-inline-end:-30%;top:-30%;
+  width:60%;height:60%;border-radius:50%;
+  background:radial-gradient(circle,rgba(37,169,156,0.22),transparent 65%);
+  filter:blur(20px);
+  pointer-events:none;
+}
+
+/* ---------- testimonials ---------- */
+.testi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:980px){.testi-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:680px){.testi-grid{grid-template-columns:1fr}}
+.testi-card{padding:30px;display:flex;flex-direction:column;gap:18px;min-height:260px}
+.testi-card .quote-mark{
+  font-family:"Assistant",sans-serif;font-weight:300;font-size:64px;line-height:0.5;
+  background:linear-gradient(135deg,var(--c-teal-soft),var(--c-teal));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  width:fit-content;
+}
+.testi-card .quote{color:var(--body);font-size:15.5px;line-height:1.62;flex:1}
+.testi-card .who{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--hairline)}
+.avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.45), var(--c-teal) 55%, #0d6660 100%);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:"Assistant",sans-serif;font-weight:600;font-size:15px;color:var(--c-white);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,0.25);
+  flex:0 0 auto;
+}
+.who .nm{font-family:"Assistant",sans-serif;font-weight:500;font-size:14.5px;color:var(--ink);line-height:1.3}
+.who .rl{font-family:"Assistant",sans-serif;font-size:12.5px;color:var(--muted);margin-top:2px}
+.sample-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:9999px;background:rgba(37,169,156,0.12);border:1px solid rgba(37,169,156,0.30);color:var(--c-teal-soft);font-family:"Assistant",sans-serif;font-size:11.5px;font-weight:500;letter-spacing:0.06em;margin-top:8px}
+
+/* ---------- pricing ---------- */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
+@media (max-width:980px){.pricing-grid{grid-template-columns:1fr}}
+.price-card{padding:36px 30px;display:flex;flex-direction:column;gap:18px;min-height:520px;border-radius:20px}
+.price-card .tier-name{font-family:"Assistant",sans-serif;font-weight:300;font-size:30px;line-height:1.1;color:var(--ink);letter-spacing:-0.005em;margin:0}
+.price-card .tier-tag{color:var(--muted);font-size:14px;line-height:1.5}
+.price-card .tier-price{font-family:"Assistant",sans-serif;font-weight:400;font-size:22px;color:var(--ink);padding:18px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);letter-spacing:-0.005em}
+.price-card .price-cta{margin-top:auto;width:100%}
+.price-card .btn{width:100%;justify-content:space-between}
+
+/* featured tier glow + gradient hairline */
+.price-card.featured{
+  background:linear-gradient(180deg, rgba(14,42,85,0.88), rgba(14,42,85,0.72));
+  border:1px solid transparent;
+  background-clip:padding-box;
+  position:relative;
+  z-index:1;
+}
+.price-card.featured::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;z-index:-1;
+  background:linear-gradient(135deg,var(--c-teal),var(--c-teal-soft),var(--c-teal));
+  opacity:.90;
+  filter:blur(0.3px);
+}
+.price-card.featured::before{
+  content:"";position:absolute;inset:-20px;border-radius:32px;z-index:-2;
+  background:radial-gradient(60% 60% at 50% 30%, rgba(37,169,156,0.35), transparent 70%);
+  filter:blur(30px);pointer-events:none;
+}
+.price-card .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:9999px;background:var(--c-white);color:var(--c-navy);font-family:"Assistant",sans-serif;font-size:11px;font-weight:600;letter-spacing:0.96px;text-transform:uppercase;align-self:flex-start}
+
+/* ---------- FAQ ---------- */
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:880px){.faq-grid{grid-template-columns:1fr}}
+.faq-item{
+  border:1px solid var(--hairline);
+  border-radius:14px;
+  background:rgba(14,42,85,0.55);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:0;
+  overflow:hidden;
+  transition:border-color .3s ease,background-color .3s ease;
+}
+.faq-item[open]{border-color:rgba(37,169,156,0.50);background:rgba(14,42,85,0.72)}
+.faq-item summary{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 22px;
+  cursor:pointer;
+  list-style:none;
+  font-family:"Assistant",sans-serif;font-weight:500;font-size:15.5px;color:var(--ink);
+  line-height:1.45;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item .chev{
+  flex:0 0 auto;width:24px;height:24px;border-radius:50%;
+  border:1px solid var(--hairline-strong);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:transform .35s ease,border-color .3s ease,background-color .3s ease;
+  color:var(--ink);
+}
+.faq-item[open] .chev{transform:rotate(180deg);background:rgba(37,169,156,0.25);border-color:rgba(37,169,156,0.65);color:var(--c-white)}
+.faq-item .ans{
+  padding:0 22px 22px 22px;
+  color:var(--body);font-size:15px;line-height:1.65;
+  border-top:1px solid var(--hairline-soft);
+  margin-top:0;
+  animation:faqIn .45s ease both;
+}
+@keyframes faqIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* ---------- final CTA ---------- */
+.cta-band{
+  position:relative;
+  padding:clamp(72px,10vw,128px) clamp(20px,5vw,48px);
+  text-align:center;
+  overflow:hidden;
+}
+.cta-band .inner{position:relative;z-index:2;max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:24px;align-items:center}
+.cta-band .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
+.cta-band .contacts{margin-top:36px;display:flex;flex-direction:column;gap:8px;color:var(--muted);font-size:14.5px}
+.cta-band .contacts strong{color:var(--ink);font-weight:600;font-family:"Assistant",sans-serif}
+.cta-band .contacts a{color:var(--body);transition:color .2s ease}
+.cta-band .contacts a:hover{color:var(--c-teal)}
+.cta-bloom{
+  position:absolute;left:50%;top:50%;
+  width:80vmax;height:80vmax;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 50% 50%,rgba(37,169,156,0.30) 0%,rgba(168,217,213,0.15) 35%,transparent 65%);
+  filter:blur(40px);
+  pointer-events:none;z-index:0;
+  animation:breathe 9s ease-in-out infinite alternate;
+}
+
+/* ---------- footer ---------- */
+.footer{
+  background:var(--canvas);
+  border-top:1px solid var(--hairline);
+  padding:64px clamp(20px,5vw,48px) 36px;
+  color:var(--body);
+  position:relative;z-index:1;
+}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;max-width:var(--container);margin:0 auto}
+@media (max-width:880px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.footer-grid{grid-template-columns:1fr}}
+.footer h4{font-family:"Assistant",sans-serif;font-weight:600;font-size:12px;letter-spacing:0.96px;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.footer ul li a{color:var(--body);font-size:14.5px;transition:color .2s ease}
+.footer ul li a:hover{color:var(--ink)}
+.footer .tagline{font-family:"Assistant",sans-serif;font-weight:300;font-size:18px;color:var(--body);max-width:280px;line-height:1.45;margin-top:14px}
+.footer-bottom{max-width:var(--container);margin:48px auto 0;padding-top:24px;border-top:1px solid var(--hairline-soft);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted)}
+
+/* ---------- selection + scrollbar ---------- */
+::selection{background:rgba(37,169,156,0.55);color:#fff}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  .aurora,.orb,.hero-orb-glow,.hero-orb-ring,.marquee-track,.hero-h1 .ink-grad,.cta-bloom,
+  .logo-svg-wrap,.logo-rotate,.logo-node{animation:none !important}
+  .logo-svg-wrap .pulse-dot,.logo-svg-wrap animate,.logo-svg-wrap animateMotion,.logo-svg-wrap animateTransform{display:none !important}
+  .reveal{opacity:1;transform:none;filter:none;transition:none}
+  .bulb-list li.bulb-pulsed > svg.bulb-icon{animation:none !important}
+}
+
+/* small util */
+.lt{display:inline-block}
+[dir="ltr"]{unicode-bidi:isolate;display:inline-block}
+</style>
+</head>
+<body>
+
+<!-- atmospheric layers -->
+<div class="aurora" aria-hidden="true"></div>
+<div class="orb o1" aria-hidden="true"></div>
+<div class="orb o2" aria-hidden="true"></div>
+<div class="orb o3" aria-hidden="true"></div>
+<div class="orb o4" aria-hidden="true"></div>
+<div class="orb o5" aria-hidden="true"></div>
+<canvas class="starfield" id="stars" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a class="brand" href="#top">
+    <span class="brand-dot" aria-hidden="true"></span>
+    <span class="brand-mark" dir="ltr">Legal Mind</span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">מה אנחנו עושים</a>
+    <a href="#about">מי אנחנו</a>
+    <a href="#process">איך זה עובד</a>
+    <a href="#testimonials">מה אומרים עלינו</a>
+    <a href="#faq">שאלות נפוצות</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#contact" class="btn btn-primary">
+      בוא נדבר
+      <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">AI מעשי לעורכי דין</span>
+        <h1 class="display-mega hero-h1"><span class="ink-grad">AI שעובד באמת בעבודה המשפטית</span></h1>
+        <p class="body-lead hero-sub">עו"ד? בטח כבר נתקלת בזה.</p>
+        <p class="body-lead hero-sub">את מהפכת ה-AI אי אפשר לפספס, וברור שגם אתה - עו"ד עמוס שעסוק בלי דקה מיותרת - ניסית במשרד. הזנת פרומפטים, הגדרת לצ'אט תפקידים ("פעל כעורך דין ותיק..."), תיקנת, דייקת, ביקשת, אפילו התחננת... וקיבלת טקסט שנראה... בסדר. אה רגע, חסרים בו סעיפים חשובים. אוי, הוא ממציא חקיקה ופסיקה שלעיתים נשמעות משכנעות יותר מהמקור האמיתי. ככה אי אפשר לעבוד.</p>
+        <p class="body-lead hero-sub">עד לכאן אתה צודק.</p>
+        <p class="body-lead hero-sub">אבל אם הסקת מכל זה שכלי ה-AI עדיין לא מוכנים לעבודה משפטית שוטפת — טוב שהגעת לכאן. כעורכי דין ותיקים (27 שנות ניסיון מצטברות) בתחום דינמי כמו מקרקעין, אנחנו אומרים לך מניסיון: AI שינה לנו את המשרד. הוא חוסך לנו שעות עבודה ומייצר תוצרים אמינים ומבוססים — כשיודעים איך לעבוד איתו. וזה ממש לא מסובך. אנחנו כבר מסבירים.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">
+            תיאום פגישת היכרות
+            <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#about" class="btn btn-outline">למה אנחנו</a>
+        </div>
+        <div class="hero-trust">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>למעלה מ-1,000 עו"ד בקהילת <span dir="ltr">Legal Mind</span></span>
+        </div>
+      </div>
+      <div class="hero-orb-wrap reveal" id="orbWrap">
+        <div class="hero-orb-glow" aria-hidden="true"></div>
+        <div class="hero-orb-ring" aria-hidden="true"></div>
+        <div class="logo-svg-wrap" aria-hidden="true">
+          <svg viewBox="0 0 520 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Legal Mind — lightbulb with neural network inside">
+            <defs>
+              <linearGradient id="grad-1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#A8D9D5"/>
+                <stop offset="55%" stop-color="#25A99C"/>
+                <stop offset="100%" stop-color="#0d6660"/>
+              </linearGradient>
+              <linearGradient id="grad-line" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgba(37,169,156,0.55)"/>
+                <stop offset="100%" stop-color="rgba(168,217,213,0.35)"/>
+              </linearGradient>
+              <linearGradient id="grad-pulse" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="60%" stop-color="#A8D9D5"/>
+                <stop offset="100%" stop-color="rgba(168,217,213,0)"/>
+              </linearGradient>
+              <radialGradient id="bulbInnerGlow" cx="50%" cy="40%" r="50%">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </radialGradient>
+              <radialGradient id="bulbTealFill" cx="50%" cy="45%" r="55%">
+                <stop offset="0%" stop-color="rgba(37,169,156,0.08)"/>
+                <stop offset="100%" stop-color="rgba(37,169,156,0)"/>
+              </radialGradient>
+              <filter id="node-glow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="3" result="b1"/>
+                <feMerge>
+                  <feMergeNode in="b1"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+
+              <!-- edge paths for motion (scaled, centered on 260,240) -->
+              <path id="e-c-tl" d="M260 240 L188 168"/>
+              <path id="e-c-t"  d="M260 240 L260 130"/>
+              <path id="e-c-tr" d="M260 240 L332 158"/>
+              <path id="e-c-r"  d="M260 240 L368 230"/>
+              <path id="e-c-br" d="M260 240 L348 308"/>
+              <path id="e-c-b"  d="M260 240 L266 348"/>
+              <path id="e-c-bl" d="M260 240 L188 314"/>
+              <path id="e-c-l"  d="M260 240 L152 230"/>
+              <path id="e-c-ml" d="M260 240 L212 212"/>
+              <path id="e-tl-t" d="M188 168 L260 130"/>
+              <path id="e-t-tr" d="M260 130 L332 158"/>
+              <path id="e-tr-r" d="M332 158 L368 230"/>
+              <path id="e-b-bl" d="M266 348 L188 314"/>
+              <path id="e-bl-l" d="M188 314 L152 230"/>
+
+              <!-- mini lightbulb — used as each network node -->
+              <g id="mini-bulb">
+                <path d="M0,-7.5 C -6,-7.5 -7.5,-3.5 -7.5,-0.5 C -7.5,2 -6,3.5 -5,4.5 L 5,4.5 C 6,3.5 7.5,2 7.5,-0.5 C 7.5,-3.5 6,-7.5 0,-7.5 Z"
+                  fill="url(#grad-1)"
+                  stroke="rgba(168,217,213,0.85)"
+                  stroke-width="0.6"
+                  stroke-linejoin="round"/>
+                <circle cx="0" cy="-2" r="1.4" fill="#FFFFFF" opacity="0.75"/>
+                <line x1="-4" y1="5.7" x2="4" y2="5.7" stroke="#031637" stroke-width="0.85" stroke-linecap="round" opacity="0.7"/>
+                <line x1="-3.3" y1="7" x2="3.3" y2="7" stroke="#031637" stroke-width="0.75" stroke-linecap="round" opacity="0.7"/>
+                <rect x="-1.3" y="7.8" width="2.6" height="1" rx="0.3" fill="#031637" opacity="0.7"/>
+              </g>
+            </defs>
+
+            <!-- BULB GLASS ENVELOPE (teardrop / Edison shape) -->
+            <!-- subtle teal interior fill -->
+            <path d="M260 60
+                     C 180 60, 120 130, 120 220
+                     C 120 270, 138 305, 160 335
+                     C 180 362, 198 380, 210 400
+                     L 310 400
+                     C 322 380, 340 362, 360 335
+                     C 382 305, 400 270, 400 220
+                     C 400 130, 340 60, 260 60 Z"
+                  fill="url(#bulbTealFill)"
+                  stroke="none"/>
+            <!-- inner soft cyan-white filament glow rect masked by bulb shape -->
+            <rect x="120" y="60" width="280" height="340" fill="url(#bulbInnerGlow)" opacity="0.9" style="mix-blend-mode:screen"/>
+            <!-- glass outline -->
+            <path d="M260 60
+                     C 180 60, 120 130, 120 220
+                     C 120 270, 138 305, 160 335
+                     C 180 362, 198 380, 210 400
+                     L 310 400
+                     C 322 380, 340 362, 360 335
+                     C 382 305, 400 270, 400 220
+                     C 400 130, 340 60, 260 60 Z"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.55)"
+                  stroke-width="3"
+                  stroke-linejoin="round"/>
+
+            <!-- NETWORK INSIDE THE BULB -->
+            <g class="logo-rotate">
+              <!-- edges -->
+              <g stroke="url(#grad-line)" stroke-width="1.4" fill="none" opacity="0.7">
+                <use href="#e-c-tl"/>
+                <use href="#e-c-t"/>
+                <use href="#e-c-tr"/>
+                <use href="#e-c-r"/>
+                <use href="#e-c-br"/>
+                <use href="#e-c-b"/>
+                <use href="#e-c-bl"/>
+                <use href="#e-c-l"/>
+                <use href="#e-c-ml"/>
+                <use href="#e-tl-t"/>
+                <use href="#e-t-tr"/>
+                <use href="#e-tr-r"/>
+                <use href="#e-b-bl"/>
+                <use href="#e-bl-l"/>
+              </g>
+
+              <!-- nodes (scaled to fit inside the bulb glass) -->
+              <g filter="url(#node-glow)">
+                <circle cx="260" cy="240" r="22" fill="url(#grad-1)">
+                  <animate attributeName="r" values="20;24;20" dur="3s" repeatCount="indefinite" begin="0s"/>
+                </circle>
+                <circle cx="188" cy="168" r="11" fill="url(#grad-1)">
+                  <animate attributeName="r" values="10;12;10" dur="3s" repeatCount="indefinite" begin="0.3s"/>
+                </circle>
+                <circle cx="260" cy="130" r="10" fill="url(#grad-1)">
+                  <animate attributeName="r" values="9;11;9" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+                </circle>
+                <circle cx="332" cy="158" r="9" fill="url(#grad-1)">
+                  <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite" begin="0.9s"/>
+                </circle>
+                <circle cx="368" cy="230" r="11" fill="url(#grad-1)">
+                  <animate attributeName="r" values="10;12;10" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+                </circle>
+                <circle cx="348" cy="308" r="9" fill="url(#grad-1)">
+                  <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                </circle>
+                <circle cx="266" cy="348" r="11" fill="url(#grad-1)">
+                  <animate attributeName="r" values="10;12;10" dur="3s" repeatCount="indefinite" begin="1.8s"/>
+                </circle>
+                <circle cx="188" cy="314" r="10" fill="url(#grad-1)">
+                  <animate attributeName="r" values="9;11;9" dur="3s" repeatCount="indefinite" begin="2.1s"/>
+                </circle>
+                <circle cx="152" cy="230" r="9" fill="url(#grad-1)">
+                  <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite" begin="2.4s"/>
+                </circle>
+                <circle cx="212" cy="212" r="8" fill="url(#grad-1)">
+                  <animate attributeName="r" values="7;9;7" dur="3s" repeatCount="indefinite" begin="2.7s"/>
+                </circle>
+              </g>
+
+              <!-- data-flow pulses along edges -->
+              <g class="pulses">
+                <circle class="pulse-dot" r="2.5" fill="#A8D9D5" opacity="0.9">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s">
+                    <mpath href="#e-c-tl"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0s"/>
+                </circle>
+                <circle class="pulse-dot" r="2.5" fill="#25A99C" opacity="0.9">
+                  <animateMotion dur="2.0s" repeatCount="indefinite" begin="0.2s">
+                    <mpath href="#e-c-t"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.0s" repeatCount="indefinite" begin="0.2s"/>
+                </circle>
+                <circle class="pulse-dot" r="2.5" fill="#A8D9D5" opacity="0.9">
+                  <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.4s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+                    <mpath href="#e-c-tr"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="0.4s"/>
+                </circle>
+                <circle class="pulse-dot" r="2.5" fill="#25A99C" opacity="0.9">
+                  <animateMotion dur="1.9s" repeatCount="indefinite" begin="0.6s">
+                    <mpath href="#e-c-r"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="1.9s" repeatCount="indefinite" begin="0.6s"/>
+                </circle>
+                <circle class="pulse-dot" r="2.5" fill="#A8D9D5" opacity="0.9">
+                  <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.8s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+                    <mpath href="#e-c-br"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.4s" repeatCount="indefinite" begin="0.8s"/>
+                </circle>
+                <circle class="pulse-dot" r="2.5" fill="#25A99C" opacity="0.9">
+                  <animateMotion dur="2.1s" repeatCount="indefinite" begin="1.0s">
+                    <mpath href="#e-c-b"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.1s" repeatCount="indefinite" begin="1.0s"/>
+                </circle>
+                <circle class="pulse-dot" r="2.5" fill="#A8D9D5" opacity="0.9">
+                  <animateMotion dur="2.3s" repeatCount="indefinite" begin="1.2s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+                    <mpath href="#e-c-bl"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.3s" repeatCount="indefinite" begin="1.2s"/>
+                </circle>
+                <circle class="pulse-dot" r="2.5" fill="#25A99C" opacity="0.9">
+                  <animateMotion dur="1.7s" repeatCount="indefinite" begin="1.4s">
+                    <mpath href="#e-c-l"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="1.7s" repeatCount="indefinite" begin="1.4s"/>
+                </circle>
+                <circle class="pulse-dot" r="2" fill="#A8D9D5" opacity="0.9">
+                  <animateMotion dur="1.6s" repeatCount="indefinite" begin="1.6s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+                    <mpath href="#e-c-ml"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="1.6s" repeatCount="indefinite" begin="1.6s"/>
+                </circle>
+                <!-- lateral satellite-to-satellite -->
+                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
+                  <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.8s">
+                    <mpath href="#e-tl-t"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.2s" repeatCount="indefinite" begin="1.8s"/>
+                </circle>
+                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
+                  <animateMotion dur="2.0s" repeatCount="indefinite" begin="2.0s">
+                    <mpath href="#e-t-tr"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.0s" repeatCount="indefinite" begin="2.0s"/>
+                </circle>
+                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
+                  <animateMotion dur="2.1s" repeatCount="indefinite" begin="2.2s">
+                    <mpath href="#e-tr-r"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.1s" repeatCount="indefinite" begin="2.2s"/>
+                </circle>
+                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
+                  <animateMotion dur="2.3s" repeatCount="indefinite" begin="2.4s">
+                    <mpath href="#e-b-bl"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.3s" repeatCount="indefinite" begin="2.4s"/>
+                </circle>
+                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
+                  <animateMotion dur="2.0s" repeatCount="indefinite" begin="2.6s">
+                    <mpath href="#e-bl-l"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.0s" repeatCount="indefinite" begin="2.6s"/>
+                </circle>
+              </g>
+            </g>
+
+            <!-- SCREW BASE (below the bulb glass neck) -->
+            <!-- Stripe 1 (top of screw) -->
+            <rect x="215" y="408" width="90" height="14" rx="3" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+            <!-- Stripe 2 (middle) -->
+            <rect x="215" y="428" width="90" height="14" rx="3" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+            <!-- Stripe 3 (bottom — accent teal stripe) -->
+            <rect x="215" y="448" width="90" height="14" rx="3" fill="#25A99C" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+            <!-- Neck/lip just below stripes -->
+            <path d="M225 468 L295 468 L285 488 L235 488 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linejoin="round"/>
+            <!-- Contact tip -->
+            <rect x="240" y="490" width="40" height="14" rx="6" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO MARQUEE -->
+<div class="marquee reveal" aria-label="משרדים שעובדים איתנו">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item">משרד גולדפרב זליגמן</span><span class="marquee-sep"></span>
+    <span class="marquee-item">הרצוג פוקס נאמן</span><span class="marquee-sep"></span>
+    <span class="marquee-item">מיתר ליקוורניק</span><span class="marquee-sep"></span>
+    <span class="marquee-item">ש. הורוביץ ושות׳</span><span class="marquee-sep"></span>
+    <span class="marquee-item">פישר בכר חן</span><span class="marquee-sep"></span>
+    <span class="marquee-item">יגאל ארנון — תדמור לוי</span><span class="marquee-sep"></span>
+    <span class="marquee-item">ארדינסט בן נתן</span><span class="marquee-sep"></span>
+    <span class="marquee-item">נשיץ ברנדס אמיר</span><span class="marquee-sep"></span>
+    <span class="marquee-item">פרל כהן צדק לצר ברץ</span><span class="marquee-sep"></span>
+    <span class="marquee-item">קנטור אלחנני</span><span class="marquee-sep"></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">מה אנחנו עושים</span>
+      <h2 class="display-xl">מה אנחנו עושים?</h2>
+      <p class="body-lead lead">יש לנו שלושה מסלולים — שיעלו אותך על המסלול. כבר במפגש הראשון תראה איך ה-AI יכול להשתלב בעבודה המשפטית היומיומית שלך ולבצע חלק גדול ממנה — בצורה טובה, מהירה ויעילה. משם, נבנה איתך תשתית שלמה בהתאמה אישית לעבודה השוטפת ולצרכים שלך: נדריך את הצוות, נספק ליווי שוטף, נשיב על כל שאלה ונדאג להטמעה עמוקה של כלי ה-AI כמכפיל כוח במשרד שלך — בקלות, יעילות ובסטנדרט אבטחת מידע בלתי מתפשר.</p>
+      <span class="caption-uc" style="margin-top:8px">אלה המסלולים שלנו:</span>
+    </div>
+    <div class="services-grid stagger reveal">
+
+      <article class="feature-card glass tilt">
+        <span class="pip" aria-hidden="true"></span>
+        <span class="mini-label">מעלים את המשרד על המסלול</span>
+        <h3 class="title">הדרכות</h3>
+        <p class="body">הדרכה בקבוצות קטנות, אצלך במשרד או אצלנו. כבר אחרי המפגש הראשון תדע לדבר עם הבינה המלאכותית באופן שמייצר תוצרים איכותיים בהתאמה אישית, שישמשו אותך בפועל בעבודה היומיומית. בסיום 3 מפגשים תכיר את כלי ה-AI לעומק, ותדע לבנות סקיל, סוכן ועוזרים מקצה לקצה, ותבין סוף סוף על מה כל הרעש. מתאים גם למשרדים גדולים.</p>
+      </article>
+
+      <article class="feature-card glass tilt">
+        <span class="pip" aria-hidden="true"></span>
+        <span class="mini-label">הופכים ידע להרגל</span>
+        <h3 class="title">ליווי</h3>
+        <p class="body">מענה שוטף, מפגשי המשך, ופתרון מקרים מהשטח — לאורך זמן. הליווי מאפשר לך להתייעץ בזמן אמת על כל שאלה שעולה בעבודה, ולהפוך את העבודה עם AI לחלק קבוע מהיום-יום של המשרד.</p>
+      </article>
+
+      <article class="feature-card glass tilt">
+        <span class="pip" aria-hidden="true"></span>
+        <span class="mini-label">משנים את אופן העבודה במשרד</span>
+        <h3 class="title">הטמעה</h3>
+        <p class="body">תהליך עומק שמשלב AI בעבודה השוטפת של המשרד — מניסוח סעיפי הסכמים, דרך ניתוח מסמכים ועד ניהול ידע פנימי. בסוף התהליך, ה-AI הוא כבר חלק קבוע מניהול העבודה היומיומית במשרד. תתכונן להכיר את העובד הכי חרוץ שלך.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="eyebrow">מי אנחנו</span>
+        <h2 class="display-xl" style="margin-top:18px;margin-bottom:24px">עורכי דין כמוך — שיודעים לעבוד עם AI ברמה הגבוהה ביותר</h2>
+        <p class="body-lead" style="margin-bottom:18px">עו"ד אסף אברמזון ועו"ד רועי נימצוביץ' מביאים יחד 27 שנות ניסיון מצטבר במקצוע עריכת הדין. אנחנו באים מהשטח, מכירים את הקשיים, הטרמינולוגיה והצרכים של העולם המשפטי ומתעדכנים איתו, וזה ההבדל המהותי בינינו לבין יועצי AI אחרים בשוק: אנחנו לא טכנולוגים שלמדו לדבר עם עו"ד, אלא עו"ד מעשיים שלמדו לעבוד עם AI ברמה הגבוהה ביותר.</p>
+        <p class="body-lead">אנחנו יודעים מבפנים איך עורך הדין חושב, איך הוא עובד, מה הוא צריך ואיך לזקק את הידע והניסיון שקיימים אצלו לכלי עבודה בעידן החדש. אנחנו המייסדים והמובילים של קהילת <span dir="ltr">Legal Mind</span> — קהילת AI לעורכי דין בישראל שמונה למעלה מ-1,000 חברים, ומעבירים סדנאות והרצאות במשרדי עורכי דין ובמחלקות משפטיות בחברות.</p>
+        <ul class="bulb-list reveal" style="margin-top:32px">
+          <li>27 שנות ניסיון משפטי מצטבר</li>
+          <li>1,000+ חברים בקהילת <span dir="ltr">Legal Mind</span></li>
+          <li>סדנאות פעילות במשרדי עו"ד ובמחלקות משפטיות</li>
+          <li>עובדים עם כלי ה-AI המובילים בשוק</li>
+        </ul>
+      </div>
+
+      <div class="founders reveal stagger">
+        <article class="founder glass tilt">
+          <div class="photo">
+            <img src="../assets/asaf.png" alt="עו״ד אסף אברמזון" loading="lazy" />
+          </div>
+          <div class="meta">
+            <div class="name">עו"ד אסף אברמזון</div>
+            <div class="role">שותף-מייסד · <span dir="ltr">Legal Mind</span></div>
+          </div>
+        </article>
+        <article class="founder glass tilt">
+          <div class="photo">
+            <img src="../assets/roy.png" alt="עו״ד רועי נימצוביץ׳" loading="lazy" />
+          </div>
+          <div class="meta">
+            <div class="name">עו"ד רועי נימצוביץ'</div>
+            <div class="role">שותף-מייסד · <span dir="ltr">Legal Mind</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">איך זה עובד</span>
+      <h2 class="display-xl">משיחת היכרות עד הטמעה מלאה במשרד</h2>
+      <p class="body-lead lead">התהליך שלנו בנוי משלושה שלבים. תוך פגישה אחת תדע אם זה מתאים לך.</p>
+    </div>
+    <div class="process-grid stagger reveal">
+      <article class="step-card glass tilt">
+        <div class="step-num">01</div>
+        <div class="step-label">שלב 1</div>
+        <h3 class="step-title">פגישת היכרות</h3>
+        <p class="step-body">נשמח להיפגש לשיחת היכרות — לרוב 45 דקות. נבין איפה המשרד שלך נמצא היום עם AI, ונראה לך לאן אפשר להגיע — ובקלות.</p>
+      </article>
+      <article class="step-card glass tilt">
+        <div class="step-num">02</div>
+        <div class="step-label">שלב 2</div>
+        <h3 class="step-title">הדרכה לצוות</h3>
+        <p class="step-body">מפגשי הדרכה בקבוצות קטנות במשרד שלך או אצלנו. כבר אחרי המפגש הראשון רואים תוצרים אמיתיים בעבודה היומיומית.</p>
+      </article>
+      <article class="step-card glass tilt">
+        <div class="step-num">03</div>
+        <div class="step-label">שלב 3</div>
+        <h3 class="step-title">ליווי והטמעה</h3>
+        <p class="step-body">מהשבוע הראשון אחרי ההדרכה — ליווי שוטף, פתרון מקרים מהשטח, והטמעת AI עמוקה בזרימות העבודה של המשרד.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">מה אומרים עלינו</span>
+      <h2 class="display-xl">משרדי עו"ד שכבר עובדים אחרת</h2>
+      <p class="body-lead lead">הציטוטים הבאים ניתנו על-ידי משתתפים בתוכניות שלנו. השמות והמשרדים זמינים בבקשה.</p>
+      <span class="sample-pill">תוכן לדוגמה</span>
+    </div>
+
+    <div class="testi-grid stagger reveal">
+      <article class="testi-card glass tilt">
+        <div class="quote-mark">”</div>
+        <p class="quote">"אחרי שלוש שנים שניסיתי AI לבד והתאכזבתי — מפגש אחד עם אסף ורועי שינה את הכל. עכשיו אני מנסחת חוזים מורכבים בחצי מהזמן, וברמה גבוהה יותר."</p>
+        <div class="who"><span class="avatar">ש</span><div><div class="nm">עו"ד שרון לוי</div><div class="rl">שותפה, ליטיגציה מסחרית</div></div></div>
+      </article>
+      <article class="testi-card glass tilt">
+        <div class="quote-mark">”</div>
+        <p class="quote">"הליווי השוטף הוא ההבדל. הדרכה בלבד היתה נשארת בידע על המדף. הליווי הפך את זה להרגל יומיומי בכל המחלקה."</p>
+        <div class="who"><span class="avatar">ד</span><div><div class="nm">עו"ד דניאל כהן</div><div class="rl">ראש מחלקת נדל"ן</div></div></div>
+      </article>
+      <article class="testi-card glass tilt">
+        <div class="quote-mark">”</div>
+        <p class="quote">"כעצמאית, ההטמעה חסכה לי שעות בשבוע. AI לא מחליף אותי — הוא משחרר אותי לעבודה שבאמת דורשת אותי."</p>
+        <div class="who"><span class="avatar">מ</span><div><div class="nm">עו"ד מיכל ברק</div><div class="rl">עו"ד עצמאית, דיני משפחה</div></div></div>
+      </article>
+      <article class="testi-card glass tilt">
+        <div class="quote-mark">”</div>
+        <p class="quote">"המחלקה המשפטית שלנו עברה הדרכה ב-2026. תוך חצי שנה — ניתוח חוזים אוטומטי, סיכומי פסיקה, וניהול ידע פנימי בפורמט חדש לחלוטין."</p>
+        <div class="who"><span class="avatar">ת</span><div><div class="nm">עו"ד תומר אדלר</div><div class="rl">יועץ משפטי בכיר, חברת ביטוח</div></div></div>
+      </article>
+      <article class="testi-card glass tilt">
+        <div class="quote-mark">”</div>
+        <p class="quote">"אסף ורועי הם עו"ד שמדברים בשפה שלנו. כל הסדנאות וההרצאות שהיינו בהן קודם נכשלו בנקודה הזו."</p>
+        <div class="who"><span class="avatar">ע</span><div><div class="nm">עו"ד ענת רוזן</div><div class="rl">מנהלת ידע, משרד בוטיק</div></div></div>
+      </article>
+      <article class="testi-card glass tilt">
+        <div class="quote-mark">”</div>
+        <p class="quote">"המעבר היה חד. תוך 3 חודשים האופן שבו אנחנו מטפלים בתיקים השתנה לחלוטין — לטובה."</p>
+        <div class="who"><span class="avatar">ג</span><div><div class="nm">עו"ד גיל אבנון</div><div class="rl">ראש פרקטיקה, מסים בינלאומיים</div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">מסלולי עבודה</span>
+      <h2 class="display-xl">בחר את העומק שמתאים למשרד שלך</h2>
+      <p class="body-lead lead">התמחור בכל מסלול נקבע בהתאמה לגודל המשרד והיקף הצרכים. ניצור איתך את ההצעה אחרי שיחת היכרות.</p>
+    </div>
+
+    <div class="pricing-grid stagger reveal">
+
+      <article class="price-card glass tilt">
+        <h3 class="tier-name">הדרכה</h3>
+        <p class="tier-tag">הצעד הראשון. מפגש או סדרה.</p>
+        <div class="tier-price">מ-₪ — להתאמה אישית</div>
+        <ul class="bulb-list">
+          <li>מפגש בודד (3 שעות) או סדרה של 3 מפגשים</li>
+          <li>הדרכה בקבוצות קטנות (עד 12 משתתפים)</li>
+          <li>חומרי לימוד והקלטות</li>
+          <li>ייעוץ קצר לפני המפגש להתאמת התוכן</li>
+        </ul>
+        <div class="price-cta">
+          <a href="#contact" class="btn btn-outline">קבל הצעה <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="price-card glass tilt featured">
+        <span class="badge">המומלץ ביותר</span>
+        <h3 class="tier-name">הדרכה + ליווי</h3>
+        <p class="tier-tag">הופכים את הידע להרגל יומיומי במשרד.</p>
+        <div class="tier-price">מ-₪ — לפי גודל המשרד</div>
+        <ul class="bulb-list">
+          <li>3 מפגשי הדרכה לצוות</li>
+          <li>ליווי שוטף בוואטסאפ ובמייל למשך 3 חודשים</li>
+          <li>מפגשי המשך חודשיים לפתרון מקרים מהשטח</li>
+          <li>גישה לקהילת <span dir="ltr">Legal Mind</span></li>
+        </ul>
+        <div class="price-cta">
+          <a href="#contact" class="btn btn-primary">קבל הצעה <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="price-card glass tilt">
+        <h3 class="tier-name">הטמעה עמוקה</h3>
+        <p class="tier-tag"><span dir="ltr">AI</span> כחלק מ-<span dir="ltr">DNA</span> של המשרד.</p>
+        <div class="tier-price">מ-₪ — לפי היקף ההטמעה</div>
+        <ul class="bulb-list">
+          <li>הדרכה לצוות מלא</li>
+          <li>ליווי שוטף 6 חודשים</li>
+          <li>מיפוי תהליכים והטמעת <span dir="ltr">AI</span> בזרימות עבודה ספציפיות</li>
+          <li>בניית כלים פנימיים (תבניות, פרומפטים, אוטומציות)</li>
+          <li>מדידה ודיווח על שיפור פרודוקטיביות</li>
+        </ul>
+        <div class="price-cta">
+          <a href="#contact" class="btn btn-outline">קבל הצעה <span class="arr">→</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2 class="display-xl">מה ששאלו אותנו עד עכשיו</h2>
+      <p class="body-lead lead">רוב השאלות שמגיעות אלינו לפני שיחת היכרות נכנסות לאחת מהקטגוריות האלה.</p>
+    </div>
+
+    <div class="faq-grid reveal stagger">
+      <details class="faq-item"><summary>האם זה מתאים גם למשרד קטן או רק לגדולים?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">מתאים לשניהם. עצמאים ומשרדים קטנים נהנים יותר מהדרכה + ליווי קצר; משרדים גדולים מקבלים ערך מצטבר מהטמעה עמוקה. בשיחת ההיכרות נמליץ על המסלול המתאים.</div></details>
+
+      <details class="faq-item"><summary>האם המידע של המשרד נשמר חסוי כשעובדים עם AI?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">כן. אחד הנושאים שאנחנו מלמדים בהדרכה הוא איך לעבוד עם AI מבלי לחשוף מידע רגיש של לקוחות. אנחנו מסבירים אילו כלים מתאימים לאיזה סוג מידע ואילו לא.</div></details>
+
+      <details class="faq-item"><summary>האם AI יחליף את עורכי הדין במשרד?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">לא. AI הוא מכפיל כוח, לא תחליף. הוא מאפשר לך לטפל ביותר תיקים בפחות זמן, לעלות ברמת איכות הניסוח, ולהתפנות לעבודה שבאמת דורשת שיקול דעת משפטי. עורכי הדין שעובדים עם AI מנצחים את אלה שלא.</div></details>
+
+      <details class="faq-item"><summary>איך אדע אם זה מתאים למשרד שלי?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">שיחת היכרות של 45 דקות, ללא עלות וללא התחייבות. נשמע איפה אתה עומד, נבין מה הצרכים, ונמליץ — גם אם ההמלצה היא שעדיין לא בשל בשבילך.</div></details>
+
+      <details class="faq-item"><summary>באיזה כלים אתם עובדים?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">אנחנו עובדים עם כלי ה-AI המובילים בשוק — <span dir="ltr">ChatGPT</span>, <span dir="ltr">Claude</span>, ו-<span dir="ltr">Gemini</span> — ולא נצמדים לאחד. הכלי הנכון תלוי במשימה. בהדרכה נלמד אותך להחליט מתי להשתמש בכל אחד.</div></details>
+
+      <details class="faq-item"><summary>כמה זמן לוקחת ההטמעה?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">הדרכה: מפגש אחד עד שלושה. ליווי: 3 חודשים זמן קצר, 6 חודשים סטנדרט. הטמעה עמוקה: 3-6 חודשים, תלוי בהיקף.</div></details>
+
+      <details class="faq-item"><summary>מה אם אני כבר משתמש ב-AI ופשוט רוצה לעבוד טוב יותר?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">זה רוב הלקוחות שלנו. רוב המשרדים מנסים AI לבד, מקבלים תוצרים בסדר, ולא יודעים שאפשר לקבל הרבה יותר. בהדרכה רואים את ההבדל מהמפגש הראשון.</div></details>
+
+      <details class="faq-item"><summary>איך נשארים בקשר אחרי שמסיימים?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">כל לקוח מקבל גישה לקהילת <span dir="ltr">Legal Mind</span> — מעל 1,000 עו"ד שעובדים עם AI ומתעדכנים בכלים חדשים, פרומפטים, ואירועים. גם אחרי שמסיימים את הליווי הרשמי, אתה נשאר בתוך הקהילה.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="contact" class="cta-band reveal">
+  <div class="cta-bloom" aria-hidden="true"></div>
+  <div class="inner">
+    <span class="eyebrow">מוכן להתחיל</span>
+    <h2 class="display-mega" style="font-size:clamp(36px,5.5vw,68px)">מוכן להעלות את המשרד שלך על המסלול?</h2>
+    <p class="body-lead" style="max-width:620px">שיחת היכרות של 45 דקות — נבין איפה אתה היום, ונראה לך לאן אפשר להגיע.</p>
+    <div class="ctas">
+      <a href="mailto:roy@rnadv.co.il" class="btn btn-primary">
+        בוא נדבר
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="https://wa.me/972506613677" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp לרועי</a>
+    </div>
+    <div class="contacts">
+      <div><strong>עו"ד אסף אברמזון</strong> · <span dir="ltr">052-544-0628</span> · <a href="mailto:asaf@rnadv.co.il" dir="ltr">asaf@rnadv.co.il</a></div>
+      <div><strong>עו"ד רועי נימצוביץ'</strong> · <span dir="ltr">050-661-3677</span> · <a href="mailto:roy@rnadv.co.il" dir="ltr">roy@rnadv.co.il</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <a class="brand" href="#top">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-mark" dir="ltr">Legal Mind</span>
+      </a>
+      <p class="tagline">AI שעובד באמת בעבודה המשפטית.</p>
+    </div>
+    <div>
+      <h4>ניווט</h4>
+      <ul>
+        <li><a href="#services">מה אנחנו עושים</a></li>
+        <li><a href="#about">מי אנחנו</a></li>
+        <li><a href="#process">איך זה עובד</a></li>
+        <li><a href="#testimonials">מה אומרים עלינו</a></li>
+        <li><a href="#faq">שאלות נפוצות</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>יצירת קשר</h4>
+      <ul>
+        <li>אסף · <span dir="ltr">052-544-0628</span></li>
+        <li><a href="mailto:asaf@rnadv.co.il" dir="ltr">asaf@rnadv.co.il</a></li>
+        <li>רועי · <span dir="ltr">050-661-3677</span></li>
+        <li><a href="mailto:roy@rnadv.co.il" dir="ltr">roy@rnadv.co.il</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>משפטי</h4>
+      <ul>
+        <li><a href="#">מדיניות פרטיות</a></li>
+        <li><a href="#">תנאי שימוש</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 <span dir="ltr">Legal Mind</span>. כל הזכויות שמורות.</div>
+    <div>תל אביב · ישראל</div>
+  </div>
+</footer>
+
+</main>
+
+<!-- Lenis smooth scroll + scroll reveal + tilt + counters + starfield + logo SVG parallax -->
+<script type="module">
+  /* ---------- prefers reduced motion guard ---------- */
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Lenis smooth scroll ---------- */
+  if (!REDUCED) {
+    try {
+      const lenisMod = await import('https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.mjs');
+      const Lenis = lenisMod.default;
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        smoothTouch: false,
+      });
+      function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+      // anchor support
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', e=>{
+          const id = a.getAttribute('href');
+          if (id.length < 2) return;
+          const el = document.querySelector(id);
+          if (!el) return;
+          e.preventDefault();
+          lenis.scrollTo(el, { offset: -60, duration: 1.3 });
+        });
+      });
+    } catch(err){ console.warn('Lenis failed to load', err); }
+  }
+
+  /* ---------- inject inline bulb SVG into every .bulb-list li ---------- */
+  (function(){
+    const bulb = '<svg class="bulb-icon" viewBox="0 0 20 26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+      '<path d="M10 1.6 C 5.5 1.6, 2.6 4.8, 2.6 8.6 C 2.6 11.2, 4 12.9, 5.5 14.7 L 5.5 17.2 L 14.5 17.2 L 14.5 14.7 C 16 12.9, 17.4 11.2, 17.4 8.6 C 17.4 4.8, 14.5 1.6, 10 1.6 Z" fill="none" stroke="#25A99C" stroke-width="1.7" stroke-linejoin="round"/>' +
+      '<line x1="6" y1="19" x2="14" y2="19" stroke="#25A99C" stroke-width="1.5" stroke-linecap="round"/>' +
+      '<line x1="6.5" y1="21.1" x2="13.5" y2="21.1" stroke="#25A99C" stroke-width="1.3" stroke-linecap="round"/>' +
+      '<line x1="7.2" y1="23.2" x2="12.8" y2="23.2" stroke="#25A99C" stroke-width="1.2" stroke-linecap="round"/>' +
+      '<rect x="8.4" y="24.4" width="3.2" height="1.4" rx="0.5" fill="#25A99C"/>' +
+      '<circle cx="10" cy="8.6" r="1.7" fill="#25A99C"/>' +
+    '</svg>';
+    document.querySelectorAll('.bulb-list > li').forEach(li => {
+      if (!li.querySelector(':scope > svg.bulb-icon')){
+        li.insertAdjacentHTML('afterbegin', bulb);
+      }
+    });
+  })();
+
+  /* ---------- IntersectionObserver scroll reveals ---------- */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        en.target.classList.add('revealed');
+        // one-shot bulb-bullet pulse when a list comes into view
+        const bullets = en.target.matches('.bulb-list')
+          ? en.target.querySelectorAll(':scope > li')
+          : en.target.querySelectorAll('.bulb-list > li');
+        if (bullets && bullets.length){
+          bullets.forEach((li, idx)=>{
+            setTimeout(()=>{
+              li.classList.add('bulb-pulsed');
+              setTimeout(()=>li.classList.remove('bulb-pulsed'), 700);
+            }, idx * 90);
+          });
+        }
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  /* Observe bulb-lists that are nested inside already-revealed parents too */
+  const bulbIO = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(!en.isIntersecting) return;
+      const items = en.target.querySelectorAll(':scope > li');
+      items.forEach((li, idx)=>{
+        setTimeout(()=>{
+          li.classList.add('bulb-pulsed');
+          setTimeout(()=>li.classList.remove('bulb-pulsed'), 700);
+        }, idx * 90);
+      });
+      bulbIO.unobserve(en.target);
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.bulb-list').forEach(el=>bulbIO.observe(el));
+
+  /* ---------- nav scrolled state ---------- */
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 24) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- duplicate marquee items for seamless loop ---------- */
+  const track = document.getElementById('marqueeTrack');
+  if (track){
+    track.innerHTML = track.innerHTML + track.innerHTML;
+  }
+
+  /* ---------- counters ---------- */
+  const counters = document.querySelectorAll('.count');
+  const counterIO = new IntersectionObserver((ents)=>{
+    ents.forEach(en=>{
+      if(!en.isIntersecting) return;
+      const el = en.target;
+      const target = parseInt(el.dataset.target,10) || 0;
+      const dur = 1600;
+      const t0 = performance.now();
+      const fmt = new Intl.NumberFormat('en-US');
+      const step = (now)=>{
+        const p = Math.min(1, (now - t0)/dur);
+        const eased = 1 - Math.pow(1-p, 3);
+        const v = Math.round(target * eased);
+        el.textContent = fmt.format(v);
+        if (p<1) requestAnimationFrame(step);
+        else el.textContent = fmt.format(target);
+      };
+      requestAnimationFrame(step);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c=>counterIO.observe(c));
+
+  /* ---------- hover tilt ---------- */
+  if (!REDUCED){
+    const tilts = document.querySelectorAll('.tilt');
+    tilts.forEach(card=>{
+      let rx=0,ry=0,tx=0,ty=0; let rafId=null;
+      const onMove = (e)=>{
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left)/r.width - 0.5;
+        const y = (e.clientY - r.top)/r.height - 0.5;
+        tx = -x*6; ty = y*6;
+        if (!rafId){
+          rafId = requestAnimationFrame(()=>{
+            rx += (ty - rx)*0.18;
+            ry += (tx - ry)*0.18;
+            card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+            const gx = (x+0.5)*100, gy = (y+0.5)*100;
+            card.style.backgroundImage =
+              `radial-gradient(circle at ${gx}% ${gy}%, rgba(37,169,156,0.12), transparent 55%)`;
+            rafId = null;
+          });
+        }
+      };
+      const onLeave = ()=>{
+        card.style.transform = '';
+        card.style.backgroundImage = '';
+      };
+      card.addEventListener('mousemove', onMove);
+      card.addEventListener('mouseleave', onLeave);
+    });
+  }
+
+  /* ---------- starfield canvas ---------- */
+  (function starfield(){
+    const cv = document.getElementById('stars');
+    if (!cv) return;
+    const ctx = cv.getContext('2d', { alpha: true });
+    let W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+    const stars = [];
+    const comets = [];
+    const STAR_COUNT = Math.min(140, Math.max(70, Math.floor(window.innerWidth*window.innerHeight/15000)));
+    function resize(){
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = W*DPR; cv.height = H*DPR;
+      cv.style.width = W+'px'; cv.style.height = H+'px';
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+    }
+    function seed(){
+      stars.length = 0;
+      for (let i=0;i<STAR_COUNT;i++){
+        stars.push({
+          x: Math.random()*W,
+          y: Math.random()*H,
+          r: Math.random()*1.1 + 0.5,
+          a: Math.random()*0.4 + 0.2,
+          phase: Math.random()*Math.PI*2,
+          speed: 0.0006 + Math.random()*0.0014,
+        });
+      }
+      comets.length = 0;
+      for (let i=0;i<6;i++) spawnComet(true);
+    }
+    function spawnComet(initial){
+      const fromLeft = Math.random()<0.5;
+      const y = Math.random()*H*0.7 + H*0.05;
+      comets.push({
+        x: initial ? Math.random()*W : (fromLeft ? -120 : W+120),
+        y,
+        vx: (fromLeft ? 1 : -1) * (0.25 + Math.random()*0.45),
+        vy: (Math.random()-0.5)*0.08,
+        len: 80 + Math.random()*120,
+        a: 0.10 + Math.random()*0.15,
+        hue: (Math.random() < 0.5) ? 'teal' : 'tealSoft',
+      });
+    }
+    const hueMap = {
+      teal:'37,169,156', tealSoft:'168,217,213'
+    };
+    let last = performance.now(); let running = !REDUCED;
+    function frame(now){
+      if (document.hidden){ requestAnimationFrame(frame); return; }
+      const dt = now - last; last = now;
+      // motion-blur fade
+      ctx.fillStyle = 'rgba(3,22,55,0.18)';
+      ctx.fillRect(0,0,W,H);
+      // stars (soft teal)
+      for (let i=0;i<stars.length;i++){
+        const s = stars[i];
+        s.phase += s.speed*dt;
+        const a = Math.max(0, Math.min(1, s.a + Math.sin(s.phase)*0.35));
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(168,217,213,${a.toFixed(3)})`;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+      // comets (cap alpha at 0.25)
+      for (let i=comets.length-1;i>=0;i--){
+        const c = comets[i];
+        c.x += c.vx*dt*0.16;
+        c.y += c.vy*dt*0.16;
+        const rgb = hueMap[c.hue];
+        const aCap = Math.min(0.25, c.a);
+        const grad = ctx.createLinearGradient(c.x, c.y, c.x - Math.sign(c.vx)*c.len, c.y - c.vy*c.len);
+        grad.addColorStop(0, `rgba(${rgb},${aCap})`);
+        grad.addColorStop(1, `rgba(${rgb},0)`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(c.x, c.y);
+        ctx.lineTo(c.x - Math.sign(c.vx)*c.len, c.y - c.vy*c.len);
+        ctx.stroke();
+        // head dot
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(${rgb},${Math.min(0.28, aCap*1.1).toFixed(3)})`;
+        ctx.arc(c.x, c.y, 1.6, 0, Math.PI*2);
+        ctx.fill();
+        if (c.x < -200 || c.x > W+200){
+          comets.splice(i,1);
+          spawnComet(false);
+        }
+      }
+      if (running) requestAnimationFrame(frame);
+    }
+    window.addEventListener('resize', ()=>{ resize(); seed(); });
+    document.addEventListener('visibilitychange', ()=>{
+      if (!document.hidden && running){ last = performance.now(); requestAnimationFrame(frame); }
+    });
+    resize(); seed();
+    if (!REDUCED) requestAnimationFrame(frame);
+    else {
+      // static one-pass for reduced motion
+      ctx.fillStyle = '#031637'; ctx.fillRect(0,0,W,H);
+      for (const s of stars){
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(168,217,213,${s.a.toFixed(3)})`;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+    }
+  })();
+
+  /* ---------- hero atmospheric parallax (bulb wrap + drifting orbs) ---------- */
+  if (!REDUCED){
+    const wrap = document.getElementById('orbWrap');
+    const orbs = document.querySelectorAll('.orb');
+    let tx=0,ty=0,cx=0,cy=0;
+    window.addEventListener('mousemove', (e)=>{
+      tx = (e.clientX/window.innerWidth) - 0.5;
+      ty = (e.clientY/window.innerHeight) - 0.5;
+    }, { passive: true });
+    function tick(){
+      cx += (tx - cx)*0.08;
+      cy += (ty - cy)*0.08;
+      if (wrap) wrap.style.transform = `translate3d(${cx*30}px, ${cy*30}px, 0)`;
+      orbs.forEach((o,i)=>{
+        const k = (i+1)*6;
+        o.style.setProperty('--mx', `${cx*k}px`);
+        o.style.setProperty('--my', `${cy*k}px`);
+      });
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+</script>
+
+</body>
+</html>
