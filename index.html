@@ -608,6 +608,21 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 /* prevent native text/image drag — fixes text wobble on mouse drag */
 body *, img, svg{-webkit-user-drag:none;user-drag:none}
 img, svg{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+
+/* === iOS long-press magnifier fix — disables text selection magnifier globally, allows selection only on contact info === */
+html, body, body *{
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+/* Re-enable selection on contact info, FAQ answers, and quotes (where users want to copy) */
+a[href^="tel:"], a[href^="mailto:"], a[href^="https://wa.me"], .val, .quote, .ans, .faq-item .ans, .body-lead, .hero-sub{
+  -webkit-touch-callout:default;
+  -webkit-user-select:text;
+  user-select:text;
+}
 </style>
 </head>
 <body>
