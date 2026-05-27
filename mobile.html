@@ -63,7 +63,12 @@ body{
   min-height:100vh;
   -webkit-font-smoothing:antialiased;
   padding-bottom:calc(var(--bottom-bar-h) + env(safe-area-inset-bottom) + 16px);
+  overscroll-behavior:none;
+  touch-action:pan-y;
 }
+html{overscroll-behavior:none}
+img, svg{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.hero-logo-wrap, .hero-logo-glow, .logo-svg-wrap, .aurora, .orb{pointer-events:none}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;padding:0}
