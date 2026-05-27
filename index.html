@@ -1,6 +1,19 @@
 <!doctype html>
 <html dir="rtl" lang="he">
 <head>
+<script>
+/* Auto-redirect mobile devices to the mobile-optimized layout */
+(function(){
+  try{
+    if(location.pathname.indexOf('mobile.html')!==-1) return;
+    var isMobile = window.matchMedia('(max-width: 768px)').matches ||
+                   /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    if(isMobile){
+      location.replace('/mobile.html' + location.search + location.hash);
+    }
+  }catch(e){}
+})();
+</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>Legal Mind — AI שעובד באמת בעבודה המשפטית</title>
