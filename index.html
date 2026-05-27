@@ -991,7 +991,7 @@ section{padding:var(--section-pad);position:relative;z-index:1}
       <div class="founders reveal stagger">
         <article class="founder glass tilt">
           <div class="photo">
-            <img src="asaf.png" alt="עו״ד אסף אברמזון" loading="lazy" />
+            <img src="asaf.png.png" alt="עו״ד אסף אברמזון" loading="lazy" />
           </div>
           <div class="meta">
             <div class="name">עו"ד אסף אברמזון</div>
@@ -1000,7 +1000,7 @@ section{padding:var(--section-pad);position:relative;z-index:1}
         </article>
         <article class="founder glass tilt">
           <div class="photo">
-            <img src="roy.png" alt="עו״ד רועי נימצוביץ׳" loading="lazy" />
+            <img src="roy.png.png" alt="עו״ד רועי נימצוביץ׳" loading="lazy" />
           </div>
           <div class="meta">
             <div class="name">עו"ד רועי נימצוביץ'</div>
@@ -1521,20 +1521,3 @@ section{padding:var(--section-pad);position:relative;z-index:1}
       tx = (e.clientX/window.innerWidth) - 0.5;
       ty = (e.clientY/window.innerHeight) - 0.5;
     }, { passive: true });
-    function tick(){
-      cx += (tx - cx)*0.08;
-      cy += (ty - cy)*0.08;
-      if (wrap) wrap.style.transform = `translate3d(${cx*30}px, ${cy*30}px, 0)`;
-      orbs.forEach((o,i)=>{
-        const k = (i+1)*6;
-        o.style.setProperty('--mx', `${cx*k}px`);
-        o.style.setProperty('--my', `${cy*k}px`);
-      });
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-</script>
-
-</body>
-</html>
