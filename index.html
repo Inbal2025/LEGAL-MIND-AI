@@ -661,6 +661,21 @@ html, body{
 .hero-brand-wordmark .accent{
   color:var(--c-teal);
 }
+
+/* === New Legal Mind logo image — replaces lightbulb SVG === */
+.hero-logo-img{
+  width:100%;
+  height:auto;
+  max-width:340px;
+  display:block;
+  margin:0 auto;
+  filter:drop-shadow(0 0 24px rgba(37,169,156,0.18));
+}
+.hero-logo-wrap{
+  width:auto;
+  max-width:340px;
+  aspect-ratio:auto;
+}
 </style>
 </head>
 <body>
@@ -724,255 +739,8 @@ html, body{
         <div class="hero-orb-glow" aria-hidden="true"></div>
         <div class="hero-orb-ring" aria-hidden="true"></div>
         <div class="logo-svg-wrap" aria-hidden="true">
-          <svg viewBox="0 0 520 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Legal Mind — lightbulb with neural network inside">
-            <defs>
-              <linearGradient id="grad-1" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#A8D9D5"/>
-                <stop offset="55%" stop-color="#25A99C"/>
-                <stop offset="100%" stop-color="#0d6660"/>
-              </linearGradient>
-              <linearGradient id="grad-line" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="rgba(37,169,156,0.55)"/>
-                <stop offset="100%" stop-color="rgba(168,217,213,0.35)"/>
-              </linearGradient>
-              <linearGradient id="grad-pulse" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="60%" stop-color="#A8D9D5"/>
-                <stop offset="100%" stop-color="rgba(168,217,213,0)"/>
-              </linearGradient>
-              <radialGradient id="bulbInnerGlow" cx="50%" cy="40%" r="50%">
-                <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
-                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-              </radialGradient>
-              <radialGradient id="bulbTealFill" cx="50%" cy="45%" r="55%">
-                <stop offset="0%" stop-color="rgba(37,169,156,0.08)"/>
-                <stop offset="100%" stop-color="rgba(37,169,156,0)"/>
-              </radialGradient>
-              <filter id="node-glow" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="3" result="b1"/>
-                <feMerge>
-                  <feMergeNode in="b1"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-
-              <!-- edge paths for motion (scaled, centered on 260,240) -->
-              <path id="e-c-tl" d="M260 240 L188 168"/>
-              <path id="e-c-t"  d="M260 240 L260 130"/>
-              <path id="e-c-tr" d="M260 240 L332 158"/>
-              <path id="e-c-r"  d="M260 240 L368 230"/>
-              <path id="e-c-br" d="M260 240 L348 308"/>
-              <path id="e-c-b"  d="M260 240 L266 348"/>
-              <path id="e-c-bl" d="M260 240 L188 314"/>
-              <path id="e-c-l"  d="M260 240 L152 230"/>
-              <path id="e-c-ml" d="M260 240 L212 212"/>
-              <path id="e-tl-t" d="M188 168 L260 130"/>
-              <path id="e-t-tr" d="M260 130 L332 158"/>
-              <path id="e-tr-r" d="M332 158 L368 230"/>
-              <path id="e-b-bl" d="M266 348 L188 314"/>
-              <path id="e-bl-l" d="M188 314 L152 230"/>
-
-              <!-- mini lightbulb — used as each network node -->
-              <g id="mini-bulb">
-                <path d="M0,-7.5 C -6,-7.5 -7.5,-3.5 -7.5,-0.5 C -7.5,2 -6,3.5 -5,4.5 L 5,4.5 C 6,3.5 7.5,2 7.5,-0.5 C 7.5,-3.5 6,-7.5 0,-7.5 Z"
-                  fill="url(#grad-1)"
-                  stroke="rgba(168,217,213,0.85)"
-                  stroke-width="0.6"
-                  stroke-linejoin="round"/>
-                <circle cx="0" cy="-2" r="1.4" fill="#FFFFFF" opacity="0.75"/>
-                <line x1="-4" y1="5.7" x2="4" y2="5.7" stroke="#031637" stroke-width="0.85" stroke-linecap="round" opacity="0.7"/>
-                <line x1="-3.3" y1="7" x2="3.3" y2="7" stroke="#031637" stroke-width="0.75" stroke-linecap="round" opacity="0.7"/>
-                <rect x="-1.3" y="7.8" width="2.6" height="1" rx="0.3" fill="#031637" opacity="0.7"/>
-              </g>
-            </defs>
-
-            <!-- BULB GLASS ENVELOPE (teardrop / Edison shape) -->
-            <!-- subtle teal interior fill -->
-            <path d="M260 60
-                     C 180 60, 120 130, 120 220
-                     C 120 270, 138 305, 160 335
-                     C 180 362, 198 380, 210 400
-                     L 310 400
-                     C 322 380, 340 362, 360 335
-                     C 382 305, 400 270, 400 220
-                     C 400 130, 340 60, 260 60 Z"
-                  fill="url(#bulbTealFill)"
-                  stroke="none"/>
-            <!-- inner soft cyan-white filament glow rect masked by bulb shape -->
-            <rect x="120" y="60" width="280" height="340" fill="url(#bulbInnerGlow)" opacity="0.9" style="mix-blend-mode:screen"/>
-            <!-- glass outline -->
-            <path d="M260 60
-                     C 180 60, 120 130, 120 220
-                     C 120 270, 138 305, 160 335
-                     C 180 362, 198 380, 210 400
-                     L 310 400
-                     C 322 380, 340 362, 360 335
-                     C 382 305, 400 270, 400 220
-                     C 400 130, 340 60, 260 60 Z"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.55)"
-                  stroke-width="3"
-                  stroke-linejoin="round"/>
-
-            <!-- NETWORK INSIDE THE BULB -->
-            <g class="logo-rotate">
-              <!-- edges -->
-              <g stroke="url(#grad-line)" stroke-width="1.4" fill="none" opacity="0.7">
-                <use href="#e-c-tl"/>
-                <use href="#e-c-t"/>
-                <use href="#e-c-tr"/>
-                <use href="#e-c-r"/>
-                <use href="#e-c-br"/>
-                <use href="#e-c-b"/>
-                <use href="#e-c-bl"/>
-                <use href="#e-c-l"/>
-                <use href="#e-c-ml"/>
-                <use href="#e-tl-t"/>
-                <use href="#e-t-tr"/>
-                <use href="#e-tr-r"/>
-                <use href="#e-b-bl"/>
-                <use href="#e-bl-l"/>
-              </g>
-
-              <!-- nodes (scaled to fit inside the bulb glass) -->
-              <g filter="url(#node-glow)">
-                <circle cx="260" cy="240" r="22" fill="url(#grad-1)">
-                  <animate attributeName="r" values="20;24;20" dur="3s" repeatCount="indefinite" begin="0s"/>
-                </circle>
-                <circle cx="188" cy="168" r="11" fill="url(#grad-1)">
-                  <animate attributeName="r" values="10;12;10" dur="3s" repeatCount="indefinite" begin="0.3s"/>
-                </circle>
-                <circle cx="260" cy="130" r="10" fill="url(#grad-1)">
-                  <animate attributeName="r" values="9;11;9" dur="3s" repeatCount="indefinite" begin="0.6s"/>
-                </circle>
-                <circle cx="332" cy="158" r="9" fill="url(#grad-1)">
-                  <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite" begin="0.9s"/>
-                </circle>
-                <circle cx="368" cy="230" r="11" fill="url(#grad-1)">
-                  <animate attributeName="r" values="10;12;10" dur="3s" repeatCount="indefinite" begin="1.2s"/>
-                </circle>
-                <circle cx="348" cy="308" r="9" fill="url(#grad-1)">
-                  <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
-                </circle>
-                <circle cx="266" cy="348" r="11" fill="url(#grad-1)">
-                  <animate attributeName="r" values="10;12;10" dur="3s" repeatCount="indefinite" begin="1.8s"/>
-                </circle>
-                <circle cx="188" cy="314" r="10" fill="url(#grad-1)">
-                  <animate attributeName="r" values="9;11;9" dur="3s" repeatCount="indefinite" begin="2.1s"/>
-                </circle>
-                <circle cx="152" cy="230" r="9" fill="url(#grad-1)">
-                  <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite" begin="2.4s"/>
-                </circle>
-                <circle cx="212" cy="212" r="8" fill="url(#grad-1)">
-                  <animate attributeName="r" values="7;9;7" dur="3s" repeatCount="indefinite" begin="2.7s"/>
-                </circle>
-              </g>
-
-              <!-- data-flow pulses along edges -->
-              <g class="pulses">
-                <circle class="pulse-dot" r="2.5" fill="#A8D9D5" opacity="0.9">
-                  <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s">
-                    <mpath href="#e-c-tl"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-                </circle>
-                <circle class="pulse-dot" r="2.5" fill="#25A99C" opacity="0.9">
-                  <animateMotion dur="2.0s" repeatCount="indefinite" begin="0.2s">
-                    <mpath href="#e-c-t"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2.0s" repeatCount="indefinite" begin="0.2s"/>
-                </circle>
-                <circle class="pulse-dot" r="2.5" fill="#A8D9D5" opacity="0.9">
-                  <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.4s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
-                    <mpath href="#e-c-tr"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="0.4s"/>
-                </circle>
-                <circle class="pulse-dot" r="2.5" fill="#25A99C" opacity="0.9">
-                  <animateMotion dur="1.9s" repeatCount="indefinite" begin="0.6s">
-                    <mpath href="#e-c-r"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="1.9s" repeatCount="indefinite" begin="0.6s"/>
-                </circle>
-                <circle class="pulse-dot" r="2.5" fill="#A8D9D5" opacity="0.9">
-                  <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.8s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
-                    <mpath href="#e-c-br"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2.4s" repeatCount="indefinite" begin="0.8s"/>
-                </circle>
-                <circle class="pulse-dot" r="2.5" fill="#25A99C" opacity="0.9">
-                  <animateMotion dur="2.1s" repeatCount="indefinite" begin="1.0s">
-                    <mpath href="#e-c-b"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2.1s" repeatCount="indefinite" begin="1.0s"/>
-                </circle>
-                <circle class="pulse-dot" r="2.5" fill="#A8D9D5" opacity="0.9">
-                  <animateMotion dur="2.3s" repeatCount="indefinite" begin="1.2s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
-                    <mpath href="#e-c-bl"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2.3s" repeatCount="indefinite" begin="1.2s"/>
-                </circle>
-                <circle class="pulse-dot" r="2.5" fill="#25A99C" opacity="0.9">
-                  <animateMotion dur="1.7s" repeatCount="indefinite" begin="1.4s">
-                    <mpath href="#e-c-l"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="1.7s" repeatCount="indefinite" begin="1.4s"/>
-                </circle>
-                <circle class="pulse-dot" r="2" fill="#A8D9D5" opacity="0.9">
-                  <animateMotion dur="1.6s" repeatCount="indefinite" begin="1.6s" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
-                    <mpath href="#e-c-ml"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="1.6s" repeatCount="indefinite" begin="1.6s"/>
-                </circle>
-                <!-- lateral satellite-to-satellite -->
-                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
-                  <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.8s">
-                    <mpath href="#e-tl-t"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.2s" repeatCount="indefinite" begin="1.8s"/>
-                </circle>
-                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
-                  <animateMotion dur="2.0s" repeatCount="indefinite" begin="2.0s">
-                    <mpath href="#e-t-tr"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.0s" repeatCount="indefinite" begin="2.0s"/>
-                </circle>
-                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
-                  <animateMotion dur="2.1s" repeatCount="indefinite" begin="2.2s">
-                    <mpath href="#e-tr-r"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.1s" repeatCount="indefinite" begin="2.2s"/>
-                </circle>
-                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
-                  <animateMotion dur="2.3s" repeatCount="indefinite" begin="2.4s">
-                    <mpath href="#e-b-bl"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.3s" repeatCount="indefinite" begin="2.4s"/>
-                </circle>
-                <circle class="pulse-dot" r="2" fill="#25A99C" opacity="0.7">
-                  <animateMotion dur="2.0s" repeatCount="indefinite" begin="2.6s">
-                    <mpath href="#e-bl-l"/>
-                  </animateMotion>
-                  <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.0s" repeatCount="indefinite" begin="2.6s"/>
-                </circle>
-              </g>
-            </g>
-
-            <!-- SCREW BASE (below the bulb glass neck) -->
-            <!-- Stripe 1 (top of screw) -->
-            <rect x="215" y="408" width="90" height="14" rx="3" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
-            <!-- Stripe 2 (middle) -->
-            <rect x="215" y="428" width="90" height="14" rx="3" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
-            <!-- Stripe 3 (bottom — accent teal stripe) -->
-            <rect x="215" y="448" width="90" height="14" rx="3" fill="#25A99C" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
-            <!-- Neck/lip just below stripes -->
-            <path d="M225 468 L295 468 L285 488 L235 488 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linejoin="round"/>
-            <!-- Contact tip -->
-            <rect x="240" y="490" width="40" height="14" rx="6" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
-          </svg>
-        </div>
-        <div class="hero-brand-wordmark reveal" aria-label="Legal Mind">LEG<span class="accent">A</span>L M<span class="accent">I</span>ND</div>
-      </div>
+          <img src="logo.png" alt="Legal Mind" class="hero-logo-img" loading="eager" />
+        </div>      </div>
     </div>
   </div>
 </section>

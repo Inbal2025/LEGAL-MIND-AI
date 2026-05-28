@@ -642,6 +642,21 @@ html, body{
 .hero-brand-wordmark .accent{
   color:var(--c-teal);
 }
+
+/* === New Legal Mind logo image — replaces lightbulb SVG === */
+.hero-logo-img{
+  width:100%;
+  height:auto;
+  max-width:340px;
+  display:block;
+  margin:0 auto;
+  filter:drop-shadow(0 0 24px rgba(37,169,156,0.18));
+}
+.hero-logo-wrap{
+  width:auto;
+  max-width:340px;
+  aspect-ratio:auto;
+}
 </style>
 </head>
 <body>
@@ -698,137 +713,9 @@ html, body{
     <div class="hero-logo-wrap reveal" aria-hidden="true">
       <div class="hero-logo-glow"></div>
       <div class="logo-svg-wrap">
-        <svg viewBox="0 0 520 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Legal Mind — lightbulb containing AI network">
-          <defs>
-            <linearGradient id="grad-1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#A8D9D5"/>
-              <stop offset="55%" stop-color="#25A99C"/>
-              <stop offset="100%" stop-color="#0d6660"/>
-            </linearGradient>
-            <linearGradient id="grad-line" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="rgba(37,169,156,0.55)"/>
-              <stop offset="100%" stop-color="rgba(168,217,213,0.35)"/>
-            </linearGradient>
-            <radialGradient id="grad-pulse" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-              <stop offset="60%" stop-color="#A8D9D5" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#25A99C" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="grad-glass-inner" cx="50%" cy="45%" r="55%">
-              <stop offset="0%" stop-color="rgba(37,169,156,0.05)"/>
-              <stop offset="100%" stop-color="rgba(37,169,156,0)"/>
-            </radialGradient>
-            <filter id="node-glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="3" result="b1"/>
-              <feMerge>
-                <feMergeNode in="b1"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-
-            <!-- network edges (re-centered to 260,240, scaled ~0.55) -->
-            <path id="m-e-c-tl" d="M260 240 L188 168"/>
-            <path id="m-e-c-t"  d="M260 240 L260 130"/>
-            <path id="m-e-c-tr" d="M260 240 L332 158"/>
-            <path id="m-e-c-r"  d="M260 240 L368 230"/>
-            <path id="m-e-c-br" d="M260 240 L348 308"/>
-            <path id="m-e-c-b"  d="M260 240 L266 348"/>
-            <path id="m-e-c-bl" d="M260 240 L188 314"/>
-            <path id="m-e-c-l"  d="M260 240 L152 230"/>
-            <path id="m-e-c-ml" d="M260 240 L212 212"/>
-            <path id="m-e-tl-t" d="M188 168 L260 130"/>
-            <path id="m-e-t-tr" d="M260 130 L332 158"/>
-            <path id="m-e-tr-r" d="M332 158 L368 230"/>
-            <path id="m-e-b-bl" d="M266 348 L188 314"/>
-            <path id="m-e-bl-l" d="M188 314 L152 230"/>
-          </defs>
-
-          <!-- Glass envelope (Edison-bulb teardrop) -->
-          <path d="M 260 60
-                   C 180 60, 120 110, 120 190
-                   C 120 230, 135 260, 155 285
-                   C 175 310, 195 340, 200 380
-                   C 202 395, 210 400, 215 400
-                   L 305 400
-                   C 310 400, 318 395, 320 380
-                   C 325 340, 345 310, 365 285
-                   C 385 260, 400 230, 400 190
-                   C 400 110, 340 60, 260 60 Z"
-                fill="url(#grad-glass-inner)"
-                stroke="rgba(255,255,255,0.55)"
-                stroke-width="3"
-                stroke-linejoin="round"/>
-
-          <!-- Screw base stripes -->
-          <rect x="215" y="410" width="90" height="12" rx="4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
-          <rect x="215" y="430" width="90" height="12" rx="4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
-          <rect x="220" y="450" width="80" height="14" rx="4" fill="#25A99C"/>
-          <!-- Contact tip -->
-          <path d="M 235 475 L 285 475 L 278 505 L 242 505 Z" fill="rgba(255,255,255,0.55)"/>
-
-          <!-- Network inside the bulb -->
-          <g class="logo-rotate">
-            <g stroke="url(#grad-line)" stroke-width="1.5" fill="none" opacity="0.6">
-              <use href="#m-e-c-tl"/><use href="#m-e-c-t"/><use href="#m-e-c-tr"/><use href="#m-e-c-r"/>
-              <use href="#m-e-c-br"/><use href="#m-e-c-b"/><use href="#m-e-c-bl"/><use href="#m-e-c-l"/>
-              <use href="#m-e-c-ml"/><use href="#m-e-tl-t"/><use href="#m-e-t-tr"/><use href="#m-e-tr-r"/>
-              <use href="#m-e-b-bl"/><use href="#m-e-bl-l"/>
-            </g>
-            <g filter="url(#node-glow)">
-              <circle cx="260" cy="240" r="22" fill="url(#grad-1)"><animate attributeName="r" values="20;24;20" dur="3s" repeatCount="indefinite" begin="0s"/></circle>
-              <circle cx="188" cy="168" r="11" fill="url(#grad-1)"><animate attributeName="r" values="10;12.2;10" dur="3s" repeatCount="indefinite" begin="0.3s"/></circle>
-              <circle cx="260" cy="130" r="10" fill="url(#grad-1)"><animate attributeName="r" values="9;11.2;9" dur="3s" repeatCount="indefinite" begin="0.6s"/></circle>
-              <circle cx="332" cy="158" r="9"  fill="url(#grad-1)"><animate attributeName="r" values="8;10.2;8"   dur="3s" repeatCount="indefinite" begin="0.9s"/></circle>
-              <circle cx="368" cy="230" r="11" fill="url(#grad-1)"><animate attributeName="r" values="10;12.2;10" dur="3s" repeatCount="indefinite" begin="1.2s"/></circle>
-              <circle cx="348" cy="308" r="9"  fill="url(#grad-1)"><animate attributeName="r" values="8;10.2;8"   dur="3s" repeatCount="indefinite" begin="1.5s"/></circle>
-              <circle cx="266" cy="348" r="11" fill="url(#grad-1)"><animate attributeName="r" values="10;12.2;10" dur="3s" repeatCount="indefinite" begin="1.8s"/></circle>
-              <circle cx="188" cy="314" r="10" fill="url(#grad-1)"><animate attributeName="r" values="9;11.2;9"   dur="3s" repeatCount="indefinite" begin="2.1s"/></circle>
-              <circle cx="152" cy="230" r="9"  fill="url(#grad-1)"><animate attributeName="r" values="8;10.2;8"   dur="3s" repeatCount="indefinite" begin="2.4s"/></circle>
-              <circle cx="212" cy="212" r="8"  fill="url(#grad-1)"><animate attributeName="r" values="7;9.2;7"     dur="3s" repeatCount="indefinite" begin="2.7s"/></circle>
-            </g>
-            <!-- 8 data-flow pulses (mobile leaner spec) -->
-            <g class="pulses">
-              <circle class="pulse-dot" r="3" fill="url(#grad-pulse)" opacity="0.9">
-                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"><mpath href="#m-e-c-tl"/></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0s"/>
-              </circle>
-              <circle class="pulse-dot" r="3" fill="url(#grad-pulse)" opacity="0.9">
-                <animateMotion dur="2.0s" repeatCount="indefinite" begin="0.3s"><mpath href="#m-e-c-t"/></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="2.0s" repeatCount="indefinite" begin="0.3s"/>
-              </circle>
-              <circle class="pulse-dot" r="3" fill="url(#grad-pulse)" opacity="0.9">
-                <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.6s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#m-e-c-tr"/></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="0.6s"/>
-              </circle>
-              <circle class="pulse-dot" r="3" fill="url(#grad-pulse)" opacity="0.9">
-                <animateMotion dur="1.9s" repeatCount="indefinite" begin="0.9s"><mpath href="#m-e-c-r"/></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="1.9s" repeatCount="indefinite" begin="0.9s"/>
-              </circle>
-              <circle class="pulse-dot" r="3" fill="url(#grad-pulse)" opacity="0.9">
-                <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#m-e-c-br"/></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="2.4s" repeatCount="indefinite" begin="1.2s"/>
-              </circle>
-              <circle class="pulse-dot" r="3" fill="url(#grad-pulse)" opacity="0.9">
-                <animateMotion dur="2.1s" repeatCount="indefinite" begin="1.5s"><mpath href="#m-e-c-b"/></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="2.1s" repeatCount="indefinite" begin="1.5s"/>
-              </circle>
-              <circle class="pulse-dot" r="3" fill="url(#grad-pulse)" opacity="0.9">
-                <animateMotion dur="2.3s" repeatCount="indefinite" begin="1.8s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#m-e-c-bl"/></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="2.3s" repeatCount="indefinite" begin="1.8s"/>
-              </circle>
-              <circle class="pulse-dot" r="3" fill="url(#grad-pulse)" opacity="0.9">
-                <animateMotion dur="1.7s" repeatCount="indefinite" begin="2.1s"><mpath href="#m-e-c-l"/></animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" dur="1.7s" repeatCount="indefinite" begin="2.1s"/>
-              </circle>
-            </g>
-          </g>
-        </svg>
+        <img src="logo.png" alt="Legal Mind" class="hero-logo-img" loading="eager" />
       </div>
     </div>
-
-
-    <div class="hero-brand-wordmark reveal" aria-label="Legal Mind">LEG<span class="accent">A</span>L M<span class="accent">I</span>ND</div>
-
     <span class="eyebrow reveal">AI מעשי לעורכי דין</span>
     <h1 class="display-h1 hero-h1 reveal"><span class="ink-grad">AI שעובד באמת בעבודה המשפטית</span></h1>
     <p class="body-lead hero-sub reveal">עו"ד? בטח כבר נתקלת בזה.</p>
