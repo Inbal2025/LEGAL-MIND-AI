@@ -581,7 +581,7 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 }
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;max-width:var(--container);margin:0 auto}
 @media (max-width:880px){.footer-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.footer-grid{grid-template-columns:1fr}}
+@media (max-width:700px){.footer-grid{grid-template-columns:1fr}}
 .footer h4{font-family:"Assistant",sans-serif;font-weight:600;font-size:12px;letter-spacing:0.96px;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
 .footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
 .footer ul li a{color:var(--body);font-size:14.5px;transition:color .2s ease}
@@ -655,18 +655,18 @@ html, body{
 .hero-logo-img{
   width:100%;
   height:auto;
-  max-width:520px;
+  max-width:700px;
   display:block;
   margin:0 auto;
   /* Hides black/dark background by lightening it against the dark navy site */
   /* Transparent PNG — animate float + rotate, soft teal glow shadow */
-  animation:logoFloat 6s ease-in-out infinite alternate, logoSubtleRotate 18s ease-in-out infinite;
+  animation:logoFloat 10s ease-in-out infinite;
   will-change:transform;
   filter:drop-shadow(0 0 30px rgba(37,169,156,0.35)) drop-shadow(0 0 10px rgba(168,217,213,0.20));
 }
 .hero-logo-wrap{
   width:auto;
-  max-width:560px;
+  max-width:760px;
   aspect-ratio:auto;
   position:relative;
 }
@@ -682,13 +682,16 @@ html, body{
   animation:breathe 7s ease-in-out infinite alternate;
 }
 @keyframes logoFloat{
-  from{transform:translateY(-7px)}
-  to{transform:translateY(7px)}
+  0%   {transform:translate(-8px, -10px)}
+  25%  {transform:translate( 8px, -10px)}
+  50%  {transform:translate( 8px,  10px)}
+  75%  {transform:translate(-8px,  10px)}
+  100% {transform:translate(-8px, -10px)}
 }
-@keyframes logoSubtleRotate{
-  0%{transform:translateY(-7px) rotate(0deg)}
-  50%{transform:translateY(0) rotate(4deg)}
-  100%{transform:translateY(7px) rotate(0deg)}
+@keyframes logoSway{
+  /* unused — kept for fallback */
+  from{transform:translateX(-8px)}
+  to{transform:translateX(8px)}
 }
 @keyframes breathe{
   from{transform:scale(0.94);opacity:0.65}
