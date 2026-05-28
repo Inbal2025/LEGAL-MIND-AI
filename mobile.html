@@ -651,10 +651,10 @@ html, body{
   display:block;
   margin:0 auto;
   /* Hides black/dark background by lightening it against the dark navy site */
-  mix-blend-mode:screen;
+  /* Transparent PNG — animate float + rotate, soft teal glow shadow */
   animation:logoFloat 6s ease-in-out infinite alternate, logoSubtleRotate 18s ease-in-out infinite;
   will-change:transform;
-  filter:drop-shadow(0 0 28px rgba(37,169,156,0.30));
+  filter:drop-shadow(0 0 30px rgba(37,169,156,0.35)) drop-shadow(0 0 10px rgba(168,217,213,0.20));
 }
 .hero-logo-wrap{
   width:auto;
@@ -745,7 +745,7 @@ html, body{
     <div class="hero-logo-wrap reveal" aria-hidden="true">
       <div class="hero-logo-glow"></div>
       <div class="logo-svg-wrap">
-        <img src="logo.jpeg" alt="Legal Mind" class="hero-logo-img" loading="eager" />
+        <img src="logo.png" alt="Legal Mind" class="hero-logo-img" loading="eager" />
       </div>
     </div>
     <span class="eyebrow reveal">AI מעשי לעורכי דין</span>
