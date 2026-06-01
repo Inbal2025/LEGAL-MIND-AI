@@ -63,10 +63,8 @@ body{
   min-height:100vh;
   -webkit-font-smoothing:antialiased;
   padding-bottom:calc(var(--bottom-bar-h) + env(safe-area-inset-bottom) + 16px);
-  overscroll-behavior:none;
-  touch-action:pan-y;
 }
-html{overscroll-behavior:none}
+/* removed touch-action:pan-y and overscroll-behavior:none — they were breaking Samsung scroll */
 img, svg, body *, .hero *, .glass *{-webkit-user-drag:none;user-drag:none}
 img, svg{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 .hero-logo-wrap, .hero-logo-glow, .logo-svg-wrap, .aurora, .orb{pointer-events:none}
@@ -636,7 +634,7 @@ html, body{
 .hero-logo-img{
   width:100%;
   height:auto;
-  max-width:440px;
+  max-width:min(440px, 85vw);
   display:block;
   margin:0 auto;
   /* Hides black/dark background by lightening it against the dark navy site */

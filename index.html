@@ -6,8 +6,8 @@
 (function(){
   try{
     if(location.pathname.indexOf('mobile.html')!==-1) return;
-    var isMobile = window.matchMedia('(max-width: 768px)').matches ||
-                   /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    var isMobile = window.matchMedia('(max-width: 900px)').matches ||
+                   /Mobi|Android|iPhone|iPad|iPod|Windows Phone|Tablet|Silk|KFAPWI|SM-/i.test(navigator.userAgent);
     if(isMobile){
       location.replace('/mobile.html' + location.search + location.hash);
     }
@@ -655,7 +655,7 @@ html, body{
 .hero-logo-img{
   width:100%;
   height:auto;
-  max-width:700px;
+  max-width:min(700px, 90vw);
   display:block;
   margin:0 auto;
   /* Hides black/dark background by lightening it against the dark navy site */
@@ -1110,7 +1110,7 @@ window.addEventListener('DOMContentLoaded', function(){
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Lenis smooth scroll ---------- */
-  if (!REDUCED) {
+  if (!REDUCED && !('ontouchstart' in window) && !navigator.maxTouchPoints) {
     try {
       const lenisMod = await import('https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.mjs');
       const Lenis = lenisMod.default;
