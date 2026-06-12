@@ -16,34 +16,34 @@
 </script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Legal Mind — AI שעובד באמת בעבודה המשפטית</title>
-<meta name="description" content="Legal Mind — הדרכה, ליווי והטמעה של AI בעבודה המשפטית. עו״ד שעובדים עם AI ברמה הגבוהה ביותר." />
+<title>Legal Mind - קודם בינה משפטית. אחר כך מלאכותית.</title>
+<meta name="description" content="קודם בינה משפטית, אחר כך מלאכותית - וזה כל ההבדל. הדרכה, ליווי והטמעת AI לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap">
 <style>
 :root{
-  /* Brand palette — exact values from spec */
-  --c-navy:#031637;
+  /* Brand palette - exact values from spec */
+  --c-navy:#0B1C28;
   --c-teal:#25A99C;
   --c-teal-soft:#A8D9D5;
-  --c-slate:#6B7589;
+  --c-slate:#70707D;
   --c-white:#FFFFFF;
 
   /* Mapped roles */
   --canvas:var(--c-navy);
-  --canvas-soft:#0a2148;
-  --canvas-mid:#0e2a55;
-  --canvas-elevated:#143468;
-  --surface-card:rgba(14,42,85,0.55);
-  --surface-strong:#143468;
-  --ink:var(--c-white);
-  --body:var(--c-teal-soft);
+  --canvas-soft:#0F2533;
+  --canvas-mid:#133040;
+  --canvas-elevated:#18394C;
+  --surface-card:rgba(19,48,64,0.55);
+  --surface-strong:#18394C;
+  --ink:#EDEDF3;
+  --body:#C3C3CC;
   --muted:var(--c-slate);
-  --muted-soft:#4a5567;
-  --hairline:rgba(168,217,213,0.14);
-  --hairline-soft:rgba(168,217,213,0.06);
-  --hairline-strong:rgba(168,217,213,0.22);
+  --muted-soft:#5C5C66;
+  --hairline:rgba(237,237,243,0.12);
+  --hairline-soft:rgba(237,237,243,0.06);
+  --hairline-strong:rgba(237,237,243,0.20);
   --primary:var(--c-teal);
   --on-primary:var(--c-white);
   --primary-alt:var(--c-white);
@@ -53,7 +53,7 @@
   --grad-teal:var(--c-teal);
   --grad-teal-soft:var(--c-teal-soft);
   --grad-slate:var(--c-slate);
-  --grad-deep:#052555;
+  --grad-deep:#0F2533;
 
   --serif:"Assistant",sans-serif;
   --sans:"Assistant",sans-serif;
@@ -85,7 +85,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   background:
     radial-gradient(60vmax 50vmax at 15% 20%, rgba(37,169,156,0.10), transparent 60%),
     radial-gradient(50vmax 45vmax at 85% 30%, rgba(168,217,213,0.08), transparent 60%),
-    radial-gradient(55vmax 50vmax at 50% 80%, rgba(5,37,85,0.15), transparent 65%),
+    radial-gradient(55vmax 50vmax at 50% 80%, rgba(15,37,51,0.15), transparent 65%),
     radial-gradient(45vmax 40vmax at 20% 90%, rgba(107,117,137,0.06), transparent 60%),
     var(--c-navy);
   background-size:120% 120%, 120% 120%, 120% 120%, 120% 120%, auto;
@@ -119,7 +119,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .orb.o2{width:60vmax;height:60vmax;background:radial-gradient(circle at 50% 50%, rgba(168,217,213,0.30), transparent 60%);top:30vmax;inset-inline-end:-20vmax;animation:floatB 110s ease-in-out infinite alternate}
 .orb.o3{width:65vmax;height:65vmax;background:radial-gradient(circle at 50% 50%, rgba(37,169,156,0.25), transparent 60%);top:80vmax;inset-inline-start:-15vmax;animation:floatC 120s ease-in-out infinite alternate}
 .orb.o4{width:55vmax;height:55vmax;background:radial-gradient(circle at 50% 50%, rgba(168,217,213,0.22), transparent 60%);top:130vmax;inset-inline-end:-10vmax;animation:floatA 100s ease-in-out infinite alternate}
-.orb.o5{width:50vmax;height:50vmax;background:radial-gradient(circle at 50% 50%, rgba(5,37,85,0.45), transparent 60%);top:180vmax;inset-inline-start:-10vmax;animation:floatB 130s ease-in-out infinite alternate}
+.orb.o5{width:50vmax;height:50vmax;background:radial-gradient(circle at 50% 50%, rgba(15,37,51,0.45), transparent 60%);top:180vmax;inset-inline-start:-10vmax;animation:floatB 130s ease-in-out infinite alternate}
 @keyframes floatA{
   0%{transform:translate3d(0,0,0) rotate(0deg) scale(1)}
   50%{transform:translate3d(6vmax,4vmax,0) rotate(40deg) scale(1.1)}
@@ -138,15 +138,15 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 
 /* ---------- typography ---------- */
 .serif{font-family:"Assistant",sans-serif;font-weight:300;font-style:normal}
-.display-mega{font-family:"Assistant",sans-serif;font-weight:300;font-size:clamp(40px,7vw,84px);line-height:1.02;letter-spacing:-0.02em;color:var(--ink);margin:0}
-.display-xl{font-family:"Assistant",sans-serif;font-weight:300;font-size:clamp(34px,5vw,56px);line-height:1.06;letter-spacing:-0.015em;color:var(--ink);margin:0}
+.display-mega{font-family:"Assistant",sans-serif;font-weight:300;font-size:clamp(40px,7vw,84px);line-height:1.08;letter-spacing:0.01em;color:var(--ink);margin:0}
+.display-xl{font-family:"Assistant",sans-serif;font-weight:300;font-size:clamp(34px,5vw,56px);line-height:1.06;letter-spacing:0.005em;color:var(--ink);margin:0}
 .display-lg{font-family:"Assistant",sans-serif;font-weight:300;font-size:clamp(28px,3.5vw,40px);line-height:1.12;letter-spacing:-0.01em;color:var(--ink);margin:0}
 .display-sm{font-family:"Assistant",sans-serif;font-weight:300;font-size:24px;line-height:1.2;color:var(--ink);margin:0}
 .title-md{font-family:"Assistant",sans-serif;font-weight:500;font-size:20px;line-height:1.35;color:var(--ink);margin:0}
 .body-md{font-family:"Assistant",sans-serif;font-weight:400;font-size:16px;line-height:1.6;letter-spacing:0.16px;color:var(--body);margin:0}
 .body-lead{font-family:"Assistant",sans-serif;font-weight:400;font-size:clamp(16px,1.4vw,18px);line-height:1.65;letter-spacing:0.16px;color:var(--body);margin:0}
 .caption-uc{font-family:"Assistant",sans-serif;font-weight:600;font-size:12px;line-height:1.4;letter-spacing:0.96px;text-transform:uppercase;color:var(--muted)}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:9999px;border:1px solid var(--hairline);background:rgba(14,42,85,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);font-family:"Assistant",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:0.96px;text-transform:uppercase}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:9999px;border:1px solid var(--hairline);background:rgba(19,48,64,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);font-family:"Assistant",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:0.96px;text-transform:uppercase}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c-teal);box-shadow:0 0 10px rgba(37,169,156,0.7)}
 
 /* ---------- buttons ---------- */
@@ -171,15 +171,15 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   position:fixed;top:0;left:0;right:0;z-index:60;
   display:flex;align-items:center;justify-content:space-between;
   padding:14px clamp(20px,4vw,40px);
-  background:rgba(3,22,55,0.55);
+  background:rgba(11,28,40,0.55);
   backdrop-filter:blur(18px) saturate(140%);
   -webkit-backdrop-filter:blur(18px) saturate(140%);
   border-bottom:1px solid var(--hairline-soft);
   transition:background-color .3s ease,border-color .3s ease;
 }
-.nav.scrolled{background:rgba(3,22,55,0.78);border-bottom-color:var(--hairline)}
+.nav.scrolled{background:rgba(11,28,40,0.78);border-bottom-color:var(--hairline)}
 .brand{display:inline-flex;align-items:center;gap:10px;font-family:"Assistant",sans-serif;font-weight:600;font-size:20px;color:var(--ink);letter-spacing:0.01em}
-.brand-dot{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.45), var(--c-teal) 55%, #0d6660 100%);box-shadow:0 0 18px rgba(37,169,156,0.7)}
+.brand-dot{width:18px;height:22px;border-radius:0;background:url('bulb.png') center/contain no-repeat;box-shadow:none}
 .brand-mark{font-family:"Assistant",sans-serif;font-weight:500;font-size:20px;letter-spacing:0.02em}
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{font-family:"Assistant",sans-serif;font-weight:500;font-size:14px;color:var(--body);transition:color .2s ease}
@@ -216,9 +216,10 @@ section{padding:var(--section-pad);position:relative;z-index:1}
   padding-bottom:clamp(80px,10vw,140px);
   overflow:hidden;
 }
+.hero-copy{max-width:680px}
 .hero-grid{
   display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  grid-template-columns:1fr;
   gap:clamp(32px,5vw,72px);
   align-items:center;
 }
@@ -239,9 +240,7 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .hero-trust{margin-top:36px;display:flex;align-items:center;gap:14px;color:var(--muted);font-size:13px;letter-spacing:0.08em}
 .hero-trust .dots{display:inline-flex;gap:4px}
-.hero-trust .dots i{width:8px;height:8px;border-radius:50%;background:var(--c-teal);opacity:.9;display:inline-block;box-shadow:0 0 8px rgba(37,169,156,0.6)}
-.hero-trust .dots i:nth-child(2){background:var(--c-teal-soft);box-shadow:0 0 8px rgba(168,217,213,0.6)}
-.hero-trust .dots i:nth-child(3){background:var(--c-teal);box-shadow:0 0 8px rgba(37,169,156,0.6)}
+.hero-trust .dots i{width:14px;height:17px;border-radius:0;background:url('bulb.png') center/contain no-repeat;opacity:.95;display:inline-block}
 
 .hero-orb-wrap{
   position:relative;
@@ -350,9 +349,9 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 /* ---------- glass card base ---------- */
 .glass{
   position:relative;
-  background:rgba(14,42,85,0.55);
+  background:rgba(19,48,64,0.55);
   border:1px solid var(--hairline);
-  border-radius:16px;
+  border-radius:12px;
   backdrop-filter:blur(20px) saturate(130%);
   -webkit-backdrop-filter:blur(20px) saturate(130%);
   transition:transform .4s ease-out,border-color .35s ease,box-shadow .4s ease;
@@ -380,9 +379,9 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 .feature-card .link:hover{border-color:var(--c-teal)}
 .feature-card .link:hover .arr{transform:scaleX(-1) translateX(-3px)}
 .feature-card .pip{
-  width:42px;height:42px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.45), rgba(37,169,156,0.55) 40%, #0d6660 100%);
-  box-shadow:0 0 30px rgba(37,169,156,0.45), inset 0 0 12px rgba(255,255,255,0.18);
+  width:38px;height:46px;border-radius:0;
+  background:url('bulb.png') center/contain no-repeat;
+  filter:drop-shadow(0 0 12px rgba(37,169,156,0.35));
   margin-bottom:4px;
 }
 
@@ -390,7 +389,7 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center}
 @media (max-width:880px){.about-grid{grid-template-columns:1fr}}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
-.stat{padding:18px 20px;border-radius:14px;border:1px solid var(--hairline);background:rgba(14,42,85,0.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.stat{padding:18px 20px;border-radius:14px;border:1px solid var(--hairline);background:rgba(19,48,64,0.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .stat .num{font-family:"Assistant",sans-serif;font-weight:300;font-size:34px;line-height:1;color:var(--ink);letter-spacing:-0.015em}
 .stat .num .plus{color:var(--c-teal)}
 .stat .lab{font-family:"Assistant",sans-serif;font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:0.04em}
@@ -398,11 +397,11 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 .founders{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .founder{padding:0;overflow:hidden;border-radius:20px}
 .founder .photo{position:relative;aspect-ratio:1/1.05;overflow:hidden}
-.founder .photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.85) contrast(0.95) brightness(0.95);transition:transform .8s ease,filter .8s ease}
+.founder .photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:saturate(0.85) contrast(0.95) brightness(0.95);transition:transform .8s ease,filter .8s ease}
 .founder:hover .photo img{transform:scale(1.05);filter:saturate(1) contrast(1) brightness(1)}
 .founder .photo::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 40%,rgba(3,22,55,0.88) 100%);
+  background:linear-gradient(180deg,transparent 40%,rgba(11,28,40,0.88) 100%);
   pointer-events:none;
 }
 .founder .meta{position:absolute;inset-inline-start:18px;inset-inline-end:18px;bottom:18px;z-index:2;display:flex;flex-direction:column;gap:4px}
@@ -419,7 +418,7 @@ section{padding:var(--section-pad);position:relative;z-index:1}
   padding-block:4px;
   color:var(--body);
 }
-.bulb-list li > svg.bulb-icon{
+.bulb-list li > .bulb-icon{
   flex-shrink:0;
   width:20px;
   height:26px;
@@ -428,7 +427,7 @@ section{padding:var(--section-pad);position:relative;z-index:1}
   transition:transform .6s cubic-bezier(.34,1.56,.64,1);
   filter:drop-shadow(0 0 6px rgba(37,169,156,0.35));
 }
-.bulb-list li.bulb-pulsed > svg.bulb-icon{
+.bulb-list li.bulb-pulsed > .bulb-icon{
   animation:bulbPulse 0.6s cubic-bezier(.34,1.56,.64,1) 1;
 }
 @keyframes bulbPulse{
@@ -490,7 +489,7 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 
 /* featured tier glow + gradient hairline */
 .price-card.featured{
-  background:linear-gradient(180deg, rgba(14,42,85,0.88), rgba(14,42,85,0.72));
+  background:linear-gradient(180deg, rgba(19,48,64,0.88), rgba(19,48,64,0.72));
   border:1px solid transparent;
   background-clip:padding-box;
   position:relative;
@@ -515,13 +514,13 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 .faq-item{
   border:1px solid var(--hairline);
   border-radius:14px;
-  background:rgba(14,42,85,0.55);
+  background:rgba(19,48,64,0.55);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   padding:0;
   overflow:hidden;
   transition:border-color .3s ease,background-color .3s ease;
 }
-.faq-item[open]{border-color:rgba(37,169,156,0.50);background:rgba(14,42,85,0.72)}
+.faq-item[open]{border-color:rgba(37,169,156,0.50);background:rgba(19,48,64,0.72)}
 .faq-item summary{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:20px 22px;
@@ -598,18 +597,18 @@ section{padding:var(--section-pad);position:relative;z-index:1}
   .logo-svg-wrap,.logo-rotate,.logo-node{animation:none !important}
   .logo-svg-wrap .pulse-dot,.logo-svg-wrap animate,.logo-svg-wrap animateMotion,.logo-svg-wrap animateTransform{display:none !important}
   .reveal{opacity:1;transform:none;filter:none;transition:none}
-  .bulb-list li.bulb-pulsed > svg.bulb-icon{animation:none !important}
+  .bulb-list li.bulb-pulsed > .bulb-icon{animation:none !important}
 }
 
 /* small util */
 .lt{display:inline-block}
 [dir="ltr"]{unicode-bidi:isolate;display:inline-block}
 
-/* prevent native text/image drag — fixes text wobble on mouse drag */
+/* prevent native text/image drag - fixes text wobble on mouse drag */
 body *, img, svg{-webkit-user-drag:none;user-drag:none}
 img, svg{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 
-/* === iOS long-press magnifier fix — disables text selection magnifier globally, allows selection only on contact info === */
+/* === iOS long-press magnifier fix - disables text selection magnifier globally, allows selection only on contact info === */
 html, body, body *{
   -webkit-touch-callout:none;
   -webkit-user-select:none;
@@ -633,7 +632,92 @@ html, body{
   max-width:100vw;
 }
 
-/* === Hero LEGAL MIND wordmark — accent A and I in teal === */
+
+
+/* === Hero photo backdrop (Mercury-style slow zoom) === */
+.hero-photo{position:absolute;inset:0;z-index:0;background:url('hero-bg.jpg') center 40%/cover no-repeat;animation:heroEnter 2.8s cubic-bezier(.22,.61,.36,1) both, heroZoom 22s ease-in-out 2.8s infinite alternate;will-change:transform}
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,28,40,.70) 0%,rgba(11,28,40,.58) 45%,rgba(11,28,40,.82) 78%,#0B1C28 100%)}
+@keyframes heroEnter{from{transform:scale(1.16)}to{transform:scale(1)}}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.12)}}
+@media (prefers-reduced-motion: reduce){.hero-photo{animation:none}}
+
+
+
+/* === Motion pack: staggered reveals, hero entrance, micro-motion === */
+.reveal.stagger{opacity:1;transform:none;filter:none}
+.reveal.stagger > *{opacity:0;transform:translateY(34px) scale(.985);filter:blur(5px);transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1),filter .85s cubic-bezier(.22,.61,.36,1)}
+.reveal.stagger.revealed > *{opacity:1;transform:none;filter:none}
+.stagger > *:nth-child(7){transition-delay:720ms}
+.stagger > *:nth-child(8){transition-delay:840ms}
+#audiences .stagger > *:nth-child(odd){transform:translateY(34px) translateX(-26px) scale(.985)}
+#audiences .stagger > *:nth-child(even){transform:translateY(34px) translateX(26px) scale(.985)}
+#audiences .stagger.revealed > *{transform:none}
+/* hero entrance (load-time, replaces scroll reveal inside hero) */
+.hero .reveal,.hero .reveal.stagger > *{opacity:1;transform:none;filter:none;transition:none}
+.hero-entrance > *{opacity:0;animation:lmRise .9s cubic-bezier(.22,.61,.36,1) forwards}
+.hero-entrance > *:nth-child(1){animation-delay:.25s}
+.hero-entrance > *:nth-child(2){animation-delay:.45s}
+.hero-entrance > *:nth-child(3){animation-delay:.62s}
+.hero-entrance > *:nth-child(4){animation-delay:.78s}
+.hero-entrance > *:nth-child(5){animation-delay:.94s}
+.hero-entrance > *:nth-child(6){animation-delay:1.10s}
+.hero-entrance > *:nth-child(7){animation-delay:1.26s}
+.hero-entrance > *:nth-child(8){animation-delay:1.42s}
+@keyframes lmRise{from{opacity:0;transform:translateY(26px);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+/* scroll progress bar */
+.scroll-progress{position:fixed;top:0;inset-inline-start:0;width:100%;height:3px;z-index:1000;pointer-events:none}
+.scroll-progress i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--c-teal),var(--c-teal-soft));transform-origin:right center;transform:scaleX(0);transition:transform .08s linear}
+/* micro motion */
+.feature-card .pip{animation:lmBob 5.5s ease-in-out infinite}
+@keyframes lmBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.community-btn{animation:lmGlow 3.2s ease-in-out infinite}
+@keyframes lmGlow{0%,100%{box-shadow:0 0 0 rgba(37,169,156,0)}50%{box-shadow:0 0 26px rgba(37,169,156,.45)}}
+.btn{will-change:transform}
+.btn:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion: reduce){
+  .hero-entrance > *{animation:none;opacity:1}
+  .feature-card .pip,.community-btn{animation:none}
+  .reveal.stagger > *{opacity:1;transform:none;filter:none;transition:none}
+  .scroll-progress{display:none}
+}
+
+/* === Audience cards content === */
+#audiences .services-grid,#audiences .services-list{grid-template-columns:1fr}
+#audiences .feature-card{min-height:0}
+.aud-opener{font-weight:700;color:var(--ink);font-size:18px}
+.aud-beat{font-weight:600;color:var(--ink)}
+.aud-link{color:var(--c-teal);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* === Audience anchor buttons === */
+.aud-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+/* === Ghost testimonial placeholders === */
+.testi-ghost{border:1.5px dashed rgba(255,255,255,.16);border-radius:18px;min-height:160px;display:flex;align-items:center;justify-content:center;color:var(--body);font-size:15px;letter-spacing:.03em;animation:ghostPulse 3s ease-in-out infinite}
+@keyframes ghostPulse{0%,100%{opacity:.4}50%{opacity:.85}}
+.community-btn{margin-top:4px}
+
+/* === Hero headline lines === */
+.hero-h1{font-size:clamp(30px,4.6vw,58px);line-height:1.18}
+.hero-h1 .hl-white,.hero-h1 .hl-accent{white-space:nowrap}
+.hero-h1 .hl-white{color:#fff}
+.hero-h1 .hl-accent{display:block;margin-top:.18em;color:var(--c-teal);font-weight:700;font-size:1.12em;letter-spacing:-0.01em}
+.hero-tagline{font-weight:500;color:var(--ink)}
+
+/* === Pull quote (אנחנו עורכי דין) === */
+.pullquote-sec{padding:clamp(28px,4vw,56px) clamp(20px,5vw,48px)}
+.pullquote{margin:0 auto;max-width:880px;text-align:center;padding:clamp(28px,4vw,48px);border:1px solid rgba(255,255,255,.08);border-radius:24px;background:rgba(255,255,255,.03);backdrop-filter:blur(8px)}
+.pullquote p{font-family:"Assistant",sans-serif;font-weight:700;font-size:clamp(22px,3.2vw,34px);line-height:1.35;margin:0 0 14px;color:var(--ink,#fff)}
+.pullquote footer{font-size:15px;color:var(--body,#9aa3b5)}
+
+/* === Trust band (generic, replaces logo marquee) === */
+.trust-band{padding:clamp(18px,3vw,32px) clamp(20px,5vw,48px);text-align:center}
+.trust-band p{margin:0 auto;max-width:720px;font-size:clamp(15px,2vw,18px);letter-spacing:.04em;color:var(--body,#9aa3b5)}
+
+/* === Honesty section signature === */
+.limits-note{margin-top:28px;font-weight:600}
+#about .body-lead{margin-bottom:16px}
+.about-signature{margin-top:26px;font-family:"Assistant",sans-serif;font-weight:700;font-size:22px;color:var(--ink,#fff)}
+
+/* === Hero LEGAL MIND wordmark - accent A and I in teal === */
 .hero-brand-wordmark{
   font-family:"Assistant",sans-serif;
   font-weight:700;
@@ -651,18 +735,18 @@ html, body{
   color:var(--c-teal);
 }
 
-/* === New Legal Mind logo image — replaces lightbulb SVG === */
+/* === New Legal Mind logo image - replaces lightbulb SVG === */
 .hero-logo-img{
   width:100%;
   height:auto;
-  max-width:min(700px, 90vw);
+  max-width:min(300px, 55vw);
   display:block;
   margin:0 auto;
   /* Hides black/dark background by lightening it against the dark navy site */
-  /* Transparent PNG — animate float + rotate, soft teal glow shadow */
+  /* Transparent PNG - animate float + rotate, soft teal glow shadow */
   animation:logoFloat 10s ease-in-out infinite;
   will-change:transform;
-  filter:drop-shadow(0 0 30px rgba(37,169,156,0.35)) drop-shadow(0 0 10px rgba(168,217,213,0.20));
+  filter:drop-shadow(0 0 24px rgba(37,169,156,0.20)) drop-shadow(0 0 8px rgba(168,217,213,0.10));
 }
 .hero-logo-wrap{
   width:auto;
@@ -689,7 +773,7 @@ html, body{
   100% {transform:translate(-8px, -10px)}
 }
 @keyframes logoSway{
-  /* unused — kept for fallback */
+  /* unused - kept for fallback */
   from{transform:translateX(-8px)}
   to{transform:translateX(8px)}
 }
@@ -705,13 +789,28 @@ html, body{
 /* Early safety net: reveal all content after 800ms even if module script fails */
 window.addEventListener('DOMContentLoaded', function(){
   setTimeout(function(){
-    var els = document.querySelectorAll('.reveal:not(.revealed)');
-    els.forEach(function(el){ el.classList.add('revealed'); });
-  }, 800);
+    if (window.__LM_OK) return; /* main script alive - let it drive the reveals */
+    /* Fallback reveal engine: works even when the module script is blocked (e.g. file://) */
+    try {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting){ en.target.classList.add('revealed'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal:not(.revealed)').forEach(function(el){ io.observe(el); });
+      /* last-resort: anything still hidden after 8s gets shown */
+      setTimeout(function(){
+        document.querySelectorAll('.reveal:not(.revealed)').forEach(function(el){ el.classList.add('revealed'); });
+      }, 8000);
+    } catch(e) {
+      document.querySelectorAll('.reveal:not(.revealed)').forEach(function(el){ el.classList.add('revealed'); });
+    }
+  }, 1200);
 });
 </script>
 </head>
 <body>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
 
 <!-- atmospheric layers -->
 <div class="aurora" aria-hidden="true"></div>
@@ -729,10 +828,9 @@ window.addEventListener('DOMContentLoaded', function(){
     <span class="brand-mark" dir="ltr">Legal Mind</span>
   </a>
   <div class="nav-links">
-    <a href="#services">מה אנחנו עושים</a>
+    <a href="#audiences">עם מי אנחנו עובדים</a>
     <a href="#about">מי אנחנו</a>
-    <a href="#process">איך זה עובד</a>
-    <a href="#testimonials">מה אומרים עלינו</a>
+    <a href="#community">הקהילה</a>
     <a href="#faq">שאלות נפוצות</a>
   </div>
   <div class="nav-cta">
@@ -747,15 +845,19 @@ window.addEventListener('DOMContentLoaded', function(){
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-grid">
-      <div class="hero-copy reveal">
+      <div class="hero-copy reveal hero-entrance">
         <span class="eyebrow">AI מעשי לעורכי דין</span>
-        <h1 class="display-mega hero-h1"><span class="ink-grad">AI שעובד באמת בעבודה המשפטית</span></h1>
+        <h1 class="display-mega hero-h1"><span class="hl-white">קודם בינה משפטית.</span><br>
+<span class="hl-white">אחר כך מלאכותית.</span>
+<span class="hl-accent">וזה כל ההבדל.</span></h1>
+        <p class="body-lead hero-sub hero-tagline">הדרכה, ליווי והטמעת AI - לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות.</p>
         <p class="body-lead hero-sub">עו"ד? בטח כבר נתקלת בזה.</p>
         <p class="body-lead hero-sub">את מהפכת ה-AI אי אפשר לפספס, וברור שגם אתה - עו"ד עמוס שעסוק בלי דקה מיותרת - ניסית במשרד. הזנת פרומפטים, הגדרת לצ'אט תפקידים ("פעל כעורך דין ותיק..."), תיקנת, דייקת, ביקשת, אפילו התחננת... וקיבלת טקסט שנראה... בסדר. אה רגע, חסרים בו סעיפים חשובים. אוי, הוא ממציא חקיקה ופסיקה שלעיתים נשמעות משכנעות יותר מהמקור האמיתי. ככה אי אפשר לעבוד.</p>
         <p class="body-lead hero-sub">עד לכאן אתה צודק.</p>
-        <p class="body-lead hero-sub">אבל אם הסקת מכל זה שכלי ה-AI עדיין לא מוכנים לעבודה משפטית שוטפת — טוב שהגעת לכאן. כעורכי דין ותיקים (27 שנות ניסיון מצטברות) בתחום דינמי כמו מקרקעין, אנחנו אומרים לך מניסיון: AI שינה לנו את המשרד. הוא חוסך לנו שעות עבודה ומייצר תוצרים אמינים ומבוססים — כשיודעים איך לעבוד איתו. וזה ממש לא מסובך. אנחנו כבר מסבירים.</p>
+        <p class="body-lead hero-sub">אבל אם הסקת מכל זה שכלי ה-AI עדיין לא מוכנים לעבודה משפטית שוטפת - טוב שהגעת לכאן. כעורכי דין ותיקים (27 שנות ניסיון מצטברות) בתחום דינמי כמו מקרקעין, אנחנו אומרים לך מניסיון: AI שינה לנו את המשרד. הוא חוסך לנו שעות עבודה ומייצר תוצרים אמינים ומבוססים - כשיודעים איך לעבוד איתו. וזה ממש לא מסובך. אנחנו כבר מסבירים.</p>
         <div class="hero-ctas">
           <a href="#contact" class="btn btn-primary">
             תיאום פגישת היכרות
@@ -768,62 +870,75 @@ window.addEventListener('DOMContentLoaded', function(){
           <span>למעלה מ-1,000 עו"ד בקהילת <span dir="ltr">Legal Mind</span></span>
         </div>
       </div>
-      <div class="hero-orb-wrap reveal" id="orbWrap">
-        <div class="hero-orb-glow" aria-hidden="true"></div>
-        <div class="hero-orb-ring" aria-hidden="true"></div>
-        <div class="logo-svg-wrap" aria-hidden="true">
-          <img src="logo.png" alt="Legal Mind" class="hero-logo-img" loading="eager" />
-        </div>      </div>
+      
     </div>
   </div>
 </section>
 
-<!-- LOGO MARQUEE -->
-<div class="marquee reveal" aria-label="משרדים שעובדים איתנו">
-  <div class="marquee-track" id="marqueeTrack">
-    <span class="marquee-item">משרד גולדפרב זליגמן</span><span class="marquee-sep"></span>
-    <span class="marquee-item">הרצוג פוקס נאמן</span><span class="marquee-sep"></span>
-    <span class="marquee-item">מיתר ליקוורניק</span><span class="marquee-sep"></span>
-    <span class="marquee-item">ש. הורוביץ ושות׳</span><span class="marquee-sep"></span>
-    <span class="marquee-item">פישר בכר חן</span><span class="marquee-sep"></span>
-    <span class="marquee-item">יגאל ארנון — תדמור לוי</span><span class="marquee-sep"></span>
-    <span class="marquee-item">ארדינסט בן נתן</span><span class="marquee-sep"></span>
-    <span class="marquee-item">נשיץ ברנדס אמיר</span><span class="marquee-sep"></span>
-    <span class="marquee-item">פרל כהן צדק לצר ברץ</span><span class="marquee-sep"></span>
-    <span class="marquee-item">קנטור אלחנני</span><span class="marquee-sep"></span>
+<!-- PULL QUOTE -->
+<section class="pullquote-sec" aria-label="מי אנחנו בקצרה">
+  <div class="container">
+    <blockquote class="pullquote reveal">
+      <p>לפני הכול אנחנו עורכי דין ואנשי נדל"ן. ה-<span dir="ltr">AI</span> הוא רק מכפיל הכוח.</p>
+      <footer>עו"ד אסף אברמזון ועו"ד רועי נימצוביץ', מייסדי <span dir="ltr">Legal Mind</span></footer>
+    </blockquote>
   </div>
+</section>
+
+<!-- TRUST BAND -->
+<div class="trust-band reveal">
+  <p>בין לקוחותינו: משרדים מובילים, עורכי דין עצמאיים ומחלקות משפטיות בחברות</p>
 </div>
 
-<!-- SERVICES -->
-<section id="services">
+<!-- AUDIENCES -->
+<section id="audiences">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">מה אנחנו עושים</span>
-      <h2 class="display-xl">מה אנחנו עושים?</h2>
-      <p class="body-lead lead">יש לנו שלושה מסלולים — שיעלו אותך על המסלול. כבר במפגש הראשון תראה איך ה-AI יכול להשתלב בעבודה המשפטית היומיומית שלך ולבצע חלק גדול ממנה — בצורה טובה, מהירה ויעילה. משם, נבנה איתך תשתית שלמה בהתאמה אישית לעבודה השוטפת ולצרכים שלך: נדריך את הצוות, נספק ליווי שוטף, נשיב על כל שאלה ונדאג להטמעה עמוקה של כלי ה-AI כמכפיל כוח במשרד שלך — בקלות, יעילות ובסטנדרט אבטחת מידע בלתי מתפשר.</p>
-      <span class="caption-uc" style="margin-top:8px">אלה המסלולים שלנו:</span>
+      <span class="eyebrow">עם מי אנחנו עובדים</span>
+      <h2 class="display-xl">שלושה עולמות. כאב אחד. פתרון אחד.</h2>
+    </div>
+    <div class="aud-btns reveal">
+      <a href="#aud-law" class="btn btn-outline">לעורכי דין</a>
+      <a href="#aud-realestate" class="btn btn-outline">לאנשי נדל"ן</a>
+      <a href="#aud-inhouse" class="btn btn-outline">למחלקות משפטיות</a>
     </div>
     <div class="services-grid stagger reveal">
 
-      <article class="feature-card glass tilt">
+      <article class="feature-card glass tilt" id="aud-law">
         <span class="pip" aria-hidden="true"></span>
-        <span class="mini-label">מעלים את המשרד על המסלול</span>
-        <h3 class="title">הדרכות</h3>
-        <p class="body">הדרכה בקבוצות קטנות, אצלך במשרד או אצלנו. כבר אחרי המפגש הראשון תדע לדבר עם הבינה המלאכותית באופן שמייצר תוצרים איכותיים בהתאמה אישית, שישמשו אותך בפועל בעבודה היומיומית. בסיום 3 מפגשים תכיר את כלי ה-AI לעומק, ותדע לבנות סקיל, סוכן ועוזרים מקצה לקצה, ותבין סוף סוף על מה כל הרעש. מתאים גם למשרדים גדולים.</p>
+        <span class="mini-label">עולם המשפט</span>
+        <h3 class="title">עורכי דין מכל תחומי המשפט</h3>
+        <p class="body aud-opener">מכפיל כוח. לא עו"ד AI.</p>
+        <p class="body">אנחנו מכירים את משרד עורכי הדין שלך מבפנים, כי אנחנו חיים את שלנו. לכל משרד עורכי דין יש ידע חשוב שמפוזר בין תיקים, מיילים וזיכרון של עובדים, שיטות עבודה שאף אחד לא תיעד, תהליכים שחוזרים על עצמם, ביורוקרטיה, עדכונים שאין זמן לעקוב אחריהם, טפסים בלתי נגמרים...</p>
+        <p class="body aud-beat">גם לנו היו.</p>
+        <p class="body">את הפתרונות בנינו קודם כל לעצמנו - מתוך העבודה המשפטית בתחום דינמי כמו נדל"ן, על כמויות הדאטה העצומות שלו, הניירת, ניתוח הנתונים, המיסוי, הטאבו וכל הטוב הזה. ראינו בזמן אמת איך המערכות שבנינו חוסכות לנו זמן, מייעלות את העבודה, מבצעות בקרת איכות ובקיצור - הופכות לעובד הכי חרוץ במשרד, מכפיל הכוח שלנו - תחת הבקרה האנושית והמשפטית שלנו.</p>
+        <p class="body">גם לך מגיע ליהנות מיתרונות העבודה שהטכנולוגיה מציעה ב-2026. המערכות נבנות ומוטמעות בהתאמה אישית למשרד שלך, והדוגמאות בהדרכות נלקחות מתחום העיסוק שלך - לא משהו גנרי. אנחנו לומדים אותך ואת המשרד, ומתאימים לכם פתרון מדויק שמהווה המשך ישיר של העבודה שלכם - רק מהיר ויעיל בהרבה מהיום.</p>
       </article>
 
-      <article class="feature-card glass tilt">
+      <article class="feature-card glass tilt" id="aud-realestate">
         <span class="pip" aria-hidden="true"></span>
-        <span class="mini-label">הופכים ידע להרגל</span>
-        <h3 class="title">ליווי</h3>
-        <p class="body">מענה שוטף, מפגשי המשך, ופתרון מקרים מהשטח — לאורך זמן. הליווי מאפשר לך להתייעץ בזמן אמת על כל שאלה שעולה בעבודה, ולהפוך את העבודה עם AI לחלק קבוע מהיום-יום של המשרד.</p>
+        <span class="mini-label">עולם הנדל"ן</span>
+        <h3 class="title">חברות ואנשי נדל"ן - יש לכם <span dir="ltr">Game Changer</span></h3>
+        <p class="body">בנדל"ן AI הוא שובר שוויון אמיתי: נדל"ן זה דאטה, כמויות עצומות של מסמכים, מספרים וגרסאות - שרוב הזמן נעולות בקלסרים, בסריקות ובאקסלים שאף אחד לא פותח. מי שיודע להשתמש בדאטה הזאת עם AI - עובד בעולם אחר, כמונו.</p>
+        <p class="body">עם ניסיון מצטבר של 27 שנים בעולם הנדל"ן, אנחנו חיים את התחום: מסחרי ופרטי, תכנון ובנייה, עסקאות מורכבות, נכסים מניבים והתחדשות עירונית.</p>
+        <p class="body">אם אתה יזם, חברת בנייה או איש מקצוע בתחום הנדל"ן, המערכת שנבנה לך תהיה על הפרויקטים והמסמכים שלך, לא על דוגמאות גנריות.</p>
+        <p class="body">ככה זה עוזר לנו ביום-יום, מאז שהכנסנו את ה-AI לתיקים אמיתיים במשרד - כבר אי אפשר לחזור אחורה:</p>
+        <ul class="bulb-list">
+          <li>ניתוח דאטה - נסחי טאבו, מסמכי זכויות ובדיקות נאותות בהיקפים גדולים ובתיקים מורכבים</li>
+          <li>מידע תכנוני - תב"עות, זכויות בנייה, היתרים</li>
+          <li>ניהול פרויקטים - מעקב עסקאות מול עשרות רוכשים, נספחי שינויים, גרסאות הסכמים וניהול הידע בפרויקט</li>
+        </ul>
+        <p class="body">אם אתה רוצה להביא את הפרויקט הקרוב שלך לרמה הבאה ולנצל את הטכנולוגיה העוצמתית בלי פשרות על מקצועיות - <a href="#contact" class="aud-link">דבר איתנו</a>.</p>
       </article>
 
-      <article class="feature-card glass tilt">
+      <article class="feature-card glass tilt" id="aud-inhouse">
         <span class="pip" aria-hidden="true"></span>
-        <span class="mini-label">משנים את אופן העבודה במשרד</span>
-        <h3 class="title">הטמעה</h3>
-        <p class="body">תהליך עומק שמשלב AI בעבודה השוטפת של המשרד — מניסוח סעיפי הסכמים, דרך ניתוח מסמכים ועד ניהול ידע פנימי. בסוף התהליך, ה-AI הוא כבר חלק קבוע מניהול העבודה היומיומית במשרד. תתכונן להכיר את העובד הכי חרוץ שלך.</p>
+        <span class="mini-label">ארגונים וחברות</span>
+        <h3 class="title">מחלקות משפטיות בחברות וארגונים</h3>
+        <p class="body aud-opener">צוות קטן. דרישות שרק גדלות.</p>
+        <p class="body">יועץ משפטי בארגון מכיר את זה: עומס פניות מהגורמים העסקיים, חוזים בהיקפים גדולים, רגולציה שמתעדכנת כל הזמן - וצוות שאמור להספיק הכל. ה-AI לא מקטין את הדרישות, אבל הוא משנה לגמרי את קצב המענה: טיוטות ראשונות בדקות, ניתוח חוזים בהיקפים שלא היו אפשריים, ידע ארגוני שזמין לכולם במקום לשבת אצל אדם אחד.</p>
+        <p class="body">אנחנו יודעים להתאים הדרכה והטמעה לסביבה ארגונית - כולל עבודה לפי מדיניות אבטחת המידע ודרישות הרגולציה של הארגון שלך. ההדרכות נבנות על החוזים, הפניות והתהליכים שלכם, והצוות יוצא איתן לעבודה כבר באותו שבוע.</p>
+        <p class="body">אם אתה רוצה שהמחלקה המשפטית תפסיק להיות צוואר בקבוק ותתחיל להיות מכפיל כוח - <a href="#contact" class="aud-link">דבר איתנו</a>.</p>
       </article>
 
     </div>
@@ -835,22 +950,20 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="container">
     <div class="about-grid">
       <div class="reveal">
-        <span class="eyebrow">מי אנחנו</span>
-        <h2 class="display-xl" style="margin-top:18px;margin-bottom:24px">עורכי דין כמוך — שיודעים לעבוד עם AI ברמה הגבוהה ביותר</h2>
-        <p class="body-lead" style="margin-bottom:18px">עו"ד אסף אברמזון ועו"ד רועי נימצוביץ' מביאים יחד 27 שנות ניסיון מצטבר במקצוע עריכת הדין. אנחנו באים מהשטח, מכירים את הקשיים, הטרמינולוגיה והצרכים של העולם המשפטי ומתעדכנים איתו, וזה ההבדל המהותי בינינו לבין יועצי AI אחרים בשוק: אנחנו לא טכנולוגים שלמדו לדבר עם עו"ד, אלא עו"ד מעשיים שלמדו לעבוד עם AI ברמה הגבוהה ביותר.</p>
-        <p class="body-lead">אנחנו יודעים מבפנים איך עורך הדין חושב, איך הוא עובד, מה הוא צריך ואיך לזקק את הידע והניסיון שקיימים אצלו לכלי עבודה בעידן החדש. אנחנו המייסדים והמובילים של קהילת <span dir="ltr">Legal Mind</span> — קהילת AI לעורכי דין בישראל שמונה למעלה מ-1,000 חברים, ומעבירים סדנאות והרצאות במשרדי עורכי דין ובמחלקות משפטיות בחברות.</p>
-        <ul class="bulb-list reveal" style="margin-top:32px">
-          <li>27 שנות ניסיון משפטי מצטבר</li>
-          <li>1,000+ חברים בקהילת <span dir="ltr">Legal Mind</span></li>
-          <li>סדנאות פעילות במשרדי עו"ד ובמחלקות משפטיות</li>
-          <li>עובדים עם כלי ה-AI המובילים בשוק</li>
-        </ul>
+                <span class="eyebrow">מי אנחנו</span>
+        <h2 class="display-xl" style="margin-top:18px;margin-bottom:24px">סקפטי? גם אנחנו היינו.</h2>
+        <p class="body-lead">עומס במשרד - תיקים, לקוחות, חוזים, דאטה, טיוטה שחוזרת בפעם הרביעית ב-23:00. אתה מכיר את זה. גם אנחנו.</p>
+        <p class="body-lead">אנחנו רועי - עו"ד שעובד עם AI כבר עשור, ואסף - עו"ד שמגיע מסטארטאפ טכנולוגי. בראשית הדרך ניסינו את ה-AI והתאכזבנו מהתוצרים הבינוניים והגנריים. זה לא היה זה. כמעט סגרנו את הטאב.</p>
+        <p class="body-lead">אבל רק כמעט. עוד תיק, עוד לקוח, עוד ניתוח נתונים - וכבר ראינו שיפור. בנינו שיטות עבודה סדורות, לימדנו את ה-AI איך אנחנו עובדים ומה הלקוחות שלנו צריכים, ואחרי הרבה מאוד ניסוי וטעייה - זה עבד: ה-AI התחיל לחסוך לנו זמן ולייצר תוצרים איכותיים ואמינים. מאז הוא חלק בלתי נפרד מהעבודה שלנו.</p>
+        <p class="body-lead">ולא רק שלנו. היום אנחנו המייסדים של קהילת <span dir="ltr">Legal Mind</span> - עם מעל 1,000 עורכי דין מכל התחומים - ומלמדים משרדים, חברות, יזמי נדל"ן ומחלקות משפטיות לעבוד כמונו: חכם, מהיר ויעיל יותר, בלי להתפשר על הסטנדרט המקצועי.</p>
+        <p class="body-lead" style="font-weight:600;color:var(--ink)">מוכן להתחיל לעבוד אחרת? אנחנו כאן.</p>
+        <p class="about-signature">אסף ורועי</p>
       </div>
 
       <div class="founders reveal stagger">
         <article class="founder glass tilt">
           <div class="photo">
-            <img src="asaf.png.png" alt="עו״ד אסף אברמזון" loading="lazy" />
+            <img src="asaf.jpg" alt="עו״ד אסף אברמזון" loading="lazy" />
           </div>
           <div class="meta">
             <div class="name">עו"ד אסף אברמזון</div>
@@ -859,7 +972,7 @@ window.addEventListener('DOMContentLoaded', function(){
         </article>
         <article class="founder glass tilt">
           <div class="photo">
-            <img src="roy.png.png" alt="עו״ד רועי נימצוביץ׳" loading="lazy" />
+            <img src="roy.jpg" alt="עו״ד רועי נימצוביץ׳" loading="lazy" />
           </div>
           <div class="meta">
             <div class="name">עו"ד רועי נימצוביץ'</div>
@@ -871,140 +984,58 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process">
+<!-- LIMITS / DISCLOSURE -->
+<section id="limits">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">איך זה עובד</span>
-      <h2 class="display-xl">משיחת היכרות עד הטמעה מלאה במשרד</h2>
-      <p class="body-lead lead">התהליך שלנו בנוי משלושה שלבים. תוך פגישה אחת תדע אם זה מתאים לך.</p>
+      <span class="eyebrow">גילוי נאות - בכל זאת עורכי דין</span>
+      <h2 class="display-xl">מה ה-AI לא יעשה</h2>
     </div>
-    <div class="process-grid stagger reveal">
-      <article class="step-card glass tilt">
-        <div class="step-num">01</div>
-        <div class="step-label">שלב 1</div>
-        <h3 class="step-title">פגישת היכרות</h3>
-        <p class="step-body">נשמח להיפגש לשיחת היכרות — לרוב 45 דקות. נבין איפה המשרד שלך נמצא היום עם AI, ונראה לך לאן אפשר להגיע — ובקלות.</p>
-      </article>
-      <article class="step-card glass tilt">
-        <div class="step-num">02</div>
-        <div class="step-label">שלב 2</div>
-        <h3 class="step-title">הדרכה לצוות</h3>
-        <p class="step-body">מפגשי הדרכה בקבוצות קטנות במשרד שלך או אצלנו. כבר אחרי המפגש הראשון רואים תוצרים אמיתיים בעבודה היומיומית.</p>
-      </article>
-      <article class="step-card glass tilt">
-        <div class="step-num">03</div>
-        <div class="step-label">שלב 3</div>
-        <h3 class="step-title">ליווי והטמעה</h3>
-        <p class="step-body">מהשבוע הראשון אחרי ההדרכה — ליווי שוטף, פתרון מקרים מהשטח, והטמעת AI עמוקה בזרימות העבודה של המשרד.</p>
-      </article>
+    <ul class="bulb-list reveal">
+      <li>לא יחליף שיקול דעת משפטי</li>
+      <li>לא יחתום במקומך</li>
+      <li>לא יישא באחריות המקצועית - היא נשארת אצל עורך הדין, וכך צריך להיות</li>
+    </ul>
+    <p class="body-lead limits-note reveal">עורך הדין הוא המפקח. ה-AI הוא כלי העבודה. ככה אנחנו עובדים, וככה נלמד אותך לעבוד.</p>
+  </div>
+</section>
+
+<!-- BENEFIT -->
+<section id="benefit">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">בלי קסמים</span>
+      <h2 class="display-xl">תועלת והתייעלות</h2>
+      <p class="body-lead lead">אנחנו לא מבטיחים קסמים. מה שאנחנו כן יודעים, מהניסיון שלנו ושל עורכי הדין שעברו אצלנו: כשיודעים לעבוד נכון עם בינה מלאכותית, החיסכון בזמן וההתייעלות מורגשים מהר - בניסוח, בניתוח מסמכים, בעבודה השוטפת. התועלת מדברת בעד עצמה, ולכן כבר המפגש הראשון מתבצע על תוצרים אמיתיים מהעבודה שלך.</p>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">הקהילה</span>
+      <h2 class="display-xl">קהילת <span dir="ltr">Legal Mind</span></h2>
+      <p class="body-lead lead">קהילת ה-AI לעורכי דין בישראל - מעל 1,000 חברים מכל תחומי המשפט. עדכונים שוטפים על כלים, פרומפטים, סקילים ואירועים. ההצטרפות ללא עלות.</p>
+    </div>
+    <div class="reveal">
+      <a href="https://chat.whatsapp.com/BSEakH12fMc4OJsnEeH9T1" target="_blank" rel="noopener" class="btn btn-primary community-btn">הצטרפות לקהילה בוואטסאפ</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (placeholders) -->
 <section id="testimonials">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">מה אומרים עלינו</span>
-      <h2 class="display-xl">משרדי עו"ד שכבר עובדים אחרת</h2>
-      <p class="body-lead lead">הציטוטים הבאים ניתנו על-ידי משתתפים בתוכניות שלנו. השמות והמשרדים זמינים בבקשה.</p>
-      <span class="sample-pill">תוכן לדוגמה</span>
+      <h2 class="display-xl">עדויות - בקרוב</h2>
     </div>
-
     <div class="testi-grid stagger reveal">
-      <article class="testi-card glass tilt">
-        <div class="quote-mark">”</div>
-        <p class="quote">"אחרי שלוש שנים שניסיתי AI לבד והתאכזבתי — מפגש אחד עם אסף ורועי שינה את הכל. עכשיו אני מנסחת חוזים מורכבים בחצי מהזמן, וברמה גבוהה יותר."</p>
-        <div class="who"><span class="avatar">ש</span><div><div class="nm">עו"ד שרון לוי</div><div class="rl">שותפה, ליטיגציה מסחרית</div></div></div>
-      </article>
-      <article class="testi-card glass tilt">
-        <div class="quote-mark">”</div>
-        <p class="quote">"הליווי השוטף הוא ההבדל. הדרכה בלבד היתה נשארת בידע על המדף. הליווי הפך את זה להרגל יומיומי בכל המחלקה."</p>
-        <div class="who"><span class="avatar">ד</span><div><div class="nm">עו"ד דניאל כהן</div><div class="rl">ראש מחלקת נדל"ן</div></div></div>
-      </article>
-      <article class="testi-card glass tilt">
-        <div class="quote-mark">”</div>
-        <p class="quote">"כעצמאית, ההטמעה חסכה לי שעות בשבוע. AI לא מחליף אותי — הוא משחרר אותי לעבודה שבאמת דורשת אותי."</p>
-        <div class="who"><span class="avatar">מ</span><div><div class="nm">עו"ד מיכל ברק</div><div class="rl">עו"ד עצמאית, דיני משפחה</div></div></div>
-      </article>
-      <article class="testi-card glass tilt">
-        <div class="quote-mark">”</div>
-        <p class="quote">"המחלקה המשפטית שלנו עברה הדרכה ב-2026. תוך חצי שנה — ניתוח חוזים אוטומטי, סיכומי פסיקה, וניהול ידע פנימי בפורמט חדש לחלוטין."</p>
-        <div class="who"><span class="avatar">ת</span><div><div class="nm">עו"ד תומר אדלר</div><div class="rl">יועץ משפטי בכיר, חברת ביטוח</div></div></div>
-      </article>
-      <article class="testi-card glass tilt">
-        <div class="quote-mark">”</div>
-        <p class="quote">"אסף ורועי הם עו"ד שמדברים בשפה שלנו. כל הסדנאות וההרצאות שהיינו בהן קודם נכשלו בנקודה הזו."</p>
-        <div class="who"><span class="avatar">ע</span><div><div class="nm">עו"ד ענת רוזן</div><div class="rl">מנהלת ידע, משרד בוטיק</div></div></div>
-      </article>
-      <article class="testi-card glass tilt">
-        <div class="quote-mark">”</div>
-        <p class="quote">"המעבר היה חד. תוך 3 חודשים האופן שבו אנחנו מטפלים בתיקים השתנה לחלוטין — לטובה."</p>
-        <div class="who"><span class="avatar">ג</span><div><div class="nm">עו"ד גיל אבנון</div><div class="rl">ראש פרקטיקה, מסים בינלאומיים</div></div></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">מסלולי עבודה</span>
-      <h2 class="display-xl">בחר את העומק שמתאים למשרד שלך</h2>
-      <p class="body-lead lead">התמחור בכל מסלול נקבע בהתאמה לגודל המשרד והיקף הצרכים. ניצור איתך את ההצעה אחרי שיחת היכרות.</p>
-    </div>
-
-    <div class="pricing-grid stagger reveal">
-
-      <article class="price-card glass tilt">
-        <h3 class="tier-name">הדרכה</h3>
-        <p class="tier-tag">הצעד הראשון. מפגש או סדרה.</p>
-        <div class="tier-price">מ-₪ — להתאמה אישית</div>
-        <ul class="bulb-list">
-          <li>מפגש בודד (3 שעות) או סדרה של 3 מפגשים</li>
-          <li>הדרכה בקבוצות קטנות (עד 12 משתתפים)</li>
-          <li>חומרי לימוד והקלטות</li>
-          <li>ייעוץ קצר לפני המפגש להתאמת התוכן</li>
-        </ul>
-        <div class="price-cta">
-          <a href="#contact" class="btn btn-outline">קבל הצעה <span class="arr">→</span></a>
-        </div>
-      </article>
-
-      <article class="price-card glass tilt featured">
-        <span class="badge">המומלץ ביותר</span>
-        <h3 class="tier-name">הדרכה + ליווי</h3>
-        <p class="tier-tag">הופכים את הידע להרגל יומיומי במשרד.</p>
-        <div class="tier-price">מ-₪ — לפי גודל המשרד</div>
-        <ul class="bulb-list">
-          <li>3 מפגשי הדרכה לצוות</li>
-          <li>ליווי שוטף בוואטסאפ ובמייל למשך 3 חודשים</li>
-          <li>מפגשי המשך חודשיים לפתרון מקרים מהשטח</li>
-          <li>גישה לקהילת <span dir="ltr">Legal Mind</span></li>
-        </ul>
-        <div class="price-cta">
-          <a href="#contact" class="btn btn-primary">קבל הצעה <span class="arr">→</span></a>
-        </div>
-      </article>
-
-      <article class="price-card glass tilt">
-        <h3 class="tier-name">הטמעה עמוקה</h3>
-        <p class="tier-tag"><span dir="ltr">AI</span> כחלק מ-<span dir="ltr">DNA</span> של המשרד.</p>
-        <div class="tier-price">מ-₪ — לפי היקף ההטמעה</div>
-        <ul class="bulb-list">
-          <li>הדרכה לצוות מלא</li>
-          <li>ליווי שוטף 6 חודשים</li>
-          <li>מיפוי תהליכים והטמעת <span dir="ltr">AI</span> בזרימות עבודה ספציפיות</li>
-          <li>בניית כלים פנימיים (תבניות, פרומפטים, אוטומציות)</li>
-          <li>מדידה ודיווח על שיפור פרודוקטיביות</li>
-        </ul>
-        <div class="price-cta">
-          <a href="#contact" class="btn btn-outline">קבל הצעה <span class="arr">→</span></a>
-        </div>
-      </article>
-
+      <div class="testi-ghost">העדות בדרך אלינו</div>
+      <div class="testi-ghost">העדות בדרך אלינו</div>
+      <div class="testi-ghost">העדות בדרך אלינו</div>
     </div>
   </div>
 </section>
@@ -1025,15 +1056,15 @@ window.addEventListener('DOMContentLoaded', function(){
 
       <details class="faq-item"><summary>האם AI יחליף את עורכי הדין במשרד?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">לא. AI הוא מכפיל כוח, לא תחליף. הוא מאפשר לך לטפל ביותר תיקים בפחות זמן, לעלות ברמת איכות הניסוח, ולהתפנות לעבודה שבאמת דורשת שיקול דעת משפטי. עורכי הדין שעובדים עם AI מנצחים את אלה שלא.</div></details>
 
-      <details class="faq-item"><summary>איך אדע אם זה מתאים למשרד שלי?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">שיחת היכרות של 45 דקות, ללא עלות וללא התחייבות. נשמע איפה אתה עומד, נבין מה הצרכים, ונמליץ — גם אם ההמלצה היא שעדיין לא בשל בשבילך.</div></details>
+      <details class="faq-item"><summary>איך אדע אם זה מתאים למשרד שלי?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">שיחת היכרות של 45 דקות, ללא עלות וללא התחייבות. נשמע איפה אתה עומד, נבין מה הצרכים, ונמליץ - גם אם ההמלצה היא שעדיין לא בשל בשבילך.</div></details>
 
-      <details class="faq-item"><summary>באיזה כלים אתם עובדים?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">אנחנו עובדים עם כלי ה-AI המובילים בשוק — <span dir="ltr">ChatGPT</span>, <span dir="ltr">Claude</span>, ו-<span dir="ltr">Gemini</span> — ולא נצמדים לאחד. הכלי הנכון תלוי במשימה. בהדרכה נלמד אותך להחליט מתי להשתמש בכל אחד.</div></details>
+      <details class="faq-item"><summary>באיזה כלים אתם עובדים?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">אנחנו עובדים עם כלי ה-AI המובילים בשוק - <span dir="ltr">ChatGPT</span>, <span dir="ltr">Claude</span>, ו-<span dir="ltr">Gemini</span> - ולא נצמדים לאחד. הכלי הנכון תלוי במשימה. בהדרכה נלמד אותך להחליט מתי להשתמש בכל אחד.</div></details>
 
       <details class="faq-item"><summary>כמה זמן לוקחת ההטמעה?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">הדרכה: מפגש אחד עד שלושה. ליווי: 3 חודשים זמן קצר, 6 חודשים סטנדרט. הטמעה עמוקה: 3-6 חודשים, תלוי בהיקף.</div></details>
 
       <details class="faq-item"><summary>מה אם אני כבר משתמש ב-AI ופשוט רוצה לעבוד טוב יותר?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">זה רוב הלקוחות שלנו. רוב המשרדים מנסים AI לבד, מקבלים תוצרים בסדר, ולא יודעים שאפשר לקבל הרבה יותר. בהדרכה רואים את ההבדל מהמפגש הראשון.</div></details>
 
-      <details class="faq-item"><summary>איך נשארים בקשר אחרי שמסיימים?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">כל לקוח מקבל גישה לקהילת <span dir="ltr">Legal Mind</span> — מעל 1,000 עו"ד שעובדים עם AI ומתעדכנים בכלים חדשים, פרומפטים, ואירועים. גם אחרי שמסיימים את הליווי הרשמי, אתה נשאר בתוך הקהילה.</div></details>
+      <details class="faq-item"><summary>איך נשארים בקשר אחרי שמסיימים?<span class="chev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></summary><div class="ans">כל לקוח מקבל גישה לקהילת <span dir="ltr">Legal Mind</span> - מעל 1,000 עו"ד שעובדים עם AI ומתעדכנים בכלים חדשים, פרומפטים, ואירועים. גם אחרי שמסיימים את הליווי הרשמי, אתה נשאר בתוך הקהילה.</div></details>
     </div>
   </div>
 </section>
@@ -1042,15 +1073,15 @@ window.addEventListener('DOMContentLoaded', function(){
 <section id="contact" class="cta-band reveal">
   <div class="cta-bloom" aria-hidden="true"></div>
   <div class="inner">
-    <span class="eyebrow">מוכן להתחיל</span>
-    <h2 class="display-mega" style="font-size:clamp(36px,5.5vw,68px)">מוכן להעלות את המשרד שלך על המסלול?</h2>
-    <p class="body-lead" style="max-width:620px">שיחת היכרות של 45 דקות — נבין איפה אתה היום, ונראה לך לאן אפשר להגיע.</p>
+    <span class="eyebrow">ככה מתחילים</span>
+    <h2 class="display-mega" style="font-size:clamp(36px,5.5vw,68px)">בוא נדבר. 45 דקות, ותדע אם זה בשבילך.</h2>
+    <p class="body-lead" style="max-width:620px">נבין איפה אתה היום, ונראה לך לאן אפשר להגיע. בלי התחייבות ובלי הצגות.</p>
     <div class="ctas">
       <a href="mailto:roy@rnadv.co.il" class="btn btn-primary">
         בוא נדבר
         <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="https://wa.me/972506613677" class="btn btn-outline" target="_blank" rel="noopener">WhatsApp לרועי</a>
+      <a href="https://wa.me/972506613677" class="btn btn-outline" target="_blank" rel="noopener">וואטסאפ לעו"ד רועי נימצוביץ'</a>
     </div>
     <div class="contacts">
       <div><strong>עו"ד אסף אברמזון</strong> · <span dir="ltr">052-544-0628</span> · <a href="mailto:asaf@rnadv.co.il" dir="ltr">asaf@rnadv.co.il</a></div>
@@ -1067,32 +1098,31 @@ window.addEventListener('DOMContentLoaded', function(){
         <span class="brand-dot" aria-hidden="true"></span>
         <span class="brand-mark" dir="ltr">Legal Mind</span>
       </a>
-      <p class="tagline">AI שעובד באמת בעבודה המשפטית.</p>
+      <p class="tagline">קודם בינה משפטית. אחר כך מלאכותית. וזה כל ההבדל.</p>
     </div>
     <div>
       <h4>ניווט</h4>
       <ul>
-        <li><a href="#services">מה אנחנו עושים</a></li>
+        <li><a href="#audiences">עם מי אנחנו עובדים</a></li>
         <li><a href="#about">מי אנחנו</a></li>
-        <li><a href="#process">איך זה עובד</a></li>
-        <li><a href="#testimonials">מה אומרים עלינו</a></li>
+        <li><a href="#community">הקהילה</a></li>
         <li><a href="#faq">שאלות נפוצות</a></li>
       </ul>
     </div>
     <div>
       <h4>יצירת קשר</h4>
       <ul>
-        <li>אסף · <span dir="ltr">052-544-0628</span></li>
+        <li>עו"ד אסף אברמזון · <span dir="ltr">052-544-0628</span></li>
         <li><a href="mailto:asaf@rnadv.co.il" dir="ltr">asaf@rnadv.co.il</a></li>
-        <li>רועי · <span dir="ltr">050-661-3677</span></li>
+        <li>עו"ד רועי נימצוביץ' · <span dir="ltr">050-661-3677</span></li>
         <li><a href="mailto:roy@rnadv.co.il" dir="ltr">roy@rnadv.co.il</a></li>
       </ul>
     </div>
     <div>
       <h4>משפטי</h4>
       <ul>
-        <li><a href="#">מדיניות פרטיות</a></li>
-        <li><a href="#">תנאי שימוש</a></li>
+        <li><a href="privacy.html">מדיניות פרטיות</a></li>
+        <li><a href="accessibility.html">הצהרת נגישות</a></li>
       </ul>
     </div>
   </div>
@@ -1107,6 +1137,7 @@ window.addEventListener('DOMContentLoaded', function(){
 <!-- Lenis smooth scroll + scroll reveal + tilt + counters + starfield + logo SVG parallax -->
 <script type="module">
   /* ---------- prefers reduced motion guard ---------- */
+  window.__LM_OK = true;
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Lenis smooth scroll ---------- */
@@ -1138,19 +1169,28 @@ window.addEventListener('DOMContentLoaded', function(){
 
   /* ---------- inject inline bulb SVG into every .bulb-list li ---------- */
   (function(){
-    const bulb = '<svg class="bulb-icon" viewBox="0 0 20 26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-      '<path d="M10 1.6 C 5.5 1.6, 2.6 4.8, 2.6 8.6 C 2.6 11.2, 4 12.9, 5.5 14.7 L 5.5 17.2 L 14.5 17.2 L 14.5 14.7 C 16 12.9, 17.4 11.2, 17.4 8.6 C 17.4 4.8, 14.5 1.6, 10 1.6 Z" fill="none" stroke="#25A99C" stroke-width="1.7" stroke-linejoin="round"/>' +
-      '<line x1="6" y1="19" x2="14" y2="19" stroke="#25A99C" stroke-width="1.5" stroke-linecap="round"/>' +
-      '<line x1="6.5" y1="21.1" x2="13.5" y2="21.1" stroke="#25A99C" stroke-width="1.3" stroke-linecap="round"/>' +
-      '<line x1="7.2" y1="23.2" x2="12.8" y2="23.2" stroke="#25A99C" stroke-width="1.2" stroke-linecap="round"/>' +
-      '<rect x="8.4" y="24.4" width="3.2" height="1.4" rx="0.5" fill="#25A99C"/>' +
-      '<circle cx="10" cy="8.6" r="1.7" fill="#25A99C"/>' +
-    '</svg>';
+    const bulb = '<img class="bulb-icon" src="bulb.png" alt="" aria-hidden="true">';
     document.querySelectorAll('.bulb-list > li').forEach(li => {
-      if (!li.querySelector(':scope > svg.bulb-icon')){
+      if (!li.querySelector(':scope > .bulb-icon')){
         li.insertAdjacentHTML('afterbegin', bulb);
       }
     });
+  })();
+
+
+  /* ---------- scroll progress bar ---------- */
+  (function(){
+    var bar = document.querySelector('.scroll-progress i');
+    if (!bar) return;
+    var ticking = false;
+    function upd(){
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? (d.scrollTop || document.body.scrollTop) / max : 0) + ')';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
   })();
 
   /* ---------- IntersectionObserver scroll reveals ---------- */
@@ -1320,7 +1360,7 @@ window.addEventListener('DOMContentLoaded', function(){
       if (document.hidden){ requestAnimationFrame(frame); return; }
       const dt = now - last; last = now;
       // motion-blur fade
-      ctx.fillStyle = 'rgba(3,22,55,0.18)';
+      ctx.fillStyle = 'rgba(11,28,40,0.18)';
       ctx.fillRect(0,0,W,H);
       // stars (soft teal)
       for (let i=0;i<stars.length;i++){
@@ -1368,7 +1408,7 @@ window.addEventListener('DOMContentLoaded', function(){
     if (!REDUCED) requestAnimationFrame(frame);
     else {
       // static one-pass for reduced motion
-      ctx.fillStyle = '#031637'; ctx.fillRect(0,0,W,H);
+      ctx.fillStyle = '#0B1C28'; ctx.fillRect(0,0,W,H);
       for (const s of stars){
         ctx.beginPath();
         ctx.fillStyle = `rgba(168,217,213,${s.a.toFixed(3)})`;
@@ -1387,3 +1427,15 @@ window.addEventListener('DOMContentLoaded', function(){
       tx = (e.clientX/window.innerWidth) - 0.5;
       ty = (e.clientY/window.innerHeight) - 0.5;
     }, { passive: true });
+    const lerp = (a,b,t)=>a+(b-a)*t;
+    (function loop(){
+      cx = lerp(cx, tx, 0.06);
+      cy = lerp(cy, ty, 0.06);
+      if (wrap) wrap.style.transform = `translate3d(${(cx*18).toFixed(2)}px, ${(cy*14).toFixed(2)}px, 0)`;
+      requestAnimationFrame(loop);
+    })();
+  }
+</script>
+
+</body>
+</html>
