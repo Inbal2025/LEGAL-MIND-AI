@@ -903,43 +903,84 @@ window.addEventListener('DOMContentLoaded', function(){
       <a href="#aud-realestate" class="btn btn-outline">לאנשי נדל"ן</a>
       <a href="#aud-inhouse" class="btn btn-outline">למחלקות משפטיות</a>
     </div>
-    <div class="services-grid stagger reveal">
+    <style>
+    #audiences .lmac-track{display:flex;gap:22px}
+    #audiences .lmac-card{flex:1 1 0;min-width:0;position:relative;height:440px;border-radius:22px;cursor:default}
+    #audiences .lmac-cover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:30px;z-index:1;background:radial-gradient(120% 80% at 80% 0%, rgba(37,169,156,0.22), transparent 60%),linear-gradient(180deg, rgba(168,217,213,0.05), transparent 40%),rgba(19,48,64,0.55);transition:opacity .5s ease}
+    #audiences .lmac-icon{width:54px;height:54px;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(37,169,156,0.14);border:1px solid rgba(37,169,156,0.30);color:var(--c-teal-soft);margin-bottom:auto}
+    #audiences .lmac-eyebrow{font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-teal)}
+    #audiences .lmac-title{font-weight:300;font-size:26px;line-height:1.18;color:var(--ink);margin:0}
+    #audiences .lmac-opener{font-size:15px;color:var(--body);margin:0}
+    #audiences .lmac-hint{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:13px;font-weight:500;color:var(--c-teal-soft)}
+    #audiences .lmac-hint .arr{display:inline-block;transform:scaleX(-1)}
+    #audiences .lmac-panel{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;padding:26px 28px;gap:10px;overflow-y:auto;background:linear-gradient(180deg, rgba(13,31,42,0.96), rgba(13,31,42,0.99));opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+    #audiences .lmac-panel .lmac-title{font-size:21px;margin-bottom:6px}
+    #audiences .lmac-panel p{font-size:14px;line-height:1.6;color:var(--body);margin:0 0 8px}
+    #audiences .lmac-bullets{margin:2px 0 10px;padding-inline-start:18px;display:flex;flex-direction:column;gap:6px}
+    #audiences .lmac-bullets li{font-size:13.5px;line-height:1.5;color:var(--body)}
+    #audiences .lmac-cta{align-self:flex-start;margin-top:6px}
+    @media (hover:hover) and (min-width:881px){#audiences .lmac-card:hover{box-shadow:0 30px 60px -20px rgba(0,0,0,0.55);border-color:rgba(168,217,213,0.30)}#audiences .lmac-card:hover .lmac-cover{opacity:0}#audiences .lmac-card:hover .lmac-panel,#audiences .lmac-card:focus-within .lmac-panel{opacity:1;transform:none;pointer-events:auto}}
+    @media (max-width:880px){#audiences .lmac-track{flex-direction:column}#audiences .lmac-card{height:auto;border:1px solid var(--hairline);background:rgba(19,48,64,0.55);backdrop-filter:blur(20px) saturate(130%)}#audiences .lmac-cover{position:relative;inset:auto;justify-content:flex-start;gap:8px;padding:26px 24px 4px}#audiences .lmac-icon{margin-bottom:8px}#audiences .lmac-hint{display:none}#audiences .lmac-panel{position:relative;inset:auto;opacity:1;transform:none;pointer-events:auto;overflow:visible;background:transparent;padding:8px 24px 26px}#audiences .lmac-panel .lmac-eyebrow,#audiences .lmac-panel .lmac-title{display:none}}
+    </style>
+    <div class="lmac-track stagger reveal">
 
-      <article class="feature-card glass tilt" id="aud-law">
-        <span class="pip" aria-hidden="true"></span>
-        <span class="mini-label">עולם המשפט</span>
-        <h3 class="title">עורכי דין מכל תחומי המשפט</h3>
-        <p class="body aud-opener">מכפיל כוח. לא עו"ד AI.</p>
-        <p class="body">אנחנו מכירים את משרד עורכי הדין שלך מבפנים, כי אנחנו חיים את שלנו. לכל משרד עורכי דין יש ידע חשוב שמפוזר בין תיקים, מיילים וזיכרון של עובדים, שיטות עבודה שאף אחד לא תיעד, תהליכים שחוזרים על עצמם, ביורוקרטיה, עדכונים שאין זמן לעקוב אחריהם, טפסים בלתי נגמרים...</p>
-        <p class="body aud-beat">גם לנו היו.</p>
-        <p class="body">את הפתרונות בנינו קודם כל לעצמנו - מתוך העבודה המשפטית בתחום דינמי כמו נדל"ן, על כמויות הדאטה העצומות שלו, הניירת, ניתוח הנתונים, המיסוי, הטאבו וכל הטוב הזה. ראינו בזמן אמת איך המערכות שבנינו חוסכות לנו זמן, מייעלות את העבודה, מבצעות בקרת איכות ובקיצור - הופכות לעובד הכי חרוץ במשרד, מכפיל הכוח שלנו - תחת הבקרה האנושית והמשפטית שלנו.</p>
-        <p class="body">גם לך מגיע ליהנות מיתרונות העבודה שהטכנולוגיה מציעה ב-2026. המערכות נבנות ומוטמעות בהתאמה אישית למשרד שלך, והדוגמאות בהדרכות נלקחות מתחום העיסוק שלך - לא משהו גנרי. אנחנו לומדים אותך ואת המשרד, ומתאימים לכם פתרון מדויק שמהווה המשך ישיר של העבודה שלכם - רק מהיר ויעיל בהרבה מהיום.</p>
+      <article class="lmac-card glass" id="aud-law" tabindex="0">
+        <div class="lmac-cover">
+          <span class="lmac-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M8 4.5 5 7l-3 4a3 3 0 0 0 6 0L5 7"/><path d="M16 4.5 19 7l3 4a3 3 0 0 1-6 0L19 7"/><path d="M7 21h10"/></svg></span>
+          <span class="lmac-eyebrow">עולם המשפט</span>
+          <h3 class="lmac-title">עורכי דין מכל תחומי המשפט</h3>
+          <p class="lmac-opener">מכפיל כוח. לא עו"ד AI.</p>
+          <span class="lmac-hint">למידע נוסף <span class="arr">→</span></span>
+        </div>
+        <div class="lmac-panel">
+          <span class="lmac-eyebrow">עולם המשפט</span>
+          <h3 class="lmac-title">עורכי דין מכל תחומי המשפט</h3>
+          <p>אנחנו מכירים את משרד עורכי הדין שלך מבפנים, כי אנחנו חיים את שלנו. לכל משרד יש ידע חשוב שמפוזר בין תיקים, מיילים וזיכרון של עובדים, שיטות עבודה שאף אחד לא תיעד, תהליכים שחוזרים על עצמם, וטפסים בלתי נגמרים...</p>
+          <p style="color:var(--ink)">גם לנו היו.</p>
+          <p>את הפתרונות בנינו קודם כל לעצמנו — מתוך העבודה המשפטית בתחום דינמי כמו נדל"ן. ראינו בזמן אמת איך המערכות שבנינו חוסכות זמן, מייעלות, מבצעות בקרת איכות — והופכות לעובד הכי חרוץ במשרד, תחת הבקרה האנושית והמשפטית שלנו.</p>
+          <p>המערכות נבנות ומוטמעות בהתאמה אישית למשרד שלך, והדוגמאות בהדרכות נלקחות מתחום העיסוק שלך — לא משהו גנרי.</p>
+          <a href="#contact" class="btn btn-primary lmac-cta">דבר איתנו <span class="arr">→</span></a>
+        </div>
       </article>
 
-      <article class="feature-card glass tilt" id="aud-realestate">
-        <span class="pip" aria-hidden="true"></span>
-        <span class="mini-label">עולם הנדל"ן</span>
-        <h3 class="title">חברות ואנשי נדל"ן - יש לכם <span dir="ltr">Game Changer</span></h3>
-        <p class="body">בנדל"ן AI הוא שובר שוויון אמיתי: נדל"ן זה דאטה, כמויות עצומות של מסמכים, מספרים וגרסאות - שרוב הזמן נעולות בקלסרים, בסריקות ובאקסלים שאף אחד לא פותח. מי שיודע להשתמש בדאטה הזאת עם AI - עובד בעולם אחר, כמונו.</p>
-        <p class="body">עם ניסיון מצטבר של 27 שנים בעולם הנדל"ן, אנחנו חיים את התחום: מסחרי ופרטי, תכנון ובנייה, עסקאות מורכבות, נכסים מניבים והתחדשות עירונית.</p>
-        <p class="body">אם אתה יזם, חברת בנייה או איש מקצוע בתחום הנדל"ן, המערכת שנבנה לך תהיה על הפרויקטים והמסמכים שלך, לא על דוגמאות גנריות.</p>
-        <p class="body">ככה זה עוזר לנו ביום-יום, מאז שהכנסנו את ה-AI לתיקים אמיתיים במשרד - כבר אי אפשר לחזור אחורה:</p>
-        <ul class="bulb-list">
-          <li>ניתוח דאטה - נסחי טאבו, מסמכי זכויות ובדיקות נאותות בהיקפים גדולים ובתיקים מורכבים</li>
-          <li>מידע תכנוני - תב"עות, זכויות בנייה, היתרים</li>
-          <li>ניהול פרויקטים - מעקב עסקאות מול עשרות רוכשים, נספחי שינויים, גרסאות הסכמים וניהול הידע בפרויקט</li>
-        </ul>
-        <p class="body">אם אתה רוצה להביא את הפרויקט הקרוב שלך לרמה הבאה ולנצל את הטכנולוגיה העוצמתית בלי פשרות על מקצועיות - <a href="#contact" class="aud-link">דבר איתנו</a>.</p>
+      <article class="lmac-card glass" id="aud-realestate" tabindex="0">
+        <div class="lmac-cover">
+          <span class="lmac-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-5h6v5"/><path d="M9 10h.01"/><path d="M14.99 10H15"/></svg></span>
+          <span class="lmac-eyebrow">עולם הנדל"ן</span>
+          <h3 class="lmac-title">חברות ואנשי נדל"ן — יש לכם <span dir="ltr">Game Changer</span></h3>
+          <p class="lmac-opener">AI הוא שובר שוויון אמיתי.</p>
+          <span class="lmac-hint">למידע נוסף <span class="arr">→</span></span>
+        </div>
+        <div class="lmac-panel">
+          <span class="lmac-eyebrow">עולם הנדל"ן</span>
+          <h3 class="lmac-title">חברות ואנשי נדל"ן</h3>
+          <p>בנדל"ן AI הוא שובר שוויון: נדל"ן זה דאטה — כמויות עצומות של מסמכים, מספרים וגרסאות שנעולות בקלסרים ובאקסלים שאף אחד לא פותח. מי שיודע להשתמש בדאטה הזאת עם AI עובד בעולם אחר, כמונו.</p>
+          <p>עם ניסיון מצטבר של 27 שנים בנדל"ן, אנחנו חיים את התחום: מסחרי ופרטי, תכנון ובנייה, עסקאות מורכבות, נכסים מניבים והתחדשות עירונית.</p>
+          <p>ככה זה עוזר לנו ביום-יום:</p>
+          <ul class="lmac-bullets">
+            <li>ניתוח דאטה — נסחי טאבו, מסמכי זכויות ובדיקות נאותות בהיקפים גדולים</li>
+            <li>מידע תכנוני — תב"עות, זכויות בנייה, היתרים</li>
+            <li>ניהול פרויקטים — מעקב עסקאות, נספחי שינויים וגרסאות הסכמים</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary lmac-cta">דבר איתנו <span class="arr">→</span></a>
+        </div>
       </article>
 
-      <article class="feature-card glass tilt" id="aud-inhouse">
-        <span class="pip" aria-hidden="true"></span>
-        <span class="mini-label">ארגונים וחברות</span>
-        <h3 class="title">מחלקות משפטיות בחברות וארגונים</h3>
-        <p class="body aud-opener">צוות קטן. דרישות שרק גדלות.</p>
-        <p class="body">יועץ משפטי בארגון מכיר את זה: עומס פניות מהגורמים העסקיים, חוזים בהיקפים גדולים, רגולציה שמתעדכנת כל הזמן - וצוות שאמור להספיק הכל. ה-AI לא מקטין את הדרישות, אבל הוא משנה לגמרי את קצב המענה: טיוטות ראשונות בדקות, ניתוח חוזים בהיקפים שלא היו אפשריים, ידע ארגוני שזמין לכולם במקום לשבת אצל אדם אחד.</p>
-        <p class="body">אנחנו יודעים להתאים הדרכה והטמעה לסביבה ארגונית - כולל עבודה לפי מדיניות אבטחת המידע ודרישות הרגולציה של הארגון שלך. ההדרכות נבנות על החוזים, הפניות והתהליכים שלכם, והצוות יוצא איתן לעבודה כבר באותו שבוע.</p>
-        <p class="body">אם אתה רוצה שהמחלקה המשפטית תפסיק להיות צוואר בקבוק ותתחיל להיות מכפיל כוח - <a href="#contact" class="aud-link">דבר איתנו</a>.</p>
+      <article class="lmac-card glass" id="aud-inhouse" tabindex="0">
+        <div class="lmac-cover">
+          <span class="lmac-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"/><path d="M15 21V11h2a2 2 0 0 1 2 2v8"/><path d="M8 7h2M8 11h2M8 15h2"/></svg></span>
+          <span class="lmac-eyebrow">ארגונים וחברות</span>
+          <h3 class="lmac-title">מחלקות משפטיות בחברות וארגונים</h3>
+          <p class="lmac-opener">צוות קטן. דרישות שרק גדלות.</p>
+          <span class="lmac-hint">למידע נוסף <span class="arr">→</span></span>
+        </div>
+        <div class="lmac-panel">
+          <span class="lmac-eyebrow">ארגונים וחברות</span>
+          <h3 class="lmac-title">מחלקות משפטיות</h3>
+          <p>יועץ משפטי בארגון מכיר את זה: עומס פניות, חוזים בהיקפים גדולים, רגולציה שמתעדכנת כל הזמן — וצוות שאמור להספיק הכל. ה-AI לא מקטין את הדרישות, אבל משנה לגמרי את קצב המענה: טיוטות ראשונות בדקות, וידע ארגוני שזמין לכולם.</p>
+          <p>אנחנו יודעים להתאים הדרכה והטמעה לסביבה ארגונית — כולל עבודה לפי מדיניות אבטחת המידע והרגולציה שלכם. ההדרכות נבנות על החוזים והתהליכים שלכם, והצוות יוצא לעבודה כבר באותו שבוע.</p>
+          <a href="#contact" class="btn btn-primary lmac-cta">דבר איתנו <span class="arr">→</span></a>
+        </div>
       </article>
 
     </div>
