@@ -11,7 +11,7 @@
     if(isMobile){
       location.replace('/mobile.html' + location.search + location.hash);
     }
-  }catch(e){}
+  }catch(_){}
 })();
 </script>
 <meta charset="utf-8" />
@@ -236,14 +236,13 @@ section{padding:var(--section-pad);position:relative;z-index:1}
   padding-bottom:clamp(80px,10vw,140px);
   overflow:hidden;
 }
-.hero-copy{max-width:680px}
+.hero-copy{max-width:680px;position:relative;z-index:2}
 .hero-grid{
   display:grid;
   grid-template-columns:1fr;
   gap:clamp(32px,5vw,72px);
   align-items:center;
 }
-.hero-copy{position:relative;z-index:2}
 .hero-h1{margin-top:18px;margin-bottom:24px}
 .hero-h1 .ink-grad{
   background:linear-gradient(95deg, var(--c-teal-soft) 0%, var(--c-teal) 50%, var(--c-white) 100%);
@@ -601,7 +600,9 @@ section{padding:var(--section-pad);position:relative;z-index:1}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;max-width:var(--container);margin:0 auto}
 @media (max-width:880px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:700px){.footer-grid{grid-template-columns:1fr}}
-.footer h4{font-family:"Assistant",sans-serif;font-weight:600;font-size:12px;letter-spacing:0.96px;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;background:var(--c-teal,#25A99C);color:#fff;padding:10px 18px;border-radius:0 0 10px 0;font-family:"Assistant",sans-serif;font-weight:600;text-decoration:none}
+.skip-link:focus{left:0}
+.footer h3{font-family:"Assistant",sans-serif;font-weight:600;font-size:12px;letter-spacing:0.96px;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
 .footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
 .footer ul li a{color:var(--body);font-size:14.5px;transition:color .2s ease}
 .footer ul li a:hover{color:var(--ink)}
@@ -830,6 +831,7 @@ window.addEventListener('DOMContentLoaded', function(){
 </script>
 </head>
 <body>
+  <a class="skip-link" href="#top">דלג לתוכן</a>
 <div class="scroll-progress" aria-hidden="true"><i></i></div>
 
 <!-- atmospheric layers -->
@@ -1269,7 +1271,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <p class="tagline">קודם בינה משפטית. אחר כך מלאכותית. וזה כל ההבדל.</p>
     </div>
     <div>
-      <h4>ניווט</h4>
+      <h3>ניווט</h3>
       <ul>
         <li><a href="#audiences">עם מי אנחנו עובדים</a></li>
         <li><a href="#about">מי אנחנו</a></li>
@@ -1278,7 +1280,7 @@ window.addEventListener('DOMContentLoaded', function(){
       </ul>
     </div>
     <div>
-      <h4>יצירת קשר</h4>
+      <h3>יצירת קשר</h3>
       <ul>
         <li>עו"ד אסף אברמזון · <span dir="ltr">052-544-0628</span></li>
         <li><a href="mailto:asaf@legalmind.co.il" dir="ltr">asaf@legalmind.co.il</a></li>
@@ -1287,7 +1289,7 @@ window.addEventListener('DOMContentLoaded', function(){
       </ul>
     </div>
     <div>
-      <h4>משפטי</h4>
+      <h3>משפטי</h3>
       <ul>
         <li><a href="privacy.html">מדיניות פרטיות</a></li>
         <li><a href="accessibility.html">הצהרת נגישות</a></li>
