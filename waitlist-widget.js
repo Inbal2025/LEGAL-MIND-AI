@@ -105,7 +105,8 @@
     // מיקומי הזרקה: לפני מקטע "בוא נדבר" (#contact) ולפני הפוטר.
     var targets = [];
     var contact = document.getElementById('contact');
-    var footer = document.querySelector('footer');
+    var footers = document.querySelectorAll('footer');
+    var footer = footers.length ? footers[footers.length - 1] : null; // הפוטר האחרון (האמיתי בתחתית)
     if (contact) targets.push(contact);
     if (footer && footer !== contact) targets.push(footer);
 
