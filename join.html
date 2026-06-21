@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>הצטרפות לרשימה · Legal Mind</title>
+<meta name="description" content="השאירו פרטים ונחזור אליכם — Legal Mind, קודם בינה משפטית." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--navy:#0B1C28;--teal:#25A99C;--teal-soft:#A8D9D5;--ink:#EDEDF3;--body:#C3C3CC}
+*{box-sizing:border-box}
+html,body{margin:0;max-width:100%;overflow-x:hidden}
+body{background:var(--navy);color:var(--ink);font-family:"Assistant",sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 18px}
+.wrap{width:100%;max-width:620px}
+.brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}
+.brand-dot{width:11px;height:11px;border-radius:50%;background:var(--teal);box-shadow:0 0 14px rgba(37,169,156,.8)}
+.brand-mark{font-weight:700;letter-spacing:.5px}
+.eyebrow{display:inline-block;font-size:13px;letter-spacing:1px;color:var(--teal-soft);text-transform:uppercase;margin-bottom:8px}
+h1{font-weight:700;font-size:clamp(26px,5vw,38px);line-height:1.15;margin:6px 0 8px}
+.sub{color:var(--body);font-size:17px;margin:0 0 24px}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(168,217,213,.18);border-radius:18px;padding:clamp(20px,4vw,34px)}
+form{display:flex;flex-direction:column;gap:15px;text-align:right}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row .field{flex:1;min-width:200px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>span{font-size:14px;color:var(--body)}
+input,select{font-family:inherit;font-size:16px;padding:12px 14px;border-radius:10px;border:1px solid rgba(168,217,213,.25);background:rgba(255,255,255,.04);color:var(--ink);width:100%}
+input:focus,select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 2px rgba(37,169,156,.25)}
+select option{color:#0B1C28}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--body)}
+.consent input{width:18px;height:18px;flex:0 0 auto;margin-top:3px;accent-color:var(--teal)}
+.consent a{color:var(--teal-soft)}
+button{font-family:inherit;font-weight:600;font-size:17px;padding:14px 20px;border:none;border-radius:12px;background:var(--teal);color:#fff;cursor:pointer;transition:.2s;margin-top:4px}
+button:hover{background:#1f968a}
+button:disabled{opacity:.6;cursor:default}
+.msg{margin:4px 0 0;font-size:15px;min-height:1.2em}
+.msg.ok{color:#5fd0a0}.msg.err{color:#ff9a8a}
+.hp{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);border:0}
+.foot{text-align:center;margin-top:18px;font-size:13px;color:var(--body)}
+.foot a{color:var(--teal-soft)}
+.done .card-form{display:none}
+.done-msg{display:none;text-align:center;padding:18px 0}
+.done .done-msg{display:block}
+.done-msg .big{font-size:48px;line-height:1}
+.done-msg h2{font-weight:700;margin:12px 0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><span class="brand-dot"></span><span class="brand-mark" dir="ltr">Legal Mind</span></div>
+  <div style="text-align:center">
+    <span class="eyebrow">הצטרפות לרשימה</span>
+    <h1>רוצים לשמוע עוד? השאירו פרטים.</h1>
+    <p class="sub">נחזור אליכם אישית, בלי התחייבות.</p>
+  </div>
+
+  <div class="card" id="card">
+    <form id="wl-form" class="card-form" novalidate>
+      <div class="row">
+        <label class="field"><span>שם מלא *</span>
+          <input type="text" name="full_name" required autocomplete="name" /></label>
+        <label class="field"><span>טלפון *</span>
+          <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" /></label>
+      </div>
+      <div class="row">
+        <label class="field"><span>אימייל *</span>
+          <input type="email" name="email" required autocomplete="email" inputmode="email" dir="ltr" /></label>
+        <label class="field"><span>תחום עיסוק</span>
+          <select name="area">
+            <option value="">בחר/י</option>
+            <option>עורך/ת דין</option>
+            <option>איש/אשת נדל"ן</option>
+            <option>מחלקה משפטית</option>
+            <option>אחר</option>
+          </select></label>
+      </div>
+      <label class="field"><span>איך הגעתם אלינו?</span>
+        <select name="source">
+          <option value="">בחר/י</option>
+          <option>חיפוש בגוגל</option>
+          <option>לינקדאין</option>
+          <option>פייסבוק / אינסטגרם</option>
+          <option>המלצה</option>
+          <option>קהילת וואטסאפ</option>
+          <option>אחר</option>
+        </select></label>
+
+      <div class="hp"><label>אל תמלאו<input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+
+      <label class="consent">
+        <input type="checkbox" name="consent" required />
+        <span>אני מאשר/ת קבלת תכנים ועדכונים מ-Legal Mind בהתאם ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>.</span>
+      </label>
+
+      <button type="submit" id="submitBtn">שליחה</button>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    </form>
+    <div class="done-msg">
+      <div class="big">🎉</div>
+      <h2>תודה! קיבלנו את הפרטים.</h2>
+      <p class="sub" style="margin:0">נחזור אליכם בהקדם.</p>
+    </div>
+  </div>
+
+  <p class="foot">חזרה ל<a href="/">אתר Legal Mind</a></p>
+</div>
+
+<script>
+(function(){
+  var SUPABASE_URL = "https://fezwwmvdcnbunxnlndxf.supabase.co";
+  var PUBLISHABLE  = "sb_publishable_TBXgx4aqWDM1crgOavZcCw_eidoQKFa";
+  var f = document.getElementById('wl-form');
+  var msg = document.getElementById('msg');
+  var btn = document.getElementById('submitBtn');
+  var card = document.getElementById('card');
+
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    msg.className='msg'; msg.textContent='';
+    var d = Object.fromEntries(new FormData(f).entries());
+    if (d.company) { return; } // honeypot
+    var consent = f.querySelector('[name=consent]').checked;
+    if (!d.full_name || !d.phone || !d.email) { msg.classList.add('err'); msg.textContent='נא למלא שם, טלפון ואימייל.'; return; }
+    if (!consent) { msg.classList.add('err'); msg.textContent='נא לאשר את מדיניות הפרטיות.'; return; }
+
+    btn.disabled = true; var orig = btn.textContent; btn.textContent = 'שולח...';
+    try {
+      var r = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+        method: 'POST',
+        headers: {
+          'apikey': PUBLISHABLE,
+          'Authorization': 'Bearer ' + PUBLISHABLE,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          full_name: d.full_name.trim(),
+          phone: d.phone.trim(),
+          email: d.email.trim(),
+          area: d.area || null,
+          source: d.source || null,
+          consent: true,
+          user_agent: navigator.userAgent.slice(0,300)
+        })
+      });
+      if (r.ok) { card.classList.add('done'); }
+      else { var t = await r.text(); console.error('insert failed', r.status, t); msg.classList.add('err'); msg.textContent='אופס, משהו השתבש. נסו שוב או פנו אלינו בוואטסאפ.'; btn.disabled=false; btn.textContent=orig; }
+    } catch (err) {
+      console.error(err); msg.classList.add('err'); msg.textContent='אין חיבור כרגע. נסו שוב בעוד רגע.'; btn.disabled=false; btn.textContent=orig;
+    }
+  });
+})();
+</script>
+</body>
+</html>
