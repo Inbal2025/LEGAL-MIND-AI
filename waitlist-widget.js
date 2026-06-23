@@ -96,32 +96,38 @@
     });
   }
 
+  function inject(refEl, where) {
+    if (!refEl) return false;
+    var sec = buildSection();
+    if (where === 'after') refEl.parentNode.insertBefore(sec, refEl.nextSibling);
+    else refEl.parentNode.insertBefore(sec, refEl);
+    wire(sec);
+    return true;
+  }
+
   function init() {
     if (document.querySelector('.wl-widget')) return;
     var style = document.createElement('style');
     style.textContent = css;
     document.head.appendChild(style);
 
-    // מיקומי הזרקה: לפני מקטע "בוא נדבר" (#contact) ולפני הפוטר.
-    var targets = [];
+    // טופס עליון: מיד אחרי שורת "בין לקוחותינו" (.trust-band). גיבוי: לפני "בוא נדבר" (#contact).
+    var trust = document.querySelector('.trust-band');
     var contact = document.getElementById('contact');
-    var footers = document.querySelectorAll('footer');
-    var footer = footers.length ? footers[footers.length - 1] : null; // הפוטר האחרון (האמיתי בתחתית)
-    if (contact) targets.push(contact);
-    if (footer && footer !== contact) targets.push(footer);
+    if (trust) inject(trust, 'after');
+    else if (contact) inject(contact, 'before');
 
-    if (targets.length === 0) {
+    // טופס תחתון: לפני הפוטר האחרון (האמיתי בתחתית).
+    var footers = document.querySelectorAll('footer');
+    var footer = footers.length ? footers[footers.length - 1] : null;
+    if (footer) inject(footer, 'before');
+
+    // גיבוי: אם שום עוגן לא נמצא, להוסיף עותק אחד בסוף.
+    if (!document.querySelector('.wl-widget')) {
       var only = buildSection();
       document.body.appendChild(only);
       wire(only);
-      return;
     }
-
-    targets.forEach(function (t) {
-      var sec = buildSection();
-      t.parentNode.insertBefore(sec, t);
-      wire(sec);
-    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
