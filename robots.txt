@@ -23,4 +23,10 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
 Sitemap: https://www.legalmind.co.il/sitemap.xml
