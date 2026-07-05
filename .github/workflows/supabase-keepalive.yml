@@ -1,0 +1,14 @@
+name: Supabase Keepalive
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API to prevent free-tier auto-pause
+        run: |
+          curl -s -o /dev/null -w "HTTP %{http_code}\n" "https://fezwwmvdcnbunxnlndxf.supabase.co/rest/v1/waitlist?select=id&limit=1" -H "apikey: sb_publishable_TBXgx4aqWDM1crgOavZcCw_eidoQKFa" -H "Authorization: Bearer sb_publishable_TBXgx4aqWDM1crgOavZcCw_eidoQKFa"
