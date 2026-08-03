@@ -8,6 +8,11 @@ Legal Mind מפעילה את קהילת ה-AI לעורכי דין הגדולה �
 
 - [דף הבית](https://www.legalmind.co.il/): השירותים, הגישה, שאלות נפוצות ופרטי התקשרות
 - [הצטרפות לרשימה](https://www.legalmind.co.il/join.html): טופס יצירת קשר
+- [מרכז המדריכים](https://www.legalmind.co.il/guides/): מדריך בשלושה חלקים למעבר בטוח ממנוי Claude Pro או Max למנוי Claude Team, כולל צ'קליסט מעשי
+  - [מדריך 1: לפני המעבר](https://www.legalmind.co.il/guides/guide-1.html): מה משתנה, DPA, מושבים ובעלות, גיבוי Export data ו-Custom Skills
+  - [מדריך 2: הקמת מנוי Team](https://www.legalmind.co.il/guides/guide-2.html): בעלות ראשית, דומיינים מורשים, כיבוי Invite link והזמנת משתמשים
+  - [מדריך 3: העברת הנתונים](https://www.legalmind.co.il/guides/guide-3.html): ביצוע ההגירה, מה עובר ומה לא, בדיקת קבצים והתקנת Skills מחדש
+  - [צ'קליסט למעבר בטוח](https://www.legalmind.co.il/guides/checklist.html): בדיקות לפני, במהלך ואחרי ההגירה
 - [מדיניות פרטיות](https://www.legalmind.co.il/privacy.html)
 - [הצהרת נגישות](https://www.legalmind.co.il/accessibility.html)
 
