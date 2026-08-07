@@ -9,6 +9,28 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase REST API to prevent free-tier auto-pause
+      - name: Ping Supabase and assert it really answered
+        env:
+          SUPABASE_HOST: fezwwmvdcnbunxnlndxf.supabase.co
+          SUPABASE_KEY: sb_publishable_TBXgx4aqWDM1crgOavZcCw_eidoQKFa
         run: |
-          curl -s -o /dev/null -w "HTTP %{http_code}\n" "https://fezwwmvdcnbunxnlndxf.supabase.co/rest/v1/waitlist?select=id&limit=1" -H "apikey: sb_publishable_TBXgx4aqWDM1crgOavZcCw_eidoQKFa" -H "Authorization: Bearer sb_publishable_TBXgx4aqWDM1crgOavZcCw_eidoQKFa"
+          set -euo pipefail
+
+          if ! getent hosts "$SUPABASE_HOST" >/dev/null; then
+            echo "::error::הדומיין לא נפתר. הפרויקט מושהה. הטופס באתר לא עובד."
+            exit 1
+          fi
+
+          CODE=$(curl -s -o /tmp/body.txt -w "%{http_code}" --max-time 30 \
+            "https://$SUPABASE_HOST/rest/v1/heartbeat?select=id&limit=1" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY")
+
+          echo "HTTP $CODE"; cat /tmp/body.txt; echo
+
+          if [ "$CODE" != "200" ]; then
+            echo "::error::Supabase החזיר $CODE במקום 200. הפינג לא תקף."
+            exit 1
+          fi
+
+          echo "OK, Supabase ער"
