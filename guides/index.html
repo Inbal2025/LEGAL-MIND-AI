@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מרכז המדריכים - Legal Mind</title>
-<meta name="description" content="מדריכי AI מעשיים לעורכי דין ולמשרדי עורכי דין: מעבר בטוח למנוי Claude Team (שלושה מדריכים וצ'קליסט), ומצב Work ב-ChatGPT (מדריך מלא בן 17 פרקים ודף תרגול).">
+<meta name="description" content="מדריכי AI מעשיים לעורכי דין ולמשרדי עורכי דין. שלוש סדרות מלאות: מעבר בטוח למנוי Claude Team, מצב Work ב-ChatGPT, ועבודה עם Claude Cowork על הקבצים שבמחשב.">
 <link rel="canonical" href="https://www.legalmind.co.il/guides/">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
@@ -13,7 +13,7 @@
 <meta property="og:locale" content="he_IL">
 <meta property="og:site_name" content="Legal Mind">
 <meta property="og:title" content="מרכז המדריכים של Legal Mind - AI מעשי לעורכי דין">
-<meta property="og:description" content="מדריכי AI מעשיים לעורכי דין ולמשרדי עורכי דין: מעבר בטוח למנוי Claude Team (שלושה מדריכים וצ'קליסט), ומצב Work ב-ChatGPT (מדריך מלא בן 17 פרקים ודף תרגול).">
+<meta property="og:description" content="שלוש סדרות מדריכים מלאות לעורכי דין: מעבר בטוח למנוי Claude Team, מצב Work ב-ChatGPT, ועבודה עם Claude Cowork על הקבצים שבמחשב.">
 <meta property="og:url" content="https://www.legalmind.co.il/guides/">
 <meta property="og:image" content="https://www.legalmind.co.il/guides/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <meta property="og:image:alt" content="מרכז המדריכים של Legal Mind">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="מרכז המדריכים של Legal Mind - AI מעשי לעורכי דין">
-<meta name="twitter:description" content="מדריכי AI מעשיים לעורכי דין ולמשרדי עורכי דין: מעבר בטוח למנוי Claude Team, ומצב Work ב-ChatGPT.">
+<meta name="twitter:description" content="שלוש סדרות מדריכים מלאות לעורכי דין: Claude Team, מצב Work ב-ChatGPT, ו-Claude Cowork.">
 <meta name="twitter:image" content="https://www.legalmind.co.il/guides/og-image.png">
 <style>
 /* Legal Mind - external fonts */
@@ -46,10 +46,10 @@
     --brand-wash: #E3F1F0;
     --warn: #A8431F;
     --dark: #0D1E37;
-    --dark-2: #142A47;
     --shadow: 0 1px 2px rgba(13,30,55,.06), 0 18px 34px -16px rgba(13,30,55,.22);
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   html, body { margin: 0; overflow-x: hidden; }
   body {
     background: var(--paper);
@@ -64,27 +64,15 @@
     background: var(--paper-raised);
     border-bottom: 1px solid var(--line);
     padding: 8px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
   }
-  .masthead-brand { display: flex; align-items: center; }
   .masthead-logo { height: 91px; width: auto; object-fit: contain; display: block; }
-  .masthead-tag {
-    font-size: 12.6px;
-    font-weight: 700;
-    letter-spacing: .06em;
-    color: var(--brand-strong);
-    background: var(--brand-wash);
-    padding: 6px 14px;
-    border-radius: 99px;
-  }
 
   .hero {
     position: relative;
     background: radial-gradient(ellipse 80% 100% at 50% -10%, #1B3A5C 0%, var(--dark) 55%, var(--dark) 100%);
     overflow: hidden;
-    padding: 76px 28px 80px;
+    padding: 76px 28px 96px;
     text-align: center;
   }
   .hero-mesh {
@@ -96,7 +84,7 @@
     mask-image: radial-gradient(ellipse 65% 60% at 50% 20%, black 0%, transparent 70%);
     opacity: .8;
   }
-  .hero-inner { position: relative; max-width: 740px; margin: 0 auto; }
+  .hero-inner { position: relative; max-width: 760px; margin: 0 auto; }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 12.6px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
@@ -108,116 +96,84 @@
   }
   .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand-bright); box-shadow: 0 0 8px var(--brand-bright); }
   .hero h1 {
-    font-family: 'Assistant', sans-serif;
-    font-weight: 800;
-    font-size: clamp(31.5px, 4.4vw, 46.2px);
-    line-height: 1.28;
-    color: #fff;
-    margin: 0 auto 20px;
-    max-width: 100%;
-    text-align: center;
-    text-wrap: balance;
+    font-family: 'Assistant', sans-serif; font-weight: 800;
+    font-size: clamp(31.5px, 4.4vw, 46.2px); line-height: 1.28;
+    color: #fff; margin: 0 auto 20px; text-wrap: balance;
   }
   .hero h1 bdi { color: var(--brand-bright); }
-  .hero p {
-    font-size: 18.9px;
-    line-height: 1.6;
-    color: #DCE7EA;
-    max-width: 640px;
-    margin: 0 auto;
-  }
+  .hero p { font-size: 18.9px; line-height: 1.6; color: #DCE7EA; max-width: 640px; margin: 0 auto; }
 
-  .cards-wrap {
-    max-width: 1180px;
-    margin: 52px auto 0;
-    padding: 0 28px;
-    position: relative;
-    z-index: 2;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-  }
-  .card {
-    background: var(--paper-raised);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow);
+  .wrap { max-width: 1180px; margin: -56px auto 0; padding: 0 28px; position: relative; z-index: 2; }
+
+  /* ---- כרטיסי הסדרות ---- */
+  .series-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .scard {
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow);
+    text-decoration: none; color: inherit;
     transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: var(--brand-bright);
-    box-shadow: 0 0 0 1px var(--brand-bright), 0 20px 40px -18px rgba(13,30,55,.35);
+  .scard:hover, .scard:focus-visible {
+    transform: translateY(-5px); border-color: var(--brand-bright); outline: none;
+    box-shadow: 0 0 0 1px var(--brand-bright), 0 22px 44px -18px rgba(13,30,55,.38);
   }
-  .card-top {
-    height: 5px;
-    background: linear-gradient(90deg, var(--brand), var(--brand-bright));
-  }
-  .card.is-tool .card-top { background: linear-gradient(90deg, var(--warn), #D97A52); }
-  .card-body { padding: 22px 20px 20px; display: flex; flex-direction: column; flex-grow: 1; }
-  .card-icon {
-    width: 38px; height: 38px;
-    border-radius: 9px;
-    background: var(--brand-wash);
-    color: var(--brand-strong);
+  .scard-top { height: 6px; background: linear-gradient(90deg, var(--brand), var(--brand-bright)); }
+  .scard-body { padding: 28px 26px 26px; display: flex; flex-direction: column; flex-grow: 1; }
+  .scard-num {
+    width: 46px; height: 46px; border-radius: 11px;
+    background: var(--brand-wash); color: var(--brand-strong);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 15.75px;
-    margin-bottom: 16px;
+    font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 20px;
+    margin-bottom: 18px;
   }
-  .card.is-tool .card-icon { background: #FBE4D6; color: var(--warn); }
-  .card-kind {
-    font-size: 11.55px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  .scard-kind {
+    font-size: 11.55px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
     color: var(--ink-faint); margin-bottom: 8px;
   }
-  .card h2 {
-    font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 18.4px; line-height: 1.4;
-    margin: 0 0 8px;
+  .scard h2 { font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 21px; line-height: 1.35; margin: 0 0 10px; }
+  .scard > .scard-body > p { font-size: 14.8px; line-height: 1.62; color: var(--ink-soft); margin: 0 0 18px; }
+  .scard ul {
+    list-style: none; margin: 0 0 20px; padding: 0;
+    border-top: 1px solid var(--line); padding-top: 14px; flex-grow: 1;
   }
-  .card p {
-    font-size: 14.2px; line-height: 1.6; color: var(--ink-soft);
-    margin: 0 0 16px; flex-grow: 1;
+  .scard li {
+    font-size: 13.6px; line-height: 1.5; color: var(--ink-soft);
+    padding: 5px 16px 5px 0; position: relative;
   }
-  .card-meta {
-    font-size: 12.1px; color: var(--brand-strong); font-weight: 700;
-    margin-bottom: 14px;
+  .scard li::before {
+    content: ""; position: absolute; right: 0; top: 12px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--brand-bright);
   }
+  .scard-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .scard-count { font-size: 12.6px; font-weight: 700; color: var(--brand-strong); }
+  .scard-go {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14.2px; font-weight: 700; color: #fff; background: var(--brand-strong);
+    border-radius: 7px; padding: 11px 20px; transition: background .15s ease;
+  }
+  .scard:hover .scard-go { background: var(--dark); }
 
-
-  .card.is-tool .card-meta { color: var(--warn); }
-  .card-btn {
-    display: flex; align-items: center; justify-content: center; gap: 6px;
-    text-align: center; text-decoration: none; font-size: 14.2px; font-weight: 700;
-    color: #fff; background: var(--brand-strong);
-    border-radius: 7px; padding: 11px 14px;
-    transition: background .15s ease, transform .15s ease;
+  /* ---- רצועת מפת ה-AI ---- */
+  .starter {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    background: var(--paper-raised); border: 1px solid var(--line);
+    border-right: 5px solid var(--brand-bright);
+    border-radius: 10px; box-shadow: var(--shadow);
+    padding: 20px 24px; margin-top: 24px;
   }
-  .card-btn:hover, .card-btn:focus-visible { background: var(--dark); outline: none; }
-  .card.is-tool .card-btn { background: var(--warn); }
-  .card.is-tool .card-btn:hover { background: #8a3618; }
-
-  .path-section { max-width: 900px; margin: 60px auto 0; padding: 0 28px; }
-  .path-label { text-align: center; font-size: 13.1px; letter-spacing: .1em; color: var(--ink-faint); text-transform: uppercase; margin-bottom: 26px; }
-  .path { display: flex; align-items: center; justify-content: center; }
-  .path-step { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  .path-dot {
-    width: 36px; height: 36px;
-    transform: rotate(45deg);
-    background: var(--paper-raised);
-    border: 1.5px solid var(--brand-bright);
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 0 4px var(--brand-wash);
+  .starter-text { flex: 1 1 420px; }
+  .starter-kicker {
+    display: block; font-size: 11.55px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--brand-strong); margin-bottom: 6px;
   }
-  .path-dot span { transform: rotate(-45deg); font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 13.65px; color: var(--brand-strong); }
-  .path-step.tool .path-dot { border-color: var(--warn); box-shadow: 0 0 0 4px #FBE4D6; }
-  .path-step.tool .path-dot span { color: var(--warn); }
-  .path-name { font-size: 13.1px; color: var(--ink-soft); white-space: nowrap; }
-  .path-line { width: 56px; height: 2px; background: linear-gradient(90deg, var(--brand-bright), var(--line-strong)); margin: 0 6px; align-self: flex-start; margin-top: 17px; }
+  .starter h2 { font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 19.6px; line-height: 1.35; margin: 0 0 6px; }
+  .starter p { font-size: 14.2px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+  .starter a {
+    flex: 0 0 auto; text-decoration: none; font-size: 14.2px; font-weight: 700;
+    color: #fff; background: var(--brand-strong); border-radius: 7px; padding: 11px 22px;
+    transition: background .15s ease;
+  }
+  .starter a:hover, .starter a:focus-visible { background: var(--dark); outline: none; }
 
   .info-section {
     max-width: 900px; margin: 64px auto 0; padding: 26px 30px;
@@ -231,91 +187,22 @@
 
   footer { max-width: 1180px; margin: 56px auto 0; padding: 24px 28px 44px; text-align: center; font-size: 13.1px; color: var(--ink-faint); }
 
-  /* ---- כותרת סדרה ---- */
-  .series { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-  .series + .series { margin-top: 66px; }
-  .series-head {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    gap: 16px; flex-wrap: wrap;
-    border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 20px;
-  }
-  .series-kicker {
-    display: block; font-size: 11.55px; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--brand-strong); margin-bottom: 6px;
-  }
-  .series-head h2 {
-    font-family: 'Frank Ruhl', serif; font-weight: 700;
-    font-size: 25.2px; line-height: 1.3; margin: 0;
-  }
-  .series-head > div { flex: 1 1 460px; }
-  .series-head p { font-size: 14.2px; line-height: 1.6; color: var(--ink-soft); margin: 6px 0 0; max-width: 620px; }
-  .series-link { font-size: 13.1px; font-weight: 700; color: var(--brand-strong); text-decoration: none; white-space: nowrap; padding-bottom: 3px; }
-  .series-link:hover { text-decoration: underline; }
-  .cards--two { grid-template-columns: repeat(2, 1fr); }
-
   @media (max-width: 980px) {
-    .cards { grid-template-columns: repeat(2, 1fr); }
+    .series-cards { grid-template-columns: 1fr; }
     .info-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
-    .cards, .cards--two { grid-template-columns: 1fr; }
-    .hero { padding: 56px 20px 62px; }
-    .cards-wrap { margin-top: 40px; }
-    .path { flex-wrap: wrap; row-gap: 18px; }
-    .path-line { width: 26px; }
-    .masthead { justify-content: center; padding: 8px 20px; }
-    .masthead-tag { display: none; }
+    .hero { padding: 56px 20px 80px; }
+    .wrap { margin-top: -46px; }
+    .masthead { padding: 8px 20px; }
     .masthead-logo { height: 70px; }
   }
-
-/* מקרא צילומי מסך - עיגול ממוספר, בלי תבליט, RTL תקין */
-.shot-legend {
-  list-style: none;
-  margin: 12px 0 0;
-  padding: 0; }
-
-.shot-legend li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 8px 0;
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--ink); }
-
-.shot-legend li > b {
-  flex: 0 0 24px;
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  margin-top: 2px;
-  border-radius: 50%;
-  background: var(--brand);
-  color: #fff;
-  font-family: 'Assistant', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1; }
-
-.shot-legend li > span {
-  flex: 1 1 auto; }
-
-/* כיתוב מתחת לצילום אמיתי - קודם עוצב רק בתוך image-placeholder */
-figure > figcaption {
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--ink-faint);
-  text-align: center; }
-
 </style>
 </head>
 <body>
 
 <header class="masthead">
-  <div class="masthead-brand">
-    <img class="masthead-logo" src="legal-mind-logo-tight.png" alt="Legal Mind" width="334" height="253" decoding="async">
-  </div>
+  <img class="masthead-logo" src="legal-mind-logo-tight.png" alt="Legal Mind" width="334" height="253" decoding="async">
 </header>
 
 <div class="hero">
@@ -323,120 +210,82 @@ figure > figcaption {
   <div class="hero-inner">
     <span class="hero-eyebrow"><span class="dot"></span>מרכז המדריכים</span>
     <h1>מדריכי <bdi dir="ltr">AI</bdi> מעשיים לעורכי דין ולמשרדי עורכי דין</h1>
-    <p>שתי סדרות מלאות, צעד אחר צעד, עם צילומי מסך אמיתיים: מעבר בטוח למנוי <bdi dir="ltr">Team</bdi> של <bdi dir="ltr">Claude</bdi>, ומצב <bdi dir="ltr">Work</bdi> ב-<bdi dir="ltr">ChatGPT</bdi>.</p>
+    <p>בחרו סדרה. כל סדרה עומדת בפני עצמה, צעד אחר צעד, עם צילומי מסך אמיתיים ודף תרגול בסופה.</p>
   </div>
 </div>
 
-<div class="cards-wrap">
-  <div class="series-head">
-    <div>
-      <span class="series-kicker">סדרה 1 · <bdi dir="ltr">Claude Team</bdi></span>
-      <h2>מעבר בטוח למנוי <bdi dir="ltr">Team</bdi> של <bdi dir="ltr">Claude</bdi></h2>
-      <p>ליווי מלא לפני המעבר, במהלכו ואחריו - מהכנה וגיבוי, דרך העברת החשבון והמידע, ועד בדיקות ושחזור <bdi dir="ltr">Skills</bdi>.</p>
-    </div>
-  </div>
-  <div class="cards">
-    <div class="card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <div class="card-icon">1</div>
-        <div class="card-kind">מדריך 1 מתוך 3</div>
-        <h2>לפני המעבר למנוי <bdi dir="ltr">Team</bdi></h2>
-        <p>מה משתנה ומה חייבים לגבות לפני שסוגרים את החשבון הישן.</p>
-        <div class="card-meta">כ-11 דקות קריאה</div>
-        <a class="card-btn" href="guide-1.html">פתיחת המדריך</a>
+<div class="wrap">
+  <div class="series-cards">
+
+    <a class="scard" href="claude-team.html">
+      <div class="scard-top"></div>
+      <div class="scard-body">
+        <div class="scard-num">1</div>
+        <div class="scard-kind">סדרה · <bdi dir="ltr">Claude Team</bdi></div>
+        <h2>מעבר בטוח למנוי <bdi dir="ltr">Team</bdi> של <bdi dir="ltr">Claude</bdi></h2>
+        <p>ליווי מלא לפני המעבר, במהלכו ואחריו, כולל גיבוי מלא לפני כל פעולה שאי אפשר לבטל.</p>
+        <ul>
+          <li>מה משתנה ומה חייבים לגבות</li>
+          <li>הקמת הארגון והזמנת משתמשים</li>
+          <li>העברת הנתונים ובדיקת התוצאה</li>
+          <li>צ'קליסט למעבר בטוח</li>
+        </ul>
+        <div class="scard-foot">
+          <span class="scard-count">3 מדריכים + צ'קליסט</span>
+          <span class="scard-go">לסדרה ◀</span>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <div class="card-icon">2</div>
-        <div class="card-kind">מדריך 2 מתוך 3</div>
-        <h2>הקמת מנוי <bdi dir="ltr">Team</bdi></h2>
-        <p>הזמנת משתמשים לארגון והקשחת הגישה למסגרת החדשה.</p>
-        <div class="card-meta">כ-4 דקות קריאה</div>
-        <a class="card-btn" href="guide-2.html">פתיחת המדריך</a>
+    </a>
+
+    <a class="scard" href="chatgpt-work.html">
+      <div class="scard-top"></div>
+      <div class="scard-body">
+        <div class="scard-num">2</div>
+        <div class="scard-kind">סדרה · <bdi dir="ltr">ChatGPT Work</bdi></div>
+        <h2>מצב <bdi dir="ltr">Work</bdi> ב-<bdi dir="ltr">ChatGPT</bdi></h2>
+        <p>מ-עוזר שעונה, לסוכן שמבצע: נותנים יעד שלם ומקבלים בסוף קובץ מוגמר. מתחיל מאפס.</p>
+        <ul>
+          <li>התקנת אפליקציית המחשב</li>
+          <li>תהליך עבודה מלא עד הקובץ המוגמר</li>
+          <li>חיבור אפליקציות ומשימות מתוזמנות</li>
+          <li>דף תרגול עם שישה תרגילים</li>
+        </ul>
+        <div class="scard-foot">
+          <span class="scard-count">17 פרקים + דף תרגול</span>
+          <span class="scard-go">לסדרה ◀</span>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <div class="card-icon">3</div>
-        <div class="card-kind">מדריך 3 מתוך 3</div>
-        <h2>העברת הנתונים למנוי <bdi dir="ltr">Team</bdi></h2>
-        <p>ביצוע המעבר בפועל ובדיקת התוצאה לאחר ההשלמה.</p>
-        <div class="card-meta">כ-6 דקות קריאה</div>
-        <a class="card-btn" href="guide-3.html">פתיחת המדריך</a>
+    </a>
+
+    <a class="scard" href="cowork.html">
+      <div class="scard-top"></div>
+      <div class="scard-body">
+        <div class="scard-num">3</div>
+        <div class="scard-kind">סדרה · <bdi dir="ltr">Claude Cowork</bdi></div>
+        <h2>עבודה עם <bdi dir="ltr">Claude</bdi> על הקבצים שבמחשב</h2>
+        <p>נותנים לקלוד עבודה ולא רק שאלות: מחברים תיקייה, עוברים על תיק שלם, ומקבלים קובץ מוגמר.</p>
+        <ul>
+          <li>חיבור תיקייה ומתן גישה בבטחה</li>
+          <li>עבודה על תיק שלם ולא על שאלה בודדת</li>
+          <li>משימות שרצות גם כשאתם לא מול המסך</li>
+          <li>דף תרגול עם שישה תרגילים</li>
+        </ul>
+        <div class="scard-foot">
+          <span class="scard-count">3 מדריכים + דף תרגול</span>
+          <span class="scard-go">לסדרה ◀</span>
+        </div>
       </div>
-    </div>
-    <div class="card is-tool">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <div class="card-icon">✓</div>
-        <div class="card-kind">כלי עבודה מעשי</div>
-        <h2>צ'קליסט למעבר בטוח</h2>
-        <p>סימון כל שלב לפני הקמת הסביבה, לאחריה, ולפני השלמת המעבר.</p>
-        <div class="card-meta">מסמך עבודה</div>
-        <a class="card-btn" href="checklist.html">פתיחת הצ'קליסט</a>
-      </div>
-    </div>
+    </a>
+
   </div>
 
-  <div class="path-section">
-    <div class="path-label">סדר השימוש המומלץ</div>
-    <div class="path">
-      <div class="path-step"><div class="path-dot"><span>1</span></div><div class="path-name">מדריך 1</div></div>
-      <div class="path-line"></div>
-      <div class="path-step"><div class="path-dot"><span>2</span></div><div class="path-name">מדריך 2</div></div>
-      <div class="path-line"></div>
-      <div class="path-step"><div class="path-dot"><span>3</span></div><div class="path-name">מדריך 3</div></div>
-      <div class="path-line"></div>
-      <div class="path-step tool"><div class="path-dot"><span>✓</span></div><div class="path-name">צ׳קליסט</div></div>
+  <div class="starter">
+    <div class="starter-text">
+      <span class="starter-kicker">לא בטוחים באיזו סדרה להתחיל?</span>
+      <h2>מפת ה-<bdi dir="ltr">AI</bdi> לעורכי דין: <bdi dir="ltr">Claude</bdi> מול <bdi dir="ltr">ChatGPT</bdi> מול <bdi dir="ltr">Gemini</bdi></h2>
+      <p>מה כל פלטפורמה באמת עושה, במה הן נבדלות, ובאיזו כדאי להתחיל - לפני שצוללים לסדרה מסוימת.</p>
     </div>
-  </div>
-</div>
-
-<div class="series">
-  <div class="series-head">
-    <div>
-      <span class="series-kicker">סדרה 2 · <bdi dir="ltr">ChatGPT Work</bdi></span>
-      <h2>מצב <bdi dir="ltr">Work</bdi> ב-<bdi dir="ltr">ChatGPT</bdi> - מ-עוזר שעונה, לסוכן שמבצע</h2>
-      <p>איך נותנים ל-<bdi dir="ltr">ChatGPT</bdi> יעד שלם - דוח, חוות דעת, טבלת מועדים - ומקבלים בסוף קובץ מוגמר. המדריך מתחיל מאפס ולא מניח ידע מוקדם.</p>
-    </div>
-    <a class="series-link" href="chatgpt-work.html">לדף המרכז של הסדרה ◀</a>
-  </div>
-  <div class="cards cards--two">
-    <div class="card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <div class="card-icon">1</div>
-        <div class="card-kind">מדריך מלא · 17 פרקים</div>
-        <h2>המדריך המקיף למצב <bdi dir="ltr">Work</bdi></h2>
-        <p>התקנת אפליקציית המחשב, תהליך עבודה מלא עד הקובץ המוגמר, מסמכים מתבנית, חיבור אפליקציות, משימות מתוזמנות וקבצים מקומיים - עם 27 צילומי מסך אמיתיים.</p>
-        <div class="card-meta">כ-30 דקות קריאה</div>
-        <a class="card-btn" href="chatgpt-work-guide.html">פתיחת המדריך</a>
-      </div>
-    </div>
-    <div class="card is-tool">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <div class="card-icon">✓</div>
-        <div class="card-kind">כלי עבודה מעשי</div>
-        <h2>דף תרגול - שישה תרגילים</h2>
-        <p>שישה תרגילים מודרכים מול המסך, כל אחד עם נוסח מוכן להעתקה ובדיקת הצלחה. הכל על חומר מומצא בלבד.</p>
-        <div class="card-meta">מסמך עבודה</div>
-        <a class="card-btn" href="chatgpt-work-practice.html">פתיחת דף התרגול</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="path-section">
-    <div class="path-label">סדר השימוש המומלץ</div>
-    <div class="path">
-      <div class="path-step"><div class="path-dot"><span>1</span></div><div class="path-name">המדריך המלא</div></div>
-      <div class="path-line"></div>
-      <div class="path-step tool"><div class="path-dot"><span>✓</span></div><div class="path-name">דף התרגול</div></div>
-    </div>
+    <a href="ai-map.html">לפתיחת המפה</a>
   </div>
 </div>
 
@@ -444,15 +293,15 @@ figure > figcaption {
   <div class="info-grid">
     <div class="info-item">
       <h3>למי מיועד מרכז המדריכים?</h3>
-      <p>לעורכי דין, שותפים ומנהלי <bdi dir="ltr">IT</bdi> במשרד שרוצים לעבוד עם <bdi dir="ltr">AI</bdi> בצורה מסודרת ובטוחה - בין אם במעבר למנוי <bdi dir="ltr">Claude Team</bdi> ובין אם בהפעלת מצב <bdi dir="ltr">Work</bdi> ב-<bdi dir="ltr">ChatGPT</bdi>.</p>
+      <p>לעורכי דין, שותפים ומנהלי <bdi dir="ltr">IT</bdi> במשרד שרוצים לעבוד עם <bdi dir="ltr">AI</bdi> בצורה מסודרת ובטוחה. אין צורך בידע טכני מוקדם.</p>
     </div>
     <div class="info-item">
-      <h3>מדוע חשוב לעבור לפי הסדר?</h3>
-      <p>בכל סדרה, כל מדריך בונה על קודמו. בסדרת <bdi dir="ltr">Team</bdi> דילוג על שלב עלול לגרום לאובדן מידע; בסדרת <bdi dir="ltr">Work</bdi> דף התרגול מניח שהמדריך המלא כבר נקרא.</p>
+      <h3>באיזה סדר לקרוא?</h3>
+      <p>הסדרות עצמאיות זו מזו, ואפשר להתחיל בכל אחת מהן. בתוך כל סדרה כדאי לעבור לפי הסדר, כי כל מדריך בונה על קודמו ודף התרגול מניח שהמדריכים כבר נקראו.</p>
     </div>
     <div class="info-warn">
       <h3>שימו לב:</h3>
-      <p>חלק מהפעולות במעבר למנוי <bdi dir="ltr">Team</bdi> הן <bdi>חד-כיווניות</bdi> ואינן ניתנות לביטול - יש להשלים גיבוי מלא (מדריך 1) לפני כל פעולה בלתי הפיכה. בסדרת <bdi dir="ltr">Work</bdi>, כל התרגילים מבוצעים על חומר מומצא בלבד, ולא על חומר של לקוחות.</p>
+      <p>חלק מהפעולות במעבר למנוי <bdi dir="ltr">Team</bdi> הן <bdi>חד-כיווניות</bdi> ואינן ניתנות לביטול, ולכן יש להשלים גיבוי מלא לפניהן. בסדרות <bdi dir="ltr">Work</bdi> ו-<bdi dir="ltr">Cowork</bdi> כל התרגילים מבוצעים על חומר מומצא בלבד, ולא על חומר של לקוחות.</p>
     </div>
   </div>
 </div>

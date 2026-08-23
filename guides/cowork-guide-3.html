@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>מדריך Claude Cowork · מדריך 3: Cowork שעובד גם כשאתם לא שם | Legal Mind</title>
+<link rel="canonical" href="https://www.legalmind.co.il/guides/cowork-guide-3.html">
+<meta name="description" content="מדריך 3 בסדרת Cowork: משימות שרצות גם כשאתם לא מול המחשב, ומה צריך להגדיר לפני.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Legal Mind">
+<meta property="og:title" content="מדריך Claude Cowork · מדריך 3: Cowork שעובד גם כשאתם לא שם | Legal Mind">
+<meta property="og:description" content="מדריך 3 בסדרת Cowork: משימות שרצות גם כשאתם לא מול המחשב, ומה צריך להגדיר לפני.">
+<meta property="og:url" content="https://www.legalmind.co.il/guides/cowork-guide-3.html">
+<meta property="og:image" content="https://www.legalmind.co.il/guides/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="מדריך Claude Cowork · מדריך 3: Cowork שעובד גם כשאתם לא שם | Legal Mind">
+<meta name="twitter:description" content="מדריך 3 בסדרת Cowork: משימות שרצות גם כשאתם לא מול המחשב, ומה צריך להגדיר לפני.">
+<meta name="twitter:image" content="https://www.legalmind.co.il/guides/og-image.png">
+
+<link rel="stylesheet" href="guides-legacy.css">
+<style>
+  .status-panel{margin:26px 0;border-radius:16px;background:var(--navy);
+    color:#fff;padding:22px 26px;display:grid;gap:14px;
+    box-shadow:0 10px 30px rgba(13,39,64,.16)}
+  .status-panel .chip{display:inline-flex;align-items:center;gap:8px;
+    align-self:start;border-radius:999px;padding:5px 14px;
+    background:rgba(43,192,183,.16);color:var(--cyan);
+    font-size:.82rem;font-weight:800;letter-spacing:.08em}
+  .status-panel .chip:before{content:"";width:8px;height:8px;border-radius:50%;
+    background:var(--cyan)}
+  .status-panel p{margin:0;font-size:1.02rem;line-height:1.72;opacity:.94}
+  .status-panel strong{color:#fff}
+  .status-facts{display:grid;gap:10px;margin:2px 0 0;padding:0;list-style:none;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .status-facts li{background:rgba(255,255,255,.07);border-radius:10px;
+    padding:11px 14px;font-size:.95rem;line-height:1.5}
+  .status-facts b{display:block;font-size:1.32rem;line-height:1.2;
+    color:var(--cyan);margin-bottom:2px;font-variant-numeric:tabular-nums}
+  /* one band under the title answers "is this guide for me" once */
+  .audience{margin:18px 0 0;border-radius:14px;padding:18px 20px;
+    border:2px solid rgba(20,116,116,.30);background:#fff}
+  .audience b{display:block;margin:0 0 6px;color:var(--teal);
+    font-size:1.12rem;font-weight:900}
+  .audience p{margin:0;line-height:1.75}
+  .audience p + p{margin-top:8px}
+  .who-for{display:inline-block;margin:0 0 1.1rem;border-radius:999px;
+    padding:4px 13px;font-size:.82rem;font-weight:700;line-height:1.5}
+  .who-for.everyone{background:rgba(20,116,116,.10);color:var(--teal)}
+  .who-for.owner{background:rgba(13,39,64,.09);color:var(--navy)}
+  .shot-legend-num li{text-align:start}
+  .shot-legend-num{text-align:start}
+  .shot-hint{display:inline-block;margin:16px 0 4px;padding:7px 14px;
+    border-radius:999px;background:rgba(20,116,116,.09);
+    color:var(--teal);font-size:1.2rem;font-weight:800;line-height:1.4}
+  .shot-hint:before{content:"🔍";margin-inline-end:8px;font-weight:400}
+  .zoomer{position:fixed;inset:0;z-index:70;display:none;overflow:auto;
+    background:rgba(9,20,32,.92);padding:26px}
+  .zoomer.is-open{display:block}
+  /* the way out of a full-size picture has to be found without hunting for
+     it, so it sits centred at the top and wears the brand teal */
+  .zoomer .zoomer-close{position:fixed;top:16px;left:50%;
+    transform:translateX(-50%);z-index:2;
+    border:3px solid var(--teal);border-radius:999px;
+    padding:13px 34px;background:#fff;color:var(--teal);
+    font:inherit;font-size:1.15rem;font-weight:900;cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,.28)}
+  .zoomer .zoomer-close:hover{background:var(--teal);color:#fff}
+  /* the stage must be the positioned ancestor, or the red boxes measure
+     themselves against the whole overlay and scatter */
+  .zoomer .zoomer-stage{margin:44px auto 0;position:relative}
+  .zoomer .zoomer-stage img{display:block;width:100%;height:auto;
+    border-radius:8px}
+  .zoomer .zoomer-cap{margin:14px auto 0;max-width:760px;color:#fff;
+    text-align:center;font-size:1rem;opacity:.9}
+  .zoomer .zoomer-pan{margin:.4rem 0 0;font-size:.9rem;opacity:.8;display:none}
+  .zoomer .zoomer-cap.is-wide .zoomer-pan{display:block}
+  .shot-frame{position:relative}
+  /* the shared sheet tints every marker box red. over text that wash reads
+     as a smear, so in this series the border and the badge do all the work */
+  .shot-target{background:transparent}
+  /* a defined word is a list entry with a red dot, not a paragraph that
+     happens to start in bold. the word itself carries the brand orange and
+     everything after it stays in the reading ink */
+  /* bare children of the white surface card (the intro note before the
+     first section, and the bottom nav) get the card's inner margins, so
+     no line of text ever touches the border or the rounded corners */
+  main.surface>p{margin:26px 24px 6px}
+  main.surface>p:first-child{margin-top:30px}
+  main.surface>.bottom-nav{margin:20px 24px 28px}
+  .terms{list-style:none;padding:0;margin:1.1rem 0}
+  .terms li{position:relative;padding-inline-start:26px;margin-bottom:.95rem;
+    line-height:1.75;text-align:start}
+  .terms li:before{content:"";position:absolute;inset-inline-start:0;top:.62em;
+    width:9px;height:9px;border-radius:50%;background:#D6323C}
+  .terms .term{color:var(--orange);font-weight:800}
+  /* a term named inside the reading text, not only in the glossary */
+  .guide-section .term{color:var(--orange);font-weight:800}
+  .terms .term-he{color:var(--orange);font-weight:700}
+  /* the sentence that closes a term list is part of it, so it starts
+     where the terms start and not at the edge of the column */
+  .terms + p,.terms + p + p{padding-inline-start:26px}
+  /* the shared sheet sets 1.15rem, and at that size a sub-heading reads as
+     one more bold line. 15% larger, in this series only */
+  .guide-section h3,.sec-body h3{font-size:1.32rem;position:relative}
+  /* the dot lives in the margin, so the heading does not shift right */
+  .guide-section h3:before{content:"";position:absolute;
+    inset-inline-start:-16px;top:.54em;width:8px;height:8px;
+    border-radius:50%;background:var(--navy)}
+  .guide-section .content-box h3:before{display:none}
+  /* a link inside the reading text: the reader has to see that it is one,
+     without it shouting louder than the sentence around it */
+  .guide-section a{color:var(--teal);font-weight:800;
+    text-decoration:underline;text-underline-offset:3px;
+    text-decoration-thickness:2px;
+    text-decoration-color:rgba(20,116,116,.42)}
+  .guide-section a:hover{text-decoration-color:var(--teal)}
+  /* the pill button is not reading text, and must keep its own colours */
+  .guide-section a.shot-full{color:#fff;text-decoration:none}
+  .shot{margin:1.7rem 0}
+  .shot img{display:block;width:100%;height:auto;border-radius:10px;
+    border:1px solid rgba(13,39,64,.14);box-shadow:0 6px 22px rgba(13,39,64,.09)}
+  .shot figcaption{text-align:center;margin:.7rem 0 .5rem;opacity:.8;
+    font-size:.95rem}
+  .shot-full{display:inline-flex;align-items:center;gap:7px;margin:.2rem auto 0;
+    border-radius:999px;padding:8px 18px;background:var(--teal);color:#fff;
+    font-size:.92rem;font-weight:700;text-decoration:none;
+    box-shadow:0 4px 14px rgba(20,116,116,.24)}
+  .shot-full:before{content:"🔍";font-size:1.05rem;line-height:1;
+    animation:shot-full-nudge 1.9s ease-in-out infinite}
+  @keyframes shot-full-nudge{0%,100%{transform:scale(1)}
+                             50%{transform:scale(1.22)}}
+  @media (prefers-reduced-motion:reduce){
+    .shot-full:before{animation:none}}
+  .shot-full:hover{filter:brightness(1.08)}
+  .shot{display:flex;flex-direction:column;align-items:stretch}
+  .shot-hole{margin:1.6rem 0}
+  .shot-hole .frame{border:2px dashed rgba(20,116,116,.42);border-radius:10px;
+    background:rgba(20,116,116,.04);min-height:132px;display:flex;
+    flex-direction:column;align-items:center;justify-content:center;gap:9px;
+    padding:26px}
+  .shot-hole .sid{font-family:ui-monospace,Consolas,monospace;font-size:1rem;
+    font-weight:700;color:var(--teal);letter-spacing:.06em}
+  .shot-hole .wait{font-size:.95rem;opacity:.68}
+  .shot-hole .pins{display:flex;gap:6px;flex-wrap:wrap}
+  .shot-hole .pin{width:26px;height:26px;border-radius:50%;background:#D6323C;
+    color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700}
+  .shot-hole figcaption{text-align:center;margin:.7rem 0 .5rem;opacity:.8;
+    font-size:1rem}
+  .shot-legend{list-style:none;padding:0;margin:0;counter-reset:n}
+  .shot-legend li{counter-increment:n;position:relative;padding-inline-start:34px;
+    margin-bottom:.5rem;font-size:1.02rem;line-height:1.65}
+  .shot-legend li:before{content:counter(n);position:absolute;
+    inset-inline-start:0;top:.22em;width:22px;height:22px;border-radius:50%;
+    background:#D6323C;color:#fff;display:grid;place-items:center;
+    font-size:.72rem;font-weight:700}
+  .backbar a:before{content:"↑"}
+  .print-only{display:none}
+  @media print{
+    .backbar,.mobile-toc,.desktop-toc,.skip,.status-panel{display:none!important}
+    .print-only{display:block}
+    body{font-size:11pt}
+  }
+</style>
+<style>.guide-section table{width:100%;border-collapse:collapse;margin:1.2rem 0;border:1px solid #cfe3db;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(13,39,64,.05)}.guide-section thead th{background:#dff0e8;color:var(--navy);font-size:1.06rem;font-weight:900;text-align:center;padding:12px 14px;border-bottom:2px solid #b9d9cc}.guide-section tbody td{background:#fff;text-align:right;padding:11px 14px;border-bottom:1px solid #e6efec;vertical-align:top;line-height:1.65}.guide-section tbody tr:last-child td{border-bottom:0}.guide-section tbody td:first-child{font-weight:800;color:var(--navy)}@media print{.guide-section table{box-shadow:none}.guide-section thead th{background:#eef6f2!important}}</style></head>
+<body>
+
+<a class="skip" href="#main">דילוג לתוכן</a>
+<nav class="backbar"><a href="cowork.html">חזרה למרכז המדריכים</a></nav>
+
+<div class="skills-brand"><img class="skills-logo" src="legal-mind-logo-tight.png" alt="לוגו Legal Mind - נורה מעל שם המותג" decoding="async"></div>
+
+<header class="hero"><div>
+<p class="eyebrow">מדריך Claude Cowork לעורכי דין · מדריך 3 מתוך 3</p>
+<h1>Cowork שעובד בשבילכם גם כשאתם לא מול המחשב</h1>
+<p class="hero-copy">דוח שבועי שמכין את עצמו, משימה שנשלחת מהטלפון בדרך לדיון, לוח שמתעדכן לבד, וההבדל הפשוט בין Connector, Skill ו-Plugin.</p>
+<div class="audience"><b>למי מיועד המדריך הזה</b><p><strong>לכל עורך דין במשרד, בלי יוצא מן הכלל.</strong> אין כאן פעולה שדורשת הרשאת ניהול, וכל התרגול נעשה על חומר מומצא שכתוב בתוך המדריך.</p><p><strong>המדריך סוגר את הסדרה</strong> - הוא מניח את שני המדריכים הקודמים, ואת תיק אלומה שנבנה בהם.</p></div>
+</div><dl class="facts"><div><dt>מה תלמדו כאן</dt><dd>לתזמן דוח שבועי שרץ לבד · לשלוח משימה מהטלפון ולהמשיך אותה במשרד · להכיר לוח מצב שמתעדכן מעצמו · ולדעת מה ההבדל בין Connector, Skill ו-Plugin ומתי זה נוגע אליכם.</dd></div><div><dt>מה יוכל להשתנות אצלכם אחרי שתקראו את המדריך</dt><dd>העבודה החוזרת של תחילת השבוע תכין את עצמה, ותדעו להפעיל את קלוד גם כשאתם בדרכים - בלי לוותר על אף בדיקה.</dd></div><div><dt>כמה זמן זה לוקח</dt><dd>כ-20 דקות קריאה, ועוד כ-25 דקות אם תבצעו את התרגילים מול המסך.</dd></div><div><dt>מה צריך כדי להתחיל</dt><dd>מדריכים 1 ו-2 של הסדרה, ותיק אלומה שנבנה בהם.</dd></div></dl></header>
+
+<aside class="status-panel"><span class="chip">מאומת מול המסך</span><p><strong>כל צילום במדריך הזה צולם מהמסך האמיתי, והטקסט תוקן לפיו.</strong> העובדות נבדקו מול התיעוד הרשמי של <bdi dir="ltr">Anthropic</bdi>, ואחר כך מול המסך עצמו בסבב צילומים חי - <strong>וכל מקום שבו המסך אמר אחרת, המסך גבר.</strong> מה שלא הצלחנו לייצר בבדיקות מסומן בגוף המדריך ככזה, ולא נכתב כעובדה.</p><ul class="status-facts"><li><b>10</b>מקורות רשמיים שנקראו</li><li><b>55</b>עובדות שאומתו, מהן 11 מהמסך החי</li><li><b>22</b>צילומי מסך מסומנים במדריך זה</li></ul></aside>
+
+<nav class="mobile-toc"><details><summary>תוכן המדריך</summary><ol><li><a href="#c3-ch00"><span>00</span>מונחים שכדאי להכיר לפני שמתחילים</a></li><li><a href="#c3-ch01"><span>01</span>הדוח שמחכה מוכן ביום ראשון בבוקר: מה זו משימה מתוזמנת</a></li><li><a href="#c3-ch02"><span>02</span>יוצרים משימה מתוזמנת ראשונה: דוח שבועי על תיק אלומה</a></li><li><a href="#c3-ch03"><span>03</span>Dispatch: שולחים לקלוד משימה מהטלפון בדרך לדיון</a></li><li><a href="#c3-ch04"><span>04</span>Live artifact: לוח תיק שמתעדכן לבד</a></li><li><a href="#c3-ch05"><span>05</span>Connector, Skill ו-Plugin: מה ההבדל, ומתי זה נוגע אליכם</a></li><li><a href="#c3-ch06"><span>06</span>עובדים בטוח: הכללים שנשארים גם כשקלוד עובד לבד</a></li><li><a href="#c3-ch07"><span>07</span>כשמשהו לא עובד</a></li><li><a href="#c3-ch08"><span>08</span>סיימתם את הסדרה: מה אתם יודעים, ומה הצעד הבא</a></li></ol></details></nav>
+
+<div class="layout">
+<main class="surface" id="main">
+<p><strong>מה שמפעילים במדריך הזה ממשיך לרוץ גם בלעדיכם</strong> - זו בדיוק המטרה שלו. לכן כל תרגיל כאן בנוי כך שגם אם תשכחו ממנו לגמרי, <strong>הוא לא נוגע בשום קובץ, לא שולח שום דבר, ולא עולה כסף מעבר למנוי שכבר יש לכם.</strong></p>
+<section class="guide-section" id="c3-ch00"><span class="section-number">00</span><h2>מונחים שכדאי להכיר לפני שמתחילים</h2>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">משימה מתוזמנת</bdi></span> <span class="term-he">(Scheduled task)</span> · משימת Cowork שקבעתם לה מועד וקצב - למשל כל יום ראשון בשמונה בבוקר - <strong>והיא רצה לבד, בלי שתפתחו את קלוד.</strong></li><li><span class="term"><bdi dir="ltr">Dispatch</bdi></span> · שליחת משימה לקלוד מהטלפון או מכל מכשיר אחר, <strong>והמשך אותה שיחה מהמחשב במשרד.</strong></li><li><span class="term"><bdi dir="ltr">Live artifact</bdi></span> · לוח אינטראקטיבי שקלוד בונה ושומר, <strong>והוא מתעדכן מעצמו בנתונים טריים בכל פעם שפותחים אותו.</strong></li><li><span class="term"><bdi dir="ltr">Connector</bdi></span> <span class="term-he">(חיבור)</span> · גשר בין קלוד לשירות שאתם כבר עובדים בו - יומן, מייל, אחסון בענן. <strong>מחברים פעם אחת, ומאז קלוד יכול לשלוף משם בעצמו.</strong></li><li><span class="term"><bdi dir="ltr">Skill</bdi></span> <span class="term-he">(סקיל)</span> · שיטת עבודה ארוזה: הוראות ודוגמאות שקלוד מפעיל מעצמו כשהוא מזהה משימה שמתאימה להן.</li><li><span class="term"><bdi dir="ltr">Plugin</bdi></span> <span class="term-he">(פלאגין)</span> · חבילה שאורזת כמה יכולות יחד - למשל כמה סקילים וחיבור - <strong>מותקנת בבת אחת.</strong></li></ul>
+</section>
+<section class="guide-section" id="c3-ch01"><span class="section-number">01</span><h2>הדוח שמחכה מוכן ביום ראשון בבוקר: מה זו משימה מתוזמנת</h2>
+<p>עוד רגע מהמשרד. יום ראשון, תשע בבוקר, ישיבת צוות שבועית. מישהו - בדרך כלל הכי צעיר בחדר - ישב אתמול חצי שעה לרכז מה קרה השבוע בתיקים: מה התקדם, מה נתקע, אילו מועדים מתקרבים. <strong>אותה חצי שעה, כל שבוע, מחדש.</strong></p>
+<p>בדיוק לעבודות האלה קיימת משימה מתוזמנת: <strong>משימת Cowork רגילה לגמרי - כמו אלה שכתבתם במדריכים 1 ו-2 - שקיבלה גם שעון.</strong> קבעתם לה מועד וקצב, והיא רצה לבד. ביום ראשון בבוקר הדוח כבר יושב ומחכה.</p>
+<h3>מה מתאים לתזמון, ומה לא:</h3>
+<p>הכלל של Legal Mind פשוט, והוא נשען על מה שכבר למדתם: <strong>מתזמנים רק משימה שמכינה טיוטה, ולעולם לא משימה שפועלת כלפי חוץ.</strong></p>
+<p><strong>מתאים לתזמון:</strong> ריכוז שבועי של מסמכים חדשים בתיקייה. דוח מועדים מתקרבים. רשימת נקודות פתוחות בתיק. סיכום פנימי מכל סוג.</p>
+<p><strong>לא מתזמנים, גם לא כשזה מפתה:</strong> שליחת מייל או הודעה לכל גורם. עדכון מסמך מקור. כל פעולה שיוצרת מחויבות. <strong>הסיבה היא לא שקלוד לא מסוגל - היא שבמשימה מתוזמנת אתם לא שם כשזה קורה.</strong> טיוטה שגויה מחכה בתיקייה ומתוקנת. הודעה שגויה שנשלחה - נשלחה.</p>
+</section>
+<section class="guide-section" id="c3-ch02"><span class="section-number">02</span><h2>יוצרים משימה מתוזמנת ראשונה: דוח שבועי על תיק אלומה</h2>
+<p>נבנה את הדוח השבועי מהסיפור שפתחנו בו, על תיק התרגול שלנו.</p>
+<p><strong>נקודה אחת להבין לפני היצירה, כי היא קובעת איך המשימה תרוץ:</strong> משימה מתוזמנת רצה בענן, בשרתים של אנתרופיק, <strong>גם כשהמחשב שלכם כבוי.</strong> אבל תיקיית תיק אלומה יושבת על המחשב שלכם - וכדי שהמשימה תגיע אליה, <strong>המחשב צריך להיות דלוק ו-<bdi dir="ltr"><code>Claude Desktop</code></bdi> פתוח בשעת הריצה.</strong> בטופס היצירה יש מתג בדיוק לזה, ותכף תראו אותו.</p>
+<p><strong>שלב 1 - פותחים את מסך המשימות המתוזמנות.</strong> בסרגל הצד של <bdi dir="ltr"><code>Claude Desktop</code></bdi> לוחצים על <bdi dir="ltr"><code>Scheduled</code></bdi>.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="cwk-40.png" alt="מסך המשימות המתוזמנות, והדרך אליו מסרגל הצד." width="1202" height="501" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.073%;top:53.892%;width:24.459%;height:8.982%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:34.942%;top:18.762%;width:26.123%;height:14.571%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">מסך המשימות המתוזמנות, והדרך אליו מסרגל הצד.</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Scheduled</code></bdi> בסרגל.</li><li><strong>2</strong> הכפתור <bdi dir="ltr"><code>New task</code></bdi>.</li></ol></figcaption></figure>
+<p><strong>שלב 2 - יוצרים משימה חדשה.</strong> לוחצים על <bdi dir="ltr"><code>New task</code></bdi>. נפתחות שתי דרכים: <bdi dir="ltr"><code>Create with Claude</code></bdi>, שבה מתארים במילים והוא בונה את הטופס, ו-<bdi dir="ltr"><code>Set up manually</code></bdi>, שבה ממלאים הכל בעצמכם. <strong>בפעם הראשונה בוחרים <bdi dir="ltr"><code>Set up manually</code></bdi> - כדי לראות במו עיניכם כל שדה שנקבע.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="cwk-41.png" alt="שתי דרכים ליצור משימה. בפעם הראשונה - ידנית, כדי לראות כל שדה." width="1200" height="370" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:73.417%;top:32.703%;width:20.333%;height:25.946%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">שתי דרכים ליצור משימה. בפעם הראשונה - ידנית, כדי לראות כל שדה.</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>Create with Claude</code></bdi> - מתארים במילים והוא בונה.</li><li><strong>2</strong> <bdi dir="ltr"><code>Set up manually</code></bdi> - האפשרות שנבחר.</li></ol></figcaption></figure>
+<p><strong>שלב 3 - ממלאים את הטופס.</strong></p>
+<p><strong>בשדה <bdi dir="ltr"><code>Name</code></bdi>:</strong> <bdi dir="ltr"><code>דוח שבועי - תיק אלומה - תרגול</code></bdi>.</p>
+<p><strong>ומיד מתחת לשדה תופיע שורה אפורה</strong> שאומרת באיזה שם המשימה תישמר בפועל, עם מקפים במקום רווחים. <strong>זה לא באג, וזה לא משנה כלום מבחינתכם</strong> - השם שתראו ברשימה נשאר השם שכתבתם.</p>
+<p><strong>בשדה <bdi dir="ltr"><code>Description</code></bdi>,</strong> שגם הוא מסומן בכוכבית ולכן חובה: שורה אחת מספיקה, ואפשר לחזור על שם המשימה. <strong>זה מה שיופיע מתחת לשם ברשימת המשימות</strong>, ולכן שווה שיהיה בו משהו שיזכיר לכם בעוד חודש מה המשימה עושה.</p>
+<p><strong>בשדה <bdi dir="ltr"><code>Instructions</code></bdi></strong> מדביקים את המשימה עצמה:</p>
+<div class="copy-block"><div class="copy-heading"><strong>העתקת משימת הדוח השבועי</strong><button class="copy-button" data-copy-target="c3-copy-1" type="button">העתקת ההוראה</button></div><div class="copy-body" id="c3-copy-1">קרא את כל הקבצים בתיקייה 01-מקור ובתיקייה 04-תוצר-בדוק של תיק אלומה
+והכן קובץ טקסט חדש בשם "דוח-שבועי" עם התאריך של היום בשם הקובץ:
+1. אילו קבצים יש בתיק ומתי כל אחד השתנה לאחרונה.
+2. המועד הקרוב ביותר שמוזכר במסמכים ועדיין לא עבר.
+3. הנקודות שמסומנות במסמכים כפתוחות.
+שמור בתיקייה 03-פלט-קלוד. אל תשנה שום קובץ קיים.</div><span class="copy-status" aria-live="polite" aria-atomic="true"></span></div>
+<p>בשדה <bdi dir="ltr"><code>Project or folder</code></bdi> בוחרים את <bdi dir="ltr"><code>תיק אלומה - תרגול</code></bdi> - <strong>בלי זה המשימה לא תדע איפה התיק, וזו הסיבה מספר אחת לדוח שלא נוצר.</strong></p>
+<p>בשדה התדירות: פעם בשבוע, ביום ובשעה שבהם המחשב שלכם בדרך כלל דלוק - למשל יום חמישי בעשר בבוקר.</p>
+<p><strong>בשדה מצב האישור</strong> משאירים <bdi dir="ltr"><code>Manually approve</code></bdi>, כמו בכל הסדרה. <strong>ומה קורה עם אישורים כשאתם לא שם?</strong> משימה שעצרה לבקש אישור ואין מי שיענה <strong>אמורה להמתין</strong> - להופיע במסך <bdi dir="ltr"><code>Scheduled</code></bdi> עומדת בשאלה, ולהמשיך אחרי שתאשרו. <strong>את המצב הזה לא הצלחנו לייצר בבדיקות שלנו</strong>, כי המשימה רצה עד הסוף בלי לעצור, <strong>וזה מה שאנחנו יודעים לומר עליו ביושר.</strong></p>
+<p><strong>מה שכן ודאי, ונבדק שוב ושוב לאורך הסדרה: שום פעולה לא קורית בלי אישור.</strong> ובדיוק בגלל זה בחרנו לתרגול דוח פנימי קטן: גם אם המשימה תמתין לכם יום, שום דבר לא נשבר.</p>
+<p><strong>ומדליקים את המתג <bdi dir="ltr"><code>Run on your computer</code></bdi></strong> - כי המשימה שלנו צריכה את התיקייה שבמחשב. <strong>המתג מגיע כבוי</strong>, ולצידו כתוב בדיוק מה שהסברנו: משימה כזאת רצה רק כשהמחשב דלוק, והיא נחוצה כשצריך גישה לקבצים מקומיים.</p>
+<p><strong>וברגע שמדליקים אותו נוספת שורה שלא הייתה שם קודם:</strong> משימות מתוזמנות רצות עם השהיה אקראית של כמה דקות. <strong>כלומר משימה שקבעתם לשמונה בבוקר לא בהכרח תרוץ בשמונה בדיוק</strong>, ולכן גם ברשימה כתוב אחר כך <bdi dir="ltr">~8:00 AM</bdi> עם סימן הטילדה. אין דרך לבטל את זה, ואין בזה שום בעיה בדוח בוקר - אבל אם תכננתם משימה שחייבת לרוץ בשנייה מדויקת, זה הרגע לדעת שזה לא הכלי לזה.</p>
+<figure class="shot" style="max-width:496px;margin-inline:auto"><div class="shot-frame"><img src="cwk-42.png" alt="טופס המשימה המתוזמנת, שדה אחר שדה - וכל מה שהמסך מוסיף מעצמו." width="1034" height="1085" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:8.511%;top:15.392%;width:82.108%;height:8.018%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:8.511%;top:36.498%;width:82.108%;height:8.479%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:8.511%;top:48.018%;width:42.747%;height:4.608%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:8.511%;top:67.742%;width:51.257%;height:4.608%"><span class="shot-target-badge">4</span></div><div class="shot-target badge-outside-left" style="left:8.511%;top:73.548%;width:82.302%;height:10.507%"><span class="shot-target-badge">5</span></div></div><figcaption><p class="shot-caption">טופס המשימה המתוזמנת, שדה אחר שדה - וכל מה שהמסך מוסיף מעצמו.</p><ol class="shot-legend-num"><li><strong>1</strong> שדה <bdi dir="ltr"><code>Name</code></bdi>, ומתחתיו השורה שאומרת באיזה שם הקובץ יישמר בפועל.</li><li><strong>2</strong> שדה <bdi dir="ltr"><code>Instructions</code></bdi> - כאן יושבת המשימה עצמה, בדיוק כפי שהייתם כותבים אותה בתיבה.</li><li><strong>3</strong> <bdi dir="ltr"><code>Project or folder</code></bdi> - הפרויקט של תיק אלומה, וזה מה שנותן למשימה את הגישה לתיקייה.</li><li><strong>4</strong> <bdi dir="ltr"><code>Frequency</code></bdi> - יומי, ולידו השעה.</li><li><strong>5</strong> המתג <bdi dir="ltr"><code>Run on your computer</code></bdi>. <strong>מגיע כבוי, ומדליקים אותו</strong> - בלעדיו המשימה רצה בענן ולא רואה את התיקייה שלכם.</li></ol></figcaption></figure>
+<p><strong>שלב 4 - בודקים את הניסוח פעם אחת, לפני שמחכים שבוע.</strong></p>
+<p><strong>אל תחכו לריצה המתוזמנת הראשונה כדי לגלות שהניסוח עקום.</strong> הדרך הפשוטה לבדוק: <strong>פותחים שיחת Cowork רגילה בתוך אותו Project, ומדביקים בה בדיוק את אותו נוסח.</strong> מה שיקרה שם הוא מה שיקרה בריצה המתוזמנת - אותה משימה, אותה תיקייה, אותם אישורים.</p>
+<p><strong>מריצים, מחכים לסיום, ופותחים את <bdi dir="ltr"><code>03-פלט-קלוד</code></bdi></strong> - הדוח שם, ואתם בודקים אותו בדיוק כמו כל תוצר: <strong>שלוש הבדיקות ממדריך 2, פרק 07.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="cwk-43.png" alt="הדוח הראשון נוצר, ושמו כולל את התאריך." width="1327" height="529" loading="lazy" decoding="async"><div class="shot-target badge-inside-left" style="left:20.422%;top:59.735%;width:65.787%;height:7.750%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדוח הראשון נוצר, ושמו כולל את התאריך.</p><ol class="shot-legend-num"><li><strong>1</strong> קובץ הדוח בתיקיית <bdi dir="ltr"><code>03-פלט-קלוד</code></bdi>.</li></ol></figcaption></figure>
+<p><strong>וכך נראה הדוח עצמו כשפותחים אותו.</strong> בראשו שם התיק ותאריך ההכנה, ומתחתיהם הפרקים שביקשתם. <strong>הפרק שאותו קוראים קודם כל הוא המועד הקרוב ביותר</strong> - ולידו כתוב מאיזה מסמך הוא נלקח, כדי שתוכלו לבדוק בעצמכם בעשר שניות.</p>
+<figure class="shot" style="max-width:536px;margin-inline:auto"><div class="shot-frame"><img src="cwk-44.png" alt="הדוח הראשון, כפי שהוא נראה: כותרת, תאריך הכנה, וסעיפים." width="920" height="892" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:13.370%;top:11.659%;width:27.174%;height:8.969%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:13.370%;top:52.915%;width:63.478%;height:20.067%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">הדוח הראשון, כפי שהוא נראה: כותרת, תאריך הכנה, וסעיפים.</p><ol class="shot-legend-num"><li><strong>1</strong> שם הדוח ותאריך ההכנה שלו, בשתי השורות הראשונות.</li><li><strong>2</strong> הפרק שאותו קוראים קודם: המועד הקרוב ביותר, ומאיזה מסמך הוא נלקח.</li></ol></figcaption></figure>
+<p><strong>ואחרי השמירה, המשימה יושבת ברשימה</strong> - עם השם, התיאור שכתבתם, אייקון מחשב קטן שאומר שהיא רצה מקומית, ותג ירוק עם המועד הבא.</p>
+<p><strong>ומעל הרשימה הופיעה שורה חדשה:</strong> משימה שמוגדרת לרוץ על המחשב עובדת רק כשהוא ער ומחובר. <strong>ולידה מתג בשם <bdi dir="ltr"><code>Keep awake</code></bdi></strong> - מי שרוצה שהמחשב לא יירדם לפני משימת הבוקר יכול להדליק אותו. <strong>הוא לא חובה, והמשימה לא נכשלת בלעדיו</strong> - היא פשוט מחכה להזדמנות הבאה שבה המחשב ער.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="cwk-45.png" alt="המשימה ברשימה: המועד הבא, וכל ריצה שנשמרה עם הדיווח שלה." width="1290" height="723" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:10.155%;top:52.006%;width:80.155%;height:8.022%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:10.155%;top:65.560%;width:24.806%;height:11.480%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:10.155%;top:77.455%;width:16.357%;height:6.777%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">המשימה ברשימה: המועד הבא, וכל ריצה שנשמרה עם הדיווח שלה.</p><ol class="shot-legend-num"><li><strong>1</strong> השורה שמזכירה שמשימה שרצה על המחשב עובדת רק כשהוא ער, ולידה המתג <bdi dir="ltr"><code>Keep awake</code></bdi>.</li><li><strong>2</strong> כרטיס המשימה: השם, התיאור, ואייקון המחשב שאומר שהיא רצה מקומית.</li><li><strong>3</strong> תג המועד הבא: <bdi dir="ltr"><code>Every day at ~8:00 AM</code></bdi>.</li></ol></figcaption></figure>
+<p><strong>ואחרי הריצה המתוזמנת הראשונה האמיתית,</strong> בשבוע הבא, נכנסים שוב ל-<bdi dir="ltr"><code>Scheduled</code></bdi> ובודקים: המשימה רצה במועד, הדוח נוצר, ושום קובץ אחר לא השתנה. <strong>המסך של המשימה מציג גם את המועד הבא וגם את היסטוריית הריצות</strong> - כל ריצה נשמרת עם הדיווח המלא שלה, כמו כל משימה. <strong>משימה מתוזמנת מקבלת אמון בהדרגה, ריצה אחרי ריצה - לא מראש.</strong></p>
+<p><strong>בדיקות חובה לפני שממשיכים:</strong> המשימה מופיעה ברשימת <bdi dir="ltr"><code>Scheduled</code></bdi> עם המועד הבא שלה. הרצה ידנית אחת הסתיימה והדוח נבדק. והמשימה לא נוגעת בשום תיקייה מחוץ לתיק אלומה.</p>
+</section>
+<section class="guide-section" id="c3-ch03"><span class="section-number">03</span><h2>Dispatch: שולחים לקלוד משימה מהטלפון בדרך לדיון</h2>
+<h3>נתחיל מהסוף: מה זה Dispatch, במשפט אחד:</h3>
+<p><strong>זה שלט רחוק למחשב שלכם.</strong></p>
+<p>זהו. זה כל הסיפור. <strong>המחשב במשרד עושה את העבודה, והטלפון שבכיס רק אומר לו מה לעשות.</strong></p>
+<h3>ולמה בכלל צריך שלט רחוק:</h3>
+<p><strong>כי קלוד שבטלפון שלכם לא רואה את התיקיות שלכם.</strong></p>
+<p>זה ההבדל היחיד שחשוב להבין כאן, ואחריו הכל מסתדר. <strong>קלוד בטלפון הוא בן שיח מצוין</strong> - שואלים אותו שאלה, הוא עונה. מבקשים ממנו לנסח פסקה, הוא מנסח. <strong>אבל תיק אלומה לא נמצא בטלפון שלכם.</strong> הוא יושב בתיקייה על המחשב במשרד, ולטלפון אין דרך להגיע לשם.</p>
+<p><strong>ולכן, עד עכשיו, כל עבודה על תיק אמיתי הייתה חייבת לחכות</strong> לרגע שבו אתם יושבים מול המחשב.</p>
+<p><strong>Dispatch מבטל את ההמתנה הזאת.</strong> אתם כותבים מהטלפון, <strong>וההודעה נוסעת למחשב שלכם במשרד</strong> - והמחשב, עם התיקיות שלו, עושה את העבודה בזמן שאתם בדרך.</p>
+<h3>איך זה נראה ביום שלכם:</h3>
+<p><strong>התמונה הכי מדויקת היא זו:</strong> יש לכם מתמחה מצוין שיושב במשרד מול המחשב שלכם. <strong>אתם בדרך לדיון, ואתם שולחים לו הודעה בוואטסאפ:</strong> "תכין לי בבקשה טבלת מועדים מעודכנת בתיק אלומה". <strong>הוא מכין, ושולח לכם הודעה כשסיים.</strong> כשאתם חוזרים למשרד, זה כבר על השולחן.</p>
+<p><strong>Dispatch הוא בדיוק זה, רק שהמתמחה הוא קלוד, וההודעה נשלחת מתוך אפליקציית קלוד.</strong></p>
+<p><strong>וקלוד עצמו מציג לכם כרטיס כזה בכניסה הראשונה, עם דוגמאות משלו:</strong></p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:298px;margin-inline:auto"><img src="cwk-46.png" alt="הכרטיס שקלוד מציג בעצמו: מה אפשר לבקש ממנו מהטלפון." width="1201" height="2098" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:20.816%;top:55.481%;width:56.869%;height:9.724%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:20.816%;top:64.728%;width:56.869%;height:17.779%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">הכרטיס שקלוד מציג בעצמו: מה אפשר לבקש ממנו מהטלפון.</p><ol class="shot-legend-num"><li><strong>1</strong> המשפט שאומר את העיקר: המשימות רצות על המחשב שלכם, וארוכות שבהן רצות ברקע.</li><li><strong>2</strong> שלוש הדוגמאות שקלוד מציע. <strong>בעולם המשפטי מחליפים אותן בבקשות מהתיק</strong>, ודוגמאות מופיעות בפתיחת הפרק.</li></ol></figcaption></figure>
+<p><strong>הדוגמאות שלו כלליות</strong> - הזמנות, גיליונות, דרכונים. <strong>אצלנו הן נראות אחרת, וכך הן נראות ביום עבודה במשרד:</strong></p>
+<p><strong>בדרך לבית המשפט, שבע וחצי בבוקר.</strong> "תעבור על תיק אלומה ותכתוב לי מה המועד הקרוב ביותר שעדיין לא עבר." <strong>מגיעים לדיון עם התשובה.</strong></p>
+<p><strong>אחרי פגישה, ברכב.</strong> "תוסיף לסיכום הפגישה שבתיקיית הפלט שורה שאומרת שהצד השני ביקש דחייה של שבועיים." <strong>הסיכום מעודכן לפני שחזרתם.</strong></p>
+<p><strong>בערב, מהספה.</strong> "תכין לי רשימה של כל הקבצים בתיק שלא נגעו בהם חודש." <strong>בבוקר זה מחכה.</strong></p>
+<aside class="content-box info">
+<h3>ומה זה לא:</h3>
+<p><strong>זה לא מצב שמשנה משהו בקלוד שלכם.</strong> לא נוגע בשיחות הקיימות, לא משנה הגדרות, ולא הופך את האפליקציה למשהו אחר. <strong>זה מסך אחד באפליקציה בטלפון.</strong></p>
+<p><strong>זה לא דבר שרץ ברקע ומשגיח עליכם.</strong> כלום לא קורה עד שאתם כותבים משימה בעצמכם.</p>
+<p><strong>וזו לא יכולת שחייבים.</strong> מי שלא רואה את עצמו כותב משימות מהדרך - לא צריך את זה בכלל, ואפשר לדלג על הפרק הזה בלב שלם. <strong>מי שכן - נמשיך יחד.</strong></p>
+</aside>
+<aside class="content-box tip">
+<h3>שני תנאים, ואין שלישי:</h3>
+<p><strong>אחד: המחשב במשרד דלוק, ואפליקציית קלוד פתוחה בו.</strong> אין מחשב ער - אין מי שיעשה את העבודה, והמשימה פשוט תמתין.</p>
+<p><strong>שניים: אותו חשבון בדיוק בטלפון ובמחשב.</strong> אחרת הטלפון לא ידע לאיזה מחשב לשלוח.</p>
+<p><strong>זה הכל. כל השאר בפרק הזה הוא פרטים.</strong></p>
+</aside>
+<p><strong>סדר הפעולות, וכאן נופלים רובם:</strong> את Dispatch <strong>מגדירים קודם במחשב, ורק אחר כך בטלפון.</strong> מי שמתחיל מהטלפון יקבל שגיאה, ולא יבין למה.</p>
+<h3>שלב 1 - במחשב: פותחים את Dispatch ומשאירים אותו מוכן:</h3>
+<p><strong>פותחים את <bdi dir="ltr"><code>Claude Desktop</code></bdi> במחשב</strong> - זה שבו יושבות התיקיות שלכם.</p>
+<aside class="content-box warning">
+<h3>בדיקה של חמש שניות, לפני שנוגעים בכלום:</h3>
+<p><strong>הסתכלו בתחתית הסרגל, מעל שמכם.</strong> אם מופיעה שם שורה בסגנון <bdi dir="ltr">Relaunch to update</bdi> - <strong>יש עדכון שממתין, והאפליקציה שלכם אינה הגרסה האחרונה.</strong></p>
+<figure class="shot" style="max-width:446px;margin-inline:auto"><div class="shot-frame"><img src="cwk-47.png" alt="עדכון שממתין להתקנה - וזו הסיבה השכיחה לחיבור שנכשל." width="446" height="267" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:13.229%;top:37.828%;width:73.543%;height:17.603%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">עדכון שממתין להתקנה - וזו הסיבה השכיחה לחיבור שנכשל.</p><ol class="shot-legend-num"><li><strong>1</strong> השורה <bdi dir="ltr"><code>Relaunch to update</code></bdi>. <strong>לוחצים עליה, האפליקציה נסגרת ונפתחת מעודכנת.</strong></li></ol></figcaption></figure>
+<p><strong>זה בדיוק מה שחסם אותנו בפועל בזמן כתיבת המדריך.</strong> הטלפון מחפש מחשב עם הגרסה העדכנית, ולא מוצא - <strong>והשגיאה שהוא מציג לא אומרת מילה על עדכון ממתין.</strong></p>
+<p><strong>לוחצים על השורה הזאת עכשיו</strong>, האפליקציה נסגרת ונפתחת מחדש מעודכנת, ורק אז ממשיכים. <strong>אם אין שם שורה כזאת - אתם מעודכנים, אפשר להתקדם.</strong></p>
+</aside>
+<p><strong>בסרגל הצד לוחצים על <bdi dir="ltr"><code>Dispatch</code></bdi>.</strong> הוא יושב מתחת ל-<bdi dir="ltr"><code>Scheduled</code></bdi>, ויש לידו תווית <bdi dir="ltr"><code>Beta</code></bdi>:</p>
+<figure class="shot" style="max-width:449px;margin-inline:auto"><div class="shot-frame"><img src="cwk-48.png" alt="הפריט Dispatch בסרגל הצד של המחשב, מתחת ל-Scheduled." width="449" height="421" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:12.472%;top:68.884%;width:43.875%;height:7.363%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הפריט Dispatch בסרגל הצד של המחשב, מתחת ל-Scheduled.</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Dispatch</code></bdi> עם התווית <bdi dir="ltr"><code>Beta</code></bdi> שלידו. <strong>מי שלא רואה אותו אצלו - ההסבר בסוף הפרק.</strong></li></ol></figcaption></figure>
+<p><strong>אם אינכם רואים אותו אצלכם</strong> - קפצו לקטע האחרון בפרק, "ולמי שעובד בשני חשבונות".</p>
+<p><strong>ומהלחיצה הזאת נפתח החלון הגדול שמימין - לוח הבקרה של Dispatch.</strong> זה המסך שיישאר פתוח ויחכה לטלפון:</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="cwk-49.png" alt="מסך Dispatch במחשב: ארבע הגדרות, ואזור לקבצים שקלוד יחזיר." width="1966" height="807" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:24.212%;top:32.838%;width:23.550%;height:6.196%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:24.212%;top:39.777%;width:23.550%;height:6.196%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:24.212%;top:63.197%;width:23.550%;height:9.170%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:24.212%;top:76.952%;width:23.550%;height:6.939%"><span class="shot-target-badge">4</span></div></div><figcaption><p class="shot-caption">מסך Dispatch במחשב: ארבע הגדרות, ואזור לקבצים שקלוד יחזיר.</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>Keep awake</code></bdi> - שומר על המחשב ער כדי שמשימה שנשלחה מהטלפון תוכל לרוץ.</li><li><strong>2</strong> <bdi dir="ltr"><code>Mobile notifications</code></bdi> - הטלפון מקבל התראה כשהמשימה מסתיימת או כשהיא שואלת.</li><li><strong>3</strong> <bdi dir="ltr"><code>Outputs</code></bdi> - כאן יופיעו הקבצים שקלוד יצר במשימות שנשלחו מהטלפון.</li><li><strong>4</strong> השורה שמסבירה מה המסך הזה: משימה או סשן קוד, בשרשור אחד רציף.</li></ol></figcaption></figure>
+<p><strong>בפעם הראשונה ייתכן שתתבקשו לאשר משהו או ללחוץ על כפתור התחלה</strong> - מאשרים, וממשיכים. <strong>מה שחשוב שיישאר על המסך אחרי זה הוא שני המתגים העליונים:</strong></p>
+<p><strong><bdi dir="ltr"><code>Keep awake</code></bdi> - שומר על המחשב ער.</strong> זו ההגדרה שהופכת את כל העניין למעשי. שלחתם משימה מהטלפון בתשע בבוקר, והמחשב במשרד נכנס לשינה בשמונה וחצי? <strong>המשימה לא תרוץ.</strong> כשהמתג דלוק, המחשב לא נרדם מעצמו כל עוד יש עבודה. <strong>כשהוא כבוי, המשימה פשוט מחכה שמישהו יעיר את המחשב</strong> - היא לא נמחקת ולא נכשלת, היא רק לא זזה.</p>
+<p><strong><bdi dir="ltr"><code>Mobile notifications</code></bdi> - הטלפון מדווח לכם.</strong> כשקלוד סיים, או כשהוא עצר כדי לשאול שאלה, אתם מקבלים התראה בטלפון. <strong>כשזה כבוי אתם צריכים להיזכר לבד להיכנס ולבדוק.</strong></p>
+<p><strong><bdi dir="ltr"><code>Computer use</code></bdi> ו-<bdi dir="ltr"><code>Code permissions</code></bdi> - שתי שורות שלא נוגעות לרוב עורכי הדין.</strong> הראשונה שייכת ליכולת הניסיונית שבה קלוד מפעיל תוכנות אחרות במחשב, והשנייה קובעת מה מותר לו לעשות בסשן קוד. <strong>אם אתם לא עובדים בקוד ולא הפעלתם את היכולת הניסיונית - אין לכם מה לעשות בשורות האלה.</strong></p>
+<p><strong><bdi dir="ltr"><code>Outputs</code></bdi> - כאן יופיעו הקבצים.</strong> משימה ששלחתם מהטלפון ויצרה קובץ תניח אותו כאן, כדי שתמצאו אותו כשתשבו מול המחשב. <strong>כרגע כתוב שם שהאזור ריק, וזה בדיוק המצב הנכון לפני המשימה הראשונה.</strong></p>
+<p><strong>ועכשיו הדבר היחיד שנשאר לעשות במחשב: להשאיר אותו ככה.</strong> לא לסגור את האפליקציה, לא להעביר למצב שינה. <strong>המחשב מוכן, ואנחנו עוברים לטלפון.</strong></p>
+<h3>שלב 2 - בטלפון: מחברים אותו למחשב:</h3>
+<p>מתקינים את אפליקציית קלוד בטלפון - היא בחנות האפליקציות, בחיפוש <bdi dir="ltr"><code>Claude</code></bdi> - ונכנסים <strong>עם אותו חשבון בדיוק שאיתו אתם מחוברים במחשב.</strong> בתוך האפליקציה בוחרים בתפריט <bdi dir="ltr"><code>Dispatch</code></bdi>, ונפתח מסך הפתיחה.</p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:298px;margin-inline:auto"><img src="cwk-50.png" alt="Dispatch בטלפון: מכאן מחברים את הטלפון למחשב, ומכאן שולחים משימה בדרך לדיון." width="1201" height="2098" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:12.073%;top:76.454%;width:75.520%;height:5.720%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:12.073%;top:82.364%;width:75.520%;height:9.819%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">Dispatch בטלפון: מכאן מחברים את הטלפון למחשב, ומכאן שולחים משימה בדרך לדיון.</p><ol class="shot-legend-num"><li><strong>1</strong> הכפתור <bdi dir="ltr"><code>Pair with your desktop</code></bdi> - החיבור הראשון בין הטלפון למחשב.</li><li><strong>2</strong> שורת האזהרה של אנתרופיק: קלוד ייגש למחשב שלכם, ולכן מחברים רק מכשירים שאתם סומכים עליהם.</li></ol></figcaption></figure>
+<p><strong>במסך הזה שני כפתורים, ולוחצים על התחתון:</strong> <bdi dir="ltr"><code>Pair with your desktop</code></bdi>. העליון, <bdi dir="ltr"><code>Get desktop app link</code></bdi>, רק שולח לכם קישור להורדת האפליקציה למחשב.</p>
+<p><strong>ומתחתיהם כתובה אזהרה שאסור לדלג עליה:</strong> מרגע החיבור, קלוד ניגש למחשב שלכם כדי לבצע משימות שאתם שולחים מהטלפון. <strong>אנתרופיק אומרת במפורש שיש בזה סיכוני אבטחה, ושיש לחבר רק מכשירים שאתם סומכים עליהם.</strong> במשרד עורכי דין המשמעות פשוטה: מחברים את הטלפון האישי שלכם, שנעול בקוד, ולא מכשיר משותף ולא טלפון של מישהו אחר.</p>
+<p><strong>וכשהחיבור מצליח, זה מה שרואים:</strong></p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:298px;margin-inline:auto"><img src="cwk-51.png" alt="החיבור הצליח: הטלפון והמחשב מכירים זה את זה מעכשיו." width="1201" height="2098" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:16.570%;top:43.518%;width:67.610%;height:6.959%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:13.489%;top:84.271%;width:73.022%;height:7.388%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">החיבור הצליח: הטלפון והמחשב מכירים זה את זה מעכשיו.</p><ol class="shot-legend-num"><li><strong>1</strong> השורה שמזכירה את התנאי היחיד: שתי האפליקציות צריכות להיות פתוחות בזמן שליחת משימה.</li><li><strong>2</strong> הכפתור <bdi dir="ltr"><code>Let's go</code></bdi>, שסוגר את ההגדרה ופותח את מסך העבודה.</li></ol></figcaption></figure>
+<p><strong>שימו לב לשורה שמתחת לכותרת</strong> - היא מזכירה את התנאי היחיד שנשאר מעכשיו: <strong>שתי האפליקציות פתוחות בזמן ששולחים משימה.</strong> לוחצים <bdi dir="ltr">Let's go</bdi>, וזהו - החיבור מאחורינו.</p>
+<aside class="content-box warning">
+<h3>כשהחיבור נכשל, והמסך אומר בדיוק מה לבדוק:</h3>
+<p><strong>זה קרה לנו בפועל בזמן כתיבת המדריך</strong>, וכך זה נראה:</p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:298px;margin-inline:auto"><img src="cwk-52.png" alt="החיבור נכשל, והמסך עצמו אומר מה לבדוק - שלוש שורות, לפי הסדר." width="1201" height="2098" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:13.739%;top:45.996%;width:72.440%;height:7.483%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:13.739%;top:54.337%;width:72.440%;height:6.959%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-below" style="left:12.989%;top:84.604%;width:73.855%;height:7.483%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">החיבור נכשל, והמסך עצמו אומר מה לבדוק - שלוש שורות, לפי הסדר.</p><ol class="shot-legend-num"><li><strong>1</strong> הבדיקה הראשונה: Dispatch מוגדר במחשב. <strong>זו הסיבה השכיחה, וכאן מתחילים.</strong></li><li><strong>2</strong> הבדיקה השנייה: אותו חשבון בדיוק בשני המכשירים.</li><li><strong>3</strong> הכפתור <bdi dir="ltr"><code>Try again</code></bdi>, שאליו חוזרים אחרי שמתקנים במחשב.</li></ol></figcaption></figure>
+<p><strong>שלוש השורות שעל המסך הן בדיוק סדר הבדיקה, ולפי הסדר:</strong></p>
+<p><strong>הראשונה, וזו הסיבה השכיחה:</strong> Dispatch לא הוגדר במחשב. הטלפון מחפש מחשב שכבר מוכן לקבל אותו, ואם לא נכנסתם ללשונית <bdi dir="ltr"><code>Dispatch</code></bdi> במחשב והשלמתם שם את ההגדרה - אין למה להתחבר. <strong>המסך הזה עצמו אומר את זה במילים שלו:</strong></p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:298px;margin-inline:auto"><img src="cwk-53.png" alt="הסדר הנכון: קודם מגדירים את Dispatch במחשב, ורק אחר כך מחברים את הטלפון." width="1201" height="2098" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:13.239%;top:63.870%;width:73.356%;height:9.390%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:12.490%;top:83.031%;width:74.688%;height:10.057%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">הסדר הנכון: קודם מגדירים את Dispatch במחשב, ורק אחר כך מחברים את הטלפון.</p><ol class="shot-legend-num"><li><strong>1</strong> השלב השלישי: נכנסים ללשונית Dispatch במחשב ומשלימים שם את ההגדרה.</li><li><strong>2</strong> הכפתור <bdi dir="ltr"><code>Done</code></bdi>, שסוגר את המסך אחרי שהמחשב מוכן.</li></ol></figcaption></figure>
+<p><strong>השנייה: אותו חשבון בשני המכשירים.</strong> מי שמחזיק במחשב חשבון משרד במנוי Team וגם חשבון אישי, ובטלפון נכנס עם השני - החיבור ייכשל בלי שום הודעה מובנת. <strong>בודקים במחשב באיזה חשבון אתם פעילים</strong> (התפריט בפינה התחתונה), ומוודאים שזה אותו חשבון שבטלפון.</p>
+<p><strong>והשלישית: האפליקציה במחשב פתוחה ומעודכנת.</strong> לא ממוזערת בלבד - פתוחה ורצה.</p>
+<p><strong>אחרי שמתקנים במחשב, לוחצים בטלפון <bdi dir="ltr"><code>Try again</code></bdi>.</strong></p>
+</aside>
+<aside class="content-box info">
+<h3>ולמי שעובד בשני חשבונות:</h3>
+<p><strong>Dispatch מופיע בסרגל של חשבון אישי במנוי Max, ולא הופיע בחשבון המשרד במנוי Team</strong> שבו נכתבה הסדרה. <strong>מי שרואה את הפריט אצלו - יכול לעבוד איתו.</strong> מי שלא רואה אותו בחשבון המשרד, לא עשה שום דבר לא נכון: זו יכולת בשלב Beta, והזמינות שלה משתנה בין סוגי מנוי.</p>
+</aside>
+<p><strong>והנה אותה נקודה שכבר פגשתם במשימות המתוזמנות, והיא חשובה כפליים כאן:</strong> אם המשימה צריכה קבצים שיושבים על המחשב במשרד, <strong>המחשב חייב להיות דלוק ו-<bdi dir="ltr"><code>Claude Desktop</code></bdi> פתוח</strong> בזמן שקלוד עובד. שולחים מהטלפון משימה על תיק אלומה כשהמחשב במשרד כבוי? היא תחכה. <strong>משימה שכל החומר שלה בענן - רצה גם בלי המחשב.</strong></p>
+<h3>ועכשיו הדבר עצמו: שולחים משימה מהטלפון:</h3>
+<p><strong>כל מה שעשינו עד כאן היה הכנה. זה החלק שבשבילו באנו, והוא הפשוט מכולם.</strong></p>
+<p><strong>וזה מסך העבודה, וכל מה שיש בו הוא שתי שורות שחשוב להכיר:</strong></p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:298px;margin-inline:auto"><img src="cwk-54.png" alt="מסך העבודה בטלפון: שורת מצב למעלה, ותיבת כתיבה למטה." width="1201" height="2098" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:38.468%;top:10.248%;width:23.064%;height:3.051%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:15.071%;top:86.273%;width:69.942%;height:5.195%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">מסך העבודה בטלפון: שורת מצב למעלה, ותיבת כתיבה למטה.</p><ol class="shot-legend-num"><li><strong>1</strong> שורת המצב מתחת לכותרת. <strong>כאן כתוב אם המחשב זמין כרגע</strong> - בצילום הזה הוא לא, ולכן כתוב <bdi dir="ltr">Desktop offline</bdi>.</li><li><strong>2</strong> תיבת הכתיבה. <strong>כאן כותבים את המשימה בעברית, ושולחים.</strong></li></ol></figcaption></figure>
+<p><strong>למעלה, מתחת לכותרת, שורת מצב.</strong> היא אומרת אם המחשב זמין כרגע. בצילום הזה הוא לא היה, ולכן כתוב <bdi dir="ltr">Desktop offline</bdi> עם נקודה כתומה. <strong>כשהמחשב ער והאפליקציה פתוחה בו, השורה מתחלפת.</strong></p>
+<p><strong>ולמטה, שורת כתיבה אחת</strong>, ובה כתוב <bdi dir="ltr">Ask Claude anything</bdi>. <strong>כותבים בה את המשימה בעברית, בדיוק כמו שהייתם כותבים אותה במחשב, ושולחים.</strong> זה הכל.</p>
+<p><strong>ומה כותבים?</strong> אותו דבר שלמדתם במדריך 1: מה החומר, מה התוצר, ואיפה לשמור. <strong>לדוגמה, משימה שאפשר לשלוח עכשיו:</strong></p>
+<div class="copy-block"><div class="copy-heading"><strong>משימה ראשונה לשליחה מהטלפון</strong><button class="copy-button" data-copy-target="c3-copy-2" type="button">העתקת ההוראה</button></div><div class="copy-body" id="c3-copy-2">עבור על הקבצים בתיקיית 01-מקור בתיק אלומה, וכתוב לי בשורה אחת מה
+המועד הקרוב ביותר שעדיין לא עבר. אל תיצור קובץ, פשוט ענה לי כאן.</div><span class="copy-status" aria-live="polite" aria-atomic="true"></span></div>
+<p><strong>שימו לב שביקשנו תשובה בלי קובץ.</strong> זו בכוונה: <strong>למשימה ראשונה מהטלפון עדיף לבקש משהו שאפשר לקרוא על המסך הקטן</strong>, ורק כשזה עובד עוברים למשימות שיוצרות קבצים.</p>
+<p><strong>ומה קורה אחרי השליחה:</strong> קלוד מתחיל לעבוד <strong>על המחשב במשרד</strong>, לא בטלפון. אם הפעלתם התראות, הטלפון יודיע לכם כשהוא סיים או כשהוא שואל שאלה. <strong>ואם המשימה יצרה קובץ - הוא נשמר בתיקייה שביקשתם על המחשב, ומופיע גם באזור <bdi dir="ltr"><code>Outputs</code></bdi> שבמסך Dispatch שם.</strong></p>
+<p><strong>והדבר הכי נוח:</strong> כשתשבו מול המחשב, <strong>אותה שיחה ממשיכה שם מהמקום שבו עצרה.</strong> אין העתקה, אין שליחה לעצמכם - זו פשוט אותה שיחה, בשני מכשירים.</p>
+<aside class="content-box warning">
+<h3>שתי אזהרות למשימות מהדרך, ושתיהן מניסיון:</h3>
+<p><strong>אל תשלחו משימה שמוחקת או מעבירה קבצים.</strong> לא כי זה מסוכן טכנית, אלא כי אתם לא מול המסך כדי לראות מה קרה. <strong>מהטלפון שולחים משימות שקוראות וכותבות חדש - לא משימות שמשנות את הקיים.</strong></p>
+<p><strong>ואל תסמכו על תוצר שהגיע בדרך בלי לבדוק אותו.</strong> קלוד עובד באותה איכות בדיוק, אבל <strong>אתם קראתם את התשובה בהליכה, על מסך קטן, בין שתי שיחות.</strong> התוצר עצמו נבדק אחר כך במשרד, בשלוש הבדיקות שבמדריך 2.</p>
+</aside>
+<h3>איך יוצאים מכל זה, ואיך חוזרים למסך הרגיל:</h3>
+<p><strong>זו השאלה שמטרידה כל מי שמסיים את החיבור, והתשובה מרגיעה: אין ממה לצאת.</strong></p>
+<p><strong>בטלפון:</strong> מסך Dispatch הוא מסך אחד מבין כמה באפליקציה. <strong>פותחים את התפריט (שלושת הקווים בפינה העליונה) ובוחרים שיחה רגילה - וזהו, אתם בחזרה בקלוד הרגיל.</strong> אין כפתור "צא ממצב Dispatch", כי אין מצב שצריך לצאת ממנו. <strong>ואין שום דבר בטלפון שצריך לנתק.</strong></p>
+<p><strong>במחשב:</strong> לוחצים בסרגל על <bdi dir="ltr"><code>Home</code></bdi> או על כל פריט אחר, והלשונית נסגרת מאחוריכם. <strong>גם כאן אין מצב מיוחד שנשאר דלוק.</strong></p>
+<p><strong>והשיחות שלכם?</strong> לא נגענו בהן. <strong>החיבור לא משנה שום דבר בשיחות הקיימות, בפרויקטים, או בהגדרות</strong> - הוא רק מוסיף אפשרות לשלוח משימה מהטלפון.</p>
+<aside class="content-box info">
+<h3>שלוש שאלות שנשאלות מיד אחרי החיבור:</h3>
+<p><strong>האם החיבור נשאר לתמיד?</strong> הוא נשאר, וזה נוח: אין צורך לחבר מחדש בכל בוקר. <strong>הטלפון והמחשב מכירים זה את זה מעכשיו.</strong></p>
+<p><strong>האם משהו רץ ברקע כל הזמן?</strong> לא. <strong>כלום לא קורה עד שאתם שולחים משימה מהטלפון.</strong> מה שכן משתנה, אם השארתם את <bdi dir="ltr"><code>Keep awake</code></bdi> דלוק, זה שהמחשב לא נרדם מעצמו.</p>
+<p><strong>איך עוצרים הכל בבת אחת?</strong> <strong>סוגרים את <bdi dir="ltr"><code>Claude Desktop</code></bdi>.</strong> בלי אפליקציה פתוחה במחשב אין מי שיבצע משימות מהטלפון. <strong>ואם תרצו לכבות רק חלק:</strong> מכבים את <bdi dir="ltr"><code>Keep awake</code></bdi> (המחשב חוזר להירדם, ומשימות ימתינו לו), או את <bdi dir="ltr"><code>Mobile notifications</code></bdi> (הטלפון מפסיק להתריע).</p>
+</aside>
+<h3>ובדקנו גם מה מסתתר בתפריט הנקודות:</h3>
+<p><strong>ליד הכותרת <bdi dir="ltr"><code>Dispatch</code></bdi> במחשב יש שלוש נקודות קטנות</strong>, ומי שלא בטוח מה קורה שם - הנה מה שיש בפנים:</p>
+<figure class="shot" style="max-width:506px;margin-inline:auto"><div class="shot-frame"><img src="cwk-55.png" alt="תפריט שלוש הנקודות: מה אפשר לנקות, ומה אין כאן בכלל." width="506" height="421" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:28.261%;top:21.378%;width:47.233%;height:7.363%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-inside-left" style="left:28.261%;top:36.580%;width:47.233%;height:15.677%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">תפריט שלוש הנקודות: מה אפשר לנקות, ומה אין כאן בכלל.</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Clear background tasks</bdi> - <strong>עוצר משימות שרצות כרגע ומנקה את הרשימה.</strong> לא מנתק שום דבר.</li><li><strong>2</strong> <bdi dir="ltr">Clear memory</bdi> ו-<bdi dir="ltr">Delete conversation</bdi>, באדום - <strong>מוחקים את מה שנצבר בשיחה, ואי אפשר לשחזר.</strong> בתרגול אין בהם צורך.</li></ol></figcaption></figure>
+<p><strong>וזו התשובה הכי חשובה כאן: אין שם "נתק את הטלפון".</strong> אין כפתור ביטול חיבור, אין איפוס, ואין שום דבר שצריך לזכור לעשות בסוף היום.</p>
+<p><strong>מה שכן יש הן ארבע פעולות ניקוי:</strong></p>
+<p><ul class="terms"> <li><span class="term">Clear background tasks</span> · עוצר משימות שרצות כרגע ומנקה את הרשימה. <strong>שימושי אם שלחתם משהו בטעות</strong> - וזה לא מנתק שום דבר.</li> <li><span class="term">Report content</span> · דיווח לאנתרופיק על תשובה בעייתית. לא קשור לחיבור.</li> <li><span class="term">Clear memory</span> · מוחק את מה שקלוד צבר בשיחה הזאת.</li> <li><span class="term">Delete conversation</span> · מוחק את השיחה עצמה.</li> </ul></p>
+<p><strong>שתי האחרונות כתובות באדום, ובצדק: הן מוחקות ואי אפשר לשחזר.</strong> בתרגול אין בהן צורך, ואם לחצתם על אחת מהן בטעות - <strong>החיבור עצמו לא נפגע</strong>, רק התוכן של השיחה.</p>
+<aside class="content-box tip">
+<h3>ואיך יודעים בטלפון אם המחשב בכלל זמין:</h3>
+<p><strong>מתחת לכותרת <bdi dir="ltr"><code>Dispatch</code></bdi> בטלפון יש שורת מצב קטנה.</strong> כשהמחשב סגור או ישן, כתוב שם <bdi dir="ltr">Desktop offline</bdi> עם נקודה כתומה. <strong>זה לא כישלון של החיבור</strong> - זה בדיוק מה שכתוב: המחשב לא זמין כרגע.</p>
+<p><strong>מה עושים?</strong> מעירים את המחשב ופותחים את <bdi dir="ltr"><code>Claude Desktop</code></bdi>, והשורה תתחלף. <strong>וזו גם התשובה לשאלה "למה המשימה שלי לא זזה"</strong> - מסתכלים בשורה הזאת לפני שמחפשים תקלות אחרות.</p>
+</aside>
+<aside class="content-box info">
+<h3>עמדת Legal Mind:</h3>
+<p>Dispatch נוח בדיוק ברגעים שבהם אתם ממהרים - ומיהרתם זה בדיוק המצב שבו שולחים משימה מנוסחת ברישול. <strong>ההמלצה שלנו: מהטלפון שולחים רק משימות הכנה על חומר שכבר בתיק</strong> - טבלה, סיכום, ריכוז - <strong>ואת האישורים והבדיקות עושים כרגיל מול המסך הגדול במשרד.</strong> הטלפון מתניע, המשרד מאשר.</p>
+</aside>
+</section>
+<section class="guide-section" id="c3-ch04"><span class="section-number">04</span><h2>Live artifact: לוח תיק שמתעדכן לבד</h2>
+<p>התוצרים שהכנתם עד עכשיו הם קבצים: נוצרו פעם אחת, וכדי לרענן אותם צריך משימה חדשה. <strong>Live artifact הוא סוג אחר של תוצר: לוח אינטראקטיבי שקלוד בונה פעם אחת, ומאז הוא מתעדכן מעצמו בכל פעם שפותחים אותו.</strong></p>
+<p>למשל: לוח מצב לתיק אלומה שמציג את המועד הקרוב, את הנקודות הפתוחות ואת הקבצים שנוספו - <strong>ובכל בוקר שתפתחו אותו, הוא כבר יציג את המצב של אותו בוקר, בלי שביקשתם.</strong></p>
+<p>יוצרים אותו כמו כל תוצר: <strong>בתוך ה-Project של התיק</strong>, מתארים מה הלוח צריך להציג ומאיפה, ומבקשים לשמור אותו כ-<bdi dir="ltr"><code>Artifact</code></bdi>. <strong>הנה הנוסח שאיתו נבנה הלוח שבמדריך הזה:</strong></p>
+<div class="copy-block"><div class="copy-heading"><strong>העתקת משימת הלוח</strong><button class="copy-button" data-copy-target="c3-copy-3" type="button">העתקת ההוראה</button></div><div class="copy-body" id="c3-copy-3">בנה לי לוח מצב של תיק אלומה: טבלה עם המועדים הקרובים, מה ממתין
+להחלטה, ומה חסר. שמור אותו כ-Artifact שאוכל לפתוח שוב.</div><span class="copy-status" aria-live="polite" aria-atomic="true"></span></div>
+<p><strong>ובאמצע העבודה קלוד עוצר, ומבקש אישור לפרסם את הלוח:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="cwk-56.png" alt="גם פרסום לוח עוצר ומבקש אישור, ואומר מראש מה יקרה לקובץ." width="1108" height="623" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:12.004%;top:21.830%;width:79.152%;height:13.162%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:12.455%;top:36.116%;width:74.729%;height:21.830%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:11.552%;top:59.872%;width:26.986%;height:9.149%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">גם פרסום לוח עוצר ומבקש אישור, ואומר מראש מה יקרה לקובץ.</p><ol class="shot-legend-num"><li><strong>1</strong> המשפט שמרגיע: <strong>לוח חדש נשאר פרטי עד שאתם משתפים אותו בעצמכם.</strong></li><li><strong>2</strong> פרטי הקובץ: שם, תיאור, תווית גרסה ואייקון - <strong>קלוד מילא אותם בעצמו.</strong></li><li><strong>3</strong> הכפתורים: <bdi dir="ltr"><code>Publish</code></bdi> מעלה את הלוח, <bdi dir="ltr"><code>Deny</code></bdi> מבטל ולא נוצר כלום.</li></ol></figcaption></figure>
+<p><strong>הרגע הזה נראה מבהיל יותר משהוא</strong>, ולכן שווה לקרוא מה בדיוק כתוב בחלון. <strong>"פרסום" כאן לא אומר שמישהו יראה את הלוח:</strong> כתוב במפורש שלוח חדש <strong>נשאר פרטי עד שאתם משתפים אותו בעצמכם.</strong> הפעולה מעלה את הקובץ לחשבון שלכם, וזה הכל.</p>
+<p><strong>ושימו לב לפרטים שקלוד מילא בעצמו:</strong> שם הקובץ, תיאור, תווית גרסה ואייקון. <strong>תווית הגרסה היא מה שיאפשר לו לעדכן את אותו לוח בהמשך</strong> במקום ליצור אחד חדש - וכתוב שם שגם הגדרות השיתוף יישמרו.</p>
+<p><strong>לוחצים <bdi dir="ltr"><code>Publish</code></bdi>, ובלי הלחיצה הזאת פשוט לא נוצר לוח.</strong> מי שילחץ <bdi dir="ltr"><code>Deny</code></bdi> יקבל את התוכן בשיחה, ולא יקבל לוח שאפשר לחזור אליו.</p>
+<p><strong>וכשהמשימה מסתיימת, הדיווח מכיל את הלוח עצמו:</strong></p>
+<figure class="shot" style="max-width:473px;margin-inline:auto"><div class="shot-frame"><img src="cwk-57.png" alt="הלוח מוכן: כרטיס לפתיחה, ומתחתיו הדיווח - כולל מה שקלוד לא מצא." width="926" height="1017" loading="lazy" decoding="async"><div class="shot-target badge-inside-left" style="left:12.743%;top:16.028%;width:74.946%;height:7.276%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:13.175%;top:34.907%;width:69.438%;height:12.881%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:13.175%;top:53.884%;width:69.438%;height:7.276%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:14.471%;top:65.880%;width:68.575%;height:15.929%"><span class="shot-target-badge">4</span></div></div><figcaption><p class="shot-caption">הלוח מוכן: כרטיס לפתיחה, ומתחתיו הדיווח - כולל מה שקלוד לא מצא.</p><ol class="shot-legend-num"><li><strong>1</strong> כרטיס הלוח עם הכפתור <bdi dir="ltr"><code>Open</code></bdi>. <strong>מכאן פותחים אותו, ולא צריך לחפש קובץ.</strong></li><li><strong>2</strong> הממצא המרכזי: <strong>אין במסמכים מועד עתידי אחד.</strong> קלוד אמר זאת במקום להמציא רשימת מועדים קרובים.</li><li><strong>3</strong> הפסקה <bdi dir="ltr"><code>דורש בדיקה אנושית</code></bdi> - מה שקלוד לא יכול היה לוודא לבד.</li><li><strong>4</strong> שורות הקבצים: ארבעה נקראו ללא שינוי, ואחד נוצר. <strong>בשורה התחתונה כתוב שקבצים שונו: אין.</strong></li></ol></figcaption></figure>
+<p><strong>בראש הדיווח יש כרטיס עם כפתור <bdi dir="ltr"><code>Open</code></bdi></strong> - לוחצים עליו והלוח נפתח. לצידו מופיע גם קישור, <strong>והלוח נשמר גם כקובץ בתיקיית הפלט שלכם</strong>, כמו כל תוצר אחר בסדרה.</p>
+<aside class="content-box warning">
+<h3>ומה שקרה כאן באמת שווה יותר מהלוח עצמו:</h3>
+<p><strong>ביקשנו "טבלה עם המועדים הקרובים". קלוד לא סיפק אותה, וטוב שכך.</strong></p>
+<p>במקום זה הוא כתב את מה שסימנו כ-2: <strong>במסמכי התיק אין אף מועד עתידי.</strong> כל המועדים חלפו, והמסמך האחרון הוא מלפני חמישה חודשים. <strong>הוא בנה טבלה של ציר זמן היסטורי, והסביר במפורש למה לא בנה רשימת "מועדים קרובים" - כי כאלה פשוט לא קיימים בחומר.</strong></p>
+<p><strong>זה בדיוק ההבדל בין כלי שמשרת אתכם לכלי שמרצה אתכם.</strong> תוצר שממציא שלושה מועדים קרובים כדי לענות על הבקשה כלשונה - מסוכן בהרבה מתוצר שאומר "אין".</p>
+<p><strong>ומתחת לזה, מה שסימנו כ-3: פסקה בשם <bdi dir="ltr"><code>דורש בדיקה אנושית</code></bdi></strong> - שלוש שאלות שקלוד לא יכול היה לוודא מהחומר: האם הייתה פעילות בתיק אחרי המועד האחרון, והאם הערות שנמסרו בעל פה הועברו בפועל. <strong>זה מה שאתם משלימים, וזה גם מה שאי אפשר לצפות ממנו לדעת.</strong></p>
+<p><strong>ובשורות שסימנו כ-4:</strong> ארבעת הקבצים שנקראו, <strong>כולם ללא שינוי</strong>, קובץ אחד שנוצר, ובשורה האחרונה: <strong>קבצים ששיניתי - אין.</strong></p>
+</aside>
+<h3>וכך נראה הלוח כשפותחים אותו:</h3>
+<p><strong>לחיצה על <bdi dir="ltr"><code>Open</code></bdi> פותחת חלונית בצד המסך</strong>, ובה הלוח עצמו. הוא לא נפתח בדפדפן ולא בקובץ נפרד - <strong>הוא יושב לצד השיחה, ואפשר לגלול בו בזמן שממשיכים לעבוד.</strong></p>
+<figure class="shot" style="max-width:361px;margin-inline:auto"><div class="shot-frame"><img src="cwk-58.png" alt="הלוח כפי שהוא נפתח בצד המסך: כותרת, הממצא, המספרים, והערת הטיוטה בסוף." width="962" height="1386" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:16.632%;top:21.068%;width:70.790%;height:5.628%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:16.632%;top:33.117%;width:70.790%;height:13.420%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:14.969%;top:52.165%;width:71.206%;height:7.359%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:20.582%;top:66.883%;width:65.177%;height:3.463%"><span class="shot-target-badge">4</span></div><div class="shot-target badge-outside-left" style="left:40.748%;top:70.346%;width:46.674%;height:15.584%"><span class="shot-target-badge">5</span></div></div><figcaption><p class="shot-caption">הלוח כפי שהוא נפתח בצד המסך: כותרת, הממצא, המספרים, והערת הטיוטה בסוף.</p><ol class="shot-legend-num"><li><strong>1</strong> שורת הזיהוי של הלוח: לאיזה תאריך הוא נכון, ועל כמה מסמכי מקור הוא מבוסס.</li><li><strong>2</strong> הממצא שקלוד בחר להציב בראש: <strong>אין מועד עתידי אחד במסמכי התיק.</strong></li><li><strong>3</strong> ארבעת המספרים: עניינים ממתינים, סעיף במחלוקת, מועדים עתידיים - <strong>אפס</strong> - ופערי מידע.</li><li><strong>4</strong> הערת הטיוטה בסוף הלוח: <strong>הלוח מסכם את מסמכי המקור בלבד ואינו חוות דעת.</strong></li><li><strong>5</strong> רשימת מסמכי המקור שעליהם הלוח מבוסס, עם תאריך לכל אחד.</li></ol></figcaption></figure>
+<p><strong>שימו לב לארבעה דברים שהופכים אותו ללוח שאפשר לסמוך עליו:</strong></p>
+<p><strong>בראשו כתוב לאיזה תאריך הוא נכון</strong>, מהו המסמך האחרון בתיק, ועל כמה מסמכי מקור הוא מבוסס. <strong>לוח בלי השורה הזאת הוא לוח שאי אפשר לדעת אם הוא עדכני.</strong></p>
+<p><strong>הממצא שקלוד בחר להציב בראש</strong> הוא לא מספר יפה אלא האמת הלא נוחה: אין מועד עתידי אחד בתיק. <strong>וארבעת המספרים מתחתיו כוללים אפס</strong> - אפס מועדים עתידיים במסמכים. הוא לא הסתיר את זה בתוך טבלה.</p>
+<p><strong>כל שורה בלוח נושאת את המקור שלה.</strong> ליד כל אירוע כתוב מאיזה מכתב הוא נלקח, וליד כל עניין פתוח יש קופסה בשם <bdi dir="ltr"><code>לבדיקה אנושית</code></bdi> שאומרת מה בדיוק צריך לברר. <strong>זה מה שהופך לוח למשהו שאפשר להביא לפגישה.</strong></p>
+<p><strong>ובסופו הערת טיוטה</strong>, ורשימת מסמכי המקור עם תאריך לכל אחד: <strong>הלוח מסכם את מסמכי המקור בלבד ואינו חוות דעת.</strong></p>
+<h3>והלוח הזה הוא גם קובץ, שאפשר לקחת אתכם:</h3>
+<p><strong>בראש החלונית יש כפתור עם חץ קטן, ומאחוריו שלוש אפשרויות:</strong></p>
+<figure class="shot" style="max-width:448px;margin-inline:auto"><div class="shot-frame"><img src="cwk-59.png" alt="שלוש אפשרויות לקובץ הלוח, והקובץ עצמו אחרי הבחירה בראשונה." width="915" height="1063" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:52.896%;top:12.794%;width:38.142%;height:3.857%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:52.896%;top:16.745%;width:38.142%;height:7.432%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-below" style="left:63.388%;top:63.311%;width:23.497%;height:28.881%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">שלוש אפשרויות לקובץ הלוח, והקובץ עצמו אחרי הבחירה בראשונה.</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Download and open</bdi> - <strong>שומר את הקובץ ופותח אותו בדפדפן</strong> באותה פעולה.</li><li><strong>2</strong> <bdi dir="ltr">Show in Folder</bdi> ו-<bdi dir="ltr">Download</bdi> - שמירה בלבד, בלי לפתוח.</li><li><strong>3</strong> הקובץ שנחת: <bdi dir="ltr">aluma-board.html</bdi>, בתיקיית ההורדות.</li></ol></figcaption></figure>
+<p><bdi dir="ltr"><strong>Download and open</strong></bdi> · <strong>שומר את הקובץ ופותח אותו מיד בדפדפן</strong> - זה שמוגדר אצלכם כברירת מחדל. <strong>פעולה אחת, שתי תוצאות.</strong></p>
+<p><bdi dir="ltr"><strong>Show in Folder</strong></bdi> · פותח את התיקייה שבה הקובץ יושב.</p>
+<p><bdi dir="ltr"><strong>Download</strong></bdi> · שומר בלבד, בלי לפתוח.</p>
+<p><strong>ומה שנשמר הוא קובץ אחד בשם <bdi dir="ltr"><code>aluma-board.html</code></bdi></strong> - קובץ דף רגיל, שיושב בתיקיית ההורדות שלכם.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="cwk-60.png" alt="אותו לוח בדיוק, פתוח ברוחב מלא בדפדפן - מתוך קובץ שיושב אצלכם במחשב." width="2156" height="1000" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:10.575%;top:12.700%;width:27.412%;height:4.200%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:19.759%;top:43.500%;width:59.137%;height:38.900%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">אותו לוח בדיוק, פתוח ברוחב מלא בדפדפן - מתוך קובץ שיושב אצלכם במחשב.</p><ol class="shot-legend-num"><li><strong>1</strong> שורת הכתובת: <strong>זה קובץ מקומי</strong>, לא אתר. הוא ייפתח גם בלי אינטרנט.</li><li><strong>2</strong> הלוח עצמו, ברוחב מלא: הממצא, וארבעת המספרים בשורה אחת.</li></ol></figcaption></figure>
+<p><strong>וכך הוא נראה כשהוא נפתח: אותו לוח בדיוק, ברוחב מלא.</strong> שימו לב לשורת הכתובת - <strong>זה קובץ שיושב במחשב שלכם, לא אתר.</strong> אפשר להעביר אותו לתיקיית התיק, לשלוח אותו לעורך דין אחר, ולפתוח אותו גם בלי חיבור לאינטרנט.</p>
+<aside class="content-box warning">
+<h3>ובדיוק בגלל זה, שתי מילים על החומר שבתוכו:</h3>
+<p><strong>הקובץ הזה מכיל את תוכן התיק, והוא נפתח בלחיצה אחת בכל מחשב.</strong> לכן מתייחסים אליו כמו לכל מסמך תיק אחר: <strong>לא משאירים אותו בתיקיית ההורדות, ולא שולחים אותו בלי לבדוק מה כתוב בו.</strong></p>
+<p><strong>מעבירים אותו לתיקיית התיק</strong> - אצלנו <bdi dir="ltr"><code>04-תוצר-בדוק</code></bdi> - <strong>רק אחרי שקראתם אותו.</strong></p>
+</aside>
+<h3>ואיפה הלוח מחכה מחר בבוקר:</h3>
+<p><strong>לא צריך לחפש אותו בשיחות.</strong> בסרגל הצד יש פריט בשם <bdi dir="ltr"><code>Artifacts</code></bdi>, ושם יושבים כל הלוחות שיצרתם:</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="cwk-61.png" alt="מסך ה-Artifacts: כאן הלוח ממתין, בלי לחפש אותו בשיחות." width="1301" height="710" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:9.685%;top:41.690%;width:26.134%;height:31.268%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:10.146%;top:80.845%;width:26.595%;height:5.915%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:10.146%;top:32.254%;width:23.059%;height:5.493%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מסך ה-Artifacts: כאן הלוח ממתין, בלי לחפש אותו בשיחות.</p><ol class="shot-legend-num"><li><strong>1</strong> כרטיס הלוח <bdi dir="ltr"><code>לוח מצב תיק אלומה</code></bdi>, עם תצוגה מקדימה של תוכנו.</li><li><strong>2</strong> אייקון המנעול ושורת העדכון האחרון. <strong>המנעול אומר שהלוח פרטי - רק אתם רואים אותו.</strong></li><li><strong>3</strong> הלשוניות <bdi dir="ltr"><code>All</code></bdi>, <bdi dir="ltr"><code>Yours</code></bdi> ו-<bdi dir="ltr"><code>Shared with you</code></bdi> - <strong>כאן מפרידים בין מה שיצרתם למה ששיתפו אתכם.</strong></li></ol></figcaption></figure>
+<p><strong>כל לוח מופיע ככרטיס עם תצוגה מקדימה של תוכנו</strong>, ומתחתיו כתוב מתי עודכן לאחרונה. <strong>לחיצה עליו פותחת אותו שוב.</strong></p>
+<p><strong>ושימו לב לאייקון המנעול שליד שורת התאריך:</strong> הוא אומר שהלוח <strong>פרטי, ורק אתם רואים אותו.</strong> בדיוק כפי שנכתב בחלון האישור.</p>
+<p><strong>ומעל הכרטיסים שלוש לשוניות:</strong> <bdi dir="ltr"><code>All</code></bdi>, <bdi dir="ltr"><code>Yours</code></bdi>, ו-<bdi dir="ltr"><code>Shared with you</code></bdi> - <strong>מה שיצרתם בעצמכם מופרד ממה ששיתפו אתכם.</strong> במשרד שבו כמה עורכי דין בונים לוחות, ההפרדה הזאת היא מה שמונע בלבול.</p>
+<h3>שלושה דברים שכדאי לדעת לפני שמשתמשים בזה על תיק אמיתי:</h3>
+<p><strong>זה עובד רק ב-<bdi dir="ltr"><code>Claude Desktop</code></bdi> במחשב.</strong> לא בדפדפן ולא בטלפון.</p>
+<p><strong>שיתוף לוח עם אחרים קיים רק במנויי <bdi dir="ltr"><code>Team</code></bdi> ו-<bdi dir="ltr"><code>Enterprise</code></bdi></strong> - ומי שמקבל לוח משותף רואה אותו דרך החיבורים וההרשאות שלו, לא שלכם.</p>
+<p><strong>והחשוב מכולם: לוח חי מתעדכן דרך החיבורים שאישרתם, בלי לשאול אתכם בכל רענון.</strong> זה כל הקסם שלו, וזו גם הסיבה לבנות אותו רק על מקורות שאתם שלמים איתם. <strong>לוח שמציג - כן. לוח שמבצע פעולות - לא.</strong></p>
+</section>
+<section class="guide-section" id="c3-ch05"><span class="section-number">05</span><h2>Connector, Skill ו-Plugin: מה ההבדל, ומתי זה נוגע אליכם</h2>
+<p>שלושת המונחים האלה מרחפים סביב כל שיחה על קלוד, ובשלב הזה של הסדרה מגיע לכם הסבר של שורה לכל אחד - <strong>כי ההבדל באמת פשוט:</strong></p>
+<div class="table-scroll"><table><tbody><tr><td></td><td>מה זה נותן לקלוד</td><td>דוגמה מהמשרד</td></tr><tr><td><strong>Connector</strong></td><td><strong>גישה למידע</strong> שיושב בשירות אחר</td><td>קלוד שולף מהיומן את הדיונים של השבוע לדוח המתוזמן</td></tr><tr><td><strong>Skill</strong></td><td><strong>שיטת עבודה</strong> קבועה למשימה שחוזרת</td><td>כל סיכום פגישה נבנה באותו מבנה משרדי בדיוק</td></tr><tr><td><strong>Plugin</strong></td><td><strong>חבילה</strong> של כמה יכולות שמותקנת יחד</td><td>ערכה לעורך דין: כמה סקילים וחיבור, בהתקנה אחת</td></tr></tbody></table></div>
+<p>ואיך זה פוגש את Cowork? <strong>בדיוק כמו שתיקייה מחוברת נותנת לקלוד את הקבצים שלכם, Connector נותן לו את היומן או המייל, ו-Skill אומר לו באיזו שיטה לעבוד עליהם.</strong> משימת Cowork יכולה להשתמש בכולם יחד: לקרוא מהתיקייה, לשלוף מהיומן, ולעבד לפי הסקיל של המשרד.</p>
+<p><strong>מה בודקים לפני שמחברים Connector, בשלוש שורות:</strong> לאיזה חשבון הוא מתחבר. האם הוא רק קורא משם, או גם יכול לכתוב ולשלוח. והאם המשרד אישר אותו. <strong>חיבור שיכול לכתוב מקבל את אותו יחס כמו מצב <bdi dir="ltr"><code>Automatically approve</code></bdi> במדריך 1: לא בלי החלטה מפורשת.</strong></p>
+<p>ומעבר לזה - <strong>לא נעמיק כאן, כי זה כבר כתוב:</strong> ל-Skills יש סדרת מדריכים שלמה של Legal Mind, מההתקנה הראשונה ועד בנייה של סקיל משרדי. מי שסיים את הסדרה הזאת מוכן אליה.</p>
+</section>
+<section class="guide-section" id="c3-ch06"><span class="section-number">06</span><h2>עובדים בטוח: הכללים שנשארים גם כשקלוד עובד לבד</h2>
+<p>הסדרה כולה נבנתה על הרגלי בטיחות - תיקייה ייעודית, מצב <bdi dir="ltr"><code>Manually approve</code></bdi>, תוצר נבדק לפני שהוא זז. <strong>במדריך הזה קלוד התחיל לעבוד גם בלעדיכם, ולכן זה המקום לרכז את הכללים שאנתרופיק עצמה קובעת בתיעוד הרשמי שלה, ושאנחנו מאמצים:</strong></p>
+<p><strong>תיקיית עבודה ייעודית, תמיד.</strong> לא מחברים ל-Cowork את כל המסמכים, ולא תיקיות עם חומר פיננסי, סיסמאות או פרטים אישיים שלא שייכים למשימה.</p>
+<p><strong>עוקבים אחרי חריגות, לא אחרי כל צעד.</strong> לא צריך לקרוא כל שורת התקדמות. צריך לשים לב כשקלוד ניגש לקובץ שלא קשור, גולש לאתר שלא ביקשתם, או מציע פעולה שלא הזמנתם - <strong>ואז עוצרים, כמו שלמדתם במדריך 1.</strong></p>
+<p><strong>משימות מתוזמנות מתחילות קטן.</strong> קודם דוח פנימי, כמו שעשינו. פעולות על חומר רגיש נכנסות לתזמון רק אחרי שהמשימה הוכיחה את עצמה שבועות, לא ימים.</p>
+<p><strong>והאחריות לא מתוזמנת.</strong> על כל תוצר שיוצא מהמשרד חתום עורך דין, גם כשקלוד הכין אותו בשלוש בלילה. הבדיקה של מדריך 2 פרק 07 היא לא שלב בתרגול - היא הנוהל.</p>
+<p><strong>ומילה אחת על יכולת בשם <bdi dir="ltr"><code>Computer use</code></bdi>,</strong> שאולי תשמעו עליה: מצב שבו קלוד רואה את המסך ומפעיל את העכבר והמקלדת כמו אדם. היכולת מוגדרת אצל אנתרופיק כניסיונית, <strong>היא זמינה כיום רק במנויי <bdi dir="ltr"><code>Pro</code></bdi> ו-<bdi dir="ltr"><code>Max</code></bdi> ולא במנוי <bdi dir="ltr"><code>Team</code></bdi>, ואנתרופיק עצמה מזהירה בתיעוד הרשמי במילים מפורשות מפני טיפול במסמכים משפטיים ובחוזים דרכה.</strong> לכן היא לא חלק מהסדרה הזאת, ואם תרצו לבחון אותה ביום שתגיע למנוי שלכם - זו החלטה משרדית, לא ניסוי אישי.</p>
+</section>
+<section class="guide-section" id="c3-ch07"><span class="section-number">07</span><h2>כשמשהו לא עובד</h2>
+<p><strong>המשימה המתוזמנת לא רצה במועד?</strong> החשוד המיידי: המחשב היה כבוי או <bdi dir="ltr"><code>Claude Desktop</code></bdi> היה סגור, והמשימה שלנו מוגדרת <bdi dir="ltr"><code>Run on your computer</code></bdi>. בודקים במסך <bdi dir="ltr"><code>Scheduled</code></bdi> מה כתוב ליד המשימה, מדליקים את המחשב, ומריצים ידנית להשלמה.</p>
+<p><strong>המשימה עומדת ומחכה לאישור?</strong> זה מה שהוסבר בפרק 02: היא עצרה לפני פעולה, ואין מי שיענה. נכנסים אליה, קוראים מה היא מבקשת, ומאשרים - והיא ממשיכה מאותה נקודה.</p>
+<p><strong>גילוי נאות:</strong> את המצב הזה <strong>לא הצלחנו לייצר בסבב הצילומים</strong> - המשימה שלנו רצה עד הסוף בלי לעצור. <strong>הכתוב כאן מבוסס על אופן הפעולה של מצב <bdi dir="ltr"><code>Manually approve</code></bdi> כפי שראינו אותו במשימות רגילות</strong>, ולא על צילום של משימה מתוזמנת שנעצרה. אם תיתקלו בזה אצלכם - זה הצפוי, ואם תיתקלו במשהו אחר, זו אינפורמציה ששווה לנו.</p>
+<p><strong>המשימה רצה אבל הדוח לא נוצר?</strong> נכנסים למשימה במסך <bdi dir="ltr"><code>Scheduled</code></bdi> וקוראים את הריצה האחרונה - היא נשמרת כמו כל משימה, עם הדיווח המלא. לרוב תמצאו שם בדיוק מה השתבש: תיקייה לא נמצאה, ניסוח דו-משמעי. מתקנים את נוסח המשימה ומריצים ידנית.</p>
+<p><strong>נוצרו שני דוחות מאותו יום?</strong> הרצתם פעם ידנית ופעם בתזמון. לא נורא: מוחקים את הכפול, ובודקים ששם הקובץ במשימה כולל את התאריך - כמו בנוסח שנתנו - כך שכל ריצה יוצרת קובץ נפרד וברור.</p>
+<p><strong>משימה מהטלפון לא מתקדמת?</strong> כמעט תמיד זה אותו סיפור: היא צריכה קבצים מהמחשב, והמחשב במשרד כבוי. או שמחכים, או שמנסחים אותה מחדש על חומר שבענן.</p>
+<p><strong>הלוח החי לא מתעדכן?</strong> בודקים שאתם פותחים אותו ב-<bdi dir="ltr"><code>Claude Desktop</code></bdi> במחשב, ושהחיבורים שהוא נשען עליהם עדיין מחוברים. חיבור שנותק - הלוח מציג את הנתונים האחרונים שהיו לו, בלי להתריע.</p>
+<p><strong>ורוצים לעצור הכל?</strong> משימה מתוזמנת אפשר להשהות או למחוק בכל רגע ממסך <bdi dir="ltr"><code>Scheduled</code></bdi>, ומחיקה שלה לא נוגעת בשום קובץ שכבר נוצר. <strong>שום דבר במדריך הזה לא התחייבות - הכל הפיך בלחיצה.</strong></p>
+</section>
+<section class="guide-section" id="c3-ch08"><span class="section-number">08</span><h2>סיימתם את הסדרה: מה אתם יודעים, ומה הצעד הבא</h2>
+<p>שלושה מדריכים, ותיק אלומה עבר איתכם את כל הדרך: משני קבצים בתיקיית תרגול, דרך Project מסודר עם תוצרים בדוקים, ועד דוח שמכין את עצמו כל שבוע.</p>
+<p><strong>אתם יודעים לתת לקלוד עבודה</strong> ולקבל קובץ מוכן - לא רק תשובה.</p>
+<p><strong>אתם יודעים לבנות תיק</strong> שמפריד מקור מפלט ומתוצר בדוק, עם Project שזוכר את הכללים.</p>
+<p><strong>אתם יודעים לבדוק</strong> כל תוצר בשלוש בדיקות, ולתקן דרך קלוד במקום ביד.</p>
+<p><strong>ואתם יודעים להפעיל אותו גם בלעדיכם</strong> - מתוזמן, מהטלפון, ובלוח שמתעדכן לבד - בלי לוותר לרגע על העיקרון שליווה כל פרק: <strong>קלוד מכין, עורך הדין מחליט.</strong></p>
+<p><strong>הצעד הבא, למי שרוצה להמשיך:</strong> סדרת המדריכים של Legal Mind על Skills - איך מתקינים סקיל מוכן, ואיך הופכים שיטת עבודה של המשרד לסקיל שכולם עובדים לפיו. ומי שמנהל את חשבון המשרד ימצא בסדרת המדריכים על מנוי Team את הצד הניהולי: הרשאות, חברים והגדרות הארגון.</p>
+</section>
+<div class="bottom-nav"><a class="button" href="cowork-guide-2.html">המדריך הקודם: עובדים על תיק שלם</a><a class="button" href="cowork.html">מרכז המדריכים</a><a class="button primary" href="cowork-practice.html">לדף התרגול</a></div>
+</main>
+
+<aside class="desktop-toc"><h2>תוכן המדריך</h2><ol><li><a href="#c3-ch00"><span>00</span>מונחים שכדאי להכיר לפני שמתחילים</a></li><li><a href="#c3-ch01"><span>01</span>הדוח שמחכה מוכן ביום ראשון בבוקר: מה זו משימה מתוזמנת</a></li><li><a href="#c3-ch02"><span>02</span>יוצרים משימה מתוזמנת ראשונה: דוח שבועי על תיק אלומה</a></li><li><a href="#c3-ch03"><span>03</span>Dispatch: שולחים לקלוד משימה מהטלפון בדרך לדיון</a></li><li><a href="#c3-ch04"><span>04</span>Live artifact: לוח תיק שמתעדכן לבד</a></li><li><a href="#c3-ch05"><span>05</span>Connector, Skill ו-Plugin: מה ההבדל, ומתי זה נוגע אליכם</a></li><li><a href="#c3-ch06"><span>06</span>עובדים בטוח: הכללים שנשארים גם כשקלוד עובד לבד</a></li><li><a href="#c3-ch07"><span>07</span>כשמשהו לא עובד</a></li><li><a href="#c3-ch08"><span>08</span>סיימתם את הסדרה: מה אתם יודעים, ומה הצעד הבא</a></li></ol></aside>
+</div>
+
+<footer><bdi dir="ltr">Legal Mind</bdi> | מדריך Claude Cowork | מדריך 3: Cowork שעובד גם כשאתם לא שם</footer>
+
+<script src="guides-legacy.js"></script>
+<script>
+(function(){
+  "use strict";
+  var frames = [].slice.call(document.querySelectorAll(".shot-frame"));
+  if(!frames.length) return;
+
+  var box = document.createElement("div");
+  box.className = "zoomer";
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  box.setAttribute("aria-label", "צילום מסך בגודל מלא");
+  box.innerHTML = '<button type="button" class="zoomer-close">סגירה</button>' +
+                  '<div class="zoomer-stage"></div>' +
+                  '<div class="zoomer-cap"><p class="zoomer-cap-text"></p>' +
+                  '<p class="zoomer-pan">הצילום רחב מהמסך. אפשר לגרור אותו הצידה כדי לראות את כולו.</p></div>';
+  document.body.appendChild(box);
+
+  var stage = box.querySelector(".zoomer-stage");
+  var cap = box.querySelector(".zoomer-cap");
+  var capText = box.querySelector(".zoomer-cap-text");
+  var closeBtn = box.querySelector(".zoomer-close");
+  var opener = null;
+
+  function open(frame){
+    var img = frame.querySelector("img");
+    if(!img) return;
+    stage.innerHTML = frame.innerHTML;
+    /* גודל טבעי, ולא "עד רוחב המסך" - אחרת על טלפון מקבלים שוב תמונה
+       מוקטנת שאי אפשר לקרוא בה, וההגדלה לא עשתה כלום */
+    var nat = img.naturalWidth || img.width;
+    stage.style.width = nat + "px";
+    stage.style.maxWidth = "none";
+    var fig = frame.closest("figure");
+    var c = fig ? fig.querySelector(".shot-caption") : null;
+    capText.textContent = c ? c.textContent : "";
+    cap.classList.toggle("is-wide", nat > (window.innerWidth - 20));
+    opener = frame;
+    box.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+  function close(){
+    box.classList.remove("is-open");
+    document.body.style.overflow = "";
+    stage.innerHTML = "";
+    if(opener) opener.focus();
+    opener = null;
+  }
+
+  /* ההזמנה להגדיל מופיעה רק על צילום שבאמת מוצג מוקטן. על צילום שממילא
+     בגודלו הטבעי היא הבטחה ריקה, ועשרים שורות כאלה הן רעש */
+  function wire(){
+    frames.forEach(function(frame){
+      var img = frame.querySelector("img");
+      if(!img || !img.naturalWidth) return;
+      var shrunk = img.getBoundingClientRect().width < img.naturalWidth * 0.96;
+      if(!shrunk || frame.dataset.zoom) return;
+      frame.dataset.zoom = "1";
+      frame.setAttribute("tabindex", "0");
+      frame.setAttribute("role", "button");
+      frame.setAttribute("aria-label", "הגדלת הצילום");
+      frame.style.cursor = "zoom-in";
+      frame.addEventListener("click", function(){ open(frame); });
+      frame.addEventListener("keydown", function(ev){
+        if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); open(frame); }
+      });
+      var fig = frame.closest("figure");
+      var capEl = fig ? fig.querySelector(".shot-caption") : null;
+      if(capEl && !fig.querySelector(".shot-hint")){
+        var hint = document.createElement("p");
+        hint.className = "shot-hint";
+        hint.innerHTML = "לחיצה על הצילום פותחת אותו בגודל מלא";
+        capEl.insertAdjacentElement("afterend", hint);
+      }
+    });
+  }
+  wire();
+  window.addEventListener("load", wire);
+  window.addEventListener("resize", wire);
+  frames.forEach(function(frame){
+    var img = frame.querySelector("img");
+    if(img && !img.complete) img.addEventListener("load", wire);
+  });
+
+  closeBtn.addEventListener("click", close);
+  box.addEventListener("click", function(ev){
+    if(ev.target === box) close();
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape" && box.classList.contains("is-open")) close();
+  });
+})();
+
+
+(function(){
+  document.addEventListener("click", function(ev){
+    var btn = ev.target.closest(".copy-button");
+    if(!btn) return;
+    var block = btn.closest(".copy-block");
+    var src = document.getElementById(btn.getAttribute("data-copy-target"));
+    var status = block ? block.querySelector(".copy-status") : null;
+    if(!src) return;
+    var text = src.innerText;
+    function done(ok){
+      if(!status) return;
+      status.textContent = ok ? "ההוראה הועתקה" : "ההעתקה נכשלה, סמנו והעתיקו ידנית";
+      setTimeout(function(){ status.textContent = ""; }, 2600);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){done(true);},
+                                              function(){done(false);});
+    } else { done(false); }
+  });
+})();
+</script>
+</body>
+</html>
