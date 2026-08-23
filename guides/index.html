@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מרכז המדריכים - Legal Mind</title>
-<meta name="description" content="מדריך בשלושה חלקים למעבר ממנוי Claude Pro או Max למנוי Team: הכנה וגיבוי, הקמת הארגון, העברת הנתונים וצ'קליסט בדיקה. לעורכי דין ולמשרדי עורכי דין.">
+<meta name="description" content="מדריכי AI מעשיים לעורכי דין ולמשרדי עורכי דין: מעבר בטוח למנוי Claude Team (שלושה מדריכים וצ'קליסט), ומצב Work ב-ChatGPT (מדריך מלא בן 17 פרקים ודף תרגול).">
 <link rel="canonical" href="https://www.legalmind.co.il/guides/">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
@@ -12,16 +12,16 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta property="og:site_name" content="Legal Mind">
-<meta property="og:title" content="מרכז המדריכים של Legal Mind למעבר בטוח למנוי Claude Team">
-<meta property="og:description" content="מדריך בשלושה חלקים למעבר ממנוי Claude Pro או Max למנוי Team: הכנה וגיבוי, הקמת הארגון, העברת הנתונים וצ'קליסט בדיקה. לעורכי דין ולמשרדי עורכי דין.">
+<meta property="og:title" content="מרכז המדריכים של Legal Mind - AI מעשי לעורכי דין">
+<meta property="og:description" content="מדריכי AI מעשיים לעורכי דין ולמשרדי עורכי דין: מעבר בטוח למנוי Claude Team (שלושה מדריכים וצ'קליסט), ומצב Work ב-ChatGPT (מדריך מלא בן 17 פרקים ודף תרגול).">
 <meta property="og:url" content="https://www.legalmind.co.il/guides/">
 <meta property="og:image" content="https://www.legalmind.co.il/guides/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="מרכז המדריכים של Legal Mind למעבר למנוי Claude Team">
+<meta property="og:image:alt" content="מרכז המדריכים של Legal Mind">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="מרכז המדריכים של Legal Mind למעבר בטוח למנוי Claude Team">
-<meta name="twitter:description" content="מדריך בשלושה חלקים למעבר ממנוי Claude Pro או Max למנוי Team: הכנה וגיבוי, הקמת הארגון, העברת הנתונים וצ'קליסט בדיקה. לעורכי דין ולמשרדי עורכי דין.">
+<meta name="twitter:title" content="מרכז המדריכים של Legal Mind - AI מעשי לעורכי דין">
+<meta name="twitter:description" content="מדריכי AI מעשיים לעורכי דין ולמשרדי עורכי דין: מעבר בטוח למנוי Claude Team, ומצב Work ב-ChatGPT.">
 <meta name="twitter:image" content="https://www.legalmind.co.il/guides/og-image.png">
 <style>
 /* Legal Mind - external fonts */
@@ -84,7 +84,7 @@
     position: relative;
     background: radial-gradient(ellipse 80% 100% at 50% -10%, #1B3A5C 0%, var(--dark) 55%, var(--dark) 100%);
     overflow: hidden;
-    padding: 76px 28px 100px;
+    padding: 76px 28px 80px;
     text-align: center;
   }
   .hero-mesh {
@@ -129,7 +129,7 @@
 
   .cards-wrap {
     max-width: 1180px;
-    margin: -60px auto 0;
+    margin: 52px auto 0;
     padding: 0 28px;
     position: relative;
     z-index: 2;
@@ -231,14 +231,36 @@
 
   footer { max-width: 1180px; margin: 56px auto 0; padding: 24px 28px 44px; text-align: center; font-size: 13.1px; color: var(--ink-faint); }
 
+  /* ---- כותרת סדרה ---- */
+  .series { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  .series + .series { margin-top: 66px; }
+  .series-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 20px;
+  }
+  .series-kicker {
+    display: block; font-size: 11.55px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--brand-strong); margin-bottom: 6px;
+  }
+  .series-head h2 {
+    font-family: 'Frank Ruhl', serif; font-weight: 700;
+    font-size: 25.2px; line-height: 1.3; margin: 0;
+  }
+  .series-head > div { flex: 1 1 460px; }
+  .series-head p { font-size: 14.2px; line-height: 1.6; color: var(--ink-soft); margin: 6px 0 0; max-width: 620px; }
+  .series-link { font-size: 13.1px; font-weight: 700; color: var(--brand-strong); text-decoration: none; white-space: nowrap; padding-bottom: 3px; }
+  .series-link:hover { text-decoration: underline; }
+  .cards--two { grid-template-columns: repeat(2, 1fr); }
+
   @media (max-width: 980px) {
     .cards { grid-template-columns: repeat(2, 1fr); }
     .info-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
-    .cards { grid-template-columns: 1fr; }
-    .hero { padding: 56px 20px 84px; }
-    .cards-wrap { margin-top: -50px; }
+    .cards, .cards--two { grid-template-columns: 1fr; }
+    .hero { padding: 56px 20px 62px; }
+    .cards-wrap { margin-top: 40px; }
     .path { flex-wrap: wrap; row-gap: 18px; }
     .path-line { width: 26px; }
     .masthead { justify-content: center; padding: 8px 20px; }
@@ -300,12 +322,19 @@ figure > figcaption {
   <div class="hero-mesh" aria-hidden="true"></div>
   <div class="hero-inner">
     <span class="hero-eyebrow"><span class="dot"></span>מרכז המדריכים</span>
-    <h1>מדריך מפורט למעבר בטוח למנוי <bdi dir="ltr">Team</bdi> של <bdi dir="ltr">Claude</bdi></h1>
-    <p>ליווי מלא לפני המעבר, במהלכו ואחריו - מהכנה וגיבוי, דרך העברת החשבון והמידע, ועד בדיקות ושחזור <bdi dir="ltr">Skills</bdi>.</p>
+    <h1>מדריכי <bdi dir="ltr">AI</bdi> מעשיים לעורכי דין ולמשרדי עורכי דין</h1>
+    <p>שתי סדרות מלאות, צעד אחר צעד, עם צילומי מסך אמיתיים: מעבר בטוח למנוי <bdi dir="ltr">Team</bdi> של <bdi dir="ltr">Claude</bdi>, ומצב <bdi dir="ltr">Work</bdi> ב-<bdi dir="ltr">ChatGPT</bdi>.</p>
   </div>
 </div>
 
 <div class="cards-wrap">
+  <div class="series-head">
+    <div>
+      <span class="series-kicker">סדרה 1 · <bdi dir="ltr">Claude Team</bdi></span>
+      <h2>מעבר בטוח למנוי <bdi dir="ltr">Team</bdi> של <bdi dir="ltr">Claude</bdi></h2>
+      <p>ליווי מלא לפני המעבר, במהלכו ואחריו - מהכנה וגיבוי, דרך העברת החשבון והמידע, ועד בדיקות ושחזור <bdi dir="ltr">Skills</bdi>.</p>
+    </div>
+  </div>
   <div class="cards">
     <div class="card">
       <div class="card-top"></div>
@@ -352,18 +381,62 @@ figure > figcaption {
       </div>
     </div>
   </div>
+
+  <div class="path-section">
+    <div class="path-label">סדר השימוש המומלץ</div>
+    <div class="path">
+      <div class="path-step"><div class="path-dot"><span>1</span></div><div class="path-name">מדריך 1</div></div>
+      <div class="path-line"></div>
+      <div class="path-step"><div class="path-dot"><span>2</span></div><div class="path-name">מדריך 2</div></div>
+      <div class="path-line"></div>
+      <div class="path-step"><div class="path-dot"><span>3</span></div><div class="path-name">מדריך 3</div></div>
+      <div class="path-line"></div>
+      <div class="path-step tool"><div class="path-dot"><span>✓</span></div><div class="path-name">צ׳קליסט</div></div>
+    </div>
+  </div>
 </div>
 
-<div class="path-section">
-  <div class="path-label">סדר השימוש המומלץ</div>
-  <div class="path">
-    <div class="path-step"><div class="path-dot"><span>1</span></div><div class="path-name">מדריך 1</div></div>
-    <div class="path-line"></div>
-    <div class="path-step"><div class="path-dot"><span>2</span></div><div class="path-name">מדריך 2</div></div>
-    <div class="path-line"></div>
-    <div class="path-step"><div class="path-dot"><span>3</span></div><div class="path-name">מדריך 3</div></div>
-    <div class="path-line"></div>
-    <div class="path-step tool"><div class="path-dot"><span>✓</span></div><div class="path-name">צ'קליסט</div></div>
+<div class="series">
+  <div class="series-head">
+    <div>
+      <span class="series-kicker">סדרה 2 · <bdi dir="ltr">ChatGPT Work</bdi></span>
+      <h2>מצב <bdi dir="ltr">Work</bdi> ב-<bdi dir="ltr">ChatGPT</bdi> - מ-עוזר שעונה, לסוכן שמבצע</h2>
+      <p>איך נותנים ל-<bdi dir="ltr">ChatGPT</bdi> יעד שלם - דוח, חוות דעת, טבלת מועדים - ומקבלים בסוף קובץ מוגמר. המדריך מתחיל מאפס ולא מניח ידע מוקדם.</p>
+    </div>
+    <a class="series-link" href="chatgpt-work.html">לדף המרכז של הסדרה ◀</a>
+  </div>
+  <div class="cards cards--two">
+    <div class="card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <div class="card-icon">1</div>
+        <div class="card-kind">מדריך מלא · 17 פרקים</div>
+        <h2>המדריך המקיף למצב <bdi dir="ltr">Work</bdi></h2>
+        <p>התקנת אפליקציית המחשב, תהליך עבודה מלא עד הקובץ המוגמר, מסמכים מתבנית, חיבור אפליקציות, משימות מתוזמנות וקבצים מקומיים - עם 27 צילומי מסך אמיתיים.</p>
+        <div class="card-meta">כ-30 דקות קריאה</div>
+        <a class="card-btn" href="chatgpt-work-guide.html">פתיחת המדריך</a>
+      </div>
+    </div>
+    <div class="card is-tool">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <div class="card-icon">✓</div>
+        <div class="card-kind">כלי עבודה מעשי</div>
+        <h2>דף תרגול - שישה תרגילים</h2>
+        <p>שישה תרגילים מודרכים מול המסך, כל אחד עם נוסח מוכן להעתקה ובדיקת הצלחה. הכל על חומר מומצא בלבד.</p>
+        <div class="card-meta">מסמך עבודה</div>
+        <a class="card-btn" href="chatgpt-work-practice.html">פתיחת דף התרגול</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="path-section">
+    <div class="path-label">סדר השימוש המומלץ</div>
+    <div class="path">
+      <div class="path-step"><div class="path-dot"><span>1</span></div><div class="path-name">המדריך המלא</div></div>
+      <div class="path-line"></div>
+      <div class="path-step tool"><div class="path-dot"><span>✓</span></div><div class="path-name">דף התרגול</div></div>
+    </div>
   </div>
 </div>
 
@@ -371,20 +444,20 @@ figure > figcaption {
   <div class="info-grid">
     <div class="info-item">
       <h3>למי מיועד מרכז המדריכים?</h3>
-      <p>לעורכי דין, שותפים ומנהלי <bdi dir="ltr">IT</bdi> במשרד המעוניינים לעבור בבטחה ממנוי <bdi dir="ltr">Claude Free, Pro</bdi> או <bdi dir="ltr">Max</bdi> למנוי <bdi dir="ltr">Claude Team</bdi>.</p>
+      <p>לעורכי דין, שותפים ומנהלי <bdi dir="ltr">IT</bdi> במשרד שרוצים לעבוד עם <bdi dir="ltr">AI</bdi> בצורה מסודרת ובטוחה - בין אם במעבר למנוי <bdi dir="ltr">Claude Team</bdi> ובין אם בהפעלת מצב <bdi dir="ltr">Work</bdi> ב-<bdi dir="ltr">ChatGPT</bdi>.</p>
     </div>
     <div class="info-item">
-      <h3>מדוע חשוב לבצע את המעבר לפי הסדר?</h3>
-      <p>כל מדריך בונה על קודמו. דילוג על שלב עלול לגרום לאובדן מידע או להגדרות חסרות בסביבת ה-<bdi dir="ltr">Team</bdi>.</p>
+      <h3>מדוע חשוב לעבור לפי הסדר?</h3>
+      <p>בכל סדרה, כל מדריך בונה על קודמו. בסדרת <bdi dir="ltr">Team</bdi> דילוג על שלב עלול לגרום לאובדן מידע; בסדרת <bdi dir="ltr">Work</bdi> דף התרגול מניח שהמדריך המלא כבר נקרא.</p>
     </div>
     <div class="info-warn">
       <h3>שימו לב:</h3>
-      <p>חלק מהפעולות במהלך המעבר הן <bdi>חד-כיווניות</bdi> ואינן ניתנות לביטול. יש להשלים גיבוי מלא (מדריך 1) לפני כל פעולה בלתי הפיכה.</p>
+      <p>חלק מהפעולות במעבר למנוי <bdi dir="ltr">Team</bdi> הן <bdi>חד-כיווניות</bdi> ואינן ניתנות לביטול - יש להשלים גיבוי מלא (מדריך 1) לפני כל פעולה בלתי הפיכה. בסדרת <bdi dir="ltr">Work</bdi>, כל התרגילים מבוצעים על חומר מומצא בלבד, ולא על חומר של לקוחות.</p>
     </div>
   </div>
 </div>
 
-<footer><bdi>Legal Mind</bdi> · מדריכי המעבר למנוי <bdi dir="ltr">Team</bdi> של <bdi dir="ltr">Claude</bdi> · כל הזכויות שמורות ל<bdi>Legal Mind</bdi></footer>
+<footer><bdi>Legal Mind</bdi> · מדריכי <bdi dir="ltr">AI</bdi> לעורכי דין · כל הזכויות שמורות ל<bdi>Legal Mind</bdi></footer>
 
 </body>
 </html>

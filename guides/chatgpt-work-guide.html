@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מצב Work ב-ChatGPT - המדריך המלא למשרדי עורכי דין | Legal Mind</title>
+<link rel="canonical" href="https://www.legalmind.co.il/guides/chatgpt-work-guide.html">
+<meta name="description" content="המדריך המלא למצב Work ב-ChatGPT לעורכי דין: 17 פרקים עם צילומי מסך אמיתיים - התקנת אפליקציית המחשב, תהליך עבודה מלא עד קובץ מוגמר, חיבור אפליקציות, משימות מתוזמנות וקבצים מקומיים.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Legal Mind">
+<meta property="og:title" content="מצב Work ב-ChatGPT - המדריך המלא למשרדי עורכי דין | Legal Mind">
+<meta property="og:description" content="המדריך המלא למצב Work ב-ChatGPT לעורכי דין: 17 פרקים עם צילומי מסך אמיתיים - התקנת אפליקציית המחשב, תהליך עבודה מלא עד קובץ מוגמר, חיבור אפליקציות, משימות מתוזמנות וקבצים מקומיים.">
+<meta property="og:url" content="https://www.legalmind.co.il/guides/chatgpt-work-guide.html">
+<meta property="og:image" content="https://www.legalmind.co.il/guides/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="מצב Work ב-ChatGPT - המדריך המלא למשרדי עורכי דין | Legal Mind">
+<meta name="twitter:description" content="המדריך המלא למצב Work ב-ChatGPT לעורכי דין: 17 פרקים עם צילומי מסך אמיתיים - התקנת אפליקציית המחשב, תהליך עבודה מלא עד קובץ מוגמר, חיבור אפליקציות, משימות מתוזמנות וקבצים מקומיים.">
+<meta name="twitter:image" content="https://www.legalmind.co.il/guides/og-image.png">
+
+<style>
+
+@font-face { font-family:'Assistant'; font-weight:400; font-style:normal; font-display:swap; src:url(fonts/assistant-400.woff2) format('woff2'); }
+@font-face { font-family:'Assistant'; font-weight:600; font-style:normal; font-display:swap; src:url(fonts/assistant-600.woff2) format('woff2'); }
+@font-face { font-family:'Assistant'; font-weight:700; font-style:normal; font-display:swap; src:url(fonts/assistant-700.woff2) format('woff2'); }
+@font-face { font-family:'Frank Ruhl'; font-weight:700; font-style:normal; font-display:swap; src:url(fonts/frankruhl-700.woff2) format('woff2'); }
+@font-face { font-family:'Frank Ruhl'; font-weight:900; font-style:normal; font-display:swap; src:url(fonts/frankruhl-900.woff2) format('woff2'); }
+
+
+
+
+
+:root{
+  --paper:#F6F9F9;
+  --paper-alt:#E9F2F1;
+  --paper-raised:#FFFFFF;
+  --ink:#0D1E37;
+  --ink-soft:#32424F;
+  --ink-faint:#647184;
+  --line:#DBE6E5;
+  --line-strong:#B7CBC9;
+  --brand:#00807F;
+  --brand-strong:#0A5F5E;
+  --brand-wash:#E3F1F0;
+  --gold:#0A5F5E;
+  --gold-strong:#0D1E37;
+  --gold-wash:#E9F2F1;
+  --warn:#A8431F;
+  --warn-wash:#FBE4D6;
+  --shadow: 0 1px 2px rgba(13,30,55,.06), 0 18px 34px -16px rgba(13,30,55,.22);
+  --radius: 3px;
+  --topbar-bg: rgba(246,249,249,0.92);
+  --mk-bg: rgba(0,128,127,0.10);
+  --mk-glow: rgba(0,128,127,0.18);
+  --mk-border-soft: rgba(10,95,94,0.35);
+}
+:root[data-theme="dark"]{
+  --paper:#0C1420;
+  --paper-alt:#152030;
+  --paper-raised:#182437;
+  --ink:#EAF2F1;
+  --ink-soft:#C4D3D6;
+  --ink-faint:#8496A0;
+  --line:#25384B;
+  --line-strong:#33495D;
+  --brand:#3FBFBB;
+  --brand-strong:#6BD4D0;
+  --brand-wash:#12302E;
+  --gold:#6BD4D0;
+  --gold-strong:#9FE5E2;
+  --gold-wash:#12302E;
+  --warn:#E0916D;
+  --warn-wash:#3A2618;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 22px 40px -18px rgba(0,0,0,.6);
+  --topbar-bg: rgba(12,20,32,0.92);
+  --mk-bg: rgba(63,191,187,0.14);
+  --mk-glow: rgba(63,191,187,0.22);
+  --mk-border-soft: rgba(107,212,208,0.35);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C1420; --paper-alt:#152030; --paper-raised:#182437;
+    --ink:#EAF2F1; --ink-soft:#C4D3D6; --ink-faint:#8496A0;
+    --line:#25384B; --line-strong:#33495D;
+    --brand:#3FBFBB; --brand-strong:#6BD4D0; --brand-wash:#12302E;
+    --gold:#6BD4D0; --gold-strong:#9FE5E2; --gold-wash:#12302E;
+    --warn:#E0916D; --warn-wash:#3A2618;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 22px 40px -18px rgba(0,0,0,.6);
+    --topbar-bg: rgba(12,20,32,0.92);
+    --mk-bg: rgba(63,191,187,0.14);
+    --mk-glow: rgba(63,191,187,0.22);
+    --mk-border-soft: rgba(107,212,208,0.35);
+  }
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Assistant', 'Segoe UI', Arial, sans-serif;
+  font-size:17.5px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{ background:var(--gold-wash); color:var(--brand-strong); }
+a{ color:var(--brand); }
+kbd{
+  font-family: ui-monospace, Consolas, monospace;
+  background:var(--paper-alt);
+  border:1px solid var(--line-strong);
+  border-bottom-width:2px;
+  border-radius:4px;
+  padding:1px 7px;
+  font-size:.85em;
+  color:var(--ink);
+}
+code{
+  font-family: ui-monospace, Consolas, monospace;
+  background:var(--paper-alt);
+  color:var(--brand-strong);
+  padding:1px 7px;
+  border-radius:4px;
+  font-size:.9em;
+  direction:ltr;
+  unicode-bidi:embed;
+  font-weight:600;
+}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky; top:44px; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 28px;
+  background:var(--topbar-bg);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.brand{ display:flex; align-items:center; gap:10px; font-family:'Frank Ruhl',serif; font-weight:700; font-size:19px; color:var(--ink); }
+.logo-mark{ width:32px; height:32px; object-fit:contain; }
+.logo-hero{ width:76px; height:76px; object-fit:contain; margin:0 auto 14px; display:block; }
+
+.progress-rail{ flex:1; height:3px; background:var(--line); margin:0 24px; position:relative; overflow:hidden; border-radius:2px; }
+.progress-fill{ position:absolute; inset-inline-start:0; top:0; bottom:0; width:0%; background:linear-gradient(90deg, var(--brand), var(--gold)); }
+.topbar-meta{ font-size:13px; color:var(--ink-faint); font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:600; }
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  padding: 34px 28px 0;
+  overflow:hidden;
+}
+.hero-grid{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity:.5;
+  mask-image: radial-gradient(ellipse 65% 55% at 50% 15%, black 20%, transparent 70%);
+}
+.hero-inner{ position:relative; max-width:800px; margin:0 auto; text-align:center; }
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:13px; letter-spacing:.09em; color:var(--brand-strong);
+  font-weight:700; margin-bottom:16px;
+  border:1px solid var(--brand);
+  padding:6px 16px; border-radius:99px;
+  background:var(--brand-wash);
+}
+.eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--brand); }
+h1.hero-title{
+  font-family:'Frank Ruhl', serif;
+  font-weight:900;
+  font-size: clamp(40px, 6.4vw, 68px);
+  line-height:1.14;
+  margin:0 0 16px;
+  text-wrap:balance;
+  color:var(--ink);
+}
+h1.hero-title .hi{ color:var(--brand); }
+.hero-sub{
+  font-size:19.5px;
+  color:var(--ink-soft);
+  max-width:580px;
+  margin:0 auto 20px;
+  text-wrap:balance;
+}
+.hero-rule{
+  max-width:220px; margin:0 auto 22px;
+  display:flex; flex-direction:column; gap:4px; align-items:center;
+}
+.hero-rule .r1{ width:100%; height:3px; background:var(--gold); border-radius:2px; }
+.hero-rule .r2{ width:60%; height:1px; background:var(--line-strong); }
+.hero-facts{
+  display:flex; justify-content:center; gap:0; flex-wrap:wrap;
+  border-top:1px solid var(--line);
+  max-width:640px; margin:0 auto;
+}
+.hero-fact{
+  padding:22px 32px; text-align:center; border-inline-start:1px solid var(--line);
+  min-width:150px;
+}
+.hero-fact:first-child{ border-inline-start:none; }
+.hero-fact b{ display:block; font-family:'Frank Ruhl',serif; font-weight:900; font-size:27px; color:var(--brand-strong); font-variant-numeric:tabular-nums; }
+.hero-fact span{ font-size:12.5px; color:var(--ink-faint); letter-spacing:.02em; font-weight:600; }
+
+/* ---------- layout ---------- */
+.wrap{ max-width:1180px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns: 250px minmax(0,1fr); gap:56px; align-items:start; }
+@media (max-width: 900px){ .wrap{ grid-template-columns:minmax(0,1fr); } }
+
+.toc-rail{ position:sticky; top:78px; padding:44px 0 40px 0; align-self:start; }
+@media (max-width: 900px){ .toc-rail{ position:static; padding:24px 0 8px; } }
+.toc-rail h4{ font-size:12.5px; letter-spacing:.08em; color:var(--ink-faint); font-weight:700; margin:0 0 14px; }
+.toc-rail ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; }
+.toc-rail li a{
+  display:flex; align-items:baseline; gap:10px;
+  text-decoration:none; color:var(--ink-soft); font-size:14px; font-weight:500;
+  padding:7px 10px; border-radius:4px;
+  border-inline-end:2px solid transparent;
+  transition:background .15s, color .15s, border-color .15s;
+  line-height:1.4;
+}
+.toc-rail li a:hover{ background:var(--paper-alt); color:var(--ink); }
+.toc-rail li a.active{ color:#A8431F; background:transparent; border-inline-end-color:transparent; font-weight:800;}
+.toc-rail li a.active .toc-num{ color:#A8431F; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .toc-rail li a.active,
+  :root:not([data-theme="light"]) .toc-rail li a.active .toc-num{ color:var(--warn); }
+}
+.toc-num{ font-variant-numeric:tabular-nums; color:var(--gold-strong); font-size:12px; font-weight:700; }
+
+main{ padding:56px 0 100px; min-width:0; }
+
+/* ---------- sections ---------- */
+.sec{ padding-top:26px; scroll-margin-top:90px; }
+.sec + .sec{ margin-top:80px; padding-top:58px; border-top:1px solid var(--line); }
+.sec-head{ display:flex; align-items:baseline; gap:20px; margin-bottom:28px; }
+.sec-num{
+  font-family:'Frank Ruhl',serif; font-weight:900;
+  font-size:58px; line-height:1;
+  color:transparent;
+  -webkit-text-stroke: 1.6px var(--gold);
+  opacity:.55;
+  flex-shrink:0;
+  font-variant-numeric:tabular-nums;
+}
+h2.sec-title{
+  font-family:'Frank Ruhl', serif; font-weight:700;
+  font-size: clamp(25px, 3vw, 33px);
+  line-height:1.28;
+  margin:0;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.sec-body{ max-width:680px; }
+h3.h2{
+  font-family:'Assistant',sans-serif; font-weight:700; font-size:19.5px;
+  color:var(--ink); margin:36px 0 14px;
+  padding-inline-start:13px; border-inline-start:3px solid var(--brand);
+}
+p{ margin:0 0 19px; color:var(--ink-soft); }
+p b{ color:var(--ink); font-weight:700; }
+.closing{ font-family:'Frank Ruhl',serif; font-size:25px; color:var(--brand-strong); font-weight:700; }
+
+ul.bullets, ol.steps{ margin:0 0 22px; padding:0; list-style:none; display:flex; flex-direction:column; gap:13px; }
+ul.bullets li{ position:relative; padding-inline-start:24px; color:var(--ink-soft); }
+ul.bullets li::before{
+  content:""; position:absolute; inset-inline-start:0; top:9px;
+  width:8px; height:8px; border-radius:50%; background:var(--brand);
+}
+ul.bullets li b{ color:var(--ink); font-weight:700; }
+ol.steps{ counter-reset:stp; }
+ol.steps li{ position:relative; padding-inline-start:42px; color:var(--ink-soft); min-height:28px; }
+ol.steps li::before{
+  counter-increment:stp; content:counter(stp);
+  position:absolute; inset-inline-start:0; top:-2px;
+  width:28px; height:28px; border-radius:50%;
+  background:var(--gold-wash); color:var(--gold-strong);
+  font-family:'Frank Ruhl',serif; font-weight:900; font-size:14px;
+  display:flex; align-items:center; justify-content:center;
+  font-variant-numeric:tabular-nums;
+  border:1px solid var(--mk-border-soft);
+}
+
+.callout{
+  margin:24px 0; padding:19px 22px; border-radius:var(--radius);
+  border-inline-start:4px solid var(--gold);
+  background:var(--gold-wash);
+}
+.callout.warn{ border-inline-start-color:var(--warn); background:var(--warn-wash); }
+.callout-label{
+  display:block; font-size:11.5px; font-weight:800; letter-spacing:.08em;
+  color:var(--gold-strong); margin-bottom:7px; text-transform:uppercase;
+}
+.callout.warn .callout-label{ color:var(--warn); }
+.callout p{ margin:0; color:var(--ink); font-size:16px; }
+
+/* ---------- screenshots / annotations ---------- */
+figure.shot{ margin:30px 0 32px; }
+.shot-frame{
+  position:relative; width:100%;
+  background:var(--paper-raised);
+  border:1px solid var(--line);
+  border-radius:8px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.shot-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block; }
+.mk{
+  position:absolute;
+  border:2px solid var(--brand);
+  background:var(--mk-bg);
+  border-radius:4px;
+  box-shadow: 0 0 0 3px var(--mk-glow);
+}
+.mk-tag{
+  position:absolute; top:-11px; right:-11px;
+  width:23px; height:23px; border-radius:50%;
+  background:var(--brand); color:#fff;
+  font-family:'Frank Ruhl',serif; font-weight:900; font-size:12.5px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 6px rgba(0,0,0,.35);
+  border:2px solid var(--paper-raised);
+}
+.shot-legend{ list-style:none; margin:14px 2px 0; padding:0; display:flex; flex-direction:column; gap:7px; }
+.shot-legend li{ display:flex; gap:11px; font-size:14.5px; color:var(--ink-soft); align-items:baseline; }
+.shot-legend li b{
+  flex-shrink:0; width:21px; height:21px; border-radius:50%;
+  background:var(--brand); color:#fff; font-size:11px;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-family:'Frank Ruhl',serif;
+}
+
+/* ---------- table ---------- */
+.tbl-wrap{ overflow-x:auto; margin:24px 0; border:1px solid var(--line); border-radius:8px; }
+table.tbl{ width:100%; border-collapse:collapse; font-size:15px; min-width:540px; }
+table.tbl th{ background:var(--brand); color:#fff; text-align:start; padding:13px 16px; font-weight:700; font-size:13px; letter-spacing:.02em; }
+table.tbl td{ padding:13px 16px; border-top:1px solid var(--line); color:var(--ink-soft); }
+table.tbl tr:nth-child(even) td{ background:var(--paper-alt); }
+table.tbl tr td:first-child{ color:var(--ink); font-weight:600; }
+
+/* ---------- platform cards ---------- */
+.platform-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:26px 0; }
+@media (max-width:640px){ .platform-grid{ grid-template-columns:1fr; } }
+.platform-card{ background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius); padding:22px 20px 20px; box-shadow:var(--shadow); }
+.platform-card .pc-head{ display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+.platform-card .pc-dot{ width:10px; height:10px; border-radius:50%; background:var(--brand); flex-shrink:0; }
+.platform-card h4{ font-family:'Frank Ruhl',serif; font-weight:700; font-size:18px; color:var(--brand-strong); margin:0; }
+.platform-card .pc-sub{ font-size:12.5px; color:var(--ink-faint); margin:2px 0 16px; }
+.platform-card ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+.platform-card li{ display:flex; gap:9px; align-items:flex-start; font-size:14px; color:var(--ink-soft); line-height:1.5; }
+.platform-card li .ico{ flex-shrink:0; width:17px; text-align:center; font-weight:800; }
+.platform-card li .ico.yes{ color:var(--brand); }
+.platform-card li .ico.no{ color:var(--ink-faint); }
+.platform-card li .ico.part{ color:var(--gold-strong); }
+.platform-card li b{ color:var(--ink); }
+
+/* ---------- footer ---------- */
+footer{ border-top:1px solid var(--line); padding:44px 28px 64px; text-align:center; color:var(--ink-faint); font-size:13.5px; }
+
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+/* ==== הקוד העיצובי של Legal Mind: המדריך צף ככרטיס לבן על הרקע הירקרק ==== */
+main{
+  background:var(--paper-raised);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:10px 44px 64px;
+  margin:44px 0 90px;
+}
+main > .sec:first-of-type{ margin-top:0; border-top:none; padding-top:36px; }
+.toc-rail{
+  background:var(--paper-raised);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:20px 16px;
+  margin-top:44px;
+}
+@media (max-width:900px){
+  main{ padding:6px 20px 44px; border-radius:14px; margin:20px 0 56px; }
+  .toc-rail{ position:static; margin-top:24px; }
+}
+/* סימוני הצילומים באדום הקנוני של Legal Mind, כמו בשאר המדריכים */
+.mk{ border-color:#D6323C; background:rgba(214,50,60,.08); box-shadow:0 0 0 3px rgba(214,50,60,.16); }
+.mk-tag{ background:#D6323C; }
+.shot-legend li b{ background:#D6323C; }
+
+/* הגדלת צילום בלחיצה, בסגנון סדרות Team ו-Cowork */
+.shot-frame{cursor:zoom-in}
+.mk{pointer-events:none}
+.zoom-hint{display:inline-flex;align-items:center;gap:7px;margin:10px 0 0;
+  padding:6px 14px;border-radius:999px;background:var(--brand-wash);
+  color:var(--brand-strong);font-size:13px;font-weight:700}
+.zoom-hint:before{content:"🔍"}
+.lightbox{position:fixed;inset:0;z-index:999;background:rgba(9,20,32,.93);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;cursor:zoom-out}
+.lightbox .lb-close{margin:0 0 18px;border:0;border-radius:999px;
+  padding:13px 34px;background:#fff;color:var(--brand-strong);
+  font-weight:800;font-size:16px;cursor:pointer;font-family:inherit}
+.lightbox .lb-close:hover{background:var(--brand);color:#fff}
+.lightbox .lb-stage{max-height:84vh;max-width:96vw;overflow:auto}
+.lightbox .shot-frame{width:100%;max-width:none;cursor:default}
+
+.back-hub{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#0A5F5E;color:#fff;text-decoration:none;font-weight:700;white-space:nowrap}
+.back-hub:hover{background:#00807F}
+.backbar{position:sticky;top:0;z-index:60;box-sizing:border-box;height:44px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #B7CBC9;background:#E3F1F0}
+.backbar a{color:#0A5F5E;font-size:14px;font-weight:800;text-decoration:none}
+.backbar a:before{content:"→";margin-left:7px}
+@media print{.backbar{display:none}}
+
+.copy-block{margin:18px 0;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.copy-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.copy-heading strong{font-size:.95rem;color:var(--ink)}
+.copy-button{background:#0A5F5E;color:#fff;border:0;border-radius:8px;padding:7px 14px;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-button:hover{background:#0D1E37}
+.copy-block .copy-body{margin:0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--ink);font-size:.95rem;line-height:1.7;white-space:pre-wrap}
+.copy-status{display:block;margin-top:8px;min-height:1.1em;font-size:.82rem;font-weight:700;color:#1a7f37}
+@media(max-width:700px){.copy-heading{align-items:flex-start;flex-direction:column}.copy-button{width:100%}}
+</style>
+</head>
+<body>
+<nav class="backbar"><a href="chatgpt-work.html">חזרה לדף המרכז</a></nav>
+
+<div class="topbar">
+  <div class="brand"><img class="logo-mark" src="cw-01.png" alt="Legal Mind" /><span>מצב Work</span></div>
+  <div class="progress-rail"><div class="progress-fill" id="pfill"></div></div>
+  <div class="topbar-meta" id="tmeta">01 / 17</div>
+</div>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <img class="logo-hero" src="cw-01.png" alt="Legal Mind" />
+    <span class="eyebrow"><span class="dot"></span>מדריך מעודכן למשרדי עורכי דין · אוגוסט 2026</span>
+    <h1 class="hero-title">מ-<span class="hi">עוזר</span> שעונה, לסוכן שמבצע</h1>
+    <p class="hero-sub">המדריך המלא למצב <b>Work</b> ב-ChatGPT - צעד-אחר-צעד, עם צילומי מסך אמיתיים ומסומנים, ודוגמאות מותאמות לעבודה משפטית שוטפת.</p>
+    <div class="hero-rule"><div class="r1"></div><div class="r2"></div></div>
+    <div class="hero-facts">
+      <div class="hero-fact"><b>17</b><span>פרקים</span></div>
+      <div class="hero-fact"><b>27</b><span>צילומי מסך אמיתיים</span></div>
+      <div class="hero-fact"><b>GPT-5.6</b><span>המנוע שמאחורי הכל</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc-rail">
+    <h4>תוכן העניינים</h4>
+    <ol><li><a href="#s1"><span class="toc-num">01</span>מה זה מצב Work, ולמה זה שינוי כללי המשחק</a></li><li><a href="#s2"><span class="toc-num">02</span>הורדה והתקנה של אפליקציית המחשב</a></li><li><a href="#s3"><span class="toc-num">03</span>סיור בממשק: הבורר בין Chat ל-Work</a></li><li><a href="#s4"><span class="toc-num">04</span>כך נראה תהליך עבודה אמיתי במצב Work</a></li><li><a href="#s5"><span class="toc-num">05</span>יצירת מסמכים, גיליונות ומצגות</a></li><li><a href="#s6"><span class="toc-num">06</span>חיבור לאפליקציות שלכם דרך Plugins</a></li><li><a href="#s7"><span class="toc-num">07</span>משימות מתוזמנות שרצות לבד</a></li><li><a href="#s8"><span class="toc-num">08</span>אתרים אינטראקטיביים עם Sites (יכולת נלווית)</a></li><li><a href="#s9"><span class="toc-num">09</span>עבודה עם קבצים מקומיים, דפדפן מובנה ו-Computer Use</a></li><li><a href="#s10"><span class="toc-num">10</span>בחירת מודל ורמת מאמץ - משפחת GPT-5.6</a></li><li><a href="#s11"><span class="toc-num">11</span>מה זמין איפה: ווב, מובייל ואפליקציית מחשב</a></li><li><a href="#s12"><span class="toc-num">12</span>איך כותבים בקשה שמביאה תוצאה טובה</a></li><li><a href="#s13"><span class="toc-num">13</span>שימושים אמיתיים למשרד עורכי דין</a></li><li><a href="#s14"><span class="toc-num">14</span>זמינות, תוכניות והשקה הדרגתית</a></li><li><a href="#s15"><span class="toc-num">15</span>אבטחה, הרשאות ושליטה</a></li><li><a href="#s16"><span class="toc-num">16</span>מגבלות ותקלות נפוצות - ומה עושים</a></li><li><a href="#s17"><span class="toc-num">17</span>לסיכום</a></li></ol>
+  </nav>
+  <main>
+    
+  <section class="sec" id="s1">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">מה זה מצב Work, ולמה זה שינוי כללי המשחק</h2>
+    </div>
+    <div class="sec-body">
+      
+  <div class="callout warn"><span class="callout-label">לפני שמתחילים - איפה עובדים</span><p><b>המדריך הזה מודרך ומצולם מתוך אפליקציית המחשב של ChatGPT</b> - לא מהדפדפן. הסיבה: היכולות החזקות של Work (קבצים שעל המחשב, דפדפן מובנה) קיימות במלואן רק בה, ובאפליקציה מצב Work זמין לכל התוכניות. עוד אין לכם אותה? פרק 02 מתקין אתכם בחמש דקות, ואז חוזרים לכאן.</p></div>
+  <p>עד לאחרונה, כל שיחה עם ChatGPT הסתיימה באותה נקודה: המערכת עונה, ואתם אלה שלוקחים את התשובה, מעתיקים אותה למסמך, מעצבים, ומרכיבים בעצמכם את התוצר הסופי. ChatGPT היה עוזר שנותן מידע - לא מי שמבצע את העבודה עד הסוף.</p>
+  <p>ב-9 ביולי 2026 השיקה OpenAI מצב עבודה חדש בשם <b>Work</b>, שהופך את התמונה הזו. במקום לענות על שאלה בודדת, Work מקבל יעד - למשל "תבנה לי דוח", "תכין לי חוות דעת" או "תסכם לי את התיק" - ומבצע בעצמו את כל השרשרת שמובילה לשם: הוא בונה תוכנית עבודה, אוסף מידע מהמקורות שהרשיתם לו, מפעיל כלים שונים, ומחזיר בסוף קובץ מוגמר שאפשר להשתמש בו מיד.</p>
+  <h3 class="h2">מה בעצם משתנה עבורכם</h3>
+  <p>ההבדל המרכזי הוא כיוון האחריות. בשיחה רגילה אתם מנהלים כל צעד: שואלים, מקבלים תשובה, שואלים שוב, ואז בונים את התוצר הסופי בעצמכם. במצב Work אתם מגדירים את קו הסיום, ו-ChatGPT מנהל את הדרך אליו - כולל בדיקות ותיקונים, כל עוד אתם נשארים בתמונה ומאשרים את הצעדים הרגישים.</p>
+  <ul class="bullets"><li>לקחת ערימת מסמכי גילוי או תיק ראיות מפוזר, ולהחזיר מהם תקציר עובדות מסודר שאפשר לצאת איתו לישיבה</li><li>להפוך טיוטת חוזה למסמך סופי מוכן, כשהמבנה המשפטי, המספור וההגדרות נשמרים בקפדנות</li><li>לעבור על גיליון חיובי שעות עמוס ולחלץ ממנו את מה שבאמת דורש תשומת לב לפני הפקת חשבונית</li><li>לאסוף פרטים שמפוזרים בין תיבת המייל, היומן ותיק הלקוח, ולסדר מהם תמונת מצב אחת ברורה</li><li>לשמור על תהליך חוזר פועל ברקע - למשל מעקב מועדי הגשה - בלי לפתוח שיחה חדשה כל פעם</li></ul>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>היכולות שהופכות את Work לחזק כל כך - עבודה עם קבצים על המחשב שלכם ודפדפן מובנה - זמינות במלואן רק באפליקציית המחשב הנפרדת של ChatGPT. לכן המדריך הזה מתמקד בעיקר בה.</p></div>
+  <h3 class="h2">שישה מונחים שילוו אתכם לאורך המדריך</h3>
+  <ul class="bullets"><li><b>Work</b> - מצב העבודה החדש: נותנים יעד, ChatGPT מבצע ומחזיר קובץ מוגמר.</li><li><b>Chat</b> - מצב השיחה המוכר: שאלה, תשובה, וזהו.</li><li><b>Codex</b> - מצב שלישי, למתכנתים. לא נזדקק לו במדריך הזה.</li><li><b>Plugins</b> - ספריית החיבורים שנותנת ל-Work גישה ליומן, למייל ולכלים שאתם כבר עובדים איתם (פרק 06).</li><li><b>משימה מתוזמנת</b> - משימת Work שרצה לבד, בזמן קבוע שהגדרתם (פרק 07).</li><li><b>DPA</b> - הסכם עיבוד נתונים: ההתחייבות החוזית שקובעת מה מותר ל-OpenAI לעשות במידע שלכם - והסיבה שחומר לקוחות שייך רק למנוי Business ומעלה (פרק 15).</li></ul>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s2">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">הורדה והתקנה של אפליקציית המחשב</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>לפני שמתחילים, כדאי להוריד את אפליקציית המחשב החדשה של ChatGPT. זו לא עוד תוכנה נוספת - היא איחדה לתוכה גם את מצב Chat הרגיל וגם את מצב Work החדש, כך שיש לכם מקום אחד לכל השימושים.</p>
+  <ol class="steps"><li>פתחו דפדפן וגלשו לכתובת <code>chatgpt.com/download</code>.</li><li>בעמוד ההורדה תראו שתי אפשרויות נפרדות: כפתור macOS למחשבי Mac, וכפתור Windows למחשבי Windows. לחצו על הכפתור המתאים למחשב שלכם.</li><li>שימו לב: המנגנון שונה בין המערכות. במחשבי Windows נפתח חלון Microsoft Store - לוחצים בו על כפתור ההתקנה (Get) ומחכים שתסתיים, בלי שום קובץ להוריד. במחשבי Mac יורד קובץ התקנה מהאתר - פותחים אותו ועוקבים אחרי ההוראות הרגילות.</li><li>פתחו את האפליקציה שהותקנה, והתחברו עם חשבון ה-ChatGPT הקיים שלכם.</li></ol>
+  
+  <figure class="shot" style="max-width:460px;">
+    <div class="shot-frame" style="aspect-ratio:1078/872;">
+      <img src="cw-02.webp" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:52.5%; top:44.5%; width:29%; height:9.5%;">
+      <span class="mk-tag">1</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>כפתורי ההורדה הנפרדים ל-macOS ול-Windows - זהו המקום היחיד שממנו מורידים את הגרסה המאוחדת החדשה.</span></li></ol>
+  </figure>
+  <p>בתחתית אותו עמוד תמצאו גם קישור להורדת אפליקציית המובייל, ולתוסף Chrome שמוסיף את ChatGPT ישירות לסרגל הצד של הדפדפן.</p>
+  <div class="callout tip"><span class="callout-label">קיצור שימושי</span><p>אחרי ההתקנה אפשר לפתוח את ChatGPT מכל מקום במחשב בלחיצת מקשים: <kbd>Alt+Space</kbd> בווינדוס, או <kbd>Option+Space</kbd> במק.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s3">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">סיור בממשק: הבורר בין Chat ל-Work</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>בראש המסך, ליד תיבת הכתיבה, יש בורר קטן ופשוט עם שתי אפשרויות: Chat ו-Work. זו הבחירה הראשונה והחשובה ביותר בכל שיחה חדשה, כי היא קובעת איך המערכת תתייחס לבקשה שלכם.</p>
+  
+  <figure class="shot" style="max-width:720px;">
+    <div class="shot-frame" style="aspect-ratio:1913/971;">
+      <img src="cw-03.webp" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:50.5%; top:0.8%; width:16%; height:6.4%;">
+      <span class="mk-tag" style="top:auto;bottom:-11px;">1</span>
+    </div>
+    <div class="mk" style="left:33.5%; top:84%; width:48%; height:8.5%;">
+      <span class="mk-tag">2</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>בורר Chat/Work - כאן עוברים בין שני המצבים בלחיצה אחת.</span></li><li><b>2</b><span>תיבת "Work on anything" - כאן מגדירים את היעד לביצוע, לא רק שואלים שאלה.</span></li></ol>
+  </figure>
+  <h3 class="h2">Chat - לשיחה מהירה</h3>
+  <p>זה ה-ChatGPT שכולם כבר מכירים: מקום לשאול, להתלבט בקול רם, לגבש ניסוח או לקבל תשובה מהירה על כל דבר. השיחה נשארת קלילה וסגורה תוך רגעים.</p>
+  <h3 class="h2">Work - כשצריך תוצר של ממש</h3>
+  <p>במעבר למצב הזה, ChatGPT מפסיק להיות רק "מי שעונה" והופך למי שגם מבצע: הוא חוקר, בודק מקורות, בונה קובץ בפועל, ולפעמים ממשיך לעבוד ברקע כמה דקות טובות עד שהתוצר מוכן.</p>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>באפליקציית המחשב יש גם מצב שלישי בשם Codex, המיועד לכתיבת קוד ופיתוח תוכנה. הזמינות שלו תלויה בתוכנית שלכם, והוא לא רלוונטי לעבודה משפטית - לכן המדריך הזה לא עוסק בו.</p></div>
+  <p>הכירו כבר עכשיו עוד רכיב אחד: תפריט הצד - העמודה שנפתחת בצד שמאל של החלון. שם יושבים בין השאר ה-Plugins שנפגוש בפרק 06. בכל פעם שכתוב במדריך "תפריט הצד" - זה המקום.</p>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s4">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">כך נראה תהליך עבודה אמיתי במצב Work</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>במקום להסביר בתיאוריה, הרצנו עבורכם משימת Work אמיתית ופשוטה - בקשה ליצור מסמך קצר בשם "5 טיפים לניהול זמן" - כדי להראות בדיוק איך תהליך העבודה נראה מהצד שלכם.</p>
+  <h3 class="h2">שלב 1: הגדרת היעד</h3>
+  <p>בניגוד לשיחה רגילה, כאן לא מנסחים שאלה - מתארים תוצר. הבקשה כללה מה בדיוק רוצים לקבל, מבנה, ואפילו הנחיה על עיצוב.</p>
+  
+  <figure class="shot" style="max-width:560px;">
+    <div class="shot-frame" style="aspect-ratio:1012/426;">
+      <img src="cw-04.webp" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:3%; top:49%; width:17%; height:12%;">
+      <span class="mk-tag">1</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>מיד אחרי השליחה מופיע חיווי "Working for..." שמתעדכן בזמן אמת, ומתחתיו כבר מתחילה להיכתב תשובת הביניים של המערכת.</span></li></ol>
+  </figure>
+  <p>מכאן נעקוב אחרי חמשת השלבים הקבועים של כל משימת Work: יעד, תכנון, ביצוע, בדיקה עצמית ומסירה. את שלב 1 - היעד - כבר ביצענו כששלחנו את הבקשה.</p>
+  <h3 class="h2">שלב 2 עד 4: תכנון, ביצוע ובדיקה עצמית</h3>
+  <p>בזמן שהמערכת עובדת, החיווי הקטן "Working for..." ממשיך לספור (בדוגמה שלנו הוא עלה בהדרגה מ-27 שניות ועד כדקתיים וחצי). מתחתיו רואים בזמן אמת את קו המחשבה של המערכת, ומופיע קישור מתקפל "Ran commands" שמראה שהיא בפועל הפעילה כלי ליצירת הקובץ - לא רק כתבה טקסט.</p>
+  <p>זה ההבדל המהותי ממצב Chat: כאן אתם צופים בתהליך עבודה בפועל, לא מחכים לתשובה סגורה אחת.</p>
+  <h3 class="h2">שלב 5: מסירת התוצר</h3>
+  <p>כשהעבודה מסתיימת, החיווי משתנה ל-"Worked for...", ומתחתיו מופיע כרטיס קובץ לחיץ. לחיצה עליו פותחת את הקובץ המוגמר במלואו.</p>
+  
+  <figure class="shot" style="max-width:720px;">
+    <div class="shot-frame" style="aspect-ratio:1502/808;">
+      <img src="cw-05.webp" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:55%; top:24.5%; width:43%; height:9%;">
+      <span class="mk-tag">1</span>
+    </div>
+    <div class="mk" style="left:50.5%; top:45.8%; width:48.5%; height:9%;">
+      <span class="mk-tag">2</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>הכותרת שביקשנו - נוצרה בדיוק כפי שהוגדר בבקשה.</span></li><li><b>2</b><span>כותרת משנה כחולה לכל טיפ, בעיצוב אחיד ונקי לאורך כל המסמך.</span></li></ol>
+  </figure>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>שימו לב שלמסמך הזה לקח למערכת כדקתיים וחצי להיווצר. משימות מורכבות יותר יכולות לקחת דקות ארוכות, ולפעמים אף שעות - Work נשאר עם המשימה עד שהיא נגמרת, במקום להחזיר תשובה חלקית מהר.</p></div>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>שווה לפתוח את החץ הקטן ליד "Ran commands" תוך כדי העבודה, לא רק בסוף. זה נותן לכם חלון הצצה אמיתי לאילו כלים המערכת בחרה להפעיל ובאיזה סדר - ואם משהו נראה לא הגיוני, אפשר להתערב מיד במקום לגלות את זה רק בתוצר המוגמר.</p></div>
+  <h3 class="h2">עכשיו אתם: המשימה הראשונה שלכם, בלי שום סיכון</h3>
+  <p>ראיתם איך זה עובד - עכשיו שווה להרגיש את זה בידיים, על משימה שאין בה שום חומר אמיתי. פתחו שיחת Work חדשה, הדביקו את הבקשה הבאה כמות שהיא, ושלחו:</p>
+  <div class="copy-block"><div class="copy-heading"><strong>להעתקה - משימת התרגול הראשונה</strong><button class="copy-button" data-copy-target="copy-g1" type="button">העתקה בלחיצה</button></div><div class="copy-body" id="copy-g1">צור מסמך קצר בשם "רשימת בדיקה לפגישת לקוח ראשונה" ובו עשרה סעיפים ממוספרים, כל סעיף בשורה אחת עם כותרת מודגשת. בסוף המסמך הוסף שורת הערה: "טיוטה לתרגול - לא לשימוש מול לקוח". עצב נקי ומסודר.</div><span class="copy-status" aria-live="polite" aria-atomic="true"></span></div>
+  <p><b>איך יודעים שהצלחתם:</b> החיווי התחלף מ-"...Working for" ל-"...Worked for", מתחתיו הופיע כרטיס קובץ, ולחיצה עליו פותחת מסמך עם עשרה סעיפים ושורת ההערה בסוף. לקח כמה דקות? זה בדיוק הקצב הנורמלי שראיתם למעלה.</p> <p><b>רוצים להמשיך לתרגל?</b> <a href="chatgpt-work-practice.html">דף התרגול המלא</a> - שישה תרגילים מודרכים, כולם על חומר מומצא.</p>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s5">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">יצירת מסמכים, גיליונות ומצגות</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>ההדגמה בפרק הקודם הראתה מסמך טקסט פשוט, אבל אותו עיקרון עובד גם למצגות וגיליונות - ואפשר גם לצאת מנקודת התחלה חכמה בהרבה: קובץ קיים שמשמש כתבנית, כמו תבנית חוזה קבועה של המשרד.</p>
+  <p>אם יש לכם כבר טיוטת הסכם, חוות דעת או דוח בעיצוב שאתם אוהבים, אפשר לצרף אותו לשיחה ולבקש מ-Work לבנות ממנו גרסה חדשה עם תוכן מעודכן, תוך שמירה קפדנית על אותו מבנה, מספור וניסוח קבוע.</p>
+  <p>לצורך ההדגמה שלפניכם שימשה תבנית מומצאת של מכתב התראה, עם שלושה שדות להחלפה: [שם הנמען], [תיאור החוב] והסכום. אלה שלושת השדות שתראו בצילומים הבאים.</p>
+  <ol class="steps"><li>פתחו שיחה חדשה (New chat) ובחרו במצב Work - חשוב: שיחה חדשה, לא המשך של השיחה שבה נוצרה התבנית (כך Work עובד רק עם הקובץ שצירפתם, בלי לגרור הנחות מהשיחה הקודמת).</li><li>כתבו בבירור מה אתם רוצים לקבל - חוות דעת, טיוטת הסכם, סיכום, ואיזה נושא.</li><li>אם יש לכם קובץ קיים, גררו אותו לתוך תיבת הכתיבה או צרפו אותו דרך כפתור ה-"+".</li><li>ציינו מפורשות מה חייב להישאר קבוע - למשל מבנה סעיפים, הגדרות, או נוסח קבוע.</li></ol>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>כשמצרפים קובץ קיים כתבנית, כדאי לבקש בפירוש "לשמור על המבנה והמספור ולהחליף רק את התוכן העובדתי".</p></div>
+  <h3 class="h2">ואיך מורידים קובץ ש-Work יצר?</h3>
+  <p>כדי להשתמש בקובץ שנוצר כתבנית - או פשוט לשמור אותו בתיק - פותחים את כרטיס הקובץ, ובסרגל העליון של חלון התצוגה לוחצים על חץ ההורדה:</p>
+  <figure class="shot" style="max-width:640px;">
+    <div class="shot-frame" style="aspect-ratio:1088/886;">
+      <img src="cw-06.png" alt="חלון תצוגת הקובץ שנוצר, עם חץ ההורדה בסרגל העליון." loading="lazy" />
+      <div class="mk" style="left:86.213%; top:5.869%; width:3.585%; height:4.289%;"><span class="mk-tag" style="top:-24px">1</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>כפתור החץ להורדת הקובץ - לחיצה עליו פותחת חלון שמירה.</span></li></ol>
+  </figure>
+  <figure class="shot" style="max-width:640px;">
+    <div class="shot-frame" style="aspect-ratio:935/582;">
+      <img src="cw-07.png" alt="חלון השמירה של Windows שנפתח מלחיצה על חץ ההורדה." loading="lazy" />
+      <div class="mk" style="left:14.439%; top:68.041%; width:85.348%; height:6.702%;"><span class="mk-tag" style="right:-28px; top:50%; transform:translateY(-50%)">1</span></div>
+      <div class="mk" style="left:72.299%; top:90.206%; width:12.941%; height:7.216%;"><span class="mk-tag" style="top:-24px">2</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>שם הקובץ - אפשר לשנות אותו כאן, לפני השמירה.</span></li><li><b>2</b><span>בוחרים באיזו תיקייה במחשב לשמור ולוחצים Save - הקובץ נשמר היכן שבחרתם, למשל בתיקיית התיק.</span></li></ol>
+  </figure>
+  <p>וכך זה נראה רגע לפני השליחה - <b>בשיחת Work חדשה</b> (לא בשיחה שבה נוצרה התבנית!), עם הקובץ מצורף והבקשה מנוסחת:</p>
+  <figure class="shot" style="max-width:640px;">
+    <div class="shot-frame" style="aspect-ratio:824/313;">
+      <img src="cw-08.png" alt="שיחת Work חדשה עם קובץ התבנית מצורף והבקשה מוכנה לשליחה." loading="lazy" />
+      <div class="mk" style="left:1.699%; top:30.032%; width:35.922%; height:29.393%;"><span class="mk-tag">1</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>קובץ התבנית מצורף ומופיע ככרטיס מעל הבקשה. שימו לב שהבקשה עצמה כוללת גם את רגע העצירה: "לפני שאתה יוצר את הקובץ הסופי, הצג לי רשימה של מה ששינית".</span></li></ol>
+  </figure>
+  <p>וכשהעבודה מגיעה לרגע האמת - Work עוצר, ומציג בדיוק מה הוא עומד לשנות:</p>
+  <figure class="shot" style="max-width:680px;">
+    <div class="shot-frame" style="aspect-ratio:985/310;">
+      <img src="cw-09.png" alt="רשימת השינויים המוצעים ש-Work מציג לאישור לפני יצירת הקובץ הסופי." loading="lazy" />
+      <div class="mk" style="left:32.487%; top:21.290%; width:63.959%; height:37.419%;"><span class="mk-tag">1</span></div>
+      <div class="mk" style="left:58.477%; top:74.194%; width:38.579%; height:10.323%;"><span class="mk-tag" style="right:auto; left:-28px; top:50%; transform:translateY(-50%)">2</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>כל שינוי מוצג במבנה של לפני ← אחרי - רואים בדיוק מה יוחלף בשדות, ומה יישאר כמות שהוא.</span></li><li><b>2</b><span>"אם מאושר, אצור ואבדוק את קובץ ה-Word הסופי" - הקובץ לא נוצר בלי מילה מפורשת שלכם. עונים "מאושר", ורק אז Work ממשיך.</span></li></ol>
+  </figure>
+  <p>זה בדיוק רגע העצירה שביקשנו בבקשה עצמה - והוא ההרגל החשוב ביותר בעבודה עם תבניות: אתם רואים את השינויים לפני שהם הופכים לקובץ, לא אחרי.</p>
+  <h3 class="h2">מה קורה אחרי שעונים "מאושר"? המסע עד הקובץ</h3>
+  <p>שווה לעקוב אחרי הדרך, לא רק אחרי התוצאה - כי כאן רואים איך Work חושב. מיד אחרי המילה "מאושר", הוא מציג את התוכנית שלו ומתחיל לעבוד:</p>
+  <figure class="shot" style="max-width:660px;">
+    <div class="shot-frame" style="aspect-ratio:945/400;">
+      <img src="cw-10.png" alt="מיד אחרי האישור: Work מציג את התוכנית ומפעיל כלים." loading="lazy" />
+      <div class="mk" style="left:90.159%; top:2.000%; width:8.677%; height:12.500%;"><span class="mk-tag">1</span></div>
+      <div class="mk" style="left:1.058%; top:42.500%; width:98.201%; height:14.500%;"><span class="mk-tag" style="top:-24px">2</span></div>
+      <div class="mk" style="left:1.058%; top:60.250%; width:17.143%; height:8.750%;"><span class="mk-tag">3</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>מילה אחת - "מאושר" - וזה כל מה שנדרש כדי לשחרר את העבודה להמשך.</span></li><li><b>2</b><span>Work חוזר על התוכנית במילים שלו: יחליף רק את שלושת השדות שאושרו, ויבדוק שלא חל שינוי במבנה. כך יודעים שהוא הבין נכון.</span></li><li><b>3</b><span>"Ran commands" - הוא באמת מפעיל כלים, לא רק כותב טקסט. לחיצה על החץ מציגה בדיוק אילו.</span></li></ol>
+  </figure>
+  <p>ובאמצע העבודה מתרחש הרגע שהופך את Work לעוזר שאפשר לסמוך עליו - הוא בודק את עצמו:</p>
+  <figure class="shot" style="max-width:660px;">
+    <div class="shot-frame" style="aspect-ratio:949/380;">
+      <img src="cw-11.png" alt="Work בודק את עצמו: השוואת המסמך רכיב מול רכיב לפני המסירה." loading="lazy" />
+      <div class="mk" style="left:1.581%; top:67.368%; width:25.606%; height:8.947%;"><span class="mk-tag" style="top:-24px">1</span></div>
+      <div class="mk" style="left:1.054%; top:80.526%; width:98.209%; height:15.263%;"><span class="mk-tag" style="top:-24px">2</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>"Edited files, ran commands" - העריכה בוצעה על עותק נפרד; קובץ המקור נשאר ללא שינוי.</span></li><li><b>2</b><span>בדיקה עצמית לפני מסירה: Work משווה את המסמך רכיב-מול-רכיב ומוודא שהמספור, הסגנונות וכל טקסט שלא אושר - נשמרו.</span></li></ol>
+  </figure>
+  <p>וכשהכל נבדק - מגיעה ההודעה המסכמת, עם הקובץ המוכן:</p>
+  <figure class="shot" style="max-width:660px;">
+    <div class="shot-frame" style="aspect-ratio:945/165;">
+      <img src="cw-12.png" alt="דיווח הסיום: מה הוחלף ומה נשמר, וקישור להורדת הקובץ." loading="lazy" />
+      <div class="mk" style="left:56.720%; top:65.455%; width:42.328%; height:18.182%;"><span class="mk-tag" style="right:auto; left:-28px; top:50%; transform:translateY(-50%)">1</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>קישור ההורדה של הקובץ המוגמר - לחיצה עליו פותחת את חלון התצוגה.</span></li></ol>
+  </figure>
+  <p>והנה התוצאה - אותו מכתב בדיוק, שבו הוחלפו רק שלושת השדות שאישרנו:</p>
+  <figure class="shot" style="max-width:680px;">
+    <div class="shot-frame" style="aspect-ratio:1093/986;">
+      <img src="cw-13.png" alt="המכתב המוגמר: שלושת השדות הוחלפו וכל שאר המבנה נשמר." loading="lazy" />
+      <div class="mk" style="left:70.906%; top:39.554%; width:15.096%; height:3.043%;"><span class="mk-tag" style="right:auto; left:-28px; top:50%; transform:translateY(-50%)">1</span></div>
+      <div class="mk" style="left:51.235%; top:51.014%; width:34.767%; height:2.941%;"><span class="mk-tag" style="right:auto; left:-28px; top:50%; transform:translateY(-50%)">2</span></div>
+      <div class="mk" style="left:20.311%; top:55.477%; width:68.253%; height:5.375%;"><span class="mk-tag" style="right:auto; left:-28px; top:50%; transform:translateY(-50%)">3</span></div>
+      <div class="mk" style="left:85.819%; top:5.680%; width:3.660%; height:4.462%;"><span class="mk-tag">4</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>שם הנמען החדש - במקום השדה [שם הנמען] שבתבנית.</span></li><li><b>2</b><span>תיאור החוב שהוזן - במקום [תיאור החוב].</span></li><li><b>3</b><span>הסכום עודכן ל-12,000 ש"ח - וכל שאר הסעיף, המספור והניסוח נשארו בדיוק כפי שהיו.</span></li><li><b>4</b><span>וחץ ההורדה - פותח שוב את חלון השמירה שהכרתם למעלה, ושומרים את המכתב החדש ליד התבנית.</span></li></ol>
+  </figure>
+  <p>כשמחוברת אפליקציית Google Workspace, מצב Work יכול ליצור ולערוך גם Google Docs, Sheets ו-Slides ישירות.</p>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>כדאי לדעת שהתמיכה עדיין לא אחידה בין כל סוגי הקבצים: עריכה ישירה בתוך מצגת PowerPoint קיימת עדיין לא נתמכת בזרימת העבודה הרגילה של Work בדסקטופ. גם עדכון של קובץ Excel שכבר פתוח לא נתמך ישירות דרך Work בשלב זה - יש לבדוק את התוסף הייעודי ChatGPT for Excel כפתרון חלופי.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s6">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">חיבור לאפליקציות שלכם דרך Plugins</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>כדי ש-Work יוכל לשלוף מידע אמיתי מהעולם שלכם - ולא רק מה שכתוב בשיחה - צריך לחבר אותו לאפליקציות שאתם כבר עובדים איתן, דרך ספריית Plugins.</p>
+  <p>נדגים על החיבור החשוב ביותר למשרד - היומן. רוב המשרדים בישראל חיים על Microsoft 365, ולכן נחבר כאן את <b>Outlook Calendar</b>; אותם צעדים בדיוק עובדים לכל אפליקציה אחרת בספרייה.</p>
+  <ol class="steps"><li>בתפריט הצד לחצו על Plugins.</li><li>בחיפוש שבראש העמוד הקלידו <b>Microsoft 365</b> - ויופיעו כל האפליקציות הרשמיות של Microsoft, ובהן <b>Outlook Calendar</b> ליומן ו-<b>Outlook Email</b> למייל. (חיפוש "Outlook" יצמצם לשתיים האלה בלבד.)</li><li>לחצו על Install ליד Outlook Calendar.</li><li>במסך ההיכרות שייפתח לחצו Continue והתחברו עם חשבון ה-Microsoft שלכם - מיד נראה בדיוק מה קורה בשלב הזה, לפי סוג החשבון שלכם.</li></ol>
+  
+  <p>וכך נראית הספרייה, וכך נראה דף הפלאגין עצמו:</p>
+  <figure class="shot" style="max-width:620px;">
+    <div class="shot-frame" style="aspect-ratio:1024/542;">
+      <img src="cw-14.png" alt="ספריית ה-Plugins עם חיפוש Microsoft 365, ובה חמשת הפלאגינים של Microsoft." loading="lazy" />
+      <div class="mk" style="left:69.824%; top:27.122%; width:27.539%; height:5.720%;"><span class="mk-tag">1</span></div><div class="mk" style="left:52.441%; top:57.196%; width:44.238%; height:9.779%;"><span class="mk-tag">2</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>שדה החיפוש. חיפוש <strong>Microsoft 365</strong> מציג את כל המשפחה בבת אחת; חיפוש <strong>Outlook</strong> יצמצם ליומן ולמייל בלבד.</span></li><li><b>2</b><span><strong>Outlook Calendar</strong> - היומן, וזה מה שנחבר כאן. לצידו <strong>Outlook Email</strong>, ומתחת <strong>Teams</strong>, <strong>SharePoint</strong> ו-<strong>Microsoft Dataverse</strong> - כולם רשמיים.</span></li></ol>
+  </figure>
+  <figure class="shot" style="max-width:600px;">
+    <div class="shot-frame" style="aspect-ratio:993/855;">
+      <img src="cw-15.png" alt="דף הפלאגין Outlook Calendar, ובו תיאור היכולות והכפתור Install plugin." loading="lazy" />
+      <div class="mk" style="left:81.772%; top:18.129%; width:15.710%; height:6.550%;"><span class="mk-tag">1</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span><strong>Install plugin</strong> - וזה כל מה שצריך ללחוץ. שימו לב שהדף מראה לכם מראש את צורת הפנייה: <strong>@Outlook Calendar</strong> ואחריה בקשה בשפה חופשית.</span></li></ol>
+  </figure>
+  <p>וכך זה נראה על המסך, צעד אחרי צעד. לחיצה על Install פותחת קודם כל מסך היכרות של ChatGPT - שקיפות מלאה לפני שמתחברים:</p>
+  <figure class="shot" style="max-width:460px;">
+    <div class="shot-frame" style="aspect-ratio:580/630;">
+      <img src="cw-16.png" alt="מסך ההיכרות של ChatGPT לפני חיבור Outlook Calendar." loading="lazy" />
+      <div class="mk" style="left:3.103%; top:33.651%; width:93.793%; height:52.381%;"><span class="mk-tag">1</span></div><div class="mk" style="left:2.414%; top:88.254%; width:95.172%; height:9.841%;"><span class="mk-tag">2</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>מסך ההיכרות לפני החיבור: ChatGPT מוגבל להרשאות שאישרתם, אתם בשליטה ואפשר לנתק בכל רגע - לצד תזכורת גלויה שחיבורים חיצוניים דורשים זהירות.</span></li><li><b>2</b><span>Continue to Outlook Calendar - ממשיכים להתחברות עם חשבון Microsoft.</span></li></ol>
+  </figure>
+  <p>ומכאן ממשיכים להתחברות עם חשבון <b>Microsoft</b> - בדיוק כמו בכל התחברות אחרת: בוחרים את החשבון, מקלידים את הסיסמה, וממשיכים.</p>
+  <figure class="shot" style="max-width:430px;">
+    <div class="shot-frame" style="aspect-ratio:539/419;">
+      <img src="cw-17.png" alt="מסך ההתחברות של Microsoft: הזנת הסיסמה לחשבון." loading="lazy" />
+      <div class="mk" style="left:8.534%; top:47.255%; width:83.488%; height:11.456%;"><span class="mk-tag">1</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>שדה הסיסמה. זה כל מה שנדרש בשלב הזה - החשבון מזוהה, מקלידים את הסיסמה וממשיכים. <strong>פעם אחת, ולא שוב.</strong></span></li></ol>
+  </figure>
+  <p class="small" style="color:var(--ink-faint)">אם החשבון שלכם מנוהל על ידי הארגון, ייתכן שתידרש פעם אחת הסכמה של מי שמנהל אותו - היא מגיעה במייל, ומשם ממשיכים בדיוק מאותה נקודה.</p>
+  <h3 class="h2">ואיך משתמשים בחיבור בתוך שיחה?</h3>
+  <p>אחרי שהחיבור אושר, אין צורך לבחור את האפליקציה בכל פעם מחדש: כותבים בשיחת Work את הסימן @ ואחריו שם האפליקציה - למשל @Outlook Calendar - ומבקשים כרגיל: "מה יש לי ביומן מחר?". אפשר גם פשוט לנסח את הבקשה, ולתת ל-Work לבחור לבד באיזה חיבור להשתמש.</p>
+  <p>ומכאן אין צורך לחפש אותו שוב. בשיחת Work מקלידים <b>@</b>, והאפליקציות המחוברות מופיעות ברשימה:</p>
+  <figure class="shot" style="max-width:620px;">
+    <div class="shot-frame" style="aspect-ratio:975/590;">
+      <img src="cw-18.png" alt="הרשימה שנפתחת בהקלדת @ בשיחת Work, ובה Outlook Calendar מחובר." loading="lazy" />
+      <div class="mk" style="left:2.359%; top:79.153%; width:41.949%; height:5.424%;"><span class="mk-tag">1</span></div><div class="mk" style="left:89.744%; top:87.119%; width:7.795%; height:4.407%;"><span class="mk-tag">2</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span><strong>Outlook Calendar</strong> ברשימה - כלומר הוא מחובר ומוכן לשימוש. בוחרים אותו וממשיכים לכתוב.</span></li><li><b>2</b><span>ולהשוואה: לצד אפליקציה שעוד לא חוברה מופיעה המילה <strong>Connect</strong>. <strong>כך תמיד אפשר לראות במסך אחד מה מחובר ומה לא.</strong></span></li></ol>
+  </figure>
+  <p>וכך זה נראה בפועל. זו הפנייה:</p>
+  <figure class="shot" style="max-width:640px;">
+    <div class="shot-frame" style="aspect-ratio:981/261;">
+      <img src="cw-19.png" alt="תיבת הכתיבה בשיחת Work, ובה הפנייה @Outlook Calendar והשאלה על היומן." loading="lazy" />
+      <div class="mk" style="left:76.758%; top:46.743%; width:20.489%; height:13.793%;"><span class="mk-tag">1</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>אחרי הבחירה, שם הפלאגין נשאר בתחילת השורה - בצד ימין - וזה הסימן שהבקשה תופנה אליו. <strong>אל תמחקו אותו:</strong> פשוט ממשיכים לכתוב את השאלה אחריו, בשפה רגילה, ושולחים.</span></li></ol>
+  </figure>
+  <p>וזו התשובה שחזרה מהיומן - על יומן שכל האירועים בו מומצאים ומסומנים "תרגול", כדי שנוכל להראות אותו כאן במלואו:</p>
+  <figure class="shot" style="max-width:760px;">
+    <div class="shot-frame" style="aspect-ratio:1015/708;">
+      <img src="cw-20.png" alt="התשובה מהיומן: ארבעת האירועים של השבוע, החלונות הפנויים בכל יום, וההמלצה." loading="lazy" />
+      <div class="mk" style="left:33.498%; top:27.401%; width:64.039%; height:24.011%;"><span class="mk-tag">1</span></div><div class="mk" style="left:24.138%; top:52.542%; width:73.399%; height:33.192%;"><span class="mk-tag">2</span></div><div class="mk" style="left:40.591%; top:86.723%; width:56.946%; height:4.944%;"><span class="mk-tag">3</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>הוא קרא את היומן האמיתי והציג את ארבעת האירועים עם התאריכים והשעות - <strong>וגם שם לב שכולם מסומנים "תרגול"</strong>.</span></li><li><b>2</b><span>ואז חישב: מול שעות העבודה שמוגדרות בחשבון (08:00-17:00) הוא מפרט את החלונות הפנויים בכל יום, ומציין ששישי ושבת אינם ימי עבודה.</span></li><li><b>3</b><span><strong>וההמלצה שלו:</strong> "החלון הנוח והנקי ביותר בעיניי: יום שלישי, 25.8, בשעה 10:00-11:00". זו התשובה שעורך דין באמת רוצה - לא רשימה, אלא הכרעה.</span></li></ol>
+  </figure>
+  
+  <p>עדכון מאוגוסט 2026: במחשבי Mac מהדורות האחרונים (שבבי Apple Silicon) נוספה תמיכה גם ב-Apple Messages.</p>
+  <div class="callout warn"><span class="callout-label">זמינות לפי פלטפורמה</span><p>Plugins זמינה בשיחות Work בדפדפן (ווב) ובאפליקציית המחשב - אך לא באפליקציית המובייל בשלב זה. אם אתם על הטלפון, תצטרכו לעבור למחשב כדי לחבר אפליקציה חדשה או לגשת לספרייה עצמה; שיחה שכבר מחוברת ממשיכה לעבוד כרגיל.</p></div>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>אם אתם לא בטוחים אילו אפליקציות שווה לחבר קודם, תתחילו מהכלים שבהם אתם כבר שומרים את רוב המידע העדכני שלכם - יומן, מייל, ותוכנת התקשורת הפנים-משרדית.</p></div>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>ככלל אצבע: פעולה שרק שולפת מידע קיים בדרך כלל לא תעצור אתכם באמצע. אבל ברגע שהפעולה משנה משהו בעולם האמיתי - לשלוח הודעה, למחוק שורה, לפרסם תוכן - כמעט תמיד ייעצר התהליך ויחכה לאישור מפורש שלכם.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s7">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title">משימות מתוזמנות שרצות לבד</h2>
+    </div>
+    <div class="sec-body">
+
+  <p>לא כל שימוש ב-Work צריך להתחיל בכם. אפשר להגדיר משימה שתרוץ פעם אחת בזמן שתבחרו, שתחזור על עצמה לפי לוח זמנים קבוע, או שפשוט תעקוב אחרי משהו ותדווח רק כשבאמת יש חדש לדווח.</p>
+  <h3 class="h2">איך יוצרים משימה: מבקשים אותה בשיחה, במילים שלכם</h3>
+  <p>אין כאן טופס ואין תפריט נסתר. פותחים שיחת Work חדשה וכותבים בשפה חופשית מה לעשות ומתי - כך:</p>
+  <figure class="shot" style="max-width:660px;">
+    <div class="shot-frame" style="aspect-ratio:829/221;">
+      <img src="cw-21.png" alt="בקשה ליצירת משימה מתוזמנת, כתובה בשפה חופשית בתיבת הכתיבה." loading="lazy" />
+      <div class="mk" style="left:5.790%; top:47.059%; width:92.883%; height:25.339%;"><span class="mk-tag">1</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>הבקשה כולה במשפט אחד: מה להכין, שהמשימה חד-פעמית, ומתי לרוץ. לא צריך שום טופס - ChatGPT יבנה מזה את המשימה בעצמו.</span></li></ol>
+  </figure>
+  <p>שולחים - ו-ChatGPT מתרגם את המשפט הזה למשימה מתוזמנת אמיתית. הוא עונה בהודעה קצרה, ומצרף אליה כרטיס משימה:</p>
+  <figure class="shot" style="max-width:680px;">
+    <div class="shot-frame" style="aspect-ratio:988/220;">
+      <img src="cw-22.png" alt="תשובת ChatGPT: הודעת אישור וכרטיס משימה עם כפתור Open." loading="lazy" />
+      <div class="mk" style="left:5.769%; top:10.909%; width:90.385%; height:15.000%;"><span class="mk-tag" style="top:-24px">1</span></div>
+      <div class="mk" style="left:2.834%; top:33.636%; width:95.142%; height:36.364%;"><span class="mk-tag">2</span></div>
+      <div class="mk" style="left:4.251%; top:44.545%; width:7.085%; height:20.000%;"><span class="mk-tag" style="top:-24px">3</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>ChatGPT מאשר שהמשימה נוצרה בדיוק כפי שביקשנו - חד-פעמית, ל-20:36 - ומזכיר שנשאר צעד אחד: לאשר את הכרטיס.</span></li><li><b>2</b><span>כרטיס המשימה שנוצר בתוך השיחה, עם שם שנגזר מהבקשה ותיאור תדירות מקוצר.</span></li><li><b>3</b><span>כפתור Open - פותח את חלונית הפרטים של המשימה, שבה בודקים ומאשרים הכל.</span></li></ol>
+  </figure>
+  <p>לחיצה על Open פותחת את החלק החשוב באמת - חלונית הפרטים. כל מה ש-ChatGPT הבין מהבקשה שלכם פרוש כאן בשדות ברורים, וכל שדה אפשר לתקן לפני שמאשרים:</p>
+  <figure class="shot" style="max-width:700px;">
+    <div class="shot-frame" style="aspect-ratio:1107/606;">
+      <img src="cw-23.png" alt="חלונית הפרטים של המשימה: ההוראה, בלוק Details ובלוק Frequency." loading="lazy" />
+      <div class="mk" style="left:2.168%; top:18.812%; width:95.935%; height:17.822%;"><span class="mk-tag">1</span></div>
+      <div class="mk" style="left:2.168%; top:46.370%; width:95.935%; height:19.307%;"><span class="mk-tag">2</span></div>
+      <div class="mk" style="left:2.168%; top:75.908%; width:95.935%; height:20.132%;"><span class="mk-tag" style="right:auto; left:-28px; top:50%; transform:translateY(-50%)">3</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>ההוראה שתרוץ בכל הפעלה, כפי ש-ChatGPT ניסח אותה מהבקשה שלנו. זהו שדה שאפשר לערוך - מה שכתוב כאן הוא מה שיקרה בפועל.</span></li><li><b>2</b><span>בלוק Details - איפה התוצאות יופיעו: Existing chat פירושו שהתוצר יגיע לאותה שיחה שממנה יצרנו את המשימה.</span></li><li><b>3</b><span>בלוק Frequency - התדירות הקובעת (כאן Custom, מותאמת לזמן שביקשנו) והגדרת ההתראות: Important updates אומר שתקבלו הודעה רק כשיש משהו ששווה לראות.</span></li></ol>
+  </figure>
+  <div class="callout tip"><span class="callout-label">שימו לב לפרט קטן ומלמד</span><p>הכרטיס בשיחה כתב "Daily at 8:36 PM", אבל בחלונית הפרטים כתוב Repeat: Custom - וזו ההגדרה הנכונה (חד-פעמית, לזמן שביקשנו). תיאור הכרטיס הוא תקציר כללי שלפעמים מעגל פינות; את האמת בודקים תמיד בחלונית הפרטים, לפני שמאשרים.</p></div>
+  
+  <h3 class="h2">ואיפה רואים את כל המשימות יחד?</h3>
+  <p>עדכון מאוגוסט 2026: בגרסאות העדכניות של אפליקציית המחשב נוסף לתפריט הצד פריט <b>Scheduled</b> (לא רואים אותו? עדכנו את האפליקציה - הוא הגיע בעדכון):</p>
+  <figure class="shot" style="max-width:340px;">
+    <div class="shot-frame" style="aspect-ratio:366/265;">
+      <img src="cw-24.png" alt="תפריט הצד של האפליקציה עם הפריט Scheduled." loading="lazy" />
+      <div class="mk" style="left:2.186%; top:67.170%; width:95.628%; height:12.830%;"><span class="mk-tag">1</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>Scheduled בתפריט הצד - נוסף בעדכון מאוגוסט 2026. לחיצה אחת, ואתם במסך הניהול.</span></li></ol>
+  </figure>
+  <p>לחיצה עליו פותחת את מסך הניהול המרוכז של כל המשימות:</p>
+  <figure class="shot" style="max-width:520px;">
+    <div class="shot-frame" style="aspect-ratio:714/842;">
+      <img src="cw-25.png" alt="מסך Scheduled tasks: מסננים, רשימת המשימות והצעות מוכנות." loading="lazy" />
+      <div class="mk" style="left:3.361%; top:22.328%; width:26.891%; height:3.563%;"><span class="mk-tag" style="top:-24px">1</span></div><div class="mk" style="left:3.361%; top:28.029%; width:94.398%; height:27.791%;"><span class="mk-tag">2</span></div><div class="mk" style="left:3.361%; top:60.570%; width:94.398%; height:36.105%;"><span class="mk-tag">3</span></div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>המסננים All / Active / Paused - כל המשימות, הפעילות בלבד, או המושהות.</span></li><li><b>2</b><span>רשימת המשימות - לחיצה על שורה פותחת את חלונית הפרטים ואת היסטוריית ההרצות. (שמות המשימות כאן טושטשו.)</span></li><li><b>3</b><span>Suggestions - תבניות מוכנות מבית OpenAI, למשל תקציר בוקר יומי של היומן, המייל וסדרי העדיפויות.</span></li></ol>
+  </figure>
+  <p>ואותה רשימה בדיוק זמינה גם מכל דפדפן, בכתובת chatgpt.com/schedules - נוח כשעובדים ממחשב אחר או כשהאפליקציה סגורה:</p>
+  <figure class="shot" style="max-width:500px;">
+    <div class="shot-frame" style="aspect-ratio:832/582;">
+      <img src="cw-26.webp" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:7%; top:44.5%; width:78%; height:13.5%;">
+      <span class="mk-tag">1</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>כל שורה כאן היא משימה שרצה לבד - עם תיאור קצר של מה שהיא עושה ומתי.</span></li></ol>
+  </figure>
+  <p>מאותו עמוד אפשר גם להשהות, לערוך או למחוק כל משימה קיימת, ולפתוח כל שורה כדי לראות את היסטוריית ההרצות שלה. כשהרצה מסוימת מגלה משהו שדורש תשומת לב, מופיעה נקודת התראה קטנה ליד השורה שלה - כדי שלא תצטרכו לבדוק ידנית כל משימה בנפרד.</p>
+  <p>וכמה רעיונות למשימות ששוות הגדרה במשרד:</p>
+  <ul class="bullets"><li>לבדוק כל בוקר אם התפרסמו פסקי דין או חקיקה חדשים בתחום עיסוק מסוים, ולשלוח תמצית קצרה</li><li>להזכיר מראש מועדי הגשה והתיישנות קרובים, לפי רשימת התיקים הפתוחים</li><li>לרכז אחת לשבוע דוח שעות חיוב לפי לקוח, לקראת הפקת חשבוניות</li></ul>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>שלוש מגבלות שכדאי לדעת מראש: משימה בודדת לא יכולה לרוץ בתדירות גבוהה מפעם בשעה; מספר המשימות הפעילות בו-זמנית תלוי במסלול המנוי (למשל עד 3 בתוכנית Go, עד 5 ב-Plus, ועד 15 בתוכניות Pro, Business ו-Enterprise - נכון לאוגוסט 2026); ומשימה שתלויה בקבצים מקומיים על המחשב שלכם תרוץ רק אם המחשב דלוק והאפליקציה פתוחה באותו הרגע.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <h2 class="sec-title">אתרים אינטראקטיביים עם Sites (יכולת נלווית)</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>מעבר ליצירת קבצים, Work יכול גם להפוך רעיון או מאגר נתונים לאתר אינטרנט חי, שרץ בתוך ChatGPT ואפשר לשתף בקישור. זו יכולת נלווית ומרשימה להדגמה - אך פחות מרכזית לעבודה משפטית שוטפת, ועדיין עם מגבלות שכדאי להכיר.</p>
+  
+  <figure class="shot" style="max-width:640px;">
+    <div class="shot-frame" style="aspect-ratio:1917/1036;">
+      <img src="cw-27.webp" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:19.3%; top:1.6%; width:25.2%; height:5.2%;">
+      <span class="mk-tag">1</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>אחד מעמודי האתר שנוצרו (עמוד "אודות עורך הדין") - עם תפריט ניווט מלא בעברית מיושרת מימין לשמאל, וטקסט וביוגרפיה שנכתבו אוטומטית.</span></li></ol>
+  </figure>
+  <p>בקצרה, כך זה עובד: פותחים שיחת Work, לוחצים על Sites בתפריט הצד, ומתארים בפירוט את האתר הרצוי. בסיום מופיע קישור לשיתוף.</p>
+  
+  <figure class="shot" style="max-width:620px;">
+    <div class="shot-frame" style="aspect-ratio:895/532;">
+      <img src="cw-28.webp" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:3.9%; top:19%; width:92.5%; height:70%;">
+      <span class="mk-tag">1</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>הבקשה המלאה שהוזנה בפועל כדי לבנות את האתר שמופיע למעלה - כולל תיאור העורך דין, תחומי העיסוק, ומה חייב להיות בכל עמוד.</span></li></ol>
+  </figure>
+  <p>שימו לב לכמה דברים בבקשה הזו שהופכים אותה לאפקטיבית: היא לא מסתפקת ב"בנה לי אתר למשרד עורכי דין" - היא מגדירה מראש מי קהל היעד (לקוחות פרטיים ועסקיים בתחום המקרקעין), אילו עמודים חייבים להיות, ואפילו את הטון הרצוי ("מקצועי, בגוני כחול-אפור"). ככל שהבקשה הראשונית מפורטת יותר, כך פחות סבבי עריכה נדרשים אחר כך.</p>
+  <div class="callout warn"><span class="callout-label">זמינות לפי תוכנית</span><p>Sites יצא בגרסת בטא ציבורית ואינו כלול בתוכניות Free ו-Go - נדרשת תוכנית Plus ומעלה. גם בתוך התוכניות הזכאיות, ההשקה מדורגת: משתמשי Pro, Pro Lite ו-Edu קיבלו אותו ראשונים, ומשתמשי Plus מקבלים גישה בהדרגה אחריהם (נכון לאוגוסט 2026 הפריסה ל-Plus עדיין בעיצומה). עדכון מאוגוסט 2026: בעלי Site בתוכניות Plus ו-Pro יכולים כעת לשנות את הכתובת של Site קיים בלי לפרוס אותו מחדש, והכתובת הישנה מפנה אוטומטית לחדשה.</p></div>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>לשימוש מקצועי אמיתי - כמו אתר רשמי למשרד - כדאי להיזהר בשלב הזה: תמונות ה"אנשים" שהמערכת מייצרת הן דמויות מלאכותיות שלא קיימות, וזה לא מתאים להצגה כלפי לקוחות. Sites גם עדיין בגרסת בטא, עם מגבלות עיצוב. שימושי בעיקר להדגמות פנימיות, לוחות בקרה או אבות-טיפוס - לא כתחליף לאתר רשמי בנוי כהלכה.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s9">
+    <div class="sec-head">
+      <span class="sec-num">09</span>
+      <h2 class="sec-title">עבודה עם קבצים מקומיים, דפדפן מובנה ו-Computer Use</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>שלוש היכולות הבאות זמינות אך ורק באפליקציית המחשב - כי הן דורשות גישה ישירה למערכת ההפעלה שלכם.</p>
+  <h3 class="h2">קבצים מקומיים</h3>
+  <p>הגישה לקבצים לא עובדת דרך חלון הרשאה חד-פעמי לכל המחשב. במקום זה, פותחים תיקיית עבודה ספציפית - פרויקט או תיקייה מוגדרת - ושולטים בכל פעולה דרך פקד הרשאות שנמצא מתחת לתיבת הכתיבה. חשוב להבין: התיקייה שתבחרו היא הגבול. אם, למשל, תבחרו לפתוח את תיקיית ה-Desktop עצמה, Work יראה את כל מה שיושב בתוכה ישירות - בדיוק כמו כל תיקייה אחרת - אבל זה עדיין לא שקול לגישה לכל המחשב; קבצים שיושבים בתיקיות אחרות (המסמכים, ההורדות וכו') יישארו מחוץ לטווח, אלא אם תפתחו גם אותן במפורש.</p>
+  <ol class="steps"><li>באפליקציית המחשב, במצב Work, הדרך הפשוטה ביותר: גוררים את התיקייה (או את הקבצים) מסייר הקבצים ישירות לתוך תיבת השיחה. אפשר גם דרך כפתור ה-"+" שליד תיבת הכתיבה, שמציע לצרף קבצים ותיקיות.</li><li>מתחת לתיבת הכתיבה, ודאו שפקד ההרשאות מוגדר על Ask for approval.</li><li>במצב הזה, Work קורא אך ורק מתוך התיקייה שפתחתם, ועוצר לבקש אישור לפני כל כתיבה או מחיקה.</li></ol>
+  
+  <figure class="shot" style="max-width:720px;">
+    <div class="shot-frame" style="aspect-ratio:1152/720;">
+      <img src="cw-29.png" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:6.5%; top:14.5%; width:20%; height:11%;">
+      <span class="mk-tag">1</span>
+    </div>
+    <div class="mk" style="left:10.5%; top:36%; width:35%; height:18.5%;">
+      <span class="mk-tag">2</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>תיקיית עבודה מחוברת - Work רואה רק אותה, לא את כל המחשב.</span></li><li><b>2</b><span>"Ask for approval" מסומן: כל עריכת קובץ או שימוש באינטרנט דורשים אישור.</span></li></ol>
+  </figure>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>למי שרק מתחיל להכיר את הכלי, מומלץ להישאר על Ask for approval כברירת מחדל - חשוב שבעתיים כשעובדים עם תיקי לקוחות.</p></div>
+  <h3 class="h2">דפדפן מובנה</h3>
+  <p>בתוך אפליקציית המחשב יש דפדפן שלם, שמאפשר ל-Work לגלוש ולבצע פעולות בעמודים בשמכם - אחרי אישורכם. יש גם מצב הערה ייעודי (Annotation) לסימון אזור בעמוד.</p>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>אם אתם מעדיפים להישאר בדפדפן הרגיל שלכם, OpenAI עדכנה גם את תוסף ה-Chrome של ChatGPT כך שאפשר להפעיל אותו ישירות מסרגל הצד.</p></div>
+  <h3 class="h2">Computer Use - שליטה באפליקציות אחרות במחשב</h3>
+  <p>היכולת המתקדמת ביותר מאפשרת ל-Work להפעיל בעצמו אפליקציות אחרות שמותקנות אצלכם - לא רק את הדפדפן המובנה. זו יכולת נפרדת מ"קבצים מקומיים" שמעליה, והיא כבויה כברירת מחדל - צריך להפעיל אותה במפורש לפני שאפשר להשתמש בה.</p>
+  <ol class="steps"><li>באפליקציית המחשב, במצב Work (או במצב Codex), לחצו על Plugins בתפריט הצד.</li><li>אתרו את הכלי Computer Use ברשימה, ולחצו על Install אם הוא עוד לא מותקן אצלכם.</li><li>בעמוד שנפתח אחרי ההתקנה יש שני מתגים - אחד ראשי ואחד של היכולת עצמה. הפעילו את שניהם.</li><li>לחצו על Try now כדי לפתוח שיחה עם היכולת פעילה.</li><li>בהגדרות, תחת Settings ואז Computer Use, אפשר לחזור בכל שלב ולבדוק לאילו אפליקציות כבר יש גישה מאושרת.</li><li>במק בלבד: כשתופיע בקשת מערכת ההפעלה, אשרו הרשאות Screen Recording ו-Accessibility - בלעדיהן היכולת לא תוכל לראות או לתפעל אפליקציות אחרות.</li></ol>
+  
+  <figure class="shot" style="max-width:620px;">
+    <div class="shot-frame" style="aspect-ratio:1007/661;">
+      <img src="cw-30.png" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:78.5%; top:13.5%; width:17.5%; height:10.5%;">
+      <span class="mk-tag">1</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>כפתור ה-Install plugin - כאן מתחיל תהליך ההפעלה. שימו לב לדוגמאות המובנות שמוצעות מתחת, כמו "Open Notepad and turn these bullets into a clean draft" - בדיוק סוג הבקשה שמדגימה איך לכתוב פנייה ליכולת הזו.</span></li></ol>
+  </figure>
+  <p>כדי להתחיל משימה בפועל, מזכירים בבקשה את @Computer או את שם האפליקציה הספציפית עם @ (למשל @Word), ומתארים מה בדיוק צריך לקרות באותה אפליקציה.</p>
+  <p>בפעם הראשונה שהיא נוגעת באפליקציה מסוימת, תופיע בקשת אישור עם שלוש אפשרויות: "Always allow" (לזכור להבא), "Allow this conversation" (חד-פעמי) או "Deny". אין כאן מתג יחיד של "תן גישה לכל שולחן העבודה" - האישור הוא תמיד לפי אפליקציה בודדת, אחת בכל פעם.</p>
+  
+  <figure class="shot" style="max-width:460px;">
+    <div class="shot-frame" style="aspect-ratio:800/170;">
+      <img src="cw-31.png" alt="" loading="lazy" />
+      
+    </div>
+    
+  </figure>
+  <p>זו בדיוק החלונית שממחישה את הנקודה: הבקשה היא "האם לאפשר ל-ChatGPT להשתמש ב-Notepad" - לא "האם לאפשר גישה למחשב". כל אפליקציה נוספת שהיא תרצה לגעת בה תבקש אישור דומה משלה.</p>
+  <div class="callout warn"><span class="callout-label">דיוק חשוב</span><p>בניגוד למה שאפשר לחשוב, Computer Use זמינה גם ב-Windows וגם ב-Mac - לא רק בווינדוס. יש הבדל מעשי בין המערכות: ב-Windows היא פועלת רק על שולחן העבודה הפעיל בחזית, כך שלא ניתן להמשיך לעבוד על המחשב באותו זמן שהיא רצה. בכל שלב אפשר לעצור פעולה באמצע, והמערכת שומרת תיעוד חזותי של מה שקרה על המסך תוך כדי העבודה. היא גם לא יכולה לאשר הרשאות מנהל (admin) בעצמה או לעקוף בקשות אבטחה - שם תמיד תידרש פעולה ידנית שלכם.</p></div>
+  <div class="callout warn"><span class="callout-label">חובת סודיות</span><p>נקודה חשובה במיוחד למשרד עורכי דין: קובץ שיושב רק על המחשב שלכם לא "בורח" משם מעצמו - הוא יוצא רק אם אתם, במפורש, מבקשים לשלוח או לשתף אותו. חשוב לדייק: "לא בורח" מדבר על שיתוף עם גורמים חיצוניים - אבל עצם זה ש-Work קורא ומעבד קובץ מעביר את תוכנו לשרתי OpenAI, ולכן על חומר לקוחות חלות דרישות המנוי שבפרק 15. לפני שמחברים תיקיית לקוח לכלי חיצוני, ודאו שזה תואם את חובת הסודיות והכללים האתיים הרלוונטיים.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s10">
+    <div class="sec-head">
+      <span class="sec-num">10</span>
+      <h2 class="sec-title">בחירת מודל ורמת מאמץ - משפחת GPT-5.6</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>מצב Work מופעל על ידי משפחת המודלים GPT-5.6, שתוכננה במיוחד להתמודד עם משימות ארוכות ומרובות-שלבים, שימוש בכלים חיצוניים, וגלישה באינטרנט.</p>
+  <ul class="bullets"><li><b>Sol</b> - המודל החזק ביותר במשפחה, מיועד למשימות מורכבות שבהן הדיוק חשוב יותר מהמהירות.</li><li><b>Terra</b> - איזון בין ביצועים לעלות, מתאים לשימוש היומיומי השוטף.</li><li><b>Luna</b> - המודל המהיר והחסכוני ביותר, למשימות פשוטות.</li></ul>
+  
+  <figure class="shot" style="max-width:420px;">
+    <div class="shot-frame" style="aspect-ratio:642/335;">
+      <img src="cw-32.webp" alt="" loading="lazy" />
+      
+    <div class="mk" style="left:42%; top:35.5%; width:57%; height:62.5%;">
+      <span class="mk-tag" style="right:auto;left:-11px;">1</span>
+    </div>
+    </div>
+    <ol class="shot-legend"><li><b>1</b><span>רשימת הדגמים: Sol, Terra, Luna וגם הגרסה הקודמת 5.5, לצד קביעת רמת מאמץ ומהירות.</span></li></ol>
+  </figure>
+  <ol class="steps"><li>פתחו שיחת Work.</li><li>לחצו על שם המודל המוצג בראש השיחה או ליד תיבת הכתיבה.</li><li>בחרו את הדגם המתאים למשימה.</li><li>את רמת המאמץ קובעים באותו תפריט, בעזרת הסליידר שנע בין "Faster" (מהיר יותר) ל-"Smarter" (מעמיק יותר) - זה פקד אחד, לא שניים.</li></ol>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>ככל שרמת המאמץ גבוהה יותר, כך התוצאה מדויקת יותר - אך גם צורכת יותר מהמכסה שלכם. למשימה משפטית מהותית עדיף לבחור מאמץ גבוה; למשימות שגרתיות מספיקה ברירת המחדל.</p></div>
+  <p>כדי להמחיש את הפער בין הדגמים: לפי מבחני היכולת הרשמיים ש-OpenAI פרסמה, Sol משיג תוצאות מובילות בתחומן - כ-92% הצלחה במבחן BrowseComp שבודק מחקר עצמאי ומורכב ברשת, וכ-63% במבחן OSWorld 2.0 שבודק ביצוע משימות עצמאי במחשב.</p>
+  <div class="callout warn"><span class="callout-label">מגבלת מנוי</span><p>הבחירה בין שלושת הדגמים לא פתוחה לכולם: משתמשי Free ו-Go מקבלים במצב Work רק את Terra, בלי אפשרות לבחור - הבורר שמוצג באיור למעלה מופיע רק במנויים Plus, Pro, Business, Enterprise ו-Edu.</p></div>
+  <p>מעבר לבחירת דגם, יש עוד שתי רמות מאמץ מיוחדות: <b>Max</b> נותן לאותו דגם יותר זמן לחשוב על משימה בודדת, וזמין לכל מי שיש לו גישה ל-GPT-5.6 במצב Work. <b>Ultra</b> עובד אחרת לגמרי - הוא מפצל את המשימה בין כמה תת-סוכנים שעובדים במקביל ומאחד את התוצאות שלהם, ולכן הוא שמור כרגע רק למנויי Pro ו-Enterprise. את שתי הרמות האלה, במסלולים שבהם הן זמינות, בוחרים מאותו תפריט דגמים שהכרתם למעלה.</p>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s11">
+    <div class="sec-head">
+      <span class="sec-num">11</span>
+      <h2 class="sec-title">מה זמין איפה: ווב, מובייל ואפליקציית מחשב</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>במקום לזכור טבלה של יכולות, הכי פשוט לחשוב על זה לפי המכשיר שבו אתם נמצאים כרגע - מה הוא כן נותן לכם, ומה הוא לא.</p>
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="pc-head"><span class="pc-dot"></span><h4>דפדפן (ווב)</h4></div>
+      <p class="pc-sub">chatgpt.com מכל מחשב</p>
+      <ul>
+        <li><span class="ico yes">✓</span><span>עבודת Work המלאה בענן</span></li>
+        <li><span class="ico no"> - </span><span>אין גישה ישירה לקבצים על המחשב - רק קבצים שמעלים ידנית</span></li>
+        <li><span class="ico part">~</span><span>דפדפן מובנה בענן בלבד, לא הדפדפן הרגיל שלכם</span></li>
+        <li><span class="ico yes">✓</span><span>ניהול מלא של משימות מתוזמנות</span></li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <div class="pc-head"><span class="pc-dot"></span><h4>מובייל</h4></div>
+      <p class="pc-sub">אפליקציית ChatGPT לטלפון</p>
+      <ul>
+        <li><span class="ico yes">✓</span><span>עבודת Work המלאה בענן</span></li>
+        <li><span class="ico no"> - </span><span>אין גישה ישירה לקבצים על הטלפון או המחשב</span></li>
+        <li><span class="ico part">~</span><span>דפדפן מובנה בענן בלבד</span></li>
+        <li><span class="ico yes">✓</span><span>ניהול מלא של משימות מתוזמנות, כולל התראות</span></li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <div class="pc-head"><span class="pc-dot"></span><h4>אפליקציית מחשב</h4></div>
+      <p class="pc-sub">macOS או Windows</p>
+      <ul>
+        <li><span class="ico yes">✓</span><span>עבודת Work בענן <b>וגם</b> שיחות מקומיות נפרדות (שיחה שנפתחה על תיקייה מהמחשב, כמו בפרק 09 - נשמרת אצלכם ולא בענן)</span></li>
+        <li><span class="ico yes">✓</span><span>קבצים מקומיים - לפי תיקייה שפתחתם ובאישורכם</span></li>
+        <li><span class="ico yes">✓</span><span>דפדפן מובנה מקומי, כולל לשוניות ומצב הערות, ו-Computer Use</span></li>
+        <li><span class="ico yes">✓</span><span>יצירת משימות בתוך שיחה, וניהול מרוכז מסרגל הצד (Scheduled)</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>נקודה שכדאי לתכנן סביבה מראש: כרגע קיים פער בין הענן לדסקטופ. שיחה שהתחלתם בווב תישאר שם ולא "תקפוץ" לבד לאפליקציית המחשב.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s12">
+    <div class="sec-head">
+      <span class="sec-num">12</span>
+      <h2 class="sec-title">איך כותבים בקשה שמביאה תוצאה טובה</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>איכות התוצאה בעבודה מול Work כמעט תמיד תלויה בכמות ההקשר שקיבל מראש, לא ביכולת של המודל עצמו. הדרך הכי ברורה להראות את זה היא דוגמה אחת - לפני ואחרי - מעולם ההסכמים.</p>
+  <h3 class="h2">בקשה שמשאירה יותר מדי לניחוש</h3>
+  <p>"תכין לי טיוטת הסכם שכירות למשרד."</p>
+  <p>בקשה כזו תחזיר משהו סביר על פניו - אבל Work נאלץ לנחש כמעט הכול: איזה נוסח בסיס להשתמש, אילו סעיפים המשרד תמיד מקפיד להוסיף, ומה מותר לו לשנות בלי לעצור ולשאול.</p>
+  <h3 class="h2">אותה בקשה, עם הקשר</h3>
+  <p>"מצורף הסכם השכירות האחרון שסגרנו - תשמש כתבנית. הכן טיוטה חדשה לשוכר חדש לפי אותו מבנה סעיפים ואותה מספור, בדיוק. עדכן רק צדדים, נכס ותנאי תשלום. אל תיגע בסעיף הבוררות. לפני שאתה כותב את הקובץ הסופי, הצג לי רשימה קצרה של כל המספרים והתאריכים ששינית, כדי שאאשר."</p>
+  <p>ההבדל לא בניסוח - הוא בכך שהבקשה השנייה נתנה ל-Work שלושה דברים שהראשונה לא נתנה: מקור אמת קונקרטי להעתיק ממנו, גבול ברור למה שאסור לגעת בו, ורגע עצירה מוגדר מראש לפני המסירה הסופית.</p>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>אם ניסוח מסוים חוזר על עצמו אצלכם - למשל אותה בקשה לכל הסכם שכירות חדש - שווה לשמור אותו כקובץ נפרד משלכם ולהעתיק ממנו בכל פעם, במקום לשחזר הכל בעל פה.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s13">
+    <div class="sec-head">
+      <span class="sec-num">13</span>
+      <h2 class="sec-title">שימושים אמיתיים למשרד עורכי דין</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>מצב Work מתאים במיוחד לתהליכים חוזרים שכל משרד עורכי דין מכיר - הנה דוגמאות לפי תחום עיסוק:</p>
+  <ul class="bullets"><li><b>מקרקעין ונדל"ן</b>: השוואה בין גרסאות חוזה לאורך משא ומתן, ואיתור פערים בין נסחי טאבו לבין מצג העסקה.</li><li><b>ליטיגציה ודיני נזיקין</b>: סיכום כתבי טענות ותצהירים ארוכים, בניית ציר זמן מהראיות שבתיק, והכנת טיוטת טיעונים ראשונית לקראת דיון או הערכת סיכויי ערעור.</li><li><b>דיני חברות ומסחרי</b>: הכנת טיוטת הסכם ראשונה לפי תבנית קבועה של המשרד, ומיפוי סעיפים חריגים מול הסכם ייחוס.</li><li><b>דיני עבודה</b>: מעקב אחרי תיקי עובדים ומועדי התיישנות, והכנת טיוטת מכתב התראה לפי אירועי התיק.</li><li><b>דיני משפחה וירושה</b>: ריכוז מסמכים פיננסיים ומסמכי רכוש לקראת הסכם גירושין, והכנת טיוטת צוואה ראשונית לבדיקה.</li><li><b>ניהול המשרד</b>: דוח שעות חיוב חודשי לפי לקוח, ומעקב אוטומטי אחרי מועדי הגשה קרובים בכל התיקים הפתוחים.</li></ul>
+  <div class="callout warn"><span class="callout-label">חובת סודיות</span><p>ועדת האתיקה הארצית של לשכת עורכי הדין פרסמה גילוי דעת רשמי בנושא שימוש בבינה מלאכותית בעבודת עורכי הדין, שמתייחס במפורש לחשש מהפרת חובת הסודיות, הפרת חובת הנאמנות והמסירות ללקוח, וזליגת מידע חסוי. לפני שמחברים Work למערכות חיצוניות או מעלים חומר מתוך תיק לקוח, כדאי להכיר את ההנחיות הללו - לא כל מסמך בתיק מתאים להעברה לכלי ענן חיצוני, גם כשהוא נוח.</p></div>
+  <div class="callout tip"><span class="callout-label">טיפ</span><p>בכל הדוגמאות האלה המכנה המשותף זהה: לא מבקשים תשובה חד-פעמית, אלא בונים תהליך שחוזר על עצמו בכל תיק דומה.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s14">
+    <div class="sec-head">
+      <span class="sec-num">14</span>
+      <h2 class="sec-title">זמינות, תוכניות והשקה הדרגתית</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>מצב Work יצא לדרך ב-9 ביולי 2026, אבל לא לכל המשתמשים בבת אחת - OpenAI פורסת אותו בגלים על פני כמה שבועות, לפי תוכנית ולפי פלטפורמה.</p>
+  <p>בגרסאות הווב והמובייל, הגישה מוגבלת לתוכניות בתשלום - Free ו-Go נשארות מחוץ לגל ההשקה הזה. הסדר: תחילה Pro, Enterprise ו-Edu, ורק אחר כך Plus ו-Business.</p>
+  <p>באפליקציית המחשב המאוחדת יש הבדל קטן בין המערכות שכדאי לדעת: ב-Mac הגישה נפתחה מיידית לכל התוכניות, כולל החינמית, כבר ביום ההשקה. ב-Windows ההרצה הייתה מדורגת על פני הימים שאחרי, גם היא לכל התוכניות כולל Free - אז אם עדיין לא רואים את זה בווינדוס, לרוב מדובר בעניין של ימים ספורים, לא יותר.</p>
+  <div class="callout warn"><span class="callout-label">בדיקת מקור</span><p>לגבי ישראל באופן ספציפי: נכון לאוגוסט 2026 לא פורסמה הודעה רשמית של OpenAI שמפרטת מדינה-מדינה. מה שכן פורסם: שההגבלות הגיאוגרפיות היחידות שצוינו בפירוש נוגעות לאיחוד האירופי, בריטניה ושווייץ - ורק לתכונות ספציפיות כמו פרסום ציבורי של אתרי Sites. ישראל אינה חלק מהאזור הזה, וההשקה הכללית תוארה כגלובלית - כך שסביר להניח שהזמינות בישראל תואמת את התמונה הכללית שמתוארת כאן, אך כדאי לבדוק בפועל בחשבון שלכם אם משהו ספציפי לא מופיע.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s15">
+    <div class="sec-head">
+      <span class="sec-num">15</span>
+      <h2 class="sec-title">אבטחה, הרשאות ושליטה</h2>
+    </div>
+    <div class="sec-body">
+      
+  <h3 class="h2">באיזה סוג מנוי חובה להשתמש לעבודה עם חומר של לקוחות</h3>
+  <p>לפני שמחברים כל כלי AI לעבודה עם מסמכי לקוחות, לא מספיק לבדוק אילו יכולות המנוי כולל - צריך לבדוק גם איזה הסכם משפטי עומד מאחוריו. ל-ChatGPT יש היום שלוש רמות מנוי שנבדלות זו מזו בדיוק בנקודה הזאת:</p>
+  <div class="tbl-wrap">
+  <table class="tbl">
+    <thead><tr><th></th><th>תוכניות אישיות<br>Free / Go / Plus / Pro Lite / Pro</th><th>Business</th><th>Enterprise / Edu</th></tr></thead>
+    <tbody>
+      <tr><td>מיועד ל</td><td>שימוש אישי</td><td>עסקים קטנים ובינוניים</td><td>ארגונים גדולים</td></tr>
+      <tr><td>הסכם עיבוד נתונים (DPA)</td><td>לא כלול</td><td>כלול</td><td>כלול</td></tr>
+      <tr><td>אימון המודלים על השיחות שלכם</td><td>כן, אלא אם מבטלים ידנית בהגדרות הפרטיות</td><td>לא, כברירת מחדל</td><td>לא, כברירת מחדל</td></tr>
+      <tr><td>כניסה מאובטחת ארגונית (SSO) ותפקידי הרשאה</td><td>לא</td><td>כן</td><td>כן, כולל ניהול משתמשים אוטומטי</td></tr>
+      <tr><td>מינימום משתמשים</td><td> - </td><td>2</td><td>לפי הסכם</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout tip"><span class="callout-label">עובדה מתועדת · מקור: openai.com</span><p>לפי ההצהרה הרשמית של OpenAI בעמוד Business data privacy באתרה: "כברירת מחדל, אנחנו לא משתמשים בנתונים מתוך ChatGPT Enterprise, ChatGPT Business, ChatGPT Edu... כולל קלט ופלט - לצורך אימון או שיפור המודלים שלנו." ההתחייבות הזו חלה רק על תוכניות עסקיות וארגוניות. בתוכניות אישיות יש לבטל זאת ידנית בהגדרות הפרטיות, ואין DPA כלול כברירת מחדל. תוכנית Business דורשת מינימום שני משתמשים.</p></div>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>המשמעות המעשית: אם המשרד שלכם מתכנן להזין לתוך Work מידע אמיתי מתיקי לקוחות, המנוי הרלוונטי היחיד הוא Business ומעלה - לא מנוי אישי, גם אם הוא בתשלום. מנוי אישי לא כולל הסכם DPA, וללא DPA אין בסיס חוזי שמחייב את OpenAI להימנע משימוש בנתונים שלכם.</p></div>
+  <h3 class="h2">שליטה כללית בתהליך</h3>
+  <p>מעבר לרמת המנוי, OpenAI מציגה את מצב Work כמערכת שבה אתם, ולא הסוכן, נשארים בעמדת השליטה.</p>
+  <ul class="bullets"><li>השליטה על מקורות המידע נשארת אצלכם: אתם קובעים למה יש גישה, והמערכת עוצרת בפעולה רגישה.</li><li>בסביבת Enterprise או Edu, מנהל המערכת קובע מראש מי רשאי להשתמש בכלי ולאילו מערכות להתחבר.</li><li>קיימת שכבת בקרה ברמת הארגון: אילו Plugins מותר להתקין, גישה לרשת, והרשאות כתיבה - לפי תפקיד.</li></ul>
+  <p>שכבת בקרה נוספת שכדאי להכיר נקראת <b>Auto-review</b>: כשהיא פעילה, בקשות אישור מסוימות לא מחכות דווקא לבן אדם - הן מנותבות ל"סוכן בוחן" נפרד, שמחליט אם לאשר את הפעולה ומחזיר נימוק להחלטה. הבדיקה שלו מתמקדת בסימנים ספציפיים: ניסיון להוציא מידע החוצה, בדיקת פרטי גישה או סיסמאות, החלשת הגנות קיימות, ופעולות הרסניות. חשוב להבין את הגבול: Auto-review רק מחליף מי בוחן את הבקשה - הוא לא מרחיב הרשאות ולא פותח גישה חדשה שלא הייתה קיימת קודם.</p>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>פעולות באתרים ובמערכות חיצוניות דורשות תשומת לב: תוכן שנמצא באינטרנט עלול לכלול מידע שגוי או הוראות זדוניות. תמיד כדאי לבדוק תוצאה לפני שסומכים עליה.</p></div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s16">
+    <div class="sec-head">
+      <span class="sec-num">16</span>
+      <h2 class="sec-title">מגבלות ותקלות נפוצות - ומה עושים</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>מצב Work נמצא עדיין בתחילת ההשקה שלו, ולכן יש כמה מגבלות שכדאי להביא בחשבון:</p>
+  <ul class="bullets"><li>גלי ההשקה של יולי הושלמו ברובם. אם הפיצ'ר עדיין לא מופיע אצלכם - ודאו קודם שהאפליקציה מעודכנת לגרסה האחרונה.</li><li>אין עדיין גשר מלא בין שיחת ענן לשיחה מקומית בדסקטופ.</li><li>משימת Work טיפוסית צורכת מהמכסה שלכם יותר משיחת Chat רגילה.</li><li>המערכת עדיין עלולה לטעות - חובה לבדוק כל תוצר לפני הסתמכות עליו בעבודה מול לקוח.</li></ul>
+  <div class="callout warn"><span class="callout-label">לתשומת לבכם</span><p>כלל אצבע שכדאי לאמץ מההתחלה: לפני שמתחילים כל משימה, החליטו במפורש איפה עובר הגבול בין "תמשיך לבד" ל"תעצור ותשאל אותי קודם".</p></div>
+  <h3 class="h2">וכשמשהו לא עובד - לפי התסמין:</h3>
+  <p><b>לא רואים את הבורר Work ליד תיבת הכתיבה?</b> בדקו קודם איפה אתם: בווב ובמובייל הוא זמין רק מ-Plus ומעלה (Free ו-Go לא כלולות שם), ובאפליקציית המחשב - לכל התוכניות.</p>
+  <p><b>משימה מתוזמנת לא רצה בזמן?</b> אם היא תלויה בקבצים מקומיים, המחשב חייב להיות דלוק והאפליקציה פתוחה בשעת הריצה. פתחו את מסך Scheduled (בתפריט הצד, או בדפדפן ב-chatgpt.com/schedules) ובדקו מה כתוב ליד המשימה.</p>
+  <p><b>מחפשים את Scheduled בתפריט הצד ולא מוצאים?</b> הפריט נוסף בעדכון מאוגוסט 2026 - עדכנו את האפליקציה. ובכל מקרה, הרשימה המרוכזת זמינה תמיד גם בדפדפן, בכתובת chatgpt.com/schedules.</p>
+  <p><b>לא מצליחים לחבר אפליקציה מהטלפון?</b> ספריית ה-Plugins אינה זמינה במובייל בשלב זה - מחברים פעם אחת מהמחשב, ומאז החיבור עובד מכל מקום.</p>
+  <p><b>ניסיתם ליצור משימה מתוזמנת וקיבלתם סירוב?</b> כנראה הגעתם למכסת המשימות הפעילות של המסלול (3 ב-Go, 5 ב-Plus, 15 ב-Pro, Business ו-Enterprise). השהו או מחקו משימה קיימת, ונסו שוב.</p>
+  <p><b>שיחה שהתחלתם בווב לא מופיעה באפליקציית המחשב?</b> זה צפוי בשלב הזה - אין עדיין גשר מלא בין שיחות ענן לשיחות מקומיות. ממשיכים אותה היכן שהתחילה.</p>
+  <p><b>נגמרה המכסה באמצע היום?</b> משימות Work צורכות יותר משיחה רגילה. המכסה מתחדשת מעצמה, וההודעה על המסך אומרת בדיוק מתי.</p>
+
+    </div>
+  </section>
+
+  <section class="sec" id="s17">
+    <div class="sec-head">
+      <span class="sec-num">17</span>
+      <h2 class="sec-title">לסיכום</h2>
+    </div>
+    <div class="sec-body">
+      
+  <p>החלק הכי קל לפספס במצב Work הוא שהוא לא רק כלי חדש - הוא הזדמנות לתעד תהליכים שבמשרד קיימים היום רק "בראש" של מי שתמיד עושה אותם. ברגע שאתם מנסחים ל-Work בדיוק איך אתם רוצים שטיוטת הסכם, תזכיר ביניים או דוח שעות ייראו, אתם בעצם כותבים לראשונה תהליך שעד היום עבר בעל פה מעורך דין בכיר למתמחה.</p>
+  <p>כדאי להתחיל בקנה מידה קטן - עדיף משימה אחת, מוכרת, שקל לכם לשפוט אם התוצאה שלה טובה. משם, ההרחבה לשאר התהליכים במשרד קלה הרבה יותר.</p>
+  <p>ולבסוף, נקודה שכדאי לזכור בכל שלב: כמו בכל כלי שנוגע בחומר של לקוחות, ההחלטה איפה בדיוק Work עוצר ומחכה לאישור שלכם היא תמיד שלכם - לא שלו.</p>
+  <p>ואם אתם רוצים להשוות לפני שמתחייבים לפלטפורמה - במרכז המדריכים של Legal Mind מחכים לכם גם <a href="https://tsahinim.github.io/legal-mind-claude-guides/ai-map/">מפת ה-AI לעורכי דין: Claude מול ChatGPT מול Gemini</a>, וגם <a href="https://tsahinim.github.io/legal-mind-claude-guides/cowork/">מדריכי Claude Cowork</a> - המקבילה של מצב Work בעולם של קלוד.</p>
+  <p class="closing">בהצלחה!</p>
+
+    
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:34px 0 8px"><a class="back-hub" style="font-size:1rem;padding:12px 26px;background:#0D1E37" href="chatgpt-work.html">חזרה לדף המרכז</a><a class="back-hub" style="font-size:1rem;padding:12px 26px;" href="chatgpt-work-practice.html">להמשך: דף התרגול - שישה תרגילים</a></div>
+  </div>
+  </section>
+  </main>
+</div>
+
+<footer>
+  מדריך זה נכתב על סמך מסמכי העזרה הרשמיים של OpenAI, הבלוג הרשמי על השקת Work, ושימוש אמיתי בכלי - יולי 2026. נבדק ועודכן מול המקורות הרשמיים: אוגוסט 2026.
+</footer>
+
+<script>
+(function(){
+  var sections = Array.from(document.querySelectorAll('.sec'));
+  var links = Array.from(document.querySelectorAll('.toc-rail a'));
+  var fill = document.getElementById('pfill');
+  var meta = document.getElementById('tmeta');
+  function onScroll(){
+    var doc = document.documentElement;
+    var scrollTop = doc.scrollTop || document.body.scrollTop;
+    var scrollH = doc.scrollHeight - doc.clientHeight;
+    var pct = scrollH > 0 ? (scrollTop / scrollH) * 100 : 0;
+    fill.style.width = pct + '%';
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++) {
+      var r = sections[i].getBoundingClientRect();
+      if (r.top < 140) current = sections[i];
+    }
+    links.forEach(function(l){ l.classList.remove('active'); });
+    var idx = sections.indexOf(current);
+    if (links[idx]) links[idx].classList.add('active');
+    meta.textContent = String(idx+1).padStart(2,'0') + ' / ' + sections.length;
+  }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+})();
+</script>
+
+<script>
+(function(){
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.style.display = 'none';
+  lb.innerHTML = '<button class="lb-close" type="button">סגירה</button><div class="lb-stage"></div>';
+  document.body.appendChild(lb);
+  var stage = lb.querySelector('.lb-stage');
+  function close(){ lb.style.display = 'none'; stage.innerHTML = ''; document.body.style.overflow = ''; }
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  document.querySelectorAll('figure.shot .shot-frame').forEach(function(fr){
+    fr.addEventListener('click', function(){
+      var c = fr.cloneNode(true);
+      stage.innerHTML = '';
+      stage.appendChild(c);
+      var img = c.querySelector('img');
+      var ar = (img && img.naturalWidth) ? img.naturalWidth / img.naturalHeight : 1.5;
+      c.style.width = Math.min(window.innerWidth * 0.96, window.innerHeight * 0.84 * ar) + 'px';
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+    var hint = document.createElement('p');
+    hint.className = 'zoom-hint';
+    hint.textContent = 'לחיצה על הצילום פותחת אותו בגודל מלא';
+    fr.parentNode.insertBefore(hint, fr.nextSibling);
+  });
+})();
+</script>
+<script>
+(function(){
+  document.addEventListener("click", function(ev){
+    var btn = ev.target.closest(".copy-button");
+    if(!btn) return;
+    var block = btn.closest(".copy-block");
+    var src = document.getElementById(btn.getAttribute("data-copy-target"));
+    var status = block ? block.querySelector(".copy-status") : null;
+    if(!src) return;
+    var text = src.innerText;
+    function done(ok){
+      if(!status) return;
+      status.textContent = ok ? "הטקסט הועתק - עכשיו מדביקים בשיחה" : "ההעתקה נכשלה - סמנו את הטקסט והעתיקו ידנית";
+      setTimeout(function(){ status.textContent = ""; }, 2600);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){done(true);}, function(){done(false);});
+    } else { done(false); }
+  });
+})();
+</script>
+</body>
+</html>
