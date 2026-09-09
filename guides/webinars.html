@@ -131,7 +131,7 @@
   .wcard-date .month { display: block; font-size: 11px; font-weight: 700; margin-top: 4px; letter-spacing: .03em; }
   .wcard-body { flex: 1 1 auto; min-width: 0; }
   .wcard-thumb {
-    display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+    display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
     border-radius: 8px; margin-bottom: 14px; border: 1px solid var(--line);
   }
   .wcard-kind { font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
@@ -164,10 +164,12 @@
     .wrap { margin-top: -34px; padding: 0 18px 44px; }
     .masthead { padding: 8px 20px; }
     .masthead-logo { height: 70px; }
-    .wcard { flex-direction: column; }
+    .wcard { flex-direction: column; align-items: stretch; }
     .wcard-date { width: auto; align-self: flex-start; padding: 6px 14px; }
     .wcard-date .day, .wcard-date .month { display: inline; }
     .wcard-date .month { margin-inline-start: 6px; }
+    .wcard-body { width: 100%; }
+    .wcard-thumb { max-width: 100%; }
   }
 
   :root[data-theme="dark"] {
