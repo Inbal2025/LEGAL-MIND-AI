@@ -130,6 +130,10 @@
   .wcard-date .day { display: block; font-size: 22px; font-weight: 700; line-height: 1; }
   .wcard-date .month { display: block; font-size: 11px; font-weight: 700; margin-top: 4px; letter-spacing: .03em; }
   .wcard-body { flex: 1 1 auto; min-width: 0; }
+  .wcard-thumb {
+    display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+    border-radius: 8px; margin-bottom: 14px; border: 1px solid var(--line);
+  }
   .wcard-kind { font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
   .wcard h2 { font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 19px; line-height: 1.35; margin: 0 0 8px; }
   .wcard p { font-size: 14.4px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 14px; }
@@ -197,6 +201,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">11</span><span class="month">אפר׳</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/linkedin.jpg" alt="לינקדאין לעורכי דין" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · שיווק</div>
       <h2>לינקדאין לעורכי דין</h2>
       <p>בניית נוכחות מקצועית בלינקדאין - מסדרת שיווק ו-<bdi dir="ltr">AI</bdi> לעו"ד מקרקעין.</p>
@@ -210,6 +215,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">24</span><span class="month">אפר׳</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/geo.jpg" alt="GEO - אופטימיזציה למנועי AI" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · <bdi dir="ltr">GEO</bdi></div>
       <h2><bdi dir="ltr">GEO</bdi> - אופטימיזציה למנועי <bdi dir="ltr">AI</bdi><span class="wcard-guest">מרצה: <a href="https://www.arkaot.co.il" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">עו"ד ענבל וקנין צוקר</a></span></h2>
       <p>איך לגרום למשרד להופיע בתשובות של כלי בינה מלאכותית.</p>
@@ -223,6 +229,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">14</span><span class="month">מאי</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/claude-word.jpg" alt="התוסף של Claude ב-Word" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Claude</bdi></div>
       <h2>התוסף של <bdi dir="ltr">Claude</bdi> ב-<bdi dir="ltr">Word</bdi></h2>
       <p>עבודה נכונה עם <bdi dir="ltr">Claude</bdi> בתוך <bdi dir="ltr">Word</bdi> - עריכת מסמכים משפטיים.</p>
@@ -236,6 +243,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">19</span><span class="month">מאי</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/real-estate.jpg" alt="ניתוח כדאיות כלכלית של עסקת מקרקעין" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · מקרקעין</div>
       <h2>ניתוח כדאיות כלכלית של עסקת מקרקעין<span class="wcard-guest">אורח: אורי גנץ</span></h2>
       <p>ניתוח כדאיות כלכלית של עסקת מקרקעין באמצעות <bdi dir="ltr">Claude</bdi>.</p>
@@ -249,6 +257,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">25</span><span class="month">מאי</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/lovable.jpg" alt="בניית עמוד נחיתה ב-Lovable" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Lovable</bdi></div>
       <h2>בניית עמוד נחיתה ב-<bdi dir="ltr">Lovable</bdi></h2>
       <p>הדגמה חיה של בניית עמוד נחיתה בפלטפורמת <bdi dir="ltr">Lovable</bdi>.</p>
@@ -262,6 +271,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">17</span><span class="month">יונ׳</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/timeless.jpg" alt="Timeless בפעולה" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Timeless</bdi></div>
       <h2><bdi dir="ltr">Timeless</bdi> בפעולה<span class="wcard-guest">אורח: מייסד Timeless</span></h2>
       <p>איך <bdi dir="ltr">AI</bdi> מתעד, מסכם ועוקב אחרי פגישות ומחזיר שעות בשבוע.</p>
@@ -275,6 +285,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">12</span><span class="month">יול׳</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/base44-geo.jpg" alt="דף נחיתה ב-Base44 שמופיע ב-AI" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Base44</bdi> / <bdi dir="ltr">GEO</bdi></div>
       <h2>דף נחיתה ב-<bdi dir="ltr">Base44</bdi> שמופיע ב-<bdi dir="ltr">AI</bdi><span class="wcard-guest">מרצה: <a href="https://www.arkaot.co.il" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">עו"ד ענבל וקנין צוקר</a></span></h2>
       <p>בניית דף נחיתה ב-<bdi dir="ltr">Base44</bdi> שמאותר על ידי כלי בינה מלאכותית (<bdi dir="ltr">GEO</bdi>).</p>
@@ -288,6 +299,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">26</span><span class="month">יול׳</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/community.jpg" alt="קהילת Legal Mind Family" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · קהילה</div>
       <h2>קהילת <bdi dir="ltr">Legal Mind Family</bdi></h2>
       <p>מפגש קהילתי של <bdi dir="ltr">Legal Mind Family</bdi>.</p>
@@ -301,6 +313,7 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">1</span><span class="month">ספט׳</span></div>
     <div class="wcard-body">
+      <img class="wcard-thumb" src="webinar-imgs/whatsapp-base44.jpg" alt="בניית סוכן AI אישי ל-WhatsApp" width="800" height="450" loading="lazy">
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Base44</bdi> / <bdi dir="ltr">WhatsApp</bdi></div>
       <h2>בניית סוכן <bdi dir="ltr">AI</bdi> אישי ל-<bdi dir="ltr">WhatsApp</bdi></h2>
       <p>בניית סוכן <bdi dir="ltr">AI</bdi> אישי בשידור חי ב-<bdi dir="ltr">Base44</bdi> וחיבורו ל-<bdi dir="ltr">WhatsApp</bdi>.</p>
