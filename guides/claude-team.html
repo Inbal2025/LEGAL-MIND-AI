@@ -161,6 +161,25 @@
   .card.is-tool .card-btn { background: var(--warn); }
   .card.is-tool .card-btn:hover { background: #8a3618; }
 
+  .companion-section { max-width: 1180px; margin: 56px auto 0; padding: 0 28px; }
+  .companion-card {
+    border: 1px solid var(--line-strong); border-inline-start: 5px solid var(--brand);
+    border-radius: 9px; background: var(--brand-wash); padding: 22px 24px;
+  }
+  .companion-card h3 { font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 20px; line-height: 1.3; color: var(--ink); margin: 0 0 10px; }
+  .companion-card p { margin: 0 0 12px; font-size: 14.8px; line-height: 1.75; color: var(--ink-soft); max-width: 80ch; }
+  .companion-link {
+    display: inline-block; margin-top: 4px; text-decoration: none; font-size: 14.2px; font-weight: 700;
+    color: #fff; background: var(--brand-strong); border-radius: 7px; padding: 11px 20px;
+    transition: background .15s ease;
+  }
+  .companion-link:hover, .companion-link:focus-visible { background: var(--dark); outline: none; }
+  @media (max-width: 600px) {
+    .companion-section { padding: 0 16px; margin-top: 40px; }
+    .companion-card { padding: 18px 16px; }
+    .companion-link { display: block; text-align: center; }
+  }
+
   .path-section { max-width: 900px; margin: 60px auto 0; padding: 0 28px; }
   .path-label { text-align: center; font-size: 13.1px; letter-spacing: .1em; color: var(--ink-faint); text-transform: uppercase; margin-bottom: 26px; }
   .path { display: flex; align-items: flex-start; justify-content: center; }
@@ -263,7 +282,7 @@
         <div class="card-icon">3</div>
         <div class="card-kind">מדריך 3 מתוך 3</div>
         <h2>העברת הנתונים למנוי <bdi dir="ltr">Team</bdi></h2>
-        <p>ביצוע המעבר בפועל ובדיקת התוצאה לאחר ההשלמה.</p>
+        <p>ביצוע ההגירה בפועל ובדיקת התוצאה לאחר ההשלמה.</p>
         <div class="card-meta">כ-6 דקות קריאה</div>
         <a class="card-btn" href="guide-3.html">פתיחת המדריך</a>
       </div>
@@ -279,6 +298,15 @@
         <a class="card-btn" href="checklist.html">פתיחת הצ'קליסט</a>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="companion-section">
+  <div class="companion-card">
+    <h3>עוברים על המדריך יחד עם <bdi dir="ltr">Claude</bdi></h3>
+    <p>עבור מדריך זה הכנו ב-<bdi>Legal Mind</bdi> פרומפט מלווה. פרומפט הוא הוראות כתובות מראש שמדביקים בשיחה עם <bdi dir="ltr">Claude</bdi>. הפרומפט מנחה את <bdi dir="ltr">Claude</bdi> לקרוא את המדריך, לשאול כמה שאלות על החשבון שלכם, ולעבור איתכם עליו שלב אחר שלב, עם עצירה לפני כל פעולה שאי אפשר לבטל. את כפתור ההעתקה תמצאו בתחילת מדריך 1.</p>
+    <p>כל אחד בוחר את הדרך שמתאימה לו: לקרוא את המדריך בעצמו, לעבור עליו עם <bdi dir="ltr">Claude</bdi>, או לשלב בין השניים.</p>
+    <a class="companion-link" href="guide-1.html#companion">לכפתור ההעתקה במדריך 1</a>
   </div>
 </div>
 
