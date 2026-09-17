@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="אילו הגדרות של המשרד יושבות ב-Claude ומי רשאי לשנות אותן, איך מעבירים שיטת עבודה אחת לכל עורכי הדין, ומי בודק אותה לפני שהיא מגיעה לכולם.">
+<title>מדריך על מנוי Team ב-Claude · מדריך 2: להגדיר איך כל המשרד עובד | Legal Mind</title>
+<link rel="canonical" href="https://www.legalmind.co.il/guides/claude-team-usage-guide-2.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Legal Mind">
+<meta property="og:title" content="מדריך על מנוי Team ב-Claude · מדריך 2: להגדיר איך כל המשרד עובד | Legal Mind">
+<meta property="og:description" content="אילו הגדרות של המשרד יושבות ב-Claude ומי רשאי לשנות אותן, איך מעבירים שיטת עבודה אחת לכל עורכי הדין, ומי בודק אותה לפני שהיא מגיעה לכולם.">
+<meta property="og:url" content="https://www.legalmind.co.il/guides/claude-team-usage-guide-2.html">
+<meta property="og:image" content="https://www.legalmind.co.il/guides/og-guides.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+/* ============================================================================
+   LEGAL MIND — LOCKED BRAND STYLESHEET
+   ----------------------------------------------------------------------------
+   Extracted from the live published series and reorganised WITHOUT any visual
+   change. Source of truth:
+     https://tsahinim.github.io/legal-mind-claude-guides/skills/assets/site.css
+     https://tsahinim.github.io/legal-mind-claude-guides/assets/hub.css
+   Captured: 2026-08-01
+
+   RULE: every future Legal Mind guide links THIS file. Do not fork it, do not
+   re-derive colors, do not "improve" a value locally. A guide that needs a new
+   component adds it here first, once, for everyone.
+
+   What changed vs. the live file (all non-visual):
+     - duplicate .shot-legend / .shot-caption blocks merged (cascade preserved)
+     - grouped and commented; token drift between site.css and hub.css unified
+       on the site.css values (max delta was 1 hex digit on --line)
+     - added --font-head / --font-body tokens holding the exact same stacks
+     - added .comparison-list, which the published guide 1 uses but the live
+       stylesheet never defined (see BRAND NOTE at the bottom)
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. TOKENS — the brand. Nothing below invents a color.
+   ------------------------------------------------------------------------ */
+:root{
+  /* core identity */
+  --navy:#0d2740;        /* headings, brand dark, hero background          */
+  --navy2:#173e57;       /* reserved secondary dark (currently unused)     */
+  --teal:#11736d;        /* primary action colour: links, buttons, markers */
+  --cyan:#2bc0b7;        /* accent on dark backgrounds only                */
+
+  /* semantic — each colour means one kind of content, never decoration */
+  --orange:#b84a21;      /* numbering, focus, knowledge-check              */
+  --gold:#b48a38;        /* legal example                                  */
+  --red:#b3263b;         /* warning + screenshot annotation                */
+  --green:#2f7b52;       /* confirmation / success                         */
+
+  /* surface */
+  --ink:#1d2b34;
+  --muted:#607178;
+  --bg:#f4f8f7;
+  --paper:#fff;
+  --line:#d7e2df;
+  --soft:#e9f4f2;
+
+  /* type */
+  --font-head:Georgia,"Times New Roman",serif;
+  --font-body:Arial,"Noto Sans Hebrew",sans-serif;
+
+  /* geometry */
+  --shadow:0 16px 40px rgba(13,39,64,.10);
+  --width:1220px;
+}
+
+/* ---------------------------------------------------------------------------
+   2. BASE
+   ------------------------------------------------------------------------ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);
+  font-family:var(--font-body);font-size:16px;line-height:1.72}
+img{max-width:100%;height:auto}
+a{color:inherit}
+
+/* RTL isolation — every Latin term in the copy is wrapped in <bdi dir="ltr"> */
+bdi[dir=ltr],[dir=ltr]{unicode-bidi:isolate}
+
+/* ---------------------------------------------------------------------------
+   3. NAVIGATION CHROME
+   ------------------------------------------------------------------------ */
+.skip{position:fixed;top:-80px;right:16px;z-index:100;background:#fff;
+  border:2px solid var(--teal);border-radius:9px;padding:10px 14px;font-weight:800}
+.skip:focus{top:10px}
+
+.backbar{position:sticky;top:0;z-index:50;min-height:44px;
+  border-bottom:1px solid #bdd5d2;background:#dcefee;padding:9px 14px;text-align:center}
+.backbar a{color:var(--teal);font-size:14px;font-weight:800;text-decoration:none}
+.backbar a:before{content:"→";margin-left:7px}
+
+.bottom-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
+.guide-nav{display:none}   /* legacy, kept so old markup stays hidden */
+
+/* ---------------------------------------------------------------------------
+   4. LOGO / MASTHEAD  — assets/brand/legal-mind-logo.webp
+   Lightbulb with a teal node-network inside, navy outline, LEGAL MIND wordmark
+   (the A and the I are teal). Never recolour, never redraw, never substitute
+   with text on a page that has room for the mark.
+   ------------------------------------------------------------------------ */
+.site-header{background:#fff;border-bottom:1px solid var(--line);padding:12px 28px}
+.site-header-inner{max-width:var(--width);margin:auto;display:flex;
+  align-items:center;justify-content:space-between;gap:18px}
+.logo-wrap{display:flex;align-items:center;gap:14px}
+.hub-logo-full{display:block;width:126px;height:auto;object-fit:contain;flex:0 0 auto}
+.hub-chip{align-self:center;background:var(--soft);color:var(--teal);
+  padding:8px 13px;border-radius:999px;font-weight:900;font-size:13px}
+@media(max-width:820px){
+  .site-header{padding:10px 13px}
+  .hub-logo-full{width:108px}
+  .logo-wrap{gap:9px}
+  .hub-chip{font-size:11px}
+}
+
+/* CANONICAL brand bar — this is the pattern to copy for a new series.
+   A centred white bar carrying the logo, placed directly after .backbar and
+   before .hero. It appears on EVERY page of the series: the guide center and
+   each guide. 130px is ~15% smaller than the .hub-logo-full above, so the bar
+   does not swell. Asset: assets/brand/legal-mind-logo-tight.png
+   alt (fixed): לוגו Legal Mind - נורה מעל שם המותג */
+.skills-brand{background:#fff;border-bottom:1px solid var(--line);
+  padding:11px 18px;text-align:center}
+.skills-logo{display:inline-block;width:130px;height:auto;object-fit:contain}
+@media(max-width:610px){.skills-logo{width:110px}}
+
+/* ---------------------------------------------------------------------------
+   5. GUIDE PAGE — hero, layout, sections
+   ------------------------------------------------------------------------ */
+.hero,.layout,.center-main,.center-brand{width:min(100%,var(--width));margin-inline:auto}
+.hero{display:grid;gap:18px;padding:26px 18px 24px}
+.eyebrow{margin:0 0 7px;color:var(--teal);font-size:13px;font-weight:900;letter-spacing:.03em}
+.hero h1,.center-hero h1{margin:0 0 10px;color:var(--navy);font-family:var(--font-head);
+  font-size:clamp(1.95rem,5.2vw,2.85rem);line-height:1.18}
+.hero-copy{max-width:82ch;color:var(--muted);font-size:1.06rem}
+
+/* the four-fact strip: תוצר למידה / ידע מוקדם / מבנה / זמן משוער */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0}
+.facts div{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:12px}
+.facts dt{color:var(--teal);font-size:12px;font-weight:900}
+.facts dd{margin:2px 0 0;color:var(--navy);font-weight:700}
+
+.layout{display:grid;grid-template-columns:286px minmax(0,1fr);gap:28px;padding:8px 14px 60px}
+.surface{overflow:hidden;border:1px solid var(--line);border-radius:18px;
+  background:var(--paper);box-shadow:0 9px 28px rgba(13,39,64,.06)}
+
+.guide-section{scroll-margin-top:72px;padding:26px 22px}
+.guide-section+.guide-section{border-top:1px solid var(--line)}
+.section-number,.sec-num{display:block;margin:0 0 4px;color:var(--teal);
+  font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1.1}
+.section-number::after,.sec-num::after{content:"."}
+.guide-section h2,.sec-title{margin:0 0 14px;color:var(--navy);font-family:var(--font-head);
+  font-size:clamp(1.5rem,3.5vw,2rem);line-height:1.25}
+.guide-section h3,.sec-body h3{margin:22px 0 8px;color:var(--navy);font-size:1.15rem}
+.guide-section h4{margin:19px 0 7px;color:var(--teal);font-size:1.04rem}
+.guide-section h5{margin:16px 0 6px;color:var(--navy);font-size:.98rem}
+.guide-section p,.sec-body p{margin:0 0 13px}
+.guide-section ul,.guide-section ol,.sec-body ul,.sec-body ol{padding-right:25px}
+.guide-section li,.sec-body li{margin:6px 0}
+
+.major-subsection{margin:28px -22px 14px!important;border-right:6px solid var(--orange);
+  background:#f7faf9;padding:13px 18px;color:var(--navy)!important;font-size:1.28rem!important}
+.source-emphasis{border:1px solid var(--line);border-right:5px solid var(--gold);
+  border-radius:12px;background:#fffaf0;padding:13px 15px;font-weight:700}
+
+/* ---------------------------------------------------------------------------
+   6. TABLE OF CONTENTS
+   ------------------------------------------------------------------------ */
+.desktop-toc{order:-1;position:sticky;top:64px;align-self:start;border:1px solid var(--line);
+  border-radius:16px;background:var(--paper);padding:16px;
+  box-shadow:0 8px 24px rgba(13,39,64,.06);max-height:calc(100vh - 84px);overflow:auto}
+.desktop-toc h2{margin:0 0 10px;color:var(--navy);font-size:1rem}
+.desktop-toc ol{margin:0;padding:0;list-style:none}
+.desktop-toc li+li{border-top:1px solid #edf1f0}
+/* not flex: a flex row turns every <bdi> in the title into its own column,
+   so a wrapped chapter name no longer lines up under itself. the number is
+   positioned instead, which gives a proper hanging indent. */
+.desktop-toc a{display:block;position:relative;padding:8px 2px;
+  padding-inline-start:32px;color:var(--teal);
+  font-size:14px;text-decoration:none;line-height:1.4}
+.desktop-toc a span:first-child{position:absolute;inset-inline-start:2px;top:8px;
+  font-weight:900}
+.desktop-toc a[aria-current=location]{color:var(--orange);font-weight:900}
+.mobile-toc{display:none}
+
+/* ---------------------------------------------------------------------------
+   7. CONTENT BOXES — one class per meaning. Colour IS the meaning.
+      .info / .tip        teal   — explanation, distinction
+      .recommendation     teal   — "the professional way to do it"
+      .warning / .warn    red    — risk, do-not
+      .legal-example      gold   — a worked example from legal practice
+      .knowledge-check    orange — self-test before moving on
+   ------------------------------------------------------------------------ */
+.callout,.content-box{margin:20px 0;border-radius:14px;padding:16px 18px}
+.callout.tip,.content-box.info,.content-box.recommendation{
+  border-right:5px solid var(--teal);background:#edf7f6}
+.callout.warn,.content-box.warning{border-right:5px solid var(--red);background:#fff4f2}
+.content-box.legal-example{border-right:5px solid var(--gold);background:#fff9ee}
+.content-box.knowledge-check{border-right:5px solid var(--orange);background:#fff7f0}
+.callout-label{display:block;margin-bottom:6px;color:var(--navy);font-weight:900}
+
+/* every .legal-example body follows: קלט / תוצר / עצירה / סיכון */
+
+/* ---------------------------------------------------------------------------
+   8. LISTS, STEPS, CHECKLISTS, CARDS
+   ------------------------------------------------------------------------ */
+.bullets{padding-right:24px}
+
+.steps{counter-reset:step;list-style:none!important;padding:0!important}
+.steps li{position:relative;margin:11px 0;padding:12px 50px 12px 12px;
+  border:1px solid var(--line);border-radius:12px;background:#fbfdfd}
+.steps li:before{counter-increment:step;content:counter(step);position:absolute;
+  right:10px;top:10px;display:grid;place-items:center;width:28px;height:28px;
+  border-radius:8px;background:var(--teal);color:#fff;font-weight:900}
+
+.checklist{list-style:none!important;padding:0!important}
+.checklist li{position:relative;padding:8px 36px 8px 8px;border-bottom:1px solid #edf1f0}
+.checklist li:before{content:"✓";position:absolute;right:8px;color:var(--teal);font-weight:900}
+
+.risk-grid,.cards,.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.risk-card,.card,.decision-card{border:1px solid var(--line);border-radius:14px;
+  background:#fbfdfd;padding:15px}
+.risk-card.green{border-top:5px solid var(--green)}
+.risk-card.yellow{border-top:5px solid var(--gold)}
+.risk-card.red{border-top:5px solid var(--red)}
+
+/* NEW — used by the published guide 1 but never defined in the live CSS.
+   Styled to match .card so it reads as part of the same family. */
+.comparison-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+.comparison-list>[role=listitem]{border:1px solid var(--line);border-radius:14px;
+  background:#fbfdfd;padding:15px}
+.comparison-list>[role=listitem]>strong{display:block;margin-bottom:5px;color:var(--navy)}
+.comparison-list>[role=listitem]>p{margin:0;color:var(--ink)}
+@media(max-width:820px){.comparison-list{grid-template-columns:1fr}}
+
+.workbook{border:1px dashed #8fb8b4;border-radius:16px;background:#f7fbfa;padding:18px;margin:18px 0}
+.prompt-box{border:1px solid var(--line);border-radius:14px;background:#f7faf9;padding:16px}
+.status{display:inline-block;border-radius:999px;background:var(--soft);color:var(--teal);
+  padding:5px 9px;font-size:12px;font-weight:900}
+
+/* ---------------------------------------------------------------------------
+   9. SCREENSHOTS + ANNOTATION
+      Frame the shot, place a red rectangle by percentage, badge it with a
+      number, then explain every number in an ordered legend underneath.
+      Percentages (not pixels) so the annotation survives any screen width.
+   ------------------------------------------------------------------------ */
+.shot{margin:20px auto}
+/* the frame must NOT clip: a marker badge sits half outside its box by design,
+   and overflow:hidden shaved every badge on a box near an edge. the rounding
+   moves to the image itself, which is the only thing that needed clipping. */
+.shot-frame{position:relative;overflow:visible;border:1px solid var(--line);
+  border-radius:14px;background:#eef3f3;box-shadow:0 8px 24px rgba(13,39,64,.08)}
+.shot-frame img{display:block;width:100%;height:100%;object-fit:contain;border-radius:13px}
+
+.shot-target{position:absolute;z-index:2;border:3px solid var(--red);border-radius:9px;
+  background:rgba(198,48,48,.07);
+  box-shadow:0 0 0 2px rgba(255,255,255,.82),0 2px 9px rgba(13,39,64,.24);
+  pointer-events:none}
+.shot-target.is-circle{border-radius:999px}
+.shot-target-badge{position:absolute;top:0;left:0;z-index:3;display:grid;place-items:center;
+  width:26px;height:26px;border:2px solid #fff;border-radius:50%;background:var(--red);
+  color:#fff;font-size:14px;font-weight:900;line-height:1;
+  box-shadow:0 2px 8px rgba(13,39,64,.35);transform:translate(-45%,-45%)}
+.shot-target.badge-right>.shot-target-badge{right:0;left:auto;transform:translate(45%,-45%)}
+.shot-target-badge.badge-offset-left{top:50%;left:-18px;transform:translate(-50%,-50%)}
+/* keeps the number inside the frame when the box hugs an edge — the frame
+   clips overflow, so a corner badge that sticks out would come back cut */
+.shot-target.badge-inside>.shot-target-badge{top:50%;left:auto;right:7px;transform:translate(0,-50%)}
+.shot-target.badge-inside-left>.shot-target-badge{top:50%;left:7px;right:auto;transform:translate(0,-50%)}
+.shot-target.badge-outside-left>.shot-target-badge{top:50%;left:0;right:auto;transform:translate(-115%,-50%)}
+/* mirror of the above, for a target that hugs the right edge */
+.shot-target.badge-outside-right>.shot-target-badge{top:50%;right:0;left:auto;transform:translate(115%,-50%)}
+/* number above the box, centred - for a marked word on a dense single line
+   where any corner placement would land on the word itself */
+.shot-target.badge-above>.shot-target-badge{top:0;left:50%;right:auto;transform:translate(-50%,-118%)}
+.shot-target.badge-below>.shot-target-badge{top:100%;left:50%;right:auto;transform:translate(-50%,18%)}
+
+/* merged from two duplicate live rules — cascade result preserved exactly */
+.shot-caption{margin:10px 0 6px;color:var(--muted);font-size:.92rem;
+  font-weight:700;line-height:1.65}
+.shot-legend{list-style:none;margin:9px 0 0;padding:0;color:var(--muted);font-size:14px}
+.shot-legend-num{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.shot-legend-num li{position:relative;padding-inline-start:31px;
+  color:var(--ink);font-size:.92rem;line-height:1.6}
+/* the legend number is drawn as the same red badge that marks the screenshot,
+   so the eye pairs them without effort. it is positioned, not a flex child —
+   a flex child would split the rest of the sentence into columns wherever it
+   contains a <bdi> or an emphasised word. */
+.shot-legend-num>li>strong:first-child{position:absolute;inset-inline-start:0;top:2px;
+  display:grid;place-items:center;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--red);color:#fff;font-size:12.5px;font-weight:900;line-height:1}
+
+/* --- PRODUCTION-ONLY: reserved screenshot slot -----------------------------
+   Lets a guide be written and laid out before a single screenshot exists.
+   Occupies the real space the image will occupy, and carries the shooting
+   brief inside it. Swapping in the real image is then mechanical.
+
+   MUST NEVER REACH A READER. The publish QA fails if .shot-pending survives
+   in any file being released. The stripes and the "לא לפרסום" tag exist so a
+   leftover is impossible to miss on screen.
+   ------------------------------------------------------------------------ */
+.shot-pending{position:relative;display:grid;place-items:center;min-height:200px;
+  border:2px dashed #8fb8b4;border-radius:14px;padding:20px 18px 18px;
+  background:repeating-linear-gradient(135deg,#f7fbfa,#f7fbfa 14px,#eef6f5 14px,#eef6f5 28px)}
+.shot-pending:before{content:"לא לפרסום";position:absolute;top:-11px;right:16px;
+  border-radius:999px;background:var(--orange);color:#fff;
+  padding:3px 11px;font-size:11px;font-weight:900;letter-spacing:.02em}
+.shot-pending-id{position:absolute;top:-11px;left:16px;border-radius:999px;
+  background:var(--navy);color:#fff;padding:3px 11px;font-size:11px;font-weight:900;
+  direction:ltr}
+.shot-pending-body{width:100%;max-width:520px;text-align:right}
+.shot-pending-title{margin:0 0 12px;color:var(--navy);font-family:var(--font-head);
+  font-size:1.12rem;line-height:1.35}
+.shot-pending-body dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:0}
+.shot-pending-body dt{color:var(--teal);font-size:13px;font-weight:900;white-space:nowrap}
+.shot-pending-body dd{margin:0;color:var(--ink);font-size:14px;line-height:1.6}
+.shot-pending-body dd code{direction:ltr;display:inline-block;background:#fff;
+  border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+  font:13px/1.5 Consolas,monospace}
+@media(max-width:640px){
+  .shot-pending{min-height:160px;padding:18px 14px 14px}
+  .shot-pending-body dl{grid-template-columns:1fr;gap:2px}
+  .shot-pending-body dt{margin-top:7px}
+}
+
+/* legacy inline marker, superseded by .shot-target-badge — do not use in new guides */
+.mk{display:inline-grid;place-items:center;min-width:25px;height:25px;border-radius:50%;
+  background:var(--red);color:#fff;font-weight:900}
+.mk-tag{font-weight:800}
+
+@media(max-width:640px){
+  .shot-target{border-width:2px;border-radius:6px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.86),0 1px 5px rgba(13,39,64,.24)}
+  .shot-target-badge{width:20px;height:20px;border-width:1.5px;font-size:11px}
+  .shot-target-badge.badge-offset-left{left:-13px}
+}
+
+/* ---------------------------------------------------------------------------
+   10. TABLES
+       CANONICAL: .tbl-wrap > table.tbl  (light teal header) — this is what the
+       published guides use. .table-wrap is defined but unused; keep it only so
+       stray legacy markup doesn't break. Never mix the two in one guide.
+   ------------------------------------------------------------------------ */
+.tbl-wrap{overflow-x:auto;margin:18px 0}
+.tbl{width:100%;border-collapse:collapse;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:10px;vertical-align:top;text-align:right}
+.tbl th{background:#e9f4f2;color:var(--navy)}
+.guide-section .tbl th{white-space:nowrap}
+.guide-section .tbl td:empty{min-width:54px;height:40px;background:#fbfdfd}
+@media(max-width:820px){.guide-section .tbl{min-width:620px}}
+
+/* legacy alternative — dark navy header + zebra rows. Unused. */
+.table-wrap{overflow-x:auto;margin:16px 0}
+.table-wrap table{border-collapse:collapse;width:100%;font-size:.9rem}
+.table-wrap th{background:var(--navy);color:#fff;padding:9px 10px;text-align:right;font-weight:700}
+.table-wrap td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+.table-wrap tr:nth-child(even) td{background:var(--soft)}
+
+/* ---------------------------------------------------------------------------
+   11. CODE — always forced LTR inside the RTL page
+   ------------------------------------------------------------------------ */
+pre,.code{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;
+  border:1px solid #263b4a;border-radius:13px;background:#0f2536;color:#ecf8f7;
+  padding:15px;font:14px/1.55 Consolas,monospace}
+
+/* ---------------------------------------------------------------------------
+   12. COPY BLOCK — reader-facing prompt / checklist with a copy button
+        (behaviour lives in assets/site.js)
+   ------------------------------------------------------------------------ */
+.copy-block{margin:18px 0;background:var(--soft);border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px}
+.copy-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;margin-bottom:10px}
+.copy-heading strong{font-size:.95rem;color:var(--navy)}
+.copy-button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:7px 14px;
+  font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-button:hover{background:var(--navy)}
+.copy-button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.copy-block .copy-body,.copy-block>p[id]{margin:0;background:var(--paper);
+  border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--ink);
+  font-size:.95rem;line-height:1.7;white-space:pre-wrap}
+.copy-block .copy-body.ltr{direction:ltr;text-align:left;
+  font-family:ui-monospace,Consolas,monospace;font-size:.88rem}
+.copy-block ol,.copy-block ul{margin:0;padding-inline-start:22px;background:var(--paper);
+  border:1px solid var(--line);border-radius:8px;padding-block:12px;padding-inline-end:14px;
+  color:var(--ink);font-size:.95rem;line-height:1.75}
+.copy-block>div[id]{background:var(--paper);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px}
+.copy-block>div[id]>p{margin:0 0 8px}
+.copy-block>div[id] ol,.copy-block>div[id] ul{border:0;padding-block:0;background:transparent}
+.copy-block>div.copy-plain{white-space:pre-wrap;font-family:ui-monospace,Consolas,monospace;
+  font-size:.85rem;line-height:1.75;direction:rtl;text-align:right;overflow-x:auto}
+.copy-status{display:block;margin-top:8px;min-height:1.1em;font-size:.82rem;
+  font-weight:700;color:var(--green)}
+@media(max-width:700px){
+  .copy-heading{align-items:flex-start;flex-direction:column}
+  .copy-button{width:100%}
+}
+
+/* ---------------------------------------------------------------------------
+   13. BUTTONS
+   ------------------------------------------------------------------------ */
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+  border:1px solid var(--teal);border-radius:10px;padding:10px 15px;color:var(--teal);
+  font-weight:900;text-decoration:none}
+.button.primary{background:var(--teal);color:#fff}
+
+/* ---------------------------------------------------------------------------
+   14. GUIDE CENTER — מרכז המדריכים
+       Created only when one subject is too large for a single guide and has to
+       be split. A guide center covers ONLY the guides inside its own series.
+       There is no "main" center and no hierarchy between centers — several
+       centers exist side by side as equals. Another series is referenced in
+       prose, never linked as a parent or a child.
+   ------------------------------------------------------------------------ */
+.center-head{background:#fff}
+/* The logo image goes inside .center-brand — see section 4 for .hub-logo-full.
+   The bare text wordmark below is the legacy form; do not use it in new work. */
+.center-brand{padding:13px 18px;color:var(--navy);font-weight:900}
+.center-hero{background:var(--navy);color:#fff;padding:32px 18px 44px;text-align:center}
+.center-hero h1{color:#fff}
+.center-hero p{max-width:820px;margin:0 auto;color:#dcecef;font-size:1.08rem}
+.center-kicker{display:inline-flex;align-items:center;justify-content:center;
+  margin:0 auto 18px!important;border:1px solid var(--cyan);border-radius:999px;
+  padding:8px 16px;color:#7ce5dd!important;font-size:13px!important;font-weight:900}
+.center-subtitle{max-width:900px!important}
+.platform-note{max-width:960px!important;margin:20px auto 0!important;
+  border:1px solid rgba(124,229,221,.38);border-radius:14px;background:rgba(255,255,255,.06);
+  padding:13px 16px;color:#eefafa!important;font-size:.97rem!important;line-height:1.65}
+.platform-note strong{color:#86ebe3}
+.center-main{padding:38px 14px 64px}
+
+/* מסלול הלימוד — the numbered learning path, one <li> per guide.
+   grid-template-columns MUST equal the number of guides in the series.
+   This is the one value that legitimately changes between series. */
+.learning-path{margin:-24px 0 34px;border:1px solid var(--line);border-radius:20px;
+  background:#fff;padding:22px;box-shadow:var(--shadow)}
+.learning-path ol{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;
+  margin:0;padding:0;list-style:none}
+.learning-path li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);
+  border-radius:12px;background:#fafcfc;padding:10px;font-weight:800}
+.learning-path span,.guide-number{display:grid;place-items:center;width:36px;height:36px;
+  flex:0 0 36px;border-radius:10px;background:var(--teal);color:#fff;font-weight:900}
+.path-note{margin:16px 0 0;padding:14px 16px;background:var(--soft);
+  border-inline-start:4px solid var(--teal);border-radius:10px;color:var(--ink);
+  font-size:.95rem;line-height:1.7}
+.path-note strong{color:var(--navy)}
+
+/* guide cards — 3 per row on desktop regardless of how many guides exist */
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.guide-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;
+  background:#fff;padding:17px;box-shadow:0 8px 24px rgba(13,39,64,.06);
+  border-top:5px solid var(--orange)}
+.guide-card h2{margin:13px 0 9px;color:var(--navy);font-size:1.28rem;line-height:1.4}
+.guide-card dl{margin:0 0 14px}
+.guide-card dl div{border-top:1px solid #e3eae8;padding:9px 0}
+.guide-card dt{color:#0d625d;font-size:14px;font-weight:900}
+.guide-card dd{margin:2px 0 0;font-size:15px;line-height:1.55}
+.guide-card .button{margin-top:auto}
+
+/* ---------------------------------------------------------------------------
+   14b. GUIDE CENTER — CANONICAL FORM (owner-approved reference)
+        Source: the published guide center of the main series, assets/hub.css.
+        Tzahi confirmed this is the look he is happy with. Build every NEW
+        guide center from this set. The .center-* classes in 14 above are the
+        earlier Skills-series variant, kept working, not to be copied forward.
+
+        Reading rhythm here is looser than inside a guide: 17px / 1.65.
+   ------------------------------------------------------------------------ */
+.hub-body{font-size:17px;line-height:1.65}
+
+/* navy hero with a faint 52px grid overlay */
+.hub-hero{position:relative;overflow:hidden;color:#fff;padding:66px 24px 62px;
+  background:linear-gradient(135deg,var(--navy),#102f4b)}
+.hub-hero:before{content:"";position:absolute;inset:0;background-size:52px 52px;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px)}
+.hero-inner{position:relative;max-width:1060px;margin:auto;text-align:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:7px;border-radius:999px;
+  border:1px solid rgba(43,192,183,.65);background:rgba(43,192,183,.08);
+  color:#7ee2dc;padding:7px 14px;font-size:13px;font-weight:900}
+.hub-hero h1{margin:20px auto 12px;max-width:900px;font-family:var(--font-head);
+  font-size:48px;line-height:1.16}
+.hub-hero p{max-width:820px;margin:auto;color:#e0eef1;font-size:20px}
+
+/* status card that floats across the hero edge — the negative margin and the
+   132px top padding on <main> are a pair; change one and you must change both */
+.progress-box{position:relative;z-index:3;max-width:1040px;margin:28px auto -104px;
+  border:1px solid var(--line);border-radius:18px;background:#fff;color:var(--ink);
+  padding:18px 20px;box-shadow:var(--shadow)}
+.progress-top{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.progress-top strong{color:var(--navy)}
+.progress-top span{color:var(--muted);font-size:14px}
+.progress-track{height:10px;margin-top:11px;border-radius:999px;background:#e6eeec;overflow:hidden}
+.progress-fill{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--cyan))}
+.hub-main{max-width:var(--width);margin:0 auto;padding:132px 24px 80px}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}
+.section-head h2{margin:0;color:var(--navy);font-family:var(--font-head);font-size:34px}
+.section-head p{margin:0;color:var(--muted);max-width:690px}
+
+/* guide cards — always 3 across on desktop; more guides simply wrap to more
+   rows. This is the one thing that legitimately changes per series. */
+.hub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.hub-card{position:relative;display:flex;flex-direction:column;min-height:330px;
+  overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--paper);
+  padding:20px;box-shadow:0 8px 25px rgba(13,39,64,.06)}
+.hub-card:before{content:"";position:absolute;top:0;right:0;left:0;height:5px;background:var(--teal)}
+.hub-card.primary:before{background:var(--orange)}   /* the entry-point guide */
+.hub-card.pending:before{background:#aeb9bc}         /* not published yet     */
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-number{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;
+  background:var(--soft);color:var(--teal);font-weight:900}
+.card-status{border-radius:999px;background:#edf8f6;color:var(--teal);
+  padding:5px 9px;font-size:12px;font-weight:900}
+.card-status.pending{background:#f0f2f2;color:#738186}
+.hub-card h3{margin:18px 0 8px;color:var(--navy);font-family:var(--font-head);
+  font-size:24px;line-height:1.25}
+.hub-card p{margin:0 0 13px;color:var(--muted)}
+.card-list{list-style:none;padding:0;margin:0 0 18px}
+.card-list li{position:relative;padding:5px 25px 5px 0;font-size:14px}
+.card-list li:before{content:"✓";position:absolute;right:0;color:var(--teal);font-weight:900}
+.card-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;margin-bottom:14px}
+.card-meta span{border:1px solid var(--line);border-radius:8px;background:#fafcfc;
+  padding:5px 8px;color:#5f7076;font-size:12px}
+.card-btn{display:block;border-radius:10px;background:var(--teal);color:#fff;
+  padding:12px;text-align:center;text-decoration:none;font-weight:900}
+.card-btn:hover{filter:brightness(.94)}
+
+/* pointing at a DIFFERENT series — the only sanctioned cross-series element.
+   It is a described destination, never a parent/child link. */
+.skills-band{display:grid;grid-template-columns:1fr 310px;gap:24px;align-items:center;
+  margin-top:32px;border:1px solid #cfe1de;border-radius:20px;padding:24px;
+  background:linear-gradient(135deg,#eef8f6,#fff)}
+.skills-band h2{margin:0 0 8px;color:var(--navy);font-family:var(--font-head);font-size:31px}
+.skills-band p{margin:0 0 15px;color:var(--muted)}
+.skills-mini{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.skills-mini div{border:1px solid var(--line);border-radius:11px;background:#fff;
+  padding:11px;font-size:13px}
+.skills-cta{border-radius:16px;background:var(--navy);color:#fff;padding:20px;text-align:center}
+.skills-cta strong{display:block;margin-bottom:7px;font-size:22px}
+.skills-cta a{display:block;margin-top:14px;border-radius:9px;background:#fff;
+  color:var(--navy);padding:11px;text-decoration:none;font-weight:900}
+
+/* the learning path as rotated diamonds */
+.path-section{margin-top:32px;border:1px solid var(--line);border-radius:20px;
+  background:#fff;padding:24px}
+.path-section h2{margin:0 0 6px;color:var(--navy);font-family:var(--font-head);font-size:30px}
+.path-section>p{margin-top:0;color:var(--muted)}
+.path-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:18px}
+.path-step{text-align:center}
+.path-diamond{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 11px;
+  border:2px solid #b8d5d1;background:#fff;transform:rotate(45deg);
+  box-shadow:0 6px 18px rgba(13,39,64,.06)}
+.path-diamond span{transform:rotate(-45deg);color:var(--teal);font-weight:900;font-size:20px}
+.path-step.done .path-diamond{background:var(--teal);border-color:var(--teal)}
+.path-step.done .path-diamond span{color:#fff}
+.path-step b{display:block;color:var(--navy);font-size:14px}
+.path-step small{color:var(--muted)}
+
+.note-box,.draft-note{margin:22px 0;border-right:6px solid var(--gold);border-radius:14px;
+  background:#fffaf0;padding:18px;color:#5d523e}
+.note-box{border:1px solid #ead9ac;border-right:6px solid var(--gold)}
+
+/* focus ring — amber, deliberately outside the palette so it never reads as content */
+.skip-link{position:absolute;top:-60px;right:16px;z-index:10000;border:2px solid var(--teal);
+  border-radius:9px;background:#fff;color:var(--navy);padding:10px 14px;
+  font-weight:900;text-decoration:none}
+.skip-link:focus{top:10px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #f0a431;outline-offset:3px}
+
+@media(max-width:980px){
+  .hub-grid{grid-template-columns:1fr 1fr}
+  .skills-band{grid-template-columns:1fr}
+  .path-flow{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+  .hub-body{font-size:16px}
+  .hub-hero{padding:48px 16px 54px}
+  .hub-hero h1{font-size:34px}
+  .hub-hero p{font-size:17px}
+  .progress-box{margin-left:10px;margin-right:10px}
+  .hub-main{padding:126px 13px 60px}
+  .section-head{display:block}
+  .section-head h2{font-size:29px}
+  .hub-grid{grid-template-columns:1fr}
+  .skills-mini{grid-template-columns:1fr}
+  .path-flow{grid-template-columns:1fr}
+  .path-diamond{width:55px;height:55px}
+}
+
+/* ---------------------------------------------------------------------------
+   15. FOOTER + SOURCE NOTE
+       .source-note always carries a dated currency statement.
+   ------------------------------------------------------------------------ */
+.source-note{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:13px}
+.center-footer,footer{text-align:center;color:var(--muted);padding:26px 12px}
+
+/* ---------------------------------------------------------------------------
+   16. RESPONSIVE
+   ------------------------------------------------------------------------ */
+@media(max-width:1000px){
+  .guide-grid{grid-template-columns:repeat(2,1fr)}
+  .learning-path ol{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr}
+  .risk-grid,.cards,.decision-grid{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  .layout{grid-template-columns:1fr}
+  .desktop-toc{display:none!important}
+  .mobile-toc{display:block;margin:0 14px 14px;border:1px solid var(--line);
+    border-radius:12px;background:#fff}
+  .mobile-toc summary{padding:12px 14px;font-weight:900;color:var(--navy)}
+  .mobile-toc ol{margin:0;border-top:1px solid var(--line);padding:8px 32px 12px 12px}
+  .mobile-toc a{display:block;padding:5px 2px;color:var(--teal)}
+  .guide-grid{grid-template-columns:1fr}
+  .bottom-nav{flex-direction:column}
+  .button{width:100%}
+  .guide-section{padding:23px 17px}
+  .major-subsection{margin:25px -17px 12px!important}
+}
+
+/* ---------------------------------------------------------------------------
+   17. PRINT
+   ------------------------------------------------------------------------ */
+@media print{
+  .backbar,.desktop-toc,.mobile-toc,.bottom-nav{display:none!important}
+  .layout{display:block;padding:0}
+  .surface{border:0;box-shadow:none}
+  .guide-section{break-inside:avoid}
+  .hero{padding:10px 0}
+  .center-main{padding:0}
+}
+
+/* ============================================================================
+   BRAND NOTE — open items, do not silently "fix" on a published guide
+   ----------------------------------------------------------------------------
+   1. .comparison-list is styled here for the first time. The published guide 1
+      currently renders those four cards unstyled. Applying this file to that
+      guide WILL change its appearance (for the better). Needs owner approval
+      before republishing guide 1.
+   2. The Skills guide center still shows a text wordmark inside .center-brand
+      instead of the logo image. Owner is fixing it (2026-08-01). Every new
+      guide center carries the logo image from day one.
+   3. .mk / .mk-tag, .table-wrap, .guide-nav, .risk-grid, .decision-grid,
+      .workbook, .prompt-box, .status are retained for backward compatibility
+      only. New guides must not use them.
+
+   4. NAMING: the published guide center uses .hero / .guide-card / .guide-grid
+      and a bare <main>. Those names already mean something different on a
+      guide page, so section 14b renames them .hub-hero / .hub-card / .hub-grid
+      / .hub-main / .hub-body. Consequence: this stylesheet cannot be dropped
+      onto the existing published center unchanged — that page keeps its own
+      hub.css. A NEW guide center uses the .hub-* names from 14b.
+
+   5. Two other series on the site — cowork/ and desktop/ — run a DIFFERENT
+      visual system: Frank Ruhl + Assistant Hebrew webfonts, teal #00807F,
+      6-10px corners, dark mode, burgundy #7A1233 annotations. Owner decision
+      2026-08-01: they are known outliers, not the standard. Do not copy from
+      them and do not "harmonise" this file toward them.
+   ========================================================================== */
+
+.shot-legend li{display:flex;align-items:flex-start;gap:8px;margin:6px 0}
+.shot-legend b{flex:0 0 auto;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:900;font-style:normal;box-shadow:0 1px 3px rgba(13,39,64,.3)}
+
+
+</style>
+<style>
+  /* tables: the builder used to emit a class nothing styled, so they rendered
+     bare. these ride on .tbl from the locked sheet and only add the header
+     treatment Tzahi asked for - centred, bold, a shade larger. */
+  .tbl-wrap{overflow-x:auto;margin:20px 0}
+  .tbl{width:100%;border-collapse:collapse;background:#fff;
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    box-shadow:0 4px 14px rgba(13,39,64,.05)}
+  .tbl th{background:#dff0e8;color:var(--navy);text-align:center;
+    font-weight:900;font-size:1.06rem;padding:12px 14px;
+    border:1px solid #b9d9cc}
+  .tbl td{background:#fff;text-align:right;padding:11px 14px;
+    border:1px solid var(--line);vertical-align:top;line-height:1.65}
+  .tbl tbody tr:last-child td{border-bottom:1px solid var(--line)}
+  @media print{.tbl{box-shadow:none}.tbl th{background:#eef6f2!important}}
+
+  .status-panel{margin:26px 0;border-radius:16px;background:var(--navy);
+    color:#fff;padding:22px 26px;display:grid;gap:14px;
+    box-shadow:0 10px 30px rgba(13,39,64,.16)}
+  .status-panel .chip{display:inline-flex;align-items:center;gap:8px;
+    align-self:start;border-radius:999px;padding:5px 14px;
+    background:rgba(43,192,183,.16);color:var(--cyan);
+    font-size:.82rem;font-weight:800;letter-spacing:.08em}
+  .status-panel .chip:before{content:"";width:8px;height:8px;border-radius:50%;
+    background:var(--cyan)}
+  .status-panel p{margin:0;font-size:1.02rem;line-height:1.72;opacity:.94}
+  .status-panel strong{color:#fff}
+  .status-facts{display:grid;gap:10px;margin:2px 0 0;padding:0;list-style:none;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .status-facts li{background:rgba(255,255,255,.07);border-radius:10px;
+    padding:11px 14px;font-size:.95rem;line-height:1.5}
+  .status-facts b{display:block;font-size:1.32rem;line-height:1.2;
+    color:var(--cyan);margin-bottom:2px;font-variant-numeric:tabular-nums}
+  /* one band under the title answers "is this guide for me" once */
+  .audience{margin:18px 0 0;border-radius:14px;padding:18px 20px;
+    border:2px solid rgba(20,116,116,.30);background:#fff}
+  .audience b{display:block;margin:0 0 6px;color:var(--teal);
+    font-size:1.12rem;font-weight:900}
+  .audience p{margin:0;line-height:1.75}
+  .audience p + p{margin-top:8px}
+  .who-for{display:inline-block;margin:0 0 1.1rem;border-radius:999px;
+    padding:4px 13px;font-size:.82rem;font-weight:700;line-height:1.5}
+  .who-for.everyone{background:rgba(20,116,116,.10);color:var(--teal)}
+  .who-for.owner{background:rgba(13,39,64,.09);color:var(--navy)}
+  .shot-legend-num li{text-align:start}
+  .shot-legend-num{text-align:start}
+  .shot-hint{display:inline-block;margin:16px 0 4px;padding:7px 14px;
+    border-radius:999px;background:rgba(20,116,116,.09);
+    color:var(--teal);font-size:1.2rem;font-weight:800;line-height:1.4}
+  .shot-hint:before{content:"🔍";margin-inline-end:8px;font-weight:400}
+  .zoomer{position:fixed;inset:0;z-index:70;display:none;overflow:auto;
+    background:rgba(9,20,32,.92);padding:26px}
+  .zoomer.is-open{display:block}
+  /* the way out of a full-size picture has to be found without hunting for
+     it, so it sits centred at the top and wears the brand teal */
+  .zoomer .zoomer-close{position:fixed;top:16px;left:50%;
+    transform:translateX(-50%);z-index:2;
+    border:3px solid var(--teal);border-radius:999px;
+    padding:13px 34px;background:#fff;color:var(--teal);
+    font:inherit;font-size:1.15rem;font-weight:900;cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,.28)}
+  .zoomer .zoomer-close:hover{background:var(--teal);color:#fff}
+  /* the stage must be the positioned ancestor, or the red boxes measure
+     themselves against the whole overlay and scatter */
+  .zoomer .zoomer-stage{margin:44px auto 0;position:relative}
+  .zoomer .zoomer-stage img{display:block;width:100%;height:auto;
+    border-radius:8px}
+  .zoomer .zoomer-cap{margin:14px auto 0;max-width:760px;color:#fff;
+    text-align:center;font-size:1rem;opacity:.9}
+  .zoomer .zoomer-pan{margin:.4rem 0 0;font-size:.9rem;opacity:.8;display:none}
+  .zoomer .zoomer-cap.is-wide .zoomer-pan{display:block}
+  .shot-frame{position:relative}
+  /* the shared sheet tints every marker box red. over text that wash reads
+     as a smear, so in this series the border and the badge do all the work */
+  .shot-target{background:transparent}
+  /* a defined word is a list entry with a red dot, not a paragraph that
+     happens to start in bold. the word itself carries the brand orange and
+     everything after it stays in the reading ink */
+  /* bare children of the white surface card (the intro note before the
+     first section, and the bottom nav) get the card's inner margins, so
+     no line of text ever touches the border or the rounded corners */
+  main.surface>p{margin:26px 24px 6px}
+  main.surface>p:first-child{margin-top:30px}
+  main.surface>.bottom-nav{margin:20px 24px 28px}
+  .terms{list-style:none;padding:0;margin:1.1rem 0}
+  .terms li{position:relative;padding-inline-start:26px;margin-bottom:.95rem;
+    line-height:1.75;text-align:start}
+  .terms li:before{content:"";position:absolute;inset-inline-start:0;top:.62em;
+    width:9px;height:9px;border-radius:50%;background:#D6323C}
+  .terms .term{color:var(--orange);font-weight:800}
+  /* a term named inside the reading text, not only in the glossary */
+  .guide-section .term{color:var(--orange);font-weight:800}
+  .terms .term-he{color:var(--orange);font-weight:700}
+  /* the sentence that closes a term list is part of it, so it starts
+     where the terms start and not at the edge of the column */
+  .terms + p,.terms + p + p{padding-inline-start:26px}
+  /* the shared sheet sets 1.15rem, and at that size a sub-heading reads as
+     one more bold line. 15% larger, in this series only */
+  .guide-section h3,.sec-body h3{font-size:1.32rem;position:relative}
+  /* the dot lives in the margin, so the heading does not shift right */
+  .guide-section h3:before{content:"";position:absolute;
+    inset-inline-start:-16px;top:.54em;width:8px;height:8px;
+    border-radius:50%;background:var(--navy)}
+  .guide-section .content-box h3:before{display:none}
+  /* a link inside the reading text: the reader has to see that it is one,
+     without it shouting louder than the sentence around it */
+  .guide-section a{color:var(--teal);font-weight:800;
+    text-decoration:underline;text-underline-offset:3px;
+    text-decoration-thickness:2px;
+    text-decoration-color:rgba(20,116,116,.42)}
+  .guide-section a:hover{text-decoration-color:var(--teal)}
+  /* the pill button is not reading text, and must keep its own colours */
+  .guide-section a.shot-full{color:#fff;text-decoration:none}
+  .shot{margin:1.7rem 0}
+  .shot img{display:block;width:100%;height:auto;border-radius:10px;
+    border:1px solid rgba(13,39,64,.14);box-shadow:0 6px 22px rgba(13,39,64,.09)}
+  .shot figcaption{text-align:center;margin:.7rem 0 .5rem;opacity:.8;
+    font-size:.95rem}
+  .shot-full{display:inline-flex;align-items:center;gap:7px;margin:.2rem auto 0;
+    border-radius:999px;padding:8px 18px;background:var(--teal);color:#fff;
+    font-size:.92rem;font-weight:700;text-decoration:none;
+    box-shadow:0 4px 14px rgba(20,116,116,.24)}
+  .shot-full:before{content:"🔍";font-size:1.05rem;line-height:1;
+    animation:shot-full-nudge 1.9s ease-in-out infinite}
+  @keyframes shot-full-nudge{0%,100%{transform:scale(1)}
+                             50%{transform:scale(1.22)}}
+  @media (prefers-reduced-motion:reduce){
+    .shot-full:before{animation:none}}
+  .shot-full:hover{filter:brightness(1.08)}
+  .shot{display:flex;flex-direction:column;align-items:stretch}
+  .shot-hole{margin:1.6rem 0}
+  .shot-hole .frame{border:2px dashed rgba(20,116,116,.42);border-radius:10px;
+    background:rgba(20,116,116,.04);min-height:132px;display:flex;
+    flex-direction:column;align-items:center;justify-content:center;gap:9px;
+    padding:26px}
+  .shot-hole .sid{font-family:ui-monospace,Consolas,monospace;font-size:1rem;
+    font-weight:700;color:var(--teal);letter-spacing:.06em}
+  .shot-hole .wait{font-size:.95rem;opacity:.68}
+  .shot-hole .pins{display:flex;gap:6px;flex-wrap:wrap}
+  .shot-hole .pin{width:26px;height:26px;border-radius:50%;background:#D6323C;
+    color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700}
+  .shot-hole figcaption{text-align:center;margin:.7rem 0 .5rem;opacity:.8;
+    font-size:1rem}
+  .shot-legend{list-style:none;padding:0;margin:0;counter-reset:n}
+  .shot-legend li{counter-increment:n;position:relative;padding-inline-start:34px;
+    margin-bottom:.5rem;font-size:1.02rem;line-height:1.65}
+  .shot-legend li:before{content:counter(n);position:absolute;
+    inset-inline-start:0;top:.22em;width:22px;height:22px;border-radius:50%;
+    background:#D6323C;color:#fff;display:grid;place-items:center;
+    font-size:.72rem;font-weight:700}
+  .backbar a:before{content:"↑"}
+  .print-only{display:none}
+  @media print{
+    .backbar,.mobile-toc,.desktop-toc,.skip,.status-panel{display:none!important}
+    .print-only{display:block}
+    body{font-size:11pt}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">דילוג לתוכן</a>
+<nav class="backbar"><a href="claude-team-usage.html">חזרה למרכז המדריכים</a></nav>
+
+<div class="skills-brand"><img class="skills-logo" src="legal-mind-logo-tight.png" alt="לוגו Legal Mind - נורה מעל שם המותג" decoding="async"></div>
+
+<header class="hero"><div>
+<p class="eyebrow">מדריך על מנוי Team ב-Claude · מדריך 2 מתוך 2</p>
+<h1>להגדיר איך כל המשרד עובד</h1>
+<p class="hero-copy">אילו הגדרות של המשרד יושבות ב-Claude ומי רשאי לשנות אותן, איך מעבירים שיטת עבודה אחת לכל עורכי הדין, ומי בודק אותה לפני שהיא מגיעה לכולם.</p>
+<div class="audience"><b>למי מיועד המדריך הזה</b><p><strong>המדריך הזה עוסק בהגדרות שחלות על כל המשרד</strong> - מי מצטרף אליו, מה מותר לכל אחד לעשות, ואיזו שיטת עבודה מגיעה לכל עורכי הדין.</p><p><strong>הוא מיועד למי שמוגדר בחשבון ה-Claude של המשרד <bdi dir="ltr">Owner</bdi></strong> - כלומר לבעלים של המשרד, או למי שהבעלים רוצה לתת הרשאה לניהול חשבון ה-Claude של המשרד. <strong>כל מסך במדריך צולם ונבדק מחשבון <bdi dir="ltr">Owner</bdi>.</strong></p><p><strong>וכדאי שכל עו"ד במשרד יקרא אותו</strong>, כי כתוב כאן מה המשרד הגדיר עבורו ולמה. <strong>ופרקים 00, 08, 09 ו-11 מיועדים לכל עו"ד במשרד.</strong></p></div>
+</div><dl class="facts"><div><dt>מה תלמדו כאן</dt><dd>לבדוק איזה תפקיד יש לכל אחד במשרד ומה מותר לו · להכין שיטת עבודה אחת של המשרד ולהעביר אותה לכל עורכי הדין בפעולה אחת · לקבוע כלל אחד שיחול על כל שיחה של כל עו"ד עם Claude · לחבר את מקורות הידע של המשרד כך שאפשר יהיה לחפש בכולם בשאלה אחת · ולראות מי במשרד משתמש ב-Claude וכמה.</dd></div><div><dt>מה יוכל להשתנות במשרד שלכם אחרי שתקראו את המדריך</dt><dd>כל עורכי הדין יעבדו לפי אותה שיטה, ואיש לא יצטרך להסביר אותה מחדש בכל תיק. כל שיטה חדשה תעבור בדיקה של אדם אחד לפני שהיא מגיעה לכולם. ותהיה לכם תוכנית לחודש הקרוב, שבוע אחר שבוע.</dd></div><div><dt>כמה זמן זה לוקח</dt><dd>כ-25 דקות קריאה. ועוד כ-40 דקות אם תבצעו את ההגדרות תוך כדי, מול המסך.</dd></div><div><dt>מה צריך כדי להתחיל</dt><dd>לקרוא קודם את מדריך 1, ולהיות מוגדרים ב-Claude כ-Owner. מי שאינו מוגדר כך יבין כאן הכל, אבל לא ימצא אצלו את מסכי הניהול.</dd></div></dl></header>
+
+
+
+<nav class="mobile-toc"><details><summary>תוכן המדריך</summary><ol><li><a href="#g2-ch00"><span>00</span>מונחים נוספים שחובה להכיר לפני שתתחילו לקרוא את מדריך 2</a></li><li><a href="#g2-ch01"><span>01</span>מי במשרד רשאי לשנות הגדרות ב-<bdi dir="ltr">Claude</bdi>, ואיך בודקים אם זה אתם</a></li><li><a href="#g2-ch02"><span>02</span>מי מאשר סקיל לפני שכל המשרד מקבל אותו</a></li><li><a href="#g2-ch03"><span>03</span>נותנים למחלקה שלמה את כל הכלים בפעולה אחת</a></li><li><a href="#g2-ch04"><span>04</span>קובעים כלל אחד שיחול על כל שיחה במשרד</a></li><li><a href="#g2-ch05"><span>05</span>שואלים שאלה אחת ומקבלים תשובה מכל מקורות המשרד</a></li><li><a href="#g2-ch06"><span>06</span>מי מקבל איזה מושב, ומה האדמין מכבה לכולם</a></li><li><a href="#g2-ch07"><span>07</span>רואים מי במשרד באמת משתמש, וכמה</a></li><li><a href="#g2-ch08"><span>08</span>כשמשהו לא עובד בהגדרות המשרד</a></li><li><a href="#g2-ch09"><span>09</span>חמש הטעויות שמשרדים עושים</a></li><li><a href="#g2-ch10"><span>10</span>מסלול 30 יום</a></li><li><a href="#g2-ch11"><span>11</span>מה המשרד יודע לעשות עכשיו, ולאן ממשיכים מכאן</a></li></ol></details></nav>
+
+<div class="layout">
+<main class="surface" id="main">
+<p><strong>גם המדריך הזה אינו עוסק בפרטיות ובאבטחת מידע.</strong> הכל נמצא במדריך של Legal Mind על המעבר הבטוח למנוי Team, <strong>מדריך 1 סעיף 2.</strong></p>
+<section class="guide-section" id="g2-ch00"><span class="section-number">00</span><h2>מונחים נוספים שחובה להכיר לפני שתתחילו לקרוא את מדריך 2</h2>
+<p>המדריך הזה ממשיך את מדריך 1, ומניח שאתם מכירים כבר פרויקט, מאגר ידע ואת ההרשאות שנותנים בתוך פרויקט. <strong>את המונחים האלה לא נחזור ונגדיר כאן.</strong></p>
+<p>מה שנוסף הוא שכבה אחרת: המשרד. <strong>כאן כבר לא מגדירים מה מותר לעובד מסוים לעשות בתיק מסוים, אלא מגדירים בפעולה אחת מה יחול על כל עורכי הדין ועל כל העובדים במשרד</strong> - ולשכבה הזו יש מונחים משלה.</p>
+<p><strong>גם כאן אפשר לקרוא עכשיו, ואפשר לדלג ולהתחיל לעבוד.</strong> ואם תיתקלו בהמשך במונח שאינכם מכירים, תוכלו לחזור לכאן בלחיצה אחת: <strong>בצד המסך יש רשימה של כל פרקי המדריך, והפרק הזה הוא הראשון בה.</strong></p>
+<h3>ואת ארבעת התפקידים במשרד תמצאו בפרק הבא, ולא כאן:</h3>
+<p><span class="term"><bdi dir="ltr">User</bdi></span>, <span class="term"><bdi dir="ltr">Admin</bdi></span>, <span class="term"><bdi dir="ltr">Owner</bdi></span> ו-<span class="term"><bdi dir="ltr">Primary Owner</bdi></span> מוסברים שם במלואם: <strong>מה כל אחד מהם רואה במסך שלו, מה מותר לו לעשות, ואיך תבדקו איזה תפקיד יש לכם.</strong></p>
+<h3>המונחים של עמוד הניהול, שבו יושבים כל המסכים במדריך הזה:</h3>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">Organization settings</bdi></span> <span class="term-he">(עמוד הניהול של הארגון)</span> · עמוד ניהול נפרד, שנפתח מתפריט החשבון. <strong>כל המסכים במדריך הזה יושבים בו.</strong></li><li><span class="term"><bdi dir="ltr">Back to app</bdi></span> · הכפתור בראש הסרגל שם. <strong>הוא מחזיר אתכם לשיחות ולפרויקטים</strong>, ובלעדיו נראה כאילו העבודה נעלמה.</li></ul>
+<h3>והמונחים של מה שמפיצים מעמוד הניהול לכל עורכי הדין:</h3>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">Organization skill</bdi></span> <span class="term-he">(סקיל ארגוני)</span> · שיטת עבודה שהמשרד הפיץ. <strong>היא מופיעה אצל כל עורכי הדין ומופעלת אצלם מעצמה</strong>, ואפשר לכבות אותה אצלכם אבל לא למחוק.</li><li><span class="term"><bdi dir="ltr">Plugin</bdi></span> <span class="term-he">(פלאגין)</span> · חבילה שאורזת כמה סקילים יחד, <strong>ומגיעה למחלקה שלמה בפעולה אחת.</strong></li><li><span class="term"><bdi dir="ltr">Marketplace</bdi></span> <span class="term-he">(מרקטפלייס)</span> · הקטלוג שממנו עו"ד מתקין חבילה בעצמו, אם הרשיתם לו.</li><li><span class="term"><bdi dir="ltr">Organization instructions</bdi></span> <span class="term-he">(הוראות ארגוניות)</span> · טקסט אחד שחל על <strong>כל</strong> שיחה של <strong>כל</strong> אחד במשרד. כללי בית, ולא שיטת עבודה.</li><li><span class="term"><bdi dir="ltr">Ask Your Org</bdi></span> <span class="term-he">(חיפוש ארגוני)</span> · שאלה אחת שמחזירה תשובה מכל מקורות הידע המחוברים של המשרד.</li></ul>
+<p><strong>ושומר סף אינו מונח של <bdi dir="ltr">Claude</bdi> אלא נוהל שלכם:</strong> אדם אחד שדרכו עוברים כל הסקילים לפני שהם מגיעים לכולם.</p>
+<h3>והמונחים שאומרים איזה רישיון יש לכל עובד, וכמה הוא משתמש:</h3>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">Seat</bdi></span> <span class="term-he">(מושב)</span> · רישיון של אדם אחד. <strong><bdi dir="ltr"><code>Standard</code></bdi> הוא הרגיל, <bdi dir="ltr"><code>Premium</code></bdi> נותן מכסה גדולה יותר</strong>, ואפשר לשלב ביניהם באותו משרד.</li><li><span class="term"><bdi dir="ltr">Analytics</bdi></span> <span class="term-he">(אנליטיקות)</span> · מסך שמראה מי במשרד משתמש, כמה, ובאילו יכולות.</li></ul>
+<h3>ולמי כל פרק מיועד:</h3>
+<p>המדריך הזה עוסק בהגדרות, וחלק מהן פתוחות רק למי שמחזיק תפקיד מסוים. <strong>החלוקה המלאה כתובה במסגרת שבראש המדריך</strong>, מתחת לכותרת.</p>
+<p><strong>ומה שחשוב לדעת כאן הוא שהחלוקה נוגעת לביצוע בלבד.</strong> הפרקים כתובים לכולם, <strong>וגם מי שהמסך לא ייפתח אצלו יבין בדיוק מה הוגדר במשרד ולמה.</strong></p>
+</section>
+<section class="guide-section" id="g2-ch01"><span class="section-number">01</span><h2>מי במשרד רשאי לשנות הגדרות ב-<bdi dir="ltr">Claude</bdi>, ואיך בודקים אם זה אתם</h2>
+<p><strong>כשמשרד עובר למנוי <bdi dir="ltr"><code>Team</code></bdi>, כל עורכי הדין בו יושבים תחת חשבון <bdi dir="ltr">Claude</bdi> אחד, של המשרד</strong> - ולא כל אחד בחשבון <bdi dir="ltr">Claude</bdi> פרטי משלו.</p>
+<p><strong>ובחשבון ה-<bdi dir="ltr">Claude</bdi> של המשרד יש הגדרות שחלות על כל עורכי הדין בבת אחת</strong> - מי יכול להצטרף למשרד, אילו יכולות של <bdi dir="ltr">Claude</bdi> פתוחות לעורכי הדין, ומי משלם על המנוי.</p>
+<p><strong>ולא כל אחד רשאי לגעת בהגדרות האלה.</strong> לכל אדם במשרד יש אחד מארבעה תפקידים, <strong>וכל תפקיד רואה מסכים אחרים ורשאי לעשות דברים אחרים.</strong></p>
+<p><strong>ולפרק הזה יש שני חלקים, כי לא כל מה שכתוב בו פתוח לכולם.</strong></p>
+<p><strong>החלק הראשון הוא לכל עו"ד במשרד:</strong> איזה תפקיד יש לכם בחשבון ה-<bdi dir="ltr">Claude</bdi> של המשרד ואיפה בודקים את זה, <strong>ומה ההרשאות שיש לכל אחד מארבעת התפקידים</strong> - כולל מי רשאי לראות את חשבוניות המשרד ולשנות את אמצעי התשלום.</p>
+<p><strong>והחלק השני הוא למי שמוגדר <bdi dir="ltr"><code>Owner</code></bdi>:</strong> לראות מי מעורכי הדין במשרד מחזיק היום בכל תפקיד, מי ממתין לאישור הצטרפות, <strong>ולקבוע איך אדם חדש נכנס למשרד</strong> - האם רק בהזמנה אישית, או שכל מי שיש לו כתובת מייל של המשרד יכול להיכנס לבד.</p>
+<p><strong>ומי שאין לו את התפקיד הזה מוזמן לקרוא גם את החלק השני</strong>, ולדעת מה קורה במשרד גם בלי שהמסכים ייפתחו אצלו.</p>
+<p><strong>ומתחילים בפעולה אחת, לפני כל הסבר:</strong> כדי לדעת מה מותר לכם, צריך קודם לדעת מה התפקיד שלכם. <strong>וזה מסך אחד.</strong></p>
+<h3>שלב 1 · בודקים מה התפקיד שלכם:</h3>
+<p><strong>בפינה השמאלית התחתונה של המסך ב-<bdi dir="ltr">Claude</bdi> כתוב שמכם. לוחצים עליו, ונפתח תפריט:</strong></p>
+<figure class="shot" style="max-width:345px;margin-inline:auto"><div class="shot-frame"><img src="tu/8e210837198c3093.png" alt="הדרך למסך: לוחצים על השם, ואז על Settings" width="442" height="666" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:12.217%;top:86.036%;width:59.050%;height:4.805%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:12.217%;top:26.577%;width:71.267%;height:5.556%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">הדרך למסך: לוחצים על השם, ואז על Settings</p><ol class="shot-legend-num"><li><strong>1</strong> השורה עם השם שלכם, בפינה השמאלית התחתונה של המסך. <strong>הלחיצה עליה פותחת את התפריט הזה.</strong></li><li><strong>2</strong> השורה <bdi dir="ltr"><code>Settings</code></bdi> בתפריט. <strong>לוחצים עליה, ונפתח חלון ההגדרות.</strong></li></ol></figcaption></figure>
+<p><strong>בתפריט הזה לוחצים על <bdi dir="ltr"><code>Settings</code></bdi>, ונפתח חלון ההגדרות.</strong> בסרגל שבצידו כבר מסומן <bdi dir="ltr"><code>Account</code></bdi>, וזה המסך שמולכם:</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/14b28a175611e1fb.png" alt="מסך Account" width="1339" height="1049" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:24.720%;top:40.419%;width:67.812%;height:3.813%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:24.720%;top:46.711%;width:67.812%;height:4.671%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">מסך Account</p><ol class="shot-legend-num"><li><strong>1</strong> השורה <bdi dir="ltr">Your role</bdi> אומרת באיזה תפקיד אתם מסומנים במשרד. <strong>בצילום כתוב בה <bdi dir="ltr"><code>Owner</code></bdi>.</strong> ואם אצלכם כתוב שם <bdi dir="ltr"><code>User</code></bdi>, <strong>מסכי הניהול לא ייפתחו לכם</strong>, ואת ההגדרות שבפרקים הבאים יבצע מי שמסומן <bdi dir="ltr"><code>Owner</code></bdi> או <bdi dir="ltr"><code>Admin</code></bdi>.</li><li><strong>2</strong> השורה שמתחתיה אומרת מי מוגדר ה-<bdi dir="ltr">Primary Owner</bdi> של המשרד, <strong>ומופיעה בה כתובת המייל שלו.</strong> זה האדם שאליו פונים כשצריך הרשאה שאין לכם.</li></ol></figcaption></figure>
+<p><strong>ואם כתוב שם <bdi dir="ltr"><code>User</code></bdi></strong> - מסכי ההגדרות של המשרד לא ייפתחו אצלכם, <strong>ואת הפעולות שבפרקים 01 עד 07 יבצע מי שמוגדר <bdi dir="ltr"><code>Owner</code></bdi>.</strong></p>
+<p><strong>באותו מסך כתוב גם מי זה:</strong> השורה שמתחת אומרת מי ה-<bdi dir="ltr"><code>Primary Owner</code></bdi> של המשרד ומופיעה בה כתובת המייל שלו. <strong>פנו אליו, הראו לו את הפרק, ובקשו שיבצע מהחשבון שלו.</strong></p>
+<p><strong>ואת המדריך עצמו אתם ממשיכים לקרוא.</strong> ההסברים כאן נכתבו לכולם, ופרקים 00, 08, 09 ו-11 מיועדים לכל עו"ד במשרד.</p>
+<h3>שלב 2 · נכנסים למסכי ההגדרות של המשרד:</h3>
+<aside class="content-box info">
+<h3>ומכאן והלאה מדובר במסכי ניהול:</h3>
+<p><strong>שלב 1 שייך לכל עו"ד במשרד</strong>, וכל אחד יכול לבדוק בו איזה תפקיד יש לו.</p>
+<p><strong>כל השלבים הבאים הם מסכי הגדרות של המשרד.</strong> מי שמוגדר <bdi dir="ltr"><code>Owner</code></bdi> יבצע אותם, <strong>ומי שאינו מוגדר כך מוזמן לקרוא ולדעת מה קורה במשרד</strong> גם בלי שהמסכים ייפתחו אצלו.</p>
+</aside>
+<p><strong>באותו תפריט חשבון יש שורה בשם <bdi dir="ltr"><code>Organization settings</code></bdi>.</strong> לוחצים עליה, <strong>ונפתח עמוד ניהול נפרד לגמרי.</strong></p>
+<figure class="shot" style="max-width:345px;margin-inline:auto"><div class="shot-frame"><img src="tu/8e210837198c3093.png" alt="תפריט החשבון פתוח" width="442" height="666" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:12.217%;top:32.432%;width:59.050%;height:4.955%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:12.217%;top:38.589%;width:59.050%;height:4.955%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:12.217%;top:86.036%;width:59.050%;height:4.805%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">תפריט החשבון פתוח</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Organization settings</bdi>. <strong>זו הדרך הקצרה</strong> - לחיצה אחת מכאן, במקום לעבור דרך <bdi dir="ltr">Settings</bdi> ולגלול עד למטה.</li><li><strong>2</strong> <bdi dir="ltr">Analytics</bdi>. <strong>גם לדשבורד השימוש יש קיצור מכאן</strong>, ונחזור אליו בפרק 07.</li><li><strong>3</strong> השורה שעליה לוחצים כדי לפתוח את התפריט, <strong>בפינה השמאלית התחתונה.</strong></li></ol></figcaption></figure>
+<p><strong>ובצד העמוד שנפתח יש סרגל ארוך, וזה הסרגל שילווה אתכם לאורך כל המדריך הזה.</strong> כל מסך שנציג כאן נפתח מלחיצה על אחד הפריטים שבו:</p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:178px;margin-inline:auto"><img src="tu/6bb08f2c0f7de49b.png" alt="הסרגל של עמוד הניהול של הארגון, במלואו" width="601" height="1759" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:20.466%;top:7.163%;width:58.569%;height:85.276%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הסרגל של עמוד הניהול של הארגון, במלואו</p><ol class="shot-legend-num"><li><strong>1</strong> הסרגל כולו. <strong>מכאן נפתח כל מסך שמוצג במדריך הזה</strong>, ומכאן והלאה נראה בכל פעם רק את החלק שממנו נכנסים למסך הנוכחי.</li></ol></figcaption></figure>
+<p><strong>והוא ארוך מכדי להציג אותו שוב בכל פעם.</strong> ולכן מכאן והלאה, <strong>לפני כל מסך נראה רק את החלק שממנו נכנסים אליו, עם הפריט מסומן באדום</strong> - ומתחת לכל צילום כזה יש קישור שפותח את הסרגל כולו.</p>
+<p><strong>ובתפריט החשבון, זה שנפתח בלחיצה על שמכם, יש גם קיצור ל-<bdi dir="ltr"><code>Analytics</code></bdi></strong> - ואליו נגיע בפרק 07.</p>
+<p><strong>ומי שכבר נמצא בתוך <bdi dir="ltr"><code>Settings</code></bdi></strong> ימצא את אותו יעד גם בתחתית הסרגל שם, תחת השם <bdi dir="ltr"><code>Organization</code></bdi>. <strong>שתי הדרכים מגיעות לאותו מקום.</strong></p>
+<h3>ולמה יש שתי מערכות הרשאות נפרדות:</h3>
+<p><strong>עכשיו, אחרי שראיתם את התפקיד שלכם, אפשר להסביר מה הוא אומר.</strong></p>
+<p><strong>במשרד יש שתי מערכות הרשאות שאין ביניהן קשר.</strong></p>
+<p><strong>האחת שואלת מה מותר לכם במשרד</strong> - לנהל חברים, לגשת לחיוב, לשנות הגדרות של כל הארגון. <strong>זה התפקיד הארגוני, וזה מה שראיתם על המסך.</strong></p>
+<p><strong>והשנייה שואלת מה מותר לכם בתיק מסוים</strong> - רק לקרוא, או גם לשנות. <strong>זו הרשאת הפרויקט, וראיתם אותה במדריך 1.</strong></p>
+<p><strong>ומה שזה אומר בפועל, ושווה לקרוא פעמיים:</strong></p>
+<p><strong>עו"ד שמוגדר <bdi dir="ltr"><code>User</code></bdi> יכול להיות עורך בפרויקט מסוים.</strong> התפקיד הארגוני שלו לא מונע את זה.</p>
+<p><strong>ו-<bdi dir="ltr"><code>Owner</code></bdi> של הארגון אינו מקבל אוטומטית גישה לפרויקט פרטי של עובד.</strong> התפקיד הבכיר לא פותח לו דלתות בתוך פרויקטים של אחרים.</p>
+<p><strong>וזה נכון לגבי מה שרואים על המסך.</strong> יש ל-<bdi dir="ltr"><code>Primary Owner</code></bdi> דרך אחרת להגיע למידע - בקשת ייצוא של תוכן החשבון - <strong>והיא מוסברת במדריך 1 פרק 01. זה עניין נפרד מהתפקידים.</strong></p>
+<p><strong>מי שמערבב בין השתיים נותן הרשאות שלא התכוון לתת.</strong></p>
+<h3>ומה מותר בכל אחד מארבעת התפקידים:</h3>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">Primary Owner</bdi></span> · <strong>אחד בלבד בכל משרד, ובעל ההרשאה הגבוהה ביותר.</strong> הוא אינו חייב להיות אדם - <strong>משרד יכול לרשום לשם כך כתובת מייל כללית שלו</strong>, כדי שהתפקיד לא ייעלם עם עזיבתו של עובד.</li><li><span class="term"><bdi dir="ltr">Owner</bdi></span> · <strong>ניהול מלא של חשבון ה-<bdi dir="ltr">Claude</bdi> של המשרד</strong>, כולל מסך החיוב והתשלומים.</li><li><span class="term"><bdi dir="ltr">Admin</bdi></span> · <strong>מוסיף ומסיר אנשים מהמשרד ומשנה את הגדרות הארגון.</strong> בדרך כלל מנהל תפעול, או מי שאחראי על הכלים.</li><li><span class="term"><bdi dir="ltr">User</bdi></span> · <strong>כל מי שאינו מחזיק אחד משלושת התפקידים שלמעלה</strong> - כלומר רוב עורכי הדין במשרד. עובד ב-<bdi dir="ltr">Claude</bdi> בלי מגבלה, <strong>ואינו רואה בכלל את מסכי ההגדרות של המשרד.</strong></li></ul>
+<aside class="content-box warning">
+<h3>ובנוגע לחיוב, שני עמודים של <bdi dir="ltr">Anthropic</bdi> אומרים דברים שונים:</h3>
+<p><strong>בעמוד ניהול החברים כתוב:</strong> <em>"Only Owners and Primary Owners can access Organization settings > Billing."</em></p>
+<p><strong>ובטבלת ההרשאות מופיע ש-<bdi dir="ltr"><code>Admin</code></bdi> מחזיק גם הרשאות חיוב</strong>, כולל צפייה בחשבוניות ושינוי אמצעי תשלום.</p>
+<p><strong>איננו מכריעים ביניהם.</strong> <strong>בדקו במסך שלכם מי רואה בפועל את <bdi dir="ltr"><code>Billing</code></bdi></strong>, ואל תסתמכו על הנחה בעניין שנוגע לכסף של המשרד.</p>
+</aside>
+<h3>שלב 3 · כיצד ניתן לראות מי מעובדי המשרד ומה התפקיד של כל אחד מהם ברמת ההרשאה:</h3>
+<p><strong>כדי להגיע לרשימת העובדים, לוחצים בסרגל של עמוד הניהול על <bdi dir="ltr"><code>Members</code></bdi></strong>, והוא יושב תחת הכותרת האפורה <bdi dir="ltr"><code>People</code></bdi>:</p>
+<figure class="shot" style="max-width:455px;margin-inline:auto"><div class="shot-frame"><img src="tu/f907e0f8bdf28a2a.png" alt="הדרך למסך החברים: הפריט Members בסרגל" width="455" height="390" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:12.088%;top:45.641%;width:73.626%;height:8.718%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך למסך החברים: הפריט Members בסרגל</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Members</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong> הסרגל ארוך ומוצג כאן רק החלק הרלוונטי - <strong>הקישור שמתחת לצילום פותח את הסרגל כולו.</strong></li></ol><a class="shot-full" href="tu/45972bd9cb75c20e.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<p><strong>ואחרי הלחיצה נפתחת רשימת העובדים:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/d03f879a2694671d.png" alt="רשימת חברי הארגון" width="1373" height="661" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:36.271%;top:33.888%;width:13.765%;height:23.298%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:63.583%;top:33.888%;width:10.197%;height:24.811%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:6.118%;top:25.567%;width:13.765%;height:5.749%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">רשימת חברי הארגון</p><ol class="shot-legend-num"><li><strong>1</strong> עמודת התפקיד. <strong>כאן רואים במבט אחד כמה בעלי <bdi dir="ltr"><code>Owner</code></bdi> יש במשרד.</strong></li><li><strong>2</strong> חבר שסוג המושב שלו שונה מהשאר.</li><li><strong>3</strong> <bdi dir="ltr">Back to app</bdi>, בראש הסרגל. <strong>מסכי הארגון מחליפים את הסרגל הרגיל, וזו הדרך לחזור לשיחות ולפתוח שיחה חדשה.</strong></li></ol></figcaption></figure>
+<p><strong>ולפני שממשיכים, שימו לב לראש הסרגל.</strong> מסכי הארגון מחליפים את הסרגל הרגיל, ולכן השיחות והפרויקטים לא נראים כאן. <strong><bdi dir="ltr"><code>Back to app</code></bdi> מחזיר אתכם אליהם</strong>, ומשם גם פותחים שיחה חדשה.</p>
+<p><strong>ברשימה של שני אנשים רואים הכל במבט אחד. ברשימה של שלושים, לא.</strong> ולכן מעל הרשימה יש מסנן בשם <bdi dir="ltr"><code>Role</code></bdi>: לוחצים עליו, מסמנים <bdi dir="ltr"><code>Owner</code></bdi>, <strong>והרשימה מציגה רק אותם.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/8efc480c0ea33d1f.png" alt="המסנן Role, פתוח" width="1389" height="545" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:62.923%;top:28.073%;width:9.143%;height:7.339%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:63.139%;top:37.248%;width:18.143%;height:29.541%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">המסנן Role, פתוח</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Role</bdi>. <strong>לוחצים עליו, ונפתחת רשימה.</strong></li><li><strong>2</strong> ארבעת התפקידים. <strong>מסמנים אחד, והרשימה מציגה רק אותו.</strong> במשרד של שניים זה מיותר, <strong>ובמשרד של שלושים זו הדרך היחידה לדעת כמה בעלי <bdi dir="ltr">Owner</bdi> יש לכם.</strong></li></ol></figcaption></figure>
+<p><strong>וזו בדיקה ששווה לעשות פעם ברבעון:</strong> כמה אנשים במשרד מחזיקים ניהול מלא, <strong>ומי הם.</strong></p>
+<p><strong>ולחיצה על התפקיד של אדם פותחת כרטיס קטן</strong> ובו השם, המייל, התפקיד, סוג המושב, <strong>ומתי הוא הצטרף.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/a5c53ea679518731.png" alt="הכרטיס שנפתח בלחיצה על תפקיד" width="735" height="272" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:8.299%;top:51.471%;width:12.789%;height:23.162%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:21.088%;top:51.471%;width:13.605%;height:23.162%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-below" style="left:36.599%;top:51.471%;width:9.660%;height:23.162%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">הכרטיס שנפתח בלחיצה על תפקיד</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Role</bdi>. התפקיד הארגוני.</li><li><strong>2</strong> <bdi dir="ltr">Seat tier</bdi>. סוג המושב, <strong>וזה כן ניתן לשינוי מהרשימה עצמה.</strong></li><li><strong>3</strong> <bdi dir="ltr">Joined</bdi>. <strong>מתי האדם הצטרף</strong>, וזה שימושי כשעוברים על הרשימה ומחפשים מי כבר לא פעיל.</li></ol></figcaption></figure>
+<p><strong>הכרטיס הזה מציג ואינו עורך.</strong> בבדיקה שערכנו ב-18 באוגוסט 2026 לא הייתה בו אפשרות לשנות תפקיד. <strong>מה שכן משנים מהמסך הזה הוא סוג המושב</strong>, מהבורר שבעמודה <bdi dir="ltr"><code>Tier</code></bdi>.</p>
+<p><strong>ואם אתם מחפשים איפה משנים תפקיד ולא מוצאים:</strong> תפקיד גבוה משלכם אינכם יכולים לשנות, ואת שלכם אינכם יכולים להוריד. <strong>בשני המקרים פונים ל-<bdi dir="ltr"><code>Primary Owner</code></bdi>.</strong></p>
+<p><strong>ותאריך ההצטרפות שווה יותר ממה שהוא נראה.</strong> כשעוברים על רשימה של שלושים אנשים ומחפשים מי כבר לא פעיל, <strong>זו העמודה שמתחילים ממנה.</strong></p>
+<h3>שלב 4 · בודקים מי ממתין להצטרף:</h3>
+<p><strong>נשארים באותו מסך <bdi dir="ltr"><code>Members</code></bdi> - לא צריך ללחוץ על שום דבר בסרגל.</strong> מעל הרשימה יש שתי לשוניות. <bdi dir="ltr"><code>Active</code></bdi> היא מי שכבר בפנים, <strong>ו-<bdi dir="ltr"><code>Pending</code></bdi> היא מי שהוזמן ועדיין לא הצטרף.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/b0cf7588b97ec0f6.png" alt="לשונית Pending, ריקה" width="1404" height="475" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:13.462%;top:34.316%;width:6.909%;height:7.368%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:44.516%;top:67.158%;width:12.393%;height:5.895%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:83.333%;top:19.368%;width:9.758%;height:8.421%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">לשונית Pending, ריקה</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Pending</bdi>. <strong>לשונית נפרדת מ-<bdi dir="ltr">Active</bdi></strong>, ומי שלא לוחץ עליה לא יודע שיש הזמנות ממתינות.</li><li><strong>2</strong> <bdi dir="ltr">No pending invites</bdi>. <strong>כך נראה מצב נקי</strong>, וכל שורה שתופיע כאן היא אדם שכבר תופס מושב.</li><li><strong>3</strong> <bdi dir="ltr">Add member</bdi>. <strong>מכאן מזמינים</strong>, ומה שנשלח מופיע בלשונית הזאת עד שהוא מתקבל.</li></ol></figcaption></figure>
+<p><strong>וכשאין ממתינים כתוב שם <bdi dir="ltr"><code>No pending invites</code></bdi></strong> - וזה מה שאתם רוצים לראות אחרי ניקוי.</p>
+<p><strong>כי הזמנה ממתינה כבר תופסת מושב</strong>, גם לפני שהאדם הצטרף. <strong>כדאי לעבור על הרשימה מדי פעם ולנקות הזמנות ישנות</strong>, אחרת אתם משלמים על מושבים שאיש לא יושב בהם.</p>
+<h3>שלב 5 · קובעים איך בכלל נכנסים למשרד:</h3>
+<p><strong>במסך אחד נקבע איך אדם חדש מצטרף למשרד</strong>, ובו שלוש הגדרות נפרדות שמשפיעות זו על זו. <strong>משרדים רבים מדליקים אחת מהן ומניחים שהשנייה מכסה אותם, וזה לא מה שקורה</strong> - נסביר בדיוק למטה.</p>
+<p><strong>וכדי להגיע אליו, לוחצים בסרגל של עמוד הניהול על <bdi dir="ltr"><code>Organization and access</code></bdi>:</strong></p>
+<figure class="shot" style="max-width:455px;margin-inline:auto"><div class="shot-frame"><img src="tu/de9855571f67a7dc.png" alt="הדרך למסך ההצטרפות: הפריט Organization and access בסרגל" width="455" height="390" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:12.088%;top:44.615%;width:73.626%;height:11.282%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך למסך ההצטרפות: הפריט Organization and access בסרגל</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Organization and access</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong> הסרגל ארוך ומוצג כאן רק החלק הרלוונטי - <strong>הקישור שמתחת לצילום פותח את הסרגל כולו.</strong></li></ol><a class="shot-full" href="tu/45972bd9cb75c20e.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<p><strong>ואחרי הלחיצה נפתח המסך, ובתוכו גוללים עד האזור שנקרא <bdi dir="ltr"><code>User provisioning</code></bdi>.</strong> יש בו שלושה דברים נפרדים, <strong>וצריך לקרוא את שלושתם יחד.</strong></p>
+<p><strong>הראשון הוא איך אנשים מצטרפים.</strong> ברירת המחדל היא <bdi dir="ltr">Invite only</bdi> - מוסיפים אדם אדם בהזמנה. <strong>מתחתיה יש <bdi dir="ltr">Just-in-time</bdi>, שמצרף אנשים מעצמו כשהם נכנסים עם ההזדהות הארגונית של המשרד</strong> - כלומר אותה כניסה שבה הם נכנסים למחשב ולמייל של המשרד. <strong>האפשרות הזו אפורה ולא ניתנת ללחיצה</strong> כל עוד המשרד לא חיבר הזדהות כזו, וב-<bdi dir="ltr">Claude</bdi> היא נקראת <bdi dir="ltr"><code>SSO</code></bdi>.</p>
+<p><strong>השני הוא קישור הצטרפות.</strong> מתג שמייצר קישור אחד, <strong>וכל מי שיש לו כתובת בדומיין המורשה ונכנס דרכו מצטרף למשרד.</strong></p>
+<p><strong>והשלישי הוא אישור עובד חדש</strong> - תפריט שקובע אם מי שמצטרף ממתין לאישור של אדמין, או נכנס מעצמו.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/40760b4f6bd50031.png" alt="אזור User provisioning" width="1393" height="858" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.102%;top:15.967%;width:87.294%;height:20.746%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:7.681%;top:43.706%;width:70.065%;height:4.079%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:7.681%;top:55.944%;width:15.075%;height:3.613%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:7.681%;top:74.476%;width:83.776%;height:10.140%"><span class="shot-target-badge">4</span></div></div><figcaption><p class="shot-caption">אזור User provisioning</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Invite only</bdi>, ומתחתיה <bdi dir="ltr">Just-in-time</bdi> האפורה. <strong>היא דורשת <bdi dir="ltr">SSO</bdi>, ולכן אינה זמינה כאן.</strong></li><li><strong>2</strong> קישור ההצטרפות, והמשפט שלידו: <strong>מי שנכנס דרכו מאושר אוטומטית.</strong></li><li><strong>3</strong> תאריך התפוגה של הקישור.</li><li><strong>4</strong> <bdi dir="ltr">New member approval</bdi>. <strong>הוא חל על גילוי ועל הזמנה של חבר, ולא על הקישור.</strong></li></ol><a class="shot-full" href="tu/d7a67871b5447e63.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<aside class="content-box warning">
+<h3>והנה מה שקל לפספס: הקישור עוקף את האישור:</h3>
+<p><strong>קראו את מה שכתוב מתחת לקישור עצמו:</strong> מי שמצטרף דרכו <strong>מאושר אוטומטית.</strong></p>
+<p><strong>וקראו את מה שכתוב מתחת לתפריט האישור:</strong> הוא חל על מי שמצטרף דרך גילוי או דרך הזמנה של חבר - <strong>ולא על הקישור.</strong></p>
+<p><strong>כלומר שני הדברים אינם באותה שרשרת.</strong> משרד שהדליק את הקישור והשאיר את התפריט על <bdi dir="ltr"><code>Require admin approval</code></bdi> <strong>חושב שיש לו שומר בשער, ובפועל יש דלת שנייה שנפתחת בלי אישור.</strong></p>
+<p><strong>וזו לא ספקולציה שלנו</strong> - זה מה שכתוב בשתי השורות האלה על המסך.</p>
+</aside>
+<p><strong>ולפני שתחפשו משהו שאינו קיים:</strong> ארבעת התפקידים האלה הם כל מה שיש. <strong>אי אפשר להגדיר תפקיד משלכם</strong>, ואי אפשר לתת למתמחה גישה חלקית לחלק מהמחלקות. <strong>מי שרוצה שליטה פרטנית כזו צריך מנוי <bdi dir="ltr"><code>Enterprise</code></bdi></strong>, שהוא המנוי הגדול של <bdi dir="ltr">Anthropic</bdi> לארגונים, <strong>ולא <bdi dir="ltr"><code>Team</code></bdi>.</strong></p>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>המיפוי שאנחנו ממליצים עליו למשרד עורכי דין:</strong></p>
+<ul class="bullets"><li><strong>שותף מנהל או מנהל כספים</strong> · <bdi dir="ltr"><code>Owner</code></bdi></li><li><strong>מנהל תפעול, או שומר הסף שנכיר בפרק הבא</strong> · <bdi dir="ltr"><code>Admin</code></bdi></li><li><strong>כל שאר עורכי הדין והמתמחים</strong> · <bdi dir="ltr"><code>User</code></bdi></li></ul>
+<p><strong>ולא יותר משני בעלי <bdi dir="ltr"><code>Owner</code></bdi> במשרד.</strong> זה ניהול מלא של הארגון, <strong>ואין סיבה שיהיה בידי יותר משניים.</strong></p>
+<p><strong>וקישור הצטרפות פתוח אינו מתאים למשרד עורכי דין.</strong> מי שהדליק אותו לגל הצטרפות ראשוני - <strong>שיכבה אותו אחרי שהצוות נכנס.</strong> לקישור יש גם תאריך תפוגה, וכדאי לרשום אותו.</p>
+</aside>
+<p><strong>ומי יהיה <bdi dir="ltr"><code>Primary Owner</code></bdi></strong> - זו החלטה שכבר קיבלתם, והיא מוסברת במדריך של Legal Mind על המעבר הבטוח, מדריך 1 סעיף 3.</p>
+</section>
+<section class="guide-section" id="g2-ch02"><span class="section-number">02</span><h2>מי מאשר סקיל לפני שכל המשרד מקבל אותו</h2>
+<p><strong>זה הפרק שבו המשרד מפסיק להיות אוסף של אנשים שכל אחד עובד בשיטה שלו.</strong></p>
+<p><strong>כשכל עו"ד בונה לעצמו שיטה, יש במשרד שבע שיטות.</strong> וכשלקוח שואל למה התשובה שקיבל שונה ממה שקיבל שותפו, <strong>אין למי לענות.</strong> וכשיש סקיל ארגוני אחד יש שיטה אחת, <strong>ואם צריך לשנות אותה משנים במקום אחד.</strong></p>
+<p><strong>השאלה המעשית היא מי מחליט מה נכנס לשם</strong>, וזה מה שנעשה בפרק הזה.</p>
+<h3>שלב 1 · נכנסים למסך הסקילים של הארגון:</h3>
+<p><strong>כדי להגיע למסך הסקילים, גוללים בסרגל של עמוד הניהול למטה, עד הכותרת האפורה <bdi dir="ltr"><code>Libraries & Access</code></bdi> - ולוחצים שם על <bdi dir="ltr"><code>Skills</code></bdi>:</strong></p>
+<figure class="shot" style="max-width:455px;margin-inline:auto"><div class="shot-frame"><img src="tu/1e047f5b9ba3186a.png" alt="הדרך למסך הסקילים: הפריט Skills בסרגל" width="455" height="390" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:12.088%;top:44.615%;width:73.626%;height:11.282%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך למסך הסקילים: הפריט Skills בסרגל</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Skills</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong> הסרגל ארוך ומוצג כאן רק החלק הרלוונטי - <strong>הקישור שמתחת לצילום פותח את הסרגל כולו.</strong></li></ol><a class="shot-full" href="tu/45972bd9cb75c20e.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<p><strong>ואחרי הלחיצה נפתח מסך הסקילים של הארגון:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/f0e66a9bc7beee51.png" alt="מסך הסקילים של הארגון" width="1408" height="1088" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.534%;top:13.787%;width:86.435%;height:8.088%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:6.534%;top:35.110%;width:86.435%;height:5.974%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:6.534%;top:50.827%;width:86.435%;height:6.434%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:86.080%;top:62.224%;width:6.889%;height:4.228%"><span class="shot-target-badge">4</span></div><div class="shot-target badge-outside-left" style="left:44.034%;top:85.386%;width:11.506%;height:6.801%"><span class="shot-target-badge">5</span></div></div><figcaption><p class="shot-caption">מסך הסקילים של הארגון</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Cloud code execution and file creation</bdi>. <strong>כתוב לידו שהוא נדרש לסקילים</strong> - בלעדיו לא יעבוד אף סקיל.</li><li><strong>2</strong> <bdi dir="ltr">User-created skills</bdi>. <strong>כתוב לידו שכיבוי שלו נועל את הארגון לסקילים מאושרים בלבד.</strong></li><li><strong>3</strong> <bdi dir="ltr">Share with organization</bdi>. <strong>דלוק, וכתוב לידו <bdi dir="ltr">Default</bdi></strong> - כלומר כך הגעתם. <strong>זה המתג שמאפשר לכל עו"ד לפרסם לכל המשרד.</strong></li><li><strong>4</strong> <bdi dir="ltr">Add</bdi>. מכאן מעלה שומר הסף סקיל ארגוני.</li><li><strong>5</strong> <bdi dir="ltr">No team skills</bdi>. <strong>כך נראה המצב לפני שהועלה דבר.</strong></li></ol></figcaption></figure>
+<aside class="content-box info">
+<h3>ויש שני מסכים בשם Skills, וזה לא אותו מסך:</h3>
+<p><strong>זו נקודה שמבלבלת, וכדאי לסגור אותה עכשיו.</strong></p>
+<p><strong>המסך שראיתם במדריך 1</strong> נמצא ב-<bdi dir="ltr"><code>Settings</code></bdi> תחת <bdi dir="ltr"><code>Customize</code></bdi>. <strong>הוא שלכם כמשתמש</strong> - הוא מראה אילו סקילים זמינים לכם, ומאפשר לכם לכבות אצלכם מה שלא רלוונטי.</p>
+<p><strong>והמסך שאתם בו עכשיו</strong> נמצא בעמוד הניהול תחת <bdi dir="ltr"><code>Libraries & Access</code></bdi>. <strong>הוא של המשרד</strong> - הוא קובע מה מותר לכולם, ומכאן מעלים סקיל שמגיע לכל עורכי הדין.</p>
+<p><strong>ההבדל בשורה אחת:</strong> באחד אתם מחליטים מה <strong>אתם</strong> רואים, ובשני מה <strong>כל המשרד</strong> רואה. <strong>ורק השני דורש <bdi dir="ltr"><code>Owner</code></bdi> או <bdi dir="ltr"><code>Admin</code></bdi>.</strong></p>
+</aside>
+<h3>שלב 2 · קוראים את חמשת המתגים, ומגלים שכולם דלוקים:</h3>
+<p><strong>זה הרגע החשוב בפרק, וכדאי לעצור בו.</strong></p>
+<p><strong>במסך הזה חמישה מתגים, וליד כל אחד מהם כתוב <bdi dir="ltr"><code>Default</code></bdi></strong> - כלומר כך הגעתם, בלי שאיש נגע. ואלה הם, מלמעלה למטה:</p>
+<p><strong><bdi dir="ltr"><code>Cloud code execution and file creation</code></bdi></strong> · מאפשר ל-<bdi dir="ltr">Claude</bdi> להריץ קוד וליצור קבצים. <strong>כתוב לידו במפורש שהוא נדרש לסקילים</strong> - בלעדיו שום סקיל לא יעבוד, וזה ייראה כאילו ההעלאה שלכם נכשלה.</p>
+<p><strong><bdi dir="ltr"><code>Skills</code></bdi></strong> · מדליק ומכבה סקילים לכל הארגון בבת אחת.</p>
+<p><strong><bdi dir="ltr"><code>User-created skills</code></bdi></strong> · מאפשר לכל עו"ד להעלות או ליצור סקיל משלו. <strong>וכתוב לידו: כבו כדי לנעול את הארגון לסקילים מאושרים בלבד.</strong></p>
+<p><strong><bdi dir="ltr"><code>Skill sharing</code></bdi></strong> · מאפשר לעורכי דין לשתף סקילים זה עם זה.</p>
+<p><strong><bdi dir="ltr"><code>Share with organization</code></bdi></strong> · מאפשר לעו"ד לשתף סקיל <strong>עם כל המשרד.</strong></p>
+<aside class="content-box warning">
+<h3>וזה מה שמצאנו במסך, והוא הפוך ממה שהיינו בטוחים:</h3>
+<p><strong>התיעוד אומר שמתגי השיתוף מגיעים כבויים</strong>, וכך גם הנחנו.</p>
+<p><strong>בבדיקה בפועל, ב-18 באוגוסט 2026, כל חמשת המתגים דלוקים כברירת מחדל</strong> - <strong>כולל השיתוף לכלל הארגון.</strong></p>
+<p><strong>ומה שזה אומר על המשרד שלכם עכשיו:</strong> כל עו"ד, כל מתמחה וכל מי שיש לו מושב <strong>יכול להעלות סקיל ולפרסם אותו לכל המשרד</strong> - בלי שאיש יבדוק ובלי שתדעו.</p>
+</aside>
+<h3>שלב 3 · מכבים את המתג שיוצר את שומר הסף:</h3>
+<p><strong>נשארים באותו מסך <bdi dir="ltr"><code>Skills</code></bdi>, ומכבים בו את המתג <bdi dir="ltr"><code>Share with organization</code></bdi>.</strong></p>
+<p><strong>מרגע זה אף עו"ד אינו יכול לפרסם סקיל לכל המשרד</strong>, וההפצה עוברת דרך מי שיש לו גישה למסך הזה.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/943ffa2f3aa9deb7.png" alt="מתג השיתוף לארגון, אחרי שכיביתם אותו" width="1384" height="264" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:65.968%;top:34.848%;width:27.890%;height:30.682%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">מתג השיתוף לארגון, אחרי שכיביתם אותו</p><ol class="shot-legend-num"><li><strong>1</strong> המתג, כבוי. <strong>ושימו לב לתווית שלצידו: היא התחלפה מ-<bdi dir="ltr"><code>Default</code></bdi> ל-<bdi dir="ltr"><code>Set by admin</code></bdi></strong> - המסך עצמו רושם שמנהל קבע את זה ביד.</li><li><strong>2</strong> <bdi dir="ltr">Share with organization</bdi>, <strong>עכשיו כבוי.</strong> מרגע זה אף עו"ד אינו יכול לפרסם סקיל לכל המשרד.</li><li><strong>3</strong> <bdi dir="ltr">Skill sharing</bdi>, <strong>שנשאר דלוק.</strong> דרכו שומר הסף משתף את הסקיל עם שלושה קולגות לבדיקה, לפני שהוא עולה לספרייה הארגונית.</li></ol></figcaption></figure>
+<p><strong>ושימו לב למה שקרה לתווית שלצד המתג:</strong> היא התחלפה מ-<bdi dir="ltr"><code>Default</code></bdi> ל-<bdi dir="ltr"><code>Set by admin</code></bdi>. <strong>כך אפשר לזהות במבט, בכל המסכים האלה, אילו הגדרות מישהו קבע ביד ואילו נשארו כברירת מחדל.</strong></p>
+<p><strong>ואת <bdi dir="ltr"><code>User-created skills</code></bdi> אפשר להשאיר דלוק.</strong> כיבוי שלו נועל את הארגון לסקילים מאושרים בלבד, <strong>וזו החלטה כבדה יותר</strong> - היא מונעת גם ניסויים אישיים.</p>
+<aside class="content-box warning">
+<h3>ומה שאין במערכת הוא בקשה שממתינה לאישור:</h3>
+<p><strong>אין תהליך של בקשה ואישור.</strong></p>
+<p><strong>או שהמתג כבוי ואיש אינו מפרסם, או שהוא דלוק וכל אחד מפרסם לכולם בלי שאיש בודק.</strong> אין מסך אישור, אין תור, ואין ממתינים.</p>
+<p><strong>ולכן שומר הסף אינו כפתור אלא נוהל:</strong> המתג הוא הבקרה הטכנית, <strong>והאדם הוא ההחלטה.</strong> ומי שיכול להיות שומר הסף הוא מי שמוגדר <bdi dir="ltr"><code>Owner</code></bdi> - <strong>בלי התפקיד הזה אין בכלל גישה למסך הזה.</strong></p>
+</aside>
+<h3>שלב 4 · מעלים את הסקיל הארגוני הראשון:</h3>
+<p><strong>גם זה נעשה מאותו מסך <bdi dir="ltr"><code>Skills</code></bdi> שכבר פתוח.</strong> גוללים בו למטה עד האזור <bdi dir="ltr"><code>Organization skills</code></bdi>, <strong>ושם יש כפתור <bdi dir="ltr"><code>Add</code></bdi>.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/97f04f955d6dcd34.png" alt="אזור Organization skills, והכפתור שפותח את ההעלאה" width="1377" height="835" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:5.955%;top:79.281%;width:42.556%;height:10.180%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:86.347%;top:79.281%;width:7.117%;height:7.784%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">אזור Organization skills, והכפתור שפותח את ההעלאה</p><ol class="shot-legend-num"><li><strong>1</strong> האזור <bdi dir="ltr"><code>Organization skills</code></bdi>. <strong>כתוב בו שכאן מנהלים את הסקילים שכל אחד בארגון יכול לראות ולהשתמש בהם.</strong></li><li><strong>2</strong> הכפתור <bdi dir="ltr"><code>Add</code></bdi>. <strong>לוחצים עליו, ונפתח חלון ההעלאה.</strong></li></ol></figcaption></figure>
+<p><strong>נפתח מסך העלאה שמצפה לקובץ <bdi dir="ltr"><code>zip</code></bdi>.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/37a1d2b3c9d185cf.png" alt="חלון Upload skill" width="730" height="486" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:8.767%;top:26.337%;width:82.466%;height:34.979%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:8.356%;top:63.786%;width:82.877%;height:17.490%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">חלון Upload skill</p><ol class="shot-legend-num"><li><strong>1</strong> אזור הגרירה. <strong>גוררים לכאן את הקובץ, או לוחצים ובוחרים אותו מהמחשב.</strong></li><li><strong>2</strong> דרישות הקובץ, כתובות בחלון עצמו: <strong>קובץ <bdi dir="ltr"><code>md</code></bdi> שבראשו שם ותיאור, או קובץ <bdi dir="ltr"><code>zip</code></bdi> או <bdi dir="ltr"><code>skill</code></bdi> שמכיל בתוכו <bdi dir="ltr"><code>SKILL.md</code></bdi>.</strong></li></ol></figcaption></figure>
+<p><strong>וכשההעלאה מצליחה מופיעה הודעה.</strong> אל תניחו שהיא הצליחה בלי לראות אותה.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/f3bed2be4c5a7404.png" alt="הודעת ההצלחה אחרי ההעלאה" width="1036" height="226" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:10.135%;top:33.628%;width:71.622%;height:33.186%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הודעת ההצלחה אחרי ההעלאה</p><ol class="shot-legend-num"><li><strong>1</strong> ההודעה, <strong>והיא נושאת את שם הסקיל שהועלה</strong> - <bdi dir="ltr"><code>Uploaded</code></bdi> ושם הסקיל. בלעדיה אל תניחו שההעלאה הצליחה.</li></ol></figcaption></figure>
+<p><strong>ואז הסקיל מופיע ברשימה הארגונית.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/12c743b4c334efe9.png" alt="הסקיל ברשימה הארגונית" width="1392" height="409" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.106%;top:43.765%;width:87.787%;height:24.450%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:6.106%;top:69.438%;width:14.152%;height:8.313%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">הסקיל ברשימה הארגונית</p><ol class="shot-legend-num"><li><strong>1</strong> הסקיל שהעליתם, ומתחתיו התיאור שלו - <strong>התיאור נשלף מתוך קובץ ה-<bdi dir="ltr"><code>SKILL.md</code></bdi></strong>, ולכן שווה לכתוב אותו טוב. <strong>מרגע ההעלאה הסקיל זמין לכל עורכי הדין במשרד.</strong></li><li><strong>2</strong> חותמת הזמן <bdi dir="ltr"><code>Added</code></bdi>. <strong>כך יודעים מתי כל סקיל הצטרף.</strong></li></ol></figcaption></figure>
+<aside class="content-box info">
+<h3>ומאיפה מגיע קובץ ה-zip:</h3>
+<p><strong>מסקיל שכבר בניתם, או מסקיל מוכן שהורדתם.</strong></p>
+<p><strong>התהליך המלא - איך בונים סקיל, מה נכנס לקובץ <bdi dir="ltr"><code>SKILL.md</code></bdi>, ואיך מכינים אותו להפצה - מוסבר בסדרת מדריכי Skills של <bdi dir="ltr">Legal Mind</bdi>, ולא נחזור עליו כאן.</strong></p>
+<p><strong>ודבר אחד שכן חשוב לדעת כאן, כי נפלנו בו בעצמנו:</strong> ההעלאה מקבלת <strong>סקיל אחד בכל פעם.</strong> מי שינסה להעלות חבילה שאורזת כמה סקילים יחד - למשל פלאגין - <strong>יקבל את השגיאה הזו:</strong></p>
+<figure class="shot" style="max-width:591px;margin-inline:auto"><div class="shot-frame"><img src="tu/0ff45d7fe10ab1ad.png" alt="מה קורה כשמעלים חבילה שלמה במקום סקיל אחד" width="738" height="649" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:9.079%;top:17.565%;width:82.249%;height:26.348%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">מה קורה כשמעלים חבילה שלמה במקום סקיל אחד</p><ol class="shot-legend-num"><li><strong>1</strong> שתי השגיאות: <strong>כל הקבצים חייבים לשבת ברמה העליונה, וה-zip חייב להכיל קובץ <bdi dir="ltr"><code>SKILL.md</code></bdi> אחד בדיוק</strong> - בקובץ שהעלינו היו ארבעה.</li></ol></figcaption></figure>
+<p><strong>והפתרון: מפרקים את החבילה לקובץ נפרד לכל סקיל</strong>, כשקובץ ה-<bdi dir="ltr"><code>SKILL.md</code></bdi> של כל סקיל יושב ברמה העליונה של ה-zip שלו, <strong>ומעלים אחד-אחד.</strong></p>
+</aside>
+<h3>שלב 5 · בודקים איך הסקיל נראה אצל עו"ד במשרד:</h3>
+<p><strong>זו הבדיקה שסוגרת את הפרק:</strong> לוחצים <bdi dir="ltr"><code>Back to app</code></bdi>, נכנסים ל-<bdi dir="ltr"><code>Settings</code></bdi> ואז ל-<bdi dir="ltr"><code>Skills</code></bdi>, <strong>ורואים את הסקיל שהעליתם ברשימה שלכם.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/008a815fb0955fbb.png" alt="אותו סקיל, ברשימה של עוהד" width="1330" height="705" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:24.737%;top:19.433%;width:21.278%;height:6.667%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:24.737%;top:48.369%;width:51.353%;height:7.801%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:77.895%;top:48.794%;width:9.323%;height:7.092%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">אותו סקיל, ברשימה של עוה"ד</p><ol class="shot-legend-num"><li><strong>1</strong> שלוש הלשוניות שהופיעו מעל הרשימה - <bdi dir="ltr"><code>All</code></bdi>, <bdi dir="ltr"><code>Personal</code></bdi> ו-<bdi dir="ltr"><code>Organization</code></bdi>. <strong>הן מופיעות ברגע שיש סקיל ארגוני ראשון.</strong></li><li><strong>2</strong> הסקיל שהועלה, ברשימה של עוה"ד.</li><li><strong>3</strong> עמודת <bdi dir="ltr"><code>Author</code></bdi>: אצל הסקיל הארגוני כתוב <strong><bdi dir="ltr"><code>Your admin</code></bdi></strong>.</li><li><strong>4</strong> הסקיל, <strong>עם סימון הארגון לצידו.</strong> כך עוה"ד יודע שהוא לא העלה אותו בעצמו.</li><li><strong>5</strong> המתג שמאפשר לו לכבות אותו אצלו. <strong>למחוק הוא לא יכול.</strong></li></ol></figcaption></figure>
+<p><strong>ברשימה של עוה"ד, בעמודת <bdi dir="ltr"><code>Author</code></bdi>, כתוב ליד הסקיל הארגוני <bdi dir="ltr"><code>Your admin</code></bdi></strong> - כך הוא יודע שהמשרד העלה אותו, ולא הוא.</p>
+<p><strong>ומעל הרשימה הופיעו עכשיו שלוש לשוניות - <bdi dir="ltr"><code>All</code></bdi>, <bdi dir="ltr"><code>Personal</code></bdi> ו-<bdi dir="ltr"><code>Organization</code></bdi></strong> - שמפרידות בין הסקילים האישיים לארגוניים. <strong>הן מופיעות ברגע שיש במשרד סקיל ארגוני ראשון.</strong></p>
+<p><strong>ומה שעוה"ד יכול לעשות עם סקיל ארגוני: לכבות אותו אצלו, אם הוא לא רלוונטי לעבודה שלו. למחוק הוא לא יכול.</strong></p>
+<h3>ומה עושים אם הסקיל שהעליתם אינו טוב:</h3>
+<p><strong>מעלים גרסה מתוקנת במקומו.</strong></p>
+<p><strong>וכדי שזה לא יקרה - בודקים לפני ההפצה, ולא אחריה.</strong> אבל כאן יש מלכוד קטן: <strong>סקיל שמועלה לספרייה הארגונית מגיע לכל המשרד מיד</strong>, ואין שלב ביניים.</p>
+<p><strong>ולכן הבדיקה נעשית לפני ההעלאה.</strong> שומר הסף <strong>משתף את הסקיל ישירות עם שלושה קולגות</strong> - זה מה שמתג <bdi dir="ltr"><code>Skill sharing</code></bdi> מאפשר - הם עובדים איתו שבוע, <strong>ורק אז הוא עולה לספרייה הארגונית.</strong></p>
+<p><strong>שלושה ולא אחד:</strong> אדם אחד שמצא שזה עובד אצלו לא מוכיח כלום. <strong>שלושה שעבדו איתו על שלושה תיקים שונים כן.</strong></p>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>מכבים את <bdi dir="ltr"><code>Share with organization</code></bdi> ביום הראשון.</strong> זו הלחיצה שמפרידה בין משרד שיש בו שיטה אחת לבין משרד שיש בו שבע.</p>
+<p><strong>ומשאירים את <bdi dir="ltr"><code>User-created skills</code></bdi> דלוק.</strong> עו"ד שרוצה לנסות שיטה משלו אצלו - שינסה. <strong>מה שאסור הוא שהניסוי יגיע לכל המשרד בלי בדיקה.</strong></p>
+<p><strong>וממנים אדם אחד שדרכו עובר הכל.</strong> לא ועדה, ולא "מי שפנוי".</p>
+</aside>
+</section>
+<section class="guide-section" id="g2-ch03"><span class="section-number">03</span><h2>נותנים למחלקה שלמה את כל הכלים בפעולה אחת</h2>
+<p><strong>פלאגין הוא חבילה.</strong> בתוכה כמה סקילים שנארזו יחד, <strong>ולפעמים גם פקודות וחיבורים</strong> - והיא מגיעה לאדם אחד בהתקנה אחת.</p>
+<p><strong>ולמה זה עדיף על להפיץ סקילים אחד-אחד:</strong> למחלקת נדל"ן צריך ניתוח הסכמי מכר, מילוי טפסי טאבו ובדיקת נסח. <strong>שלושה סקילים נפרדים זה שלוש הפצות ושלוש הזדמנויות לשכוח אחד</strong> - וחבילה אחת בשם "נדל"ן" זו פעולה אחת.</p>
+<h3>שלב 1 · נכנסים למסך הפלאגינים:</h3>
+<p><strong>כדי להגיע למסך הפלאגינים, לוחצים באותו סרגל על <bdi dir="ltr"><code>Plugins</code></bdi></strong> - הוא יושב תחת אותה כותרת <bdi dir="ltr"><code>Libraries & Access</code></bdi>, שורה אחת מעל <bdi dir="ltr"><code>Connectors</code></bdi>:</p>
+<figure class="shot" style="max-width:455px;margin-inline:auto"><div class="shot-frame"><img src="tu/de5ef7b880c98da1.png" alt="הדרך למסך הפלאגינים: הפריט Plugins בסרגל" width="455" height="390" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:12.088%;top:44.615%;width:73.626%;height:11.282%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך למסך הפלאגינים: הפריט Plugins בסרגל</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Plugins</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong> הסרגל ארוך ומוצג כאן רק החלק הרלוונטי - <strong>הקישור שמתחת לצילום פותח את הסרגל כולו.</strong></li></ol><a class="shot-full" href="tu/45972bd9cb75c20e.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<p><strong>ואחרי הלחיצה נפתח מסך הפלאגינים:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/4d8fe4e4351166e3.png" alt="מסך הפלאגינים של הארגון" width="1586" height="1208" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:84.426%;top:9.520%;width:9.079%;height:3.477%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:18.222%;top:17.798%;width:28.058%;height:2.980%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:58.701%;top:25.662%;width:13.997%;height:3.642%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מסך הפלאגינים של הארגון</p><ol class="shot-legend-num"><li><strong>1</strong> הכפתור <bdi dir="ltr"><code>Add plugins</code></bdi>. <strong>מכאן מוסיפים קטלוג נוסף</strong>, ולזה נגיע רק אם תצטרכו.</li><li><strong>2</strong> הקטלוג המובנה, <bdi dir="ltr"><code>By Anthropic & Partners</code></bdi>. <strong>הוא מגיע עם המוצר, ואף אחד במשרד לא הכניס אותו לשם.</strong> התווית <bdi dir="ltr"><code>Official</code></bdi> שלידו אומרת שזהו קטלוג רשמי.</li><li><strong>3</strong> העמודה <bdi dir="ltr"><code>User access</code></bdi>. <strong>כאן כתוב, לכל חבילה, מה עורכי הדין במשרד רשאים לעשות איתה</strong> - ומכאן גם משנים את זה.</li></ol></figcaption></figure>
+<h3>שלב 2 · מגלים שכבר קיים אצלכם קטלוג:</h3>
+<p><strong>באותו מסך <bdi dir="ltr"><code>Plugins</code></bdi>, בלי לעבור לשום מקום, כבר יושב קטלוג אחד: <bdi dir="ltr"><code>By Anthropic & Partners</code></bdi>.</strong> אף אחד במשרד לא הכניס אותו לשם - <strong>הוא מגיע עם המוצר</strong>, והתווית <bdi dir="ltr"><code>Official</code></bdi> שלידו אומרת שזהו קטלוג רשמי של <bdi dir="ltr">Anthropic</bdi> ושל שותפיה.</p>
+<p><strong>ובתוכו רשימה של חבילות מוכנות</strong>, ולצד כל אחת מהן, בעמודה <bdi dir="ltr"><code>User access</code></bdi>, כתוב מה עורכי הדין במשרד רשאים לעשות איתה.</p>
+<h3>שלב 3 · בוחרים איך כל חבילה מופצת:</h3>
+<p><strong>גם הבחירה הזו נעשית מאותו מסך <bdi dir="ltr"><code>Plugins</code></bdi>.</strong> בשורה של כל חבילה, בעמודה <bdi dir="ltr"><code>User access</code></bdi>, כתוב המצב הנוכחי שלה. <strong>לחיצה עליו פותחת תפריט, ובו ארבעת המצבים:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/a821b673fbd162c2.png" alt="תפריט מצבי ההפצה, פתוח" width="1172" height="726" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.399%;top:34.986%;width:80.290%;height:5.785%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:64.761%;top:42.287%;width:29.010%;height:48.485%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">תפריט מצבי ההפצה, פתוח</p><ol class="shot-legend-num"><li><strong>1</strong> השורה של <bdi dir="ltr"><code>Synthflow</code></bdi>, שבה לחצנו על <bdi dir="ltr"><code>Available to install</code></bdi> בעמודה <bdi dir="ltr"><code>User access</code></bdi>. <strong>מהלחיצה הזו נפתח התפריט.</strong></li><li><strong>2</strong> התפריט, ובו ארבעת המצבים. <strong>ליד המצב הפעיל כרגע מופיע סימן וי</strong>, ומתחת לשם של כל מצב כתוב בשורה קטנה מה הוא עושה.</li><li><strong>3</strong> <strong>מותקן כברירת מחדל.</strong> מגיע לכולם וניתן להסרה.</li><li><strong>4</strong> <strong>חובה.</strong> מגיע לכולם ולא ניתן להסרה.</li><li><strong>5</strong> <strong>זמין בקטלוג.</strong> מי שרוצה מתקין בעצמו, <strong>וזו נקודת ההתחלה שאנחנו ממליצים עליה.</strong></li><li><strong>6</strong> <strong>לא זמין.</strong> מוסתר לגמרי.</li></ol></figcaption></figure>
+<p><strong>וזה מה שכל מצב אומר, לפי הסדר שבו הם מופיעים בתפריט:</strong></p>
+<p><strong><bdi dir="ltr"><code>Available to install</code></bdi></strong> (זמין להתקנה) · החבילה מופיעה בקטלוג, <strong>וכל עו"ד מתקין ומסיר אותה בעצמו, מתי שירצה.</strong> זה המצב שכל החבילות מגיעות בו.</p>
+<p><strong><bdi dir="ltr"><code>Installed by default</code></bdi></strong> (מותקן כברירת מחדל) · מגיעה מותקנת אצל כולם, <strong>וכל אחד רשאי לכבות או להסיר אותה אצלו.</strong></p>
+<p><strong><bdi dir="ltr"><code>Not available</code></bdi></strong> (לא זמין) · מוסתרת מהקטלוג. <strong>איש אינו רואה אותה, ואיש אינו יכול להתקין אותה.</strong></p>
+<p><strong><bdi dir="ltr"><code>Required</code></bdi></strong> (חובה) · מגיעה מותקנת אצל כולם ופועלת תמיד. <strong>אי אפשר לכבות אותה ואי אפשר להסיר.</strong></p>
+<h3>שלב 4 · בודקים איך זה נראה אצל עו"ד במשרד:</h3>
+<p><strong>עוה"ד פותח את זה מחלון ההגדרות שלו:</strong> לוחצים על השם בפינה, <bdi dir="ltr"><code>Settings</code></bdi>, ובסרגל <bdi dir="ltr"><code>Plugins</code></bdi>. <strong>ברשימה הוא רואה מה כבר מותקן אצלו:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/cc3b051b4ee8b776.png" alt="רשימת החבילות המותקנות אצל עוהד" width="1279" height="808" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:26.114%;top:24.629%;width:67.787%;height:6.931%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">רשימת החבילות המותקנות אצל עוה"ד</p><ol class="shot-legend-num"><li><strong>1</strong> החבילה <bdi dir="ltr"><code>Legal</code></bdi> שכבר מותקנת, <strong>ובעמודת <bdi dir="ltr"><code>Skills</code></bdi> כתוב כמה סקילים היא הביאה איתה</strong> - תשעה.</li><li><strong>2</strong> החבילה בקטלוג.</li><li><strong>3</strong> <bdi dir="ltr">Install</bdi>. <strong>זה מה שהוא רואה כשהמצב הוא זמין בקטלוג.</strong></li></ol></figcaption></figure>
+<p><strong>ולחיצה על <bdi dir="ltr"><code>Browse</code></bdi> שלמעלה פותחת את הקטלוג, ושמו <bdi dir="ltr"><code>Directory</code></bdi>:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/0bf418fd488010ed.png" alt="הקטלוג, כפי שעוד במשרד רואה אותו" width="1403" height="1038" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:26.515%;top:19.942%;width:27.940%;height:5.491%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:26.515%;top:25.915%;width:32.787%;height:14.836%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:86.743%;top:28.035%;width:5.346%;height:6.358%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">הקטלוג, כפי שעו"ד במשרד רואה אותו</p><ol class="shot-legend-num"><li><strong>1</strong> שלוש הלשוניות: <bdi dir="ltr"><code>Your organization</code></bdi>, <bdi dir="ltr"><code>Anthropic</code></bdi> ו-<bdi dir="ltr"><code>Partners</code></bdi>. <strong>חבילות שהמשרד יפיץ יופיעו בלשונית הראשונה.</strong></li><li><strong>2</strong> החבילה <bdi dir="ltr"><code>Legal</code></bdi>, <strong>ובמקום <bdi dir="ltr"><code>+</code></bdi> יש לה גלגל שיניים - כי היא כבר מותקנת.</strong></li><li><strong>3</strong> כפתור <bdi dir="ltr"><code>+</code></bdi> על חבילה שאינה מותקנת. <strong>לחיצה עליו מתקינה אותה</strong> - וזה מה שקורה כשהמצב הוא <bdi dir="ltr"><code>Available to install</code></bdi>.</li></ol></figcaption></figure>
+<p><strong>חבילה שמצבה <bdi dir="ltr"><code>Available to install</code></bdi> מופיעה בקטלוג עם כפתור <bdi dir="ltr"><code>+</code></bdi></strong> - עוה"ד לוחץ, והיא מותקנת אצלו. <strong>וחבילה שכבר מותקנת מציגה גלגל שיניים במקום.</strong></p>
+<aside class="content-box warning">
+<h3>ומה קורה כשמשנים את מצב ההפצה אחרי שכבר הפצתם:</h3>
+<p><strong>שינוי המצב משפיע מכאן והלאה.</strong></p>
+<p>מי שכבר התקין את החבילה - <strong>היא נשארת אצלו גם אם העברתם את המצב ל-<bdi dir="ltr"><code>Not available</code></bdi>.</strong> ומי שהסיר אותה כשהיא הייתה <bdi dir="ltr"><code>Installed by default</code></bdi> - <strong>מעבר ל-<bdi dir="ltr"><code>Required</code></bdi> יחזיר אותה אליו.</strong></p>
+<p><strong>ולכן כדאי להחליט על המצב לפני ההפצה הראשונה</strong>, ולא אחריה.</p>
+</aside>
+<p><strong>ועוד דבר ששווה לדעת מראש, כדי שלא תחפשו:</strong> אי אפשר לקבוע מצב הפצה אחד למחלקה אחת ומצב אחר לשאר המשרד. <strong>המצב שבחרתם חל על כל הארגון</strong>, ומי שצריך חלוקה כזו זקוק למנוי <bdi dir="ltr"><code>Enterprise</code></bdi>.</p>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>מתחילים ב-<bdi dir="ltr"><code>Available to install</code></bdi></strong> - כל עו"ד בוחר בעצמו.</p>
+<p><strong>חבילה שהוכיחה את עצמה בשטח אפשר להעביר ל-<bdi dir="ltr"><code>Installed by default</code></bdi>.</strong> ול-<bdi dir="ltr"><code>Required</code></bdi> עוברים רק כשיש סיבה ממשית שאיש לא יסיר אותה.</p>
+<p><strong>וההפצה עוברת דרך אותו שומר סף מהפרק הקודם.</strong> לא כל מי שיכול - <strong>אלא מי שאחראי.</strong></p>
+</aside>
+</section>
+<section class="guide-section" id="g2-ch04"><span class="section-number">04</span><h2>קובעים כלל אחד שיחול על כל שיחה במשרד</h2>
+<p><strong>שיחה היא חלון אחד של התכתבות עם <bdi dir="ltr">Claude</bdi></strong>, ועו"ד פותח כמה כאלה ביום. <strong>הפרק הזה עוסק בכלל אחד שיחול על כולן</strong> - על כל שיחה, של כל עו"ד, בכל תיק, בלי שאף אחד יצטרך לכתוב אותו מחדש.</p>
+<p><strong>ואלה הדברים שאתם רוצים שיקרו בכל תשובה.</strong></p>
+<p>שהתשובות ייכתבו בעברית משפטית תקנית. <strong>שתוצר שמיועד ללקוח יישא הסתייגות שאין מדובר בייעוץ משפטי.</strong> שהפניות לסעיפי חוק ייכתבו בפורמט אחיד.</p>
+<p><strong>אלה לא שיטות עבודה - אלה כללי בית.</strong> והמקום שלהם הוא ההוראות הארגוניות.</p>
+<p><strong>ובמה זה שונה מסקיל:</strong> סקיל אומר <strong>איך לבצע משימה מסוימת.</strong> הוראה ארגונית אומרת <strong>איך המשרד מדבר</strong>, בלי קשר למשימה.</p>
+<h3>שלב 1 · חוזרים למסך Organization and access:</h3>
+<p><strong>כדי לחזור למסך הזה, לוחצים בסרגל על <bdi dir="ltr"><code>Organization and access</code></bdi></strong> - זה המסך שכבר הייתם בו בפרק 01, כשהגדרתם איך אנשים מצטרפים:</p>
+<figure class="shot" style="max-width:455px;margin-inline:auto"><div class="shot-frame"><img src="tu/de9855571f67a7dc.png" alt="הדרך למסך ההצטרפות: הפריט Organization and access בסרגל" width="455" height="390" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:12.088%;top:44.615%;width:73.626%;height:11.282%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך למסך ההצטרפות: הפריט Organization and access בסרגל</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Organization and access</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong> הסרגל ארוך ומוצג כאן רק החלק הרלוונטי - <strong>הקישור שמתחת לצילום פותח את הסרגל כולו.</strong></li></ol><a class="shot-full" href="tu/45972bd9cb75c20e.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<p><strong>ואחרי הלחיצה נפתח המסך:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/1b0737d1102af714.png" alt="מסך Organization and access, ובו אזור ההוראות הארגוניות" width="1748" height="950" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:13.844%;top:47.263%;width:71.224%;height:7.158%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:13.844%;top:58.737%;width:71.224%;height:29.789%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">מסך Organization and access, ובו אזור ההוראות הארגוניות</p><ol class="shot-legend-num"><li><strong>1</strong> השורה <bdi dir="ltr"><code>Team name</code></bdi>, ובה שם המשרד. <strong>זה אותו מסך שהכרתם מההקמה</strong> - אם כתוב בה שם המשרד שלכם, אתם במקום הנכון.</li><li><strong>2</strong> אזור <bdi dir="ltr"><code>Organization instructions</code></bdi>. <strong>כאן נכתבים כללי הבית של המשרד.</strong> שימו לב שכבר במסך עצמו כתוב שההוראות חלות על כל שיחה בארגון.</li></ol></figcaption></figure>
+<p><strong>אזור ההוראות הארגוניות יושב באותו עמוד, מתחת לשם הארגון.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/a2beb263d0dde151.png" alt="אזור ההוראות הארגוניות, ריק" width="1393" height="430" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.533%;top:24.884%;width:85.140%;height:16.047%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-inside-left" style="left:7.466%;top:51.163%;width:84.207%;height:25.349%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">אזור ההוראות הארגוניות, ריק</p><ol class="shot-legend-num"><li><strong>1</strong> תיבת הכתיבה, ריקה.</li></ol><a class="shot-full" href="tu/d7a67871b5447e63.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<h3>שלב 2 · כותבים את ההוראות:</h3>
+<div class="copy-block"><div class="copy-heading"><strong>נוסח פתיחה להעתקה, לשינוי לפי המשרד</strong><button class="copy-button" data-copy-target="g2-copy-1" type="button">העתקת ההוראה</button></div><div class="copy-body" id="g2-copy-1">כל התשובות ייכתבו בעברית משפטית תקנית ובלשון מקצועית.
+
+בכל תוצר המיועד ללקוח יש לציין במפורש כי אין מדובר בייעוץ משפטי, וכי הוא
+טעון בדיקה של עו"ד.
+
+הפניות לחקיקה ולפסיקה ייכתבו בפורמט אחיד: שם החוק, מספר הסעיף, ושנת
+החקיקה.
+
+אין להציג מידע כעובדה משפטית בלי לציין את המקור שממנו הוא נלקח.</div></div>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/b22e1f9ec099a0b8.png" alt="ההוראות בתיבה, רגע לפני השמירה" width="1407" height="462" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:8.600%;top:41.775%;width:85.146%;height:28.139%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:85.288%;top:71.861%;width:8.316%;height:8.442%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:8.316%;top:71.429%;width:20.469%;height:9.307%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">ההוראות בתיבה, רגע לפני השמירה</p><ol class="shot-legend-num"><li><strong>1</strong> התיבה עם כללי הבית שהודבקו. <strong>ארבע שורות, וזה כל מה שצריך.</strong></li><li><strong>2</strong> המונה. <strong>290 תווים מתוך 3,000</strong> - כללי בית אמיתיים תופסים עשירית מהמקום.</li><li><strong>3</strong> שני הכפתורים שהופיעו ברגע שהתחלתם לכתוב: <strong><bdi dir="ltr"><code>Save changes</code></bdi> ששומר, ו-<bdi dir="ltr"><code>Discard</code></bdi> שמוחק את מה שכתבתם עכשיו.</strong></li><li><strong>4</strong> הטקסט שנכתב.</li><li><strong>5</strong> מונה התווים. <strong>המגבלה היא כשלושת אלפים.</strong></li></ol></figcaption></figure>
+<p><strong>ושימו לב למונה התווים שבפינת התיבה.</strong> המגבלה היא שלושת אלפים תווים - <strong>וזה מספיק לכללי בית, ולא מספיק למתודולוגיה.</strong> מי שמנסה לדחוס לשם שיטת עבודה שלמה - <strong>מקומה בסקיל, לא כאן.</strong></p>
+<h3>שלב 3 · שומרים, ולא נבהלים:</h3>
+<p><strong>ברגע שהתחלתם לכתוב בתיבה, הופיעו מתחתיה שני כפתורים:</strong> <bdi dir="ltr"><code>Save changes</code></bdi> ששומר, ו-<bdi dir="ltr"><code>Discard</code></bdi> שמוחק את מה שכתבתם עכשיו. <strong>לוחצים על <bdi dir="ltr"><code>Save changes</code></bdi>, ובתחתית המסך מופיעה לכמה שניות הודעת אישור:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/008f9e48685a028e.png" alt="הודעת האישור שמופיעה בתחתית המסך" width="1018" height="220" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:10.020%;top:35.455%;width:69.941%;height:29.091%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הודעת האישור שמופיעה בתחתית המסך</p><ol class="shot-legend-num"><li><strong>1</strong> ההודעה <bdi dir="ltr"><code>Organization instructions saved</code></bdi>. <strong>היא מופיעה לכמה שניות ונעלמת</strong> - ואם ראיתם אותה, ההוראות נשמרו.</li><li><strong>2</strong> כפתור השמירה.</li><li><strong>3</strong> האישור. <strong>וגם אחריו, ההטמעה עשויה לקחת עד שעה.</strong></li></ol></figcaption></figure>
+<p><strong>השמירה מיידית, וההשפעה לא.</strong> לפי התיעוד הרשמי, <strong>עדכון של ההוראות הארגוניות עשוי להיקלט עד שעה</strong> בכל מוצרי <bdi dir="ltr">Claude</bdi>.</p>
+<p><strong>אז אם כתבתם הוראה ופתחתם שיחה ושום דבר לא השתנה - זה לא אומר שהיא לא נקלטה.</strong> חכו, ובדקו שוב.</p>
+<h3>ואיך בודקים שההוראה הארגונית באמת עובדת:</h3>
+<p><strong>פותחים שיחה חדשה ומבקשים משהו שההוראה אמורה לשנות.</strong></p>
+<p>אם כתבתם שכל תוצר ללקוח יישא הסתייגות - <strong>בקשו טיוטת מכתב ללקוח, וראו אם ההסתייגות שם.</strong> אם היא לא שם ועברה שעה, <strong>בדקו שההוראה נשמרה, ולא נשארה בתיבה בלי שנלחץ <bdi dir="ltr"><code>Save changes</code></bdi>.</strong></p>
+<aside class="content-box info">
+<h3>וכשיש גם הוראות אישיות, מי גובר:</h3>
+<p><strong>שלוש שכבות, בסדר הזה:</strong> ההוראות של הפרויקט חלות על אותו תיק, ההוראות האישיות של עוה"ד חלות על כל השיחות שלו, <strong>וההוראות הארגוניות חלות על כולם.</strong></p>
+<p><strong>ולפי התיעוד הרשמי, ההוראות הארגוניות גוברות על האישיות.</strong></p>
+<p><strong>מה שזה אומר בפועל:</strong> עו"ד שהגדיר לעצמו משהו שסותר את מה שהמשרד קבע - <strong>המשרד מנצח.</strong> וכדאי שהוא יידע את זה, כדי שלא יחפש תקלה.</p>
+</aside>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>כללי בית בלבד.</strong> שפה, פורמט והסתייגויות.</p>
+<p><strong>מתודולוגיות עבודה מקומן בסקילים</strong>, ולא כאן. שלושת אלפים תווים נגמרים מהר, <strong>ומה שנדחס לתוכם נקרא פחות טוב.</strong></p>
+<p><strong>ואת נוסח ההסתייגות כדאי שיאשר עו"ד במשרד</strong>, ולא שייכתב מתוך המדריך הזה כלשונו.</p>
+</aside>
+</section>
+<section class="guide-section" id="g2-ch05"><span class="section-number">05</span><h2>שואלים שאלה אחת ומקבלים תשובה מכל מקורות המשרד</h2>
+<h3>ולמה חיפוש ארגוני משנה את העבודה במשרד:</h3>
+<p><strong>כי הידע של המשרד לא יושב במקום אחד.</strong> חלק בדרייב, חלק במיילים, חלק בשיחות, <strong>וחלק בראש של מי שטיפל בתיק לפני שנתיים.</strong></p>
+<p><strong>וכשמגיעה שאלה, מישהו צריך לזכור איפה לחפש.</strong></p>
+<p><strong>זה מה שהחיפוש הארגוני מחליף:</strong> שואלים שאלה אחת, <strong>והוא עובר על כל המקורות המחוברים.</strong></p>
+<p><strong>ואם תראו בתיעוד את השם <bdi dir="ltr"><code>Enterprise search</code></bdi> - זה השם הרשמי של החיפוש הזה.</strong> המילה <bdi dir="ltr"><code>Enterprise</code></bdi> שם היא חלק משם היכולת, ולא שם של מנוי - <strong>והיכולת קיימת גם במנוי <bdi dir="ltr"><code>Team</code></bdi>.</strong></p>
+<h3>שלב 1 · מוצאים את החיפוש הארגוני בסרגל הצד של <bdi dir="ltr">Claude</bdi>:</h3>
+<p><strong>החיפוש הזה אינו יושב בעמוד הניהול אלא ב-<bdi dir="ltr">Claude</bdi> עצמו</strong> - במסך הרגיל שבו כולם עובדים. <strong>בסרגל הצד, תחת הכותרת <bdi dir="ltr"><code>Pinned</code></bdi>, מופיעה שורה עם שם המשרד שלכם</strong> - אצלנו היא נקראת <bdi dir="ltr"><code>Ask Legal Mind</code></bdi>:</p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:213px;margin-inline:auto"><img src="tu/1a45e24e27439cdc.png" alt="החיפוש הארגוני בסרגל הצד הראשי של Claude" width="540" height="1318" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:17.963%;top:38.923%;width:41.296%;height:3.263%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">החיפוש הארגוני בסרגל הצד הראשי של Claude</p><ol class="shot-legend-num"><li><strong>1</strong> השורה <bdi dir="ltr"><code>Ask Legal Mind</code></bdi>, תחת הכותרת <bdi dir="ltr"><code>Pinned</code></bdi>. <strong>אצלכם יופיע שם המשרד שלכם במקום Legal Mind.</strong> הוא מוצמד לכולם כברירת מחדל, <strong>ולחיצה עליו פותחת את החיפוש.</strong></li></ol></figcaption></figure>
+<h3>שלב 2 · משלימים את ההגדרה, לפני שהצוות נוגע:</h3>
+<p><strong>בפעם הראשונה שה-<bdi dir="ltr"><code>Owner</code></bdi> לוחץ על השורה הזו, עוד לא נפתח חיפוש</strong> - נפתח מסך פתיחה, <strong>והוא ההזדמנות להגדיר הכל לפני שהצוות נכנס:</strong></p>
+<figure class="shot" style="max-width:626px;margin-inline:auto"><div class="shot-frame"><img src="tu/f44aaa11bb7e0b77.png" alt="מסך הפתיחה של החיפוש, בכניסה הראשונה של ה-Owner" width="993" height="825" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:43.404%;top:33.333%;width:15.408%;height:5.939%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:38.973%;top:78.667%;width:24.270%;height:7.273%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:46.928%;top:86.909%;width:8.862%;height:5.091%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מסך הפתיחה של החיפוש, בכניסה הראשונה של ה-Owner</p><ol class="shot-legend-num"><li><strong>1</strong> התווית עם שם המשרד. <strong>המסך הזה שייך לארגון כולו</strong>, לא לחשבון שלכם אישית.</li><li><strong>2</strong> הכפתור <bdi dir="ltr"><code>Set up for your org</code></bdi>. <strong>מכאן מתחילה ההגדרה.</strong></li><li><strong>3</strong> הקישור <bdi dir="ltr"><code>Disable</code></bdi>. <strong>משרד שמחליט שהוא לא רוצה את החיפוש - מכבה אותו מכאן לכולם.</strong></li><li><strong>4</strong> אזור בחירת הקונקטורים. <strong>בלי להשלים אותו, הצוות יקבל תוצאות ריקות.</strong></li></ol></figcaption></figure>
+<p><strong>לוחצים על <bdi dir="ltr"><code>Set up for your org</code></bdi>, ונפתח מסך אחד ובו שלוש שורות - כל שורה היא סוג מקור שהחיפוש ישלוף ממנו:</strong></p>
+<figure class="shot" style="max-width:415px;margin-inline:auto"><div class="shot-frame"><img src="tu/224e048ff3156b32.png" alt="מסך בחירת המקורות של החיפוש" width="742" height="929" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:12.534%;top:37.998%;width:75.472%;height:9.903%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:12.534%;top:49.623%;width:75.472%;height:9.903%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:12.534%;top:61.141%;width:75.472%;height:9.903%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:42.183%;top:84.392%;width:16.442%;height:6.459%"><span class="shot-target-badge">4</span></div></div><figcaption><p class="shot-caption">מסך בחירת המקורות של החיפוש</p><ol class="shot-legend-num"><li><strong>1</strong> השורה <bdi dir="ltr"><code>Documents</code></bdi>, ולידה כתוב <bdi dir="ltr"><code>Required</code></bdi>. <strong>כאן בוחרים את הדרייב שבו יושבים קבצי המשרד.</strong></li><li><strong>2</strong> השורה <bdi dir="ltr"><code>Chat</code></bdi>, גם היא <bdi dir="ltr"><code>Required</code></bdi>. <strong>כאן בוחרים את התוכנה שבה המשרד מתכתב.</strong></li><li><strong>3</strong> השורה <bdi dir="ltr"><code>Email</code></bdi>, מסומנת <bdi dir="ltr"><code>Recommended</code></bdi> - <strong>מומלץ ואינו חובה.</strong></li><li><strong>4</strong> הכפתור <bdi dir="ltr"><code>Next</code></bdi>, שממשיך לחיבור עצמו.</li></ol></figcaption></figure>
+<p><strong>מסמכים (<bdi dir="ltr"><code>Documents</code></bdi>)</strong> · הדרייב שבו יושבים קבצי המשרד. ליד השורה כתוב <bdi dir="ltr"><code>Required</code></bdi> - <strong>חובה לבחור.</strong></p>
+<p><strong>צ'אט (<bdi dir="ltr"><code>Chat</code></bdi>)</strong> · התוכנה שבה המשרד מתכתב. <strong>גם היא <bdi dir="ltr"><code>Required</code></bdi>.</strong></p>
+<p><strong>ומייל (<bdi dir="ltr"><code>Email</code></bdi>)</strong> · מסומן <bdi dir="ltr"><code>Recommended</code></bdi> - <strong>מומלץ, ואינו חובה.</strong></p>
+<p><strong>ושימו לב למשפט שכתוב במסך עצמו:</strong> ברגע שמחברים כלי, <strong>כל אחד בארגון יכול להשתמש בו.</strong> זו בדיוק הסיבה שעושים קודם סדר בהרשאות במקורות, כמו שכתוב בעמדת <bdi dir="ltr">Legal Mind</bdi> שבסוף הפרק.</p>
+<p><strong>בוחרים בכל שורה את הכלי של המשרד, ולוחצים <bdi dir="ltr"><code>Next</code></bdi>.</strong></p>
+<h3>שלב 3 · ומכאן הצוות יכול להשתמש:</h3>
+<p><strong>חוזרים מעמוד הניהול ל-<bdi dir="ltr">Claude</bdi> עצמו</strong> - לוחצים על <bdi dir="ltr"><code>Back to app</code></bdi> שבראש הסרגל - <strong>ופותחים את החיפוש מאותה שורה שראינו בשלב 1.</strong> שואלים שאלה אחת, <strong>והחיפוש עונה ומציין ליד כל פרט מאיזה מקור הוא נשלף.</strong></p>
+<p><strong>ובפעם הראשונה שעו"ד נכנס לחיפוש, הוא יתבקש לחבר את עצמו למקורות</strong> - פעם אחת בלבד, ומאז החיבור נשמר.</p>
+<div class="copy-block"><div class="copy-heading"><strong>שאלה לבדיקה ראשונה, להעתקה</strong><button class="copy-button" data-copy-target="g2-copy-2" type="button">העתקת ההוראה</button></div><div class="copy-body" id="g2-copy-2">באיזה תיק טיפלנו בסוגיית היטל השבחה בפרויקט פינוי-בינוי, ומה הייתה
+המסקנה? ציין מאיפה שלפת כל פרט.</div></div>
+<h3>ומה עושים כשעו"ד מקבל תוצאות ריקות:</h3>
+<p><strong>זה כמעט תמיד אחד משניים.</strong></p>
+<p><strong>או שהוא לא חיבר את עצמו לכלים</strong> בכניסה הראשונה, ואז אין לו למה להתחבר.</p>
+<p><strong>או שאין לו הרשאה למקור עצמו.</strong> <strong>החיפוש מכבד את ההרשאות שכבר קיימות</strong> - הוא לא ייתן לו לראות תיקייה שהוא לא היה יכול לפתוח לבד.</p>
+<p><strong>ובשני המקרים התשובה הריקה נכונה, והבעיה במקום אחר.</strong></p>
+<aside class="content-box warning">
+<h3>עצרו לפני שאתם מחברים:</h3>
+<p><strong>החיפוש הופך את מה שכבר משותף לקל למצוא.</strong></p>
+<p><strong>ואם בדרייב של המשרד יש תיקייה שמשותפת לכולם בטעות</strong> - היא הייתה שם גם קודם, <strong>אבל עכשיו מספיק לשאול שאלה כדי להגיע אליה.</strong></p>
+</aside>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>, וזו החשובה בפרק:</h3>
+<p><strong>לפני שמחברים את החיפוש הארגוני, עושים סדר בהרשאות במקורות עצמם.</strong></p>
+<p><strong>במשרד עורכי דין זה שלב מקדים הכרחי, לא המלצה.</strong> מי שמדלג עליו יגלה מה משותף אצלו רק אחרי שכולם כבר מצאו.</p>
+</aside>
+</section>
+<section class="guide-section" id="g2-ch06"><span class="section-number">06</span><h2>מי מקבל איזה מושב, ומה האדמין מכבה לכולם</h2>
+<h3>ולמה יש שני סוגי מושבים:</h3>
+<p><strong>כי לא כולם עובדים באותה עוצמה.</strong></p>
+<p><strong>עו"ד שמריץ ניתוח עומק על תיק בן מאתיים עמודים</strong> מגיע לתקרת השימוש מהר. <strong>מי ששואל שלוש שאלות ביום, לא.</strong></p>
+<p><strong><bdi dir="ltr"><code>Standard</code></bdi> הוא המושב הרגיל, ו-<bdi dir="ltr"><code>Premium</code></bdi> נותן מכסה גדולה יותר.</strong> ואפשר לשלב ביניהם באותו ארגון.</p>
+<h3>שלב 1 · קובעים לכל אדם את סוג המושב שלו:</h3>
+<p><strong>את זה עושים ממסך <bdi dir="ltr"><code>Members</code></bdi> שהכרתם בפרק 01</strong> - לוחצים בסרגל של עמוד הניהול על <bdi dir="ltr"><code>Members</code></bdi>, תחת הכותרת <bdi dir="ltr"><code>People</code></bdi>.</p>
+<p><strong>סוג המושב נקבע לכל אדם בנפרד.</strong> בשורה של כל עובד, בעמודה <bdi dir="ltr"><code>Tier</code></bdi>, יש בורר - <strong>לוחצים עליו, ונפתחות האפשרויות.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/d03f879a2694671d.png" alt="בורר סוג המושב, פתוח" width="1373" height="661" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:63.729%;top:51.589%;width:9.760%;height:6.051%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:63.583%;top:57.640%;width:27.021%;height:28.290%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">בורר סוג המושב, פתוח</p><ol class="shot-legend-num"><li><strong>1</strong> הבורר שליד כל חבר. <strong>סוג המושב נקבע לאדם ולא למשרד.</strong></li><li><strong>2</strong> שלוש האפשרויות, ולא שתיים. <bdi dir="ltr">No seat assigned</bdi> <strong>משאיר את האדם בארגון בלי גישה ל-<bdi dir="ltr">Claude</bdi></strong>, <bdi dir="ltr">Standard seat</bdi> הוא שימוש רגיל, ו-<bdi dir="ltr">Premium seat</bdi> נותן מכסה גדולה יותר.</li></ol></figcaption></figure>
+<aside class="content-box info">
+<h3>ויש שם אפשרות שלישית, שכדאי להכיר:</h3>
+<p><strong>לא רק <bdi dir="ltr"><code>Standard</code></bdi> ו-<bdi dir="ltr"><code>Premium</code></bdi>.</strong> האפשרות הראשונה ברשימה היא <bdi dir="ltr">No seat assigned</bdi>, <strong>וכתוב לידה שאין גישה ל-<bdi dir="ltr">Claude</bdi>.</strong></p>
+<p><strong>כלומר אפשר להשאיר אדם רשום בארגון בלי לתת לו מושב.</strong></p>
+<p><strong>ולמשרד עורכי דין זה שימושי בשני מצבים:</strong> עו"ד שיצא לחופשת לידה או לשבתון, <strong>ומתמחה שסיים ועדיין לא הוחלט אם הוא נשאר.</strong> במקום להסיר אותו ולהזמין מחדש, <strong>מורידים לו את המושב ומחזירים כשצריך.</strong></p>
+</aside>
+<aside class="content-box info">
+<h3>המחירים כבר כתובים אצלנו:</h3>
+<p><strong>טבלת המחירים המלאה, החיוב החודשי מול השנתי, והעובדה שהקיבולת אישית לכל משתמש ואינה מאגר משותף</strong> - כל אלה נמצאים במדריך של Legal Mind על המעבר הבטוח, <strong>מדריך 1 סעיף 3.</strong></p>
+<p><strong>לא חוזרים כאן על מחירים</strong>, כדי שלא יהיו שני מקומות לעדכן.</p>
+</aside>
+<h3>ומה עוד יושב במקום אחד, ולא אצל כל עו"ד:</h3>
+<p><strong>זו הנקודה שבה מנוי <bdi dir="ltr"><code>Team</code></bdi> שונה משבעה מנויים אישיים באותו משרד.</strong></p>
+<p><strong>המושבים מנוהלים ממסך אחד.</strong> מוסיפים, מסירים ומשנים סוג מושב מרשימת החברים, <strong>ולא בכל חשבון בנפרד.</strong> מי שעוזב את המשרד מוסר שם, ומושב שמתפנה חוזר לרשימה.</p>
+<p><strong>החיוב יושב במסך ארגוני בשם <bdi dir="ltr"><code>Billing</code></bdi></strong>, ולא מפוזר על שבעה כרטיסי אשראי. <strong>מי בדיוק ניגש אליו - זו השאלה שבה שני עמודים רשמיים סותרים זה את זה, ועליה כתבנו בפרק 01.</strong></p>
+<p><strong>וההזדהות יכולה להיות ארגונית.</strong> במסך <bdi dir="ltr"><code>Organization and access</code></bdi> יש אזור בשם <bdi dir="ltr">Authentication</bdi>, <strong>ובו כניסה מאוחדת <bdi dir="ltr">Single sign-on</bdi></strong> - כלומר עורכי הדין נכנסים עם המשתמש של המשרד ולא עם סיסמה נפרדת.</p>
+<aside class="content-box info">
+<h3>וזה דורש דומיין מאומת:</h3>
+<p><strong>במסך כתוב שהכניסה המאוחדת מחייבת לפחות דומיין אחד מאומת</strong>, ואימות הדומיין נעשה באותו עמוד.</p>
+<p><strong>מה שזה אומר בפועל:</strong> משרד שעובד עם כתובות מייל פרטיות <strong>אינו יכול להפעיל את זה</strong>, וצריך קודם דומיין של המשרד.</p>
+<p><strong>וזה אחד המקומות שבהם כדאי לערב את איש המחשבים</strong> ולא לנסות לבד.</p>
+</aside>
+<h3>ואיך קובעים תקרת הוצאה למשרד ולעו"ד:</h3>
+<p><strong>אפשר לקבוע תקרת הוצאה, ולא רק לראות את החשבון בסוף החודש.</strong></p>
+<p><strong>המסך של זה נפתח מהסרגל של עמוד הניהול, בלחיצה על <bdi dir="ltr"><code>Usage</code></bdi>:</strong></p>
+<figure class="shot" style="max-width:455px;margin-inline:auto"><div class="shot-frame"><img src="tu/91644862157cb67f.png" alt="הדרך לדשבורד השימוש: הפריט Usage בסרגל" width="455" height="390" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:12.088%;top:44.615%;width:73.626%;height:11.282%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך לדשבורד השימוש: הפריט Usage בסרגל</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Usage</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong> הסרגל ארוך ומוצג כאן רק החלק הרלוונטי - <strong>הקישור שמתחת לצילום פותח את הסרגל כולו.</strong></li></ol><a class="shot-full" href="tu/45972bd9cb75c20e.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<p><strong>ונפתח מסך בשם <bdi dir="ltr"><code>Usage and spend limits</code></bdi>.</strong> רואים בו כמה המשרד הוציא החודש, <strong>וקובעים בו את התקרה</strong> - כל עוד לא נקבעה, כתוב בה <bdi dir="ltr"><code>Unlimited</code></bdi>:</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/02eb517bd666a6c8.png" alt="מסך Usage and spend limits" width="1380" height="875" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:5.942%;top:22.057%;width:10.652%;height:7.771%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:5.942%;top:32.343%;width:87.971%;height:9.029%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:5.942%;top:52.000%;width:87.971%;height:8.229%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מסך Usage and spend limits</p><ol class="shot-legend-num"><li><strong>1</strong> כמה המשרד הוציא החודש, <strong>ומתי המונה מתאפס.</strong></li><li><strong>2</strong> תקרת ההוצאה החודשית. <strong>כרגע כתוב בה <bdi dir="ltr"><code>Unlimited</code></bdi> - אין תקרה</strong> - ומהכפתור <bdi dir="ltr"><code>Adjust limit</code></bdi> קובעים אחת.</li><li><strong>3</strong> המתג <bdi dir="ltr"><code>Turn on usage credits</code></bdi>. <strong>כבוי כברירת מחדל</strong>, ומי שמדליק אותו מאפשר שימוש בתשלום גם אחרי שמגיעים למכסה.</li></ol></figcaption></figure>
+<p><strong>התיעוד של <bdi dir="ltr">Anthropic</bdi> אומר שאפשר לקבוע אותה בשתי רמות:</strong> <strong>ברמת הארגון כולו</strong>, ו<strong>ברמת המשתמש הבודד.</strong></p>
+<p><strong>ולמשרד עורכי דין זה שווה יותר ממה שזה נשמע.</strong> מתמחה שגילה שאפשר להריץ ניתוח על תיק בן מאתיים עמודים <strong>יעשה את זה שוב ושוב</strong>, וזה לגיטימי - אבל כדאי שתדעו על זה מהתקרה ולא מהחשבונית.</p>
+<p><strong>זו אחת מהיכולות שמנוי אישי אינו מציע בכלל.</strong> ב-<bdi dir="ltr"><code>Pro</code></bdi> וב-<bdi dir="ltr"><code>Max</code></bdi> אין ארגון, ואין מה לתחום.</p>
+<h3>שלב 2 · מכבים ומדליקים יכולות לכל הארגון:</h3>
+<p><strong>חיפוש ברשת, החיפוש הארגוני, ויכולת הרצת הקוד שסקילים תלויים בה - כל אלה נשלטים ממסך אחד</strong>, ולכל הארגון בבת אחת.</p>
+<p><strong>וכדי להגיע אליו, לוחצים בסרגל על <bdi dir="ltr"><code>Capabilities</code></bdi>:</strong></p>
+<figure class="shot" style="max-width:455px;margin-inline:auto"><div class="shot-frame"><img src="tu/7b8777d31737b82f.png" alt="הדרך למסך היכולות: הפריט Capabilities בסרגל" width="455" height="390" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:12.088%;top:45.897%;width:73.626%;height:8.974%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך למסך היכולות: הפריט Capabilities בסרגל</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Capabilities</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong> הסרגל ארוך ומוצג כאן רק החלק הרלוונטי - <strong>הקישור שמתחת לצילום פותח את הסרגל כולו.</strong></li></ol><a class="shot-full" href="tu/45972bd9cb75c20e.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<p><strong>ואחרי הלחיצה נפתח מסך היכולות:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/8461fe8a3011b29e.png" alt="מסך היכולות של הארגון" width="1744" height="1152" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:73.394%;top:17.014%;width:12.901%;height:4.948%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:76.032%;top:32.986%;width:10.206%;height:4.948%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:76.032%;top:76.042%;width:10.206%;height:4.948%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מסך היכולות של הארגון</p><ol class="shot-legend-num"><li><strong>1</strong> המתג של <bdi dir="ltr"><code>Web search</code></bdi>. <strong>מה שכבוי כאן, כבוי אצל כל עורכי הדין במשרד.</strong></li><li><strong>2</strong> המתג של החיפוש הארגוני - הוא מופיע כאן בשם המשרד שלכם.</li><li><strong>3</strong> <bdi dir="ltr"><code>Cloud code execution and file creation</code></bdi>. <strong>אותו מתג שפגשתם במסך הסקילים - בלעדיו סקילים לא עובדים.</strong></li></ol></figcaption></figure>
+<p><strong>ובהמשך אותו מסך, למטה, יושבות ההגדרות של הרצת הקוד</strong> - כולל אזהרת אבטחה שכתובה על המסך עצמו, <strong>ורשימת הדומיינים שהקוד רשאי לגשת אליהם:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/040d8c0b7aeef3b7.png" alt="הרצת קוד וגישה לרשת, בהמשך אותו מסך" width="1753" height="788" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:14.889%;top:35.406%;width:71.078%;height:22.970%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:14.889%;top:60.152%;width:71.078%;height:22.589%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">הרצת קוד וגישה לרשת, בהמשך אותו מסך</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>Allow network egress</code></bdi> והאזהרה שלצידו. <strong>המסך עצמו כותב שזה מגיע עם סיכוני אבטחה, ומפנה לקרוא עליהם.</strong></li><li><strong>2</strong> <bdi dir="ltr"><code>Domain allowlist</code></bdi>, וכרגע נבחר בו <bdi dir="ltr"><code>All domains</code></bdi> - <strong>כלומר הקוד ש-<bdi dir="ltr">Claude</bdi> מריץ רשאי לגשת לכל האינטרנט.</strong> משרד שרוצה לצמצם, מצמצם כאן.</li></ol></figcaption></figure>
+<p><strong>ואילו החיבורים עצמם - יומן, מייל, דרייב - אינם במסך הזה.</strong> הם מנוהלים ממסך נפרד בשם <bdi dir="ltr"><code>Connectors</code></bdi>, שיושב בסרגל תחת <bdi dir="ltr"><code>Libraries & Access</code></bdi>. <strong>וכאן נסגרת שאלה שנפתחה במדריך 1:</strong> מי קובע אילו חיבורים בכלל זמינים לעורכי הדין - <strong>התשובה: המשרד, מהמסך ההוא, ולא עוה"ד אצלו.</strong></p>
+<aside class="content-box warning">
+<h3>וכשאתם מכבים יכולת, כבו אותה בידיעה:</h3>
+<p><strong>מה שתכבו כאן ייעלם מהמסך של כל עו"ד במשרד</strong>, בלי הודעה ובלי הסבר.</p>
+<p><strong>מי שהשתמש בזה אתמול יחשוב שמשהו התקלקל אצלו.</strong> <strong>הודיעו לפני, לא אחרי.</strong></p>
+</aside>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>כולם מתחילים על <bdi dir="ltr"><code>Standard</code></bdi>.</strong></p>
+<p><strong>משדרגים לפי נתוני שימוש בפועל אחרי חודש, ולא לפי תחזית.</strong> את הנתונים תראו בפרק הבא, <strong>והם יראו לכם דברים שלא ניחשתם.</strong></p>
+</aside>
+</section>
+<section class="guide-section" id="g2-ch07"><span class="section-number">07</span><h2>רואים מי במשרד באמת משתמש, וכמה</h2>
+<h3>ולמה נתוני השימוש אינם רק מספרים:</h3>
+<p><strong>כי החלטה על שדרוג מושב, על הדרכה נוספת, ועל האם ההשקעה מחזירה את עצמה - כולן נשענות על אותם נתונים.</strong></p>
+<p><strong>ובלעדיהם מנחשים.</strong></p>
+<h3>שלב 1 · פותחים את דשבורד השימוש:</h3>
+<p><strong>הדשבורד הזה לא נפתח מעמוד הניהול, אלא מתפריט החשבון.</strong> לוחצים על שמכם בפינה השמאלית התחתונה, <strong>ובתפריט שנפתח לוחצים על <bdi dir="ltr"><code>Analytics</code></bdi>:</strong></p>
+<figure class="shot" style="max-width:345px;margin-inline:auto"><div class="shot-frame"><img src="tu/8e210837198c3093.png" alt="תפריט החשבון פתוח" width="442" height="666" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:12.217%;top:32.432%;width:59.050%;height:4.955%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:12.217%;top:38.589%;width:59.050%;height:4.955%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:12.217%;top:86.036%;width:59.050%;height:4.805%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">תפריט החשבון פתוח</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Organization settings</bdi>. <strong>זו הדרך הקצרה</strong> - לחיצה אחת מכאן, במקום לעבור דרך <bdi dir="ltr">Settings</bdi> ולגלול עד למטה.</li><li><strong>2</strong> <bdi dir="ltr">Analytics</bdi>. <strong>גם לדשבורד השימוש יש קיצור מכאן</strong>, ונחזור אליו בפרק 07.</li><li><strong>3</strong> השורה שעליה לוחצים כדי לפתוח את התפריט, <strong>בפינה השמאלית התחתונה.</strong></li></ol></figcaption></figure>
+<p><strong>ונפתח מסך שמראה מי משתמש, כמה, ובאילו יכולות:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/fba50c7cd3a5e200.png" alt="דשבורד השימוש" width="1906" height="1241" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:13.116%;top:20.145%;width:15.530%;height:33.602%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:30.430%;top:34.247%;width:59.969%;height:13.699%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:30.430%;top:54.150%;width:59.969%;height:36.906%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">דשבורד השימוש</p><ol class="shot-legend-num"><li><strong>1</strong> הרשימה שמשמאל. <bdi dir="ltr"><code>Overview</code></bdi> נותן את התמונה הכללית, <strong>ומתחתיו פירוט נפרד לכל מוצר</strong> - הצ'אט, <bdi dir="ltr">Claude Code</bdi>, קו-וורק והשאר.</li><li><strong>2</strong> שלושת המספרים של התקופה, ובראשם <strong>כמה חברים פעילים מתוך כמה מושבים.</strong> את התקופה קובעים בבורר שמימין (<bdi dir="ltr"><code>30d</code></bdi> - שלושים הימים האחרונים).</li><li><strong>3</strong> הגרף <bdi dir="ltr"><code>Active members and assigned seats</code></bdi>. <strong>הקו הכתום הוא המושבים ששולמו, והכחול מי שפעיל בפועל</strong> - והפער ביניהם הוא מושבים שמשלמים עליהם בלי שימוש.</li></ol></figcaption></figure>
+<p><strong>ולא להתבלבל עם <bdi dir="ltr"><code>Usage</code></bdi> שבסרגל עמוד הניהול</strong> - שם יושב מסך הכסף, זה שקובע תקרת הוצאה, <strong>וראינו אותו בפרק 06.</strong></p>
+<aside class="content-box warning">
+<h3>ומי בכלל רואה את המסך הזה:</h3>
+<p><strong>במנוי <bdi dir="ltr"><code>Team</code></bdi>, מסך נתוני השימוש פתוח ל-<bdi dir="ltr"><code>Owner</code></bdi> ול-<bdi dir="ltr"><code>Primary Owner</code></bdi> בלבד.</strong></p>
+<p><strong><bdi dir="ltr"><code>Admin</code></bdi> אינו רואה אותו.</strong> אם מיניתם מנהל תפעול כ-<bdi dir="ltr"><code>Admin</code></bdi> וציפיתם שהוא יעקוב אחרי הנתונים - <strong>הוא לא יוכל.</strong></p>
+</aside>
+<h3>שלב 2 · מייצאים את הנתונים, ויש שני ייצואים שונים:</h3>
+<p><strong>שני הייצואים נעשים מהמסכים שכבר פתוחים</strong> - האחד ממסך <bdi dir="ltr"><code>Members</code></bdi> והשני מדשבורד <bdi dir="ltr"><code>Usage</code></bdi> - <strong>ואין צורך במסך חדש.</strong></p>
+<p><strong>ייצוא רשימת החברים</strong> · שם, מייל, תפקיד וסוג מושב. <strong>זה מה שצריך לביקורת תקופתית של מי בארגון ובאיזה תפקיד.</strong></p>
+<p><strong>וייצוא נתוני השימוש</strong> · שורה לכל משתמש ולכל מודל, <strong>כולל מספר הבקשות והעלות בפועל.</strong> זה מה שצריך כשמחליטים על שדרוגי מושבים.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/d03f879a2694671d.png" alt="כפתור הייצוא במסך החברים" width="1373" height="661" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:73.926%;top:14.675%;width:9.760%;height:5.749%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">כפתור הייצוא במסך החברים</p><ol class="shot-legend-num"><li><strong>1</strong> כפתור הייצוא. <strong>הקובץ כולל שם, מייל, תפקיד וסוג מושב.</strong></li></ol></figcaption></figure>
+<aside class="content-box legal-example">
+<h3>דוגמה למה הנהלת משרד עושה עם נתוני השימוש:</h3>
+<p><strong>דוח רבעוני קצר:</strong> אחוז המשתמשים הפעילים · המחלקות המובילות · <strong>ומי מועמד לשדרוג מושב או להדרכה נוספת.</strong></p>
+<p><strong>וזה הדוח שהופך את ההשקעה מהוצאה לשורה שאפשר להצדיק.</strong></p>
+</aside>
+<h3>ומה עושים עם הנתונים שראיתם:</h3>
+<p><strong>שלוש תגובות אפשריות, ולכל אחת סימן משלה:</strong></p>
+<p><strong>מישהו שלא נכנס בכלל</strong> · זו לא בעיית מושב, <strong>זו בעיית הדרכה.</strong> שווה לשאול אותו מה עצר אותו.</p>
+<p><strong>מישהו שנתקל בתקרה שוב ושוב</strong> · <strong>זה מועמד ל-<bdi dir="ltr"><code>Premium</code></bdi></strong>, וזו בדיוק ההחלטה שהמתנו לה חודש.</p>
+<p><strong>מחלקה שלמה שלא נוגעת</strong> · <strong>סימן שהסקיל שהפצנו לא מתאים לעבודה שלה</strong>, ולא שהאנשים בה מתנגדים.</p>
+<div class="copy-block"><div class="copy-heading"><strong>תזכורת שבועית, להעתקה</strong><button class="copy-button" data-copy-target="g2-copy-3" type="button">העתקת ההוראה</button></div><div class="copy-body" id="g2-copy-3">הזכר לי כל יום ראשון בבוקר לבדוק את נתוני השימוש ב-<bdi dir="ltr">Claude</bdi> במשרד: כמה משתמשים
+פעילים, מי לא נכנס כלל השבוע, ומי נתקל במגבלת שימוש.</div></div>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>קבעו תזכורת שבועית קבועה לבדיקת נתוני השימוש.</strong></p>
+<p><strong>פעם בשבוע, ולא פעם ברבעון.</strong> אימוץ של כלי חדש נשבר בשבועות הראשונים, <strong>ומי שיבדוק רק בסוף הרבעון יגלה שלושה חודשים אחרי שזה קרה.</strong></p>
+<p><strong>ואפשר להיעזר ב-<bdi dir="ltr">Claude</bdi> עצמו</strong> ולהגדיר לכך תזכורת חוזרת, כדי שזה לא ייפול על הזיכרון של אף אחד.</p>
+</aside>
+</section>
+<section class="guide-section" id="g2-ch08"><span class="section-number">08</span><h2>כשמשהו לא עובד בהגדרות המשרד</h2>
+<h3>אני לא רואה את מסכי ניהול הארגון בכלל:</h3>
+<p><strong>זו שאלה של הרשאה, לא תקלה.</strong> בדקו את התפקיד שלכם ב-<bdi dir="ltr"><code>Settings</code></bdi> ואז <bdi dir="ltr"><code>Account</code></bdi>. <strong>אם כתוב <bdi dir="ltr"><code>User</code></bdi>, אין לכם גישה.</strong> פרק 01.</p>
+<h3>ההעלאה נכשלת עם שגיאה על SKILL.md:</h3>
+<p><strong>הקובץ שלכם אורז כמה סקילים יחד, וההעלאה מקבלת אחד בלבד.</strong> מפרקים לקובץ <bdi dir="ltr"><code>zip</code></bdi> נפרד לכל סקיל, כש-<bdi dir="ltr"><code>SKILL.md</code></bdi> ברמה העליונה. <strong>פרק 02.</strong></p>
+<h3>העליתי סקיל ארגוני והוא לא הופיע אצל אף אחד:</h3>
+<p><strong>בדקו במסך הסקילים של הארגון ששני מתגים דלוקים: <bdi dir="ltr"><code>Skills</code></bdi>, ו-<bdi dir="ltr"><code>Cloud code execution and file creation</code></bdi>.</strong> בלי השני שום סקיל אינו עובד. <strong>פרק 02.</strong></p>
+<h3>עובד אומר שהסקיל הארגוני נעלם לו:</h3>
+<p><strong>הוא כיבה אותו אצלו.</strong> אי אפשר למחוק סקיל ארגוני, <strong>רק לכבות</strong> - ולכן הוא עדיין שם, והוא יכול להדליק אותו בחזרה.</p>
+<h3>כתבתי הוראה ארגונית והיא לא משפיעה:</h3>
+<p><strong>שתי אפשרויות.</strong> או שהעדכון עוד לא נקלט - <strong>זה לוקח עד שעה</strong> - <strong>או שהיא מנוסחת רכה מדי.</strong> נסו לנסח אותה כהוראה ולא כהמלצה. פרק 04.</p>
+<h3>Ask Your Org לא מחזיר תוצאות לעובד מסוים:</h3>
+<p><strong>או שהוא לא חיבר את עצמו לכלים בכניסה הראשונה</strong>, <strong>או שאין לו הרשאה למקור עצמו.</strong> החיפוש לא נותן יותר ממה שכבר מותר לו. פרק 05.</p>
+<h3>עובד אומר שיכולת שהייתה לו נעלמה:</h3>
+<p><strong>בדקו במסך היכולות אם מישהו כיבה אותה לכל הארגון.</strong> פרק 06.</p>
+<h3>חיפשתי תפקידים מותאמים ולא מצאתי:</h3>
+<p><strong>הם אינם קיימים במנוי <bdi dir="ltr"><code>Team</code></bdi>, אלא רק במנוי <bdi dir="ltr"><code>Enterprise</code></bdi>.</strong> פרק 01.</p>
+</section>
+<section class="guide-section" id="g2-ch09"><span class="section-number">09</span><h2>חמש הטעויות שמשרדים עושים</h2>
+<p><strong>כל אחת מהן נראתה הגיונית למי שעשה אותה.</strong></p>
+<p><strong>1 · פתחו את כל הפרויקטים לכלל הארגון כדי שיהיה נוח.</strong> במקום פרטי כברירת מחדל, ופתיחה רק של מאגרי ידע בלי מידע לקוח. <strong>מדריך 1, פרק 02.</strong></p>
+<p><strong>2 · חמישה אנשים העלו את אותו סקיל בחמש גרסאות.</strong> במקום גרסה אחת שעוברת דרך שומר הסף. <strong>פרק 02.</strong></p>
+<p><strong>3 · ציפו שההקשר יעבור בין שיחות בפרויקט.</strong> בלי להוסיף את המידע למאגר הידע. <strong>מדריך 1, פרק 05.</strong></p>
+<p><strong>4 · חילקו תפקיד <bdi dir="ltr"><code>Owner</code></bdi> לחצי מהמשרד ליתר ביטחון.</strong> במקום מיפוי מסודר, ולא יותר משניים. <strong>פרק 01.</strong></p>
+<p><strong>5 · קנו מושבי <bdi dir="ltr"><code>Premium</code></bdi> לכולם מראש.</strong> במקום להתחיל ב-<bdi dir="ltr"><code>Standard</code></bdi> ולשדרג לפי נתונים. <strong>פרק 06.</strong></p>
+</section>
+<section class="guide-section" id="g2-ch10"><span class="section-number">10</span><h2>מסלול 30 יום</h2>
+<p><strong>זו לא רשימת משאלות, זו תוכנית ביצוע.</strong> מי שיעשה אותה לפי הסדר יגיע לסוף החודש עם משרד שעובד באותה שיטה.</p>
+<p><strong>שבוע 1</strong> הגדרת התפקידים לפי המיפוי · מינוי שומר הסף · כתיבת ההוראות הארגוניות · ופתיחת הפרויקט הארגוני הראשון, בנק הערות או נהלים.</p>
+<p><strong>שבוע 2</strong> העלאת הסקיל הארגוני הראשון דרך שומר הסף · בדיקתו עם שלושה משתמשים לפני שהוא מגיע לכולם · וחיבור יומן ומייל.</p>
+<p><strong>שבוע 3</strong> הדרכת כלל הצוות על פרויקטים והרשאות, לפי מדריך 1 · והשלמת הגדרת החיפוש הארגוני בידי ה-<bdi dir="ltr"><code>Owner</code></bdi>.</p>
+<p><strong>שבוע 4</strong> בחינת נתוני האנליטיקות · החלטה על שדרוגי מושבים לפי מה שראיתם ולא לפי תחזית · והוספת סקיל שני ופלאגין מחלקתי ראשון.</p>
+</section>
+<section class="guide-section" id="g2-ch11"><span class="section-number">11</span><h2>מה המשרד יודע לעשות עכשיו, ולאן ממשיכים מכאן</h2>
+<p><strong>מה שאתם יודעים לעשות עכשיו:</strong></p>
+<ul class="bullets"><li><strong>להבחין בין תפקיד ארגוני להרשאה בפרויקט</strong>, ולא לערבב ביניהם.</li><li><strong>למפות תפקידים במשרד</strong> בלי לחלק <bdi dir="ltr"><code>Owner</code></bdi> לכולם.</li><li><strong>להעלות סקיל ארגוני</strong>, ולהשאיר את מתג השיתוף כבוי.</li><li><strong>להפיץ חבילה שלמה למחלקה</strong>, ולהתחיל במצב <bdi dir="ltr"><code>Available to install</code></bdi>.</li><li><strong>לקבוע כללי בית שחלים על כל שיחה במשרד</strong>, ולבדוק שהם עובדים.</li><li><strong>להפעיל חיפוש ארגוני</strong> אחרי שעשיתם סדר בהרשאות במקורות.</li><li><strong>ולקרוא את נתוני השימוש</strong> ולדעת מה כל מספר אומר.</li></ul>
+<h3>והתוצר המודפס:</h3>
+<p><strong>טבלת ההחלטה וחמש הטעויות</strong> נמצאות גם בדף התרגול להדפסה, המקושר ממרכז המדריכים. <strong>שווה לתלות אותו מול העיניים בחודש הראשון.</strong></p>
+<aside class="content-box info">
+<h3>ולגבי מי שמוגדר Admin:</h3>
+<p><strong>את ההבדלים המדויקים בין <bdi dir="ltr"><code>Owner</code></bdi> ל-<bdi dir="ltr"><code>Admin</code></bdi> לא בדקנו במדריך הזה</strong> - הוא נכתב ונבדק כולו מחשבון <bdi dir="ltr"><code>Owner</code></bdi>. לפי התיעוד, חלק מהמסכים פתוחים גם ל-<bdi dir="ltr"><code>Admin</code></bdi>, <strong>אבל את זה לא נטענו בלי לבדוק.</strong> אם יעלה בזה צורך במשרדים, נקדיש לכך מדריך בהמשך.</p>
+</aside>
+<p><strong>ולסיום, כמו בפתיחה:</strong> כל שאלה על פרטיות, DPA ואבטחת מידע נמצאת במדריך של Legal Mind על המעבר הבטוח למנוי Team, <strong>מדריך 1 סעיף 2.</strong></p>
+</section>
+<div class="bottom-nav"><a class="button" href="claude-team-usage-guide-1.html">המדריך הקודם: לפתוח פרויקט ולהחליט מי מהעובדים יוכל לראות אותו </a><a class="button" href="claude-team-usage.html">מרכז המדריכים </a><a class="button primary" href="claude-team-usage-practice.html">לדף התרגול</a></div>
+</main>
+
+<aside class="desktop-toc"><h2>תוכן המדריך</h2><ol><li><a href="#g2-ch00"><span>00</span>מונחים נוספים שחובה להכיר לפני שתתחילו לקרוא את מדריך 2</a></li><li><a href="#g2-ch01"><span>01</span>מי במשרד רשאי לשנות הגדרות ב-<bdi dir="ltr">Claude</bdi>, ואיך בודקים אם זה אתם</a></li><li><a href="#g2-ch02"><span>02</span>מי מאשר סקיל לפני שכל המשרד מקבל אותו</a></li><li><a href="#g2-ch03"><span>03</span>נותנים למחלקה שלמה את כל הכלים בפעולה אחת</a></li><li><a href="#g2-ch04"><span>04</span>קובעים כלל אחד שיחול על כל שיחה במשרד</a></li><li><a href="#g2-ch05"><span>05</span>שואלים שאלה אחת ומקבלים תשובה מכל מקורות המשרד</a></li><li><a href="#g2-ch06"><span>06</span>מי מקבל איזה מושב, ומה האדמין מכבה לכולם</a></li><li><a href="#g2-ch07"><span>07</span>רואים מי במשרד באמת משתמש, וכמה</a></li><li><a href="#g2-ch08"><span>08</span>כשמשהו לא עובד בהגדרות המשרד</a></li><li><a href="#g2-ch09"><span>09</span>חמש הטעויות שמשרדים עושים</a></li><li><a href="#g2-ch10"><span>10</span>מסלול 30 יום</a></li><li><a href="#g2-ch11"><span>11</span>מה המשרד יודע לעשות עכשיו, ולאן ממשיכים מכאן</a></li></ol></aside>
+</div>
+
+<footer><bdi dir="ltr">Legal Mind</bdi> | מדריך על מנוי Team ב-Claude | מדריך 2: להגדיר איך כל המשרד עובד</footer>
+
+<script>
+(()=>{"use strict";const sections=[...document.querySelectorAll(".guide-section[id]")],links=[...document.querySelectorAll(".desktop-toc a[href^='#']")];if(!sections.length||!links.length)return;const set=id=>links.forEach(a=>a.getAttribute("href")==="#"+id?a.setAttribute("aria-current","location"):a.removeAttribute("aria-current"));set(sections[0].id);if("IntersectionObserver"in window){const o=new IntersectionObserver(es=>{const v=es.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(v)set(v.target.id)},{rootMargin:"-15% 0px -65% 0px",threshold:[0,.15,.5]});sections.forEach(s=>o.observe(s))}})();
+(()=>{"use strict";document.querySelectorAll(".copy-button[data-copy-target]").forEach(btn=>{const orig=btn.textContent;btn.addEventListener("click",async()=>{const el=document.getElementById(btn.getAttribute("data-copy-target"));if(!el)return;const box=btn.closest(".copy-block");const status=box?box.querySelector(".copy-status"):null;try{await navigator.clipboard.writeText(el.innerText.trim());btn.textContent="הועתק";if(status)status.textContent="הטקסט הועתק.";setTimeout(()=>{btn.textContent=orig;if(status)status.textContent=""},2500)}catch(e){if(status)status.textContent="ההעתקה נחסמה בדפדפן. סמנו את הטקסט והעתיקו ידנית."}})})})();
+
+</script>
+<script>
+(function(){
+  "use strict";
+  var frames = [].slice.call(document.querySelectorAll(".shot-frame"));
+  if(!frames.length) return;
+
+  var box = document.createElement("div");
+  box.className = "zoomer";
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  box.setAttribute("aria-label", "צילום מסך בגודל מלא");
+  box.innerHTML = '<button type="button" class="zoomer-close">סגירה</button>' +
+                  '<div class="zoomer-stage"></div>' +
+                  '<div class="zoomer-cap"><p class="zoomer-cap-text"></p>' +
+                  '<p class="zoomer-pan">הצילום רחב מהמסך. אפשר לגרור אותו הצידה כדי לראות את כולו.</p></div>';
+  document.body.appendChild(box);
+
+  var stage = box.querySelector(".zoomer-stage");
+  var cap = box.querySelector(".zoomer-cap");
+  var capText = box.querySelector(".zoomer-cap-text");
+  var closeBtn = box.querySelector(".zoomer-close");
+  var opener = null;
+
+  function open(frame){
+    var img = frame.querySelector("img");
+    if(!img) return;
+    stage.innerHTML = frame.innerHTML;
+    /* גודל טבעי, ולא "עד רוחב המסך" - אחרת על טלפון מקבלים שוב תמונה
+       מוקטנת שאי אפשר לקרוא בה, וההגדלה לא עשתה כלום */
+    var nat = img.naturalWidth || img.width;
+    stage.style.width = nat + "px";
+    stage.style.maxWidth = "none";
+    var fig = frame.closest("figure");
+    var c = fig ? fig.querySelector(".shot-caption") : null;
+    capText.textContent = c ? c.textContent : "";
+    cap.classList.toggle("is-wide", nat > (window.innerWidth - 20));
+    opener = frame;
+    box.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+  function close(){
+    box.classList.remove("is-open");
+    document.body.style.overflow = "";
+    stage.innerHTML = "";
+    if(opener) opener.focus();
+    opener = null;
+  }
+
+  /* ההזמנה להגדיל מופיעה רק על צילום שבאמת מוצג מוקטן. על צילום שממילא
+     בגודלו הטבעי היא הבטחה ריקה, ועשרים שורות כאלה הן רעש */
+  function wire(){
+    frames.forEach(function(frame){
+      var img = frame.querySelector("img");
+      if(!img || !img.naturalWidth) return;
+      var shrunk = img.getBoundingClientRect().width < img.naturalWidth * 0.96;
+      if(!shrunk || frame.dataset.zoom) return;
+      frame.dataset.zoom = "1";
+      frame.setAttribute("tabindex", "0");
+      frame.setAttribute("role", "button");
+      frame.setAttribute("aria-label", "הגדלת הצילום");
+      frame.style.cursor = "zoom-in";
+      frame.addEventListener("click", function(){ open(frame); });
+      frame.addEventListener("keydown", function(ev){
+        if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); open(frame); }
+      });
+      var fig = frame.closest("figure");
+      var capEl = fig ? fig.querySelector(".shot-caption") : null;
+      if(capEl && !fig.querySelector(".shot-hint")){
+        var hint = document.createElement("p");
+        hint.className = "shot-hint";
+        hint.innerHTML = "לחיצה על הצילום פותחת אותו בגודל מלא";
+        capEl.insertAdjacentElement("afterend", hint);
+      }
+    });
+  }
+  wire();
+  window.addEventListener("load", wire);
+  window.addEventListener("resize", wire);
+  frames.forEach(function(frame){
+    var img = frame.querySelector("img");
+    if(img && !img.complete) img.addEventListener("load", wire);
+  });
+
+  closeBtn.addEventListener("click", close);
+  box.addEventListener("click", function(ev){
+    if(ev.target === box) close();
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape" && box.classList.contains("is-open")) close();
+  });
+})();
+
+
+(function(){
+  document.addEventListener("click", function(ev){
+    var btn = ev.target.closest(".copy-button");
+    if(!btn) return;
+    var block = btn.closest(".copy-block");
+    var src = document.getElementById(btn.getAttribute("data-copy-target"));
+    var status = block ? block.querySelector(".copy-status") : null;
+    if(!src) return;
+    var text = src.innerText;
+    function done(ok){
+      if(!status) return;
+      status.textContent = ok ? "ההוראה הועתקה" : "ההעתקה נכשלה, סמנו והעתיקו ידנית";
+      setTimeout(function(){ status.textContent = ""; }, 2600);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){done(true);},
+                                              function(){done(false);});
+    } else { done(false); }
+  });
+})();
+</script>
+</body>
+</html>

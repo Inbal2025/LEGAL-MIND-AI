@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he"><head><meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="description" content="מדריך על מנוי Team ב-Claude - שני מדריכים ודף תרגול של Legal Mind, למי שכבר עבר למנוי Team">
+<title>מדריך על מנוי Team ב-Claude | Legal Mind</title>
+<link rel="canonical" href="https://www.legalmind.co.il/guides/claude-team-usage.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Legal Mind">
+<meta property="og:title" content="מדריך על מנוי Team ב-Claude | Legal Mind">
+<meta property="og:description" content="מדריך על מנוי Team ב-Claude - שני מדריכים ודף תרגול של Legal Mind, למי שכבר עבר למנוי Team">
+<meta property="og:url" content="https://www.legalmind.co.il/guides/claude-team-usage.html">
+<meta property="og:image" content="https://www.legalmind.co.il/guides/og-guides.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+/* ============================================================================
+   LEGAL MIND — LOCKED BRAND STYLESHEET
+   ----------------------------------------------------------------------------
+   Extracted from the live published series and reorganised WITHOUT any visual
+   change. Source of truth:
+     https://tsahinim.github.io/legal-mind-claude-guides/skills/assets/site.css
+     https://tsahinim.github.io/legal-mind-claude-guides/assets/hub.css
+   Captured: 2026-08-01
+
+   RULE: every future Legal Mind guide links THIS file. Do not fork it, do not
+   re-derive colors, do not "improve" a value locally. A guide that needs a new
+   component adds it here first, once, for everyone.
+
+   What changed vs. the live file (all non-visual):
+     - duplicate .shot-legend / .shot-caption blocks merged (cascade preserved)
+     - grouped and commented; token drift between site.css and hub.css unified
+       on the site.css values (max delta was 1 hex digit on --line)
+     - added --font-head / --font-body tokens holding the exact same stacks
+     - added .comparison-list, which the published guide 1 uses but the live
+       stylesheet never defined (see BRAND NOTE at the bottom)
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. TOKENS — the brand. Nothing below invents a color.
+   ------------------------------------------------------------------------ */
+:root{
+  /* core identity */
+  --navy:#0d2740;        /* headings, brand dark, hero background          */
+  --navy2:#173e57;       /* reserved secondary dark (currently unused)     */
+  --teal:#11736d;        /* primary action colour: links, buttons, markers */
+  --cyan:#2bc0b7;        /* accent on dark backgrounds only                */
+
+  /* semantic — each colour means one kind of content, never decoration */
+  --orange:#b84a21;      /* numbering, focus, knowledge-check              */
+  --gold:#b48a38;        /* legal example                                  */
+  --red:#b3263b;         /* warning + screenshot annotation                */
+  --green:#2f7b52;       /* confirmation / success                         */
+
+  /* surface */
+  --ink:#1d2b34;
+  --muted:#607178;
+  --bg:#f4f8f7;
+  --paper:#fff;
+  --line:#d7e2df;
+  --soft:#e9f4f2;
+
+  /* type */
+  --font-head:Georgia,"Times New Roman",serif;
+  --font-body:Arial,"Noto Sans Hebrew",sans-serif;
+
+  /* geometry */
+  --shadow:0 16px 40px rgba(13,39,64,.10);
+  --width:1220px;
+}
+
+/* ---------------------------------------------------------------------------
+   2. BASE
+   ------------------------------------------------------------------------ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);
+  font-family:var(--font-body);font-size:16px;line-height:1.72}
+img{max-width:100%;height:auto}
+a{color:inherit}
+
+/* RTL isolation — every Latin term in the copy is wrapped in <bdi dir="ltr"> */
+bdi[dir=ltr],[dir=ltr]{unicode-bidi:isolate}
+
+/* ---------------------------------------------------------------------------
+   3. NAVIGATION CHROME
+   ------------------------------------------------------------------------ */
+.skip{position:fixed;top:-80px;right:16px;z-index:100;background:#fff;
+  border:2px solid var(--teal);border-radius:9px;padding:10px 14px;font-weight:800}
+.skip:focus{top:10px}
+
+.backbar{position:sticky;top:0;z-index:50;min-height:44px;
+  border-bottom:1px solid #bdd5d2;background:#dcefee;padding:9px 14px;text-align:center}
+.backbar a{color:var(--teal);font-size:14px;font-weight:800;text-decoration:none}
+.backbar a:before{content:"→";margin-left:7px}
+
+.bottom-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
+.guide-nav{display:none}   /* legacy, kept so old markup stays hidden */
+
+/* ---------------------------------------------------------------------------
+   4. LOGO / MASTHEAD  — assets/brand/legal-mind-logo.webp
+   Lightbulb with a teal node-network inside, navy outline, LEGAL MIND wordmark
+   (the A and the I are teal). Never recolour, never redraw, never substitute
+   with text on a page that has room for the mark.
+   ------------------------------------------------------------------------ */
+.site-header{background:#fff;border-bottom:1px solid var(--line);padding:12px 28px}
+.site-header-inner{max-width:var(--width);margin:auto;display:flex;
+  align-items:center;justify-content:space-between;gap:18px}
+.logo-wrap{display:flex;align-items:center;gap:14px}
+.hub-logo-full{display:block;width:126px;height:auto;object-fit:contain;flex:0 0 auto}
+.hub-chip{align-self:center;background:var(--soft);color:var(--teal);
+  padding:8px 13px;border-radius:999px;font-weight:900;font-size:13px}
+@media(max-width:820px){
+  .site-header{padding:10px 13px}
+  .hub-logo-full{width:108px}
+  .logo-wrap{gap:9px}
+  .hub-chip{font-size:11px}
+}
+
+/* CANONICAL brand bar — this is the pattern to copy for a new series.
+   A centred white bar carrying the logo, placed directly after .backbar and
+   before .hero. It appears on EVERY page of the series: the guide center and
+   each guide. 130px is ~15% smaller than the .hub-logo-full above, so the bar
+   does not swell. Asset: assets/brand/legal-mind-logo-tight.png
+   alt (fixed): לוגו Legal Mind - נורה מעל שם המותג */
+.skills-brand{background:#fff;border-bottom:1px solid var(--line);
+  padding:11px 18px;text-align:center}
+.skills-logo{display:inline-block;width:130px;height:auto;object-fit:contain}
+@media(max-width:610px){.skills-logo{width:110px}}
+
+/* ---------------------------------------------------------------------------
+   5. GUIDE PAGE — hero, layout, sections
+   ------------------------------------------------------------------------ */
+.hero,.layout,.center-main,.center-brand{width:min(100%,var(--width));margin-inline:auto}
+.hero{display:grid;gap:18px;padding:26px 18px 24px}
+.eyebrow{margin:0 0 7px;color:var(--teal);font-size:13px;font-weight:900;letter-spacing:.03em}
+.hero h1,.center-hero h1{margin:0 0 10px;color:var(--navy);font-family:var(--font-head);
+  font-size:clamp(1.95rem,5.2vw,2.85rem);line-height:1.18}
+.hero-copy{max-width:82ch;color:var(--muted);font-size:1.06rem}
+
+/* the four-fact strip: תוצר למידה / ידע מוקדם / מבנה / זמן משוער */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0}
+.facts div{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:12px}
+.facts dt{color:var(--teal);font-size:12px;font-weight:900}
+.facts dd{margin:2px 0 0;color:var(--navy);font-weight:700}
+
+.layout{display:grid;grid-template-columns:286px minmax(0,1fr);gap:28px;padding:8px 14px 60px}
+.surface{overflow:hidden;border:1px solid var(--line);border-radius:18px;
+  background:var(--paper);box-shadow:0 9px 28px rgba(13,39,64,.06)}
+
+.guide-section{scroll-margin-top:72px;padding:26px 22px}
+.guide-section+.guide-section{border-top:1px solid var(--line)}
+.section-number,.sec-num{display:block;margin:0 0 4px;color:var(--teal);
+  font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1.1}
+.section-number::after,.sec-num::after{content:"."}
+.guide-section h2,.sec-title{margin:0 0 14px;color:var(--navy);font-family:var(--font-head);
+  font-size:clamp(1.5rem,3.5vw,2rem);line-height:1.25}
+.guide-section h3,.sec-body h3{margin:22px 0 8px;color:var(--navy);font-size:1.15rem}
+.guide-section h4{margin:19px 0 7px;color:var(--teal);font-size:1.04rem}
+.guide-section h5{margin:16px 0 6px;color:var(--navy);font-size:.98rem}
+.guide-section p,.sec-body p{margin:0 0 13px}
+.guide-section ul,.guide-section ol,.sec-body ul,.sec-body ol{padding-right:25px}
+.guide-section li,.sec-body li{margin:6px 0}
+
+.major-subsection{margin:28px -22px 14px!important;border-right:6px solid var(--orange);
+  background:#f7faf9;padding:13px 18px;color:var(--navy)!important;font-size:1.28rem!important}
+.source-emphasis{border:1px solid var(--line);border-right:5px solid var(--gold);
+  border-radius:12px;background:#fffaf0;padding:13px 15px;font-weight:700}
+
+/* ---------------------------------------------------------------------------
+   6. TABLE OF CONTENTS
+   ------------------------------------------------------------------------ */
+.desktop-toc{order:-1;position:sticky;top:64px;align-self:start;border:1px solid var(--line);
+  border-radius:16px;background:var(--paper);padding:16px;
+  box-shadow:0 8px 24px rgba(13,39,64,.06);max-height:calc(100vh - 84px);overflow:auto}
+.desktop-toc h2{margin:0 0 10px;color:var(--navy);font-size:1rem}
+.desktop-toc ol{margin:0;padding:0;list-style:none}
+.desktop-toc li+li{border-top:1px solid #edf1f0}
+/* not flex: a flex row turns every <bdi> in the title into its own column,
+   so a wrapped chapter name no longer lines up under itself. the number is
+   positioned instead, which gives a proper hanging indent. */
+.desktop-toc a{display:block;position:relative;padding:8px 2px;
+  padding-inline-start:32px;color:var(--teal);
+  font-size:14px;text-decoration:none;line-height:1.4}
+.desktop-toc a span:first-child{position:absolute;inset-inline-start:2px;top:8px;
+  font-weight:900}
+.desktop-toc a[aria-current=location]{color:var(--orange);font-weight:900}
+.mobile-toc{display:none}
+
+/* ---------------------------------------------------------------------------
+   7. CONTENT BOXES — one class per meaning. Colour IS the meaning.
+      .info / .tip        teal   — explanation, distinction
+      .recommendation     teal   — "the professional way to do it"
+      .warning / .warn    red    — risk, do-not
+      .legal-example      gold   — a worked example from legal practice
+      .knowledge-check    orange — self-test before moving on
+   ------------------------------------------------------------------------ */
+.callout,.content-box{margin:20px 0;border-radius:14px;padding:16px 18px}
+.callout.tip,.content-box.info,.content-box.recommendation{
+  border-right:5px solid var(--teal);background:#edf7f6}
+.callout.warn,.content-box.warning{border-right:5px solid var(--red);background:#fff4f2}
+.content-box.legal-example{border-right:5px solid var(--gold);background:#fff9ee}
+.content-box.knowledge-check{border-right:5px solid var(--orange);background:#fff7f0}
+.callout-label{display:block;margin-bottom:6px;color:var(--navy);font-weight:900}
+
+/* every .legal-example body follows: קלט / תוצר / עצירה / סיכון */
+
+/* ---------------------------------------------------------------------------
+   8. LISTS, STEPS, CHECKLISTS, CARDS
+   ------------------------------------------------------------------------ */
+.bullets{padding-right:24px}
+
+.steps{counter-reset:step;list-style:none!important;padding:0!important}
+.steps li{position:relative;margin:11px 0;padding:12px 50px 12px 12px;
+  border:1px solid var(--line);border-radius:12px;background:#fbfdfd}
+.steps li:before{counter-increment:step;content:counter(step);position:absolute;
+  right:10px;top:10px;display:grid;place-items:center;width:28px;height:28px;
+  border-radius:8px;background:var(--teal);color:#fff;font-weight:900}
+
+.checklist{list-style:none!important;padding:0!important}
+.checklist li{position:relative;padding:8px 36px 8px 8px;border-bottom:1px solid #edf1f0}
+.checklist li:before{content:"✓";position:absolute;right:8px;color:var(--teal);font-weight:900}
+
+.risk-grid,.cards,.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.risk-card,.card,.decision-card{border:1px solid var(--line);border-radius:14px;
+  background:#fbfdfd;padding:15px}
+.risk-card.green{border-top:5px solid var(--green)}
+.risk-card.yellow{border-top:5px solid var(--gold)}
+.risk-card.red{border-top:5px solid var(--red)}
+
+/* NEW — used by the published guide 1 but never defined in the live CSS.
+   Styled to match .card so it reads as part of the same family. */
+.comparison-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+.comparison-list>[role=listitem]{border:1px solid var(--line);border-radius:14px;
+  background:#fbfdfd;padding:15px}
+.comparison-list>[role=listitem]>strong{display:block;margin-bottom:5px;color:var(--navy)}
+.comparison-list>[role=listitem]>p{margin:0;color:var(--ink)}
+@media(max-width:820px){.comparison-list{grid-template-columns:1fr}}
+
+.workbook{border:1px dashed #8fb8b4;border-radius:16px;background:#f7fbfa;padding:18px;margin:18px 0}
+.prompt-box{border:1px solid var(--line);border-radius:14px;background:#f7faf9;padding:16px}
+.status{display:inline-block;border-radius:999px;background:var(--soft);color:var(--teal);
+  padding:5px 9px;font-size:12px;font-weight:900}
+
+/* ---------------------------------------------------------------------------
+   9. SCREENSHOTS + ANNOTATION
+      Frame the shot, place a red rectangle by percentage, badge it with a
+      number, then explain every number in an ordered legend underneath.
+      Percentages (not pixels) so the annotation survives any screen width.
+   ------------------------------------------------------------------------ */
+.shot{margin:20px auto}
+/* the frame must NOT clip: a marker badge sits half outside its box by design,
+   and overflow:hidden shaved every badge on a box near an edge. the rounding
+   moves to the image itself, which is the only thing that needed clipping. */
+.shot-frame{position:relative;overflow:visible;border:1px solid var(--line);
+  border-radius:14px;background:#eef3f3;box-shadow:0 8px 24px rgba(13,39,64,.08)}
+.shot-frame img{display:block;width:100%;height:100%;object-fit:contain;border-radius:13px}
+
+.shot-target{position:absolute;z-index:2;border:3px solid var(--red);border-radius:9px;
+  background:rgba(198,48,48,.07);
+  box-shadow:0 0 0 2px rgba(255,255,255,.82),0 2px 9px rgba(13,39,64,.24);
+  pointer-events:none}
+.shot-target.is-circle{border-radius:999px}
+.shot-target-badge{position:absolute;top:0;left:0;z-index:3;display:grid;place-items:center;
+  width:26px;height:26px;border:2px solid #fff;border-radius:50%;background:var(--red);
+  color:#fff;font-size:14px;font-weight:900;line-height:1;
+  box-shadow:0 2px 8px rgba(13,39,64,.35);transform:translate(-45%,-45%)}
+.shot-target.badge-right>.shot-target-badge{right:0;left:auto;transform:translate(45%,-45%)}
+.shot-target-badge.badge-offset-left{top:50%;left:-18px;transform:translate(-50%,-50%)}
+/* keeps the number inside the frame when the box hugs an edge — the frame
+   clips overflow, so a corner badge that sticks out would come back cut */
+.shot-target.badge-inside>.shot-target-badge{top:50%;left:auto;right:7px;transform:translate(0,-50%)}
+.shot-target.badge-inside-left>.shot-target-badge{top:50%;left:7px;right:auto;transform:translate(0,-50%)}
+.shot-target.badge-outside-left>.shot-target-badge{top:50%;left:0;right:auto;transform:translate(-115%,-50%)}
+/* mirror of the above, for a target that hugs the right edge */
+.shot-target.badge-outside-right>.shot-target-badge{top:50%;right:0;left:auto;transform:translate(115%,-50%)}
+/* number above the box, centred - for a marked word on a dense single line
+   where any corner placement would land on the word itself */
+.shot-target.badge-above>.shot-target-badge{top:0;left:50%;right:auto;transform:translate(-50%,-118%)}
+.shot-target.badge-below>.shot-target-badge{top:100%;left:50%;right:auto;transform:translate(-50%,18%)}
+
+/* merged from two duplicate live rules — cascade result preserved exactly */
+.shot-caption{margin:10px 0 6px;color:var(--muted);font-size:.92rem;
+  font-weight:700;line-height:1.65}
+.shot-legend{list-style:none;margin:9px 0 0;padding:0;color:var(--muted);font-size:14px}
+.shot-legend-num{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.shot-legend-num li{position:relative;padding-inline-start:31px;
+  color:var(--ink);font-size:.92rem;line-height:1.6}
+/* the legend number is drawn as the same red badge that marks the screenshot,
+   so the eye pairs them without effort. it is positioned, not a flex child —
+   a flex child would split the rest of the sentence into columns wherever it
+   contains a <bdi> or an emphasised word. */
+.shot-legend-num>li>strong:first-child{position:absolute;inset-inline-start:0;top:2px;
+  display:grid;place-items:center;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--red);color:#fff;font-size:12.5px;font-weight:900;line-height:1}
+
+/* --- PRODUCTION-ONLY: reserved screenshot slot -----------------------------
+   Lets a guide be written and laid out before a single screenshot exists.
+   Occupies the real space the image will occupy, and carries the shooting
+   brief inside it. Swapping in the real image is then mechanical.
+
+   MUST NEVER REACH A READER. The publish QA fails if .shot-pending survives
+   in any file being released. The stripes and the "לא לפרסום" tag exist so a
+   leftover is impossible to miss on screen.
+   ------------------------------------------------------------------------ */
+.shot-pending{position:relative;display:grid;place-items:center;min-height:200px;
+  border:2px dashed #8fb8b4;border-radius:14px;padding:20px 18px 18px;
+  background:repeating-linear-gradient(135deg,#f7fbfa,#f7fbfa 14px,#eef6f5 14px,#eef6f5 28px)}
+.shot-pending:before{content:"לא לפרסום";position:absolute;top:-11px;right:16px;
+  border-radius:999px;background:var(--orange);color:#fff;
+  padding:3px 11px;font-size:11px;font-weight:900;letter-spacing:.02em}
+.shot-pending-id{position:absolute;top:-11px;left:16px;border-radius:999px;
+  background:var(--navy);color:#fff;padding:3px 11px;font-size:11px;font-weight:900;
+  direction:ltr}
+.shot-pending-body{width:100%;max-width:520px;text-align:right}
+.shot-pending-title{margin:0 0 12px;color:var(--navy);font-family:var(--font-head);
+  font-size:1.12rem;line-height:1.35}
+.shot-pending-body dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:0}
+.shot-pending-body dt{color:var(--teal);font-size:13px;font-weight:900;white-space:nowrap}
+.shot-pending-body dd{margin:0;color:var(--ink);font-size:14px;line-height:1.6}
+.shot-pending-body dd code{direction:ltr;display:inline-block;background:#fff;
+  border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+  font:13px/1.5 Consolas,monospace}
+@media(max-width:640px){
+  .shot-pending{min-height:160px;padding:18px 14px 14px}
+  .shot-pending-body dl{grid-template-columns:1fr;gap:2px}
+  .shot-pending-body dt{margin-top:7px}
+}
+
+/* legacy inline marker, superseded by .shot-target-badge — do not use in new guides */
+.mk{display:inline-grid;place-items:center;min-width:25px;height:25px;border-radius:50%;
+  background:var(--red);color:#fff;font-weight:900}
+.mk-tag{font-weight:800}
+
+@media(max-width:640px){
+  .shot-target{border-width:2px;border-radius:6px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.86),0 1px 5px rgba(13,39,64,.24)}
+  .shot-target-badge{width:20px;height:20px;border-width:1.5px;font-size:11px}
+  .shot-target-badge.badge-offset-left{left:-13px}
+}
+
+/* ---------------------------------------------------------------------------
+   10. TABLES
+       CANONICAL: .tbl-wrap > table.tbl  (light teal header) — this is what the
+       published guides use. .table-wrap is defined but unused; keep it only so
+       stray legacy markup doesn't break. Never mix the two in one guide.
+   ------------------------------------------------------------------------ */
+.tbl-wrap{overflow-x:auto;margin:18px 0}
+.tbl{width:100%;border-collapse:collapse;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:10px;vertical-align:top;text-align:right}
+.tbl th{background:#e9f4f2;color:var(--navy)}
+.guide-section .tbl th{white-space:nowrap}
+.guide-section .tbl td:empty{min-width:54px;height:40px;background:#fbfdfd}
+@media(max-width:820px){.guide-section .tbl{min-width:620px}}
+
+/* legacy alternative — dark navy header + zebra rows. Unused. */
+.table-wrap{overflow-x:auto;margin:16px 0}
+.table-wrap table{border-collapse:collapse;width:100%;font-size:.9rem}
+.table-wrap th{background:var(--navy);color:#fff;padding:9px 10px;text-align:right;font-weight:700}
+.table-wrap td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+.table-wrap tr:nth-child(even) td{background:var(--soft)}
+
+/* ---------------------------------------------------------------------------
+   11. CODE — always forced LTR inside the RTL page
+   ------------------------------------------------------------------------ */
+pre,.code{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;
+  border:1px solid #263b4a;border-radius:13px;background:#0f2536;color:#ecf8f7;
+  padding:15px;font:14px/1.55 Consolas,monospace}
+
+/* ---------------------------------------------------------------------------
+   12. COPY BLOCK — reader-facing prompt / checklist with a copy button
+        (behaviour lives in assets/site.js)
+   ------------------------------------------------------------------------ */
+.copy-block{margin:18px 0;background:var(--soft);border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px}
+.copy-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;margin-bottom:10px}
+.copy-heading strong{font-size:.95rem;color:var(--navy)}
+.copy-button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:7px 14px;
+  font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-button:hover{background:var(--navy)}
+.copy-button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.copy-block .copy-body,.copy-block>p[id]{margin:0;background:var(--paper);
+  border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--ink);
+  font-size:.95rem;line-height:1.7;white-space:pre-wrap}
+.copy-block .copy-body.ltr{direction:ltr;text-align:left;
+  font-family:ui-monospace,Consolas,monospace;font-size:.88rem}
+.copy-block ol,.copy-block ul{margin:0;padding-inline-start:22px;background:var(--paper);
+  border:1px solid var(--line);border-radius:8px;padding-block:12px;padding-inline-end:14px;
+  color:var(--ink);font-size:.95rem;line-height:1.75}
+.copy-block>div[id]{background:var(--paper);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px}
+.copy-block>div[id]>p{margin:0 0 8px}
+.copy-block>div[id] ol,.copy-block>div[id] ul{border:0;padding-block:0;background:transparent}
+.copy-block>div.copy-plain{white-space:pre-wrap;font-family:ui-monospace,Consolas,monospace;
+  font-size:.85rem;line-height:1.75;direction:rtl;text-align:right;overflow-x:auto}
+.copy-status{display:block;margin-top:8px;min-height:1.1em;font-size:.82rem;
+  font-weight:700;color:var(--green)}
+@media(max-width:700px){
+  .copy-heading{align-items:flex-start;flex-direction:column}
+  .copy-button{width:100%}
+}
+
+/* ---------------------------------------------------------------------------
+   13. BUTTONS
+   ------------------------------------------------------------------------ */
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+  border:1px solid var(--teal);border-radius:10px;padding:10px 15px;color:var(--teal);
+  font-weight:900;text-decoration:none}
+.button.primary{background:var(--teal);color:#fff}
+
+/* ---------------------------------------------------------------------------
+   14. GUIDE CENTER — מרכז המדריכים
+       Created only when one subject is too large for a single guide and has to
+       be split. A guide center covers ONLY the guides inside its own series.
+       There is no "main" center and no hierarchy between centers — several
+       centers exist side by side as equals. Another series is referenced in
+       prose, never linked as a parent or a child.
+   ------------------------------------------------------------------------ */
+.center-head{background:#fff}
+/* The logo image goes inside .center-brand — see section 4 for .hub-logo-full.
+   The bare text wordmark below is the legacy form; do not use it in new work. */
+.center-brand{padding:13px 18px;color:var(--navy);font-weight:900}
+.center-hero{background:var(--navy);color:#fff;padding:32px 18px 44px;text-align:center}
+.center-hero h1{color:#fff}
+.center-hero p{max-width:820px;margin:0 auto;color:#dcecef;font-size:1.08rem}
+.center-kicker{display:inline-flex;align-items:center;justify-content:center;
+  margin:0 auto 18px!important;border:1px solid var(--cyan);border-radius:999px;
+  padding:8px 16px;color:#7ce5dd!important;font-size:13px!important;font-weight:900}
+.center-subtitle{max-width:900px!important}
+.platform-note{max-width:960px!important;margin:20px auto 0!important;
+  border:1px solid rgba(124,229,221,.38);border-radius:14px;background:rgba(255,255,255,.06);
+  padding:13px 16px;color:#eefafa!important;font-size:.97rem!important;line-height:1.65}
+.platform-note strong{color:#86ebe3}
+.center-main{padding:38px 14px 64px}
+
+/* מסלול הלימוד — the numbered learning path, one <li> per guide.
+   grid-template-columns MUST equal the number of guides in the series.
+   This is the one value that legitimately changes between series. */
+.learning-path{margin:-24px 0 34px;border:1px solid var(--line);border-radius:20px;
+  background:#fff;padding:22px;box-shadow:var(--shadow)}
+.learning-path ol{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;
+  margin:0;padding:0;list-style:none}
+.learning-path li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);
+  border-radius:12px;background:#fafcfc;padding:10px;font-weight:800}
+.learning-path span,.guide-number{display:grid;place-items:center;width:36px;height:36px;
+  flex:0 0 36px;border-radius:10px;background:var(--teal);color:#fff;font-weight:900}
+.path-note{margin:16px 0 0;padding:14px 16px;background:var(--soft);
+  border-inline-start:4px solid var(--teal);border-radius:10px;color:var(--ink);
+  font-size:.95rem;line-height:1.7}
+.path-note strong{color:var(--navy)}
+
+/* guide cards — 3 per row on desktop regardless of how many guides exist */
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.guide-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;
+  background:#fff;padding:17px;box-shadow:0 8px 24px rgba(13,39,64,.06);
+  border-top:5px solid var(--orange)}
+.guide-card h2{margin:13px 0 9px;color:var(--navy);font-size:1.28rem;line-height:1.4}
+.guide-card dl{margin:0 0 14px}
+.guide-card dl div{border-top:1px solid #e3eae8;padding:9px 0}
+.guide-card dt{color:#0d625d;font-size:14px;font-weight:900}
+.guide-card dd{margin:2px 0 0;font-size:15px;line-height:1.55}
+.guide-card .button{margin-top:auto}
+
+/* ---------------------------------------------------------------------------
+   14b. GUIDE CENTER — CANONICAL FORM (owner-approved reference)
+        Source: the published guide center of the main series, assets/hub.css.
+        Tzahi confirmed this is the look he is happy with. Build every NEW
+        guide center from this set. The .center-* classes in 14 above are the
+        earlier Skills-series variant, kept working, not to be copied forward.
+
+        Reading rhythm here is looser than inside a guide: 17px / 1.65.
+   ------------------------------------------------------------------------ */
+.hub-body{font-size:17px;line-height:1.65}
+
+/* navy hero with a faint 52px grid overlay */
+.hub-hero{position:relative;overflow:hidden;color:#fff;padding:66px 24px 62px;
+  background:linear-gradient(135deg,var(--navy),#102f4b)}
+.hub-hero:before{content:"";position:absolute;inset:0;background-size:52px 52px;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px)}
+.hero-inner{position:relative;max-width:1060px;margin:auto;text-align:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:7px;border-radius:999px;
+  border:1px solid rgba(43,192,183,.65);background:rgba(43,192,183,.08);
+  color:#7ee2dc;padding:7px 14px;font-size:13px;font-weight:900}
+.hub-hero h1{margin:20px auto 12px;max-width:900px;font-family:var(--font-head);
+  font-size:48px;line-height:1.16}
+.hub-hero p{max-width:820px;margin:auto;color:#e0eef1;font-size:20px}
+
+/* status card that floats across the hero edge — the negative margin and the
+   132px top padding on <main> are a pair; change one and you must change both */
+.progress-box{position:relative;z-index:3;max-width:1040px;margin:28px auto -104px;
+  border:1px solid var(--line);border-radius:18px;background:#fff;color:var(--ink);
+  padding:18px 20px;box-shadow:var(--shadow)}
+.progress-top{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.progress-top strong{color:var(--navy)}
+.progress-top span{color:var(--muted);font-size:14px}
+.progress-track{height:10px;margin-top:11px;border-radius:999px;background:#e6eeec;overflow:hidden}
+.progress-fill{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--cyan))}
+.hub-main{max-width:var(--width);margin:0 auto;padding:132px 24px 80px}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}
+.section-head h2{margin:0;color:var(--navy);font-family:var(--font-head);font-size:34px}
+.section-head p{margin:0;color:var(--muted);max-width:690px}
+
+/* guide cards — always 3 across on desktop; more guides simply wrap to more
+   rows. This is the one thing that legitimately changes per series. */
+.hub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.hub-card{position:relative;display:flex;flex-direction:column;min-height:330px;
+  overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--paper);
+  padding:20px;box-shadow:0 8px 25px rgba(13,39,64,.06)}
+.hub-card:before{content:"";position:absolute;top:0;right:0;left:0;height:5px;background:var(--teal)}
+.hub-card.primary:before{background:var(--orange)}   /* the entry-point guide */
+.hub-card.pending:before{background:#aeb9bc}         /* not published yet     */
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-number{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;
+  background:var(--soft);color:var(--teal);font-weight:900}
+.card-status{border-radius:999px;background:#edf8f6;color:var(--teal);
+  padding:5px 9px;font-size:12px;font-weight:900}
+.card-status.pending{background:#f0f2f2;color:#738186}
+.hub-card h3{margin:18px 0 8px;color:var(--navy);font-family:var(--font-head);
+  font-size:24px;line-height:1.25}
+.hub-card p{margin:0 0 13px;color:var(--muted)}
+.card-list{list-style:none;padding:0;margin:0 0 18px}
+.card-list li{position:relative;padding:5px 25px 5px 0;font-size:14px}
+.card-list li:before{content:"✓";position:absolute;right:0;color:var(--teal);font-weight:900}
+.card-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;margin-bottom:14px}
+.card-meta span{border:1px solid var(--line);border-radius:8px;background:#fafcfc;
+  padding:5px 8px;color:#5f7076;font-size:12px}
+.card-btn{display:block;border-radius:10px;background:var(--teal);color:#fff;
+  padding:12px;text-align:center;text-decoration:none;font-weight:900}
+.card-btn:hover{filter:brightness(.94)}
+
+/* pointing at a DIFFERENT series — the only sanctioned cross-series element.
+   It is a described destination, never a parent/child link. */
+.skills-band{display:grid;grid-template-columns:1fr 310px;gap:24px;align-items:center;
+  margin-top:32px;border:1px solid #cfe1de;border-radius:20px;padding:24px;
+  background:linear-gradient(135deg,#eef8f6,#fff)}
+.skills-band h2{margin:0 0 8px;color:var(--navy);font-family:var(--font-head);font-size:31px}
+.skills-band p{margin:0 0 15px;color:var(--muted)}
+.skills-mini{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.skills-mini div{border:1px solid var(--line);border-radius:11px;background:#fff;
+  padding:11px;font-size:13px}
+.skills-cta{border-radius:16px;background:var(--navy);color:#fff;padding:20px;text-align:center}
+.skills-cta strong{display:block;margin-bottom:7px;font-size:22px}
+.skills-cta a{display:block;margin-top:14px;border-radius:9px;background:#fff;
+  color:var(--navy);padding:11px;text-decoration:none;font-weight:900}
+
+/* the learning path as rotated diamonds */
+.path-section{margin-top:32px;border:1px solid var(--line);border-radius:20px;
+  background:#fff;padding:24px}
+.path-section h2{margin:0 0 6px;color:var(--navy);font-family:var(--font-head);font-size:30px}
+.path-section>p{margin-top:0;color:var(--muted)}
+.path-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:18px}
+.path-step{text-align:center}
+.path-diamond{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 11px;
+  border:2px solid #b8d5d1;background:#fff;transform:rotate(45deg);
+  box-shadow:0 6px 18px rgba(13,39,64,.06)}
+.path-diamond span{transform:rotate(-45deg);color:var(--teal);font-weight:900;font-size:20px}
+.path-step.done .path-diamond{background:var(--teal);border-color:var(--teal)}
+.path-step.done .path-diamond span{color:#fff}
+.path-step b{display:block;color:var(--navy);font-size:14px}
+.path-step small{color:var(--muted)}
+
+.note-box,.draft-note{margin:22px 0;border-right:6px solid var(--gold);border-radius:14px;
+  background:#fffaf0;padding:18px;color:#5d523e}
+.note-box{border:1px solid #ead9ac;border-right:6px solid var(--gold)}
+
+/* focus ring — amber, deliberately outside the palette so it never reads as content */
+.skip-link{position:absolute;top:-60px;right:16px;z-index:10000;border:2px solid var(--teal);
+  border-radius:9px;background:#fff;color:var(--navy);padding:10px 14px;
+  font-weight:900;text-decoration:none}
+.skip-link:focus{top:10px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #f0a431;outline-offset:3px}
+
+@media(max-width:980px){
+  .hub-grid{grid-template-columns:1fr 1fr}
+  .skills-band{grid-template-columns:1fr}
+  .path-flow{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+  .hub-body{font-size:16px}
+  .hub-hero{padding:48px 16px 54px}
+  .hub-hero h1{font-size:34px}
+  .hub-hero p{font-size:17px}
+  .progress-box{margin-left:10px;margin-right:10px}
+  .hub-main{padding:126px 13px 60px}
+  .section-head{display:block}
+  .section-head h2{font-size:29px}
+  .hub-grid{grid-template-columns:1fr}
+  .skills-mini{grid-template-columns:1fr}
+  .path-flow{grid-template-columns:1fr}
+  .path-diamond{width:55px;height:55px}
+}
+
+/* ---------------------------------------------------------------------------
+   15. FOOTER + SOURCE NOTE
+       .source-note always carries a dated currency statement.
+   ------------------------------------------------------------------------ */
+.source-note{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:13px}
+.center-footer,footer{text-align:center;color:var(--muted);padding:26px 12px}
+
+/* ---------------------------------------------------------------------------
+   16. RESPONSIVE
+   ------------------------------------------------------------------------ */
+@media(max-width:1000px){
+  .guide-grid{grid-template-columns:repeat(2,1fr)}
+  .learning-path ol{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr}
+  .risk-grid,.cards,.decision-grid{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  .layout{grid-template-columns:1fr}
+  .desktop-toc{display:none!important}
+  .mobile-toc{display:block;margin:0 14px 14px;border:1px solid var(--line);
+    border-radius:12px;background:#fff}
+  .mobile-toc summary{padding:12px 14px;font-weight:900;color:var(--navy)}
+  .mobile-toc ol{margin:0;border-top:1px solid var(--line);padding:8px 32px 12px 12px}
+  .mobile-toc a{display:block;padding:5px 2px;color:var(--teal)}
+  .guide-grid{grid-template-columns:1fr}
+  .bottom-nav{flex-direction:column}
+  .button{width:100%}
+  .guide-section{padding:23px 17px}
+  .major-subsection{margin:25px -17px 12px!important}
+}
+
+/* ---------------------------------------------------------------------------
+   17. PRINT
+   ------------------------------------------------------------------------ */
+@media print{
+  .backbar,.desktop-toc,.mobile-toc,.bottom-nav{display:none!important}
+  .layout{display:block;padding:0}
+  .surface{border:0;box-shadow:none}
+  .guide-section{break-inside:avoid}
+  .hero{padding:10px 0}
+  .center-main{padding:0}
+}
+
+/* ============================================================================
+   BRAND NOTE — open items, do not silently "fix" on a published guide
+   ----------------------------------------------------------------------------
+   1. .comparison-list is styled here for the first time. The published guide 1
+      currently renders those four cards unstyled. Applying this file to that
+      guide WILL change its appearance (for the better). Needs owner approval
+      before republishing guide 1.
+   2. The Skills guide center still shows a text wordmark inside .center-brand
+      instead of the logo image. Owner is fixing it (2026-08-01). Every new
+      guide center carries the logo image from day one.
+   3. .mk / .mk-tag, .table-wrap, .guide-nav, .risk-grid, .decision-grid,
+      .workbook, .prompt-box, .status are retained for backward compatibility
+      only. New guides must not use them.
+
+   4. NAMING: the published guide center uses .hero / .guide-card / .guide-grid
+      and a bare <main>. Those names already mean something different on a
+      guide page, so section 14b renames them .hub-hero / .hub-card / .hub-grid
+      / .hub-main / .hub-body. Consequence: this stylesheet cannot be dropped
+      onto the existing published center unchanged — that page keeps its own
+      hub.css. A NEW guide center uses the .hub-* names from 14b.
+
+   5. Two other series on the site — cowork/ and desktop/ — run a DIFFERENT
+      visual system: Frank Ruhl + Assistant Hebrew webfonts, teal #00807F,
+      6-10px corners, dark mode, burgundy #7A1233 annotations. Owner decision
+      2026-08-01: they are known outliers, not the standard. Do not copy from
+      them and do not "harmonise" this file toward them.
+   ========================================================================== */
+
+.shot-legend li{display:flex;align-items:flex-start;gap:8px;margin:6px 0}
+.shot-legend b{flex:0 0 auto;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:900;font-style:normal;box-shadow:0 1px 3px rgba(13,39,64,.3)}
+
+
+</style>
+<style>@media(min-width:900px){.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.learning-path ol{grid-template-columns:repeat(3,1fr)}}
+  .status-panel{margin:26px 0;border-radius:16px;background:var(--navy);
+    color:#fff;padding:22px 26px;display:grid;gap:14px;
+    box-shadow:0 10px 30px rgba(13,39,64,.16)}
+  .status-panel .chip{display:inline-flex;align-items:center;gap:8px;
+    align-self:start;border-radius:999px;padding:5px 14px;
+    background:rgba(43,192,183,.16);color:var(--cyan);
+    font-size:.82rem;font-weight:800;letter-spacing:.08em}
+  .status-panel .chip:before{content:"";width:8px;height:8px;border-radius:50%;
+    background:var(--cyan)}
+  .status-panel p{margin:0;font-size:1.02rem;line-height:1.72;opacity:.94}
+  .status-panel strong{color:#fff}
+  .status-facts{display:grid;gap:10px;margin:2px 0 0;padding:0;list-style:none;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .status-facts li{background:rgba(255,255,255,.07);border-radius:10px;
+    padding:11px 14px;font-size:.95rem;line-height:1.5}
+  .status-facts b{display:block;font-size:1.32rem;line-height:1.2;
+    color:var(--cyan);margin-bottom:2px;font-variant-numeric:tabular-nums}
+
+  .center-highlights{margin:.85rem 0 0;color:#fff;opacity:.93;
+    text-align:start;font-size:1rem;line-height:1.75;max-width:none}
+</style>
+</head><body class="center">
+<header class="center-head">
+<div class="skills-brand"><img alt="לוגו Legal Mind - נורה מעל שם המותג" class="skills-logo" decoding="async" src="legal-mind-logo-tight.png"></div>
+<div class="center-hero">
+<p class="center-kicker">מרכז המדריכים של LEGAL MIND</p>
+<h1>מדריך על מנוי <bdi dir="ltr">Team</bdi> ב-<bdi dir="ltr">Claude</bdi></h1>
+<p class="center-subtitle">לכל עו"ד במשרד, מהיחיד ועד המחלקה המשפטית.</p>
+<p class="center-highlights">מה עובד אחר במשרד רואה בתיק שלכם ומה לא, איך לשתף תיק עם עו"ד אחד בלי לפתוח אותו לכולם, לחבר יומן ומייל ולדעת איזו הרשאה לא לתת, ולעבוד מול Claude בתוך <bdi dir="ltr">Word</bdi> ו-<bdi dir="ltr">Excel</bdi> בלי להעביר את המסמך לשום מקום. <strong>ומי שגם מגדיר איך המשרד עובד ימצא כאן גם את זה.</strong></p>
+<p class="platform-note"><strong>המשך למדריך המקיף של <bdi dir="ltr">Legal Mind</bdi> על המעבר הבטוח למנוי <bdi dir="ltr">Team</bdi> ב-<bdi dir="ltr">Claude</bdi>:</strong> שם ליווינו אתכם עד שהמנוי עמד והמידע עבר. כאן מתחילים מהיום שאחרי. כל שאלה על <bdi dir="ltr">DPA</bdi>, אימון מודלים ופרטיות נמצאת שם, במדריך 1 סעיף 2.</p>
+</div></header><main class="center-main">
+
+
+
+<section class="learning-path"><h2>מסלול הלימוד</h2>
+<p>מדריך 1 מיועד לכל עו"ד במשרד. מדריך 2 מיועד למי שמוגדר ב-Claude <bdi dir="ltr">Owner</bdi>, כי ממנו מבצעים את ההגדרות. כל עו"ד אחר יכול לקרוא אותו כדי לדעת מה הוגדר במשרד עבורו.</p>
+<ol><li><span>1</span>לעבוד בפרויקט בלי לחשוף תיק</li><li><span>2</span>להגדיר את המשרד</li><li><span>3</span>דף תרגול</li></ol>
+<p class="path-note"><strong>לא בטוחים מאיפה להתחיל?</strong> התחילו במדריך 1, גם אם אתם מנהלים את המשרד. מדריך 2 מניח שאתם כבר יודעים מה זה פרויקט ומה ההבדל בין שתי ההרשאות.</p></section>
+
+<section class="companion-section"><div class="companion-card"><div class="companion-text">
+<h2>עוברים על המדריך יחד עם <bdi dir="ltr">Claude</bdi></h2>
+<p>עבור מדריך זה הכנו ב-<bdi dir="ltr">Legal Mind</bdi> פרומפט מלווה. פרומפט הוא הוראות כתובות מראש שמדביקים בשיחה עם <bdi dir="ltr">Claude</bdi>. הפרומפט הזה מנחה את <bdi dir="ltr">Claude</bdi> לקרוא את המדריך, לשאול כמה שאלות על התפקיד שלכם ועל המשרד, ולעבור איתכם עליו שלב אחר שלב, עם עצירה לפני כל פעולה שחלה על כל המשרד. לוחצים על הכפתור, פותחים שיחה חדשה ב-<bdi dir="ltr">Claude</bdi>, בחשבון <bdi dir="ltr">Team</bdi> של המשרד, מדביקים ושולחים.</p>
+<p>כל אחד בוחר את הדרך שמתאימה לו: לקרוא את המדריך בעצמו, לעבור עליו עם <bdi dir="ltr">Claude</bdi>, או לשלב בין השניים.</p>
+</div><button type="button" class="button primary companion-btn" id="copyCompanionBtn"><span>להעתקת הפרומפט ל-<bdi dir="ltr">Claude</bdi> לחצו כאן</span></button></div>
+<textarea id="companion-source" class="companion-source" readonly aria-hidden="true" tabindex="-1">
+&lt;role&gt;
+אתה מלווה הטמעה של Legal Mind. תפקידך להוליך עו"ד או משרד עורכי דין, שלב אחר שלב, בעבודה נכונה ובטוחה בחשבון Claude Team של המשרד, אך ורק לפי המדריך של Legal Mind על מנוי Team ב-Claude. אתה מדריך, מאמת ועוצר; אינך מקבל החלטות במקום המשתמש ואינך נותן ייעוץ משפטי. מטרתך היא שבסוף הליווי המשתמש ידע לעבוד בחשבון המשרד, ושהמשרד יהיה מוגדר כך שמידע של לקוחות לא ייחשף למי שלא צריך לראות אותו, ושום הגדרה שחלה על כל המשרד לא תשתנה בלי החלטה מודעת.
+&lt;/role&gt;
+
+&lt;sources&gt;
+מקור הידע היחיד שלך הוא שני העמודים הבאים. שלוף וקרא אותם במלואם לפני ההודעה הראשונה שלך:
+1. מדריך 1, לפתוח פרויקט ולהחליט מי מהעובדים יוכל לראות אותו: https://www.legalmind.co.il/guides/claude-team-usage-guide-1.html
+2. מדריך 2, להגדיר איך כל המשרד עובד: https://www.legalmind.co.il/guides/claude-team-usage-guide-2.html
+אל תשתמש בידע כללי שלך על ממשק Claude, גם אם אתה חושב שאתה מכיר אותו.
+
+כאשר אין לך גישה לרשת, או שאחד העמודים לא נשלף במלואו: כתוב זאת במפורש, ציין איזה עמוד לא נקרא ועד איזה פרק כן קראת, ובקש מהמשתמש להדביק את תוכן העמוד בשיחה. אל תתחיל בליווי לפני שקראת את שני המדריכים במלואם.
+
+המדריך באתר כולל גם צילומי מסך מסומנים. כשהמשתמש צריך לראות איך מסך נראה, הפנה אותו לעמוד המתאים. מרכז המדריכים: https://www.legalmind.co.il/guides/claude-team-usage.html
+
+המדריך אינו עוסק בפרטיות ובאבטחת מידע. כל שאלה על DPA, על אימון מודלים או על מדיניות השמירה: אל תענה מידע כללי. הפנה, כמו שהמדריך מפנה, למדריך של Legal Mind על המעבר הבטוח למנוי Team, מדריך 1 סעיף 2: https://www.legalmind.co.il/guides/guide-1.html
+
+כאשר המסך שהמשתמש מתאר שונה מהמתואר במדריך: הנחה אותו לחפש בעמוד את מילת המפתח שהמדריך מציין, ובקש צילום מסך. הסתמך על המדריך ועל מה שהמשתמש רואה בפועל. כאשר המדריך כותב במפורש שדבר מסוים לא נבדק (למשל מה קורה אחרי הזמנה של כתובת חיצונית, מה קורה לשיחות של מי שהוסר מפרויקט, מה רואה מי שקיבל Copy link, וההבדלים המדויקים בין Owner ל-Admin), אמור שהמדריך לא בדק זאת, ואל תשלים מהראש.
+&lt;/sources&gt;
+
+&lt;intake_questionnaire&gt;
+לאחר קריאת המדריכים, הרץ שאלון פתיחה. שאל שאלה אחת בלבד בכל הודעה. אם אתה יכול להציג את השאלה כשאלה אינטראקטיבית בתוך השיחה, עם אפשרויות שהמשתמש לוחץ עליהן, עשה זאת. זה שאלון ולא מבחן: אין תשובה נכונה או שגויה, ולכן אל תסמן תשובה כנכונה או כשגויה ואל תיתן ציון. אם אינך יכול להציג שאלה אינטראקטיבית, הצג מתחת לשאלה את האפשרויות, כל אחת בשורה נפרדת, בצורה: מספר, נקודה והאפשרות (למשל: 1. User). המשתמש עונה במספר אחד. אחרי כל תשובה עבור לשאלה הבאה.
+
+שאלה 1, המנוי של המשרד: המשרד כבר במנוי Team | עדיין במנוי Free, Pro או Max | לא יודע
+שאלה 2, התפקיד שלי בחשבון המשרד, כפי שכתוב ב-Settings &gt; Account בשורה Your role: User | Admin | Owner | Primary Owner | לא יודע
+שאלה 3, מה אני רוצה להשיג: ללמוד לעבוד נכון בתיקים שלי (מדריך 1) | להגדיר איך כל המשרד עובד (מדריך 2) | את שניהם
+שאלה 4, גודל המשרד: 1 עד 2 אנשים | 3 עד 10 | 11 עד 30 | יותר מ-30
+שאלה 5, פרויקטים בחשבון שלי: אין עדיין | יש, וכולם פרטיים | יש, וחלקם פתוחים לכל המשרד | לא בטוח
+שאלה 6, המייל והיומן של המשרד: Microsoft 365 בחשבון משרדי | כתובת פרטית (outlook.com, hotmail.com, live.com או gmail) | מערכת אחרת | לא יודע
+שאלה 7, גרסת ה-Word במחשב: Microsoft 365 מעודכן | Word 2016 או 2019 ברישיון קבוע | לא יודע
+שאלה 8, מצב הגדרות המשרד: אף אחד עוד לא נגע בהן | חלק כבר הוגדר | לא יודע
+שאלה 9, סוג ההרצה: עבודה אמיתית בחשבון המשרד | הרצת ניסיון או הדגמה
+
+שאל את שאלה 8 רק אם בתשובה לשאלה 3 נבחרו מדריך 2 או שניהם.
+
+כאשר התשובה לשאלה 1 היא "עדיין במנוי Free, Pro או Max": עצור. הסבר שלפי המדריך הוא מניח שהמשרד כבר במנוי Team, ושהדרך לשם מוסברת במדריך של Legal Mind למעבר בטוח למנוי Team: https://www.legalmind.co.il/guides/claude-team.html . אל תמשיך בליווי.
+
+כאשר המשתמש עונה "לא יודע" או תשובה שאינה אחת מהאפשרויות: אל תנחש ואל תמשיך. הסבר היכן בודקים לפי המדריך (התפקיד: לוחצים על השם בפינה השמאלית התחתונה, Settings, והשורה Your role במסך Account; פרויקטים פתוחים לכל המשרד: בעמוד Projects, כרטיס בלי אייקון מנעול; גרסת ה-Word: לפי מה שהמדריך כותב על הגרסאות הנתמכות), ובקש את התשובה לפני שממשיכים.
+
+כאשר התשובה לשאלה 2 היא User והמשתמש בחר גם במדריך 2: הסבר שלפי מדריך 2 פרק 01 מסכי הניהול לא ייפתחו אצלו, ושאת הפעולות בפרקים 01 עד 07 יבצע מי שמוגדר Owner. הצע לעבור על מדריך 2 במצב קריאה, והדגש שפרקים 00, 08, 09 ו-11 מיועדים לכל עו"ד. הצג את נוסח הבקשה ל-Primary Owner מתוך &lt;ready_texts&gt;.
+
+כאשר התשובה לשאלה 2 היא Admin: ציין שלפי המדריך, מדריך 2 נכתב ונבדק כולו מחשבון Owner, ושלא כל מסך בו פתוח בהכרח ל-Admin (למשל, לפי המדריך דשבורד Analytics פתוח ל-Owner ול-Primary Owner בלבד). בכל מסך שלא נפתח, הפנה ל-Owner.
+
+כאשר התשובה לשאלה 5 היא "יש, וחלקם פתוחים לכל המשרד": סמן זאת כחוסם פתוח. בפרק 02 ובפרק 03 של מדריך 1 עבור על הפרויקטים האלה אחד אחד, ושאל על כל אחד אם יש בו מידע של לקוח. הזכר שלפי המדריך ההחזרה ל-Only people invited חלה מכאן והלאה, ואינה מבטלת את מה שכבר נקרא.
+
+כאשר התשובה לשאלה 6 היא כתובת פרטית: ציין שלפי המדריך חיבור Microsoft 365 עובד רק עם חשבון משרדי, ולכן שלבי החיבור בפרק 07 של מדריך 1 יסומנו "לא רלוונטי כרגע".
+
+כאשר התשובה לשאלה 7 היא Word 2016 או 2019: ציין שלפי המדריך התוסף אינו רץ על הגרסאות האלה ברישיון קבוע או נפחי, וסמן את חלק ה-Word בפרק 08 כחוסם שדורש עדכון גרסה.
+
+כאשר התשובה לשאלה 8 היא "אף אחד עוד לא נגע בהן" או "לא יודע": הדגש שלפי מה שהמדריך מצא בבדיקה בפועל, במסך הסקילים של הארגון כל חמשת המתגים דלוקים כברירת מחדל, כולל Share with organization, ולכן מדריך 2 פרק 02 יקבל עדיפות.
+
+כאשר התשובה לשאלה 9 היא "הרצת ניסיון או הדגמה": הפעל מצב בדיקה. במצב זה סמן פריטים חסרים כ"מדומה" במקום לחסום את ההתקדמות, ציין בכל שער אישור שהאישור סימולטיבי בלבד, וסמן במפורש כל תשובה שאתה ממציא במקום המשתמש. בסיום הצג את דוח הסיום עם הבחנה בין פריטים שבוצעו בפועל לפריטים מדומים. בהרצת ניסיון הזכר שלא מעלים חומר אמיתי של לקוחות.
+
+בעבודה אמיתית אל תפעיל מצב בדיקה גם אם המשתמש מבקש לדלג.
+
+לאחר השאלון הצג טבלת תוכנית עם שלוש עמודות: פרק, רלוונטי לי (כן/לא), הערה. סמן במפורש פרקים שאפשר לדלג עליהם לפי התשובות (למשל: חלק ה-Word בפרק 08 לא רלוונטי למי שבגרסה שאינה נתמכת; מדריך 2 כולו במצב קריאה בלבד למי שמוגדר User). ציין את זמן העבודה לפי המדריך: מדריך 1 כ-20 דקות קריאה ועוד כ-20 דקות ביצוע, מדריך 2 כ-25 דקות קריאה ועוד כ-40 דקות ביצוע. אל תתחיל בליווי לפני שהמשתמש אישר; הדרך לאשר מוגדרת בסוף &lt;roadmap&gt;.
+&lt;/intake_questionnaire&gt;
+
+&lt;roadmap&gt;
+מיד לאחר טבלת התוכנית הפק שני תוצרים, מותאמים לתשובות השאלון. הפק כל אחד פעם אחת בלבד, ואל תפיק אותם מחדש בכל הודעה.
+
+תוצר ראשון: תרשים זרימה בתוך השיחה, לעבודה שוטפת. הפק אותו רק אם אתה יכול להציג תרשים בשיחה עצמה. תרשים אנכי, שלב מתחת לשלב, בלי יותר מעשר תיבות. קידוד צבע קבוע: ירוק למה שהושלם, כתום לחוסם פתוח, אדום לשער אישור, סגול למה שבאחריות ה-Owner או מנהל המערכת ולא באחריות המשתמש, אפור למה שבהמתנה, ואפור מעומעם למה שדולג לפי התשובות. הוסף שורת מקרא אחת. אם אינך יכול להציג תרשים, דלג עליו ואל תנסה לצייר בתווים.
+
+תוצר שני: מפת דרכים לשמירה, וזה התוצר החשוב מהשניים. אם אתה יכול ליצור קובץ להורדה, הפק קובץ HTML מיושר לימין; אחרת הצג את מפת הדרכים בשיחה כטבלה. במפה כל הפרקים הרלוונטיים, באותו קידוד צבע, כולל כיתוב מפורש לכל פרק שדולג ומדוע. בראש המפה הצג את הפרופיל שנקבע בשאלון ואת תאריך ההפקה. הסבר למשתמש שכדאי לשמור את המפה, ושאפשר לשלוח אותה ל-Owner, לשותף או לאיש ה-IT של המשרד. אם הפקת קובץ, הסבר למשתמש במשפט אחד, לפי מה שמוצג אצלו בשיחה, איך מורידים את הקובץ ושומרים אותו במחשב.
+
+אחרי שני התוצרים, סיים את ההודעה בשאלה אחת עם אפשרויות לחיצה (או ממוספרות, אם אינך יכול להציג שאלה אינטראקטיבית): "איך ממשיכים?" 1. מתחילים בליווי | 2. יש לי שאלה על התוכנית | 3. עוצרים לעת עתה. כך המשתמש לא צריך לנחש מה לכתוב. באותה צורה, בכל מקום שבו אתה מחכה לאישור להמשיך (למשל בסוף פרק שאין בו שלבים, או במעבר ממדריך 1 למדריך 2), הצע אפשרויות לחיצה ברורות, ולעולם אל תסיים הודעה בלי שיהיה ברור למשתמש מה עליו לעשות או לכתוב עכשיו.
+
+בכל שלב במהלך הליווי הוסף שורת התמצאות אחת בראש ההודעה, בנוסח: מדריך 1, פרק 03, שלב 2 מתוך 4.
+&lt;/roadmap&gt;
+
+&lt;workflow&gt;
+לפני כל הודעה, בדוק בשקט: באיזה מדריך, באיזה פרק ובאיזה שלב אנחנו, מה המשתמש דיווח בהודעה האחרונה, והאם תנאי המעבר לשלב הבא התקיים. רק אז כתוב.
+
+סדר העבודה: מדריך 1 מפרק 00 עד פרק 10, ואחריו, אם נבחר, מדריך 2 מפרק 00 עד פרק 11. שלב אחד בכל הודעה. פרק 00 בכל מדריך הוא רשימת מונחים: הצע למשתמש לעבור עליו או לדלג ולחזור אליו כשמונח לא ברור, כמו שהמדריך עצמו מציע.
+
+מבנה כל שלב:
+1. כותרת קצרה: מדריך X, פרק Y, שם השלב.
+2. מה עושים, במשפט או שניים.
+3. היכן לוחצים: הנתיב המדויק כפי שמופיע במדריך, ושמות הכפתורים באנגלית כפי שבממשק.
+4. מה אמורים לראות כדי לדעת שהשלב הצליח.
+5. שאלת סגירה אחת: "סיימת? מה אתה רואה במסך?"
+
+פרק שאין בו שלבים (למשל פרק 01 או פרק 04 במדריך 1) מציגים כהסבר קצר של העיקר, ומסיימים בשאלה אחת שבודקת שהעיקר הובן, בלי ציון.
+
+עבור לשלב הבא רק לאחר אישור מפורש. כאשר המשתמש מדווח על תוצאה שונה מהצפוי: עצור, שאל שאלת הבהרה אחת, בקש צילום מסך, והמשך רק כשהתמונה ברורה.
+
+עמדות Legal Mind: בכל פרק שיש בו עמדת Legal Mind, הצג אותה בסוף הפרק כשורה נפרדת, והבחן בבירור בין מה שהמדריך מתאר כעובדה על המסך לבין מה ש-Legal Mind ממליצה.
+
+נקודות סיכום: בסוף מדריך 1 הצג את רשימת "מה שאתם יודעים לעשות עכשיו" מפרק 10 כטבלה עם עמודת סטטוס, ובסוף מדריך 2 את הרשימה מפרק 11. עבור עליה פריט פריט. כאשר פריט אינו מושלם, חזור איתו לפרק המתאים.
+
+דגשים לפי המדריך, שאסור לדלג עליהם:
+- לפני כל העלאה של חומר של לקוח: לבדוק בשורת החשבון שבתחתית סרגל הצד, או בתפריט החשבון, שהמשתמש נמצא בחשבון המשרד ולא בחשבון הפרטי שלו.
+- מדריך 1 פרק 02: באזור Visibility כבר מסומן שם המשרד. מסמנים Private לפני שלוחצים Create project, ואחרי היצירה בודקים שמתחת לשם התיק כתוב Private ושעל הכרטיס ברשימה יש אייקון מנעול.
+- מדריך 1 פרק 03: לפני לחיצה על כתובת מההשלמה האוטומטית, קוראים את מה שכתוב אחרי הסימן @. Can edit מאפשר גם להזמין ולהסיר אנשים, כולל את מי שפתח את התיק, בלי אישור ובלי הודעה.
+- מדריך 1 פרק 05: סריקות מעלים כ-PDF ולא כקובץ Word. המגבלה בפרויקט היא 30 מגה לקובץ.
+- מדריך 1 פרק 07: הסימן Connected אינו הוכחה שהחיבור עובד. הבדיקה היא שאלת הבדיקה מתוך &lt;ready_texts&gt;. אחר כך בודקים ב-Tool permissions ש-Outlook send mail לא הועבר ל-Always allow.
+- מדריך 1 פרק 08: קודם בודקים שגרסת ה-Word נתמכת, ורק אחר כך מחפשים תקלה.
+- מדריך 2 פרק 01: בשאלה מי ניגש ל-Billing, המדריך מציין ששני עמודים של Anthropic סותרים זה את זה ואינו מכריע. בקש מהמשתמש לבדוק במסך שלו מי רואה Billing בפועל, ואל תכריע במקומו.
+- מדריך 2 פרק 02: אין במערכת בקשה שממתינה לאישור. שומר הסף הוא נוהל: מתג Share with organization כבוי, ואדם אחד שדרכו עובר כל סקיל. ההעלאה מקבלת סקיל אחד בכל קובץ zip, ואין להניח שההעלאה הצליחה בלי לראות את הודעת ההצלחה.
+- מדריך 2 פרק 04: המגבלה היא כשלושת אלפים תווים, וההשפעה עשויה להיקלט עד שעה. בודקים בשיחה חדשה.
+- מדריך 2 פרק 05: לפני Set up for your org עושים סדר בהרשאות במקורות עצמם. לפי עמדת Legal Mind זה שלב מקדים הכרחי.
+- מדריך 2 פרק 06: יכולת שמכבים נעלמת אצל כל עורכי הדין בלי הודעה. מודיעים לצוות לפני, לא אחרי.
+&lt;/workflow&gt;
+
+&lt;confirmation_gates&gt;
+לפני כל אחת מהפעולות הבאות: הצג אזהרה בשורה נפרדת, הסבר במשפט אחד מה יקרה ולמי זה חל, רק לפי מה שכתוב במדריך, ובקש מהמשתמש להקליד את המילה "מאשר". המשך רק לאחר המילה הזו בדיוק.
+
+שער 1, פתיחת פרויקט לכל המשרד: השארת שם המשרד מסומן באזור Visibility, או בחירה ב-Everyone at ושם המשרד באזור General access. שאל קודם אם יש בפרויקט מידע של לקוח. לפי עמדת Legal Mind, לכל המשרד פותחים רק מאגרי ידע בלי מידע לקוח.
+שער 2, הזמנה ומתן הרשאה בפרויקט: לפני הלחיצה על Share, בקש מהמשתמש להקליד את מה שכתוב אחרי הסימן @ בכל כתובת שהוזמנה, והשווה לדומיין של המשרד. אם ההרשאה היא Can edit, הזכר שהיא כוללת ניהול משתתפים, ושלפי ההמלצה נותנים אותה לאדם אחד בכל תיק. אם המוזמן אינו עו"ד, הזכר שלפי המדריך מתן גישה כפוף לכללי החיסיון ולחובת הסודיות, ושההרשאה הטכנית אינה היתר.
+שער 3, חיבור לכל המשרד: כשמשתמש שמוגדר Owner עומד ללחוץ על Connect for your team. הסבר שהכפתור הבולט מחבר את כל המשרד, ושהחיבור האישי נמצא בחץ תחת Connect just for me.
+שער 4, הרשאת השליחה במייל: אם המשתמש רוצה להעביר את Outlook send mail או כלי אחר מקבוצת Write/delete tools ל-Always allow. הסבר את מה שהמדריך כותב על שליחה לצד שכנגד, והצע את החלופה: Claude מנסח, והמשתמש מעתיק ושולח בעצמו.
+שער 5, הדלת למשרד: הדלקת קישור ההצטרפות במסך Organization and access. הסבר שלפי המדריך מי שנכנס דרכו מאושר אוטומטית, והתפריט New member approval אינו חל עליו. אם בכל זאת מדליקים, בקש לרשום את תאריך התפוגה, ולפי עמדת Legal Mind לכבות אותו אחרי שהצוות נכנס.
+שער 6, מתגי הסקילים של הארגון: כל שינוי במתגים Cloud code execution and file creation, Skills או User-created skills. הסבר שלפי המדריך בלי שני הראשונים שום סקיל לא יעבוד, ושכיבוי השלישי נועל את המשרד לסקילים מאושרים בלבד. כיבוי Share with organization אינו דורש שער, כי זו ההמלצה של המדריך.
+שער 7, הפצה לכל המשרד: העלאת סקיל ל-Organization skills, והעברת פלאגין ל-Installed by default או ל-Required. לפני הסקיל, שאל אם הוא נבדק אצל שלושה קולגות דרך Skill sharing, כי לפי המדריך הוא מגיע לכולם מיד ואין שלב ביניים. לפני הפלאגין, הזכר שלפי המדריך השינוי חל מכאן והלאה ועל כל הארגון.
+שער 8, הגדרות שחלות על כולם: שמירת הוראות ארגוניות (Save changes), הגדרת החיפוש הארגוני (Set up for your org) או כיבויו (Disable), כיבוי יכולת במסך Capabilities, שינוי Domain allowlist או Allow network egress, שינוי סוג מושב או בחירה ב-No seat assigned, קביעת תקרת הוצאה, והדלקת Turn on usage credits. לפני החיפוש הארגוני, שאל אם כבר נעשה סדר בהרשאות במקורות. לפני כיבוי יכולת, שאל אם הצוות עודכן.
+&lt;/confirmation_gates&gt;
+
+&lt;interaction&gt;
+כשהתשובה היא בחירה מתוך אפשרויות סגורות, שאל שאלה או פריט אחד בכל הודעה, והצג אפשרויות ממוספרות באותה צורה כמו בשאלון: בשאלון הפתיחה; בנקודות הסיכום (כל פריט: הושלם | טרם הושלם); ובהחלטות בין שתי דרכי המשך.
+
+אל תציג אפשרויות ממוספרות בשני מקומות: בשאלת הסגירה של כל שלב ("סיימת? מה אתה רואה במסך?"), כי שם התשובה החופשית היא מה שמאפשר לזהות תקלה; ובשערי האישור, כי שם נדרשת הקלדת המילה "מאשר" כחיכוך מכוון.
+&lt;/interaction&gt;
+
+&lt;resume&gt;
+בסוף כל מדריך, ובכל פעם שהמשתמש מודיע שהוא מפסיק לעת עתה, הפק סיכום המשך קצר להעתקה, הכולל: הפרופיל שנקבע בשאלון, מה הושלם, מה נותר, אילו חוסמים פתוחים, ובאיזה מדריך, פרק ושלב עצרנו. הסבר שאפשר להדביק אותו בשיחה חדשה יחד עם הפרומפט, כדי להמשיך מאותה נקודה בלי לחזור על השאלון.
+כאשר המשתמש פותח בסיכום המשך כזה: אשר אותו בקצרה, דלג על השאלון, והמשך מהשלב שצוין.
+&lt;/resume&gt;
+
+&lt;troubleshooting&gt;
+תקלות מוכרות ומענה לכל אחת, לפי המדריך:
+- שיתפתי, והוא לא רואה את הפרויקט: לבדוק שההזמנה נשלחה לכתובת שאיתה הוא מחובר לארגון, ולבקש ממנו לחפש בלשונית Shared with you.
+- הוא רואה את הפרויקט ולא יכול לשנות בו: זו הרשאת Can view, וזה תקין. מדריך 1 פרק 03.
+- בשיחה חדשה Claude לא זוכר מה סוכם: ההקשר לא עובר בין שיחות. מה שצריך לחול על כל השיחות עובר ל-Context. מדריך 1 פרק 05.
+- האפשרות לפתוח פרויקט לכל המשרד לא קיימת: זו לא תקלה. המשרד יכול לכבות אותה, וההגדרה אצל ה-Owner תחת Data and privacy. שיתוף פרטני לפי מייל ממשיך לעבוד.
+- הסקיל הארגוני לא מופיע אצלי: או שכיביתם אותו אצלכם, או שהיכולת לא הופעלה ברמת הארגון. בודקים קודם אצלכם, ואחר כך פונים לאחראי.
+- חיברתי יומן והוא לא מוצא כלום: לוודא שהחיבור מחובר ולא רק מאושר, ולשאול על תקופה שיש בה פגישות.
+- לחצתי Connect ב-Microsoft 365 וקיבלתי מסך על מנהל מערכת: זה צפוי. מצלמים את המסך ושולחים למי שמנהל את Microsoft 365 במשרד, לפי הנוסח ב-&lt;ready_texts&gt;, וחוזרים לחבר אחרי שסיים.
+- הכפתור של Claude לא מופיע ב-Word: קודם בודקים שהגרסה נתמכת. אם כן, סוגרים את Word לגמרי, פותחים שוב, ומוודאים שהתחברתם בתוסף לחשבון Claude.
+- אני לא רואה את מסכי ניהול הארגון: זו שאלה של הרשאה. בודקים את Your role במסך Account. מדריך 2 פרק 01.
+- ההעלאה נכשלת עם שגיאה על SKILL.md: הקובץ אורז כמה סקילים. מפרקים ל-zip נפרד לכל סקיל, עם SKILL.md ברמה העליונה. מדריך 2 פרק 02.
+- העליתי סקיל ארגוני והוא לא הופיע אצל אף אחד: לבדוק שהמתגים Skills ו-Cloud code execution and file creation דלוקים. מדריך 2 פרק 02.
+- עובד אומר שהסקיל הארגוני נעלם: הוא כיבה אותו אצלו, ויכול להדליק אותו בחזרה.
+- הוראה ארגונית לא משפיעה: או שעוד לא עברה שעה, או שהיא מנוסחת כהמלצה ולא כהוראה. וגם לוודא שנלחץ Save changes. מדריך 2 פרק 04.
+- Ask Your Org מחזיר תוצאות ריקות לעובד: או שלא חיבר את עצמו בכניסה הראשונה, או שאין לו הרשאה למקור עצמו. מדריך 2 פרק 05.
+- יכולת שהייתה לעובד נעלמה: לבדוק במסך Capabilities אם כובתה לכל הארגון. מדריך 2 פרק 06.
+- מחפשים תפקידים מותאמים: הם אינם קיימים במנוי Team, רק ב-Enterprise. מדריך 2 פרק 01.
+&lt;/troubleshooting&gt;
+
+&lt;ready_texts&gt;
+נוסחים קבועים. הצג אותם למשתמש בשלב הרלוונטי, כדי שלא יצטרך לחזור למדריך באמצע עבודה.
+
+נוסח ראשון: בקשה ל-Primary Owner, כאשר המשתמש מוגדר User. כתובת המייל של ה-Primary Owner מופיעה במסך Account, בשורה שמתחת ל-Your role. הצג רק את הבקשות שרלוונטיות לפי השאלון:
+1. לבדוק במסך הסקילים של הארגון שהמתג Share with organization כבוי, ולמנות שומר סף אחד לסקילים.
+2. לבדוק אם קישור ההצטרפות דלוק, ואם כן, מתי הוא פג.
+3. לאשר אילו חיבורים זמינים לעורכי הדין, ולברר מה בדיוק אישר מנהל המערכת בשם המשרד בחיבור Microsoft 365.
+4. לבדוק במסך Members כמה אנשים מוגדרים Owner.
+
+נוסח שני: הודעה למנהל המערכת של Microsoft 365, כשמופיע מסך השער בחיבור:
+"ניסיתי לחבר את Claude ל-Microsoft 365 של המשרד, והופיע מסך שאומר שמנהל המערכת צריך להשלים הגדרה חד פעמית לכל המשרד. מצורף צילום של המסך, ובו שלושת הצעדים וקישור למדריך המלא. אעדכן כשאפשר לחבר."
+
+נוסח שלישי: הוראות פרויקט לתיק, להעתקה ולהתאמה (מתוך מדריך 1 פרק 05):
+"זהו תיק של [סוג התיק]. הצדדים הם [שמות], ואנחנו מייצגים את [הצד].
+בכל תשובה בתיק הזה: הפנה לעמוד ולשורה שממנה שלפת כל נתון. כשמידע חסר, אמור זאת במפורש ואל תשלים אותו. אל תסתמך על מסמך שאינו בתיקייה."
+
+נוסח רביעי: שאלת הבדיקה ליומן (מתוך מדריך 1 פרק 07):
+"מה יש לי ביומן בשבוע הקרוב? פרט לכל פגישה את היום, השעה ועם מי היא."
+
+נוסח חמישי: טבלת ההחלטה מה שמים איפה (מתוך מדריך 1 פרק 04):
+סוג התוכן | איפה שמים אותו | ומה נותנים למי שנכנס
+תיק לקוח פעיל, מידע רגיש | פרויקט פרטי, בלי שיתוף | כלום
+תוצר ביניים לצוות מצומצם | משתפים פרטנית לפי מייל | Can view
+מאגר ידע חי שמישהו מתחזק | פרטני או ארגוני | Can edit לאחראי, Can view לשאר
+בנקי הערות, תבניות ונהלים | ארגוני, פתוח לכולם | Can view לכולם, Can edit לאחראי
+
+נוסח שישי: נוסח פתיחה להוראות הארגוניות (מתוך מדריך 2 פרק 04). הזכר שלפי עמדת Legal Mind את נוסח ההסתייגות כדאי שיאשר עו"ד במשרד:
+"כל התשובות ייכתבו בעברית משפטית תקנית ובלשון מקצועית.
+בכל תוצר המיועד ללקוח יש לציין במפורש כי אין מדובר בייעוץ משפטי, וכי הוא טעון בדיקה של עו"ד.
+הפניות לחקיקה ולפסיקה ייכתבו בפורמט אחיד: שם החוק, מספר הסעיף, ושנת החקיקה.
+אין להציג מידע כעובדה משפטית בלי לציין את המקור שממנו הוא נלקח."
+
+נוסח שביעי: שאלת בדיקה ראשונה לחיפוש הארגוני (מתוך מדריך 2 פרק 05):
+"באיזה תיק טיפלנו בסוגיית היטל השבחה בפרויקט פינוי-בינוי, ומה הייתה המסקנה? ציין מאיפה שלפת כל פרט."
+
+נוסח שמיני: תזכורת שבועית לנתוני השימוש (מתוך מדריך 2 פרק 07):
+"הזכר לי כל יום ראשון בבוקר לבדוק את נתוני השימוש ב-Claude במשרד: כמה משתמשים פעילים, מי לא נכנס כלל השבוע, ומי נתקל במגבלת שימוש."
+&lt;/ready_texts&gt;
+
+&lt;rules&gt;
+- שמור על הודעות קצרות: שלב אחד, לא סיכום של פרק שלם.
+- כתוב בעברית פשוטה. אל תשתמש במקף ארוך (—) או בינוני (–) בשום מקום, כולל בטבלאות, בתרשימים ובקבצים שאתה מפיק; במקומו השתמש בנקודתיים, בפסיק או במשפט נפרד. שמות מסכים, תפריטים וכפתורים באנגלית בדיוק כפי שהם במדריך.
+- שמור על סדר המדריכים והפרקים גם כאשר המשתמש מבקש לקצר או לדלג; אפשר לדלג רק על מה שסומן כלא רלוונטי בטבלת התוכנית, והסבר בקצרה מדוע.
+- הצע אך ורק דרכים שמופיעות במדריכים.
+- אל תבקש מהמשתמש להדביק בשיחה הזו מסמכים או פרטים של לקוחות. לתרגול משתמשים בדוגמאות בדויות.
+- כאשר המשתמש אינו Owner ואינו רואה מסך ניהול, הפנה אותו ל-Primary Owner של המשרד לפי הוראות המדריך.
+- הזכר כאשר רלוונטי שהמדריכים אינם ייעוץ משפטי, ושהמשרד אחראי למדיניות ולבקרה.
+&lt;/rules&gt;
+
+&lt;examples&gt;
+&lt;good_turn&gt;
+מדריך 1, פרק 02, שלב 4 מתוך 5: מסמנים Private.
+מה עושים: באזור Visibility שבתחתית החלון New project בוחרים באפשרות התחתונה, Private, ורק אחר כך ממלאים שם ותיאור.
+היכן: Projects בסרגל הצד, New project, ובתחתית החלון האזור Visibility.
+מה אמורים לראות: הסימון עבר מהשם של המשרד ל-Private, ומתחתיו כתוב שרק מי שהוזמן יכול לראות ולהשתמש.
+סיימת? מה אתה רואה במסך?
+&lt;/good_turn&gt;
+&lt;bad_turn&gt;
+בוא נסדר הכול בבת אחת: תפתח פרויקט, תשתף את כל המחלקה עם Can edit, תחבר את Microsoft 365, ואז תעלה את הסקיל לכל המשרד. תגיד לי כשסיימת.
+&lt;/bad_turn&gt;
+&lt;why&gt;
+המהלך השגוי דוחס כמה פרקים משני מדריכים להודעה אחת, לא מגדיר מה רואים בהצלחה, נותן Can edit לכולם בניגוד להמלצה, מדלג על בדיקת הכתובות ועל שערי האישור, ומפיץ סקיל לכל המשרד בלי בדיקה אצל שלושה קולגות.
+&lt;/why&gt;
+&lt;/examples&gt;
+
+&lt;final_output&gt;
+בהודעה הראשונה ציין שהממשק והמדריך עשויים להשתנות, ושהקובע הוא מה שמופיע בחשבון בפועל.
+
+בסיום הליווי הפק דוח סיום. אם אתה יכול ליצור קובץ להורדה, הפק אותו כקובץ HTML מיושר לימין לשמירה, והסבר במשפט אחד איך מורידים אותו; אחרת הצג אותו בשיחה. הדוח יכלול:
+1. טבלת הפרקים שעברנו, עם סטטוס לכל אחד (בוצע, נקרא בלבד, דולג ומדוע).
+2. ההגדרות שנקבעו בפועל, ומי קבע אותן.
+3. רשימת פערים שנמצאו, ומה נעשה בכל אחד.
+4. פעולות פתוחות שנותרו, לפי מה שרלוונטי: בקשות ל-Owner, נוהל שומר הסף, בדיקה רבעונית של מי מוגדר Owner, ניקוי הזמנות ממתינות, תזכורת שבועית לנתוני השימוש, ולמי שעבר על מדריך 2 גם מסלול 30 היום מפרק 10, שבוע אחר שבוע.
+&lt;/final_output&gt;
+
+התחל: שלוף את שני העמודים, אשר במשפט אחד שקראת את שניהם עד הסוף (ציין את שם הפרק האחרון בכל אחד), והפעל את שאלון הפתיחה.</textarea></section>
+
+<section><div class="guide-grid">
+
+<article class="guide-card"><div><span class="guide-number">1</span></div><h2>לפתוח פרויקט ולהחליט מי מהעובדים יוכל לראות אותו</h2><dl>
+<div><dt>מה תלמדו כאן</dt><dd>לפתוח פרויקט ולבחור את הנראות שלו, לשתף אדם אחד ולקבוע מה מותר לו, מה נשאר פרטי גם בפרויקט משותף, למצוא את הסקילים שלכם, ולחבר יומן ומייל בלי לתת הרשאה מיותרת.</dd></div>
+<div><dt>מה יוכל להשתנות אצלכם אחרי שתקראו את המדריך</dt><dd>לפתוח תיק ב-Claude בלי לחשוף אותו למשרד, לשתף אותו עם מי שצריך בלבד, ולדעת בכל רגע מה עובד אחר רואה בו ומה לא.</dd></div>
+<div><dt>זמן משוער</dt><dd>כ-20 דקות קריאה, וכ-20 דקות ביצוע</dd></div>
+<div><dt>מה צריך כדי להתחיל</dt><dd>לכל עו"ד במשרד. אין צורך בהרשאות ניהול</dd></div></dl>
+<a class="button primary" href="claude-team-usage-guide-1.html">למדריך 1</a></article>
+
+<article class="guide-card"><div><span class="guide-number">2</span></div><h2>להגדיר איך כל המשרד עובד</h2><dl>
+<div><dt>מה תלמדו כאן</dt><dd>מי מוגדר ב-Claude כ-<bdi dir="ltr">User</bdi>, <bdi dir="ltr">Admin</bdi>, <bdi dir="ltr">Owner</bdi> ו-<bdi dir="ltr">Primary Owner</bdi>, ומה כל אחד מהם יכול לעשות בפועל · למה סקיל שהמשרד הפיץ מופיע אצלכם ואי אפשר למחוק אותו · ומהן ההוראות הקבועות שהמשרד קובע לכל שיחה.</dd></div>
+<div><dt>מה יוכל להשתנות אצלכם אחרי שתקראו את המדריך</dt><dd>להבין מה קובע מי רואה מה במשרד, למה סקיל ארגוני מופיע אצלכם בלי שהעליתם אותו, ומהן ההוראות שחלות על כל שיחה שלכם.</dd></div>
+<div><dt>ומה מי שמוגדר <bdi dir="ltr">Owner</bdi> ידע בנוסף</dt><dd>להעלות שיטת עבודה אחת לכל המשרד · למנוע מעו"ד לפרסם סקיל לכולם · לכתוב את ההוראות הקבועות · להפעיל חיפוש אחד על כל מקורות המשרד · לנהל מושבים · ולקרוא את נתוני השימוש.</dd></div>
+<div><dt>זמן משוער</dt><dd>כ-25 דקות קריאה, וכ-40 דקות ביצוע</dd></div>
+<div><dt>מה צריך כדי להתחיל</dt><dd>דורש את מדריך 1, וחשבון בתפקיד <bdi dir="ltr">Owner</bdi></dd></div></dl>
+<a class="button primary" href="claude-team-usage-guide-2.html">למדריך 2</a></article>
+
+<article class="guide-card"><div><span class="guide-number">3</span></div><h2>דף תרגול - לקריאה ולהדפסה או לשמירה</h2><dl>
+<div><dt>מה יש בו</dt><dd>טבלת ההחלטה מה לשתף ובאיזו הרשאה, מסלול 30 יום להטמעה, וחמש הטעויות שמשרדים עושים.</dd></div>
+<div><dt>למי</dt><dd>למי שמוביל את ההטמעה במשרד, ורוצה דף אחד מול העיניים.</dd></div>
+<div><dt>איך משתמשים</dt><dd>נפתח בדפדפן ומודפס בלחיצה אחת</dd></div>
+<div><dt>מה צריך כדי להתחיל</dt><dd>אין. אפשר להדפיס גם לפני שקוראים</dd></div></dl>
+<a class="button primary" href="claude-team-usage-practice.html">לדף התרגול</a></article>
+
+</div></section>
+
+<section class="source-note"><p><strong>הערת מקורות:</strong> כל עובדה בסדרה נבדקה מול מרכז התמיכה הרשמי של <bdi dir="ltr">Anthropic</bdi> באוגוסט 2026, ומתויגת כאחת משלוש: מקור רשמי, ממצא של Legal Mind שנבדק בפועל, או עמדה של Legal Mind המסומנת ככזו. במקום אחד התיעוד הרשמי סותר את עצמו, ואנחנו אומרים זאת בגוף המדריך במקום להכריע. ממשקים משתנים, ולכן כל פעולה מתוארת גם בנתיב כתוב. <strong>ושתי בדיקות בפועל עדיין פתוחות, והן מסומנות ככאלה בגוף המדריכים.</strong></p></section>
+
+</main><footer class="center-footer">Legal Mind | מדריך על מנוי Team ב-Claude | שני מדריכים ודף תרגול | אוגוסט 2026</footer><style>.companion-section{margin:28px 0}.companion-card{background:#edf7f6;border:1px solid #bcdcd8;border-inline-start:4px solid var(--teal);border-radius:10px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px 28px;flex-wrap:wrap}.companion-card h2{margin:0 0 8px;font-size:1.25rem;color:var(--navy)}.companion-card p{margin:0 0 6px;color:var(--ink);line-height:1.7}.companion-card .companion-text{flex:1 1 420px}.companion-card .button{flex:0 0 auto;border:0;font:inherit;font-weight:800;cursor:pointer}.companion-btn[data-copied="true"]{background:var(--green)!important}.companion-btn[data-copied="false"]{background:var(--red)!important}.companion-source{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}@media(max-width:640px){.companion-card .button{flex:1 1 100%;text-align:center}}</style>
+<script>
+(function () {
+  var btn = document.getElementById('copyCompanionBtn');
+  var src = document.getElementById('companion-source');
+  if (!btn || !src) { return; }
+  var original = btn.innerHTML;
+  btn.addEventListener('click', function () {
+    var text = src.value.replace(/^[\r\n]+/, '');
+    function flash(success) {
+      btn.textContent = success ? 'הפרומפט הועתק. עכשיו הדביקו אותו בשיחה חדשה ב-Claude' : 'לא הצלחנו להעתיק. נסו שוב';
+      btn.setAttribute('data-copied', success ? 'true' : 'false');
+      setTimeout(function () { btn.innerHTML = original; btn.removeAttribute('data-copied'); }, success ? 4000 : 3500);
+    }
+    function fallbackCopy() {
+      var ok = false;
+      try { src.removeAttribute('readonly'); src.select(); ok = document.execCommand('copy'); }
+      catch (e) { ok = false; }
+      finally { src.setAttribute('readonly', 'readonly'); }
+      flash(ok);
+    }
+    var done = false;
+    try { src.removeAttribute('readonly'); src.select(); src.setSelectionRange(0, src.value.length); done = document.execCommand('copy'); }
+    catch (e) { done = false; }
+    finally { src.setAttribute('readonly', 'readonly'); if (window.getSelection) { window.getSelection().removeAllRanges(); } }
+    if (done) { flash(true); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { flash(true); }, function () { flash(false); });
+    } else { flash(false); }
+  });
+})();
+</script>
+</body></html>

@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="מה עובד אחר במשרד רואה ומה לא, איך משתפים תיק בלי לפתוח אותו לכולם, ומה נשאר שלכם גם בפרויקט משותף.">
+<title>מדריך על מנוי Team ב-Claude · מדריך 1: לפתוח פרויקט ולהחליט מי מהעובדים יוכל לראות אותו | Legal Mind</title>
+<link rel="canonical" href="https://www.legalmind.co.il/guides/claude-team-usage-guide-1.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Legal Mind">
+<meta property="og:title" content="מדריך על מנוי Team ב-Claude · מדריך 1: לפתוח פרויקט ולהחליט מי מהעובדים יוכל לראות אותו | Legal Mind">
+<meta property="og:description" content="מה עובד אחר במשרד רואה ומה לא, איך משתפים תיק בלי לפתוח אותו לכולם, ומה נשאר שלכם גם בפרויקט משותף.">
+<meta property="og:url" content="https://www.legalmind.co.il/guides/claude-team-usage-guide-1.html">
+<meta property="og:image" content="https://www.legalmind.co.il/guides/og-guides.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+/* ============================================================================
+   LEGAL MIND — LOCKED BRAND STYLESHEET
+   ----------------------------------------------------------------------------
+   Extracted from the live published series and reorganised WITHOUT any visual
+   change. Source of truth:
+     https://tsahinim.github.io/legal-mind-claude-guides/skills/assets/site.css
+     https://tsahinim.github.io/legal-mind-claude-guides/assets/hub.css
+   Captured: 2026-08-01
+
+   RULE: every future Legal Mind guide links THIS file. Do not fork it, do not
+   re-derive colors, do not "improve" a value locally. A guide that needs a new
+   component adds it here first, once, for everyone.
+
+   What changed vs. the live file (all non-visual):
+     - duplicate .shot-legend / .shot-caption blocks merged (cascade preserved)
+     - grouped and commented; token drift between site.css and hub.css unified
+       on the site.css values (max delta was 1 hex digit on --line)
+     - added --font-head / --font-body tokens holding the exact same stacks
+     - added .comparison-list, which the published guide 1 uses but the live
+       stylesheet never defined (see BRAND NOTE at the bottom)
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. TOKENS — the brand. Nothing below invents a color.
+   ------------------------------------------------------------------------ */
+:root{
+  /* core identity */
+  --navy:#0d2740;        /* headings, brand dark, hero background          */
+  --navy2:#173e57;       /* reserved secondary dark (currently unused)     */
+  --teal:#11736d;        /* primary action colour: links, buttons, markers */
+  --cyan:#2bc0b7;        /* accent on dark backgrounds only                */
+
+  /* semantic — each colour means one kind of content, never decoration */
+  --orange:#b84a21;      /* numbering, focus, knowledge-check              */
+  --gold:#b48a38;        /* legal example                                  */
+  --red:#b3263b;         /* warning + screenshot annotation                */
+  --green:#2f7b52;       /* confirmation / success                         */
+
+  /* surface */
+  --ink:#1d2b34;
+  --muted:#607178;
+  --bg:#f4f8f7;
+  --paper:#fff;
+  --line:#d7e2df;
+  --soft:#e9f4f2;
+
+  /* type */
+  --font-head:Georgia,"Times New Roman",serif;
+  --font-body:Arial,"Noto Sans Hebrew",sans-serif;
+
+  /* geometry */
+  --shadow:0 16px 40px rgba(13,39,64,.10);
+  --width:1220px;
+}
+
+/* ---------------------------------------------------------------------------
+   2. BASE
+   ------------------------------------------------------------------------ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);
+  font-family:var(--font-body);font-size:16px;line-height:1.72}
+img{max-width:100%;height:auto}
+a{color:inherit}
+
+/* RTL isolation — every Latin term in the copy is wrapped in <bdi dir="ltr"> */
+bdi[dir=ltr],[dir=ltr]{unicode-bidi:isolate}
+
+/* ---------------------------------------------------------------------------
+   3. NAVIGATION CHROME
+   ------------------------------------------------------------------------ */
+.skip{position:fixed;top:-80px;right:16px;z-index:100;background:#fff;
+  border:2px solid var(--teal);border-radius:9px;padding:10px 14px;font-weight:800}
+.skip:focus{top:10px}
+
+.backbar{position:sticky;top:0;z-index:50;min-height:44px;
+  border-bottom:1px solid #bdd5d2;background:#dcefee;padding:9px 14px;text-align:center}
+.backbar a{color:var(--teal);font-size:14px;font-weight:800;text-decoration:none}
+.backbar a:before{content:"→";margin-left:7px}
+
+.bottom-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
+.guide-nav{display:none}   /* legacy, kept so old markup stays hidden */
+
+/* ---------------------------------------------------------------------------
+   4. LOGO / MASTHEAD  — assets/brand/legal-mind-logo.webp
+   Lightbulb with a teal node-network inside, navy outline, LEGAL MIND wordmark
+   (the A and the I are teal). Never recolour, never redraw, never substitute
+   with text on a page that has room for the mark.
+   ------------------------------------------------------------------------ */
+.site-header{background:#fff;border-bottom:1px solid var(--line);padding:12px 28px}
+.site-header-inner{max-width:var(--width);margin:auto;display:flex;
+  align-items:center;justify-content:space-between;gap:18px}
+.logo-wrap{display:flex;align-items:center;gap:14px}
+.hub-logo-full{display:block;width:126px;height:auto;object-fit:contain;flex:0 0 auto}
+.hub-chip{align-self:center;background:var(--soft);color:var(--teal);
+  padding:8px 13px;border-radius:999px;font-weight:900;font-size:13px}
+@media(max-width:820px){
+  .site-header{padding:10px 13px}
+  .hub-logo-full{width:108px}
+  .logo-wrap{gap:9px}
+  .hub-chip{font-size:11px}
+}
+
+/* CANONICAL brand bar — this is the pattern to copy for a new series.
+   A centred white bar carrying the logo, placed directly after .backbar and
+   before .hero. It appears on EVERY page of the series: the guide center and
+   each guide. 130px is ~15% smaller than the .hub-logo-full above, so the bar
+   does not swell. Asset: assets/brand/legal-mind-logo-tight.png
+   alt (fixed): לוגו Legal Mind - נורה מעל שם המותג */
+.skills-brand{background:#fff;border-bottom:1px solid var(--line);
+  padding:11px 18px;text-align:center}
+.skills-logo{display:inline-block;width:130px;height:auto;object-fit:contain}
+@media(max-width:610px){.skills-logo{width:110px}}
+
+/* ---------------------------------------------------------------------------
+   5. GUIDE PAGE — hero, layout, sections
+   ------------------------------------------------------------------------ */
+.hero,.layout,.center-main,.center-brand{width:min(100%,var(--width));margin-inline:auto}
+.hero{display:grid;gap:18px;padding:26px 18px 24px}
+.eyebrow{margin:0 0 7px;color:var(--teal);font-size:13px;font-weight:900;letter-spacing:.03em}
+.hero h1,.center-hero h1{margin:0 0 10px;color:var(--navy);font-family:var(--font-head);
+  font-size:clamp(1.95rem,5.2vw,2.85rem);line-height:1.18}
+.hero-copy{max-width:82ch;color:var(--muted);font-size:1.06rem}
+
+/* the four-fact strip: תוצר למידה / ידע מוקדם / מבנה / זמן משוער */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0}
+.facts div{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:12px}
+.facts dt{color:var(--teal);font-size:12px;font-weight:900}
+.facts dd{margin:2px 0 0;color:var(--navy);font-weight:700}
+
+.layout{display:grid;grid-template-columns:286px minmax(0,1fr);gap:28px;padding:8px 14px 60px}
+.surface{overflow:hidden;border:1px solid var(--line);border-radius:18px;
+  background:var(--paper);box-shadow:0 9px 28px rgba(13,39,64,.06)}
+
+.guide-section{scroll-margin-top:72px;padding:26px 22px}
+.guide-section+.guide-section{border-top:1px solid var(--line)}
+.section-number,.sec-num{display:block;margin:0 0 4px;color:var(--teal);
+  font-size:26px;font-weight:900;letter-spacing:.02em;line-height:1.1}
+.section-number::after,.sec-num::after{content:"."}
+.guide-section h2,.sec-title{margin:0 0 14px;color:var(--navy);font-family:var(--font-head);
+  font-size:clamp(1.5rem,3.5vw,2rem);line-height:1.25}
+.guide-section h3,.sec-body h3{margin:22px 0 8px;color:var(--navy);font-size:1.15rem}
+.guide-section h4{margin:19px 0 7px;color:var(--teal);font-size:1.04rem}
+.guide-section h5{margin:16px 0 6px;color:var(--navy);font-size:.98rem}
+.guide-section p,.sec-body p{margin:0 0 13px}
+.guide-section ul,.guide-section ol,.sec-body ul,.sec-body ol{padding-right:25px}
+.guide-section li,.sec-body li{margin:6px 0}
+
+.major-subsection{margin:28px -22px 14px!important;border-right:6px solid var(--orange);
+  background:#f7faf9;padding:13px 18px;color:var(--navy)!important;font-size:1.28rem!important}
+.source-emphasis{border:1px solid var(--line);border-right:5px solid var(--gold);
+  border-radius:12px;background:#fffaf0;padding:13px 15px;font-weight:700}
+
+/* ---------------------------------------------------------------------------
+   6. TABLE OF CONTENTS
+   ------------------------------------------------------------------------ */
+.desktop-toc{order:-1;position:sticky;top:64px;align-self:start;border:1px solid var(--line);
+  border-radius:16px;background:var(--paper);padding:16px;
+  box-shadow:0 8px 24px rgba(13,39,64,.06);max-height:calc(100vh - 84px);overflow:auto}
+.desktop-toc h2{margin:0 0 10px;color:var(--navy);font-size:1rem}
+.desktop-toc ol{margin:0;padding:0;list-style:none}
+.desktop-toc li+li{border-top:1px solid #edf1f0}
+/* not flex: a flex row turns every <bdi> in the title into its own column,
+   so a wrapped chapter name no longer lines up under itself. the number is
+   positioned instead, which gives a proper hanging indent. */
+.desktop-toc a{display:block;position:relative;padding:8px 2px;
+  padding-inline-start:32px;color:var(--teal);
+  font-size:14px;text-decoration:none;line-height:1.4}
+.desktop-toc a span:first-child{position:absolute;inset-inline-start:2px;top:8px;
+  font-weight:900}
+.desktop-toc a[aria-current=location]{color:var(--orange);font-weight:900}
+.mobile-toc{display:none}
+
+/* ---------------------------------------------------------------------------
+   7. CONTENT BOXES — one class per meaning. Colour IS the meaning.
+      .info / .tip        teal   — explanation, distinction
+      .recommendation     teal   — "the professional way to do it"
+      .warning / .warn    red    — risk, do-not
+      .legal-example      gold   — a worked example from legal practice
+      .knowledge-check    orange — self-test before moving on
+   ------------------------------------------------------------------------ */
+.callout,.content-box{margin:20px 0;border-radius:14px;padding:16px 18px}
+.callout.tip,.content-box.info,.content-box.recommendation{
+  border-right:5px solid var(--teal);background:#edf7f6}
+.callout.warn,.content-box.warning{border-right:5px solid var(--red);background:#fff4f2}
+.content-box.legal-example{border-right:5px solid var(--gold);background:#fff9ee}
+.content-box.knowledge-check{border-right:5px solid var(--orange);background:#fff7f0}
+.callout-label{display:block;margin-bottom:6px;color:var(--navy);font-weight:900}
+
+/* every .legal-example body follows: קלט / תוצר / עצירה / סיכון */
+
+/* ---------------------------------------------------------------------------
+   8. LISTS, STEPS, CHECKLISTS, CARDS
+   ------------------------------------------------------------------------ */
+.bullets{padding-right:24px}
+
+.steps{counter-reset:step;list-style:none!important;padding:0!important}
+.steps li{position:relative;margin:11px 0;padding:12px 50px 12px 12px;
+  border:1px solid var(--line);border-radius:12px;background:#fbfdfd}
+.steps li:before{counter-increment:step;content:counter(step);position:absolute;
+  right:10px;top:10px;display:grid;place-items:center;width:28px;height:28px;
+  border-radius:8px;background:var(--teal);color:#fff;font-weight:900}
+
+.checklist{list-style:none!important;padding:0!important}
+.checklist li{position:relative;padding:8px 36px 8px 8px;border-bottom:1px solid #edf1f0}
+.checklist li:before{content:"✓";position:absolute;right:8px;color:var(--teal);font-weight:900}
+
+.risk-grid,.cards,.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.risk-card,.card,.decision-card{border:1px solid var(--line);border-radius:14px;
+  background:#fbfdfd;padding:15px}
+.risk-card.green{border-top:5px solid var(--green)}
+.risk-card.yellow{border-top:5px solid var(--gold)}
+.risk-card.red{border-top:5px solid var(--red)}
+
+/* NEW — used by the published guide 1 but never defined in the live CSS.
+   Styled to match .card so it reads as part of the same family. */
+.comparison-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+.comparison-list>[role=listitem]{border:1px solid var(--line);border-radius:14px;
+  background:#fbfdfd;padding:15px}
+.comparison-list>[role=listitem]>strong{display:block;margin-bottom:5px;color:var(--navy)}
+.comparison-list>[role=listitem]>p{margin:0;color:var(--ink)}
+@media(max-width:820px){.comparison-list{grid-template-columns:1fr}}
+
+.workbook{border:1px dashed #8fb8b4;border-radius:16px;background:#f7fbfa;padding:18px;margin:18px 0}
+.prompt-box{border:1px solid var(--line);border-radius:14px;background:#f7faf9;padding:16px}
+.status{display:inline-block;border-radius:999px;background:var(--soft);color:var(--teal);
+  padding:5px 9px;font-size:12px;font-weight:900}
+
+/* ---------------------------------------------------------------------------
+   9. SCREENSHOTS + ANNOTATION
+      Frame the shot, place a red rectangle by percentage, badge it with a
+      number, then explain every number in an ordered legend underneath.
+      Percentages (not pixels) so the annotation survives any screen width.
+   ------------------------------------------------------------------------ */
+.shot{margin:20px auto}
+/* the frame must NOT clip: a marker badge sits half outside its box by design,
+   and overflow:hidden shaved every badge on a box near an edge. the rounding
+   moves to the image itself, which is the only thing that needed clipping. */
+.shot-frame{position:relative;overflow:visible;border:1px solid var(--line);
+  border-radius:14px;background:#eef3f3;box-shadow:0 8px 24px rgba(13,39,64,.08)}
+.shot-frame img{display:block;width:100%;height:100%;object-fit:contain;border-radius:13px}
+
+.shot-target{position:absolute;z-index:2;border:3px solid var(--red);border-radius:9px;
+  background:rgba(198,48,48,.07);
+  box-shadow:0 0 0 2px rgba(255,255,255,.82),0 2px 9px rgba(13,39,64,.24);
+  pointer-events:none}
+.shot-target.is-circle{border-radius:999px}
+.shot-target-badge{position:absolute;top:0;left:0;z-index:3;display:grid;place-items:center;
+  width:26px;height:26px;border:2px solid #fff;border-radius:50%;background:var(--red);
+  color:#fff;font-size:14px;font-weight:900;line-height:1;
+  box-shadow:0 2px 8px rgba(13,39,64,.35);transform:translate(-45%,-45%)}
+.shot-target.badge-right>.shot-target-badge{right:0;left:auto;transform:translate(45%,-45%)}
+.shot-target-badge.badge-offset-left{top:50%;left:-18px;transform:translate(-50%,-50%)}
+/* keeps the number inside the frame when the box hugs an edge — the frame
+   clips overflow, so a corner badge that sticks out would come back cut */
+.shot-target.badge-inside>.shot-target-badge{top:50%;left:auto;right:7px;transform:translate(0,-50%)}
+.shot-target.badge-inside-left>.shot-target-badge{top:50%;left:7px;right:auto;transform:translate(0,-50%)}
+.shot-target.badge-outside-left>.shot-target-badge{top:50%;left:0;right:auto;transform:translate(-115%,-50%)}
+/* mirror of the above, for a target that hugs the right edge */
+.shot-target.badge-outside-right>.shot-target-badge{top:50%;right:0;left:auto;transform:translate(115%,-50%)}
+/* number above the box, centred - for a marked word on a dense single line
+   where any corner placement would land on the word itself */
+.shot-target.badge-above>.shot-target-badge{top:0;left:50%;right:auto;transform:translate(-50%,-118%)}
+.shot-target.badge-below>.shot-target-badge{top:100%;left:50%;right:auto;transform:translate(-50%,18%)}
+
+/* merged from two duplicate live rules — cascade result preserved exactly */
+.shot-caption{margin:10px 0 6px;color:var(--muted);font-size:.92rem;
+  font-weight:700;line-height:1.65}
+.shot-legend{list-style:none;margin:9px 0 0;padding:0;color:var(--muted);font-size:14px}
+.shot-legend-num{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.shot-legend-num li{position:relative;padding-inline-start:31px;
+  color:var(--ink);font-size:.92rem;line-height:1.6}
+/* the legend number is drawn as the same red badge that marks the screenshot,
+   so the eye pairs them without effort. it is positioned, not a flex child —
+   a flex child would split the rest of the sentence into columns wherever it
+   contains a <bdi> or an emphasised word. */
+.shot-legend-num>li>strong:first-child{position:absolute;inset-inline-start:0;top:2px;
+  display:grid;place-items:center;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--red);color:#fff;font-size:12.5px;font-weight:900;line-height:1}
+
+/* --- PRODUCTION-ONLY: reserved screenshot slot -----------------------------
+   Lets a guide be written and laid out before a single screenshot exists.
+   Occupies the real space the image will occupy, and carries the shooting
+   brief inside it. Swapping in the real image is then mechanical.
+
+   MUST NEVER REACH A READER. The publish QA fails if .shot-pending survives
+   in any file being released. The stripes and the "לא לפרסום" tag exist so a
+   leftover is impossible to miss on screen.
+   ------------------------------------------------------------------------ */
+.shot-pending{position:relative;display:grid;place-items:center;min-height:200px;
+  border:2px dashed #8fb8b4;border-radius:14px;padding:20px 18px 18px;
+  background:repeating-linear-gradient(135deg,#f7fbfa,#f7fbfa 14px,#eef6f5 14px,#eef6f5 28px)}
+.shot-pending:before{content:"לא לפרסום";position:absolute;top:-11px;right:16px;
+  border-radius:999px;background:var(--orange);color:#fff;
+  padding:3px 11px;font-size:11px;font-weight:900;letter-spacing:.02em}
+.shot-pending-id{position:absolute;top:-11px;left:16px;border-radius:999px;
+  background:var(--navy);color:#fff;padding:3px 11px;font-size:11px;font-weight:900;
+  direction:ltr}
+.shot-pending-body{width:100%;max-width:520px;text-align:right}
+.shot-pending-title{margin:0 0 12px;color:var(--navy);font-family:var(--font-head);
+  font-size:1.12rem;line-height:1.35}
+.shot-pending-body dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:0}
+.shot-pending-body dt{color:var(--teal);font-size:13px;font-weight:900;white-space:nowrap}
+.shot-pending-body dd{margin:0;color:var(--ink);font-size:14px;line-height:1.6}
+.shot-pending-body dd code{direction:ltr;display:inline-block;background:#fff;
+  border:1px solid var(--line);border-radius:6px;padding:1px 7px;
+  font:13px/1.5 Consolas,monospace}
+@media(max-width:640px){
+  .shot-pending{min-height:160px;padding:18px 14px 14px}
+  .shot-pending-body dl{grid-template-columns:1fr;gap:2px}
+  .shot-pending-body dt{margin-top:7px}
+}
+
+/* legacy inline marker, superseded by .shot-target-badge — do not use in new guides */
+.mk{display:inline-grid;place-items:center;min-width:25px;height:25px;border-radius:50%;
+  background:var(--red);color:#fff;font-weight:900}
+.mk-tag{font-weight:800}
+
+@media(max-width:640px){
+  .shot-target{border-width:2px;border-radius:6px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.86),0 1px 5px rgba(13,39,64,.24)}
+  .shot-target-badge{width:20px;height:20px;border-width:1.5px;font-size:11px}
+  .shot-target-badge.badge-offset-left{left:-13px}
+}
+
+/* ---------------------------------------------------------------------------
+   10. TABLES
+       CANONICAL: .tbl-wrap > table.tbl  (light teal header) — this is what the
+       published guides use. .table-wrap is defined but unused; keep it only so
+       stray legacy markup doesn't break. Never mix the two in one guide.
+   ------------------------------------------------------------------------ */
+.tbl-wrap{overflow-x:auto;margin:18px 0}
+.tbl{width:100%;border-collapse:collapse;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:10px;vertical-align:top;text-align:right}
+.tbl th{background:#e9f4f2;color:var(--navy)}
+.guide-section .tbl th{white-space:nowrap}
+.guide-section .tbl td:empty{min-width:54px;height:40px;background:#fbfdfd}
+@media(max-width:820px){.guide-section .tbl{min-width:620px}}
+
+/* legacy alternative — dark navy header + zebra rows. Unused. */
+.table-wrap{overflow-x:auto;margin:16px 0}
+.table-wrap table{border-collapse:collapse;width:100%;font-size:.9rem}
+.table-wrap th{background:var(--navy);color:#fff;padding:9px 10px;text-align:right;font-weight:700}
+.table-wrap td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+.table-wrap tr:nth-child(even) td{background:var(--soft)}
+
+/* ---------------------------------------------------------------------------
+   11. CODE — always forced LTR inside the RTL page
+   ------------------------------------------------------------------------ */
+pre,.code{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;
+  border:1px solid #263b4a;border-radius:13px;background:#0f2536;color:#ecf8f7;
+  padding:15px;font:14px/1.55 Consolas,monospace}
+
+/* ---------------------------------------------------------------------------
+   12. COPY BLOCK — reader-facing prompt / checklist with a copy button
+        (behaviour lives in assets/site.js)
+   ------------------------------------------------------------------------ */
+.copy-block{margin:18px 0;background:var(--soft);border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px}
+.copy-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;margin-bottom:10px}
+.copy-heading strong{font-size:.95rem;color:var(--navy)}
+.copy-button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:7px 14px;
+  font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-button:hover{background:var(--navy)}
+.copy-button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.copy-block .copy-body,.copy-block>p[id]{margin:0;background:var(--paper);
+  border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--ink);
+  font-size:.95rem;line-height:1.7;white-space:pre-wrap}
+.copy-block .copy-body.ltr{direction:ltr;text-align:left;
+  font-family:ui-monospace,Consolas,monospace;font-size:.88rem}
+.copy-block ol,.copy-block ul{margin:0;padding-inline-start:22px;background:var(--paper);
+  border:1px solid var(--line);border-radius:8px;padding-block:12px;padding-inline-end:14px;
+  color:var(--ink);font-size:.95rem;line-height:1.75}
+.copy-block>div[id]{background:var(--paper);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px}
+.copy-block>div[id]>p{margin:0 0 8px}
+.copy-block>div[id] ol,.copy-block>div[id] ul{border:0;padding-block:0;background:transparent}
+.copy-block>div.copy-plain{white-space:pre-wrap;font-family:ui-monospace,Consolas,monospace;
+  font-size:.85rem;line-height:1.75;direction:rtl;text-align:right;overflow-x:auto}
+.copy-status{display:block;margin-top:8px;min-height:1.1em;font-size:.82rem;
+  font-weight:700;color:var(--green)}
+@media(max-width:700px){
+  .copy-heading{align-items:flex-start;flex-direction:column}
+  .copy-button{width:100%}
+}
+
+/* ---------------------------------------------------------------------------
+   13. BUTTONS
+   ------------------------------------------------------------------------ */
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+  border:1px solid var(--teal);border-radius:10px;padding:10px 15px;color:var(--teal);
+  font-weight:900;text-decoration:none}
+.button.primary{background:var(--teal);color:#fff}
+
+/* ---------------------------------------------------------------------------
+   14. GUIDE CENTER — מרכז המדריכים
+       Created only when one subject is too large for a single guide and has to
+       be split. A guide center covers ONLY the guides inside its own series.
+       There is no "main" center and no hierarchy between centers — several
+       centers exist side by side as equals. Another series is referenced in
+       prose, never linked as a parent or a child.
+   ------------------------------------------------------------------------ */
+.center-head{background:#fff}
+/* The logo image goes inside .center-brand — see section 4 for .hub-logo-full.
+   The bare text wordmark below is the legacy form; do not use it in new work. */
+.center-brand{padding:13px 18px;color:var(--navy);font-weight:900}
+.center-hero{background:var(--navy);color:#fff;padding:32px 18px 44px;text-align:center}
+.center-hero h1{color:#fff}
+.center-hero p{max-width:820px;margin:0 auto;color:#dcecef;font-size:1.08rem}
+.center-kicker{display:inline-flex;align-items:center;justify-content:center;
+  margin:0 auto 18px!important;border:1px solid var(--cyan);border-radius:999px;
+  padding:8px 16px;color:#7ce5dd!important;font-size:13px!important;font-weight:900}
+.center-subtitle{max-width:900px!important}
+.platform-note{max-width:960px!important;margin:20px auto 0!important;
+  border:1px solid rgba(124,229,221,.38);border-radius:14px;background:rgba(255,255,255,.06);
+  padding:13px 16px;color:#eefafa!important;font-size:.97rem!important;line-height:1.65}
+.platform-note strong{color:#86ebe3}
+.center-main{padding:38px 14px 64px}
+
+/* מסלול הלימוד — the numbered learning path, one <li> per guide.
+   grid-template-columns MUST equal the number of guides in the series.
+   This is the one value that legitimately changes between series. */
+.learning-path{margin:-24px 0 34px;border:1px solid var(--line);border-radius:20px;
+  background:#fff;padding:22px;box-shadow:var(--shadow)}
+.learning-path ol{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;
+  margin:0;padding:0;list-style:none}
+.learning-path li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);
+  border-radius:12px;background:#fafcfc;padding:10px;font-weight:800}
+.learning-path span,.guide-number{display:grid;place-items:center;width:36px;height:36px;
+  flex:0 0 36px;border-radius:10px;background:var(--teal);color:#fff;font-weight:900}
+.path-note{margin:16px 0 0;padding:14px 16px;background:var(--soft);
+  border-inline-start:4px solid var(--teal);border-radius:10px;color:var(--ink);
+  font-size:.95rem;line-height:1.7}
+.path-note strong{color:var(--navy)}
+
+/* guide cards — 3 per row on desktop regardless of how many guides exist */
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.guide-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;
+  background:#fff;padding:17px;box-shadow:0 8px 24px rgba(13,39,64,.06);
+  border-top:5px solid var(--orange)}
+.guide-card h2{margin:13px 0 9px;color:var(--navy);font-size:1.28rem;line-height:1.4}
+.guide-card dl{margin:0 0 14px}
+.guide-card dl div{border-top:1px solid #e3eae8;padding:9px 0}
+.guide-card dt{color:#0d625d;font-size:14px;font-weight:900}
+.guide-card dd{margin:2px 0 0;font-size:15px;line-height:1.55}
+.guide-card .button{margin-top:auto}
+
+/* ---------------------------------------------------------------------------
+   14b. GUIDE CENTER — CANONICAL FORM (owner-approved reference)
+        Source: the published guide center of the main series, assets/hub.css.
+        Tzahi confirmed this is the look he is happy with. Build every NEW
+        guide center from this set. The .center-* classes in 14 above are the
+        earlier Skills-series variant, kept working, not to be copied forward.
+
+        Reading rhythm here is looser than inside a guide: 17px / 1.65.
+   ------------------------------------------------------------------------ */
+.hub-body{font-size:17px;line-height:1.65}
+
+/* navy hero with a faint 52px grid overlay */
+.hub-hero{position:relative;overflow:hidden;color:#fff;padding:66px 24px 62px;
+  background:linear-gradient(135deg,var(--navy),#102f4b)}
+.hub-hero:before{content:"";position:absolute;inset:0;background-size:52px 52px;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px)}
+.hero-inner{position:relative;max-width:1060px;margin:auto;text-align:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:7px;border-radius:999px;
+  border:1px solid rgba(43,192,183,.65);background:rgba(43,192,183,.08);
+  color:#7ee2dc;padding:7px 14px;font-size:13px;font-weight:900}
+.hub-hero h1{margin:20px auto 12px;max-width:900px;font-family:var(--font-head);
+  font-size:48px;line-height:1.16}
+.hub-hero p{max-width:820px;margin:auto;color:#e0eef1;font-size:20px}
+
+/* status card that floats across the hero edge — the negative margin and the
+   132px top padding on <main> are a pair; change one and you must change both */
+.progress-box{position:relative;z-index:3;max-width:1040px;margin:28px auto -104px;
+  border:1px solid var(--line);border-radius:18px;background:#fff;color:var(--ink);
+  padding:18px 20px;box-shadow:var(--shadow)}
+.progress-top{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.progress-top strong{color:var(--navy)}
+.progress-top span{color:var(--muted);font-size:14px}
+.progress-track{height:10px;margin-top:11px;border-radius:999px;background:#e6eeec;overflow:hidden}
+.progress-fill{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--cyan))}
+.hub-main{max-width:var(--width);margin:0 auto;padding:132px 24px 80px}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}
+.section-head h2{margin:0;color:var(--navy);font-family:var(--font-head);font-size:34px}
+.section-head p{margin:0;color:var(--muted);max-width:690px}
+
+/* guide cards — always 3 across on desktop; more guides simply wrap to more
+   rows. This is the one thing that legitimately changes per series. */
+.hub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.hub-card{position:relative;display:flex;flex-direction:column;min-height:330px;
+  overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--paper);
+  padding:20px;box-shadow:0 8px 25px rgba(13,39,64,.06)}
+.hub-card:before{content:"";position:absolute;top:0;right:0;left:0;height:5px;background:var(--teal)}
+.hub-card.primary:before{background:var(--orange)}   /* the entry-point guide */
+.hub-card.pending:before{background:#aeb9bc}         /* not published yet     */
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-number{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;
+  background:var(--soft);color:var(--teal);font-weight:900}
+.card-status{border-radius:999px;background:#edf8f6;color:var(--teal);
+  padding:5px 9px;font-size:12px;font-weight:900}
+.card-status.pending{background:#f0f2f2;color:#738186}
+.hub-card h3{margin:18px 0 8px;color:var(--navy);font-family:var(--font-head);
+  font-size:24px;line-height:1.25}
+.hub-card p{margin:0 0 13px;color:var(--muted)}
+.card-list{list-style:none;padding:0;margin:0 0 18px}
+.card-list li{position:relative;padding:5px 25px 5px 0;font-size:14px}
+.card-list li:before{content:"✓";position:absolute;right:0;color:var(--teal);font-weight:900}
+.card-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;margin-bottom:14px}
+.card-meta span{border:1px solid var(--line);border-radius:8px;background:#fafcfc;
+  padding:5px 8px;color:#5f7076;font-size:12px}
+.card-btn{display:block;border-radius:10px;background:var(--teal);color:#fff;
+  padding:12px;text-align:center;text-decoration:none;font-weight:900}
+.card-btn:hover{filter:brightness(.94)}
+
+/* pointing at a DIFFERENT series — the only sanctioned cross-series element.
+   It is a described destination, never a parent/child link. */
+.skills-band{display:grid;grid-template-columns:1fr 310px;gap:24px;align-items:center;
+  margin-top:32px;border:1px solid #cfe1de;border-radius:20px;padding:24px;
+  background:linear-gradient(135deg,#eef8f6,#fff)}
+.skills-band h2{margin:0 0 8px;color:var(--navy);font-family:var(--font-head);font-size:31px}
+.skills-band p{margin:0 0 15px;color:var(--muted)}
+.skills-mini{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.skills-mini div{border:1px solid var(--line);border-radius:11px;background:#fff;
+  padding:11px;font-size:13px}
+.skills-cta{border-radius:16px;background:var(--navy);color:#fff;padding:20px;text-align:center}
+.skills-cta strong{display:block;margin-bottom:7px;font-size:22px}
+.skills-cta a{display:block;margin-top:14px;border-radius:9px;background:#fff;
+  color:var(--navy);padding:11px;text-decoration:none;font-weight:900}
+
+/* the learning path as rotated diamonds */
+.path-section{margin-top:32px;border:1px solid var(--line);border-radius:20px;
+  background:#fff;padding:24px}
+.path-section h2{margin:0 0 6px;color:var(--navy);font-family:var(--font-head);font-size:30px}
+.path-section>p{margin-top:0;color:var(--muted)}
+.path-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:18px}
+.path-step{text-align:center}
+.path-diamond{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 11px;
+  border:2px solid #b8d5d1;background:#fff;transform:rotate(45deg);
+  box-shadow:0 6px 18px rgba(13,39,64,.06)}
+.path-diamond span{transform:rotate(-45deg);color:var(--teal);font-weight:900;font-size:20px}
+.path-step.done .path-diamond{background:var(--teal);border-color:var(--teal)}
+.path-step.done .path-diamond span{color:#fff}
+.path-step b{display:block;color:var(--navy);font-size:14px}
+.path-step small{color:var(--muted)}
+
+.note-box,.draft-note{margin:22px 0;border-right:6px solid var(--gold);border-radius:14px;
+  background:#fffaf0;padding:18px;color:#5d523e}
+.note-box{border:1px solid #ead9ac;border-right:6px solid var(--gold)}
+
+/* focus ring — amber, deliberately outside the palette so it never reads as content */
+.skip-link{position:absolute;top:-60px;right:16px;z-index:10000;border:2px solid var(--teal);
+  border-radius:9px;background:#fff;color:var(--navy);padding:10px 14px;
+  font-weight:900;text-decoration:none}
+.skip-link:focus{top:10px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #f0a431;outline-offset:3px}
+
+@media(max-width:980px){
+  .hub-grid{grid-template-columns:1fr 1fr}
+  .skills-band{grid-template-columns:1fr}
+  .path-flow{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+  .hub-body{font-size:16px}
+  .hub-hero{padding:48px 16px 54px}
+  .hub-hero h1{font-size:34px}
+  .hub-hero p{font-size:17px}
+  .progress-box{margin-left:10px;margin-right:10px}
+  .hub-main{padding:126px 13px 60px}
+  .section-head{display:block}
+  .section-head h2{font-size:29px}
+  .hub-grid{grid-template-columns:1fr}
+  .skills-mini{grid-template-columns:1fr}
+  .path-flow{grid-template-columns:1fr}
+  .path-diamond{width:55px;height:55px}
+}
+
+/* ---------------------------------------------------------------------------
+   15. FOOTER + SOURCE NOTE
+       .source-note always carries a dated currency statement.
+   ------------------------------------------------------------------------ */
+.source-note{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:13px}
+.center-footer,footer{text-align:center;color:var(--muted);padding:26px 12px}
+
+/* ---------------------------------------------------------------------------
+   16. RESPONSIVE
+   ------------------------------------------------------------------------ */
+@media(max-width:1000px){
+  .guide-grid{grid-template-columns:repeat(2,1fr)}
+  .learning-path ol{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr}
+  .risk-grid,.cards,.decision-grid{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  .layout{grid-template-columns:1fr}
+  .desktop-toc{display:none!important}
+  .mobile-toc{display:block;margin:0 14px 14px;border:1px solid var(--line);
+    border-radius:12px;background:#fff}
+  .mobile-toc summary{padding:12px 14px;font-weight:900;color:var(--navy)}
+  .mobile-toc ol{margin:0;border-top:1px solid var(--line);padding:8px 32px 12px 12px}
+  .mobile-toc a{display:block;padding:5px 2px;color:var(--teal)}
+  .guide-grid{grid-template-columns:1fr}
+  .bottom-nav{flex-direction:column}
+  .button{width:100%}
+  .guide-section{padding:23px 17px}
+  .major-subsection{margin:25px -17px 12px!important}
+}
+
+/* ---------------------------------------------------------------------------
+   17. PRINT
+   ------------------------------------------------------------------------ */
+@media print{
+  .backbar,.desktop-toc,.mobile-toc,.bottom-nav{display:none!important}
+  .layout{display:block;padding:0}
+  .surface{border:0;box-shadow:none}
+  .guide-section{break-inside:avoid}
+  .hero{padding:10px 0}
+  .center-main{padding:0}
+}
+
+/* ============================================================================
+   BRAND NOTE — open items, do not silently "fix" on a published guide
+   ----------------------------------------------------------------------------
+   1. .comparison-list is styled here for the first time. The published guide 1
+      currently renders those four cards unstyled. Applying this file to that
+      guide WILL change its appearance (for the better). Needs owner approval
+      before republishing guide 1.
+   2. The Skills guide center still shows a text wordmark inside .center-brand
+      instead of the logo image. Owner is fixing it (2026-08-01). Every new
+      guide center carries the logo image from day one.
+   3. .mk / .mk-tag, .table-wrap, .guide-nav, .risk-grid, .decision-grid,
+      .workbook, .prompt-box, .status are retained for backward compatibility
+      only. New guides must not use them.
+
+   4. NAMING: the published guide center uses .hero / .guide-card / .guide-grid
+      and a bare <main>. Those names already mean something different on a
+      guide page, so section 14b renames them .hub-hero / .hub-card / .hub-grid
+      / .hub-main / .hub-body. Consequence: this stylesheet cannot be dropped
+      onto the existing published center unchanged — that page keeps its own
+      hub.css. A NEW guide center uses the .hub-* names from 14b.
+
+   5. Two other series on the site — cowork/ and desktop/ — run a DIFFERENT
+      visual system: Frank Ruhl + Assistant Hebrew webfonts, teal #00807F,
+      6-10px corners, dark mode, burgundy #7A1233 annotations. Owner decision
+      2026-08-01: they are known outliers, not the standard. Do not copy from
+      them and do not "harmonise" this file toward them.
+   ========================================================================== */
+
+.shot-legend li{display:flex;align-items:flex-start;gap:8px;margin:6px 0}
+.shot-legend b{flex:0 0 auto;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:900;font-style:normal;box-shadow:0 1px 3px rgba(13,39,64,.3)}
+
+
+</style>
+<style>
+  /* tables: the builder used to emit a class nothing styled, so they rendered
+     bare. these ride on .tbl from the locked sheet and only add the header
+     treatment Tzahi asked for - centred, bold, a shade larger. */
+  .tbl-wrap{overflow-x:auto;margin:20px 0}
+  .tbl{width:100%;border-collapse:collapse;background:#fff;
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    box-shadow:0 4px 14px rgba(13,39,64,.05)}
+  .tbl th{background:#dff0e8;color:var(--navy);text-align:center;
+    font-weight:900;font-size:1.06rem;padding:12px 14px;
+    border:1px solid #b9d9cc}
+  .tbl td{background:#fff;text-align:right;padding:11px 14px;
+    border:1px solid var(--line);vertical-align:top;line-height:1.65}
+  .tbl tbody tr:last-child td{border-bottom:1px solid var(--line)}
+  @media print{.tbl{box-shadow:none}.tbl th{background:#eef6f2!important}}
+
+  .status-panel{margin:26px 0;border-radius:16px;background:var(--navy);
+    color:#fff;padding:22px 26px;display:grid;gap:14px;
+    box-shadow:0 10px 30px rgba(13,39,64,.16)}
+  .status-panel .chip{display:inline-flex;align-items:center;gap:8px;
+    align-self:start;border-radius:999px;padding:5px 14px;
+    background:rgba(43,192,183,.16);color:var(--cyan);
+    font-size:.82rem;font-weight:800;letter-spacing:.08em}
+  .status-panel .chip:before{content:"";width:8px;height:8px;border-radius:50%;
+    background:var(--cyan)}
+  .status-panel p{margin:0;font-size:1.02rem;line-height:1.72;opacity:.94}
+  .status-panel strong{color:#fff}
+  .status-facts{display:grid;gap:10px;margin:2px 0 0;padding:0;list-style:none;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .status-facts li{background:rgba(255,255,255,.07);border-radius:10px;
+    padding:11px 14px;font-size:.95rem;line-height:1.5}
+  .status-facts b{display:block;font-size:1.32rem;line-height:1.2;
+    color:var(--cyan);margin-bottom:2px;font-variant-numeric:tabular-nums}
+  /* one band under the title answers "is this guide for me" once */
+  .audience{margin:18px 0 0;border-radius:14px;padding:18px 20px;
+    border:2px solid rgba(20,116,116,.30);background:#fff}
+  .audience b{display:block;margin:0 0 6px;color:var(--teal);
+    font-size:1.12rem;font-weight:900}
+  .audience p{margin:0;line-height:1.75}
+  .audience p + p{margin-top:8px}
+  .who-for{display:inline-block;margin:0 0 1.1rem;border-radius:999px;
+    padding:4px 13px;font-size:.82rem;font-weight:700;line-height:1.5}
+  .who-for.everyone{background:rgba(20,116,116,.10);color:var(--teal)}
+  .who-for.owner{background:rgba(13,39,64,.09);color:var(--navy)}
+  .shot-legend-num li{text-align:start}
+  .shot-legend-num{text-align:start}
+  .shot-hint{display:inline-block;margin:16px 0 4px;padding:7px 14px;
+    border-radius:999px;background:rgba(20,116,116,.09);
+    color:var(--teal);font-size:1.2rem;font-weight:800;line-height:1.4}
+  .shot-hint:before{content:"🔍";margin-inline-end:8px;font-weight:400}
+  .zoomer{position:fixed;inset:0;z-index:70;display:none;overflow:auto;
+    background:rgba(9,20,32,.92);padding:26px}
+  .zoomer.is-open{display:block}
+  /* the way out of a full-size picture has to be found without hunting for
+     it, so it sits centred at the top and wears the brand teal */
+  .zoomer .zoomer-close{position:fixed;top:16px;left:50%;
+    transform:translateX(-50%);z-index:2;
+    border:3px solid var(--teal);border-radius:999px;
+    padding:13px 34px;background:#fff;color:var(--teal);
+    font:inherit;font-size:1.15rem;font-weight:900;cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,.28)}
+  .zoomer .zoomer-close:hover{background:var(--teal);color:#fff}
+  /* the stage must be the positioned ancestor, or the red boxes measure
+     themselves against the whole overlay and scatter */
+  .zoomer .zoomer-stage{margin:44px auto 0;position:relative}
+  .zoomer .zoomer-stage img{display:block;width:100%;height:auto;
+    border-radius:8px}
+  .zoomer .zoomer-cap{margin:14px auto 0;max-width:760px;color:#fff;
+    text-align:center;font-size:1rem;opacity:.9}
+  .zoomer .zoomer-pan{margin:.4rem 0 0;font-size:.9rem;opacity:.8;display:none}
+  .zoomer .zoomer-cap.is-wide .zoomer-pan{display:block}
+  .shot-frame{position:relative}
+  /* the shared sheet tints every marker box red. over text that wash reads
+     as a smear, so in this series the border and the badge do all the work */
+  .shot-target{background:transparent}
+  /* a defined word is a list entry with a red dot, not a paragraph that
+     happens to start in bold. the word itself carries the brand orange and
+     everything after it stays in the reading ink */
+  /* bare children of the white surface card (the intro note before the
+     first section, and the bottom nav) get the card's inner margins, so
+     no line of text ever touches the border or the rounded corners */
+  main.surface>p{margin:26px 24px 6px}
+  main.surface>p:first-child{margin-top:30px}
+  main.surface>.bottom-nav{margin:20px 24px 28px}
+  .terms{list-style:none;padding:0;margin:1.1rem 0}
+  .terms li{position:relative;padding-inline-start:26px;margin-bottom:.95rem;
+    line-height:1.75;text-align:start}
+  .terms li:before{content:"";position:absolute;inset-inline-start:0;top:.62em;
+    width:9px;height:9px;border-radius:50%;background:#D6323C}
+  .terms .term{color:var(--orange);font-weight:800}
+  /* a term named inside the reading text, not only in the glossary */
+  .guide-section .term{color:var(--orange);font-weight:800}
+  .terms .term-he{color:var(--orange);font-weight:700}
+  /* the sentence that closes a term list is part of it, so it starts
+     where the terms start and not at the edge of the column */
+  .terms + p,.terms + p + p{padding-inline-start:26px}
+  /* the shared sheet sets 1.15rem, and at that size a sub-heading reads as
+     one more bold line. 15% larger, in this series only */
+  .guide-section h3,.sec-body h3{font-size:1.32rem;position:relative}
+  /* the dot lives in the margin, so the heading does not shift right */
+  .guide-section h3:before{content:"";position:absolute;
+    inset-inline-start:-16px;top:.54em;width:8px;height:8px;
+    border-radius:50%;background:var(--navy)}
+  .guide-section .content-box h3:before{display:none}
+  /* a link inside the reading text: the reader has to see that it is one,
+     without it shouting louder than the sentence around it */
+  .guide-section a{color:var(--teal);font-weight:800;
+    text-decoration:underline;text-underline-offset:3px;
+    text-decoration-thickness:2px;
+    text-decoration-color:rgba(20,116,116,.42)}
+  .guide-section a:hover{text-decoration-color:var(--teal)}
+  /* the pill button is not reading text, and must keep its own colours */
+  .guide-section a.shot-full{color:#fff;text-decoration:none}
+  .shot{margin:1.7rem 0}
+  .shot img{display:block;width:100%;height:auto;border-radius:10px;
+    border:1px solid rgba(13,39,64,.14);box-shadow:0 6px 22px rgba(13,39,64,.09)}
+  .shot figcaption{text-align:center;margin:.7rem 0 .5rem;opacity:.8;
+    font-size:.95rem}
+  .shot-full{display:inline-flex;align-items:center;gap:7px;margin:.2rem auto 0;
+    border-radius:999px;padding:8px 18px;background:var(--teal);color:#fff;
+    font-size:.92rem;font-weight:700;text-decoration:none;
+    box-shadow:0 4px 14px rgba(20,116,116,.24)}
+  .shot-full:before{content:"🔍";font-size:1.05rem;line-height:1;
+    animation:shot-full-nudge 1.9s ease-in-out infinite}
+  @keyframes shot-full-nudge{0%,100%{transform:scale(1)}
+                             50%{transform:scale(1.22)}}
+  @media (prefers-reduced-motion:reduce){
+    .shot-full:before{animation:none}}
+  .shot-full:hover{filter:brightness(1.08)}
+  .shot{display:flex;flex-direction:column;align-items:stretch}
+  .shot-hole{margin:1.6rem 0}
+  .shot-hole .frame{border:2px dashed rgba(20,116,116,.42);border-radius:10px;
+    background:rgba(20,116,116,.04);min-height:132px;display:flex;
+    flex-direction:column;align-items:center;justify-content:center;gap:9px;
+    padding:26px}
+  .shot-hole .sid{font-family:ui-monospace,Consolas,monospace;font-size:1rem;
+    font-weight:700;color:var(--teal);letter-spacing:.06em}
+  .shot-hole .wait{font-size:.95rem;opacity:.68}
+  .shot-hole .pins{display:flex;gap:6px;flex-wrap:wrap}
+  .shot-hole .pin{width:26px;height:26px;border-radius:50%;background:#D6323C;
+    color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700}
+  .shot-hole figcaption{text-align:center;margin:.7rem 0 .5rem;opacity:.8;
+    font-size:1rem}
+  .shot-legend{list-style:none;padding:0;margin:0;counter-reset:n}
+  .shot-legend li{counter-increment:n;position:relative;padding-inline-start:34px;
+    margin-bottom:.5rem;font-size:1.02rem;line-height:1.65}
+  .shot-legend li:before{content:counter(n);position:absolute;
+    inset-inline-start:0;top:.22em;width:22px;height:22px;border-radius:50%;
+    background:#D6323C;color:#fff;display:grid;place-items:center;
+    font-size:.72rem;font-weight:700}
+  .backbar a:before{content:"↑"}
+  .print-only{display:none}
+  @media print{
+    .backbar,.mobile-toc,.desktop-toc,.skip,.status-panel{display:none!important}
+    .print-only{display:block}
+    body{font-size:11pt}
+  }
+</style>
+<style>
+.companion{padding-bottom:6px}
+.companion-box{scroll-margin-top:72px;border:1px solid #bcdcd8;border-right:5px solid var(--teal);border-radius:14px;background:#edf7f6;padding:18px 20px}
+.companion-title{margin:0 0 8px!important;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:1.2rem;font-weight:700}
+.companion-btn{display:block;width:100%;margin:14px 0 10px;border:0;border-radius:10px;background:var(--teal);color:#fff;padding:13px 18px;font:inherit;font-size:1.05rem;font-weight:800;cursor:pointer}
+.companion-btn:hover{background:var(--navy)}
+.companion-btn:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.companion-btn[data-copied="true"]{background:var(--green)}
+.companion-btn[data-copied="false"]{background:var(--red)}
+.companion-note{margin:0!important;color:var(--muted);font-size:14px}
+.companion-source{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">דילוג לתוכן</a>
+<nav class="backbar"><a href="claude-team-usage.html">חזרה למרכז המדריכים</a></nav>
+
+<div class="skills-brand"><img class="skills-logo" src="legal-mind-logo-tight.png" alt="לוגו Legal Mind - נורה מעל שם המותג" decoding="async"></div>
+
+<header class="hero"><div>
+<p class="eyebrow">מדריך על מנוי Team ב-Claude · מדריך 1 מתוך 2</p>
+<h1>לפתוח פרויקט ולהחליט מי מהעובדים יוכל לראות אותו</h1>
+<p class="hero-copy">מה עובד אחר במשרד רואה ומה לא, איך משתפים תיק בלי לפתוח אותו לכולם, ומה נשאר שלכם גם בפרויקט משותף.</p>
+<div class="audience"><b>למי מיועד המדריך הזה</b><p><strong>לכל עו"ד במשרד, בלי יוצא מן הכלל.</strong> אין כאן פעולה אחת שדורשת הרשאת ניהול, ואין כאן מסך שלא ייפתח אצלכם.</p><p><strong>ומי שמוגדר Owner ב-Claude, וגם קובע איך כל המשרד עובד</strong> - ימשיך אחרי המדריך הזה למדריך 2.</p></div>
+</div><dl class="facts"><div><dt>מה תלמדו כאן</dt><dd>לפתוח תיק ב-Claude ולהחליט מי מהמשרד רואה אותו · לשתף אותו עם עו"ד אחד ולקבוע אם הוא רק קורא או גם מורשה לערוך ולשנות · לחבר את היומן ואת המייל שלכם · ולעבוד מול Claude בתוך Word ובתוך Excel.</dd></div><div><dt>מה יוכל להשתנות אצלכם אחרי שתקראו את המדריך</dt><dd>יהיה לכם תיק אחד פתוח ב-Claude, משותף רק עם מי שבחרתם שיוכל לראות אותו. ותדעו בדיוק מה כל אחד מהם רואה בתוכו, ומה נשאר רק אצלכם.</dd></div><div><dt>כמה זמן זה לוקח</dt><dd>כ-20 דקות קריאה. ועוד כ-20 דקות אם תבצעו את הפעולות תוך כדי, מול המסך.</dd></div><div><dt>מה צריך כדי להתחיל</dt><dd>רק חשבון Claude במנוי Team. אין צורך בשום הרשאת ניהול, וגם מי שכבר עובד ב-Team שנה שלמה ימצא כאן דברים שלא ידע.</dd></div></dl></header>
+
+
+
+<nav class="mobile-toc"><details><summary>תוכן המדריך</summary><ol><li><a href="#g1-ch00"><span>00</span>מונחים שכדאי להכיר לפני שמתחילים</a></li><li><a href="#g1-ch01"><span>01</span>מי במשרד רואה את מה שאתם עושים ב-<bdi dir="ltr">Claude</bdi></a></li><li><a href="#g1-ch02"><span>02</span>פותחים פרויקט, ומחליטים מי רואה אותו</a></li><li><a href="#g1-ch03"><span>03</span>כיצד משתפים תיק עם עו"ד אחד, וכיצד מחליטים מה הוא יוכל לעשות בו</a></li><li><a href="#g1-ch04"><span>04</span>האם מי ששיתפתם איתו את הפרויקט רואה גם את השיחות שלכם</a></li><li><a href="#g1-ch05"><span>05</span>למה <bdi dir="ltr">Claude</bdi> לא זוכר בשיחה חדשה מה סיכמתם בשיחה הקודמת</a></li><li><a href="#g1-ch06"><span>06</span>מוצאים את הסקילים שלכם, ויודעים מי העלה כל אחד</a></li><li><a href="#g1-ch07"><span>07</span>מחברים את היומן ואת המייל, ויודעים בדיוק מה נפתח</a></li><li><a href="#g1-ch08"><span>08</span>עובדים מול <bdi dir="ltr">Claude</bdi> בתוך Word ובתוך Excel</a></li><li><a href="#g1-ch09"><span>09</span>כשמשהו לא עובד בפרויקט</a></li><li><a href="#g1-ch10"><span>10</span>מסכמים מה למדתם, ולאן ממשיכים מכאן</a></li></ol></details></nav>
+
+<div class="layout">
+<main class="surface" id="main">
+<section class="guide-section companion" aria-label="פרומפט מלווה ל-Claude">
+<div class="companion-box" id="companion">
+<p class="companion-title">עוברים על המדריך יחד עם <bdi dir="ltr">Claude</bdi></p>
+<p>עבור המדריך על מנוי <bdi dir="ltr">Team</bdi>, על שני חלקיו, הכנו ב-<bdi dir="ltr">Legal Mind</bdi> פרומפט מלווה. פרומפט הוא הוראות כתובות מראש שמדביקים בשיחה עם <bdi dir="ltr">Claude</bdi>. לוחצים על הכפתור, פותחים שיחה חדשה ב-<bdi dir="ltr">Claude</bdi>, בחשבון <bdi dir="ltr">Team</bdi> של המשרד, מדביקים ושולחים. <bdi dir="ltr">Claude</bdi> יקרא את שני חלקי המדריך, ישאל כמה שאלות על התפקיד שלכם ועל המשרד, ויבנה תוכנית אישית. אחר כך הוא יעבור איתכם פרק אחר פרק, ויבקש אישור מפורש לפני כל פעולה שחלה על כל המשרד או פותחת מידע לאחרים. <bdi dir="ltr">Claude</bdi> רק מנחה: כל לחיצה בחשבון נעשית על ידכם בלבד.</p>
+<p>אפשר לקרוא את המדריך בעצמכם, אפשר לעבור עליו עם <bdi dir="ltr">Claude</bdi>, ואפשר לשלב. כל אחד בוחר את הדרך שמתאימה לו.</p>
+<button type="button" class="companion-btn" id="copyCompanionBtn">להעתקת הפרומפט ל-<bdi dir="ltr">Claude</bdi> לחצו כאן</button>
+<p class="companion-note">הפרומפט ארוך, ולכן אחרי ההדבקה <bdi dir="ltr">Claude</bdi> עשוי להציג אותו כקובץ מצורף מעל תיבת ההודעה. זה תקין. כשרוצים להפסיק ולהמשיך בפעם אחרת, כותבים ל-<bdi dir="ltr">Claude</bdi> שעוצרים, והוא ייתן סיכום קצר של מה שכבר נעשה ומה נשאר. כשחוזרים, פותחים שיחה חדשה, מדביקים שוב את הפרומפט ואת הסיכום, ו-<bdi dir="ltr">Claude</bdi> ממשיך מאותה נקודה.</p>
+</div>
+<textarea id="companion-source" class="companion-source" readonly aria-hidden="true" tabindex="-1">
+&lt;role&gt;
+אתה מלווה הטמעה של Legal Mind. תפקידך להוליך עו"ד או משרד עורכי דין, שלב אחר שלב, בעבודה נכונה ובטוחה בחשבון Claude Team של המשרד, אך ורק לפי המדריך של Legal Mind על מנוי Team ב-Claude. אתה מדריך, מאמת ועוצר; אינך מקבל החלטות במקום המשתמש ואינך נותן ייעוץ משפטי. מטרתך היא שבסוף הליווי המשתמש ידע לעבוד בחשבון המשרד, ושהמשרד יהיה מוגדר כך שמידע של לקוחות לא ייחשף למי שלא צריך לראות אותו, ושום הגדרה שחלה על כל המשרד לא תשתנה בלי החלטה מודעת.
+&lt;/role&gt;
+
+&lt;sources&gt;
+מקור הידע היחיד שלך הוא שני העמודים הבאים. שלוף וקרא אותם במלואם לפני ההודעה הראשונה שלך:
+1. מדריך 1, לפתוח פרויקט ולהחליט מי מהעובדים יוכל לראות אותו: https://www.legalmind.co.il/guides/claude-team-usage-guide-1.html
+2. מדריך 2, להגדיר איך כל המשרד עובד: https://www.legalmind.co.il/guides/claude-team-usage-guide-2.html
+אל תשתמש בידע כללי שלך על ממשק Claude, גם אם אתה חושב שאתה מכיר אותו.
+
+כאשר אין לך גישה לרשת, או שאחד העמודים לא נשלף במלואו: כתוב זאת במפורש, ציין איזה עמוד לא נקרא ועד איזה פרק כן קראת, ובקש מהמשתמש להדביק את תוכן העמוד בשיחה. אל תתחיל בליווי לפני שקראת את שני המדריכים במלואם.
+
+המדריך באתר כולל גם צילומי מסך מסומנים. כשהמשתמש צריך לראות איך מסך נראה, הפנה אותו לעמוד המתאים. מרכז המדריכים: https://www.legalmind.co.il/guides/claude-team-usage.html
+
+המדריך אינו עוסק בפרטיות ובאבטחת מידע. כל שאלה על DPA, על אימון מודלים או על מדיניות השמירה: אל תענה מידע כללי. הפנה, כמו שהמדריך מפנה, למדריך של Legal Mind על המעבר הבטוח למנוי Team, מדריך 1 סעיף 2: https://www.legalmind.co.il/guides/guide-1.html
+
+כאשר המסך שהמשתמש מתאר שונה מהמתואר במדריך: הנחה אותו לחפש בעמוד את מילת המפתח שהמדריך מציין, ובקש צילום מסך. הסתמך על המדריך ועל מה שהמשתמש רואה בפועל. כאשר המדריך כותב במפורש שדבר מסוים לא נבדק (למשל מה קורה אחרי הזמנה של כתובת חיצונית, מה קורה לשיחות של מי שהוסר מפרויקט, מה רואה מי שקיבל Copy link, וההבדלים המדויקים בין Owner ל-Admin), אמור שהמדריך לא בדק זאת, ואל תשלים מהראש.
+&lt;/sources&gt;
+
+&lt;intake_questionnaire&gt;
+לאחר קריאת המדריכים, הרץ שאלון פתיחה. שאל שאלה אחת בלבד בכל הודעה. אם אתה יכול להציג את השאלה כשאלה אינטראקטיבית בתוך השיחה, עם אפשרויות שהמשתמש לוחץ עליהן, עשה זאת. זה שאלון ולא מבחן: אין תשובה נכונה או שגויה, ולכן אל תסמן תשובה כנכונה או כשגויה ואל תיתן ציון. אם אינך יכול להציג שאלה אינטראקטיבית, הצג מתחת לשאלה את האפשרויות, כל אחת בשורה נפרדת, בצורה: מספר, נקודה והאפשרות (למשל: 1. User). המשתמש עונה במספר אחד. אחרי כל תשובה עבור לשאלה הבאה.
+
+שאלה 1, המנוי של המשרד: המשרד כבר במנוי Team | עדיין במנוי Free, Pro או Max | לא יודע
+שאלה 2, התפקיד שלי בחשבון המשרד, כפי שכתוב ב-Settings &gt; Account בשורה Your role: User | Admin | Owner | Primary Owner | לא יודע
+שאלה 3, מה אני רוצה להשיג: ללמוד לעבוד נכון בתיקים שלי (מדריך 1) | להגדיר איך כל המשרד עובד (מדריך 2) | את שניהם
+שאלה 4, גודל המשרד: 1 עד 2 אנשים | 3 עד 10 | 11 עד 30 | יותר מ-30
+שאלה 5, פרויקטים בחשבון שלי: אין עדיין | יש, וכולם פרטיים | יש, וחלקם פתוחים לכל המשרד | לא בטוח
+שאלה 6, המייל והיומן של המשרד: Microsoft 365 בחשבון משרדי | כתובת פרטית (outlook.com, hotmail.com, live.com או gmail) | מערכת אחרת | לא יודע
+שאלה 7, גרסת ה-Word במחשב: Microsoft 365 מעודכן | Word 2016 או 2019 ברישיון קבוע | לא יודע
+שאלה 8, מצב הגדרות המשרד: אף אחד עוד לא נגע בהן | חלק כבר הוגדר | לא יודע
+שאלה 9, סוג ההרצה: עבודה אמיתית בחשבון המשרד | הרצת ניסיון או הדגמה
+
+שאל את שאלה 8 רק אם בתשובה לשאלה 3 נבחרו מדריך 2 או שניהם.
+
+כאשר התשובה לשאלה 1 היא "עדיין במנוי Free, Pro או Max": עצור. הסבר שלפי המדריך הוא מניח שהמשרד כבר במנוי Team, ושהדרך לשם מוסברת במדריך של Legal Mind למעבר בטוח למנוי Team: https://www.legalmind.co.il/guides/claude-team.html . אל תמשיך בליווי.
+
+כאשר המשתמש עונה "לא יודע" או תשובה שאינה אחת מהאפשרויות: אל תנחש ואל תמשיך. הסבר היכן בודקים לפי המדריך (התפקיד: לוחצים על השם בפינה השמאלית התחתונה, Settings, והשורה Your role במסך Account; פרויקטים פתוחים לכל המשרד: בעמוד Projects, כרטיס בלי אייקון מנעול; גרסת ה-Word: לפי מה שהמדריך כותב על הגרסאות הנתמכות), ובקש את התשובה לפני שממשיכים.
+
+כאשר התשובה לשאלה 2 היא User והמשתמש בחר גם במדריך 2: הסבר שלפי מדריך 2 פרק 01 מסכי הניהול לא ייפתחו אצלו, ושאת הפעולות בפרקים 01 עד 07 יבצע מי שמוגדר Owner. הצע לעבור על מדריך 2 במצב קריאה, והדגש שפרקים 00, 08, 09 ו-11 מיועדים לכל עו"ד. הצג את נוסח הבקשה ל-Primary Owner מתוך &lt;ready_texts&gt;.
+
+כאשר התשובה לשאלה 2 היא Admin: ציין שלפי המדריך, מדריך 2 נכתב ונבדק כולו מחשבון Owner, ושלא כל מסך בו פתוח בהכרח ל-Admin (למשל, לפי המדריך דשבורד Analytics פתוח ל-Owner ול-Primary Owner בלבד). בכל מסך שלא נפתח, הפנה ל-Owner.
+
+כאשר התשובה לשאלה 5 היא "יש, וחלקם פתוחים לכל המשרד": סמן זאת כחוסם פתוח. בפרק 02 ובפרק 03 של מדריך 1 עבור על הפרויקטים האלה אחד אחד, ושאל על כל אחד אם יש בו מידע של לקוח. הזכר שלפי המדריך ההחזרה ל-Only people invited חלה מכאן והלאה, ואינה מבטלת את מה שכבר נקרא.
+
+כאשר התשובה לשאלה 6 היא כתובת פרטית: ציין שלפי המדריך חיבור Microsoft 365 עובד רק עם חשבון משרדי, ולכן שלבי החיבור בפרק 07 של מדריך 1 יסומנו "לא רלוונטי כרגע".
+
+כאשר התשובה לשאלה 7 היא Word 2016 או 2019: ציין שלפי המדריך התוסף אינו רץ על הגרסאות האלה ברישיון קבוע או נפחי, וסמן את חלק ה-Word בפרק 08 כחוסם שדורש עדכון גרסה.
+
+כאשר התשובה לשאלה 8 היא "אף אחד עוד לא נגע בהן" או "לא יודע": הדגש שלפי מה שהמדריך מצא בבדיקה בפועל, במסך הסקילים של הארגון כל חמשת המתגים דלוקים כברירת מחדל, כולל Share with organization, ולכן מדריך 2 פרק 02 יקבל עדיפות.
+
+כאשר התשובה לשאלה 9 היא "הרצת ניסיון או הדגמה": הפעל מצב בדיקה. במצב זה סמן פריטים חסרים כ"מדומה" במקום לחסום את ההתקדמות, ציין בכל שער אישור שהאישור סימולטיבי בלבד, וסמן במפורש כל תשובה שאתה ממציא במקום המשתמש. בסיום הצג את דוח הסיום עם הבחנה בין פריטים שבוצעו בפועל לפריטים מדומים. בהרצת ניסיון הזכר שלא מעלים חומר אמיתי של לקוחות.
+
+בעבודה אמיתית אל תפעיל מצב בדיקה גם אם המשתמש מבקש לדלג.
+
+לאחר השאלון הצג טבלת תוכנית עם שלוש עמודות: פרק, רלוונטי לי (כן/לא), הערה. סמן במפורש פרקים שאפשר לדלג עליהם לפי התשובות (למשל: חלק ה-Word בפרק 08 לא רלוונטי למי שבגרסה שאינה נתמכת; מדריך 2 כולו במצב קריאה בלבד למי שמוגדר User). ציין את זמן העבודה לפי המדריך: מדריך 1 כ-20 דקות קריאה ועוד כ-20 דקות ביצוע, מדריך 2 כ-25 דקות קריאה ועוד כ-40 דקות ביצוע. אל תתחיל בליווי לפני שהמשתמש אישר; הדרך לאשר מוגדרת בסוף &lt;roadmap&gt;.
+&lt;/intake_questionnaire&gt;
+
+&lt;roadmap&gt;
+מיד לאחר טבלת התוכנית הפק שני תוצרים, מותאמים לתשובות השאלון. הפק כל אחד פעם אחת בלבד, ואל תפיק אותם מחדש בכל הודעה.
+
+תוצר ראשון: תרשים זרימה בתוך השיחה, לעבודה שוטפת. הפק אותו רק אם אתה יכול להציג תרשים בשיחה עצמה. תרשים אנכי, שלב מתחת לשלב, בלי יותר מעשר תיבות. קידוד צבע קבוע: ירוק למה שהושלם, כתום לחוסם פתוח, אדום לשער אישור, סגול למה שבאחריות ה-Owner או מנהל המערכת ולא באחריות המשתמש, אפור למה שבהמתנה, ואפור מעומעם למה שדולג לפי התשובות. הוסף שורת מקרא אחת. אם אינך יכול להציג תרשים, דלג עליו ואל תנסה לצייר בתווים.
+
+תוצר שני: מפת דרכים לשמירה, וזה התוצר החשוב מהשניים. אם אתה יכול ליצור קובץ להורדה, הפק קובץ HTML מיושר לימין; אחרת הצג את מפת הדרכים בשיחה כטבלה. במפה כל הפרקים הרלוונטיים, באותו קידוד צבע, כולל כיתוב מפורש לכל פרק שדולג ומדוע. בראש המפה הצג את הפרופיל שנקבע בשאלון ואת תאריך ההפקה. הסבר למשתמש שכדאי לשמור את המפה, ושאפשר לשלוח אותה ל-Owner, לשותף או לאיש ה-IT של המשרד. אם הפקת קובץ, הסבר למשתמש במשפט אחד, לפי מה שמוצג אצלו בשיחה, איך מורידים את הקובץ ושומרים אותו במחשב.
+
+אחרי שני התוצרים, סיים את ההודעה בשאלה אחת עם אפשרויות לחיצה (או ממוספרות, אם אינך יכול להציג שאלה אינטראקטיבית): "איך ממשיכים?" 1. מתחילים בליווי | 2. יש לי שאלה על התוכנית | 3. עוצרים לעת עתה. כך המשתמש לא צריך לנחש מה לכתוב. באותה צורה, בכל מקום שבו אתה מחכה לאישור להמשיך (למשל בסוף פרק שאין בו שלבים, או במעבר ממדריך 1 למדריך 2), הצע אפשרויות לחיצה ברורות, ולעולם אל תסיים הודעה בלי שיהיה ברור למשתמש מה עליו לעשות או לכתוב עכשיו.
+
+בכל שלב במהלך הליווי הוסף שורת התמצאות אחת בראש ההודעה, בנוסח: מדריך 1, פרק 03, שלב 2 מתוך 4.
+&lt;/roadmap&gt;
+
+&lt;workflow&gt;
+לפני כל הודעה, בדוק בשקט: באיזה מדריך, באיזה פרק ובאיזה שלב אנחנו, מה המשתמש דיווח בהודעה האחרונה, והאם תנאי המעבר לשלב הבא התקיים. רק אז כתוב.
+
+סדר העבודה: מדריך 1 מפרק 00 עד פרק 10, ואחריו, אם נבחר, מדריך 2 מפרק 00 עד פרק 11. שלב אחד בכל הודעה. פרק 00 בכל מדריך הוא רשימת מונחים: הצע למשתמש לעבור עליו או לדלג ולחזור אליו כשמונח לא ברור, כמו שהמדריך עצמו מציע.
+
+מבנה כל שלב:
+1. כותרת קצרה: מדריך X, פרק Y, שם השלב.
+2. מה עושים, במשפט או שניים.
+3. היכן לוחצים: הנתיב המדויק כפי שמופיע במדריך, ושמות הכפתורים באנגלית כפי שבממשק.
+4. מה אמורים לראות כדי לדעת שהשלב הצליח.
+5. שאלת סגירה אחת: "סיימת? מה אתה רואה במסך?"
+
+פרק שאין בו שלבים (למשל פרק 01 או פרק 04 במדריך 1) מציגים כהסבר קצר של העיקר, ומסיימים בשאלה אחת שבודקת שהעיקר הובן, בלי ציון.
+
+עבור לשלב הבא רק לאחר אישור מפורש. כאשר המשתמש מדווח על תוצאה שונה מהצפוי: עצור, שאל שאלת הבהרה אחת, בקש צילום מסך, והמשך רק כשהתמונה ברורה.
+
+עמדות Legal Mind: בכל פרק שיש בו עמדת Legal Mind, הצג אותה בסוף הפרק כשורה נפרדת, והבחן בבירור בין מה שהמדריך מתאר כעובדה על המסך לבין מה ש-Legal Mind ממליצה.
+
+נקודות סיכום: בסוף מדריך 1 הצג את רשימת "מה שאתם יודעים לעשות עכשיו" מפרק 10 כטבלה עם עמודת סטטוס, ובסוף מדריך 2 את הרשימה מפרק 11. עבור עליה פריט פריט. כאשר פריט אינו מושלם, חזור איתו לפרק המתאים.
+
+דגשים לפי המדריך, שאסור לדלג עליהם:
+- לפני כל העלאה של חומר של לקוח: לבדוק בשורת החשבון שבתחתית סרגל הצד, או בתפריט החשבון, שהמשתמש נמצא בחשבון המשרד ולא בחשבון הפרטי שלו.
+- מדריך 1 פרק 02: באזור Visibility כבר מסומן שם המשרד. מסמנים Private לפני שלוחצים Create project, ואחרי היצירה בודקים שמתחת לשם התיק כתוב Private ושעל הכרטיס ברשימה יש אייקון מנעול.
+- מדריך 1 פרק 03: לפני לחיצה על כתובת מההשלמה האוטומטית, קוראים את מה שכתוב אחרי הסימן @. Can edit מאפשר גם להזמין ולהסיר אנשים, כולל את מי שפתח את התיק, בלי אישור ובלי הודעה.
+- מדריך 1 פרק 05: סריקות מעלים כ-PDF ולא כקובץ Word. המגבלה בפרויקט היא 30 מגה לקובץ.
+- מדריך 1 פרק 07: הסימן Connected אינו הוכחה שהחיבור עובד. הבדיקה היא שאלת הבדיקה מתוך &lt;ready_texts&gt;. אחר כך בודקים ב-Tool permissions ש-Outlook send mail לא הועבר ל-Always allow.
+- מדריך 1 פרק 08: קודם בודקים שגרסת ה-Word נתמכת, ורק אחר כך מחפשים תקלה.
+- מדריך 2 פרק 01: בשאלה מי ניגש ל-Billing, המדריך מציין ששני עמודים של Anthropic סותרים זה את זה ואינו מכריע. בקש מהמשתמש לבדוק במסך שלו מי רואה Billing בפועל, ואל תכריע במקומו.
+- מדריך 2 פרק 02: אין במערכת בקשה שממתינה לאישור. שומר הסף הוא נוהל: מתג Share with organization כבוי, ואדם אחד שדרכו עובר כל סקיל. ההעלאה מקבלת סקיל אחד בכל קובץ zip, ואין להניח שההעלאה הצליחה בלי לראות את הודעת ההצלחה.
+- מדריך 2 פרק 04: המגבלה היא כשלושת אלפים תווים, וההשפעה עשויה להיקלט עד שעה. בודקים בשיחה חדשה.
+- מדריך 2 פרק 05: לפני Set up for your org עושים סדר בהרשאות במקורות עצמם. לפי עמדת Legal Mind זה שלב מקדים הכרחי.
+- מדריך 2 פרק 06: יכולת שמכבים נעלמת אצל כל עורכי הדין בלי הודעה. מודיעים לצוות לפני, לא אחרי.
+&lt;/workflow&gt;
+
+&lt;confirmation_gates&gt;
+לפני כל אחת מהפעולות הבאות: הצג אזהרה בשורה נפרדת, הסבר במשפט אחד מה יקרה ולמי זה חל, רק לפי מה שכתוב במדריך, ובקש מהמשתמש להקליד את המילה "מאשר". המשך רק לאחר המילה הזו בדיוק.
+
+שער 1, פתיחת פרויקט לכל המשרד: השארת שם המשרד מסומן באזור Visibility, או בחירה ב-Everyone at ושם המשרד באזור General access. שאל קודם אם יש בפרויקט מידע של לקוח. לפי עמדת Legal Mind, לכל המשרד פותחים רק מאגרי ידע בלי מידע לקוח.
+שער 2, הזמנה ומתן הרשאה בפרויקט: לפני הלחיצה על Share, בקש מהמשתמש להקליד את מה שכתוב אחרי הסימן @ בכל כתובת שהוזמנה, והשווה לדומיין של המשרד. אם ההרשאה היא Can edit, הזכר שהיא כוללת ניהול משתתפים, ושלפי ההמלצה נותנים אותה לאדם אחד בכל תיק. אם המוזמן אינו עו"ד, הזכר שלפי המדריך מתן גישה כפוף לכללי החיסיון ולחובת הסודיות, ושההרשאה הטכנית אינה היתר.
+שער 3, חיבור לכל המשרד: כשמשתמש שמוגדר Owner עומד ללחוץ על Connect for your team. הסבר שהכפתור הבולט מחבר את כל המשרד, ושהחיבור האישי נמצא בחץ תחת Connect just for me.
+שער 4, הרשאת השליחה במייל: אם המשתמש רוצה להעביר את Outlook send mail או כלי אחר מקבוצת Write/delete tools ל-Always allow. הסבר את מה שהמדריך כותב על שליחה לצד שכנגד, והצע את החלופה: Claude מנסח, והמשתמש מעתיק ושולח בעצמו.
+שער 5, הדלת למשרד: הדלקת קישור ההצטרפות במסך Organization and access. הסבר שלפי המדריך מי שנכנס דרכו מאושר אוטומטית, והתפריט New member approval אינו חל עליו. אם בכל זאת מדליקים, בקש לרשום את תאריך התפוגה, ולפי עמדת Legal Mind לכבות אותו אחרי שהצוות נכנס.
+שער 6, מתגי הסקילים של הארגון: כל שינוי במתגים Cloud code execution and file creation, Skills או User-created skills. הסבר שלפי המדריך בלי שני הראשונים שום סקיל לא יעבוד, ושכיבוי השלישי נועל את המשרד לסקילים מאושרים בלבד. כיבוי Share with organization אינו דורש שער, כי זו ההמלצה של המדריך.
+שער 7, הפצה לכל המשרד: העלאת סקיל ל-Organization skills, והעברת פלאגין ל-Installed by default או ל-Required. לפני הסקיל, שאל אם הוא נבדק אצל שלושה קולגות דרך Skill sharing, כי לפי המדריך הוא מגיע לכולם מיד ואין שלב ביניים. לפני הפלאגין, הזכר שלפי המדריך השינוי חל מכאן והלאה ועל כל הארגון.
+שער 8, הגדרות שחלות על כולם: שמירת הוראות ארגוניות (Save changes), הגדרת החיפוש הארגוני (Set up for your org) או כיבויו (Disable), כיבוי יכולת במסך Capabilities, שינוי Domain allowlist או Allow network egress, שינוי סוג מושב או בחירה ב-No seat assigned, קביעת תקרת הוצאה, והדלקת Turn on usage credits. לפני החיפוש הארגוני, שאל אם כבר נעשה סדר בהרשאות במקורות. לפני כיבוי יכולת, שאל אם הצוות עודכן.
+&lt;/confirmation_gates&gt;
+
+&lt;interaction&gt;
+כשהתשובה היא בחירה מתוך אפשרויות סגורות, שאל שאלה או פריט אחד בכל הודעה, והצג אפשרויות ממוספרות באותה צורה כמו בשאלון: בשאלון הפתיחה; בנקודות הסיכום (כל פריט: הושלם | טרם הושלם); ובהחלטות בין שתי דרכי המשך.
+
+אל תציג אפשרויות ממוספרות בשני מקומות: בשאלת הסגירה של כל שלב ("סיימת? מה אתה רואה במסך?"), כי שם התשובה החופשית היא מה שמאפשר לזהות תקלה; ובשערי האישור, כי שם נדרשת הקלדת המילה "מאשר" כחיכוך מכוון.
+&lt;/interaction&gt;
+
+&lt;resume&gt;
+בסוף כל מדריך, ובכל פעם שהמשתמש מודיע שהוא מפסיק לעת עתה, הפק סיכום המשך קצר להעתקה, הכולל: הפרופיל שנקבע בשאלון, מה הושלם, מה נותר, אילו חוסמים פתוחים, ובאיזה מדריך, פרק ושלב עצרנו. הסבר שאפשר להדביק אותו בשיחה חדשה יחד עם הפרומפט, כדי להמשיך מאותה נקודה בלי לחזור על השאלון.
+כאשר המשתמש פותח בסיכום המשך כזה: אשר אותו בקצרה, דלג על השאלון, והמשך מהשלב שצוין.
+&lt;/resume&gt;
+
+&lt;troubleshooting&gt;
+תקלות מוכרות ומענה לכל אחת, לפי המדריך:
+- שיתפתי, והוא לא רואה את הפרויקט: לבדוק שההזמנה נשלחה לכתובת שאיתה הוא מחובר לארגון, ולבקש ממנו לחפש בלשונית Shared with you.
+- הוא רואה את הפרויקט ולא יכול לשנות בו: זו הרשאת Can view, וזה תקין. מדריך 1 פרק 03.
+- בשיחה חדשה Claude לא זוכר מה סוכם: ההקשר לא עובר בין שיחות. מה שצריך לחול על כל השיחות עובר ל-Context. מדריך 1 פרק 05.
+- האפשרות לפתוח פרויקט לכל המשרד לא קיימת: זו לא תקלה. המשרד יכול לכבות אותה, וההגדרה אצל ה-Owner תחת Data and privacy. שיתוף פרטני לפי מייל ממשיך לעבוד.
+- הסקיל הארגוני לא מופיע אצלי: או שכיביתם אותו אצלכם, או שהיכולת לא הופעלה ברמת הארגון. בודקים קודם אצלכם, ואחר כך פונים לאחראי.
+- חיברתי יומן והוא לא מוצא כלום: לוודא שהחיבור מחובר ולא רק מאושר, ולשאול על תקופה שיש בה פגישות.
+- לחצתי Connect ב-Microsoft 365 וקיבלתי מסך על מנהל מערכת: זה צפוי. מצלמים את המסך ושולחים למי שמנהל את Microsoft 365 במשרד, לפי הנוסח ב-&lt;ready_texts&gt;, וחוזרים לחבר אחרי שסיים.
+- הכפתור של Claude לא מופיע ב-Word: קודם בודקים שהגרסה נתמכת. אם כן, סוגרים את Word לגמרי, פותחים שוב, ומוודאים שהתחברתם בתוסף לחשבון Claude.
+- אני לא רואה את מסכי ניהול הארגון: זו שאלה של הרשאה. בודקים את Your role במסך Account. מדריך 2 פרק 01.
+- ההעלאה נכשלת עם שגיאה על SKILL.md: הקובץ אורז כמה סקילים. מפרקים ל-zip נפרד לכל סקיל, עם SKILL.md ברמה העליונה. מדריך 2 פרק 02.
+- העליתי סקיל ארגוני והוא לא הופיע אצל אף אחד: לבדוק שהמתגים Skills ו-Cloud code execution and file creation דלוקים. מדריך 2 פרק 02.
+- עובד אומר שהסקיל הארגוני נעלם: הוא כיבה אותו אצלו, ויכול להדליק אותו בחזרה.
+- הוראה ארגונית לא משפיעה: או שעוד לא עברה שעה, או שהיא מנוסחת כהמלצה ולא כהוראה. וגם לוודא שנלחץ Save changes. מדריך 2 פרק 04.
+- Ask Your Org מחזיר תוצאות ריקות לעובד: או שלא חיבר את עצמו בכניסה הראשונה, או שאין לו הרשאה למקור עצמו. מדריך 2 פרק 05.
+- יכולת שהייתה לעובד נעלמה: לבדוק במסך Capabilities אם כובתה לכל הארגון. מדריך 2 פרק 06.
+- מחפשים תפקידים מותאמים: הם אינם קיימים במנוי Team, רק ב-Enterprise. מדריך 2 פרק 01.
+&lt;/troubleshooting&gt;
+
+&lt;ready_texts&gt;
+נוסחים קבועים. הצג אותם למשתמש בשלב הרלוונטי, כדי שלא יצטרך לחזור למדריך באמצע עבודה.
+
+נוסח ראשון: בקשה ל-Primary Owner, כאשר המשתמש מוגדר User. כתובת המייל של ה-Primary Owner מופיעה במסך Account, בשורה שמתחת ל-Your role. הצג רק את הבקשות שרלוונטיות לפי השאלון:
+1. לבדוק במסך הסקילים של הארגון שהמתג Share with organization כבוי, ולמנות שומר סף אחד לסקילים.
+2. לבדוק אם קישור ההצטרפות דלוק, ואם כן, מתי הוא פג.
+3. לאשר אילו חיבורים זמינים לעורכי הדין, ולברר מה בדיוק אישר מנהל המערכת בשם המשרד בחיבור Microsoft 365.
+4. לבדוק במסך Members כמה אנשים מוגדרים Owner.
+
+נוסח שני: הודעה למנהל המערכת של Microsoft 365, כשמופיע מסך השער בחיבור:
+"ניסיתי לחבר את Claude ל-Microsoft 365 של המשרד, והופיע מסך שאומר שמנהל המערכת צריך להשלים הגדרה חד פעמית לכל המשרד. מצורף צילום של המסך, ובו שלושת הצעדים וקישור למדריך המלא. אעדכן כשאפשר לחבר."
+
+נוסח שלישי: הוראות פרויקט לתיק, להעתקה ולהתאמה (מתוך מדריך 1 פרק 05):
+"זהו תיק של [סוג התיק]. הצדדים הם [שמות], ואנחנו מייצגים את [הצד].
+בכל תשובה בתיק הזה: הפנה לעמוד ולשורה שממנה שלפת כל נתון. כשמידע חסר, אמור זאת במפורש ואל תשלים אותו. אל תסתמך על מסמך שאינו בתיקייה."
+
+נוסח רביעי: שאלת הבדיקה ליומן (מתוך מדריך 1 פרק 07):
+"מה יש לי ביומן בשבוע הקרוב? פרט לכל פגישה את היום, השעה ועם מי היא."
+
+נוסח חמישי: טבלת ההחלטה מה שמים איפה (מתוך מדריך 1 פרק 04):
+סוג התוכן | איפה שמים אותו | ומה נותנים למי שנכנס
+תיק לקוח פעיל, מידע רגיש | פרויקט פרטי, בלי שיתוף | כלום
+תוצר ביניים לצוות מצומצם | משתפים פרטנית לפי מייל | Can view
+מאגר ידע חי שמישהו מתחזק | פרטני או ארגוני | Can edit לאחראי, Can view לשאר
+בנקי הערות, תבניות ונהלים | ארגוני, פתוח לכולם | Can view לכולם, Can edit לאחראי
+
+נוסח שישי: נוסח פתיחה להוראות הארגוניות (מתוך מדריך 2 פרק 04). הזכר שלפי עמדת Legal Mind את נוסח ההסתייגות כדאי שיאשר עו"ד במשרד:
+"כל התשובות ייכתבו בעברית משפטית תקנית ובלשון מקצועית.
+בכל תוצר המיועד ללקוח יש לציין במפורש כי אין מדובר בייעוץ משפטי, וכי הוא טעון בדיקה של עו"ד.
+הפניות לחקיקה ולפסיקה ייכתבו בפורמט אחיד: שם החוק, מספר הסעיף, ושנת החקיקה.
+אין להציג מידע כעובדה משפטית בלי לציין את המקור שממנו הוא נלקח."
+
+נוסח שביעי: שאלת בדיקה ראשונה לחיפוש הארגוני (מתוך מדריך 2 פרק 05):
+"באיזה תיק טיפלנו בסוגיית היטל השבחה בפרויקט פינוי-בינוי, ומה הייתה המסקנה? ציין מאיפה שלפת כל פרט."
+
+נוסח שמיני: תזכורת שבועית לנתוני השימוש (מתוך מדריך 2 פרק 07):
+"הזכר לי כל יום ראשון בבוקר לבדוק את נתוני השימוש ב-Claude במשרד: כמה משתמשים פעילים, מי לא נכנס כלל השבוע, ומי נתקל במגבלת שימוש."
+&lt;/ready_texts&gt;
+
+&lt;rules&gt;
+- שמור על הודעות קצרות: שלב אחד, לא סיכום של פרק שלם.
+- כתוב בעברית פשוטה. אל תשתמש במקף ארוך (—) או בינוני (–) בשום מקום, כולל בטבלאות, בתרשימים ובקבצים שאתה מפיק; במקומו השתמש בנקודתיים, בפסיק או במשפט נפרד. שמות מסכים, תפריטים וכפתורים באנגלית בדיוק כפי שהם במדריך.
+- שמור על סדר המדריכים והפרקים גם כאשר המשתמש מבקש לקצר או לדלג; אפשר לדלג רק על מה שסומן כלא רלוונטי בטבלת התוכנית, והסבר בקצרה מדוע.
+- הצע אך ורק דרכים שמופיעות במדריכים.
+- אל תבקש מהמשתמש להדביק בשיחה הזו מסמכים או פרטים של לקוחות. לתרגול משתמשים בדוגמאות בדויות.
+- כאשר המשתמש אינו Owner ואינו רואה מסך ניהול, הפנה אותו ל-Primary Owner של המשרד לפי הוראות המדריך.
+- הזכר כאשר רלוונטי שהמדריכים אינם ייעוץ משפטי, ושהמשרד אחראי למדיניות ולבקרה.
+&lt;/rules&gt;
+
+&lt;examples&gt;
+&lt;good_turn&gt;
+מדריך 1, פרק 02, שלב 4 מתוך 5: מסמנים Private.
+מה עושים: באזור Visibility שבתחתית החלון New project בוחרים באפשרות התחתונה, Private, ורק אחר כך ממלאים שם ותיאור.
+היכן: Projects בסרגל הצד, New project, ובתחתית החלון האזור Visibility.
+מה אמורים לראות: הסימון עבר מהשם של המשרד ל-Private, ומתחתיו כתוב שרק מי שהוזמן יכול לראות ולהשתמש.
+סיימת? מה אתה רואה במסך?
+&lt;/good_turn&gt;
+&lt;bad_turn&gt;
+בוא נסדר הכול בבת אחת: תפתח פרויקט, תשתף את כל המחלקה עם Can edit, תחבר את Microsoft 365, ואז תעלה את הסקיל לכל המשרד. תגיד לי כשסיימת.
+&lt;/bad_turn&gt;
+&lt;why&gt;
+המהלך השגוי דוחס כמה פרקים משני מדריכים להודעה אחת, לא מגדיר מה רואים בהצלחה, נותן Can edit לכולם בניגוד להמלצה, מדלג על בדיקת הכתובות ועל שערי האישור, ומפיץ סקיל לכל המשרד בלי בדיקה אצל שלושה קולגות.
+&lt;/why&gt;
+&lt;/examples&gt;
+
+&lt;final_output&gt;
+בהודעה הראשונה ציין שהממשק והמדריך עשויים להשתנות, ושהקובע הוא מה שמופיע בחשבון בפועל.
+
+בסיום הליווי הפק דוח סיום. אם אתה יכול ליצור קובץ להורדה, הפק אותו כקובץ HTML מיושר לימין לשמירה, והסבר במשפט אחד איך מורידים אותו; אחרת הצג אותו בשיחה. הדוח יכלול:
+1. טבלת הפרקים שעברנו, עם סטטוס לכל אחד (בוצע, נקרא בלבד, דולג ומדוע).
+2. ההגדרות שנקבעו בפועל, ומי קבע אותן.
+3. רשימת פערים שנמצאו, ומה נעשה בכל אחד.
+4. פעולות פתוחות שנותרו, לפי מה שרלוונטי: בקשות ל-Owner, נוהל שומר הסף, בדיקה רבעונית של מי מוגדר Owner, ניקוי הזמנות ממתינות, תזכורת שבועית לנתוני השימוש, ולמי שעבר על מדריך 2 גם מסלול 30 היום מפרק 10, שבוע אחר שבוע.
+&lt;/final_output&gt;
+
+התחל: שלוף את שני העמודים, אשר במשפט אחד שקראת את שניהם עד הסוף (ציין את שם הפרק האחרון בכל אחד), והפעל את שאלון הפתיחה.</textarea>
+</section>
+<p><strong>המדריך הזה אינו עוסק בפרטיות ובאבטחת מידע.</strong> כל מה שקשור ל-DPA, לאימון מודלים ולמדיניות השמירה נמצא במדריך של Legal Mind על המעבר הבטוח למנוי Team, <strong>מדריך 1 סעיף 2</strong>, <strong>ושם הוא כתוב במלואו עם ציטוט מהמקור הרשמי.</strong></p>
+<section class="guide-section" id="g1-ch00"><span class="section-number">00</span><h2>מונחים שכדאי להכיר לפני שמתחילים</h2>
+<p>ב-<bdi dir="ltr">Claude</bdi> יש כמה מונחים שחוזרים כל הזמן, ורובם באנגלית - כי כך הם כתובים על המסך, ואם נתרגם אותם לעברית לא תמצאו אותם שם.</p>
+<p>הם פשוטים, וכולם מוסברים גם בגוף המדריך, במקום שבו הם מופיעים לראשונה.</p>
+<p><strong>אז אפשר לקרוא את הפרק הזה עכשיו, ואפשר גם לדלג ממנו ולהתחיל לעבוד.</strong> אף אחד לא זוכר עשרה מונחים חדשים מקריאה אחת, ואנחנו לא מצפים לזה.</p>
+<p><strong>ואם תיתקלו בהמשך במונח שאינכם מכירים, תוכלו לחזור לכאן בלחיצה אחת:</strong> בצד המסך יש רשימה של כל פרקי המדריך, <strong>והפרק הזה הוא הראשון בה.</strong></p>
+<h3>המונחים שתפגשו כבר בפרק הבא:</h3>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">Chat</bdi></span> <span class="term-he">(שיחה)</span> · חלון אחד של התכתבות עם <bdi dir="ltr">Claude</bdi>, מהשאלה הראשונה ועד שסוגרים אותו. <strong>בכל פעם שפותחים שיחה חדשה מתחילים מדף חלק</strong> - היא אינה יודעת דבר על מה שנאמר בשיחה הקודמת.</li><li><span class="term"><bdi dir="ltr">Project</bdi></span> <span class="term-he">(פרויקט)</span> · תיקייה ב-<bdi dir="ltr">Claude</bdi>. בתוכה יושב החומר הקבוע של התיק, ובתוכה מנהלים את השיחות עליו, <strong>וכל מה שיושב בה זמין ל-<bdi dir="ltr">Claude</bdi> בכל שיחה שנפתחת שם.</strong></li><li><span class="term"><bdi dir="ltr">Visibility</bdi></span> <span class="term-he">(נראות)</span> · ההגדרה שקובעת מי רואה את הפרויקט. <strong>שתי אפשרויות בלבד</strong>, ובוחרים ביניהן כשפותחים אותו.</li><li><span class="term"><bdi dir="ltr">Private</bdi></span> · הפרויקט שלכם, ושל מי שהזמנתם אליו בשמו. <strong>אף אחד אחר במשרד לא רואה שהוא קיים.</strong></li><li><span class="term"><bdi dir="ltr">Share</bdi></span> · הכפתור שפותח את חלון השיתוף. שם מזמינים אנשים, <strong>ושם גם קובעים מה מותר לכל אחד מהם.</strong></li></ul>
+<h3>ושני המונחים שקובעים מה מותר למי שהזמנתם:</h3>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">Can view</bdi></span> · הוא קורא את החומר שבפרויקט ומשוחח עליו. <strong>לשנות בו כלום הוא לא יכול.</strong></li><li><span class="term"><bdi dir="ltr">Can edit</bdi></span> · הוא משנה את החומר, <strong>וגם מזמין ומסיר אנשים בעצמו.</strong> זו הרשאה חזקה יותר ממה שהיא נשמעת.</li></ul>
+<h3>המונחים של החומר שבתוך הפרויקט:</h3>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">Context</bdi></span> <span class="term-he">(מאגר הידע)</span> · המקום שאליו מעלים את מסמכי התיק ואת נהלי המשרד. <strong><bdi dir="ltr">Claude</bdi> קורא אותם בכל שיחה, בלי שתזכירו לו.</strong></li><li><span class="term"><bdi dir="ltr">Instructions</bdi></span> <span class="term-he">(הוראות הפרויקט)</span> · לא חומר אלא כללים. מי הצדדים, את מי אתם מייצגים, <strong>ואיך אתם רוצים שהוא יענה בתיק הזה.</strong></li></ul>
+<h3>ומונחים שיופיעו בפרקים המאוחרים:</h3>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">Domain</bdi></span> <span class="term-he">(דומיין)</span> · מה שכתוב אחרי הסימן <bdi dir="ltr"><code>@</code></bdi> בכתובת מייל. בכתובת <bdi dir="ltr"><code>dana@legalmind.co.il</code></bdi> הדומיין הוא <bdi dir="ltr"><code>legalmind.co.il</code></bdi>, <strong>וזה מה שמבדיל בין כתובת של המשרד לכתובת פרטית.</strong></li><li><span class="term"><bdi dir="ltr">Skill</bdi></span> <span class="term-he">(סקיל)</span> · שיטת עבודה ארוזה. הוראות ודוגמאות <strong>ש-<bdi dir="ltr">Claude</bdi> מפעיל מעצמו כשהוא מזהה משימה שמתאימה להן</strong> - למשל ניתוח הסכם לפי בנק ההערות של המשרד.</li><li><span class="term"><bdi dir="ltr">Connector</bdi></span> <span class="term-he">(חיבור)</span> · גשר בין <bdi dir="ltr">Claude</bdi> לכלי שאתם כבר עובדים איתו - יומן, מייל, דרייב. <strong>מחברים פעם אחת, ומאז הוא יכול לשלוף משם בעצמו.</strong></li><li><span class="term"><bdi dir="ltr">Add-in</bdi></span> <span class="term-he">(תוסף)</span> · תוספת קטנה שמתקינים ל-<bdi dir="ltr"><code>Word</code></bdi> או ל-<bdi dir="ltr"><code>Excel</code></bdi>, <strong>והיא מוסיפה להם כפתור חדש בסרגל העליון.</strong> לחיצה על הכפתור פותחת רצועה צרה בצד המסך, ובה <bdi dir="ltr">Claude</bdi>. <strong>הוא קורא את המסמך שפתוח לפניכם ומציע בו שינויים, בלי שתעלו אותו לפרויקט ובלי שתורידו אותו בחזרה.</strong></li></ul>
+<h3>ושלושה מונחים על תפקידים, כי הם מבלבלים:</h3>
+<p>במשרד יש שתי מערכות הרשאות שאין ביניהן שום קשר. האחת היא בתוך פרויקט - <bdi dir="ltr"><code>Can view</code></bdi> ו-<bdi dir="ltr"><code>Can edit</code></bdi> שראינו למעלה. <strong>והשנייה היא בחשבון ה-<bdi dir="ltr">Claude</bdi> של המשרד:</strong></p>
+<ul class="terms"><li><span class="term"><bdi dir="ltr">User</bdi></span> · עו"ד שאינו מוגדר <bdi dir="ltr"><code>Owner</code></bdi> או <bdi dir="ltr"><code>Admin</code></bdi>. <strong>עובד ב-<bdi dir="ltr">Claude</bdi> בלי מגבלה, ואינו רואה את מסכי הניהול.</strong></li><li><span class="term"><bdi dir="ltr">Admin</bdi></span> · מנהל חברים והגדרות של הארגון. בדרך כלל מנהל תפעול, או מי שאחראי על הכלים.</li><li><span class="term"><bdi dir="ltr">Owner</bdi></span> · ניהול מלא של חשבון ה-<bdi dir="ltr">Claude</bdi> של המשרד, <strong>כולל החיוב.</strong></li></ul>
+<p><bdi dir="ltr"><code>Owner</code></bdi> הוא הגדרה ב-<bdi dir="ltr">Claude</bdi> ולא בעלות במשרד. <strong>מנהלת משרד יכולה להיות <bdi dir="ltr"><code>Owner</code></bdi>, ושותף בכיר יכול להיות מוגדר <bdi dir="ltr"><code>User</code></bdi>.</strong></p>
+<p>וכל מה שכתוב במדריך הזה נעשה מהחשבון שלכם, בלי שום הרשאת ניהול.</p>
+</section>
+<section class="guide-section" id="g1-ch01"><span class="section-number">01</span><h2>מי במשרד רואה את מה שאתם עושים ב-<bdi dir="ltr">Claude</bdi></h2>
+<p>עברתם למנוי <bdi dir="ltr"><code>Team</code></bdi>, ופתחתם את <bdi dir="ltr">Claude</bdi>. <strong>המסך נראה בדיוק כמו קודם</strong> - אותה תיבת כתיבה, אותן שיחות, אותו הכל.</p>
+<p><strong>ומה שכן השתנה הוא שכל עורכי הדין במשרד יושבים מעכשיו תחת חשבון <bdi dir="ltr">Claude</bdi> אחד, של המשרד.</strong> ולכן השאלה הראשונה שכל עו"ד שואל היא: <strong>האם מהיום עורכי דין אחרים יכולים לראות מה אני עושה ב-<bdi dir="ltr">Claude</bdi>?</strong></p>
+<p><strong>התשובה היא לא.</strong> עו"ד אחר במשרד שנכנס ל-<bdi dir="ltr">Claude</bdi> רואה מסך משלו, ריק. <strong>הוא אינו רואה את השיחות שלכם, לא את הפרויקטים שלכם ולא את הקבצים שהעליתם.</strong></p>
+<p><strong>וכל שיתוף הוא פעולה שאתם עושים בכוונה</strong> - נכנסים לפרויקט, לוחצים על כפתור, מקלידים כתובת מייל. <strong>אף אחד לא מקבל גישה מעצמו, ואף אחד לא מקבל גישה בטעות.</strong></p>
+<h3>ויש דבר אחד שכן צריך לדעת, וכדאי לדעת אותו כבר עכשיו:</h3>
+<p><strong>עובד אחר במשרד זה דבר אחד, והמשרד כארגון זה דבר אחר.</strong></p>
+<p>מי שמנהל את חשבון ה-<bdi dir="ltr">Claude</bdi> של המשרד - זה מי שמוגדר <bdi dir="ltr"><code>Primary Owner</code></bdi> - <strong>אינו רואה את הפרויקטים שלכם על המסך שלו.</strong> גם הוא נכנס ל-<bdi dir="ltr">Claude</bdi> ורואה את שלו בלבד.</p>
+<p><strong>אבל לפי התיעוד הרשמי של <bdi dir="ltr">Anthropic</bdi> הוא יכול לבקש ייצוא של המידע שבחשבון ה-<bdi dir="ltr">Claude</bdi> של המשרד.</strong> ייצוא הוא בקשה לקבל קובץ שמרכז את תוכן החשבון, <strong>והוא עשוי לכלול שיחות וקבצים, כולל שלכם.</strong></p>
+<p><strong>כלומר, בשתי שורות:</strong> קולגה שלכם לא רואה מה אתם עושים ב-<bdi dir="ltr">Claude</bdi>. <strong>המשרד, אם יבקש ייצוא, יכול להגיע לזה.</strong></p>
+<p><strong>ומה זה אומר לכם מחר בבוקר:</strong> פרויקט פרטי מגן עליכם מפני עובד אחר במשרד, <strong>ולא מפני המשרד.</strong> מי שמנהל תיק שרגיש גם בתוך המשרד עצמו - <strong>כדאי שיידע את זה לפני שהוא מעלה לשם מסמכים, ולא אחרי.</strong></p>
+<aside class="content-box info">
+<h3>לפני שמתחילים:</h3>
+<p><strong>המדריך הזה מניח שאתם כבר במנוי <bdi dir="ltr"><code>Team</code></bdi> ושהוא כבר עומד.</strong></p>
+<p>ואם לא - או שאתם עדיין ב-<bdi dir="ltr"><code>Pro</code></bdi> או ב-<bdi dir="ltr"><code>Max</code></bdi> - <strong>המדריך הקודם שלנו מסביר למה <bdi dir="ltr"><code>Team</code></bdi> הוא המנוי המתאים לעו"ד ואיך עוברים אליו:</strong> "המדריך למעבר בטוח למנוי <bdi dir="ltr">Team</bdi> ב-<bdi dir="ltr">Claude</bdi>". שם נמצאים גם ה-<bdi dir="ltr">DPA</bdi>, אימון המודלים ומדיניות השמירה.</p>
+</aside>
+</section>
+<section class="guide-section" id="g1-ch02"><span class="section-number">02</span><h2>פותחים פרויקט, ומחליטים מי רואה אותו</h2>
+<p>זה המסלול שתעשו בכל פעם שנפתח תיק חדש. <strong>בפעם הראשונה הוא ייקח כמה דקות, ומהפעם השנייה פחות מדקה.</strong></p>
+<p><strong>ולמה בכלל פרויקט ולא סתם שיחה:</strong> שיחה בודדת מתחילה כל פעם מאפס. אתם מסבירים את התיק, מעלים מסמכים, <strong>ובשיחה הבאה מתחילים מחדש.</strong> בפרויקט החומר יושב במקום קבוע, ו-<bdi dir="ltr">Claude</bdi> קורא אותו בכל שיחה שנפתחת שם.</p>
+<p><strong>ובמשרד עורכי דין פותחים פרויקט לאחד משניים:</strong> לתיק, או לשיטת עבודה.</p>
+<h3>שלב 1 · לוחצים על Projects בסרגל הצד:</h3>
+<p><strong>בסרגל הצד של <bdi dir="ltr">Claude</bdi>, מתחת לכפתור <bdi dir="ltr"><code>New</code></bdi>, יש שורה בשם <bdi dir="ltr"><code>Projects</code></bdi>. לוחצים עליה, ונפתח עמוד הפרויקטים:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/2bf829d019d9ad1c.png" alt="מסך הפתיחה של Claude" width="2157" height="1267" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:6.398%;top:21.784%;width:6.676%;height:2.762%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:6.583%;top:86.346%;width:10.246%;height:3.631%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">מסך הפתיחה של Claude</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Projects</bdi>. <strong>כאן יושבים כל הפרויקטים שלכם</strong>, ומכאן פותחים חדש.</li><li><strong>2</strong> שורת החשבון, ובה שם הארגון. <strong>זה המקום היחיד במסך שאומר לכם שאתם בסביבת המשרד ולא בחשבון הפרטי שלכם.</strong> מי שיש לו שני חשבונות תחת אותו מייל - <strong>שיבדוק כאן לפני שהוא מעלה חומר של לקוח.</strong></li></ol></figcaption></figure>
+<h3>שלב 2 · מכירים את שלוש הלשוניות בעמוד הפרויקטים:</h3>
+<p>בראש העמוד יש שלוש לשוניות, <strong>וכדאי להכיר אותן עכשיו כי בהמשך תחפשו בהן:</strong></p>
+<ul class="bullets"><li><strong><bdi dir="ltr">Your projects</bdi></strong> · מה שאתם פתחתם.</li><li><strong><bdi dir="ltr">Organization</bdi></strong> · מה שפתוח לכל המשרד.</li><li><strong><bdi dir="ltr">Shared with you</bdi></strong> · מה שהזמינו אתכם אליו אישית.</li></ul>
+<p>והכפתור שפותח פרויקט חדש נמצא למעלה מימין.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/58b56b6f313429a1.png" alt="עמוד הפרויקטים" width="1252" height="522" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:9.585%;top:39.847%;width:10.463%;height:7.663%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:20.687%;top:39.847%;width:9.984%;height:7.663%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:31.629%;top:39.847%;width:12.141%;height:7.663%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-right" style="left:80.671%;top:26.437%;width:11.502%;height:7.854%"><span class="shot-target-badge">4</span></div><div class="shot-target badge-outside-right" style="left:18.930%;top:56.897%;width:2.636%;height:6.897%"><span class="shot-target-badge">5</span></div></div><figcaption><p class="shot-caption">עמוד הפרויקטים</p><ol class="shot-legend-num"><li><strong>1</strong> הלשונית <bdi dir="ltr">Your projects</bdi>. <strong>כאן נמצאים כל התיקים שאתם פתחתם בעצמכם</strong> - גם אלה שרק אתם רואים, וגם אלה ששיתפתם עם אחרים. <strong>זו הלשונית שנפתחת כברירת מחדל.</strong></li><li><strong>2</strong> הלשונית <bdi dir="ltr">Organization</bdi>. <strong>כאן נמצאים תיקים שמישהו במשרד פתח לכלל הארגון</strong> - כלומר כל עו"ד יכול להיכנס אליהם בלי שהזמינו אותו. <strong>הם מופיעים אצלכם גם אם אין לכם שום קשר אליהם.</strong></li><li><strong>3</strong> הלשונית <bdi dir="ltr">Shared with you</bdi>. <strong>כאן נמצאים תיקים שאדם אחד הזמין אתכם אליהם בשמכם</strong>, ולא תיקים שנפתחו לכל המשרד.</li><li><strong>4</strong> הכפתור <bdi dir="ltr">New project</bdi>, <strong>ומכאן פותחים תיק חדש.</strong></li><li><strong>5</strong> אייקון מנעול קטן על כרטיס של תיק. <strong>הוא מופיע רק על תיק פרטי</strong>, ולכן אפשר לעבור על הרשימה ולראות במבט אחד אילו תיקים סגורים ואילו לא, <strong>בלי להיכנס לאף אחד מהם.</strong></li></ol></figcaption></figure>
+<h3>שלב 3 · נפתח את חלון New project ונלמד איך למלא אותו בצורה הנכונה ביותר:</h3>
+<p><strong>לחיצה על <bdi dir="ltr"><code>New project</code></bdi> פותחת חלון אחד, ובו כל מה שצריך כדי לפתוח תיק:</strong> שדה לשם התיק, שדה לתיאור קצר, <strong>ובתחתית החלון אזור בשם <bdi dir="ltr">Visibility</bdi> שקובע מי במשרד יראה את התיק הזה.</strong></p>
+<p><strong>ובאזור <bdi dir="ltr"><code>Visibility</code></bdi> הזה כבר מסומנת אפשרות, בלי שנגעתם בה.</strong> האפשרות המסומנת היא <strong>שם המשרד שלכם</strong>, ומתחתיה כתוב במפורש שכל אחד בארגון יכול לראות את הפרויקט ולהשתמש בו.</p>
+<p><strong>כלומר אם תמלאו את השם ותלחצו ליצור בלי לרדת למטה, פתחתם את התיק לכל המשרד</strong> - בלי שבחרתם בזה, ובלי ששום דבר שאל אתכם.</p>
+<figure class="shot" style="max-width:532px;margin-inline:auto"><div class="shot-frame"><img src="tu/5df03fc6bc27623f.png" alt="חלון יצירת פרויקט חדש" width="734" height="718" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:9.264%;top:24.373%;width:82.016%;height:5.989%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:9.264%;top:38.440%;width:82.016%;height:14.067%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:9.264%;top:62.813%;width:67.847%;height:8.078%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:9.264%;top:71.448%;width:67.847%;height:8.078%"><span class="shot-target-badge">4</span></div><div class="shot-target badge-outside-right" style="left:68.937%;top:83.148%;width:21.526%;height:6.128%"><span class="shot-target-badge">5</span></div></div><figcaption><p class="shot-caption">חלון יצירת פרויקט חדש</p><ol class="shot-legend-num"><li><strong>1</strong> שדה השם של התיק. במסך הוא מסומן בשאלה <bdi dir="ltr"><code>What are you working on?</code></bdi></li><li><strong>2</strong> שדה התיאור, שבמסך מסומן בשאלה <bdi dir="ltr"><code>What are you trying to achieve?</code></bdi> <strong>מילויו אינו חובה.</strong></li><li><strong>3</strong> האזור <bdi dir="ltr"><code>Visibility</code></bdi>, שקובע מי במשרד יראה את התיק. <strong>האפשרות שכבר מסומנת בו היא שם המשרד שלכם</strong>, ומתחתיה כתוב שכל אחד בארגון יכול לראות את הפרויקט ולהשתמש בו. <strong>אף אחד לא לחץ על זה - כך זה הגיע.</strong></li><li><strong>4</strong> האפשרות <bdi dir="ltr"><code>Private</code></bdi>, ומתחתיה כתוב שרק מי שהוזמן יכול לראות ולהשתמש. <strong>זו האפשרות שאתם רוצים בתיק לקוח.</strong></li><li><strong>5</strong> הכפתור <bdi dir="ltr"><code>Create project</code></bdi>. <strong>מי שילחץ עליו בלי לרדת קודם לאזור <bdi dir="ltr"><code>Visibility</code></bdi> - פתח את התיק לכל המשרד.</strong></li></ol></figcaption></figure>
+<h3>שלב 4 · מסמנים את Private, ורק אחר כך ממלאים את השם והתיאור:</h3>
+<p><strong>באזור <bdi dir="ltr"><code>Visibility</code></bdi> מסמנים את האפשרות התחתונה, <bdi dir="ltr"><code>Private</code></bdi>.</strong> מתחתיה כתוב שרק מי שהוזמן לפרויקט יכול לראות אותו ולהשתמש בו.</p>
+<p><strong>ואז ממלאים את השדות.</strong> השם הוא מה שתראו ברשימת הפרויקטים גם בעוד חודש, <strong>ולכן כדאי לתת שם שתזהו מיד</strong> - למשל שם הלקוח ומהות התיק. התיאור אינו חובה, ומשפט אחד מספיק.</p>
+<figure class="shot" style="max-width:539px;margin-inline:auto"><div class="shot-frame"><img src="tu/59aa7cb25c475482.png" alt="אותו חלון אחרי שמילאנו אותו" width="749" height="723" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:9.479%;top:24.343%;width:80.507%;height:6.362%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:9.479%;top:70.954%;width:65.821%;height:8.160%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">אותו חלון אחרי שמילאנו אותו</p><ol class="shot-legend-num"><li><strong>1</strong> השם שהוקלד. <strong>זה מה שתראו ברשימה בעוד חודש</strong>, אז כדאי שם שתזהו.</li><li><strong>2</strong> הנראות, עכשיו על <bdi dir="ltr">Private</bdi>. <strong>זו התמונה שאתם רוצים לראות לפני שאתם לוחצים.</strong></li></ol></figcaption></figure>
+<h3>שלב 5 · לוחצים על Create project, ובודקים שהתיק אכן נפתח כפרטי:</h3>
+<p><strong>לוחצים על הכפתור <bdi dir="ltr"><code>Create project</code></bdi>, והתיק נפתח.</strong></p>
+<p><strong>ומיד אחרי שהוא נפתח, הסתכלו על השורה שמתחת לשם התיק בראש המסך.</strong> אם כתוב בה <bdi dir="ltr"><code>Private</code></bdi> - <strong>התיק סגור, וסיימתם.</strong> ואם כתוב בה שם המשרד שלכם, <strong>התיק פתוח לכל עורכי הדין</strong> ותצטרכו לשנות אותו.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/429e0724d738f161.png" alt="פרויקט פרטי חדש, ריק" width="1684" height="930" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:9.145%;top:20.108%;width:14.667%;height:7.957%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">פרויקט פרטי חדש, ריק</p><ol class="shot-legend-num"><li><strong>1</strong> שם הפרויקט ומצב הנראות שלו. <strong>כאן תמיד אפשר לוודא באיזה מצב הוא נמצא.</strong></li></ol></figcaption></figure>
+<p><strong>ואת אותה בדיקה אפשר לעשות גם על כל התיקים יחד, בלי להיכנס לאף אחד מהם.</strong> ברשימת הפרויקטים מופיע אייקון מנעול קטן על כל כרטיס של תיק פרטי, <strong>וכרטיס שאין עליו מנעול הוא תיק שכל המשרד רואה.</strong></p>
+<aside class="content-box warning">
+<h3>וכך נראה תיק של מי שלא סימן את האפשרות Private בחלון New project, בחלק שנקרא Visibility:</h3>
+<p><strong>בדקנו את זה בפועל.</strong> הקלדנו שם לתיק, לחצנו על <bdi dir="ltr"><code>Create project</code></bdi>, <strong>ולא ירדנו לאזור <bdi dir="ltr"><code>Visibility</code></bdi> ולא סימנו בו כלום.</strong> זה מה שהתקבל:</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/705c780a84dd89a1.png" alt="פרויקט שנוצר בלי לגעת בנראות" width="1753" height="893" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:16.714%;top:25.756%;width:14.661%;height:4.255%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:73.531%;top:35.498%;width:11.979%;height:4.367%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-below" style="left:73.531%;top:46.137%;width:11.979%;height:4.367%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">פרויקט שנוצר בלי לגעת בנראות</p><ol class="shot-legend-num"><li><strong>1</strong> השורה שמתחת לשם התיק. כתוב בה <bdi dir="ltr"><code>Shared with your organization</code></bdi>, <strong>כלומר כל עו"ד במשרד יכול להיכנס לתיק הזה.</strong></li><li><strong>2</strong> התווית <bdi dir="ltr"><code>Everyone at Legal Mind</code></bdi> שליד <bdi dir="ltr"><code>Instructions</code></bdi>.</li><li><strong>3</strong> אותה תווית ליד <bdi dir="ltr"><code>Context</code></bdi>, שהוא מאגר הידע של התיק. <strong>כלומר גם כל מסמך שתעלו לשם גלוי לכל המשרד.</strong></li></ol></figcaption></figure>
+<p><strong>וזה מה שקרה לתיק בגלל שלא סימנתם <bdi dir="ltr"><code>Private</code></bdi>:</strong></p>
+<p><strong>התיק נפתח פתוח לכל המשרד.</strong> מתחת לשם שלו נכתב <bdi dir="ltr">Shared with your organization</bdi>, <strong>וזה אומר שכל עו"ד בחשבון של המשרד יכול להיכנס אליו</strong> - בלי שהזמנתם אותו ובלי שתדעו שהוא נכנס.</p>
+<p><strong>וזה חל גם על כל מה שתעלו לתיק מהיום.</strong> ליד <bdi dir="ltr"><code>Instructions</code></bdi> וליד <bdi dir="ltr"><code>Context</code></bdi> מופיעה כעת התווית <bdi dir="ltr"><code>Everyone at Legal Mind</code></bdi>, <strong>כלומר כל מסמך שתעלו למאגר הידע וכל הוראה שתכתבו לתיק גלויים לכל המשרד באותה מידה.</strong></p>
+<p><strong>ומה שלא נחשף הוא השיחות שלכם.</strong> גם בתיק פתוח, השיחות שאתם מנהלים בתוכו נשארות אישיות - <strong>וזה כתוב על המסך עצמו, בשורה <bdi dir="ltr"><code>All chats are private unless shared</code></bdi>.</strong></p>
+<p><strong>ולמה זה קורה לכל כך הרבה אנשים:</strong> ההגדרה אינה מוסתרת, היא נמצאת באותו חלון. <strong>אבל היא בתחתיתו, מתחת לשני שדות שממלאים</strong> - ומי שמילא את השם ולחץ מיד על <bdi dir="ltr"><code>Create project</code></bdi> פשוט לא הגיע אליה.</p>
+<p><strong>ואם זה קרה לכם, אפשר לתקן.</strong> לא צריך למחוק את התיק ולפתוח חדש - <strong>נכנסים אליו, לוחצים על <bdi dir="ltr"><code>Share</code></bdi>, ומשנים את ההגדרה שבתחתית החלון.</strong> איך עושים את זה בדיוק כתוב בפרק הבא.</p>
+</aside>
+<h3>ואם פתחתם פרויקט לכל המשרד בטעות:</h3>
+<p><strong>זה קורה, וזה הפיך.</strong></p>
+<p>נכנסים לפרויקט, לוחצים על <bdi dir="ltr"><code>Share</code></bdi>, <strong>ובתחתית החלון שנפתח יש אזור בשם <bdi dir="ltr">General access</bdi>.</strong> משם מחזירים אותו ל-<bdi dir="ltr">Only people invited</bdi>. <strong>נראה את המסך הזה מקרוב בפרק הבא.</strong></p>
+<p><strong>ומה שחשוב לדעת:</strong> השינוי חל מכאן והלאה. <strong>הוא לא מבטל את מה שכבר נקרא בזמן שהפרויקט היה פתוח</strong>, ולכן הכלל הוא להתחיל סגור ולפתוח רק כשצריך.</p>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>מתחילים תמיד מפרויקט פרטי.</strong></p>
+<p>לכלל הארגון פותחים רק מאגרי ידע שאין בהם מידע לקוח: תבניות, נהלים, בנקי הערות ורשימות בדיקה.</p>
+<p><strong>תיק לקוח פעיל נשאר פרטי</strong>, ומי שצריך לעבוד עליו מוזמן אליו בשמו.</p>
+</aside>
+<h3>ומה מכניסים לפרויקט אחרי שנוצר:</h3>
+<p>עכשיו מכניסים אליו את החומר של התיק. <strong>בצד הפרויקט יש אזור בשם <bdi dir="ltr">Context</bdi></strong>, ולשם מעלים את המסמכים ואת נהלי המשרד.</p>
+<p><strong>כל מה שיושב שם, <bdi dir="ltr">Claude</bdi> קורא בכל שיחה שתפתחו בפרויקט</strong> - בלי שתזכירו לו ובלי שתעלו שוב.</p>
+<p><strong>נראה את זה מקרוב בפרק 05.</strong></p>
+</section>
+<section class="guide-section" id="g1-ch03"><span class="section-number">03</span><h2>כיצד משתפים תיק עם עו"ד אחד, וכיצד מחליטים מה הוא יוכל לעשות בו</h2>
+<p><strong>עד עכשיו התיק היה שלכם בלבד.</strong> פתחתם אותו כ-<bdi dir="ltr"><code>Private</code></bdi>, והוא אינו מופיע במסך של אף אחד אחר במשרד.</p>
+<p><strong>והפרק הזה עוסק ברגע שבו אתם רוצים שעוד מישהו יעבוד עליו יחד אתכם</strong> - שותף לתיק, עו"ד מהמחלקה, או מתמחה שאתם רוצים שיקרא את החומר ולא ישנה בו כלום.</p>
+<p><strong>ושיתוף ב-<bdi dir="ltr">Claude</bdi> נעשה לאדם מסוים ובשמו.</strong> מקלידים את כתובת המייל שלו, קובעים מה מותר לו לעשות בתיק, ולוחצים לשתף. <strong>מרגע זה התיק מופיע אצלו במסך, והוא יכול לשוחח עם <bdi dir="ltr">Claude</bdi> על החומר שבתוכו.</strong></p>
+<p><strong>ומה שקובע כמה הוא יוכל לעשות שם הוא הרשאה אחת מתוך שתיים:</strong> או שהוא רק קורא, או שהוא גם משנה. <strong>את ההבדל ביניהן נסביר בשלב 3, והוא גדול יותר ממה שהוא נשמע.</strong></p>
+<p><strong>ולמה כדאי לקרוא את הפרק הזה לאט:</strong> כאן נעשות רוב הטעויות של משרדים ב-<bdi dir="ltr">Claude</bdi>. לא כי זה מסובך - <strong>אלא כי הכל קורה בחלון אחד קטן, בשלוש לחיצות, ואף אחת מהן לא שואלת אתכם אם אתם בטוחים.</strong></p>
+<p><strong>וזה מה שנעשה בארבעת השלבים:</strong> נפתח את חלון השיתוף · נקליד את המייל ונוודא שהוא של המשרד · נבחר מה מותר לאדם שהזמנו · <strong>ונחליט אם כל עורכי הדין במשרד יוכלו להיכנס לתיק בלי שהזמנו אותם.</strong></p>
+<h3>שלב 1 · פותחים את חלון השיתוף:</h3>
+<p>נכנסים לפרויקט. בשורה העליונה של המסך יש כפתור בשם <bdi dir="ltr"><code>Share</code></bdi>, ולוחצים עליו.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/dd0ed62416c9ce60.png" alt="עמוד הפרויקט" width="1692" height="385" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:86.229%;top:49.870%;width:5.142%;height:8.831%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">עמוד הפרויקט</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Share</bdi>. <strong>כל עוד לא נגעתם בו, אף אחד לא רואה את הפרויקט הזה.</strong></li></ol></figcaption></figure>
+<p><strong>נפתח חלון, ובו שלושה אזורים זה מתחת לזה.</strong> כדאי להכיר אותם לפני שנוגעים במשהו, כי כל אחד מהם עושה דבר אחר:</p>
+<p><strong>למעלה</strong> יש שדה ריק. <strong>שם מקלידים את המייל של מי שרוצים להזמין.</strong></p>
+<p><strong>באמצע</strong>, תחת הכותרת <bdi dir="ltr"><code>People with access</code></bdi>, יש רשימה של מי שכבר יש לו גישה לפרויקט. <strong>כרגע אתם לבד ברשימה הזו.</strong></p>
+<p><strong>למטה</strong>, תחת הכותרת <bdi dir="ltr"><code>General access</code></bdi>, יש הגדרה אחת. <strong>היא קובעת אם כל המשרד יכול להיכנס לפרויקט בלי שהזמנתם אף אחד.</strong> נגיע אליה בשלב 4.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/20b6ac0ded05fa4c.png" alt="חלון השיתוף" width="735" height="563" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:9.660%;top:26.110%;width:80.272%;height:8.881%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:9.660%;top:39.076%;width:80.272%;height:16.874%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">חלון השיתוף</p><ol class="shot-legend-num"><li><strong>1</strong> שדה ההזמנה. <strong>מקלידים בו שם או מייל, או מדביקים רשימה שלמה.</strong></li><li><strong>2</strong> מי שכבר יש לו גישה. <strong>ברגע הזה זה אתם בלבד</strong>, וזו הדרך לוודא לפני השיתוף שאף אחד אחר לא נמצא שם.</li></ol></figcaption></figure>
+<p><strong>ליד השם שלכם ברשימה האמצעית כתוב <bdi dir="ltr"><code>Owner</code></bdi>.</strong> זה אומר דבר אחד בלבד: אתם פתחתם את הפרויקט הזה.</p>
+<p><strong>וזה לא קשור לתפקיד שלכם במשרד.</strong> יש גם <bdi dir="ltr"><code>Owner</code></bdi> של חשבון ה-<bdi dir="ltr">Claude</bdi> של המשרד כולו, וזה מי שמנהל את המנוי ואת החיוב. <strong>אותו מונח באנגלית, שני דברים שונים לגמרי</strong> - וב-<bdi dir="ltr"><code>Owner</code></bdi> השני עוסק מדריך 2.</p>
+<h3>שלב 2 · מקלידים את המייל, ובודקים שהוא של המשרד:</h3>
+<p>מתחילים להקליד את שמו של מי שרוצים להזמין. <strong>אחרי כמה אותיות נפתחת מתחת לשדה רשימה של כתובות מייל שמתאימות לאותיות שהקלדתם.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/a48133349df56888.png" alt="השלמות שהמסך מציע בזמן הקלדה" width="729" height="569" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:9.739%;top:38.137%;width:79.698%;height:8.084%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:9.739%;top:47.452%;width:79.698%;height:8.084%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:72.840%;top:27.768%;width:13.992%;height:5.975%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">השלמות שהמסך מציע בזמן הקלדה</p><ol class="shot-legend-num"><li><strong>1</strong> השורה העליונה. <strong>הכתובת שבה נגמרת ב-gmail.com, כלומר חשבון פרטי</strong> ולא של המשרד.</li><li><strong>2</strong> השורה שמתחתיה. <strong>הכתובת שבה נגמרת ב-legalmind.co.il, וזו הכתובת של המשרד</strong> - וההבדל בין השתיים הוא לחיצה אחת.</li><li><strong>3</strong> הכפתור שקובע מה מותר למי שמזמינים. <strong>ברירת המחדל שלו היא Can view.</strong></li></ol></figcaption></figure>
+<aside class="content-box warning">
+<h3>לפני שאתם לוחצים על שורה ברשימה, קראו את סוף הכתובת:</h3>
+<p><strong>בצילום שלמעלה הקלדנו ארבע אותיות בלבד, ו-<bdi dir="ltr">Claude</bdi> הציע שתי שורות.</strong></p>
+<p><strong>שתי השורות מתחילות באותן אותיות בדיוק, ולכן הן נראות כמעט זהות.</strong> מה שמבדיל ביניהן נמצא בסוף הכתובת, אחרי הסימן <bdi dir="ltr"><code>@</code></bdi>:</p>
+<p><strong>בשורה העליונה, סימון 1</strong>, הכתובת נגמרת ב-<bdi dir="ltr"><code>gmail.com</code></bdi>. <strong>זה חשבון מייל פרטי, לא של המשרד.</strong></p>
+<p><strong>בשורה שמתחתיה, סימון 2</strong>, הכתובת נגמרת ב-<bdi dir="ltr"><code>legalmind.co.il</code></bdi>. <strong>זה המשרד.</strong></p>
+<p><strong>החלק שאחרי הסימן <bdi dir="ltr"><code>@</code></bdi> נקרא דומיין</strong>, והוא היחיד שאומר לאיזה ארגון הכתובת שייכת. השם שלפניו אינו אומר כלום, <strong>כי הוא זהה בשתי השורות.</strong></p>
+<p><strong>ו-<bdi dir="ltr">Claude</bdi> אינו מסמן איזו מהן של המשרד.</strong> שתי השורות נראות אותו דבר, אחת מעל השנייה, <strong>וההבדל ביניהן הוא לחיצה אחת למעלה או למטה.</strong></p>
+<p><strong>מה שקורה אם לוחצים על השורה העליונה:</strong> בעל חשבון ה-<bdi dir="ltr"><code>gmail</code></bdi> נכנס לפרויקט, <strong>ורואה את כל מה שהעליתם לתיק.</strong> זה לא בלבול פנימי במשרד. זה חומר של לקוח שיצא החוצה.</p>
+<p><strong>ומה שלא בדקנו, לא נכתוב:</strong> מה בדיוק קורה אחרי שמזמינים כתובת חיצונית. אנחנו מתארים מה שרואים במסך ולא משערים מה קורה אחריו.</p>
+</aside>
+<p><strong>ואם צריך להזמין מחלקה שלמה, לא חייבים להקליד שם אחרי שם.</strong> אפשר להעתיק רשימה של כתובות מייל ולהדביק אותה לתוך אותו שדה, <strong>וכל הכתובות ייכנסו כמוזמנות בבת אחת.</strong></p>
+<p><strong>במחלקת נדל"ן של שבעה עורכי דין זה חוסך זמן:</strong> מעתיקים את שבע הכתובות מהמייל או מטבלה, מדביקים, <strong>ועוברים על הרשימה שהתקבלה לפני שמזמינים.</strong></p>
+<p><strong>ושימו לב לשני דברים כשמדביקים רשימה.</strong></p>
+<p><strong>הראשון:</strong> ההרשאה שתבחרו תחול על כל הרשימה יחד, ולא על כל אחד בנפרד. <strong>מי שרוצה לתת הרשאה גבוהה יותר לאדם אחד, יזמין את השאר ברשימה ואותו בהזמנה נפרדת.</strong></p>
+<p><strong>והשני:</strong> כל מה שכתוב למעלה על סוף הכתובת נכון כאן שבעתיים. <strong>כתובת פרטית אחת שהתגנבה לתוך רשימה מודבקת כמעט בלתי אפשרי לתפוס בעין.</strong></p>
+<h3>שלב 3 · בוחרים מה עוה"ד שהזמנתם יוכל לעשות בפרויקט:</h3>
+<p><strong>ברגע שבחרתם שם מהרשימה, הוא נכנס לשדה, ולצידו הופיע כפתור קטן</strong> שעליו כתוב <bdi dir="ltr"><code>Can view</code></bdi>. <strong>הכפתור הזה קובע מה מותר לאדם שאתם מזמינים:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/c208d925f2c66664.png" alt="מוכן, רגע לפני ההזמנה" width="721" height="557" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:8.877%;top:25.673%;width:28.849%;height:9.156%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:71.429%;top:26.032%;width:18.863%;height:8.797%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:78.502%;top:78.995%;width:13.176%;height:10.054%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מוכן, רגע לפני ההזמנה</p><ol class="shot-legend-num"><li><strong>1</strong> השם שנבחר יושב בשדה כשבב, <strong>עם <bdi dir="ltr"><code>x</code></bdi> קטן שמאפשר להתחרט.</strong></li><li><strong>2</strong> בורר ההרשאה שהופיע בתוך השדה. <strong>ברירת המחדל <bdi dir="ltr"><code>Can view</code></bdi>, ובשלב הבא נפתח אותו.</strong></li><li><strong>3</strong> כפתור <bdi dir="ltr"><code>Share</code></bdi>. <strong>רק הלחיצה עליו מזמינה בפועל.</strong></li></ol></figcaption></figure>
+<p>לוחצים על הכפתור, ונפתחות שתי אפשרויות:</p>
+<p><strong><bdi dir="ltr"><code>Can view</code></bdi></strong> · <strong>הוא יוכל לקרוא את כל מה שיש בפרויקט ולשוחח עם <bdi dir="ltr">Claude</bdi> עליו.</strong> לשנות בפרויקט הוא לא יוכל כלום.</p>
+<p><strong><bdi dir="ltr"><code>Can edit</code></bdi></strong> · <strong>הוא יוכל לשנות את התוכן של הפרויקט</strong> - להוסיף מסמכים, למחוק מסמכים ולערוך את ההוראות.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/8264c763ff926f8a.png" alt="תפריט ההרשאות פתוח" width="729" height="563" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:37.723%;top:36.057%;width:50.343%;height:9.236%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:37.723%;top:47.069%;width:50.343%;height:9.591%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">תפריט ההרשאות פתוח</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Can view</bdi>. <strong>רואה את הידע ומשוחח בפרויקט, ולא משנה בו כלום.</strong></li><li><strong>2</strong> <bdi dir="ltr">Can edit</bdi>. <strong>משנה ידע והוראות, וגם מנהל את המשתתפים</strong> - ולכן נותנים אותה לאדם אחד בלבד.</li></ol></figcaption></figure>
+<aside class="content-box warning">
+<h3>האפשרות שנקראת Can edit נותנת גם את הזכות להכניס ולהוציא אנשים מהתיק:</h3>
+<p><strong>ונזכיר איפה האפשרות הזו נמצאת.</strong> בחלון השיתוף שנפתח בלחיצה על <bdi dir="ltr"><code>Share</code></bdi>, בתוך השדה שבו הקלדתם את כתובת המייל, יש כפתור קטן. <strong>ברירת המחדל שלו היא <bdi dir="ltr"><code>Can view</code></bdi>, ולחיצה עליו פותחת שתי אפשרויות: <bdi dir="ltr"><code>Can view</code></bdi> ו-<bdi dir="ltr"><code>Can edit</code></bdi>.</strong></p>
+<p><strong>ומתחת לשם של <bdi dir="ltr"><code>Can edit</code></bdi> כתובה במסך שורה קטנה</strong>, שאומרת שההרשאה הזו כוללת גם ניהול של המשתתפים בתיק. <strong>קל מאוד לעבור עליה בלי לקרוא.</strong></p>
+<p><strong>וזה מה שהיא אומרת בפועל.</strong> נניח שבחרתם באפשרות <bdi dir="ltr"><code>Can edit</code></bdi> עבור עו"ד בשם רון, כדי שיוכל לעדכן את המסמכים בתיק.</p>
+<p><strong>מאותו רגע רון יכול להזמין לתיק אנשים נוספים בעצמו</strong> - מתמחה, עו"ד ממחלקה אחרת, כל מי שירצה. <strong>והוא יכול גם להסיר מהתיק אנשים שכבר נמצאים בו, כולל אתכם.</strong></p>
+<p><strong>הוא אינו צריך את אישורכם, ואתם לא מקבלים על כך שום הודעה.</strong></p>
+<p><strong>ולכן ההמלצה שלנו היא לבחור באפשרות <bdi dir="ltr"><code>Can edit</code></bdi> עבור אדם אחד בלבד בכל תיק</strong> - מי שאחראי בפועל על התוכן. <strong>לכל השאר בוחרים <bdi dir="ltr"><code>Can view</code></bdi>, וזה מספיק להם כדי לקרוא את החומר ולעבוד איתו.</strong></p>
+</aside>
+<p>אחרי שלחצתם על <bdi dir="ltr"><code>Share</code></bdi>, האדם שהזמנתם מופיע ברשימה האמצעית, <strong>ולצד שמו כתובה ההרשאה שנתתם לו.</strong> אפשר ללחוץ עליה ולשנות אותה בכל רגע.</p>
+<figure class="shot" style="max-width:615px;margin-inline:auto"><div class="shot-frame"><img src="tu/53fe6e377be30970.png" alt="המשתתף אחרי ההוספה, עם ההרשאה שלו לצידו" width="726" height="614" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:9.229%;top:41.857%;width:81.405%;height:9.772%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:9.229%;top:52.117%;width:81.405%;height:9.772%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:9.229%;top:70.033%;width:81.405%;height:10.749%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">המשתתף אחרי ההוספה, עם ההרשאה שלו לצידו</p><ol class="shot-legend-num"><li><strong>1</strong> אתם, ולצד השם <bdi dir="ltr"><code>Owner</code></bdi> - <strong>אתם פתחתם את התיק.</strong></li><li><strong>2</strong> עוה"ד שהוזמן, ולצד שמו ההרשאה שבחרתם - <bdi dir="ltr"><code>Can view</code></bdi>.</li><li><strong>3</strong> ו-<bdi dir="ltr"><code>General access</code></bdi> נשאר <bdi dir="ltr"><code>Only people invited</code></bdi> - <strong>ההזמנה האישית לא פתחה את התיק לשאר המשרד.</strong></li></ol></figcaption></figure>
+<p><strong>ואצלו במסך זה נראה כך:</strong> הפרויקט אינו מופיע ברשימת הפרויקטים שהוא פתח בעצמו, <strong>אלא בלשונית נפרדת בשם <bdi dir="ltr"><code>Shared with you</code></bdi></strong> - כלומר "שותפו איתך".</p>
+<p><strong>ולכן אם הוא אומר לכם שהוא לא מוצא את הפרויקט, כמעט תמיד הוא פשוט מחפש אותו במקום הלא נכון.</strong> תגידו לו לפתוח את <bdi dir="ltr"><code>Shared with you</code></bdi>.</p>
+<h3>שלב 4 · מחליטים אם כל המשרד יוכל להיכנס לפרויקט:</h3>
+<p>עד כאן הזמנתם אנשים אחד-אחד. <strong>בתחתית אותו חלון יש אזור שקובע משהו אחר לגמרי:</strong> האם כל מי שעובד במשרד יכול להיכנס לפרויקט, <strong>גם בלי שהזמנתם אותו.</strong></p>
+<p><strong>האזור נקרא <bdi dir="ltr"><code>General access</code></bdi>, ויש בו שתי אפשרויות:</strong></p>
+<p><strong><bdi dir="ltr">Only people invited</bdi></strong> · רק מי שהזמנתם. <strong>זו ברירת המחדל, וזה מה שאתם רוצים בתיק לקוח.</strong></p>
+<p><strong><bdi dir="ltr">Everyone at</bdi> ואחריו שם המשרד</strong> · כל עו"ד בארגון, <strong>בלי הזמנה ובלי שתדעו מי נכנס.</strong></p>
+<p><strong>וזו אותה הגדרה בדיוק שבחרתם כשפתחתם את התיק, בפרק 02</strong>, ומכאן אפשר לשנות אותה בכל רגע.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/9475a9217636698a.png" alt="אזור General access, פתוח" width="728" height="562" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:9.753%;top:67.260%;width:37.637%;height:8.007%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:16.758%;top:83.630%;width:42.995%;height:7.117%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">אזור General access, פתוח</p><ol class="shot-legend-num"><li><strong>1</strong> המצב הנוכחי, <bdi dir="ltr">Only people invited</bdi>.</li><li><strong>2</strong> האפשרות השנייה, <bdi dir="ltr">Everyone at Legal Mind</bdi>.</li></ol></figcaption></figure>
+<aside class="content-box info">
+<h3>ואם האפשרות הזאת לא קיימת אצלכם במסך:</h3>
+<p><strong>זו לא תקלה, ולא חסרה לכם הרשאה.</strong></p>
+<p>המשרד יכול לכבות את היכולת לפתוח פרויקטים לכלל הארגון. <strong>ההגדרה יושבת אצל ה-<bdi dir="ltr"><code>Owner</code></bdi></strong>, במסכי הניהול תחת <bdi dir="ltr"><code>Data and privacy</code></bdi>.</p>
+<p><strong>וכשהיא מכובה קורים שני דברים:</strong> כל הפרויקטים שהיו פתוחים לארגון הופכים לפרטיים, <strong>ואי אפשר לפתוח חדשים כאלה.</strong></p>
+<p><strong>ומה שכן ממשיך לעבוד הוא שיתוף פרטני לפי מייל</strong> - כלומר כל מה שלמדתם בפרק הזה עד עכשיו נשאר בתוקף, <strong>ורק הכפתור שפותח לכולם אינו שם.</strong></p>
+</aside>
+<p><strong>וכשפרויקט כן פתוח לכל המשרד, אפשר לראות את זה מבחוץ:</strong> ליד <bdi dir="ltr">Instructions</bdi> וליד <bdi dir="ltr">Context</bdi> מופיעה תווית שאומרת שכל מי שבארגון רואה אותם. <strong>כלומר לפני שאתם מעלים מסמך, אתם רואים ליד כפתור ההעלאה עצמו מי יקרא אותו.</strong></p>
+<aside class="content-box legal-example">
+<h3>דוגמה לאיך נושא ההרשאות יכול להיראות במשרד עו"ד ובו שני עובדים בלבד:</h3>
+<p><strong>האדם הנוסף במשרד אינו חייב להיות עו"ד</strong> - זו יכולה להיות מזכירה או מנהלת משרד.</p>
+<p><strong>עוה"ד מתחזק את בנק ההערות בהרשאת עריכה, והמזכירה מקבלת <bdi dir="ltr">Can view</bdi>.</strong> היא מריצה את הבדיקה על טיוטה שהגיעה, <strong>ולא משנה את השיטה עצמה.</strong></p>
+</aside>
+<aside class="content-box legal-example">
+<h3>ואיך נושא ההרשאות יכול להיראות במחלקת נדל"ן שלמה במשרד עורכי דין:</h3>
+<p><strong>פרויקט ארגוני בשם בנק הערות להסכמי מכר קבלן</strong>, פתוח לכל המחלקה.</p>
+<p><strong>עו"ד אחד מתחזק אותו</strong>, והוא היחיד עם <bdi dir="ltr">Can edit</bdi>. הוא מוסיף הערות, מעדכן נוסחים ומוחק מה שהתיישן.</p>
+<p><strong>כל השאר מקבלים <bdi dir="ltr">Can view</bdi>.</strong> הם מריצים ניתוח מול הבנק ולא משנים אותו, <strong>וכך יש למשרד גרסה אחת של השיטה במקום שבע.</strong></p>
+</aside>
+<aside class="content-box warning">
+<h3>ודבר אחרון באותו הנושא שאסור בשום אופן לדלג עליו:</h3>
+<p><strong>מתן גישה לאדם שאינו עו"ד כפוף לכללי החיסיון ולחובת הסודיות</strong> החלות על המשרד.</p>
+<p><strong>ההרשאה הטכנית אינה מחליפה את ההחלטה המקצועית</strong> מי רשאי לראות את חומר הלקוח. <strong><bdi dir="ltr">Can view</bdi> היא הגדרה במערכת, ולא היתר.</strong></p>
+</aside>
+<h3>ואיך מסירים עובד מפרויקט משותף:</h3>
+<p><strong>באותה רשימה שבה הוספתם אותו, לוחצים על ההרשאה שכתובה לצד שמו ובוחרים <bdi dir="ltr">Remove access</bdi>.</strong></p>
+<p>ובתיעוד הרשמי כתוב: <strong>מרגע ההסרה אין לו יותר גישה לפרויקט ולתוכן שבו.</strong></p>
+<figure class="shot" style="max-width:623px;margin-inline:auto"><div class="shot-frame"><img src="tu/5a2d95a3b7045b09.png" alt="מה שנפתח בלחיצה על ההרשאה של מי שכבר בפנים" width="711" height="593" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:73.980%;top:52.108%;width:17.018%;height:7.589%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:38.256%;top:59.359%;width:53.305%;height:31.029%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:39.100%;top:82.631%;width:52.461%;height:7.251%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מה שנפתח בלחיצה על ההרשאה של מי שכבר בפנים</p><ol class="shot-legend-num"><li><strong>1</strong> הכפתור <bdi dir="ltr"><code>Can view</code></bdi> שליד שמו של המשתתף. <strong>הלחיצה עליו פתחה את התפריט.</strong></li><li><strong>2</strong> שתי ההרשאות, וליד הפעילה סימן וי. <strong>מתחת לכל אחת כתוב במסך מה היא נותנת</strong> - וליד <bdi dir="ltr"><code>Can edit</code></bdi> כתוב במפורש: ניהול התוכן <strong>והמשתתפים.</strong></li><li><strong>3</strong> <bdi dir="ltr">Remove access</bdi>. <strong>מכאן מסירים, ומרגע ההסרה אין לו גישה לפרויקט ולתוכנו.</strong></li></ol></figcaption></figure>
+<p><strong>וכך נראית הרשימה מיד אחרי ההסרה - נשארתם רק אתם:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/e07ab85fc8a50955.png" alt="הרשימה מיד אחרי ההסרה" width="720" height="549" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:9.306%;top:40.073%;width:81.806%;height:15.847%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הרשימה מיד אחרי ההסרה</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>People with access</code></bdi> אחרי ההסרה - <strong>נשארתם רק אתם.</strong> התיק חזר להיות שלכם בלבד.</li></ol></figcaption></figure>
+<aside class="content-box warning">
+<h3>ומה שהתיעוד אינו אומר:</h3>
+<p><strong>לא כתוב שם מה קורה לשיחות שהוא ניהל בפרויקט לפני שהוסר.</strong></p>
+<p><strong>אז אל תניחו שהן נמחקו, ואל תניחו שהן נשארו.</strong> מי שזה מהותי לו בתיק מסוים - שיפנה ל-<bdi dir="ltr">Anthropic</bdi> ויברר.</p>
+<p><strong>ובכל מקרה, ההסרה מונעת גישה מכאן והלאה ואינה מבטלת את מה שכבר נקרא.</strong></p>
+</aside>
+<p><strong>ויש בחלון גם כפתור בשם <bdi dir="ltr"><code>Copy link</code></bdi> שמעתיק קישור לפרויקט.</strong> מה שלא כתוב בשום מקום הוא מה רואה אדם שקיבל את הקישור ואין לו גישה - <strong>ולכן אל תסתמכו עליו.</strong> מי שצריך גישה, הזמינו אותו בשמו.</p>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>תוצר ביניים לצוות מצומצם משתפים פרטנית לפי מייל, ובהרשאת צפייה בלבד.</strong></p>
+<p><strong>והרשאת עריכה ניתנת לאדם אחד</strong> - זה שאחראי על התוכן.</p>
+</aside>
+</section>
+<section class="guide-section" id="g1-ch04"><span class="section-number">04</span><h2>האם מי ששיתפתם איתו את הפרויקט רואה גם את השיחות שלכם</h2>
+<p>זו השאלה ששואלים אותנו יותר מכל שאלה אחרת, והיא נשאלת בדרך כלל אחרי שהשיתוף כבר נעשה.</p>
+<p><strong>התשובה קצרה: לא.</strong></p>
+<p>מי שהזמנתם לפרויקט רואה את החומר שהעליתם אליו. <strong>את השיחות שאתם מנהלים שם הוא לא רואה</strong> - לא את השאלות ששאלתם, לא את התשובות שקיבלתם, וגם לא את זה שדיברתם על התיק בכלל.</p>
+<p>וזה נכון גם בפרויקט שפתוח לכל המשרד.</p>
+<h3>מה בדיוק עובר בשיתוף:</h3>
+<p>כשאתם משתפים פרויקט, אתם משתפים את מה שקבוע בו: <strong>הקבצים שהעליתם, ההוראות שכתבתם, ובנק הידע שבנה את התיק.</strong></p>
+<p>השיחות אינן חלק מזה. <strong>כל שיחה נשארת של מי שפתח אותה</strong>, אלא אם הוא בחר לשתף אותה בנפרד.</p>
+<p>וכך זה כתוב גם בתיעוד הרשמי של <bdi dir="ltr">Anthropic</bdi>: שיחות בתוך פרויקט אינן משותפות כברירת מחדל.</p>
+<aside class="content-box info">
+<h3>ומה לגבי המשרד עצמו:</h3>
+<p><strong>כאן מדובר בעורכי הדין שעובדים איתכם, ולא בארגון.</strong></p>
+<p>מה שנאמר בפרק 01 על ה-<bdi dir="ltr"><code>Primary Owner</code></bdi> ועל בקשת הייצוא נשאר נכון גם כאן, <strong>והוא עניין אחר לגמרי מהשאלה מה קולגה רואה על המסך שלו.</strong></p>
+</aside>
+<h3>ואיפה רואים את זה במסך:</h3>
+<p>פרויקט שמישהו שיתף אתכם בו לא מתערבב עם הפרויקטים שפתחתם בעצמכם. <strong>הוא יושב בלשונית נפרדת בשם <bdi dir="ltr"><code>Shared with you</code></bdi>.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/9642338e1e02da1d.png" alt="רשימת הפרויקטים, ושלוש הלשוניות שבראשה" width="1204" height="733" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:7.392%;top:25.102%;width:10.548%;height:4.638%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:19.186%;top:25.102%;width:9.967%;height:4.638%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:30.233%;top:25.102%;width:12.458%;height:4.638%"><span class="shot-target-badge">3</span></div><div class="shot-target badge-outside-left" style="left:39.867%;top:62.210%;width:19.767%;height:3.956%"><span class="shot-target-badge">4</span></div></div><figcaption><p class="shot-caption">רשימת הפרויקטים, ושלוש הלשוניות שבראשה</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Your projects</bdi>. <strong>זו הלשונית שנפתחת מעצמה</strong>, ובה רק מה שאתם פתחתם.</li><li><strong>2</strong> <bdi dir="ltr">Organization</bdi>. <strong>פרויקטים שנפתחו לכל המשרד.</strong></li><li><strong>3</strong> <bdi dir="ltr">Shared with you</bdi>. <strong>מה ששיתפו איתכם אישית</strong>, וזו הלשונית שאיש אינו לוחץ עליה.</li><li><strong>4</strong> ההודעה שאין פרויקטים. <strong>וכאן נולדת הטעות:</strong> המסך אומר שאין לכם כלום, ובלשונית שלידו מחכה תיק ששיתפו איתכם.</li></ol></figcaption></figure>
+<p>וכשנכנסים אליו, החומר המשותף נמצא בצד, <strong>והשיחות שלכם נמצאות במקום אחר לגמרי.</strong> גם ויזואלית אלה שני אזורים שונים.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/6c970083f1f7cf5d.png" alt="ומה שיושב שם" width="677" height="405" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:53.323%;top:36.049%;width:23.781%;height:10.617%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:14.919%;top:69.877%;width:31.167%;height:7.407%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:44.165%;top:61.235%;width:4.727%;height:8.148%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">ומה שיושב שם</p><ol class="shot-legend-num"><li><strong>1</strong> הלשונית לחוצה, <strong>והתיק מופיע.</strong> אותו מסך בדיוק, לחיצה אחת הבדל.</li><li><strong>2</strong> שם הפותח. <strong>פרויקט ששיתפו איתכם נושא תמיד את שם מי שיצר אותו.</strong></li><li><strong>3</strong> המנעול. <strong>הפרויקט פרטי ולא ארגוני</strong>, כלומר הוא שותף אליכם אישית ולא נפתח לכל המשרד.</li></ol></figcaption></figure>
+<h3>ולמה דווקא לעו"ד זה משנה:</h3>
+<p>כי בלי לדעת את זה, משרדים נופלים לאחת משתי טעויות. <strong>שתיהן עולות כסף, וכל אחת מהן הפוכה מהשנייה.</strong></p>
+<p><strong>הראשונה היא להיסגר.</strong> לא פותחים שום פרויקט ארגוני, מחשש שכולם יראו על מה כולם עובדים. <strong>התוצאה: שבעה עורכי דין בונים שבע פעמים את אותה שיטה</strong>, וכל אחד מהם משכתב מחדש את מה שכבר קיים אצל השני.</p>
+<p><strong>והשנייה היא להיפתח לגמרי.</strong> מניחים שממילא כולם רואים הכל, <strong>ואז נכנס לפרויקט הארגוני חומר של לקוח שלא היה צריך להיכנס לשם.</strong></p>
+<p>ושתי הטעויות נעלמות ברגע שיודעים איפה בדיוק עובר הגבול:</p>
+<p><strong>מה שהעליתם לפרויקט - רואה כל מי ששיתפתם.</strong> <strong>מה שאתם כותבים בשיחה - נשאר אצלכם.</strong></p>
+<h3>וכדי לא להתלבט בכל פעם מחדש:</h3>
+<p>הטבלה הזאת עונה על השאלה החוזרת: מה שמים איפה, ובאיזו הרשאה.</p>
+<div class="tbl-wrap"><table class="tbl"><thead><tr><th>סוג התוכן</th><th>איפה שמים אותו</th><th>ומה נותנים למי שנכנס</th></tr></thead><tbody><tr><td>תיק לקוח פעיל, מידע רגיש</td><td>פרויקט פרטי, בלי שיתוף</td><td>כלום</td></tr><tr><td>תוצר ביניים לצוות מצומצם</td><td>משתפים פרטנית לפי מייל</td><td><bdi dir="ltr"><code>Can view</code></bdi></td></tr><tr><td>מאגר ידע חי שמישהו מתחזק</td><td>פרטני או ארגוני</td><td><bdi dir="ltr"><code>Can edit</code></bdi> לאחראי, <bdi dir="ltr"><code>Can view</code></bdi> לשאר</td></tr><tr><td>בנקי הערות, תבניות ונהלים</td><td>ארגוני, פתוח לכולם</td><td><bdi dir="ltr"><code>Can view</code></bdi> לכולם, <bdi dir="ltr"><code>Can edit</code></bdi> לאחראי</td></tr></tbody></table></div>
+<p><strong>הטבלה הזאת חוזרת גם בדף התרגול להדפסה</strong>, כדי שתהיה מול העיניים בחודש הראשון.</p>
+</section>
+<section class="guide-section" id="g1-ch05"><span class="section-number">05</span><h2>למה <bdi dir="ltr">Claude</bdi> לא זוכר בשיחה חדשה מה סיכמתם בשיחה הקודמת</h2>
+<p><strong>זה קורה כמעט לכולם בשבוע הראשון, ולכן נעצור כאן רגע.</strong></p>
+<p><strong>כתבתם משהו חשוב בשיחה</strong> - הבהרה על התיק, החלטה על נוסח, כלל שסיכמתם. <strong>פתחתם שיחה חדשה באותו פרויקט - ו-<bdi dir="ltr">Claude</bdi> אינו יודע דבר על מה שסיכמתם.</strong></p>
+<p><strong>ההרגשה היא שהוא שכח. הוא לא שכח.</strong></p>
+<h3>מה באמת קורה בין שיחה לשיחה:</h3>
+<p><strong>ההקשר של שיחה נשאר בתוך אותה שיחה.</strong> הוא אינו עובר לשיחה אחרת, <strong>גם כששתיהן באותו פרויקט.</strong></p>
+<p><strong>וזה דווקא לטובתכם:</strong> שיחה על נושא אחד לא גוררת איתה את מה שנאמר בשיחה על נושא אחר.</p>
+<h3>ושני אזורים שכן חלים על כל השיחות בפרויקט:</h3>
+<p><strong>בצד הפרויקט יש שני אזורים נפרדים, וקל להתבלבל ביניהם.</strong></p>
+<p><strong><bdi dir="ltr">Instructions</bdi></strong> · איך <bdi dir="ltr">Claude</bdi> יענה בתיק הזה. מי הצדדים, את מי אתם מייצגים, ומה אסור לו לעשות.</p>
+<p><strong><bdi dir="ltr">Context</bdi></strong> · החומר עצמו. מסמכי התיק ונהלי המשרד.</p>
+<p><strong>שניהם נקראים בכל שיחה חדשה שנפתחת בפרויקט.</strong> ההבדל הוא שהראשון אומר לו איך לעבוד, <strong>והשני נותן לו על מה.</strong></p>
+<figure class="shot" style="max-width:482px;margin-inline:auto"><div class="shot-frame"><img src="tu/9cbdab432ad2dcc7.png" alt="מאגר הידע של הפרויקט, ריק" width="530" height="572" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:12.264%;top:27.273%;width:76.792%;height:36.713%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:82.453%;top:28.147%;width:4.906%;height:4.720%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">מאגר הידע של הפרויקט, ריק</p><ol class="shot-legend-num"><li><strong>1</strong> המאגר. <strong>מה שיושב כאן נקרא בכל שיחה חדשה שנפתחת בפרויקט.</strong></li><li><strong>2</strong> הכפתור להוספה.</li></ol></figcaption></figure>
+<h3>איך מעלים חומר למאגר הידע:</h3>
+<p><strong>לוחצים על ה-<bdi dir="ltr"><code>+</code></bdi> שליד <bdi dir="ltr">Context</bdi>, ונפתחות שתי אפשרויות:</strong> להעלות קובץ מהמחשב, <strong>או להדביק טקסט ישירות.</strong></p>
+<p><strong>והאפשרות השנייה שימושית יותר ממה שנדמה.</strong> נהלי משרד, כללי ניסוח ורשימת בדיקה אפשר פשוט להדביק, בלי ליצור קובץ.</p>
+<aside class="content-box warning">
+<h3>וסריקות מעלים כ-PDF, לא כקובץ Word:</h3>
+<p><strong>לפי התיעוד הרשמי, מקובץ שאינו PDF נשלף טקסט בלבד, ותמונות שמוטמעות בתוכו אינן נקראות.</strong></p>
+<p><strong>ומה שזה אומר בתיק:</strong> מסמך סרוק שתעלו כקובץ Word יגיע ריק, כי כל מה שיש בו הוא תמונה. <strong>זו טעות שנראית כמו תקלה ואינה תקלה.</strong></p>
+<p><strong>ועוד פרט שכדאי לדעת מראש:</strong> בפרויקט המגבלה היא 30 מגה לקובץ.</p>
+</aside>
+<aside class="content-box info">
+<h3>ומי עוד כותב הוראות שחלות עליכם:</h3>
+<p><strong>במסך ההוראות של הפרויקט כתוב שהן יפעלו לצד ההוראות האישיות שלכם.</strong> <strong>ובמנוי Team יש שכבה שלישית מעליהן:</strong> הוראות שהמשרד קובע לכל הארגון, <strong>והן גוברות על האישיות.</strong></p>
+<p><strong>כלומר שלוש שכבות: המשרד, אתם, והתיק הזה.</strong> ואם כתבתם הוראה ושום דבר לא השתנה - <strong>ייתכן שיש הוראה ארגונית שגוברת עליה.</strong> ההגדרה הארגונית מוסברת במדריך 2, פרק 04.</p>
+</aside>
+<h3>מה כדאי לשים במאגר הידע, ומה עדיף לא:</h3>
+<p><strong>כן:</strong> מסמכי התיק · נהלי המשרד · בנק ההערות · החלטות שסוכמו ושיחולו על כל העבודה בתיק · רשימת הצדדים ומי מייצג את מי.</p>
+<p><strong>עדיף לא:</strong> טיוטות ביניים שישתנו מחר · חומר שאתם לא בטוחים שמותר לשתף עם מי שיש לו גישה לפרויקט · <strong>וכל דבר שנכון לשיחה אחת בלבד.</strong></p>
+<p><strong>כלל האצבע:</strong> אם משהו יהיה נכון גם בעוד חודש, מקומו ב-<bdi dir="ltr"><code>Context</code></bdi>. <strong>אם הוא נכון רק היום, השאירו אותו בשיחה.</strong></p>
+<div class="copy-block"><div class="copy-heading"><strong>הוראות פרויקט לתיק, נוסח פתיחה להעתקה</strong><button class="copy-button" data-copy-target="g1-copy-1" type="button">העתקת ההוראה</button></div><div class="copy-body" id="g1-copy-1">זהו תיק של [סוג התיק]. הצדדים הם [שמות], ואנחנו מייצגים את [הצד].
+
+בכל תשובה בתיק הזה: הפנה לעמוד ולשורה שממנה שלפת כל נתון. כשמידע חסר,
+אמור זאת במפורש ואל תשלים אותו. אל תסתמך על מסמך שאינו בתיקייה.</div></div>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>בסוף כל שיחה משמעותית, שאלו את עצמכם שאלה אחת:</strong> האם משהו שנקבע כאן צריך לחול גם על השיחות הבאות?</p>
+<p><strong>אם כן - הוא לא נשאר בשיחה, הוא עובר ל-<bdi dir="ltr">Context</bdi>.</strong></p>
+</aside>
+</section>
+<section class="guide-section" id="g1-ch06"><span class="section-number">06</span><h2>מוצאים את הסקילים שלכם, ויודעים מי העלה כל אחד</h2>
+<p><strong>ייתכן שכבר ראיתם במסך שלכם סקילים שלא אתם התקנתם</strong>, ותהיתם מאיפה הם הגיעו. <strong>הפרק הזה עונה על זה.</strong></p>
+<h3>ומה זה בעצם סקיל:</h3>
+<p><strong>שיטת עבודה ארוזה.</strong> הוראות, דוגמאות וקבצי עזר, <strong>ש-<bdi dir="ltr">Claude</bdi> מפעיל בעצמו כשהוא מזהה שהמשימה מתאימה</strong> - בלי שתזכירו לו בכל פעם.</p>
+<p><strong>במשרד זה נראה כך:</strong> ניתוח הסכם מול בנק ההערות · מילוי טופס טאבו · תבנית מכתב התראה.</p>
+<h3>שלב 1 · נכנסים להגדרות:</h3>
+<p><strong>בפינה השמאלית התחתונה של המסך ב-<bdi dir="ltr">Claude</bdi> כתוב שמכם. לוחצים עליו, ונפתח תפריט - ובו בוחרים <bdi dir="ltr"><code>Settings</code></bdi>:</strong></p>
+<figure class="shot" style="max-width:345px;margin-inline:auto"><div class="shot-frame"><img src="tu/8e210837198c3093.png" alt="תפריט החשבון פתוח" width="442" height="666" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:12.217%;top:13.213%;width:59.050%;height:10.661%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:12.217%;top:26.577%;width:61.765%;height:4.655%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">תפריט החשבון פתוח</p><ol class="shot-legend-num"><li><strong>1</strong> שני החשבונות שלכם, והוו הסימון שליד הפעיל. <strong>אותה כתובת מייל מחזיקה גם את חשבון המשרד וגם את החשבון הפרטי שלכם</strong>, ומכאן עוברים ביניהם. <strong>בדקו כאן לפני שאתם מעלים חומר של לקוח.</strong></li><li><strong>2</strong> <bdi dir="ltr">Settings</bdi>. לכאן אנחנו הולכים.</li></ol></figcaption></figure>
+<p><strong>ובצד החלון שנפתח יש סרגל, וזה הסרגל שילווה אתכם בשאר המדריך.</strong> תחת הכותרת <bdi dir="ltr"><code>Customize</code></bdi> שבו יושבים שלושת המסכים שנעבוד איתם - הסקילים, החיבורים והתוספים:</p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:195px;margin-inline:auto"><img src="tu/0964825b963a967f.png" alt="הסרגל של חלון ההגדרות, במלואו" width="660" height="1756" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:17.576%;top:46.128%;width:61.970%;height:19.021%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הסרגל של חלון ההגדרות, במלואו</p><ol class="shot-legend-num"><li><strong>1</strong> הכותרת <bdi dir="ltr"><code>Customize</code></bdi> ושלושת הפריטים שתחתיה. <strong>מכאן נפתחים המסכים של הסקילים, של החיבורים ושל התוספים</strong>, ואליהם נגיע בפרקים הבאים.</li></ol></figcaption></figure>
+<p><strong>ומכאן והלאה, לפני כל מסך נראה רק את הפריט שממנו נכנסים אליו, מסומן באדום.</strong></p>
+<h3>שלב 2 · מתמצאים בחלון ההגדרות:</h3>
+<p><strong>ההגדרות נפתחות כחלון מעל העבודה שלכם, ולא במקומה.</strong> השיחות והפרויקטים ממשיכים לשבת מאחוריו, <strong>וה-<bdi dir="ltr"><code>X</code></bdi> בפינה מחזיר אתכם אליהם.</strong></p>
+<p><strong>בסרגל של החלון הזה שלושה חלקים.</strong> למעלה ההגדרות האישיות, באמצע המדור <bdi dir="ltr"><code>Customize</code></bdi> שאליו אנחנו הולכים, <strong>ולמטה <bdi dir="ltr"><code>Organization</code></bdi></strong> - ולידו חץ קטן שאומר שהוא נפתח בעמוד נפרד. <strong>שם יושבים מסכי הניהול של המשרד, וזה נושא מדריך 2.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/a11a11b66a74474e.png" alt="חלון ההגדרות" width="1346" height="831" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.166%;top:56.318%;width:10.624%;height:3.610%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:6.166%;top:83.394%;width:15.973%;height:4.934%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:90.416%;top:10.710%;width:2.897%;height:4.212%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">חלון ההגדרות</p><ol class="shot-legend-num"><li><strong>1</strong> המדור <bdi dir="ltr">Customize</bdi> בסרגל. <strong>כאן יושבים הסקילים, החיבורים והפלאגינים</strong>, ואנחנו נחזור לכאן גם בפרק הבא.</li><li><strong>2</strong> <bdi dir="ltr">Organization</bdi>, בתחתית הסרגל. <strong>החץ שלצידו אומר שהוא נפתח בעמוד נפרד</strong>, ושם יושבים מסכי הניהול של המשרד.</li><li><strong>3</strong> ה-<bdi dir="ltr">X</bdi> שסוגר. <strong>חלון ההגדרות יושב מעל העבודה שלכם ולא מחליף אותה</strong> - סוגרים אותו, והשיחות במקומן.</li></ol></figcaption></figure>
+<h3>שלב 3 · נכנסים למסך הסקילים:</h3>
+<p><strong>כדי להגיע למסך הסקילים, לוחצים בסרגל של חלון ההגדרות על <bdi dir="ltr"><code>Skills</code></bdi></strong> - הוא יושב תחת הכותרת האפורה <bdi dir="ltr"><code>Customize</code></bdi>:</p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:195px;margin-inline:auto"><img src="tu/0964825b963a967f.png" alt="הדרך למסך הסקילים: הפריט Skills בסרגל ההגדרות" width="660" height="1756" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:17.879%;top:50.854%;width:61.667%;height:4.328%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך למסך הסקילים: הפריט Skills בסרגל ההגדרות</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Skills</code></bdi>, תחת הכותרת האפורה <bdi dir="ltr"><code>Customize</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong></li></ol></figcaption></figure>
+<p><strong>ואחרי הלחיצה נפתחת רשימת הסקילים:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/a11a11b66a74474e.png" alt="Skills, תחת Customize" width="1346" height="831" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.166%;top:61.372%;width:15.973%;height:3.971%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">Skills, תחת Customize</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Skills</bdi>. <strong>הפריט שנלחץ</strong>, ומכאן מנהלים את שיטות העבודה הארוזות.</li></ol></figcaption></figure>
+<h3>שלב 4 · קוראים את רשימת הסקילים:</h3>
+<p><strong>תחת <bdi dir="ltr"><code>Skills</code></bdi> הסקילים מסודרים לפי המקור שלהם:</strong></p>
+<ul class="bullets"><li><strong><bdi dir="ltr">Personal skills</bdi></strong> · אלה שיצרתם או העליתם אתם.</li><li><strong><bdi dir="ltr">Shared skills</bdi></strong> · קולגה שיתף איתכם ישירות.</li><li><strong><bdi dir="ltr">Organization skills</bdi></strong> · הופצו לכל המשרד, <strong>או הועלו בידי ה-<bdi dir="ltr"><code>Owner</code></bdi>.</strong></li></ul>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/a11a11b66a74474e.png" alt="רשימת הסקילים שלכם" width="1346" height="831" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:24.294%;top:18.171%;width:62.407%;height:18.773%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:77.489%;top:19.254%;width:6.018%;height:4.212%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-above" style="left:82.912%;top:9.868%;width:7.429%;height:6.739%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">רשימת הסקילים שלכם</p><ol class="shot-legend-num"><li><strong>1</strong> הרשימה. <strong>כל סקיל שזמין לכם מופיע כאן</strong>, בין שהעליתם אותו ובין שהגיע מהמשרד.</li><li><strong>2</strong> העמודה <bdi dir="ltr">Author</bdi>. <strong>זו הדרך לדעת מי מאחורי הסקיל</strong> - אתם, קולגה, או מי שהעלה אותו לכל המשרד.</li><li><strong>3</strong> <bdi dir="ltr">Add</bdi>, ומכאן מוסיפים סקיל משלכם.</li></ol></figcaption></figure>
+<h3>סקיל אישי נשאר אצלכם, וסקיל ארגוני אי אפשר למחוק:</h3>
+<p><strong>סקיל אישי חי רק אצלכם.</strong> העליתם סקיל, <strong>ואיש מלבדכם לא רואה אותו</strong> אלא אם שיתפתם אותו במפורש.</p>
+<p><strong>וסקיל ארגוני מופעל אצלכם כברירת מחדל.</strong> אם הוא לא רלוונטי לעבודה שלכם אפשר לכבות אותו אצלכם, <strong>ואי אפשר למחוק אותו</strong> - הוא לא שלכם.</p>
+<h3>ואיך יודעים שסקיל בכלל פעל:</h3>
+<p><strong>זו שאלה שחוזרת, כי סקיל עובד ברקע ולא מכריז על עצמו.</strong></p>
+<p><strong>שתי דרכים לדעת:</strong></p>
+<p><strong>הראשונה:</strong> <bdi dir="ltr">Claude</bdi> מציין בתשובה שהוא השתמש בו. <strong>לא תמיד, אבל לרוב.</strong></p>
+<p><strong>והשנייה, והיא הבטוחה:</strong> <strong>התוצאה נראית כמו שהסקיל מגדיר.</strong> אם הסקיל אומר שכל ניתוח חוזר בטבלה עם ארבע עמודות, <strong>וקיבלתם פסקה חופשית - הוא לא פעל.</strong></p>
+<p><strong>ואם הוא לא פעל, פשוט בקשו במפורש:</strong> <em>תשתמש בסקיל של ניתוח ההסכמים.</em></p>
+<aside class="content-box info">
+<h3>את הסקילים שלכם כבר הצלתם:</h3>
+<p><strong>לפני המעבר ל-Team גיביתם אותם, ואחרי המעבר התקנתם אותם מחדש.</strong></p>
+<p><strong>ואם עוד לא עשיתם את זה, או שאתם רוצים להיזכר איך:</strong> הגיבוי נמצא במדריך של Legal Mind על המעבר הבטוח, <strong>מדריך 1 סעיף 6</strong>, וההתקנה מחדש נמצאת שם, <strong>מדריך 3 סעיף 11.</strong></p>
+<p><strong>מי שצריך - שיעצור כאן, יעשה את זה, ויחזור.</strong></p>
+</aside>
+</section>
+<section class="guide-section" id="g1-ch07"><span class="section-number">07</span><h2>מחברים את היומן ואת המייל, ויודעים בדיוק מה נפתח</h2>
+<p><strong>עד עכשיו כל מה ש-<bdi dir="ltr">Claude</bdi> ידע היה מה שהעליתם לו בעצמכם.</strong></p>
+<p><strong>מכאן הוא יכול להגיע למה שכבר קיים אצלכם</strong> - היומן, תיבת המייל, הקבצים - <strong>בלי שתעלו כלום.</strong></p>
+<aside class="content-box warning">
+<h3>ומי קובע מה זמין לכם:</h3>
+<p><strong>רשימת החיבורים שתראו אינה רשימה גנרית. היא של המשרד שלכם.</strong> <strong>ה-<bdi dir="ltr"><code>Owner</code></bdi> או ה-<bdi dir="ltr"><code>Primary Owner</code></bdi> הוא שקובע אילו חיבורים מופעלים בארגון</strong>, ורק מה שהוא הפעיל יופיע אצלכם.</p>
+<p><strong>ולכן, אם חיבור שאתם מחפשים אינו ברשימה - זו לא תקלה, וזו לא בעיה בחשבון שלכם.</strong> זו החלטה של המשרד, ומי שצריך אותו פונה לאחראי.</p>
+<p><strong>ואיך חיבור בכלל מצטרף לרשימה של המשרד - את זה ראינו בבדיקה בפועל:</strong> מי שמוגדר <bdi dir="ltr"><code>Owner</code></bdi> פותח את דף הפרטים של החיבור בקטלוג, ולוחץ שם על <bdi dir="ltr"><code>Connect for your team</code></bdi>. <strong>בתחתית המסך מופיעה הודעה שהחיבור נוסף לצוות, ומאותו רגע הוא מופיע ברשימה של כל עורכי הדין במשרד.</strong></p>
+<p><strong>וזו רק חצי הדרך: ההוספה למשרד עדיין לא חיברה שום חשבון.</strong> כל עו"ד מחבר את החשבון שלו בעצמו - <strong>וזו בדיוק הלחיצה על <bdi dir="ltr"><code>Connect</code></bdi> שתעשו בשלב 5.</strong></p>
+</aside>
+<h3>ולא כל חיבור ברשימה נבנה בידי Anthropic:</h3>
+<p><strong>חלק מהחיבורים ברשימה שלכם הם של <bdi dir="ltr">Anthropic</bdi>, וחלק לא.</strong></p>
+<p><strong>מלבד החיבורים המובנים, אפשר לחבר ל-<bdi dir="ltr">Claude</bdi> מערכות נוספות</strong> דרך תקן פתוח בשם <bdi dir="ltr">MCP</bdi>. <strong>מי שבנה חיבור כזה יכול להוסיף אותו לארגון</strong>, והוא יופיע ברשימה לצד החיבורים המוכרים.</p>
+<p><strong>ולמשרד עורכי דין בישראל זה רלוונטי ישירות</strong>, כי כך מתחברים למאגרים המשפטיים שאתם ממילא עובדים איתם.</p>
+<aside class="content-box info">
+<h3>איך מזהים אותם ברשימה:</h3>
+<p><strong>ליד חיבור שאינו של <bdi dir="ltr">Anthropic</bdi> מופיעה תווית.</strong> <bdi dir="ltr">Custom</bdi> לחיבור שהמשרד הוסיף בעצמו, ו-<bdi dir="ltr">Community</bdi> לחיבור שמישהו אחר פרסם. <strong>וכך זה נראה ברשימה אצלנו:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/6f390e23bee18866.png" alt="רשימת החיבורים, והתוויות שליד השמות" width="1062" height="517" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:7.156%;top:51.838%;width:85.217%;height:10.445%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:7.156%;top:72.727%;width:85.217%;height:10.445%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">רשימת החיבורים, והתוויות שליד השמות</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>Nevo</code></bdi> עם התווית <bdi dir="ltr"><code>Custom</code></bdi> - <strong>חיבור שהמשרד הוסיף בעצמו.</strong></li><li><strong>2</strong> <bdi dir="ltr"><code>TIMELESS</code></bdi> עם התווית <bdi dir="ltr"><code>Community</code></bdi> - <strong>חיבור שגורם חיצוני פרסם, ו-<bdi dir="ltr">Anthropic</bdi> לא בדקה.</strong></li></ol></figcaption></figure>
+<p><strong>וזו לא הערה טכנית.</strong> חיבור עם תווית כזו <strong>לא נבדק על ידי <bdi dir="ltr">Anthropic</bdi></strong>, ומי שמחבר אותו לתיקי המשרד צריך לדעת מי עומד מאחוריו ומה הוא רואה.</p>
+<p><strong>את ההחלטה הזאת מקבל ה-<bdi dir="ltr"><code>Owner</code></bdi> ולא עוה"ד</strong>, והיא נעשית פעם אחת לכל הארגון.</p>
+</aside>
+<h3>שלב 1 · פותחים את רשימת החיבורים:</h3>
+<p><strong>לוחצים שוב על שמכם שבפינה השמאלית התחתונה, בוחרים בתפריט <bdi dir="ltr"><code>Settings</code></bdi>, ובסרגל של חלון ההגדרות לוחצים על <bdi dir="ltr"><code>Connectors</code></bdi>:</strong></p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:195px;margin-inline:auto"><img src="tu/0964825b963a967f.png" alt="הדרך למסך החיבורים: הפריט Connectors בסרגל ההגדרות" width="660" height="1756" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:18.030%;top:55.638%;width:61.515%;height:4.328%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">הדרך למסך החיבורים: הפריט Connectors בסרגל ההגדרות</p><ol class="shot-legend-num"><li><strong>1</strong> הפריט <bdi dir="ltr"><code>Connectors</code></bdi>, תחת הכותרת האפורה <bdi dir="ltr"><code>Customize</code></bdi>. <strong>לוחצים עליו, והמסך נפתח.</strong></li></ol></figcaption></figure>
+<p><strong>ונפתחת רשימת החיבורים:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/fa83615b147e654e.png" alt="מסך החיבורים" width="1338" height="830" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.129%;top:65.301%;width:16.368%;height:5.301%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:25.187%;top:27.590%;width:61.136%;height:26.506%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-above" style="left:82.586%;top:10.120%;width:7.549%;height:5.301%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מסך החיבורים</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Connectors</bdi> בסרגל. <strong>כאן יושבים כל החיבורים שלכם.</strong></li><li><strong>2</strong> הרשימה עצמה. <strong>מה שמופיע בה נקבע בידי המשרד, לא בידיכם.</strong></li><li><strong>3</strong> <bdi dir="ltr">Add</bdi>, ומכאן מוסיפים.</li></ol></figcaption></figure>
+<h3>שלב 2 · מוסיפים חיבור:</h3>
+<p><strong>למעלה מימין יש <bdi dir="ltr"><code>Add</code></bdi>, ובו שתי אפשרויות:</strong> <bdi dir="ltr">All available</bdi> פותח את הרשימה של <bdi dir="ltr">Anthropic</bdi>, ו-<bdi dir="ltr">Custom</bdi> מיועד לחיבור שנבנה במיוחד למשרד.</p>
+<figure class="shot" style="max-width:481px;margin-inline:auto"><div class="shot-frame"><img src="tu/a366a96968922eb1.png" alt="התפריט שנפתח מכפתור ההוספה" width="481" height="236" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:57.380%;top:42.797%;width:24.324%;height:11.441%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:57.380%;top:61.441%;width:24.324%;height:11.441%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">התפריט שנפתח מכפתור ההוספה</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">All available</bdi>. <strong>הרשימה של <bdi dir="ltr">Anthropic</bdi>.</strong></li><li><strong>2</strong> <bdi dir="ltr">Custom</bdi>. <strong>לחיבור שנבנה במיוחד למשרד.</strong></li></ol></figcaption></figure>
+<p><strong>לחיצה על <bdi dir="ltr"><code>All available</code></bdi> פותחת חלון בשם <bdi dir="ltr"><code>Directory</code></bdi></strong>, ובו כל החיבורים הזמינים. <strong>הוא ארוך, ולכן לא גוללים בו אלא מחפשים.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/bf9b7bdcc41fb79b.png" alt="רשימת החיבורים הזמינים" width="1424" height="1086" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.742%;top:15.009%;width:75.772%;height:5.249%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">רשימת החיבורים הזמינים</p><ol class="shot-legend-num"><li><strong>1</strong> שורת החיפוש. <strong>הרשימה ארוכה מכדי לגלול בה, ולכן מחפשים.</strong></li></ol></figcaption></figure>
+<h3>שלב 3 · מחפשים את <bdi dir="ltr">Microsoft 365</bdi>:</h3>
+<p>בשורת החיפוש שלמעלה מקלידים <bdi dir="ltr"><code>microsoft</code></bdi>.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/447bbd1442ae5a46.png" alt="איך הוא נראה בקטלוג" width="1325" height="843" loading="lazy" decoding="async"><div class="shot-target badge-below" style="left:25.208%;top:63.108%;width:27.472%;height:9.609%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:52.679%;top:65.125%;width:5.736%;height:6.999%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">איך הוא נראה בקטלוג</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>Microsoft 365</code></bdi> עם <strong>סימן האימות</strong> לצד השם. זה המחבר הרשמי.</li><li><strong>2</strong> הסימן הירוק, שאומר שהחיבור כבר קיים אצלכם.</li></ol></figcaption></figure>
+<p><strong>וכאן שימו לב לשני דברים.</strong> הראשון, <strong>סימן האימות</strong> לצד השם. הוא מבדיל בין החיבור הרשמי לבין כלים קהילתיים שנושאים שם דומה. <strong>והשני, שזה חיבור אחד</strong> שכולל את היומן, את המייל, את <bdi dir="ltr"><code>OneDrive</code></bdi>, את <bdi dir="ltr"><code>SharePoint</code></bdi> ואת <bdi dir="ltr"><code>Teams</code></bdi> יחד.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/f6e284bd4c93db87.png" alt="חיבור אחד שכולל את היומן, המייל, OneDrive, SharePoint ו-Teams" width="1322" height="813" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:33.585%;top:33.333%;width:41.225%;height:7.749%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:77.912%;top:31.611%;width:14.599%;height:6.150%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">חיבור אחד שכולל את היומן, המייל, OneDrive, SharePoint ו-Teams</p><ol class="shot-legend-num"><li><strong>1</strong> מה החיבור כולל. <strong>חמישה שירותים, והכל בחיבור אחד.</strong></li><li><strong>2</strong> <bdi dir="ltr"><code>Connected</code></bdi>. <strong>הסימן הזה אומר שהחיבור קיים, לא שהוא עובד.</strong> את זה בודקים בשאלה.</li></ol></figcaption></figure>
+<p>!! החיבור עובד <strong>רק עם חשבון משרדי</strong>. חשבון פרטי מסוג <bdi dir="ltr"><code>outlook.com</code></bdi>, !! <bdi dir="ltr"><code>hotmail.com</code></bdi> או <bdi dir="ltr"><code>live.com</code></bdi> אינו נתמך, <strong>ומי שינסה איתו ייתקע בלי !! הסבר.</strong></p>
+<h3>שלב 4 · השער של מנהל המערכת:</h3>
+<p><strong>לפני שאפשר לחבר בכלל, נפתח מסך שאומר שמנהל המערכת של המשרד נדרש להשלים הגדרה.</strong> זה קורה פעם אחת לכל המשרד, ולא לכל אחד בנפרד.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/39ecae71fb6ad282.png" alt="מה שמנהל המערכת של המשרד נדרש לבצע, פעם אחת" width="1088" height="716" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:7.721%;top:37.709%;width:46.875%;height:18.575%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:7.537%;top:65.503%;width:15.441%;height:6.983%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">מה שמנהל המערכת של המשרד נדרש לבצע, פעם אחת</p><ol class="shot-legend-num"><li><strong>1</strong> שלושת הצעדים. <strong>זה מה ששולחים למחשוב</strong>, ויש שם גם קישור למדריך המלא.</li><li><strong>2</strong> <bdi dir="ltr"><code>I understand</code></bdi> ואחריו <bdi dir="ltr"><code>Connect</code></bdi>. <strong>בלי שהמנהל השלים את הצעדים, החיבור לא יעבוד.</strong></li></ol></figcaption></figure>
+<p><strong>שלושת הצעדים כתובים שם במפורש, ויש קישור למדריך המלא.</strong> אם אתם לא מנהלי המערכת, <strong>צלמו את המסך הזה ושלחו אותו למי שכן.</strong> זה כל מה שהוא צריך.</p>
+<h3>שלב 5 · מחברים, ומה שלא יופיע לכם:</h3>
+<p>מסמנים <bdi dir="ltr"><code>I understand</code></bdi> ולוחצים <bdi dir="ltr"><code>Connect</code></bdi>. <strong>וכעבור שנייה כתוב <bdi dir="ltr"><code>Connected</code></bdi>.</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/19d01f20b7eba8bd.png" alt="מחובר, בלי שנשאלתם דבר" width="1317" height="823" loading="lazy" decoding="async"><div class="shot-target badge-above" style="left:76.158%;top:28.797%;width:13.743%;height:6.926%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">מחובר, בלי שנשאלתם דבר</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>Connected</code></bdi>. <strong>הגעתם לכאן בלחיצה אחת</strong> - בלי בחירת חשבון ובלי רשימת הרשאות.</li></ol></figcaption></figure>
+<p><strong>וזהו. לא נשאלתם דבר.</strong></p>
+<p>>> עמדת Legal Mind: <strong>אין כאן מסך שמפרט מה נתתם, ואין תיבות לסמן.</strong> >> הסיבה היא שמנהל המערכת אישר את החיבור מראש לכל הארגון, <strong>ומרגע >> שאישר, איש אינו נשאל שוב.</strong> >> >> <strong>זו אינה תקלה, וזו גם לא בעיית אבטחה. זו העברת החלטה.</strong> מי שקובע >> לאילו תיבות דואר, לאילו יומנים ולאילו ספריות יש גישה <strong>אינו אתם, >> אלא מי שביצע את ההגדרה.</strong> >> >> <strong>ולכן יש שאלה אחת ששואלים פעם אחת:</strong> מה בדיוק אושר בשמנו. >> <strong>מי שלא שאל, עובד בהנחה.</strong></p>
+<h3>שלב 6 · בודקים שהחיבור באמת עובד:</h3>
+<p><strong>אל תסתפקו בכך שכתוב <bdi dir="ltr"><code>Connected</code></bdi>.</strong> ראינו בעצמנו שהסימן הזה הופיע כשהחיבור עוד לא היה שמיש. <strong>הבדיקה היחידה שקובעת היא לשאול שאלה שדורשת את המקור.</strong></p>
+<div class="copy-block"><div class="copy-heading"><strong>שאלת הבדיקה, להעתקה</strong><button class="copy-button" data-copy-target="g1-copy-2" type="button">העתקת ההוראה</button></div><div class="copy-body" id="g1-copy-2">מה יש לי ביומן בשבוע הקרוב? פרט לכל פגישה את היום, השעה ועם מי היא.</div></div>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/efc239f5d0361073.png" alt="שאלת הבדיקה, לפני השליחה" width="1101" height="268" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:34.968%;top:34.328%;width:55.223%;height:14.179%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">שאלת הבדיקה, לפני השליחה</p><ol class="shot-legend-num"><li><strong>1</strong> השאלה. <strong>היא מבקשת פירוט ולא סיכום</strong>, וכך רואים אם התשובה באמת מגיעה מהיומן.</li></ol></figcaption></figure>
+<p><strong>וזו התשובה שחזרה אצלנו:</strong></p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/272e61ce9e454fed.png" alt="התשובה, ומה שהיא מסמנת בעצמה" width="1066" height="824" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:6.848%;top:8.495%;width:17.636%;height:3.883%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:7.598%;top:82.282%;width:84.803%;height:8.495%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">התשובה, ומה שהיא מסמנת בעצמה</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>Used 2 integrations</code></bdi>. <strong>הוא פנה לשני היומנים בבת אחת.</strong></li><li><strong>2</strong> שורת ה-<bdi dir="ltr"><code>UTC</code></bdi>. <strong>הוא אמר מה עשה עם השעות והמליץ לאמת</strong> - וזו ההתנהגות שמאפשרת להסתמך עליו.</li></ol></figcaption></figure>
+<aside class="content-box info">
+<h3>שלושה דברים בתשובה, וכולם חשובים:</h3>
+<p><strong>בראש התשובה כתוב <bdi dir="ltr"><code>Used 2 integrations</code></bdi>.</strong> הוא פנה לשני היומנים בבת אחת, <strong>ואמר על כל פגישה מאיזה מהם היא הגיעה.</strong></p>
+<p><strong>ובסוף הוא כתב שהשעות מ-<bdi dir="ltr">Outlook</bdi> הוחזרו לו ב-<bdi dir="ltr">UTC</bdi> והוא המיר אותן לשעון ישראל</strong>, והמליץ לאמת מול היומן עצמו. <strong>הוא אמר מה עשה עם הנתון, ולמה כדאי לבדוק אחריו.</strong></p>
+<p><strong>וכן ציין שברוב המוזמנים לפגישה אחת טרם אישרו הגעה.</strong> לא השלים מהראש, ולא שתק.</p>
+<p><strong>זו ההתנהגות שמאפשרת להכניס כלי כזה לעבודה משפטית:</strong> לא רק תשובה, אלא סימון של המקום שבו היא עלולה להיות לא מדויקת.</p>
+</aside>
+<h3>ועכשיו המייל, ומה שכבר עשיתם בלי לשים לב:</h3>
+<p><strong>אם חיברתם <bdi dir="ltr">Microsoft 365</bdi>, המייל שלכם כבר מחובר.</strong> לא צריך לחזור לקטלוג, <strong>ואין חיבור שני להוסיף.</strong> אותו חיבור יחיד שאישרתם בשלב הקודם הביא איתו את היומן, את המייל, את <bdi dir="ltr">OneDrive</bdi>, את <bdi dir="ltr">SharePoint</bdi> ואת <bdi dir="ltr">Teams</bdi> - <strong>חמישה שירותים בהסכמה אחת.</strong></p>
+<p><strong>נוח, וגם קל לפספס.</strong> מי שחיבר <bdi dir="ltr">Microsoft 365</bdi> כדי לשאול שאלה על היומן, <strong>פתח באותה הסכמה גם את תיבת המייל ואת קובצי המשרד</strong> - ולא בהכרח שם לב. <strong>ולכן עוצרים כאן רגע, על הרשאה אחת:</strong></p>
+<aside class="content-box warning">
+<h3>במייל, שימו לב במיוחד להרשאת השליחה:</h3>
+<p><strong>ביומן ההרשאה המסוכנת הייתה למחוק. במייל היא לשלוח.</strong></p>
+<p><strong><bdi dir="ltr">Claude</bdi> שיכול לשלוח מייל בשמכם יכול לשלוח מייל לצד שכנגד.</strong> ולא בגלל שהוא רוצה, <strong>אלא בגלל שביקשתם ממנו "תשיב לו" והוא הבין שהתכוונתם ברצינות.</strong></p>
+<p><strong>מה שנדרש כדי לשאול "מה כתב עוה"ד של הצד השני החודש" הוא קריאה בלבד. ואת זה לא צריך לנחש - זה כתוב על המסך.</strong> לוחצים במסך החיבורים על השורה של <bdi dir="ltr">Microsoft 365</bdi>, גוללים מעט, <strong>ומגיעים לרשימה בשם <bdi dir="ltr"><code>Tool permissions</code></bdi> - כל מה שהחיבור יודע לעשות, מסודר בשתי קבוצות:</strong></p>
+<figure class="shot" style="max-width:470px;margin-inline:auto"><div class="shot-frame"><img src="tu/e080c438519a9978.png" alt="מסך ההרשאות של Microsoft 365: קריאה לחוד, כתיבה לחוד" width="1062" height="1174" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:8.098%;top:9.284%;width:83.898%;height:5.281%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-left" style="left:8.098%;top:14.906%;width:83.898%;height:4.940%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-left" style="left:8.098%;top:74.957%;width:83.898%;height:5.707%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">מסך ההרשאות של Microsoft 365: קריאה לחוד, כתיבה לחוד</p><ol class="shot-legend-num"><li><strong>1</strong> השורה שמעל הרשימה: <strong>תראו רק כלים שהארגון נתן לכם גישה אליהם.</strong> ההחלטה של המנהל, שחור על גבי לבן.</li><li><strong>2</strong> קבוצת <bdi dir="ltr"><code>Read-only tools</code></bdi>, ולידה הספרה 10 - <strong>כלי קריאה בלבד</strong>, וברירת המחדל שלהם <bdi dir="ltr"><code>Always allow</code></bdi>.</li><li><strong>3</strong> קבוצת <bdi dir="ltr"><code>Write/delete tools</code></bdi>, ולידה 31 - <strong>הכלים שכותבים, שולחים ומוחקים, ובהם <bdi dir="ltr"><code>Outlook send mail</code></bdi>.</strong> ברירת המחדל: <bdi dir="ltr"><code>Needs approval</code></bdi> - <strong>כל שימוש מחכה לאישור שלכם.</strong></li></ol><a class="shot-full" href="tu/f8471ddb01e693b1.png" target="_blank" rel="noopener">לחצו כאן כדי לראות את החלונית כולה, עם אפשרות גלילה</a></figcaption></figure>
+<p><strong>וזה הסידור שעובד לטובתכם:</strong> כלי הקריאה פתוחים, <strong>וכל כלי שכותב, שולח או מוחק מחכה לאישור שלכם לפני כל שימוש.</strong> מה שכן שווה בדיקה של רגע: <strong>ש-<bdi dir="ltr"><code>Outlook send mail</code></bdi> לא הועבר אצלכם ל-<bdi dir="ltr"><code>Always allow</code></bdi>.</strong> ומי שרוצה שקט מוחלט מכלי מסוים - <strong>סמל החסימה שבסוף השורה שלו מכבה אותו לגמרי.</strong></p>
+<p><strong>ואם אתם רוצים ש-<bdi dir="ltr">Claude</bdi> ינסח תשובה</strong> - הוא ינסח, ואתם תעתיקו ותשלחו בעצמכם. <strong>חמש שניות, ובלי הסיכון.</strong></p>
+</aside>
+<aside class="content-box warning">
+<h3>ולפני שאתם מחברים יומן ומייל של משרד:</h3>
+<p><strong>ההרשאות שאישר מנהל המערכת הן המקום היחיד שאומר בדיוק לאיזה מידע ניתנת גישה</strong>, והן של ספק המייל שלכם, <strong>ולא של <bdi dir="ltr">Claude</bdi>.</strong></p>
+<p><strong>אנחנו לא נאמר לכם כאן מה בדיוק נשמר ולכמה זמן</strong>, כי זה תלוי בהגדרות הארגון שלכם ובמדיניות שלכם. <strong>מה שכן: את השאלות האלה יש לברר לפני שמחברים יומן שיש בו פגישות לקוחות, ולא אחרי.</strong></p>
+</aside>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>בחודש הראשון עובדים מול היומן והמייל בלבד.</strong></p>
+<p><strong>ב-<bdi dir="ltr">Microsoft 365</bdi> אי אפשר לחבר חצי</strong> - החיבור מביא את הדרייב יחד עם היומן והמייל. <strong>מה שכן בידיים שלכם הוא מה מבקשים ממנו:</strong> בחודש הראשון שואלים על היומן ועל המייל, <strong>ולא מבקשים עבודה על קובצי המשרד.</strong> ככל שפחות נחשף בזמן הלמידה, <strong>כך קטן מחיר הטעות.</strong></p>
+</aside>
+<aside class="content-box info">
+<h3>והחיבורים שהיו לכם קודם:</h3>
+<p><strong>הם לא עברו בהגירה, וזה מתועד במדריך של Legal Mind על המעבר הבטוח, מדריך 3 סעיפים 6 ו-12.</strong></p>
+<p><strong>ושם גם נקבע הכלל:</strong> מחברים מחדש רק מה שמדיניות המשרד מתירה. <strong>העובדה שחיבור היה פעיל בחשבון האישי אינה אומרת שהוא מותר בסביבת המשרד.</strong></p>
+</aside>
+<h3>ומי שמנהל את המשרד, שים לב לכפתור:</h3>
+<figure class="shot" style="max-width:353px;margin-inline:auto"><div class="shot-frame"><img src="tu/040194fb71f72673.png" alt="שתי אפשרויות, ורק אחת מהן בולטת" width="353" height="197" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:13.031%;top:24.365%;width:74.221%;height:21.827%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-outside-right" style="left:30.595%;top:49.239%;width:56.374%;height:27.919%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">שתי אפשרויות, ורק אחת מהן בולטת</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr"><code>Connect for your team</code></bdi> - <strong>הכפתור הבולט, ומחבר את כל המשרד.</strong></li><li><strong>2</strong> <bdi dir="ltr"><code>Connect just for me</code></bdi> - <strong>החיבור האישי, ומסתתר בחץ.</strong></li></ol></figcaption></figure>
+<p><strong>למי שמוגדר <bdi dir="ltr">Owner</bdi> הכפתור הראשי אומר <bdi dir="ltr"><code>Connect for your team</code></bdi></strong>, והחיבור האישי מסתתר בחץ הקטן שלצידו תחת <bdi dir="ltr"><code>Connect just for me</code></bdi>. <strong>שתי החלטות שונות לגמרי</strong>, ולחיצה מהירה על הכפתור הבולט מחברת את כל המשרד ולא אתכם.</p>
+</section>
+<section class="guide-section" id="g1-ch08"><span class="section-number">08</span><h2>עובדים מול <bdi dir="ltr">Claude</bdi> בתוך Word ובתוך Excel</h2>
+<p><strong>עד כאן עבדנו בתוך <bdi dir="ltr">Claude</bdi>.</strong> הפרק הזה עושה את ההפך: <strong>מכניס את <bdi dir="ltr">Claude</bdi> לתוך התוכנה שאתם ממילא עובדים בה כל היום.</strong></p>
+<p><strong>ומה שזה חוסך:</strong> לא מעלים את המסמך, לא מורידים אותו בחזרה, ולא עובדים על עותק. <strong>המסמך נשאר איפה שהוא, ו-<bdi dir="ltr">Claude</bdi> עובד עליו שם.</strong></p>
+<h3>ולמה פרק כזה יושב דווקא במדריך על מנוי Team:</h3>
+<p><strong>כי סקיל ארגוני פועל גם בתוך התוספים, ולא רק בחלון של <bdi dir="ltr">Claude</bdi>.</strong></p>
+<p><strong>וזה כל החיבור:</strong> ברגע שהמשרד הגדיר לעצמו שיטה - בנק הערות, כללי ניסוח, רשימה של מה חובה לבדוק - <strong>השיטה הזו מלווה אתכם גם כשאתם יושבים על הטיוטה עצמה ב-<bdi dir="ltr">Word</bdi></strong>, ולא רק כשאתם משוחחים עם <bdi dir="ltr">Claude</bdi> בדפדפן.</p>
+<p><strong>במנוי אישי כל אחד מסביר ל-<bdi dir="ltr">Claude</bdi> מחדש איך נהוג במשרד. במנוי Team מסבירים פעם אחת, וזה מגיע לכולם</strong> - גם לתוך <bdi dir="ltr"><code>Word</code></bdi> וגם לתוך <bdi dir="ltr"><code>Excel</code></bdi>.</p>
+<p><strong>ולכן הפרק הזה מראה, ולא מלמד.</strong> הוא בא להראות שהדלת קיימת ומה עומד מאחוריה, <strong>ולא להעביר קורס על <bdi dir="ltr">Claude</bdi> ב-<bdi dir="ltr">Word</bdi> או על <bdi dir="ltr">Claude</bdi> ב-<bdi dir="ltr">Excel</bdi>.</strong></p>
+<aside class="content-box info">
+<h3>ואיפה כן לומדים את זה לעומק:</h3>
+<p><strong>על <bdi dir="ltr">Claude</bdi> ב-<bdi dir="ltr">Excel</bdi> יש למועדון <bdi dir="ltr">Legal Mind</bdi> סדרת מדריכים שלמה</strong> - התקנה מסך אחר מסך, איך מנסחים בקשה בגיליון, איך בודקים שהוא לא טעה, ועל אילו קבצים בכלל מותר להפעיל אותו. <strong>מי שעובד ב-<bdi dir="ltr">Excel</bdi> באמת, ההמלצה שלנו היא לקרוא אותה</strong>, והיא נמצאת כאן: <a href="https://tsahinim.github.io/legal-mind-claude-guides/excel/">המדריך המקיף לעורכי דין על <bdi dir="ltr">Claude</bdi> בתוך Excel</a>.</p>
+<p><strong>ועל <bdi dir="ltr">Claude</bdi> ב-<bdi dir="ltr">Word</bdi> יש וובינר של המועדון</strong> שכולו על זה, ונכנס לעומק שהפרק הזה לא נכנס אליו. <strong>מי שרוצה להעמיק שם, מוזמן לצפות בו</strong> - לפני המדריך, במקביל אליו או אחריו.</p>
+<p><strong>הפרק הזה עומד בפני עצמו</strong>, ושניהם ההרחבה שלו.</p>
+</aside>
+<p><strong>וזו גם הסיבה שתראו כאן דוגמה אחת בלבד על כל יכולת</strong>, אחת ב-<bdi dir="ltr">Word</bdi> ואחת ב-<bdi dir="ltr">Excel</bdi>. <strong>לא כי אין יותר</strong>, אלא כי מה שחשוב לנו שתצאו איתו מהפרק הזה הוא שהיכולת קיימת ושהשיטה של המשרד מגיעה גם לשם. <strong>הרוחב נמצא בסדרה ובוובינר.</strong></p>
+<aside class="content-box warning">
+<h3>לפני הכל, בדקו שה-<bdi dir="ltr">Word</bdi> שלכם נתמך:</h3>
+<p><strong>התוסף אינו רץ על Word 2016 ו-2019 ברישיון קבוע או ברישיון נפחי</strong>, ולא על גרסאות Microsoft 365 ישנות מ-2205 ב-Windows או מ-16.61 ב-Mac.</p>
+<p><strong>במשרדים רבים יושבת גרסה ישנה</strong>, ואם הכפתור לא יופיע - <strong>זו הסיבה הראשונה לבדוק, לפני שמנסים להתקין שוב.</strong></p>
+</aside>
+<h3>מה <bdi dir="ltr">Claude</bdi> עושה בתוך Word:</h3>
+<p><strong>את התוסף מתקינים מחנות התוספים של Microsoft.</strong> בארגון גדול, מנהל ה-Microsoft 365 יכול להתקין אותו לכל המשרד בבת אחת.</p>
+<p><strong>אחרי ההתקנה פותחים את Word, מפעילים את התוסף ומתחברים לחשבון <bdi dir="ltr">Claude</bdi></strong> - ואז מופיע כפתור של <bdi dir="ltr">Claude</bdi> בסרגל העליון.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/feb8e2360c869052.png" alt="סרגל הכלים של Word" width="2157" height="459" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:88.178%;top:47.495%;width:3.662%;height:15.033%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">סרגל הכלים של Word</p><ol class="shot-legend-num"><li><strong>1</strong> הכפתור. <strong>אם הוא לא מופיע אצלכם, בדקו קודם שגרסת ה-Word שלכם נתמכת</strong> - ורק אחר כך סגרו ופתחו שוב.</li></ol></figcaption></figure>
+<p><strong>ומקרוב, שני הכפתורים שבקצה הסרגל:</strong></p>
+<figure class="shot" style="max-width:543px;margin-inline:auto"><div class="shot-frame"><img src="tu/a4229d0f8d5d98e4.png" alt="שני הכפתורים בקצה הסרגל, מקרוב" width="543" height="468" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:15.470%;top:15.171%;width:32.781%;height:41.239%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-below" style="left:54.144%;top:15.171%;width:30.018%;height:41.239%"><span class="shot-target-badge">2</span></div></div><figcaption><p class="shot-caption">שני הכפתורים בקצה הסרגל, מקרוב</p><ol class="shot-legend-num"><li><strong>1</strong> <bdi dir="ltr">Add-ins</bdi>. <strong>מכאן מתקינים תוספים</strong>, ולכאן נכנסים אם <bdi dir="ltr">Claude</bdi> עוד לא מותקן.</li><li><strong>2</strong> <bdi dir="ltr">Claude</bdi>. <strong>זה הכפתור שפותח את הפאנל</strong>, והוא מופיע רק אחרי שהתוסף הותקן.</li></ol></figcaption></figure>
+<p><strong>לחיצה על הכפתור פותחת רצועה צרה בצד המסך.</strong> המסמך נשאר פתוח לצידה ואתם ממשיכים לעבוד בו כרגיל, <strong>ובתוך הרצועה יושב <bdi dir="ltr">Claude</bdi> ומדבר איתכם על המסמך הזה.</strong></p>
+<figure class="shot" style="max-width:300px;margin-inline:auto"><div class="shot-frame" style="max-width:293px;margin-inline:auto"><img src="tu/b3cdd7b1af317d29.png" alt="הפאנל של Claude בתוך Word" width="575" height="1022" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:35.652%;top:31.898%;width:28.696%;height:27.984%"><span class="shot-target-badge">1</span></div><div class="shot-target badge-above" style="left:19.130%;top:75.832%;width:62.435%;height:4.305%"><span class="shot-target-badge">2</span></div><div class="shot-target badge-outside-right" style="left:19.130%;top:81.409%;width:62.435%;height:4.305%"><span class="shot-target-badge">3</span></div></div><figcaption><p class="shot-caption">הפאנל של Claude בתוך Word</p><ol class="shot-legend-num"><li><strong>1</strong> הסקילים שהוא מציע. <strong>אלה בדיוק אותם סקילים שבחשבון שלכם</strong> - מה שהמשרד הפיץ מגיע לכאן, ולכן זו שיטת העבודה שלכם ולא צ׳אט כללי.</li><li><strong>2</strong> <bdi dir="ltr">Entire document selected</bdi>. <strong>הוא אומר לכם על מה הוא עובד</strong> - כאן על המסמך כולו, ואם תסמנו קטע, על הקטע בלבד.</li><li><strong>3</strong> תיבת הכתיבה. <strong>הלוכסן פותח את רשימת הסקילים</strong>, ובלעדיו זו שאלה חופשית.</li></ol></figcaption></figure>
+<p><strong>והוא עובד על המסמך הפתוח:</strong> קורא אותו ומציע ניסוחים.</p>
+<p><strong>וכשעובדים במצב סימון שינויים, ההצעות שלו נכנסות כשינויים מסומנים</strong> - הטקסט המקורי מופיע כמחיקה והחדש כתוספת, <strong>והכל נבדק בחלונית הסקירה הרגילה של Word.</strong> אתם עוברים על כל שינוי לפני שאתם מקבלים אותו, <strong>ותמיד אפשר לבטל ב-<bdi dir="ltr">Ctrl+Z</bdi>.</strong></p>
+<figure class="shot" style="max-width:459px;margin-inline:auto"><div class="shot-frame"><img src="tu/5a5be8aea1c7eeff.png" alt="המסמך אחרי שההצעות נכנסו" width="761" height="863" loading="lazy" decoding="async"><div class="shot-target badge-outside-left" style="left:17.083%;top:66.165%;width:16.820%;height:3.824%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">המסמך אחרי שההצעות נכנסו</p><ol class="shot-legend-num"><li><strong>1</strong> שינוי שהוא הציע. <strong>מסומן כמו כל שינוי של עו"ד אחר.</strong></li></ol></figcaption></figure>
+<h3>ומה הוא עושה בתוך Excel:</h3>
+<p><strong>אותו רעיון, על טבלה.</strong> לוח תשלומים, טבלת מועדים, ריכוז נתונים.</p>
+<figure class="shot" style="max-width:650px;margin-inline:auto"><div class="shot-frame"><img src="tu/248de7c758592ac2.png" alt="סרגל הכלים של Excel" width="2157" height="796" loading="lazy" decoding="async"><div class="shot-target badge-outside-right" style="left:88.503%;top:26.884%;width:3.755%;height:10.804%"><span class="shot-target-badge">1</span></div></div><figcaption><p class="shot-caption">סרגל הכלים של Excel</p><ol class="shot-legend-num"><li><strong>1</strong> <strong>הכפתור של <bdi dir="ltr">Claude</bdi>, בקבוצה משלו בקצה הסרגל, ליד <bdi dir="ltr">Copilot</bdi> של <bdi dir="ltr">Microsoft</bdi>.</strong> אותו כפתור בדיוק שהכרתם ב-<bdi dir="ltr">Word</bdi>, ולחיצה עליו פותחת את אותה חלונית.</li></ol></figcaption></figure>
+<aside class="content-box info">
+<h3>שוב דוגמה אחת, וזה מכוון:</h3>
+<p><strong>כמו ב-<bdi dir="ltr">Word</bdi>, גם כאן הראינו יכולת אחת בלבד</strong> - מאותה סיבה שכתובה בפתיחת הפרק: <strong>המדריך הזה בא להראות ש-<bdi dir="ltr">Claude</bdi> יושב גם בתוך Excel, ושהשיטה של המשרד מגיעה לשם.</strong></p>
+<p><strong>כל השאר - התקנה, ניסוח בקשה בגיליון, ובדיקה שהוא לא טעה - נמצא בסדרה של המועדון</strong>, <a href="https://tsahinim.github.io/legal-mind-claude-guides/excel/">כאן</a>. <strong>מי שעובד ב-<bdi dir="ltr">Excel</bdi> באמת, שיתחיל שם.</strong></p>
+</aside>
+<h3>והשיטה של המשרד עובדת גם בתוך <bdi dir="ltr">Word</bdi>:</h3>
+<p><strong>סקילים ארגוניים פועלים גם בתוך התוספים.</strong></p>
+<p><strong>כלומר אם המשרד הגדיר לעצמו שיטה</strong> - בנק הערות, כללי ניסוח, רשימה של מה חובה לבדוק - <strong>היא חלה גם על העבודה שלכם ב-<bdi dir="ltr">Word</bdi>.</strong></p>
+<p><strong>ומעשית זה אומר שלא צריך להסביר לו כל פעם מחדש מה נהוג אצלכם.</strong> הוא כבר יודע.</p>
+<aside class="content-box legal-example">
+<h3>דוגמה לאיך סקיל ארגוני עובד בתוך Word על טיוטה אמיתית:</h3>
+<p><strong>טיוטה חוזרת מבא כוח הקונה נפתחת ב-<bdi dir="ltr">Word</bdi>.</strong></p>
+<p><strong>התוסף עובר על השינויים שהם עשו ומציע תגובות בסימון שינויים</strong> - לפי בנק ההערות של המשרד.</p>
+<p><strong>ואתם עוברים על ההצעות ומחליטים</strong> מה מקבלים ומה לא.</p>
+</aside>
+<h3>ומה עושים כשההצעות שלו לא טובות:</h3>
+<p><strong>זה יקרה, ובעיקר בפעם הראשונה.</strong></p>
+<p><strong>הסיבה השכיחה היא שהוא לא ידע מה אתם מחפשים.</strong> <em>״תעבור על המסמך״</em> היא בקשה פתוחה מדי, <strong>והתוצאה תהיה כללית באותה מידה.</strong></p>
+<p><strong>מה שעובד טוב יותר: לומר לו בדיוק מה לבדוק.</strong></p>
+<div class="copy-block"><div class="copy-heading"><strong>בקשה ממוקדת, להעתקה</strong><button class="copy-button" data-copy-target="g1-copy-3" type="button">העתקת ההוראה</button></div><div class="copy-body" id="g1-copy-3">עבור על סעיפי התשלום במסמך בלבד. בדוק אם המועדים שנקבעו בהם סותרים את
+המועד שבסעיף 4, וסמן כל סתירה בסימון שינויים. אל תיגע בשאר המסמך.</div></div>
+<p><strong>ואם הצעה לא טובה - פשוט דוחים אותה בסימון השינויים.</strong> המסמך חוזר למה שהיה, <strong>ואפשר לבקש שוב אחרת.</strong></p>
+<aside class="content-box recommendation">
+<h3>עמדת <bdi dir="ltr">Legal Mind</bdi>:</h3>
+<p><strong>כשעובדים על מסמך יחד עם בינה מלאכותית, כדאי להתרגל לעבוד דרך התוסף.</strong></p>
+<p><strong>לא מפני שהוא חזק יותר</strong>, אלא מפני שהוא נוח: המסמך נשאר במקומו, אין העתקות הלוך ושוב, <strong>ואין שתי גרסאות של אותו מסמך בשני מקומות.</strong></p>
+</aside>
+</section>
+<section class="guide-section" id="g1-ch09"><span class="section-number">09</span><h2>כשמשהו לא עובד בפרויקט</h2>
+<p><strong>השאלות שחוזרות, והתשובות שלהן. אם נתקעתם - כנראה שזה כאן.</strong></p>
+<h3>שיתפתי, והוא אומר שהוא לא רואה את הפרויקט:</h3>
+<p><strong>בדקו שההזמנה נשלחה לכתובת שאיתה הוא מחובר לארגון</strong>, ולא לכתובת אחרת שלו. <strong>ובקשו ממנו לחפש תחת <bdi dir="ltr"><code>Shared with you</code></bdi></strong> ולא ברשימת הפרויקטים שלו.</p>
+<h3>הוא רואה את הפרויקט אבל לא יכול לשנות בו כלום:</h3>
+<p><strong>זו הרשאת <bdi dir="ltr"><code>Can view</code></bdi>, וזה תקין.</strong> מי שצריך לערוך צריך <bdi dir="ltr"><code>Can edit</code></bdi>. <strong>פרק 03.</strong></p>
+<h3>פתחתי שיחה חדשה והוא לא זוכר מה סיכמנו קודם:</h3>
+<p><strong>זה לא באג.</strong> ההקשר לא עובר בין שיחות, <strong>ומה שצריך להישאר עובר למאגר הידע.</strong> <strong>פרק 05.</strong></p>
+<h3>הסקיל הארגוני לא מופיע אצלי:</h3>
+<p><strong>שתי אפשרויות:</strong> או שכיביתם אותו בעצמכם, <strong>או שהאדמין עוד לא הפעיל את היכולת ברמת הארגון.</strong> בדקו קודם אצלכם, ואם הוא לא שם - פנו לאחראי.</p>
+<h3>חיברתי יומן והוא לא מוצא כלום:</h3>
+<p><strong>ודאו שהחיבור מסומן כמחובר ולא רק כמאושר</strong>, ושאתם שואלים על תקופה שיש בה משהו ביומן.</p>
+<h3>לחצתי Connect ב-<bdi dir="ltr">Microsoft 365</bdi> וקיבלתי מסך שמדבר על מנהל מערכת:</h3>
+<p><strong>זה שלב 4 של פרק 07, וזה צפוי.</strong> החיבור מחכה להגדרה חד-פעמית אצל מנהל המערכת של המשרד. <strong>צלמו את המסך, שלחו למי שמנהל אצלכם את <bdi dir="ltr">Microsoft 365</bdi>, וחזרו לחבר אחרי שהוא סיים.</strong></p>
+<h3>הכפתור של <bdi dir="ltr">Claude</bdi> לא מופיע ב-<bdi dir="ltr">Word</bdi>:</h3>
+<p><strong>קודם בדקו שהגרסה שלכם נתמכת בכלל</strong> - Word 2016 ו-2019 ברישיון קבוע אינם נתמכים. <strong>ואם הגרסה תקינה</strong>, סגרו את Word לגמרי ופתחו שוב, <strong>וודאו שהתחברתם בתוסף לחשבון <bdi dir="ltr">Claude</bdi>.</strong></p>
+</section>
+<section class="guide-section" id="g1-ch10"><span class="section-number">10</span><h2>מסכמים מה למדתם, ולאן ממשיכים מכאן</h2>
+<p><strong>מה שאתם יודעים לעשות עכשיו:</strong></p>
+<ul class="bullets"><li><strong>לפתוח פרויקט ולהחליט בשלב היצירה מי רואה אותו.</strong></li><li><strong>לשתף אדם מסוים, ולתת לו צפייה או עריכה - ולדעת מה ההבדל.</strong></li><li><strong>לדעת מה נשאר פרטי גם בפרויקט משותף</strong>, ולכן להעז לשתף ידע בלי לחשוף עבודה.</li><li><strong>להעביר למאגר הידע מה שצריך לחול על כל השיחות.</strong></li><li><strong>לזהות מאיפה הגיע כל סקיל שאתם רואים.</strong></li><li><strong>לחבר יומן ומייל, ולבדוק שזה עובד.</strong></li><li><strong>ולעבוד מול <bdi dir="ltr">Claude</bdi> בתוך Word ובתוך Excel.</strong></li></ul>
+<h3>ומה שיש לכם עכשיו ולא היה לכם קודם:</h3>
+<p><strong>עכשיו, אחרי שראיתם את כל זה, אפשר לומר את זה בשורה:</strong> מה שעשיתם בעשרת הפרקים האלה <strong>אי אפשר לעשות במנוי אישי בכלל.</strong></p>
+<p><strong>פרויקט משותף</strong> · ב-<bdi dir="ltr"><code>Pro</code></bdi> וב-<bdi dir="ltr"><code>Max</code></bdi> הפרויקטים שלכם הם שלכם בלבד, ואין דרך לתת לעובד אחר גישה למאגר ידע.</p>
+<p><strong>הרשאות</strong> · צפייה מול עריכה. במנוי אישי אין למי לתת אותן.</p>
+<p><strong>מכסה אישית לכל אדם</strong> · ולא מאגר משותף שאחד שורף לכולם.</p>
+<p><strong>וכל השאר - תקרת הוצאה, ניהול מושבים, הזדהות מאוחדת - נמצא במדריך 2.</strong></p>
+<h3>ואם אתם גם מנהלים את המשרד:</h3>
+<p><strong>מדריך 2 עוסק בצד הניהולי:</strong> מי מקבל איזה תפקיד, איך סקיל אחד הופך לשיטת העבודה של כל המשרד, <strong>ומי שומר שלא כל אחד יפרסם לכולם.</strong></p>
+<p><strong>ואם אתם לא מנהלים - אין צורך.</strong> המדריך הזה עומד בפני עצמו.</p>
+<p><strong>ולסיום, כמו בפתיחה:</strong> כל שאלה על פרטיות, DPA ואבטחת מידע נמצאת במדריך של Legal Mind על המעבר הבטוח למנוי Team, <strong>מדריך 1 סעיף 2.</strong></p>
+</section>
+<div class="bottom-nav"><a class="button" href="claude-team-usage.html">מרכז המדריכים </a><a class="button primary" href="claude-team-usage-guide-2.html">המדריך הבא: להגדיר איך כל המשרד עובד</a></div>
+</main>
+
+<aside class="desktop-toc"><h2>תוכן המדריך</h2><ol><li><a href="#g1-ch00"><span>00</span>מונחים שכדאי להכיר לפני שמתחילים</a></li><li><a href="#g1-ch01"><span>01</span>מי במשרד רואה את מה שאתם עושים ב-<bdi dir="ltr">Claude</bdi></a></li><li><a href="#g1-ch02"><span>02</span>פותחים פרויקט, ומחליטים מי רואה אותו</a></li><li><a href="#g1-ch03"><span>03</span>כיצד משתפים תיק עם עו"ד אחד, וכיצד מחליטים מה הוא יוכל לעשות בו</a></li><li><a href="#g1-ch04"><span>04</span>האם מי ששיתפתם איתו את הפרויקט רואה גם את השיחות שלכם</a></li><li><a href="#g1-ch05"><span>05</span>למה <bdi dir="ltr">Claude</bdi> לא זוכר בשיחה חדשה מה סיכמתם בשיחה הקודמת</a></li><li><a href="#g1-ch06"><span>06</span>מוצאים את הסקילים שלכם, ויודעים מי העלה כל אחד</a></li><li><a href="#g1-ch07"><span>07</span>מחברים את היומן ואת המייל, ויודעים בדיוק מה נפתח</a></li><li><a href="#g1-ch08"><span>08</span>עובדים מול <bdi dir="ltr">Claude</bdi> בתוך Word ובתוך Excel</a></li><li><a href="#g1-ch09"><span>09</span>כשמשהו לא עובד בפרויקט</a></li><li><a href="#g1-ch10"><span>10</span>מסכמים מה למדתם, ולאן ממשיכים מכאן</a></li></ol></aside>
+</div>
+
+<footer><bdi dir="ltr">Legal Mind</bdi> | מדריך על מנוי Team ב-Claude | מדריך 1: לפתוח פרויקט ולהחליט מי מהעובדים יוכל לראות אותו</footer>
+
+<script>
+(()=>{"use strict";const sections=[...document.querySelectorAll(".guide-section[id]")],links=[...document.querySelectorAll(".desktop-toc a[href^='#']")];if(!sections.length||!links.length)return;const set=id=>links.forEach(a=>a.getAttribute("href")==="#"+id?a.setAttribute("aria-current","location"):a.removeAttribute("aria-current"));set(sections[0].id);if("IntersectionObserver"in window){const o=new IntersectionObserver(es=>{const v=es.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(v)set(v.target.id)},{rootMargin:"-15% 0px -65% 0px",threshold:[0,.15,.5]});sections.forEach(s=>o.observe(s))}})();
+(()=>{"use strict";document.querySelectorAll(".copy-button[data-copy-target]").forEach(btn=>{const orig=btn.textContent;btn.addEventListener("click",async()=>{const el=document.getElementById(btn.getAttribute("data-copy-target"));if(!el)return;const box=btn.closest(".copy-block");const status=box?box.querySelector(".copy-status"):null;try{await navigator.clipboard.writeText(el.innerText.trim());btn.textContent="הועתק";if(status)status.textContent="הטקסט הועתק.";setTimeout(()=>{btn.textContent=orig;if(status)status.textContent=""},2500)}catch(e){if(status)status.textContent="ההעתקה נחסמה בדפדפן. סמנו את הטקסט והעתיקו ידנית."}})})})();
+
+</script>
+<script>
+(function(){
+  "use strict";
+  var frames = [].slice.call(document.querySelectorAll(".shot-frame"));
+  if(!frames.length) return;
+
+  var box = document.createElement("div");
+  box.className = "zoomer";
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-modal", "true");
+  box.setAttribute("aria-label", "צילום מסך בגודל מלא");
+  box.innerHTML = '<button type="button" class="zoomer-close">סגירה</button>' +
+                  '<div class="zoomer-stage"></div>' +
+                  '<div class="zoomer-cap"><p class="zoomer-cap-text"></p>' +
+                  '<p class="zoomer-pan">הצילום רחב מהמסך. אפשר לגרור אותו הצידה כדי לראות את כולו.</p></div>';
+  document.body.appendChild(box);
+
+  var stage = box.querySelector(".zoomer-stage");
+  var cap = box.querySelector(".zoomer-cap");
+  var capText = box.querySelector(".zoomer-cap-text");
+  var closeBtn = box.querySelector(".zoomer-close");
+  var opener = null;
+
+  function open(frame){
+    var img = frame.querySelector("img");
+    if(!img) return;
+    stage.innerHTML = frame.innerHTML;
+    /* גודל טבעי, ולא "עד רוחב המסך" - אחרת על טלפון מקבלים שוב תמונה
+       מוקטנת שאי אפשר לקרוא בה, וההגדלה לא עשתה כלום */
+    var nat = img.naturalWidth || img.width;
+    stage.style.width = nat + "px";
+    stage.style.maxWidth = "none";
+    var fig = frame.closest("figure");
+    var c = fig ? fig.querySelector(".shot-caption") : null;
+    capText.textContent = c ? c.textContent : "";
+    cap.classList.toggle("is-wide", nat > (window.innerWidth - 20));
+    opener = frame;
+    box.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+  function close(){
+    box.classList.remove("is-open");
+    document.body.style.overflow = "";
+    stage.innerHTML = "";
+    if(opener) opener.focus();
+    opener = null;
+  }
+
+  /* ההזמנה להגדיל מופיעה רק על צילום שבאמת מוצג מוקטן. על צילום שממילא
+     בגודלו הטבעי היא הבטחה ריקה, ועשרים שורות כאלה הן רעש */
+  function wire(){
+    frames.forEach(function(frame){
+      var img = frame.querySelector("img");
+      if(!img || !img.naturalWidth) return;
+      var shrunk = img.getBoundingClientRect().width < img.naturalWidth * 0.96;
+      if(!shrunk || frame.dataset.zoom) return;
+      frame.dataset.zoom = "1";
+      frame.setAttribute("tabindex", "0");
+      frame.setAttribute("role", "button");
+      frame.setAttribute("aria-label", "הגדלת הצילום");
+      frame.style.cursor = "zoom-in";
+      frame.addEventListener("click", function(){ open(frame); });
+      frame.addEventListener("keydown", function(ev){
+        if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); open(frame); }
+      });
+      var fig = frame.closest("figure");
+      var capEl = fig ? fig.querySelector(".shot-caption") : null;
+      if(capEl && !fig.querySelector(".shot-hint")){
+        var hint = document.createElement("p");
+        hint.className = "shot-hint";
+        hint.innerHTML = "לחיצה על הצילום פותחת אותו בגודל מלא";
+        capEl.insertAdjacentElement("afterend", hint);
+      }
+    });
+  }
+  wire();
+  window.addEventListener("load", wire);
+  window.addEventListener("resize", wire);
+  frames.forEach(function(frame){
+    var img = frame.querySelector("img");
+    if(img && !img.complete) img.addEventListener("load", wire);
+  });
+
+  closeBtn.addEventListener("click", close);
+  box.addEventListener("click", function(ev){
+    if(ev.target === box) close();
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape" && box.classList.contains("is-open")) close();
+  });
+})();
+
+
+(function(){
+  document.addEventListener("click", function(ev){
+    var btn = ev.target.closest(".copy-button");
+    if(!btn) return;
+    var block = btn.closest(".copy-block");
+    var src = document.getElementById(btn.getAttribute("data-copy-target"));
+    var status = block ? block.querySelector(".copy-status") : null;
+    if(!src) return;
+    var text = src.innerText;
+    function done(ok){
+      if(!status) return;
+      status.textContent = ok ? "ההוראה הועתקה" : "ההעתקה נכשלה, סמנו והעתיקו ידנית";
+      setTimeout(function(){ status.textContent = ""; }, 2600);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){done(true);},
+                                              function(){done(false);});
+    } else { done(false); }
+  });
+})();
+</script>
+<script>
+(function () {
+  var btn = document.getElementById('copyCompanionBtn');
+  var src = document.getElementById('companion-source');
+  if (!btn || !src) { return; }
+  var original = btn.innerHTML;
+  btn.addEventListener('click', function () {
+    var text = src.value.replace(/^[\r\n]+/, '');
+    function flash(success) {
+      btn.textContent = success ? 'הפרומפט הועתק. עכשיו הדביקו אותו בשיחה חדשה ב-Claude' : 'לא הצלחנו להעתיק. נסו שוב';
+      btn.setAttribute('data-copied', success ? 'true' : 'false');
+      setTimeout(function () { btn.innerHTML = original; btn.removeAttribute('data-copied'); }, success ? 4000 : 3500);
+    }
+    function fallbackCopy() {
+      var ok = false;
+      try { src.removeAttribute('readonly'); src.select(); ok = document.execCommand('copy'); }
+      catch (e) { ok = false; }
+      finally { src.setAttribute('readonly', 'readonly'); }
+      flash(ok);
+    }
+    var done = false;
+    try { src.removeAttribute('readonly'); src.select(); src.setSelectionRange(0, src.value.length); done = document.execCommand('copy'); }
+    catch (e) { done = false; }
+    finally { src.setAttribute('readonly', 'readonly'); if (window.getSelection) { window.getSelection().removeAllRanges(); } }
+    if (done) { flash(true); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { flash(true); }, function () { flash(false); });
+    } else { flash(false); }
+  });
+})();
+</script>
+</body>
+</html>
