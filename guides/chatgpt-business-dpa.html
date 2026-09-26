@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדריך DPA: הסכם עיבוד הנתונים של OpenAI לעורכי דין</title>
+<link rel="canonical" href="https://www.legalmind.co.il/guides/chatgpt-business-dpa.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<meta property="og:url" content="https://www.legalmind.co.il/guides/chatgpt-business-dpa.html">
+<meta property="og:image" content="https://www.legalmind.co.il/guides/og-guides.jpg">
+<meta property="og:site_name" content="Legal Mind">
+<meta property="og:locale" content="he_IL">
+<meta name="description" content="איך חותמים על ה-DPA של OpenAI ל-ChatGPT Business, מה מובטח ומה לא, ומה נשאר באחריות המשרד. מדריך של Legal Mind.">
+<meta property="og:title" content="מדריך DPA: הסכם עיבוד הנתונים של OpenAI לעורכי דין">
+<meta property="og:description" content="איך חותמים על ה-DPA של OpenAI ל-ChatGPT Business, מה מובטח ומה לא, ומה נשאר באחריות המשרד. מדריך של Legal Mind.">
+<meta property="og:type" content="article">
+<style>
+
+:root{--navy:#0d2740;--navy2:#173e57;--teal:#11736d;--cyan:#2bc0b7;--orange:#b84a21;--gold:#b48a38;--red:#b3263b;--green:#2f7b52;--ink:#1d2b34;--muted:#607178;--bg:#f4f8f7;--paper:#fff;--line:#d7e2df;--soft:#e9f4f2;--shadow:0 16px 40px rgba(13,39,64,.10);--width:1220px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:72px}body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans Hebrew",sans-serif;font-size:16px;line-height:1.72}img{max-width:100%;height:auto}a{color:inherit}bdi[dir=ltr],[dir=ltr]{unicode-bidi:isolate}.skip{position:fixed;top:-80px;right:16px;z-index:100;background:#fff;border:2px solid var(--teal);border-radius:9px;padding:10px 14px;font-weight:800}.skip:focus{top:10px}.backbar{position:sticky;top:0;z-index:50;min-height:44px;border-bottom:1px solid #bdd5d2;background:#dcefee;padding:9px 14px;text-align:center}.backbar a{color:var(--teal);font-size:14px;font-weight:800;text-decoration:none}.backbar a:before{content:"→";margin-left:7px}.hero,.layout,.center-main,.center-brand{width:min(100%,var(--width));margin-inline:auto}.hero{display:grid;gap:18px;padding:26px 18px 24px}.eyebrow{margin:0 0 7px;color:var(--teal);font-size:13px;font-weight:900;letter-spacing:.03em}.hero h1,.center-hero h1{margin:0 0 10px;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.95rem,5.2vw,2.85rem);line-height:1.18}.hero-copy{max-width:82ch;color:var(--muted);font-size:1.06rem}.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0}.facts div{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:12px}.facts dt{color:var(--teal);font-size:12px;font-weight:900}.facts dd{margin:2px 0 0;color:var(--navy);font-weight:700}.layout{display:grid;grid-template-columns:286px minmax(0,1fr);gap:28px;padding:8px 14px 60px}.surface{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 9px 28px rgba(13,39,64,.06)}.guide-section{scroll-margin-top:72px;padding:26px 22px}.guide-section+.guide-section{border-top:1px solid var(--line)}.section-number,.sec-num{display:block;margin:0 0 2px;color:var(--teal);font-size:12px;font-weight:900;letter-spacing:.08em}.guide-section h2,.sec-title{margin:0 0 14px;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.5rem,3.5vw,2rem);line-height:1.25}.guide-section h3,.sec-body h3{margin:22px 0 8px;color:var(--navy);font-size:1.15rem}.guide-section p,.sec-body p{margin:0 0 13px}.guide-section ul,.guide-section ol,.sec-body ul,.sec-body ol{padding-right:25px}.guide-section li,.sec-body li{margin:6px 0}.desktop-toc{order:-1;position:sticky;top:64px;align-self:start;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:16px;box-shadow:0 8px 24px rgba(13,39,64,.06);max-height:calc(100vh - 84px);overflow:auto}.desktop-toc h2{margin:0 0 10px;color:var(--navy);font-size:1rem}.desktop-toc ol{margin:0;padding:0;list-style:none}.desktop-toc li+li{border-top:1px solid #edf1f0}.desktop-toc a{display:block;position:relative;padding:8px 2px;padding-inline-start:32px;color:var(--teal);font-size:14px;text-decoration:none;line-height:1.4}.desktop-toc a span:first-child{position:absolute;inset-inline-start:2px;top:8px;font-weight:900}.desktop-toc a[aria-current=location]{color:var(--orange);font-weight:900}.callout,.content-box{margin:20px 0;border-radius:14px;padding:16px 18px}.callout.tip,.content-box.info,.content-box.recommendation{border-right:5px solid var(--teal);background:#edf7f6}.callout.warn,.content-box.warning{border-right:5px solid var(--red);background:#fff4f2}.content-box.legal-example{border-right:5px solid var(--gold);background:#fff9ee}.content-box.knowledge-check{border-right:5px solid var(--orange);background:#fff7f0}.callout-label{display:block;margin-bottom:6px;color:var(--navy);font-weight:900}.bullets{padding-right:24px}.steps{counter-reset:step;list-style:none!important;padding:0!important}.steps li{position:relative;margin:11px 0;padding:12px 50px 12px 12px;border:1px solid var(--line);border-radius:12px;background:#fbfdfd}.steps li:before{counter-increment:step;content:counter(step);position:absolute;right:10px;top:10px;display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--teal);color:#fff;font-weight:900}.shot{margin:20px auto}.shot-frame{overflow:visible;border:1px solid var(--line);border-radius:14px;background:#eef3f3;box-shadow:0 8px 24px rgba(13,39,64,.08)}.shot-frame img{display:block;width:100%;height:100%;object-fit:contain;border-radius:13px}.shot-legend{margin:9px 0 0;color:var(--muted);font-size:14px}.mk{display:inline-grid;place-items:center;min-width:25px;height:25px;border-radius:50%;background:var(--red);color:#fff;font-weight:900}.mk-tag{font-weight:800}.tbl-wrap{overflow-x:auto;margin:18px 0}.tbl{width:100%;border-collapse:collapse;background:#fff}.tbl th,.tbl td{border:1px solid var(--line);padding:10px;vertical-align:top;text-align:right}.tbl th{background:#e9f4f2;color:var(--navy)}pre,.code{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #263b4a;border-radius:13px;background:#0f2536;color:#ecf8f7;padding:15px;font:14px/1.55 Consolas,monospace}.risk-grid,.cards,.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.risk-card,.card,.decision-card{border:1px solid var(--line);border-radius:14px;background:#fbfdfd;padding:15px}.risk-card.green{border-top:5px solid var(--green)}.risk-card.yellow{border-top:5px solid var(--gold)}.risk-card.red{border-top:5px solid var(--red)}.checklist{list-style:none!important;padding:0!important}.checklist li{position:relative;padding:8px 36px 8px 8px;border-bottom:1px solid #edf1f0}.checklist li:before{content:"✓";position:absolute;right:8px;color:var(--teal);font-weight:900}.workbook{border:1px dashed #8fb8b4;border-radius:16px;background:#f7fbfa;padding:18px;margin:18px 0}.prompt-box{border:1px solid var(--line);border-radius:14px;background:#f7faf9;padding:16px}.bottom-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border:1px solid var(--teal);border-radius:10px;padding:10px 15px;color:var(--teal);font-weight:900;text-decoration:none}.button.primary{background:var(--teal);color:#fff}.source-note{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.guide-nav{display:none}.center-head{background:#fff}.center-brand{padding:13px 18px;color:var(--navy);font-weight:900}.center-hero{background:var(--navy);color:#fff;padding:32px 18px 44px;text-align:center}.center-hero h1{color:#fff}.center-hero p{max-width:820px;margin:0 auto;color:#dcecef;font-size:1.08rem}.center-main{padding:38px 14px 64px}.learning-path{margin:-24px 0 34px;border:1px solid var(--line);border-radius:20px;background:#fff;padding:22px;box-shadow:var(--shadow)}.learning-path ol{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:0;padding:0;list-style:none}.learning-path li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;background:#fafcfc;padding:10px;font-weight:800}.learning-path span,.guide-number{display:grid;place-items:center;width:36px;height:36px;flex:0 0 36px;border-radius:10px;background:var(--teal);color:#fff;font-weight:900}.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.guide-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:#fff;padding:17px;box-shadow:0 8px 24px rgba(13,39,64,.06);border-top:5px solid var(--orange)}.guide-card h2{margin:13px 0 9px;color:var(--navy);font-size:1.28rem;line-height:1.4}.guide-card dl{margin:0 0 14px}.guide-card dl div{border-top:1px solid #e3eae8;padding:9px 0}.guide-card dt{color:#0d625d;font-size:14px;font-weight:900}.guide-card dd{margin:2px 0 0;font-size:15px;line-height:1.55}.guide-card .button{margin-top:auto}.status{display:inline-block;border-radius:999px;background:var(--soft);color:var(--teal);padding:5px 9px;font-size:12px;font-weight:900}.center-footer,footer{text-align:center;color:var(--muted);padding:26px 12px}.mobile-toc{display:none}
+@media(max-width:1000px){.guide-grid{grid-template-columns:repeat(2,1fr)}.learning-path ol{grid-template-columns:1fr}.facts{grid-template-columns:1fr}.risk-grid,.cards,.decision-grid{grid-template-columns:1fr}}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.desktop-toc{display:none!important}.mobile-toc{display:block;margin:0 14px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}.mobile-toc summary{padding:12px 14px;font-weight:900;color:var(--navy)}.mobile-toc ol{margin:0;border-top:1px solid var(--line);padding:8px 32px 12px 12px}.mobile-toc a{display:block;padding:5px 2px;color:var(--teal)}.guide-grid{grid-template-columns:1fr}.bottom-nav{flex-direction:column}.button{width:100%}.guide-section{padding:23px 17px}}
+@media print{.backbar,.desktop-toc,.mobile-toc,.bottom-nav{display:none!important}.layout{display:block;padding:0}.surface{border:0;box-shadow:none}.guide-section{break-inside:avoid}.hero{padding:10px 0}.center-main{padding:0}}
+.guide-section h4{margin:19px 0 7px;color:var(--teal);font-size:1.04rem}
+.guide-section h5{margin:16px 0 6px;color:var(--navy);font-size:.98rem}
+.major-subsection{margin:28px -22px 14px!important;border-right:6px solid var(--orange);background:#f7faf9;padding:13px 18px;color:var(--navy)!important;font-size:1.28rem!important}
+.source-emphasis{border:1px solid var(--line);border-right:5px solid var(--gold);border-radius:12px;background:#fffaf0;padding:13px 15px;font-weight:700}
+.guide-section .tbl td:empty{min-width:54px;height:40px;background:#fbfdfd}
+.guide-section .tbl th{white-space:nowrap}
+@media(max-width:820px){.major-subsection{margin:25px -17px 12px!important}.guide-section .tbl{min-width:620px}}
+.shot-frame{position:relative}
+.shot-target{position:absolute;z-index:2;border:3px solid var(--red);border-radius:9px;background:rgba(198,48,48,.07);box-shadow:0 0 0 2px rgba(255,255,255,.82),0 2px 9px rgba(13,39,64,.24);pointer-events:none}
+.shot-target.is-circle{border-radius:999px}
+.shot-target-badge{position:absolute;top:0;left:0;z-index:3;display:grid;place-items:center;width:26px;height:26px;border:2px solid #fff;border-radius:50%;background:var(--red);color:#fff;font-size:14px;font-weight:900;line-height:1;box-shadow:0 2px 8px rgba(13,39,64,.35);transform:translate(-45%,-45%)}
+.shot-target.badge-right>.shot-target-badge{right:0;left:auto;transform:translate(45%,-45%)}
+.shot-target-badge.badge-offset-left{top:50%;left:-18px;transform:translate(-50%,-50%)}
+.shot-target.badge-inside>.shot-target-badge{top:50%;left:auto;right:7px;transform:translate(0,-50%)}
+.shot-target.badge-inside-left>.shot-target-badge{top:50%;left:7px;right:auto;transform:translate(0,-50%)}
+.shot-target.badge-outside-left>.shot-target-badge{top:50%;left:0;right:auto;transform:translate(-115%,-50%)}
+.shot-target.badge-outside-right>.shot-target-badge{top:50%;right:0;left:auto;transform:translate(115%,-50%)}
+.shot-target.badge-above>.shot-target-badge{top:0;left:50%;right:auto;transform:translate(-50%,-118%)}
+.shot-target.badge-below>.shot-target-badge{top:100%;left:50%;right:auto;transform:translate(-50%,18%)}
+.shot-target.badge-mid>.shot-target-badge{top:50%;left:50%;right:auto;transform:translate(-50%,-50%)}
+.shot-caption{margin:9px 0 0;color:var(--muted);font-size:14px;font-weight:700}
+@media(max-width:640px){.shot-target{border-width:2px;border-radius:6px;box-shadow:0 0 0 1px rgba(255,255,255,.86),0 1px 5px rgba(13,39,64,.24)}.shot-target-badge{width:20px;height:20px;border-width:1.5px;font-size:11px}.shot-target-badge.badge-offset-left{left:-13px}}
+.center-kicker{display:inline-flex;align-items:center;justify-content:center;margin:0 auto 18px!important;border:1px solid #2bc0b7;border-radius:999px;padding:8px 16px;color:#7ce5dd!important;font-size:13px!important;font-weight:900}.center-subtitle{max-width:900px!important}.platform-note{max-width:960px!important;margin:20px auto 0!important;border:1px solid rgba(124,229,221,.38);border-radius:14px;background:rgba(255,255,255,.06);padding:13px 16px;color:#eefafa!important;font-size:.97rem!important;line-height:1.65}.platform-note strong{color:#86ebe3}
+.copy-block{margin:18px 0;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.copy-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.copy-heading strong{font-size:.95rem;color:var(--navy)}
+.copy-button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:7px 14px;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-button:hover{background:var(--navy)}
+.copy-button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.copy-block .copy-body,.copy-block>p[id]{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--ink);font-size:.95rem;line-height:1.7;white-space:pre-wrap}
+.copy-block .copy-body.ltr{direction:ltr;text-align:left;font-family:ui-monospace,Consolas,monospace;font-size:.88rem}
+.copy-status{display:block;margin-top:8px;min-height:1.1em;font-size:.82rem;font-weight:700;color:var(--green)}
+@media(max-width:700px){.copy-heading{align-items:flex-start;flex-direction:column}.copy-button{width:100%}}
+.path-note{margin:16px 0 0;padding:14px 16px;background:var(--soft);border-inline-start:4px solid var(--teal);border-radius:10px;color:var(--ink);font-size:.95rem;line-height:1.7}
+.path-note strong{color:var(--navy)}
+.shot-caption{margin:10px 0 6px;color:var(--muted);font-size:.92rem;line-height:1.65}
+.shot-legend-num{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.shot-legend-num li{color:var(--ink);font-size:.92rem;line-height:1.6}
+.shot-legend-num>li>strong:first-child{color:var(--teal);font-weight:900;margin-inline-end:4px}
+.copy-block ol,.copy-block ul{margin:0;padding-inline-start:22px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding-block:12px;padding-inline-end:14px;color:var(--ink);font-size:.95rem;line-height:1.75}
+.copy-block>div[id]>p{margin:0 0 8px}
+.copy-block>div[id]{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.copy-block>div[id] ol,.copy-block>div[id] ul{border:0;padding-block:0;background:transparent}
+.shot-legend{list-style:none;padding:0;margin:9px 0 0}
+.table-wrap{overflow-x:auto;margin:16px 0}
+.table-wrap table{border-collapse:collapse;width:100%;font-size:.9rem}
+.table-wrap th{background:var(--navy);color:#fff;padding:9px 10px;text-align:right;font-weight:700}
+.table-wrap td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+.table-wrap tr:nth-child(even) td{background:var(--soft)}
+.copy-block>div.copy-plain{white-space:pre-wrap;font-family:ui-monospace,Consolas,monospace;font-size:.85rem;line-height:1.75;direction:rtl;text-align:right;overflow-x:auto}
+.lm-brand-old{background:#fff;border-bottom:1px solid var(--line);padding:11px 18px;text-align:center}
+.lm-logo-old{display:inline-block;width:130px;height:auto;object-fit:contain}
+.center-brand{text-align:center}
+@media(max-width:610px){.lm-logo-old{width:110px}}
+.shot-legend li{display:flex;align-items:flex-start;gap:8px;margin:6px 0}
+.shot-legend b{flex:0 0 auto;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:900;font-style:normal;box-shadow:0 1px 3px rgba(13,39,64,.3)}
+.draftbar{background:#fff4e5;border-bottom:2px solid #e8b269;padding:10px 16px;text-align:center;font-weight:800;color:#7a4d00}
+.partner{background:var(--navy);color:#fff;border-radius:16px;padding:22px 26px;margin:26px 0;line-height:1.8;box-shadow:0 10px 30px rgba(13,39,64,.16)}
+.partner h3{margin:0 0 10px;color:#fff;font-family:Georgia,"Times New Roman",serif;font-size:1.25rem}
+.partner b{color:var(--cyan)}
+.pending{background:#f4f8f7;border:1.5px dashed #a9c8c2;border-radius:14px;padding:16px 20px;margin:20px 0}
+.pending .lbl{display:inline-flex;align-items:center;gap:8px;background:#e4efec;color:#2c5c55;border-radius:999px;padding:4px 14px;font-size:.78rem;font-weight:800;letter-spacing:.06em;margin-bottom:8px}
+.pending .lbl:before{content:"";width:8px;height:8px;border-radius:50%;background:#7fae9f}
+.pending p{margin:0;color:#3c5b56;line-height:1.7}
+.dl-grid{display:grid;gap:16px;margin:18px 0}
+@media(min-width:700px){.dl-grid{grid-template-columns:1fr 1fr}}
+.dl-card{background:#fff;border:1.5px solid #cfe0dd;border-radius:14px;padding:16px 20px;box-shadow:0 3px 14px rgba(13,39,64,.05)}
+.dl-card h4{margin:0 0 6px;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:1.12rem}
+.dl-card p{margin:0 0 8px;line-height:1.65}
+.dl-card .ver{display:inline-block;font-size:.78rem;color:#5a6b75;font-family:ui-monospace,Consolas,monospace;background:#f4f7f7;border-radius:6px;padding:2px 8px}
+.dl-go{display:block;margin-top:10px;padding:9px 14px;border-radius:9px;background:#147474;color:#fff;font-weight:800;font-size:.9rem;text-align:center;text-decoration:none}
+.dl-go:hover{background:#0f5c5c}
+.dl-wait{display:block;margin-top:10px;padding:8px 14px;border-radius:9px;background:#f2f4f4;color:#6b7c85;font-weight:700;font-size:.85rem;text-align:center}
+.term-chip{background:#dff3e7;border:1px solid #9ed8b8;padding:2px 9px;border-radius:7px;font-family:ui-monospace,Consolas,monospace;font-size:.9em;white-space:nowrap}
+.compare{display:grid;gap:16px;margin:18px 0}
+@media(min-width:700px){.compare{grid-template-columns:1fr 1fr}}
+.compare>div{border-radius:14px;padding:16px 20px;line-height:1.75}
+.cmp-before{background:#fdf4f4;border:1.5px solid #e3bfbf}
+.cmp-after{background:#eff8f3;border:1.5px solid #9ed8b8}
+.compare strong.hdr{display:block;margin-bottom:8px;font-size:1rem;font-family:Georgia,"Times New Roman",serif}
+.cmp-before strong.hdr{color:#93413f}
+.cmp-after strong.hdr{color:#1e7a52}
+.punch{text-align:center;font-family:Georgia,"Times New Roman",serif;font-size:1.2rem;color:var(--navy);background:#f6fbf9;border-top:2px solid #dff3e7;border-bottom:2px solid #dff3e7;padding:20px 22px;margin:22px 0;line-height:1.7}
+.punch em{color:#147474;font-style:normal;font-weight:700}
+table.demo{width:100%;border-collapse:collapse;background:#fff;border:1.5px solid #7cc79b;margin:14px 0;font-size:.93rem}
+table.demo th{background:#dff3e7;color:var(--navy);font-weight:900;padding:10px 12px;border:1px solid #7cc79b;text-align:center}
+table.demo td{padding:9px 12px;border:1px solid #9ed8b8;vertical-align:top;text-align:right}
+.shot-frame{position:relative}
+  .shot-hint{display:inline-block;margin:16px 0 4px;padding:7px 14px;
+    border-radius:999px;background:rgba(20,116,116,.09);
+    color:var(--teal);font-size:1.2rem;font-weight:800;line-height:1.4}
+  .shot-hint:before{content:"🔍";margin-inline-end:8px;font-weight:400}
+  
+  figure .shot-hint{display:block;width:fit-content;margin-inline:auto}
+  .zoomer{position:fixed;inset:0;z-index:70;display:none;overflow:auto;
+    background:rgba(9,20,32,.92);padding:26px}
+  .zoomer.is-open{display:block}
+  
+  .zoomer .zoomer-close{position:fixed;top:16px;left:50%;
+    transform:translateX(-50%);z-index:2;
+    border:3px solid var(--teal);border-radius:999px;
+    padding:13px 34px;background:#fff;color:var(--teal);
+    font:inherit;font-size:1.15rem;font-weight:900;cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,.28)}
+  .zoomer .zoomer-close:hover{background:var(--teal);color:#fff}
+  
+  .zoomer .zoomer-stage{margin:44px auto 0;position:relative}
+  .zoomer .zoomer-stage img{display:block;width:100%;height:auto;
+    border-radius:8px}
+  .zoomer .zoomer-cap{margin:14px auto 0;max-width:760px;color:#fff;
+    text-align:center;font-size:1rem;opacity:.9}
+  .zoomer .zoomer-pan{margin:.4rem 0 0;font-size:.9rem;opacity:.8;display:none}
+  .zoomer .zoomer-cap.is-wide .zoomer-pan{display:block}
+  .shot-frame{position:relative}
+.bottom-nav{display:flex;justify-content:center;align-items:center;gap:clamp(90px,14vw,190px);flex-wrap:wrap;margin-top:34px}
+.surface p,.surface li,.surface td,.surface a{overflow-wrap:anywhere;word-break:normal}
+.surface{overflow-x:hidden}
+.surface > p, .surface > h2, .surface > h3, .surface > h4, .surface > ul, .surface > ol, .surface > blockquote, .surface > dl{padding-inline:22px}
+@media(max-width:700px){.surface > p, .surface > h2, .surface > h3, .surface > h4, .surface > ul, .surface > ol, .surface > blockquote, .surface > dl{padding-inline:17px}}
+.shot-target{background:transparent}
+.wip{margin:22px 0 0;border:2px solid rgba(20,116,116,.32);border-radius:14px;
+  background:#f6fbfa;padding:18px 20px}
+.wip>b{display:block;margin:0 0 4px;color:#147474;font-size:1.06rem;font-weight:900}
+.wip>p{margin:0 0 12px;line-height:1.7}
+.wip ol{margin:0;padding-inline-start:22px}
+.wip li{margin-bottom:11px;line-height:1.7}
+.wip li:last-child{margin-bottom:0}
+.wip li b{color:#147474}
+.wip .wip-done{color:#146a4f;font-weight:800}
+.dl-list{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+.dl-list>li{display:grid;grid-template-columns:1fr 210px;gap:18px;align-items:center;
+  background:#fff;border:1.5px solid #cfe0dd;border-radius:13px;padding:15px 19px;
+  box-shadow:0 3px 12px rgba(13,39,64,.05)}
+.dl-list .nm{display:block;font-weight:900;font-size:1.04rem;color:#0d2740}
+.dl-list .ds{display:block;color:#5a6b75;font-size:.93rem;line-height:1.65;margin-top:4px}
+.dl-list .dl-go{margin:0;white-space:nowrap}
+@media(max-width:700px){.dl-list>li{grid-template-columns:1fr}}
+.shot-frame[data-zoom]{cursor:zoom-in}
+.shot--peek .shot-frame[data-zoom]{cursor:zoom-in}
+section.guide-section > h3{font-family:Georgia,"Times New Roman",serif;font-size:1.62rem;font-weight:800;color:var(--navy);line-height:1.45;margin:34px 0 12px}
+aside.content-box > h3{font-family:Georgia,"Times New Roman",serif;font-size:1.42rem;font-weight:800;line-height:1.45;margin:0 0 10px}
+@media (max-width:640px){section.guide-section > h3{font-size:1.36rem;margin:26px 0 10px}aside.content-box > h3{font-size:1.26rem}}
+.btn-label{display:inline;white-space:normal}
+.lm-brand{background:#fff;border-bottom:1px solid var(--line);padding:11px 18px;text-align:center}
+.lm-logo{display:inline-block;width:130px;height:auto;object-fit:contain}
+@media(max-width:610px){.lm-logo{width:110px}}
+.hero-kicker{margin:14px 0 4px;color:var(--teal);font-size:13px;font-weight:900}
+.hero .hero-copy{margin:0 0 9px}
+.hero .hero-copy:last-child{margin-bottom:0}
+.surface a{color:var(--teal)}
+.guide-section p,.guide-section li{color:var(--ink)}
+.sec-body{max-width:none}
+code{font-family:ui-monospace,Consolas,monospace;background:var(--soft);color:#0b5e59;padding:1px 7px;border-radius:4px;font-size:.9em;font-weight:600;unicode-bidi:isolate}
+.sec-lead{font-size:1.06rem;line-height:1.75;color:var(--muted)!important;margin:0 0 16px!important;padding:0 0 12px;border-bottom:1px dashed var(--line)}
+.guide-section h3.h2{margin:24px 0 10px;padding-inline-start:12px;border-right:4px solid var(--teal);color:var(--navy);font-size:1.18rem;font-weight:900;line-height:1.45}
+.sec-body>h3.h2:first-child{margin-top:0}
+.guide-section h3.h2.dpa-title{font-size:1.8rem;line-height:1.2}
+.callout p.why-big{font-size:2em;line-height:1.25;margin-bottom:10px}
+.callout{border-right:5px solid var(--teal);background:#edf7f6}
+.callout.experiment{border-right-color:var(--gold);background:#fff9ee}
+.callout p{margin:0}
+.callout p+p,.callout p+ul,.callout ul+p{margin-top:8px}
+.callout ul.bullets{margin:6px 0 0}
+.quote-he,.quote-en{margin:12px 0;border-right:4px solid var(--teal);background:var(--soft);padding:13px 16px;border-radius:10px;font-size:15.5px;line-height:1.7}
+.quote-en{direction:ltr;text-align:right;font-family:Georgia,"Times New Roman",serif;font-style:italic}
+.quote-src-label{margin:14px 0 0!important;color:var(--muted)!important;font-size:13.5px;font-weight:700}
+.tbl{min-width:440px;font-size:15px}
+.tbl-wrap{border-radius:12px}
+ul.bullets{list-style:disc;padding-right:22px;margin:0 0 13px}
+ul.bullets li::marker{color:var(--teal)}
+ul.checklist li{padding:8px 38px 8px 8px}
+ul.checklist li:before{content:"";top:12px;right:6px;width:19px;height:19px;border:2px solid var(--teal);border-radius:5px;background:#fff}
+.guide-section figure{margin:20px auto;text-align:center}
+.guide-section figure .shot-frame{display:block;border:0;background:none;box-shadow:none;border-radius:0}
+img.shot-real{display:block;width:auto;max-width:100%;height:auto;margin:0 auto;border:1px solid #b7cbc9;border-radius:10px;box-shadow:0 8px 24px rgba(13,39,64,.10);object-fit:initial}
+figure>figcaption{margin-top:8px;font-size:14px;color:var(--muted);text-align:center}
+.shot-legend{list-style:none;margin:12px 0 0;padding:0}
+.shot-legend li{display:flex;align-items:flex-start;gap:10px;margin:8px 0;font-size:15px;line-height:1.65;color:var(--ink)}
+.shot-legend li>b{flex:0 0 24px;display:grid;place-items:center;width:24px;height:24px;margin-top:2px;border-radius:50%;background:#7A1233;color:#fff;font-size:13px;font-weight:700;line-height:1;box-shadow:none}
+.shot-legend li>span{flex:1 1 auto}
+.image-placeholder{margin:0 0 16px}
+.image-placeholder__box{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:120px;padding:20px;border:2px dashed #b7cbc9;border-radius:12px;background:#f7faf9;text-align:center}
+.draft-pending .image-placeholder__box{border-color:#C9A227;background:#FFF8E1;color:#5B4A0A}
+.prompt-box{margin:0 0 16px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 8px 24px rgba(13,39,64,.06);overflow:hidden;padding:0}
+.prompt-box__header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:var(--soft);border-bottom:1px solid var(--line)}
+.prompt-box__title{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:15px;color:var(--navy)}
+.prompt-copy-btn{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:7px 14px;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.prompt-copy-btn:hover{background:var(--navy)}
+.prompt-copy-btn[data-copied="false"]{background:var(--red)}
+.prompt-copy-btn[data-copied="true"]{background:var(--green)}
+.prompt-box__body{padding:18px 20px}
+.prompt-box__body h4{font-family:Georgia,"Times New Roman",serif;font-size:17px;color:var(--navy);margin:0 0 6px}
+.prompt-box__body h5.pb-sub{font-size:15.5px;color:var(--navy);margin:18px 0 4px}
+.prompt-box__body>h5.pb-sub:first-of-type{margin-top:4px}
+.prompt-box__body p,.prompt-box__body ul,.prompt-box__body ol{font-size:15px;margin:0 0 10px}
+.prompt-box__body ul,.prompt-box__body ol{padding-inline-start:22px}
+.prompt-box__body pre{direction:ltr;text-align:start;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font:13px/1.5 ui-monospace,Consolas,monospace;color:var(--ink);overflow-x:auto;margin:0 0 10px;white-space:pre}
+.prompt-copy-source{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.checklist-intro{margin:0 0 18px!important;color:var(--muted)!important}
+ul.big-checklist{margin:0;padding:0;list-style:none}
+ul.big-checklist li{position:relative;padding:9px 40px 9px 8px;border-bottom:1px solid #edf1f0;line-height:1.55}
+ul.big-checklist li::before{content:"";position:absolute;right:6px;top:10px;width:22px;height:22px;border-radius:5px;border:2.5px solid var(--teal);background:#fff}
+ul.big-checklist li[role=checkbox]{cursor:pointer}
+ul.big-checklist li.is-done{text-decoration:line-through;opacity:.62}
+ul.big-checklist li.is-done::after{content:"✓";position:absolute;right:11px;top:8px;font-weight:900;color:var(--teal)}
+.checklist-footnote{text-align:center;color:var(--muted)!important;font-size:13px}
+.checklist-reset{display:block;margin:10px auto 0;padding:8px 18px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--muted);font:inherit;font-size:14px;cursor:pointer}
+.bottom-nav{justify-content:space-between;gap:12px;margin-top:4px}
+.bottom-nav .button{flex-direction:column;align-items:flex-start;gap:2px;min-width:230px;padding:10px 18px}
+.bottom-nav .button.next{margin-inline-start:auto;align-items:flex-end}
+.bottom-nav .doc-nav-label{font-size:12px;font-weight:700;opacity:.85}
+.bottom-nav .doc-nav-title{font-size:15px;font-weight:900}
+footer{font-size:.85rem;padding:30px 16px 20px;border-top:1px solid #dfe7e4}
+.shot-hint{display:block;width:fit-content;margin:10px auto 4px;padding:7px 14px;border-radius:999px;background:rgba(20,116,116,.09);color:var(--teal);font-size:15px;font-weight:800;line-height:1.4}
+.shot-hint:before{content:"🔍";margin-inline-end:8px;font-weight:400}
+.shot-hint.hint-full:before{content:"📄"}
+.zoomer .zoomer-stage img{background:#fff}
+@media(max-width:820px){.bottom-nav .button{width:100%;align-items:flex-start!important}}
+@media print{.draftbar,.shot-hint,.zoomer{display:none!important}}
+.guide-section .section-number{margin:0 0 6px;font-family:Arial,"Segoe UI",sans-serif;font-size:24px;font-weight:900;line-height:1;letter-spacing:.06em;font-variant-numeric:lining-nums tabular-nums}
+@supports (-webkit-text-stroke:1px black){.guide-section .section-number{color:transparent;-webkit-text-stroke:1.2px var(--teal)}}
+
+</style>
+<style>.mobile-toc ol{list-style:none;padding:6px 14px 10px}.mobile-toc li+li{border-top:1px solid #edf1f0}.mobile-toc a{display:block;position:relative;padding:8px 2px;padding-inline-start:34px;text-decoration:none;line-height:1.45}.mobile-toc a span:first-child{position:absolute;inset-inline-start:2px;top:8px;font-weight:900}</style>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<nav class="backbar"><a href="chatgpt-business.html">חזרה לעמוד מרכז המדריכים</a></nav>
+<div class="lm-brand"><img alt="לוגו Legal Mind" class="lm-logo" decoding="async" src="legal-mind-logo-tight.png"></div>
+
+<header class="hero"><div>
+<p class="eyebrow"><bdi>מדריך משלים</bdi></p>
+<h1>הסכם עיבוד הנתונים <bdi dir="ltr">(DPA)</bdi> של <bdi dir="ltr">OpenAI</bdi>: איך חותמים, מה מובטח ומה לא</h1>
+<p class="hero-kicker">למי מיועד המדריך?</p>
+<p class="hero-copy"><b>מטרת <bdi dir="ltr">Legal Mind</bdi> היא להנגיש חומר מקצועי לעורכי דין ולמשרדי עורכי דין. תוכן מדריך זה אינו מהווה בשום פנים ואופן ייעוץ משפטי, ואינו תחליף להתייעצות עם גורם מוסמך בתוך המשרד או מחוצה לו. <bdi dir="ltr">Legal Mind</bdi> אינה אחראית להחלטות שיתקבלו על בסיס המדריך.</b></p>
+<p class="hero-copy">המדריך מיועד לעו"ד או למנהל במשרד שאחראי על ההתקשרות עם <bdi dir="ltr">OpenAI</bdi>: מי שחותם על הנספח, מי שקובע את מדיניות השימוש, ומי שצריך להסביר ללקוח על סמך מה נמסר מידע לספק חיצוני. עו"ד שרק הוזמן לסביבה קיימת יכול להסתפק בסעיפים 5 ו-6.</p>
+<p class="hero-copy">כל טענה כאן נשענת על מסמך רשמי של <bdi dir="ltr">OpenAI</bdi>, עם קישור. הדין הישראלי מוזכר רק בהפניה לפרסומי הרשות להגנת הפרטיות, בלי ניתוח משפטי. במקום שאין תשובה ודאית, כתוב במפורש שהנושא בבירור.</p>
+</div></header>
+
+<nav class="mobile-toc"><details><summary>תוכן המדריך</summary><ol><li><a href="#what"><span>01</span>מה זה <bdi dir="ltr">DPA</bdi>, ומי מול מי</a></li><li><a href="#sign"><span>02</span>האם צריך לחתום, או שזה חל ממילא?</a></li><li><a href="#how"><span>03</span>איך חותמים בפועל, צעד אחרי צעד</a></li><li><a href="#text"><span>04</span>אפשר לשנות את הנוסח? לא.</a></li><li><a href="#training"><span>05</span>האם <bdi dir="ltr">OpenAI</bdi> לומדת מהשיחות שלכם?</a></li><li><a href="#retention"><span>06</span>כמה זמן השיחות נשמרות, ומי שולט בזה</a></li><li><a href="#zdr"><span>07</span>אפס שמירת נתונים <bdi dir="ltr">(ZDR)</bdi></a></li><li><a href="#transfer"><span>08</span>העברת מידע לחו"ל, קבלני משנה ואחסון גאוגרפי</a></li><li><a href="#missing"><span>09</span>מה לא מקבלים ב-<bdi dir="ltr">Business</bdi></a></li><li><a href="#israel"><span>10</span>מה ה-<bdi dir="ltr">DPA</bdi> לא עושה בשבילכם</a></li><li><a href="#closing"><span>11</span>עמדת <bdi dir="ltr">Legal Mind</bdi> לסיום</a></li></ol></details></nav>
+
+<div class="layout">
+<aside class="desktop-toc"><h2>תוכן המדריך</h2><ol><li><a href="#what"><span>01</span>מה זה <bdi dir="ltr">DPA</bdi>, ומי מול מי</a></li><li><a href="#sign"><span>02</span>האם צריך לחתום, או שזה חל ממילא?</a></li><li><a href="#how"><span>03</span>איך חותמים בפועל, צעד אחרי צעד</a></li><li><a href="#text"><span>04</span>אפשר לשנות את הנוסח? לא.</a></li><li><a href="#training"><span>05</span>האם <bdi dir="ltr">OpenAI</bdi> לומדת מהשיחות שלכם?</a></li><li><a href="#retention"><span>06</span>כמה זמן השיחות נשמרות, ומי שולט בזה</a></li><li><a href="#zdr"><span>07</span>אפס שמירת נתונים <bdi dir="ltr">(ZDR)</bdi></a></li><li><a href="#transfer"><span>08</span>העברת מידע לחו"ל, קבלני משנה ואחסון גאוגרפי</a></li><li><a href="#missing"><span>09</span>מה לא מקבלים ב-<bdi dir="ltr">Business</bdi></a></li><li><a href="#israel"><span>10</span>מה ה-<bdi dir="ltr">DPA</bdi> לא עושה בשבילכם</a></li><li><a href="#closing"><span>11</span>עמדת <bdi dir="ltr">Legal Mind</bdi> לסיום</a></li></ol></aside>
+<main class="surface" id="main">
+    <section class="guide-section" id="what">
+      <p class="section-number">01</p>
+      <h2>מה זה <bdi dir="ltr">DPA</bdi>, ומי מול מי</h2>
+      <div class="sec-body">
+        <p class="sec-lead">תארו לעצמכם שיחה שתיתכן מחר. לקוח שואל אתכם, כבדרך אגב, אם נכון שאתם עובדים עם בינה מלאכותית, ואם כן, מה קורה שם עם החומר שלו. יש רגע קצר שבו מחליטים אם עונים מהבטן או מהמסמך. העמוד הזה הוא המסמך. נתחיל במה שהוא בכלל, מי שני הצדדים לו ומה כל אחד מבטיח לשני, ומשם נמשיך תשובה אחרי תשובה.</p>
+        <div class="callout">
+          <p><strong>הגעתם לכאן ממדריך 1, ואולי עבר מאז זמן?</strong> אין צורך לחזור אחורה. כל מה שצריך נמצא בעמוד הזה, וגם ההגדרה חוזרת כאן במלואה. ובקצרה, למי שרוצה את זה בשורה אחת: <bdi dir="ltr">DPA</bdi> הוא הנספח החוזי שבו <bdi dir="ltr">OpenAI</bdi> מתחייבת מה היא עושה, ומה היא לא עושה, עם המידע שאתם מזינים לשירות.</p>
+          <p><strong>ולמה נושא אחד מקבל מדריך שלם?</strong> כי המדריך הזה אינו על ראשי תיבות. ה-<bdi dir="ltr">DPA</bdi> הוא המקום שבו נמצאות התשובות לשאלות שאתם עלולים להישאל: האם <bdi dir="ltr">OpenAI</bdi> לומדת מהמסמכים שהעליתם, מי עוד יכול לקרוא אותם, באיזו מדינה הם נשמרים, לכמה זמן, מה קורה כשמוחקים, מי עוד נוגע בהם בדרך, ומה תראו למי שישאל על סמך מה מסרתם. שבע שאלות, מסמך אחד. כל תשובה כאן מגיעה עם ציטוט של <bdi dir="ltr">OpenAI</bdi> במילים שלה ועם קישור למקור, וזה מה שהופך את העמוד לארוך, לא מורכבות של הנושא. ובשלושה מקומות כתוב במפורש שאין תשובה ודאית, וגם זו תשובה שעדיף לדעת מראש ולא מול לקוח.</p>
+        </div>
+        <div class="callout">
+          <p><strong>מתי קוראים ומתי חותמים:</strong> את העמוד הזה קוראים עכשיו, לפני ההחלטה על המעבר. את הטופס עצמו ממלאים אחרי שסביבת <bdi dir="ltr">Business</bdi> כבר הוקמה (מדריך 2, סעיף 1), כי הטופס מבקש מזהה ארגון שעדיין אין לכם.</p>
+        </div>
+        <p><bdi dir="ltr">DPA</bdi> <bdi dir="ltr">(Data Processing Addendum)</bdi> הוא נספח חוזי המעגן את התחייבויות <bdi dir="ltr">OpenAI</bdi> כלפי המשתמשים, בנוגע לאופן שבו היא מטפלת במידע שהם מזינים. ה-<bdi dir="ltr">DPA</bdi> משולב בהסכם השירותים של <bdi dir="ltr">OpenAI</bdi> <bdi dir="ltr">(OpenAI Services Agreement)</bdi>, שחל על <bdi dir="ltr">ChatGPT Business</bdi>. כך <bdi dir="ltr">OpenAI</bdi> מנסחת זאת:</p>
+        <blockquote class="quote-he">"ה-<bdi dir="ltr">DPA</bdi> של <bdi dir="ltr">OpenAI</bdi> משלים את הסכם השירותים של <bdi dir="ltr">OpenAI</bdi> ומשולב בו... בלחיצה על '<bdi dir="ltr">I agree</bdi>', בקבלת טופס ההזמנה או בשימוש בשירותים, הלקוח מסכים להסכם זה."</blockquote>
+        <p class="quote-src-label">הנוסח המקורי באנגלית:</p>
+        <blockquote class="quote-en" dir="ltr">"This OpenAI Data Processing Addendum ("DPA") supplements, and is incorporated into, the OpenAI Services Agreement... By clicking "I agree," accepting the Order Form, or using the Services, Customer agrees to this Agreement."</blockquote>
+        <p>ב-<bdi dir="ltr">DPA</bdi> עצמו <bdi dir="ltr">OpenAI</bdi> מגדירה את התפקידים: היא <bdi dir="ltr">Data Processor</bdi>, כלומר מי שמעבד את המידע בשבילכם ולפי ההוראות שלכם, והמשרד הוא הלקוח שקובע מה מזינים ולמה. ומה נחשב "הוראות שלכם"? לפי סעיף 2.1 ל-<bdi dir="ltr">DPA</bdi>, גם ההגדרות שה-<bdi dir="ltr">Owner</bdi> או ה-<bdi dir="ltr">Admin</bdi> של הסביבה בוחרים בתוך השירות נחשבות להוראות המתועדות של הלקוח. כלומר, מה שמוגדר בהגדרות הוא חלק מהחוזה.</p>
+
+        <h3 class="h2">שש התחייבויות של <bdi dir="ltr">OpenAI</bdi> שחשובות במיוחד למשרד</h3>
+        <p>בנספח יש עשרות סעיפים. בחרנו שישה שנוגעים ישירות לעבודה של משרד עורכי דין, ולכל אחד נאמר גם מה הוא נותן לכם בפועל.</p>
+        <ul class="bullets">
+          <li><strong>הודעה על פרצת אבטחה.</strong> אם המידע שלכם נחשף אצל <bdi dir="ltr">OpenAI</bdi>, היא מתחייבת להודיע לכם "ללא דיחוי בלתי סביר" מרגע שנודע לה, ולסייע לכם לקיים את החובות שלכם בעקבות האירוע (סעיף 2.7 ל-<bdi dir="ltr">DPA</bdi>). הסעיף מדבר על <bdi dir="ltr">Personal Data Breach</bdi>, כלומר פרצת אבטחה שהובילה להשמדה, אובדן, שינוי, חשיפה או גישה בלתי מורשית למידע. בלי ההתחייבות הזו לא הייתם יודעים שיש בכלל מה לדווח.</li>
+          <li><strong>הודעה על דרישה של רשות אכיפה.</strong> אם <bdi dir="ltr">OpenAI</bdi> מקבלת דרישה משפטית מחייבת לגלות את המידע שלכם, היא תודיע לכם, ככל שהדין מאפשר לה (סעיף 2.2 ל-<bdi dir="ltr">DPA</bdi>). לעו"ד שמחזיק חומר חסוי זו התחייבות חשובה לא פחות מהודעה על פריצה.</li>
+          <li><strong>בקשות של נושאי מידע.</strong> אם לקוח שלכם יפנה ישירות ל-<bdi dir="ltr">OpenAI</bdi> בבקשה לעיין במידע עליו או למחוק אותו, <bdi dir="ltr">OpenAI</bdi> תודיע לכם על כך ככל שהדין מאפשר, לא תענה לו בלי אישור כתוב שלכם, ותסייע לכם להשיב (סעיף 2.4 ל-<bdi dir="ltr">DPA</bdi>).</li>
+          <li><strong>סודיות.</strong> כל מי ש-<bdi dir="ltr">OpenAI</bdi> מרשה לעבד את המידע חייב בסודיות, בהתחייבות או מכוח הדין (סעיף 2.3 ל-<bdi dir="ltr">DPA</bdi>).</li>
+          <li><strong>הוכחת עמידה בהסכם וביקורת.</strong> בבקשה כתובה וסבירה, לא יותר מפעם בשנה, וככל שדיני הגנת המידע החלים דורשים זאת, <bdi dir="ltr">OpenAI</bdi> תמסור את מדיניות הפרטיות והאבטחה שלה ומידע שמוכיח עמידה ב-<bdi dir="ltr">DPA</bdi>, ותאפשר ביקורת שהלקוח מממן ושכפופה להסכם סודיות. היא רשאית למסור במקום זה תמצית של דוחות ביקורת (סעיף 2.8 ל-<bdi dir="ltr">DPA</bdi>). היא גם תסייע באופן סביר אם תידרשו להכין תסקיר השפעה על הפרטיות, מסמך שבוחן מראש סיכוני פרטיות בשימוש חדש (סעיף 2.6 ל-<bdi dir="ltr">DPA</bdi>). שימו לב לסייג: ההתחייבות הזו חלה ככל שהדין דורש, ולא כזכות גורפת.</li>
+          <li><strong>החזרה או מחיקה בסיום.</strong> בסיום ההסכם <bdi dir="ltr">OpenAI</bdi> תחזיר או תמחק את המידע, לפי הוראת הלקוח, אלא אם הדין מחייב אותה לשמור אותו (סעיף 2.11 ל-<bdi dir="ltr">DPA</bdi>). שימו לב למילים "לפי הוראת הלקוח": צריך לבקש.</li>
+        </ul>
+
+        <h3 class="h2">שתי התחייבויות של המשרד כלפי <bdi dir="ltr">OpenAI</bdi></h3>
+        <p>ה-<bdi dir="ltr">DPA</bdi> אינו חד צדדי. בסעיף 3.1 המשרד מצהיר ומתחייב שמסר את כל ההודעות והשיג את כל הזכויות, ההסכמות וההרשאות שהדין דורש כדי למסור את המידע ל-<bdi dir="ltr">OpenAI</bdi> ולהרשות לה לעבד אותו. במילים פשוטות: בחתימה על ה-<bdi dir="ltr">DPA</bdi> המשרד מצהיר חוזית שיש לו בסיס חוקי להעביר את מידע הלקוחות. את הבסיס הזה קובעים ומתעדים לפני החתימה, לא אחריה (ראו סעיף 10 להלן). ובסעיף 3.3 המשרד מקבל על עצמו את האחריות להגדרות כמו תקופות שמירה ומחיקה.</p>
+        <p>ועוד פרט שכדאי שיהיה מול העיניים: נספח 1 ל-<bdi dir="ltr">DPA</bdi> (<bdi dir="ltr">Schedule 1</bdi>) קובע ש"לא מתוכננת העברה של מידע רגיש, אלא אם המשתמש כולל אותו באופן בלתי צפוי בנתונים לא מובנים" (במקור: "<bdi dir="ltr">No sensitive data is intended to be transferred unless the user includes it unexpectedly in unstructured data</bdi>"). ה-<bdi dir="ltr">DPA</bdi> נכתב מתוך הנחה שמידע רגיש אינו חלק שגרתי מהשימוש. במשרד עורכי דין הוא כמעט תמיד חלק מהשימוש. זו סיבה נוספת לכך שטשטוש והשמטה של פרטים מזהים לפני ההעלאה הם חובה ולא המלצה.</p>
+        <p>ראו את נוסח ה-<bdi dir="ltr">DPA</bdi> המלא <a href="https://openai.com/policies/data-processing-addendum/" target="_blank" rel="noopener">באתר OpenAI</a>. הסבר זה אינו תחליף לקריאת נוסח ה-<bdi dir="ltr">DPA</bdi> המלא.</p>
+      </div>
+    </section>
+    <section class="guide-section" id="sign">
+      <p class="section-number">02</p>
+      <h2>האם צריך לחתום, או שזה חל ממילא?</h2>
+      <div class="sec-body">
+        <p class="sec-lead">שאלה שנשמעת פורמלית, ויש לה משמעות מעשית: אם הנספח חל ממילא, למה לטרוח ולמלא טופס? בסעיף הזה תראו את שתי התשובות של <bdi dir="ltr">OpenAI</bdi>, ולמה <bdi dir="ltr">Legal Mind</bdi> בכל זאת ממליצה למלא.</p>
+        <p>שני הדברים נכונים. לפי הנוסח שציטטנו למעלה, ה-<bdi dir="ltr">DPA</bdi> חל על המשרד כבר מרגע השימוש בשירות. אבל <bdi dir="ltr">OpenAI</bdi> מציעה בנוסף טופס שבו חותמים על ה-<bdi dir="ltr">DPA</bdi> באופן פורמלי (<bdi dir="ltr">Execute</bdi>, בלשון הטופס), ובדף הפרטיות העסקית שלה היא כותבת במפורש שהטופס מיועד גם ללקוחות <bdi dir="ltr">ChatGPT Business</bdi>:</p>
+        <blockquote class="quote-he">"כן, אנחנו יכולים לחתום על נספח עיבוד נתונים (<bdi dir="ltr">DPA</bdi>) עם לקוחות עבור השימוש שלהם ב-<bdi dir="ltr">ChatGPT Business</bdi>, ב-<bdi dir="ltr">ChatGPT Enterprise</bdi> וב-<bdi dir="ltr">API</bdi>, לתמיכה בעמידתם ב-<bdi dir="ltr">GDPR</bdi> ובחוקי פרטיות אחרים. אנא מלאו את טופס ה-<bdi dir="ltr">DPA</bdi> שלנו כדי לחתום על <bdi dir="ltr">DPA</bdi> עם <bdi dir="ltr">OpenAI</bdi>."</blockquote>
+        <p class="quote-src-label">הנוסח המקורי באנגלית:</p>
+        <blockquote class="quote-en" dir="ltr">"Yes, we are able to execute a Data Processing Addendum (DPA) with customers for their use of ChatGPT Business, ChatGPT Enterprise, and the API in support of their compliance with GDPR and other privacy laws. Please complete our DPA form to execute a DPA with OpenAI."</blockquote>
+        <p>מקור: <a href="https://openai.com/enterprise-privacy/" target="_blank" rel="noopener">דף הפרטיות העסקית של <bdi dir="ltr">OpenAI</bdi></a>.</p>
+        <div class="callout">
+          <p><strong>ומה אם לא נחתום?</strong> לפי הנוסח של <bdi dir="ltr">OpenAI</bdi> עצמה, הנספח חל עליכם גם כך, ולכן ההתחייבויות שבו עומדות בין אם מילאתם את הטופס ובין אם לא. מה שלא יהיה לכם הוא המסמך: אין עותק על שם המשרד, אין תאריך, ואין שם של חותם. ביום שבו לקוח או מבקר ישאל "איפה ההסכם", תצטרכו להפנות אותו לעמוד באתר של <bdi dir="ltr">OpenAI</bdi> במקום להראות מסמך.</p>
+          <p><strong>עמדת <bdi dir="ltr">Legal Mind</bdi>:</strong> ממלאים את הטופס. <bdi dir="ltr">OpenAI</bdi> לא מסבירה מה ההבדל המעשי בין <bdi dir="ltr">DPA</bdi> שחל מכוח השימוש לבין <bdi dir="ltr">DPA</bdi> שאושר בטופס, ולכן לא נתאר כאן הבדל כזה. אבל משרד שמילא את הטופס עבר תהליך מתועד: הסכם על שם המשרד, שנשלח לכתובת המייל של החותם ואושר על ידו בתאריך ידוע. זה התיעוד שמראים ללקוח, למבקר או לרשות כשנשאלים "על סמך מה מסרתם מידע לספק חיצוני".</p>
+        </div>
+      </div>
+    </section>
+    <section class="guide-section" id="how">
+      <p class="section-number">03</p>
+      <h2>איך חותמים בפועל, צעד אחרי צעד</h2>
+      <div class="sec-body">
+        <p class="sec-lead">עכשיו עוברים למעשה. בסעיף הזה תראו איפה מסתתר הטופס, מה ממלאים בכל שדה, ומה שומרים בתיק אחרי האישור. הזכרנו למעלה ושווה לחזור: את הטופס ממלאים אחרי שהסביבה הוקמה.</p>
+        <p>בתחתית <a href="https://openai.com/policies/data-processing-addendum/" target="_blank" rel="noopener">דף ה-<bdi dir="ltr">DPA</bdi></a>, אחרי כל סעיפי ההסכם ונספח 1, יש קישור בשם <bdi dir="ltr">Execute Data Processing Agreement</bdi>. זה הרכיב האחרון בדף, והוא נפתח בחלון חדש. הוא מוביל לטופס מקוון שמתארח בפלטפורמת חוזים חיצונית בשם <bdi dir="ltr">Ironclad</bdi>, שבה <bdi dir="ltr">OpenAI</bdi> משתמשת. אל תיבהלו מהכתובת השונה: זה הטופס שאליו <bdi dir="ltr">OpenAI</bdi> עצמה מקשרת משני הדפים הרשמיים שלה. בבדיקתנו הטופס נפתח בלי צורך להתחבר לחשבון <bdi dir="ltr">ChatGPT</bdi>, אבל צריך את פרטי המשרד.</p>
+        <p>שימו לב לשם שמופיע בטופס: <bdi dir="ltr">ChatGPT Team</bdi> הוא השם הישן של <bdi dir="ltr">ChatGPT Business</bdi>, ולפי <bdi dir="ltr">OpenAI</bdi> השם שונה ב-29 באוגוסט 2025. זה אותו מוצר, והטופס חל עליו.</p>
+        
+        <figure>
+          <div class="shot-frame"><img class="shot-real" src="cb/dpa-01-form-top.png?v=20260919a" alt="טופס ה-DPA של OpenAI: החלק העליון"></div>
+          <figcaption>הטופס <bdi dir="ltr">Data Processing Addendum</bdi>, החלק העליון</figcaption>
+        </figure>
+        <ul class="shot-legend"><li><b>1 </b><span>פסקת "<bdi dir="ltr">Note that this agreement is only applicable</bdi>": הטופס חל רק על המוצרים העסקיים, ו-<bdi dir="ltr">ChatGPT Team</bdi> שכתוב בה הוא השם הישן של <bdi dir="ltr">Business</bdi>.</span></li><li><b>2 </b><span>פסקת "<bdi dir="ltr">Unfortunately, we are unable</bdi>": <bdi dir="ltr">OpenAI</bdi> אינה בוחנת ואינה חותמת על נוסחי <bdi dir="ltr">DPA</bdi> של לקוחות. ראו סעיף 4 להלן.</span></li><li><b>3 </b><span><bdi dir="ltr">What is your company's full, legal name?</bdi>: השם המשפטי המלא של המשרד כפי שהוא רשום, ולא שם המותג.</span></li><li><b>4 </b><span><bdi dir="ltr">Country</bdi>: בוחרים <bdi dir="ltr">Israel</bdi>. שדות הכתובת שמעליו ממולאים בכתובת המשרד.</span></li></ul>
+        
+        <figure>
+          <div class="shot-frame"><img class="shot-real" src="cb/dpa-02-form-bottom.png?v=20260919a" alt="טופס ה-DPA של OpenAI: החלק התחתון וכפתור Submit"></div>
+          <figcaption>הטופס <bdi dir="ltr">Data Processing Addendum</bdi>, החלק התחתון</figcaption>
+        </figure>
+        <ul class="shot-legend"><li><b>1 </b><span><bdi dir="ltr">What is your Organization ID?</bdi>: מזהה הארגון. הטופס מפנה ל-<bdi dir="ltr">Organization settings page</bdi>.</span></li><li><b>2 </b><span><bdi dir="ltr">Is Customer based in the European Economic Area or Switzerland?</bdi>: משרד ישראלי מסמן <bdi dir="ltr">No</bdi>.</span></li><li><b>3 </b><span><bdi dir="ltr">Who will be signing this agreement on behalf of your company?</bdi>: שם של אדם שמוסמך לחייב את המשרד.</span></li><li><b>4 </b><span><bdi dir="ltr">What is the signer's email address?</bdi>: לכתובת הזו תישלח בקשה לעיין בהסכם ולאשר אותו.</span></li><li><b>5 </b><span><bdi dir="ltr">Submit</bdi>: שולח את הטופס. ההסכם עדיין לא מחייב בשלב הזה.</span></li></ul>
+        <p>שלוש הערות לשדות האלה. <strong>מזהה הארגון:</strong> זה השדה שבגללו אמרנו בפתיחה שממתינים עם הטופס עד שהסביבה הוקמה. <bdi dir="ltr">OpenAI</bdi> לא מתעדת איפה בדיוק מוצאים אותו בסביבת <bdi dir="ltr">Business</bdi>. אם לא מצאתם אותו בהגדרות הסביבה, פונים לתמיכה של <bdi dir="ltr">OpenAI</bdi> לפני השליחה, ולא ממציאים מספר. <strong>שאלת האזור הכלכלי האירופי:</strong> משרד ישראלי מסמן <bdi dir="ltr">No</bdi>, והמשמעות לפי ה-<bdi dir="ltr">DPA</bdi> היא שהצד החוזי שלכם הוא <bdi dir="ltr">OpenAI OpCo, LLC</bdi> האמריקאית ולא <bdi dir="ltr">OpenAI Ireland Ltd.</bdi> <strong>החותם:</strong> ה-<bdi dir="ltr">DPA</bdi> כולל הצהרה שלחותם יש סמכות משפטית לחייב את הישות שבשמה הוא חותם, וכדאי שכתובת המייל תהיה של המשרד ולא פרטית.</p>
+        <p>מה קורה אחרי <bdi dir="ltr">Submit</bdi>? הטופס עצמו מסביר:</p>
+        <blockquote class="quote-he">"אחרי שתשלחו את הטופס, תוכלו לעיין בהסכם לפני שתקבלו או תדחו את התנאים. בקשה לעיין בהסכם תישלח גם לכתובת המייל של החותם שמסרתם. ההסכם ייחשב מחייב מבחינה משפטית רק אחרי שקיבלתם את התנאים."</blockquote>
+        <p class="quote-src-label">הנוסח המקורי באנגלית:</p>
+        <blockquote class="quote-en" dir="ltr">"Once you submit this form, you will have the opportunity to review the agreement before accepting or rejecting the terms. A request to review the agreement will also be sent to the signer email address you provided. The agreement will only be considered legally binding after you accepted the terms."</blockquote>
+        <p>אחרי האישור שומרים בתיק הספקים של המשרד את ההסכם שאושר ואת המייל של הבקשה, לצד תאריך האישור. הטופס לא מבטיח שיישלח עותק אוטומטי, ולכן אם לא קיבלתם אחד, שומרים את מה שמופיע על המסך בשלב האישור. זה התיעוד של ההתקשרות עם הספק.</p>
+      </div>
+    </section>
+    <section class="guide-section" id="text">
+      <p class="section-number">04</p>
+      <h2>אפשר לשנות את הנוסח? לא.</h2>
+      <div class="sec-body">
+        <p class="sec-lead">זו הנקודה שעורכי דין שואלים עליה ראשונה, ולכן היא מקבלת סעיף משלה. התשובה כתובה בטופס עצמו, במילים של <bdi dir="ltr">OpenAI</bdi>.</p>
+        <blockquote class="quote-he">"לצערנו, אין באפשרותנו לבחון או לחתום על נוסחי <bdi dir="ltr">DPA</bdi> שמסופקים על ידי לקוחותינו, או להתאים את ה-<bdi dir="ltr">DPA</bdi> שלנו באופן פרטני."</blockquote>
+        <p class="quote-src-label">הנוסח המקורי באנגלית:</p>
+        <blockquote class="quote-en" dir="ltr">"Unfortunately, we are unable to review or sign DPAs provided by our customers or customize our DPA on a case by case basis."</blockquote>
+        <p>כלומר: לא שולחים ל-<bdi dir="ltr">OpenAI</bdi> את נוסח ה-<bdi dir="ltr">DPA</bdi> של המשרד, ולא מבקשים לתקן סעיף. חותמים על הנוסח שלהם או לא חותמים. במסלול <bdi dir="ltr">Enterprise</bdi>, שנרכש מול מחלקת המכירות, ייתכן שהכללים שונים. סדרה זו עוסקת ב-<bdi dir="ltr">Business</bdi>, שנרכש בהרשמה עצמית, ושם התשובה אחת.</p>
+      </div>
+    </section>
+    <section class="guide-section" id="training">
+      <p class="section-number">05</p>
+      <h2>האם <bdi dir="ltr">OpenAI</bdi> לומדת מהשיחות שלכם? התשובה, והחריג</h2>
+      <div class="sec-body">
+        <p class="sec-lead">זו השאלה הראשונה שלקוח ישאל אתכם כשיגלה שאתם עובדים עם <bdi dir="ltr">ChatGPT</bdi>. בסעיף הזה תראו את התשובה של <bdi dir="ltr">OpenAI</bdi> במילים שלה, את החריג שהיא מציינת, ומה עושים עם כפתורי המשוב שליד כל תשובה.</p>
+        <p>כברירת מחדל, <bdi dir="ltr">OpenAI</bdi> לא משתמשת במידע של סביבת <bdi dir="ltr">Business</bdi> לאימון המודלים. הנה הנוסח המלא, כולל החריג:</p>
+        <blockquote class="quote-he">"כברירת מחדל, אנחנו לא משתמשים במידע העסקי שלכם לאימון המודלים שלנו. אם בחרתם במפורש לשתף אתנו את המידע שלכם (למשל, דרך מנגנוני המשוב שדורשים הצטרפות מרצון) כדי לשפר את השירותים שלנו, אז אנחנו עשויים להשתמש במידע ששותף לאימון המודלים שלנו."</blockquote>
+        <p class="quote-src-label">הנוסח המקורי באנגלית:</p>
+        <blockquote class="quote-en" dir="ltr">"By default, we do not use your business data for training our models. If you have explicitly opted in to share your data with us (for example, through our opt-in feedback mechanisms) to improve our services, then we may use the shared data to train our models."</blockquote>
+        <p>מקור: <a href="https://openai.com/enterprise-privacy/" target="_blank" rel="noopener">דף הפרטיות העסקית של <bdi dir="ltr">OpenAI</bdi></a>. ובמרכז העזרה, בדף על פרטיות ב-<bdi dir="ltr">Business</bdi>, כתוב בפשטות: "<bdi dir="ltr">OpenAI</bdi> לא תאמן על המידע של הסביבה שלכם" (במקור: "<bdi dir="ltr">OpenAI won't train on your workspace's data.</bdi>").</p>
+        <p>מה עם כפתורי המשוב (אגודל למעלה או למטה) ליד תשובה? בחשבונות פרטיים <bdi dir="ltr">OpenAI</bdi> מתעדת שמשוב כזה יכול להעביר את כל השיחה לאימון. לסביבת <bdi dir="ltr">Business</bdi> אין תיעוד כזה, ולכן לא נטען שזה קורה שם. עמדת <bdi dir="ltr">Legal Mind</bdi> פשוטה: על שיחה שיש בה חומר של לקוח לא לוחצים על כפתורי משוב, ולא משנה באיזה מנוי.</p>
+        <p>ועוד פעולה אחת שכן משנה את התמונה: פרסום <bdi dir="ltr">GPT</bdi> לציבור. <bdi dir="ltr">OpenAI</bdi> כותבת שאם מנהלי הסביבה מאפשרים שיתוף <bdi dir="ltr">GPTs</bdi> עם הציבור, <bdi dir="ltr">GPT</bdi> שמשתמש בוחר לפרסם החוצה "עשוי להיות כפוף לבדיקה נוספת" (במקור: "<bdi dir="ltr">may be subject to additional review</bdi>"). שיתוף פנימי בתוך הסביבה אינו משנה את ההתחייבויות.</p>
+      </div>
+    </section>
+    <section class="guide-section" id="retention">
+      <p class="section-number">06</p>
+      <h2>כמה זמן השיחות נשמרות, ומי שולט בזה</h2>
+      <div class="sec-body">
+        <p class="sec-lead">כאן מתחיל החלק שבו המקורות של <bdi dir="ltr">OpenAI</bdi> לא מדברים בקול אחד. נתחיל ממה שברור, נציג את מה שלא, ונאמר מה עושים בינתיים.</p>
+        <p>מה שברור, ולפי מרכז העזרה של <bdi dir="ltr">OpenAI</bdi>: כשמוחקים שיחה שמורה, <bdi dir="ltr">ChatGPT</bdi> מסיר אותה מתצוגת החשבון מיד, ו-<bdi dir="ltr">OpenAI</bdi> מתזמנת אותה למחיקה קבועה ממערכותיה תוך 30 יום. שני חריגים כתובים שם: אם המערכת כבר ניתקה את השיחה מזיהוי ומהחשבון, או אם <bdi dir="ltr">OpenAI</bdi> חייבת לשמור אותה זמן ארוך יותר מטעמי אבטחה או חובה חוקית. ועוד דבר שכדאי לדעת מראש: שיחה שנמחקה אי אפשר לשחזר, לא בממשק ולא דרך התמיכה.</p>
+        <p>מה שברור פחות: האם מנהל סביבת <bdi dir="ltr">Business</bdi> יכול לקבוע בעצמו כמה זמן שיחות נשמרות.</p>
+        <h3 class="h2">שלושה מקורות של <bdi dir="ltr">OpenAI</bdi>, שלוש תשובות על מי קובע את זמן השמירה</h3>
+        <div class="callout experiment">
+          <p>בדף <bdi dir="ltr">Enterprise privacy at OpenAI</bdi>, בשאלות על <bdi dir="ltr">ChatGPT Business</bdi>, כתוב:</p>
+          <p>"מנהלי הסביבה שלכם יכולים לשלוט בכמה זמן המידע שלכם נשמר." (במקור: "<bdi dir="ltr">Your workspace admins can control how long your data is retained.</bdi>")</p>
+          <p>באותו דף, ברשימת ההתחייבויות שבראשו, שליטה בזמן השמירה נמנית רק לשלושה מוצרים, ו-<bdi dir="ltr">Business</bdi> אינו ביניהם:</p>
+          <p>"אתם שולטים בכמה זמן המידע שלכם נשמר (<bdi dir="ltr">ChatGPT Enterprise</bdi>, <bdi dir="ltr">ChatGPT for Healthcare</bdi>, <bdi dir="ltr">ChatGPT Edu</bdi>)." (במקור: "<bdi dir="ltr">You control how long your data is retained (ChatGPT Enterprise, ChatGPT for Healthcare, ChatGPT Edu)</bdi>")</p>
+          <p>ובמרכז העזרה, בדף על שמירת מידע כשמשתמש מוסר מהסביבה, כתוב:</p>
+          <p>"שיחות, קבצים ומסמכי <bdi dir="ltr">canvas</bdi> נשמרים ללא הגבלת זמן." (במקור: "<bdi dir="ltr">Chats, files, and canvas documents are retained indefinitely</bdi>") מדיניות שמירה בזמן קצוב, 90 או 180 יום, מוזכרת שם רק ל-<bdi dir="ltr">Enterprise</bdi> ול-<bdi dir="ltr">Edu</bdi>.</p>
+          <p>לכן <bdi dir="ltr">Legal Mind</bdi> לא כותבת לכם "תקצרו את זמן השמירה בהגדרות": לא נמצאה הוראה כזו במקור רשמי. <bdi dir="ltr">Legal Mind</bdi> פנתה ל-<bdi dir="ltr">OpenAI</bdi> לבירור בספטמבר 2026, והעמוד יעודכן כשתתקבל תשובה. עד אז, מה שבידיכם ודאי: כל משתמש יכול למחוק שיחות בעצמו, והמחיקה מהמערכות מתבצעת תוך 30 יום.</p>
+        </div>
+        <p>ושלוש עובדות מתועדות שמשלימות את התמונה, כל אחת עם משמעות מעשית אחרת.</p>
+        <p><strong>ביטול המנוי אינו מוחק את המידע.</strong> לפי מרכז העזרה, סביבת <bdi dir="ltr">Business</bdi> עשויה להיות מושבתת אחרי ביטול המנוי, אבל "ההשבתה עצמה אינה מוחקת את מידע הסביבה, אלא שהחברים מאבדים גישה" (במקור: "<bdi dir="ltr">Deactivation itself does not delete workspace data, but members lose access.</bdi>"), ורק <bdi dir="ltr">Owner</bdi> יכול להפעיל אותה מחדש. לכן משרד שמסיים את ההתקשרות דורש מחיקה במפורש, מכוח סעיף 2.11 ל-<bdi dir="ltr">DPA</bdi>, ומתעד את הדרישה.</p>
+        <p><strong>שיחה זמנית נמחקת לבד.</strong> ב-<bdi dir="ltr">ChatGPT</bdi> יש מצב <bdi dir="ltr">Temporary Chat</bdi>, שיחה שאינה נשמרת בהיסטוריה. שיחה כזו נמחקת ממערכות <bdi dir="ltr">OpenAI</bdi> תוך 30 יום גם בלי מחיקה ידנית.</p>
+        <p><strong>קבצים בפרויקטים נשמרים עד שמוחקים אותם.</strong> קבצים שהועלו ל-<bdi dir="ltr">GPT</bdi> או ל-<bdi dir="ltr">Project</bdi> נשמרים כל עוד ה-<bdi dir="ltr">GPT</bdi> או ה-<bdi dir="ltr">Project</bdi> קיימים, לפי דף מדיניות השמירה במרכז העזרה.</p>
+        <h3 class="h2">מי יכול לראות שיחות בסביבת <bdi dir="ltr">Business</bdi>?</h3>
+        <p>השאלה שכל עו"ד שכיר ישאל, וכל שותף צריך לדעת לענות עליה. לפי <bdi dir="ltr">OpenAI</bdi>: המשתמש עצמו; עובדי <bdi dir="ltr">OpenAI</bdi> מורשים, לצורך תמיכה טכנית, חקירת שימוש לרעה ועמידה בדין; וקבלנים חיצוניים שכפופים לסודיות, אך ורק לבדיקת שימוש לרעה. בנוסף, כל מידע עסקי עשוי לעבור במסננים אוטומטיים של בטיחות. ומה עם מנהלי הסביבה, כלומר ה-<bdi dir="ltr">Owner</bdi> וה-<bdi dir="ltr">Admin</bdi>? כאן שוב יש פער בין המקורות, והוא חשוב לעו"ד יותר מכל פער אחר בעמוד הזה.</p>
+        <div class="callout experiment">
+          <p>דף הפרטיות העסקית כותב: "למנהלי הסביבה יש שליטה על הסביבות והם יכולים לצפות, לגשת, לייצא ולמחוק שיחות של משתמשי הקצה בסביבה" (במקור: "<bdi dir="ltr">Workspace admins have control over workspaces and can view, access, export, and delete end user conversations in the workspace.</bdi>").</p>
+          <p>מרכז העזרה, בשני דפים על <bdi dir="ltr">Business</bdi>, כותב את ההפך: "כברירת מחדל, מנהלים ובעלים אינם יכולים לראות את כל השיחות הפרטיות של החברים" (במקור: "<bdi dir="ltr">By default, admins and owners cannot see all private member chats.</bdi>"), וגם: "אין ייצוא נתונים בסביבת <bdi dir="ltr">ChatGPT Business</bdi>" (במקור: "<bdi dir="ltr">Data export is not available in a ChatGPT Business workspace.</bdi>").</p>
+          <p>שתי הנקודות, הצפייה והייצוא, בבירור של <bdi dir="ltr">Legal Mind</bdi> מול <bdi dir="ltr">OpenAI</bdi>. עד לתשובה המשרד מניח את האפשרות המחמירה: שיחה בסביבה עשויה להיות נגישה למנהל. לכן מדיניות ההזנה חלה על כולם, גם על השותפים, וגיבוי עושים לפני המעבר (מדריך 1, סעיף 5), בלי להסתמך על ייצוא מהסביבה.</p>
+        </div>
+      </div>
+    </section>
+    <section class="guide-section" id="zdr">
+      <p class="section-number">07</p>
+      <h2>אפס שמירת נתונים <bdi dir="ltr">(ZDR)</bdi>: לא קיים במנוי <bdi dir="ltr">Business</bdi></h2>
+      <div class="sec-body">
+        <p class="sec-lead">בשוק נפוצה האמירה ש"אפשר לבקש מ-<bdi dir="ltr">OpenAI</bdi> אפס שמירת נתונים". צריך לדייק, כי עו"ד שיסתמך על האמירה הזו יבטיח ללקוח משהו שאין לו.</p>
+        <p>מדיניות <bdi dir="ltr">Zero Data Retention</bdi> (<bdi dir="ltr">ZDR</bdi>), שבה <bdi dir="ltr">OpenAI</bdi> אינה שומרת את המידע, מתועדת אצלה רק לשימוש דרך ה-<bdi dir="ltr">API</bdi>, כלומר כשמתכנתים מחברים את המודל לתוכנה של הארגון. גם שם היא חלה רק על חלק מהשירותים ורק למקרי שימוש שאושרו. נוהל הגשת בקשה אינו מתועד בדפים הרשמיים, והמסלול הוא מול מחלקת המכירות. ל-<bdi dir="ltr">ChatGPT Business</bdi>, המנוי שבו עובדים דרך הדפדפן, זה לא חל, וכך כתוב במפורש במרכז העזרה:</p>
+        <blockquote class="quote-he">"אם אתם צריכים חיוב בחשבונית, הזמנות רכש, העברה בנקאית, ... <bdi dir="ltr">Zero Data Retention</bdi>, <bdi dir="ltr">BAA</bdi> או אפשרויות אחרות דרך מחלקת המכירות, השתמשו במסלול חוזי במקום ב-<bdi dir="ltr">ChatGPT Business</bdi> בהרשמה עצמית."</blockquote>
+        <p class="quote-src-label">הנוסח המקורי באנגלית:</p>
+        <blockquote class="quote-en" dir="ltr">"If you need invoice billing, purchase orders, bank transfer, wire, ACH, net terms, split payments, Zero Data Retention, BAAs, or other sales-led options, use a contracted offering instead of self-serve ChatGPT Business."</blockquote>
+        <p>מקור: <a href="https://help.openai.com/en/articles/8792828-chatgpt-business-overview" target="_blank" rel="noopener">דף הסקירה של <bdi dir="ltr">ChatGPT Business</bdi> במרכז העזרה</a>. המסקנה למשרד: במנוי <bdi dir="ltr">Business</bdi> אין <bdi dir="ltr">ZDR</bdi>, ואל תסתמכו על מי שמבטיח אחרת.</p>
+      </div>
+    </section>
+    <section class="guide-section" id="transfer">
+      <p class="section-number">08</p>
+      <h2>העברת מידע לחו"ל, קבלני משנה ואחסון גאוגרפי</h2>
+      <div class="sec-body">
+        <p class="sec-lead">המידע שאתם מזינים יוצא מישראל. זה לא סוד, וזה נושא שעו"ד של המשרד צריך להסדיר לפי הדין הישראלי (ראו סעיף 10 להלן). בסעיף הזה: מה ה-<bdi dir="ltr">DPA</bdi> אומר על היציאה הזו, מי עוד נוגע במידע בדרך, ומה אפשר לבחור.</p>
+        <h3 class="h2">מי הצד החוזי שלכם, ואילו הגנות חלות</h3>
+        <ul class="bullets">
+          <li><strong>הצד החוזי:</strong> ללקוח שאינו באזור הכלכלי האירופי או בשווייץ, ובכלל זה משרד ישראלי, הצד החוזי הוא <bdi dir="ltr">OpenAI OpCo, LLC</bdi>, חברה אמריקאית. הסכם השירותים כפוף לדין קליפורניה (<a href="https://openai.com/policies/services-agreement/" target="_blank" rel="noopener">הסכם השירותים של <bdi dir="ltr">OpenAI</bdi></a>). המשמעות המעשית: אם תתעורר מחלוקת על ההסכם, היא לא תידון לפי הדין הישראלי. זה לא פוסל את השימוש בשירות, וזה כן שיקול שצריך להיות מונח על השולחן מראש ולא להתגלות בדיעבד.</li>
+          <li><strong>תניות חוזיות סטנדרטיות (<bdi dir="ltr">SCCs</bdi>):</strong> אלה נוסחי חוזה קבועים שהאיחוד האירופי אישר, ושבאמצעותם מותר להעביר מידע אישי מאירופה למדינה אחרת. ה-<bdi dir="ltr">DPA</bdi> מחיל על מידע אירופי ושווייצרי <bdi dir="ltr">SCCs</bdi> או החלטת נאותות של הנציבות האירופית (סעיף 4.1 ל-<bdi dir="ltr">DPA</bdi>), ועל מידע בריטי <bdi dir="ltr">SCCs</bdi> עם תוספת בריטית (סעיף 4.2 ל-<bdi dir="ltr">DPA</bdi>). על מידע של לקוח ישראלי ה-<bdi dir="ltr">DPA</bdi> לא מחיל תניות כאלה. כלומר, את הבסיס להעברת המידע מישראל המשרד צריך למצוא בעצמו לפי הדין הישראלי.</li>
+        </ul>
+        <h3 class="h2">מי הם קבלני המשנה, ומתי מידע שלכם מגיע אליהם</h3>
+        <p>קבלן משנה, בהקשר הזה, הוא חברה אחרת ש-<bdi dir="ltr">OpenAI</bdi> נעזרת בה כדי לספק את השירות, ושבדרך עשויה לגעת במידע שלכם. למשל חברה שמאחסנת את השרתים, או חברה שנותנת תמיכה טכנית. זה לא אומר שהיא קוראת את השיחות שלכם, וכן אומר שהמידע עובר דרך עוד ידיים, ולכן הדין מבקש שתדעו מי הן.</p>
+        <p><bdi dir="ltr">OpenAI</bdi> מפרסמת <a href="https://platform.openai.com/subprocessors" target="_blank" rel="noopener">רשימת קבלני משנה</a>, שעודכנה לאחרונה ב-9 ביולי 2026, נכון לבדיקתנו. לצד <bdi dir="ltr">ChatGPT Business</bdi> מופיעים ספקי ענן כמו <bdi dir="ltr">Microsoft</bdi>, <bdi dir="ltr">Google Cloud</bdi>, <bdi dir="ltr">Amazon Web Services</bdi> ו-<bdi dir="ltr">Oracle</bdi>, במדינות רבות, וספקי תמיכה ומודרציה, בהם <bdi dir="ltr">TaskUs</bdi> בפיליפינים.</p>
+        <p>מתי מידע שלכם מגיע אליהם? לפי דף הרשימה, לספקי התמיכה רק אם בחרתם לשתף אותו בפניית תמיכה. לקבלני המודרציה מגיעות רק דוגמאות מתוכן שהמודלים סימנו אוטומטית כמפר מדיניות, כדי לסייע ל-<bdi dir="ltr">OpenAI</bdi> בבדיקה ובאכיפה.</p>
+        <h3 class="h2">מה קורה כשהרשימה משתנה</h3>
+        <p>לפי סעיף 2.9 ל-<bdi dir="ltr">DPA</bdi>, <bdi dir="ltr">OpenAI</bdi> מודיעה על שינוי ברשימה בפוסט בבלוג, בהודעה בתוך השירות או באמצעי סביר אחר, או במייל למי שנרשם לעדכונים בדף הרשימה. מרגע ההודעה יש למשרד 30 יום להתנגד, לפי ההוראות בדף הרשימה או במייל ל-<bdi dir="ltr">privacy@openai.com</bdi>. אם אין חלופה מעשית מסחרית, לפי שיקול דעתה הסביר של <bdi dir="ltr">OpenAI</bdi>, או שההתנגדות לא נפתרה תוך 30 יום, כל צד רשאי לסיים את ההסכם או את השימוש בשירותים שאי אפשר לספק בלי הקבלן החדש, והמשרד מקבל החזר יחסי של דמי מנוי ששולמו מראש.</p>
+        <p>ולפי סעיף 2.10 ל-<bdi dir="ltr">DPA</bdi>, <bdi dir="ltr">OpenAI</bdi> מחייבת כל קבלן משנה בהתחייבויות דומות לשלה, ונשארת אחראית כלפיכם למעשיו ולמחדליו, בכפוף לתקרות האחריות שבהסכם השירותים. כלומר, הכתובת שלכם היא תמיד <bdi dir="ltr">OpenAI</bdi>, לא הקבלן.</p>
+        <div class="callout">
+          <p><strong>המלצת <bdi dir="ltr">Legal Mind</bdi>:</strong> מי שאחראי במשרד נרשם לעדכוני רשימת קבלני המשנה במייל. בלי זה לא תדעו על השינוי, ו-30 הימים יעברו.</p>
+        </div>
+        <h3 class="h2">אחסון גאוגרפי: החלטה שמקבלים לפני הרכישה</h3>
+        <p>לפי מרכז העזרה, <bdi dir="ltr">ChatGPT Business</bdi> מאפשר לבחור איפה יישמר תוכן הסביבה, אבל האפשרות "מופצת בהדרגה ועדיין לא זמינה לכל הלקוחות", והבחירה נעשית במסך הרכישה (<bdi dir="ltr">checkout</bdi>). המקור אינו מתעד אפשרות לשנות את האזור אחר כך. גם כשבוחרים אזור מחוץ לארה"ב, יומני הניטור, כלומר הרישומים ש-<bdi dir="ltr">OpenAI</bdi> שומרת כדי לאתר שימוש לרעה בשירות, נשמרים בארה"ב, ועותק של כל שיחה ותשובה נשמר בארה"ב לזמן מוגבל לצורכי בטיחות ואכיפה. האזור גם לא קובע איפה מתבצע העיבוד עצמו. אילו אזורים מוצעים, ואם ישראל ביניהם: לא מתועד, ולכן בודקים במסך הרכישה.</p>
+        <p>המשמעות המעשית: את ההחלטה על אחסון גאוגרפי מקבלים <strong>לפני</strong> שלוחצים על רכישה במדריך 2, ולא אחרי. מקור: <a href="https://help.openai.com/en/articles/20001418-where-your-chatgpt-business-content-is-stored" target="_blank" rel="noopener">דף האחסון הגאוגרפי של <bdi dir="ltr">ChatGPT Business</bdi></a>.</p>
+      </div>
+    </section>
+    <section class="guide-section" id="missing">
+      <p class="section-number">09</p>
+      <h2>מה לא מקבלים ב-<bdi dir="ltr">Business</bdi></h2>
+      <div class="sec-body">
+        <p class="sec-lead">מדריך הגון אומר גם מה אין. אלה יכולות שלפי <bdi dir="ltr">OpenAI</bdi> שמורות למסלולים חוזיים, בעיקר <bdi dir="ltr">Enterprise</bdi>, ועו"ד שמניח שהן קיימות עלול להבטיח ללקוח משהו שאין לו.</p>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>מה חסר ב-<bdi dir="ltr">Business</bdi></th><th>מה <bdi dir="ltr">OpenAI</bdi> כותבת</th></tr></thead>
+            <tbody>
+              <tr><td>כלי ציות ויומן ביקורת (<bdi dir="ltr">Compliance API</bdi>): האפשרות של הארגון למשוך את השיחות והקבצים בסביבה לצורך שימור ראיות, ולראות יומן של מי עשה מה</td><td>"פלטפורמת הציות זמינה לסביבות <bdi dir="ltr">ChatGPT Enterprise</bdi> ו-<bdi dir="ltr">Edu</bdi>" (במקור: "<bdi dir="ltr">The Compliance Platform is available to ChatGPT Enterprise and Edu workspaces.</bdi>")</td></tr>
+              <tr><td>מדיניות שמירה בזמן קצוב (למשל 90 או 180 יום)</td><td>מתועדת ל-<bdi dir="ltr">Enterprise</bdi> ול-<bdi dir="ltr">Edu</bdi>; ב-<bdi dir="ltr">Business</bdi> שיחות של משתמש שהוסר נשמרות ללא הגבלה (ראו סעיף 6 לעיל)</td></tr>
+              <tr><td>כיבוי גורף של קישורי שיתוף לכל הסביבה</td><td>"אפשר לכבות קישורי שיתוף לגמרי? לא. היכולת הזו זמינה ב-<bdi dir="ltr">ChatGPT Enterprise</bdi>" (במקור: "<bdi dir="ltr">Can I disable shared links entirely? No. This feature is available in ChatGPT Enterprise.</bdi>")</td></tr>
+              <tr><td>ייצוא נתונים עצמי מהסביבה</td><td>"ייצוא נתונים בשירות עצמי אינו זמין בסביבות <bdi dir="ltr">ChatGPT Business</bdi>" (במקור: "<bdi dir="ltr">Self-service data export is not available in ChatGPT Business workspaces.</bdi>")</td></tr>
+              <tr><td><bdi dir="ltr">ZDR</bdi>, <bdi dir="ltr">BAA</bdi>, חיוב בחשבונית, הזמנת רכש</td><td>"השתמשו במסלול חוזי במקום ב-<bdi dir="ltr">ChatGPT Business</bdi> בהרשמה עצמית" (במקור: "<bdi dir="ltr">use a contracted offering instead of self-serve ChatGPT Business</bdi>")</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>מקורות: <a href="https://help.openai.com/en/articles/9261474-compliance-api-for-enterprise-customers" target="_blank" rel="noopener">דף פלטפורמת הציות של <bdi dir="ltr">OpenAI</bdi></a>, <a href="https://help.openai.com/en/articles/8798634-managing-data-sharing-and-privacy-in-chatgpt-business" target="_blank" rel="noopener">דף הנתונים, השיתוף והפרטיות ב-<bdi dir="ltr">ChatGPT Business</bdi></a>, <a href="https://help.openai.com/en/articles/8542115-chatgpt-business-general-faq" target="_blank" rel="noopener">שאלות נפוצות על <bdi dir="ltr">ChatGPT Business</bdi></a>, <a href="https://help.openai.com/en/articles/8792828-chatgpt-business-overview" target="_blank" rel="noopener">דף הסקירה של <bdi dir="ltr">ChatGPT Business</bdi> במרכז העזרה</a>.</p>
+      </div>
+    </section>
+    <section class="guide-section" id="israel">
+      <p class="section-number">10</p>
+      <h2>מה ה-<bdi dir="ltr">DPA</bdi> לא עושה בשבילכם</h2>
+      <div class="sec-body">
+        <p class="sec-lead">עד כאן ראיתם מה <bdi dir="ltr">OpenAI</bdi> מתחייבת. בסעיף הזה תראו איפה נגמרת ההתחייבות שלה ומתחילה האחריות של המשרד, ולמי פונים עם השאלות שנשארות.</p>
+        <p>חתימה על <bdi dir="ltr">DPA</bdi> היא תנאי, לא פתרון. הנספח מסדיר את ההתחייבויות של <bdi dir="ltr">OpenAI</bdi> כלפיכם ואת ההצהרות שלכם כלפיה. את החובות של המשרד עצמו לפי חוק הגנת הפרטיות, תיקון 13 והתקנות מכוחו, הוא לא מקיים בשבילכם.</p>
+        <p>הנה ארבע השאלות שנשארות פתוחות אחרי החתימה: מי נחשב אחראי על המידע ומי "מחזיק" בו (הרשות להגנת הפרטיות מגדירה "מחזיק" כ"גורם חיצוני לבעל השליטה במאגר מידע המעבד מידע עבורו". "בעל שליטה" הוא מי שקובע לשם מה מעבדים את המידע, כלומר המשרד; ו"מחזיק" הוא הגורם החיצוני שמעבד אותו בשבילו, כלומר ספק כמו <bdi dir="ltr">OpenAI</bdi>); מה נחשב מידע בעל רגישות מיוחדת; איך מתקשרים עם ספק חיצוני שמקבל גישה למידע, לפי תקנה 15 לתקנות הגנת הפרטיות (אבטחת מידע); ובאילו תנאים מותר להעביר מידע אל מחוץ לישראל.</p>
+        <p>אלה שאלות משפטיות, והמדריך הזה, שהוא מדריך שימוש ולא חוות דעת, לא עונה עליהן. מי שעונה הוא עו"ד של המשרד, ואלה הפרסומים הרשמיים של הרשות להגנת הפרטיות שכדאי שיהיו לו ביד: <a href="https://www.gov.il/he/pages/tikun13_qa" target="_blank" rel="noopener">שאלות ותשובות על תיקון 13</a>, <a href="https://www.gov.il/he/pages/guide_section_15" target="_blank" rel="noopener">מדריך הפעולה להתקשרות עם ספקי מיקור חוץ (תקנה 15)</a>, ו<a href="https://www.gov.il/he/departments/general/information_transfer_fqa" target="_blank" rel="noopener">שאלות ותשובות על העברת מידע לחו"ל</a>.</p>
+        <div class="callout">
+          <p><strong>מה כן אפשר לומר בלי ניתוח משפטי:</strong> אלה הפעולות שמשרד מבצע סביב החתימה, וכולן נשענות על סעיפים שראיתם בעמוד הזה. שורה אחת לכל פעולה:</p>
+          <ul class="bullets">
+            <li>מדיניות כתובה: מי רשאי להזין מידע של לקוחות, איזה מידע, ומה מטשטשים או משמיטים תמיד.</li>
+            <li>תיק ספקים: ההסכם שאושר, מייל האישור, וסיכום קצר של מה בדקתם על <bdi dir="ltr">OpenAI</bdi> ומתי.</li>
+            <li>תזכורת שנתית ביומן: לבקש מ-<bdi dir="ltr">OpenAI</bdi> את מסמכי העמידה לפי סעיף 2.8 ל-<bdi dir="ltr">DPA</bdi>, ולשמור את התשובה.</li>
+            <li>בסיום ההתקשרות: דרישת מחיקה מפורשת לפי סעיף 2.11 ל-<bdi dir="ltr">DPA</bdi>, כי ביטול המנוי לבדו אינו מוחק את המידע.</li>
+            <li>הרשמה לעדכוני רשימת קבלני המשנה של <bdi dir="ltr">OpenAI</bdi>, ומעקב אחרי עדכוני הרשות להגנת הפרטיות.</li>
+            <li>שאלה לעו"ד של המשרד לפני ההעלאה הראשונה של מידע לקוחות: על סמך מה מעבירים מידע אל מחוץ לישראל, והאם נוסח ההסכמה או ההודעה ללקוחות צריך עדכון.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="guide-section" id="closing">
+      <p class="section-number">11</p>
+      <h2>עמדת <bdi dir="ltr">Legal Mind</bdi> לסיום</h2>
+      <div class="sec-body">
+        <div class="callout">
+          <p>יצאתם מהעמוד הזה עם תמונה מלאה: מה <bdi dir="ltr">OpenAI</bdi> מתחייבת, מה היא לא מתחייבת, מה תמלאו בטופס כשיגיע הרגע, ומה נשאר באחריות המשרד. זה הרבה, וזה לא הכול. גם כשהנספח ייחתם וישמר בתיק הספקים, הוא מגן על המידע אצל הספק ואינו מחליף את שיקול הדעת שלכם לפני הלחיצה על <bdi dir="ltr">Enter</bdi>. לכן גם עם נספח חתום: חומר שהמשרד מסווג כסודי במיוחד מטשטשים או משמיטים לפני ההעלאה, וקובעים בכתב מי מזין מה.</p>
+        </div>
+        <p>עכשיו חוזרים למדריך 1, סעיף 3, ומשם ממשיכים בסדר: כמה עולה המנוי, מה מגבים לפני המעבר, ורק אחר כך הקמת הסביבה במדריך 2.</p>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <div class="bottom-nav"><a class="button prev" href="chatgpt-business-guide-1.html#s2"><span class="doc-nav-label">חזרה</span> <span class="doc-nav-title">מדריך 1: לפני המעבר</span></a><a class="button next primary" href="chatgpt-business-guide-1.html#s3"><span class="doc-nav-label">ממשיכים</span> <span class="doc-nav-title">מדריך 1, סעיף 3: כמה עולה המנוי</span></a></div>
+    </section>
+</main></div>
+
+<footer><bdi dir="ltr">Legal Mind</bdi> · מדריך משלים: <bdi dir="ltr">DPA</bdi></footer>
+
+
+<script>
+(()=>{"use strict";const sections=[...document.querySelectorAll(".guide-section[id]")],links=[...document.querySelectorAll(".desktop-toc a[href^='#']")];if(!sections.length||!links.length)return;const set=id=>links.forEach(a=>a.getAttribute("href")==="#"+id?a.setAttribute("aria-current","location"):a.removeAttribute("aria-current"));set(sections[0].id);if("IntersectionObserver"in window){const o=new IntersectionObserver(es=>{const v=es.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(v)set(v.target.id)},{rootMargin:"-15% 0px -65% 0px",threshold:[0,.15,.5]});sections.forEach(s=>o.observe(s))}})();
+(()=>{"use strict";const ok="הועתק";const done="הפרומפט הועתק. הדביקו אותו בשיחה.";const manual="הטקסט מסומן. לחצו Ctrl+C להעתקה.";function viaExec(text){try{const ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.cssText="position:fixed;top:-1000px;opacity:0";document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,text.length);const r=document.execCommand("copy");document.body.removeChild(ta);return r}catch(e){return false}}function selectNode(el){try{const r=document.createRange();r.selectNodeContents(el);const s=window.getSelection();s.removeAllRanges();s.addRange(r);return true}catch(e){return false}}document.querySelectorAll(".copy-button[data-copy-target]").forEach(btn=>{const orig=btn.textContent;btn.addEventListener("click",async()=>{const el=document.getElementById(btn.getAttribute("data-copy-target"));if(!el)return;const box=btn.closest(".copy-block");const status=box?box.querySelector(".copy-status"):null;const text=el.innerText.trim();let copied=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);copied=true}}catch(e){}if(!copied)copied=viaExec(text);if(copied){btn.textContent=ok;if(status)status.textContent=done;setTimeout(()=>{btn.textContent=orig;if(status)status.textContent=""},2500)}else{selectNode(el);if(status)status.textContent=manual}})})})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var frames=[].slice.call(document.querySelectorAll(".shot-frame"));
+  if(!frames.length) return;
+  var box=document.createElement("div");
+  box.className="zoomer";box.setAttribute("role","dialog");box.setAttribute("aria-modal","true");box.setAttribute("aria-label","צילום מסך בגודל מלא");
+  box.innerHTML='<button type="button" class="zoomer-close">סגירה</button><div class="zoomer-stage"></div><div class="zoomer-cap"><p class="zoomer-cap-text"></p><p class="zoomer-pan">הצילום רחב מהמסך. אפשר לגלול אותו הצידה כדי לראות את כולו.</p></div>';
+  document.body.appendChild(box);
+  var stage=box.querySelector(".zoomer-stage"),cap=box.querySelector(".zoomer-cap"),capText=box.querySelector(".zoomer-cap-text"),closeBtn=box.querySelector(".zoomer-close"),opener=null;
+  function open(frame){
+    var img=frame.querySelector("img"); if(!img) return;
+    var full=img.getAttribute("data-full-src");
+    var big=new Image(); big.alt=img.alt;
+    big.onload=function(){ stage.style.width=big.naturalWidth+"px"; stage.style.maxWidth="none"; cap.classList.toggle("is-wide",big.naturalWidth>(window.innerWidth-20)); };
+    big.src=full||img.src;
+    stage.innerHTML=""; stage.appendChild(big);
+    stage.style.width=(img.naturalWidth||img.width)+"px"; stage.style.maxWidth="none";
+    var fig=frame.closest("figure"),c=fig?fig.querySelector("figcaption,.shot-caption"):null;
+    capText.textContent=c?c.textContent:"";
+    opener=frame; box.classList.add("is-open"); document.body.style.overflow="hidden"; box.scrollTop=0; closeBtn.focus();
+  }
+  function close(){ box.classList.remove("is-open"); document.body.style.overflow=""; stage.innerHTML=""; if(opener) opener.focus(); opener=null; }
+  function wire(){
+    frames.forEach(function(frame){
+      var img=frame.querySelector("img"); if(!img||!img.naturalWidth||frame.dataset.zoom) return;
+      var full=img.hasAttribute("data-full-src");
+      var shrunk=img.getBoundingClientRect().width<img.naturalWidth*0.96;
+      if(!shrunk&&!full) return;
+      frame.dataset.zoom="1"; frame.setAttribute("tabindex","0"); frame.setAttribute("role","button");
+      frame.setAttribute("aria-label",full?"פתיחת החלון המלא":"הגדלת הצילום"); frame.style.cursor="zoom-in";
+      frame.addEventListener("click",function(){open(frame);});
+      frame.addEventListener("keydown",function(ev){ if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();open(frame);} });
+      var fig=frame.closest("figure");
+      if(fig&&!fig.querySelector(".shot-hint")){
+        var hint=document.createElement("p"); hint.className="shot-hint"+(full?" hint-full":"");
+        hint.textContent=full?"לחיצה על הצילום פותחת את החלון המלא":"לחיצה על הצילום פותחת אותו בגודל מלא";
+        frame.insertAdjacentElement("afterend",hint);
+      }
+    });
+  }
+  wire(); window.addEventListener("load",wire); window.addEventListener("resize",wire);
+  closeBtn.addEventListener("click",close);
+  box.addEventListener("click",function(e){ if(e.target===box) close(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&box.classList.contains("is-open")) close(); });
+})();
+</script>
+</body>
+</html>
