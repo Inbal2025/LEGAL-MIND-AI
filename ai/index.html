@@ -1102,6 +1102,11 @@ body{font-weight:400}
 .foot .soc{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;border:1px solid rgba(99,194,184,.35);background:rgba(99,194,184,.08);color:var(--teal-l);transition:background .2s,transform .2s}
 .foot .soc svg{width:20px;height:20px}
 .foot .soc:hover{background:rgba(99,194,184,.18);transform:translateY(-2px)}
+
+/* FAQ: one answer open at a time, smooth open/close */
+.faq details .a{display:grid;grid-template-rows:0fr;opacity:0;padding-bottom:0;transition:grid-template-rows .32s var(--ease),opacity .22s,padding-bottom .32s var(--ease)}
+.faq details .a>*{overflow:hidden}
+.faq details.is-open .a{grid-template-rows:1fr;opacity:1;padding-bottom:var(--s3)}
 </style>
 <noscript><style>.rv>*,.paper.rvp,.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
@@ -1218,16 +1223,16 @@ body{font-weight:400}
 <section class="band wrap rv" id="faq" style="padding-top:0">
   <div class="head"><span class="cl">שאלות נפוצות</span><h2>מה ששואלים אותנו</h2></div>
   <div class="faq">
-    <details open><summary>מה נדרש מה-IT שלנו? <i aria-hidden="true">+</i></summary><div class="a">שיחת תיאום אחת על סביבה, הרשאות ואבטחת מידע, ורכישת הרישיונות שנבחר יחד. את שאר העבודה אנחנו עושים. במחלקות משפטיות ההטמעה מתואמת עם גורמי ה-IT של החברה.</div></details>
-    <details><summary>כמה זמן לוקח תהליך ההטמעה? <i aria-hidden="true">+</i></summary><div class="a">בין 6 ל-12 שבועות, תלוי בגודל הארגון.</div></details>
-    <details><summary>מה קורה אחרי ההטמעה? <i aria-hidden="true">+</i></summary><div class="a">אנחנו ממשיכים לשמש כמחלקת ה-AI החיצונית של הארגון, ונותנים לו את הכלים, הידע והליווי השוטף שנדרשים להטמעה מלאה. הטמעה היא לא תהליך של ״זבנג וגמרנו״, אלא תהליך אנושי מורכב. במקום להחזיק במשרד עובדים מומחים בבינה מלאכותית, אנחנו עושים את העבודה הזו עבורכם.</div></details>
-    <details><summary>אחרי ההטמעה אפשר פשוט להתחיל לעבוד, או שצריך משהו נוסף? <i aria-hidden="true">+</i></summary><div class="a">צריך רק מנוי למערכת שנבחרה. את כל השאר אנחנו מביאים.</div></details>
-    <details><summary>רוב העובדים במשרד רגילים לעבוד עם ChatGPT. חייבים לעבור למערכת אחרת? <i aria-hidden="true">+</i></summary><div class="a">לא. עובדים עם הכלים שהמשרד כבר מכיר.</div></details>
-    <details><summary>אתם יכולים לבנות פתרונות ייחודיים רק למשרד שלנו? <i aria-hidden="true">+</i></summary><div class="a">כן. אנחנו בונים כלים ייחודיים למשרד, לפי תהליכי העבודה שלו.</div></details>
-    <details><summary>אני לא יודע להתקין את התוכנות על המחשב שלי. מה עושים? <i aria-hidden="true">+</i></summary><div class="a">לא צריך לדעת. אנשי ה-IT שלנו מתקינים ומגדירים הכול.</div></details>
-    <details><summary>איך נדע שהתהליך הצליח? <i aria-hidden="true">+</i></summary><div class="a">מגדירים מראש מדדי הצלחה (KPI), ובודקים לפיהם.</div></details>
-    <details><summary>כבר העברתם ארגון מקצה לקצה? <i aria-hidden="true">+</i></summary><div class="a">כן. המשרד של עו״ד רועי נימצוביץ׳ עבר את התהליך מקצה לקצה.</div></details>
-    <details><summary>כמה זה עולה? <i aria-hidden="true">+</i></summary><div class="a">תלוי בהיקף ובצרכים של המשרד. לאחר שיחה ראשונית תינתן הערכת מחיר, ולאחר אפיון מלא תישלח הצעת מחיר מסודרת.</div></details>
+    <details open><summary>מה נדרש מה-IT שלנו? <i aria-hidden="true">+</i></summary><div class="a"><div>שיחת תיאום אחת על סביבה, הרשאות ואבטחת מידע, ורכישת הרישיונות שנבחר יחד. את שאר העבודה אנחנו עושים. במחלקות משפטיות ההטמעה מתואמת עם גורמי ה-IT של החברה.</div></div></details>
+    <details><summary>כמה זמן לוקח תהליך ההטמעה? <i aria-hidden="true">+</i></summary><div class="a"><div>בין 6 ל-12 שבועות, תלוי בגודל הארגון.</div></div></details>
+    <details><summary>מה קורה אחרי ההטמעה? <i aria-hidden="true">+</i></summary><div class="a"><div>אנחנו ממשיכים לשמש כמחלקת ה-AI החיצונית של הארגון, ונותנים לו את הכלים, הידע והליווי השוטף שנדרשים להטמעה מלאה. הטמעה היא לא תהליך של ״זבנג וגמרנו״, אלא תהליך אנושי מורכב. במקום להחזיק במשרד עובדים מומחים בבינה מלאכותית, אנחנו עושים את העבודה הזו עבורכם.</div></div></details>
+    <details><summary>אחרי ההטמעה אפשר פשוט להתחיל לעבוד, או שצריך משהו נוסף? <i aria-hidden="true">+</i></summary><div class="a"><div>צריך רק מנוי למערכת שנבחרה. את כל השאר אנחנו מביאים.</div></div></details>
+    <details><summary>רוב העובדים במשרד רגילים לעבוד עם ChatGPT. חייבים לעבור למערכת אחרת? <i aria-hidden="true">+</i></summary><div class="a"><div>לא. עובדים עם הכלים שהמשרד כבר מכיר.</div></div></details>
+    <details><summary>אתם יכולים לבנות פתרונות ייחודיים רק למשרד שלנו? <i aria-hidden="true">+</i></summary><div class="a"><div>כן. אנחנו בונים כלים ייחודיים למשרד, לפי תהליכי העבודה שלו.</div></div></details>
+    <details><summary>אני לא יודע להתקין את התוכנות על המחשב שלי. מה עושים? <i aria-hidden="true">+</i></summary><div class="a"><div>לא צריך לדעת. אנשי ה-IT שלנו מתקינים ומגדירים הכול.</div></div></details>
+    <details><summary>איך נדע שהתהליך הצליח? <i aria-hidden="true">+</i></summary><div class="a"><div>מגדירים מראש מדדי הצלחה (KPI), ובודקים לפיהם.</div></div></details>
+    <details><summary>כבר העברתם ארגון מקצה לקצה? <i aria-hidden="true">+</i></summary><div class="a"><div>כן. המשרד של עו״ד רועי נימצוביץ׳ עבר את התהליך מקצה לקצה.</div></div></details>
+    <details><summary>כמה זה עולה? <i aria-hidden="true">+</i></summary><div class="a"><div>תלוי בהיקף ובצרכים של המשרד. לאחר שיחה ראשונית תינתן הערכת מחיר, ולאחר אפיון מלא תישלח הצעת מחיר מסודרת.</div></div></details>
   </div>
 </section>
 
@@ -1427,6 +1432,15 @@ body{font-weight:400}
   document.getElementById('ovx').onclick=close;
   ov.addEventListener('mousedown',function(e){if(e.target===ov)close()});
   addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open'))close()});
+  (function(){var ds=[].slice.call(document.querySelectorAll('.faq details'));if(!ds.length)return;
+    ds.forEach(function(d){if(d.open)d.classList.add('is-open')});
+    ds.forEach(function(d){d.querySelector('summary').addEventListener('click',function(e){e.preventDefault();
+      var wasOpen=d.classList.contains('is-open');
+      ds.forEach(function(o){if(o!==d&&o.classList.contains('is-open')){o.classList.remove('is-open');setTimeout(function(){if(!o.classList.contains('is-open'))o.open=false},340)}});
+      if(wasOpen){d.classList.remove('is-open');setTimeout(function(){if(!d.classList.contains('is-open'))d.open=false},340)}
+      else{d.open=true;requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('is-open')})})}
+    })});
+  })();
   (function(){var w=document.querySelector('.wall');if(!w)return;var t;w.addEventListener('touchstart',function(){clearTimeout(t);w.classList.add('paused')},{passive:true});w.addEventListener('touchend',function(){t=setTimeout(function(){w.classList.remove('paused')},4000)},{passive:true})})();
 
   /* ===== lead forms =====
