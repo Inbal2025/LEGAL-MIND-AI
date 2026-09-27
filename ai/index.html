@@ -1055,6 +1055,13 @@ html.nofx .hero .cls h1.big.h1x ins.tc{animation:none}
 .switch input:checked+i{background:var(--teal-l);border-color:var(--teal-l);box-shadow:none}
 .switch input:checked+i::after{transform:rotate(45deg) scale(1)}
 .switch:hover i{border-color:var(--teal-l)}
+
+/* practice-area pills: tighter so they fit in 3 rows on desktop */
+.pills div{gap:6px}
+.pills span{height:36px;padding:0 12px;font-size:.875rem}
+.pills legend{margin-bottom:8px}
+.tf{gap:16px}
+@media(max-width:560px){.pills span{height:42px;padding:0 12px}.pills div{gap:8px}}
 </style>
 <noscript><style>.rv>*,.paper.rvp,.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
