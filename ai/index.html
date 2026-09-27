@@ -1047,6 +1047,14 @@ html.nofx .hero .cls h1.big.h1x ins.tc{animation:none}
 .hero .cls h1.big.h1x ins.tc::before{content:"";flex:none;width:.34em;height:.34em;border-radius:50%;background:var(--p-ink);margin-top:.5em}
 .hero .cls h1.big.h1x .caret{display:none}
 @container (max-width:779px){.hero .cls h1.big.h1x ins.tc{font-size:max(.62em,1.05rem)!important}}
+
+/* consent: classic square checkboxes instead of toggles */
+.switch{align-items:flex-start;gap:12px}
+.switch i{width:22px;height:22px;border-radius:5px;background:rgba(243,240,232,.06);border:1.5px solid rgba(243,240,232,.45);margin-top:2px;transition:background .15s,border-color .15s}
+.switch i::after{content:"";position:absolute;inset:auto;left:6px;top:2px;width:6px;height:11px;border:solid #07130F;border-width:0 2.5px 2.5px 0;border-radius:0;background:none;box-shadow:none;transform:rotate(45deg) scale(0);transition:transform .15s var(--ease)}
+.switch input:checked+i{background:var(--teal-l);border-color:var(--teal-l);box-shadow:none}
+.switch input:checked+i::after{transform:rotate(45deg) scale(1)}
+.switch:hover i{border-color:var(--teal-l)}
 </style>
 <noscript><style>.rv>*,.paper.rvp,.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
