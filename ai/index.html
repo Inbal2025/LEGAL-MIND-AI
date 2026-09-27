@@ -1062,6 +1062,16 @@ html.nofx .hero .cls h1.big.h1x ins.tc{animation:none}
 .pills legend{margin-bottom:8px}
 .tf{gap:16px}
 @media(max-width:560px){.pills span{height:42px;padding:0 12px}.pills div{gap:8px}}
+
+/* no horizontal scroll on phones (iOS ignores overflow-x on body alone) */
+html,body{overflow-x:hidden;overflow-x:clip;max-width:100%}
+main,header.hero,footer,.wall,.lane,.whoami,.comm2,.console{overflow-x:clip;max-width:100%}
+.track{contain:paint}
+/* root cause: the testimonial track (width:max-content) sized the grid tracks of .wall and body to ~10,000px */
+body{grid-template-columns:minmax(0,1fr)!important}
+main,header.hero{min-width:0}
+.wall{grid-template-columns:minmax(0,1fr)}
+.lane{min-width:0;width:100%}
 </style>
 <noscript><style>.rv>*,.paper.rvp,.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
