@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>מדיניות פרטיות - Legal Mind</title>
-  <meta name="description" content="מדיניות הפרטיות של Legal Mind - איך אנחנו שומרים על המידע שלכם: איסוף, שימוש ואבטחת נתונים בשירותי ההדרכה והטמעת ה-AI לעורכי דין.">
+  <meta name="description" content="מדיניות הפרטיות של Legal Mind - איזה מידע נאסף, למה, עם מי הוא משותף, דיוור ודברי פרסומת, עוגיות, אבטחת מידע והזכויות שלכם לפי חוק הגנת הפרטיות.">
 <meta name="robots" content="noindex" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,25 +12,44 @@
 <style>
 :root{
   --c-navy:#0B1C28; --c-ink:#EDEDF3; --c-teal:#25A99C; --c-teal-soft:#A8D9D5;
-  --body:#C3C3CC; --hairline:rgba(255,255,255,.10);
+  --body:#C3C3CC; --hairline:rgba(255,255,255,.10); --panel:rgba(255,255,255,.04);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--c-navy);color:var(--c-ink);
   font-family:"Heebo",sans-serif;font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
-.wrap{max-width:780px;margin:0 auto;padding:48px 24px 80px}
+html{scroll-behavior:smooth}
+.wrap{max-width:780px;margin:0 auto;padding:48px 20px 80px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--c-ink);margin-bottom:8px}
 .brand img{height:64px;width:auto}
 .back{display:inline-block;margin:4px 0 36px;color:var(--c-teal-soft);text-decoration:none;font-size:15px;border-bottom:1px solid transparent}
 .back:hover{border-color:var(--c-teal-soft)}
 h1{font-family:"Assistant",sans-serif;font-weight:600;font-size:clamp(30px,5vw,42px);line-height:1.15;margin:0 0 6px;color:#fff}
-.updated{color:var(--body);font-size:14px;margin:0 0 36px}
-h2{font-family:"Assistant",sans-serif;font-weight:600;font-size:21px;color:var(--c-teal-soft);margin:34px 0 10px}
+.updated{color:var(--body);font-size:14px;margin:0 0 28px}
+body{counter-reset:sec}
+h2{font-family:"Assistant",sans-serif;font-weight:600;font-size:21px;color:var(--c-teal-soft);margin:40px 0 10px;scroll-margin-top:16px}
+h2.num::before{counter-increment:sec;content:counter(sec) ". "}
+h3{font-family:"Assistant",sans-serif;font-weight:600;font-size:18px;color:var(--c-ink);margin:22px 0 6px}
 p{margin:0 0 14px;color:var(--body)}
 strong{color:var(--c-ink);font-weight:600}
 ul{margin:0 0 14px;padding-right:22px;color:var(--body)}
 li{margin-bottom:8px}
 a{color:var(--c-teal-soft)}
+.tldr{background:var(--panel);border:1px solid rgba(168,217,213,.18);border-radius:16px;padding:18px 22px 6px;margin:0 0 28px}
+.tldr h2{margin-top:0}
+.tldr ul{padding-right:18px}
+.small{font-size:14px}
+.table-wrap{overflow-x:auto;margin:0 0 16px;border:1px solid var(--hairline);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.6}
+th,td{text-align:right;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--hairline);color:var(--body)}
+th{color:var(--c-ink);font-family:"Assistant",sans-serif;font-weight:600;background:var(--panel)}
+tr:last-child td{border-bottom:none}
+td:first-child{color:var(--c-ink);font-weight:500;width:34%}
 .foot{margin-top:56px;padding-top:24px;border-top:1px solid var(--hairline);font-size:14px;color:var(--body)}
+@media (max-width:600px){
+  html,body{font-size:16px}
+    td:first-child{width:auto}
+  th,td{padding:9px 10px}
+}
 </style>
 </head>
 <body>
@@ -38,30 +57,114 @@ a{color:var(--c-teal-soft)}
   <a class="brand" href="index.html"><img src="logo.png" alt="Legal Mind" /></a>
   <a class="back" href="index.html">&rarr; חזרה לעמוד הראשי</a>
   <h1>מדיניות פרטיות</h1>
-  <p class="updated">עדכון אחרון: 23 ביוני 2026</p>
-  <h2>מי אנחנו</h2>
-  <p>אתר <span dir="ltr">Legal Mind</span> מופעל על-ידי א.ר. ליגל מיינד בע"מ. האתר נועד להציג את שירותי ההדרכה, הליווי וההטמעה שלנו בתחום הבינה המלאכותית לעולם המשפט והנדל"ן.</p>
+  <p class="updated">עדכון אחרון: 27 בספטמבר 2026</p>
 
-  <h2>איזה מידע נאסף</h2>
-  <p>האתר אינו דורש מסירת פרטים לצורך גלישה. אם בחרת להשאיר פרטים בטופס "השארת פרטים" שבאתר, או ליצור איתנו קשר - במייל, בטלפון או בוואטסאפ - נקבל את הפרטים שמסרת מיוזמתך: שם, פרטי התקשרות ותוכן הפנייה. בנוסף, נאספים נתונים טכניים וסטטיסטיים סטנדרטיים לצורך תפעול האתר וניתוח השימוש בו, כגון כתובת IP, סוג דפדפן, עמודים נצפים וזמני גישה.</p>
+  <div class="tldr">
+    <h2>בקצרה</h2>
+    <ul>
+      <li><strong>מה נאסף:</strong> רק מה שמסרתם לנו מרצונכם, וכן נתוני גלישה סטטיסטיים.</li>
+      <li><strong>למה:</strong> כדי לחזור אליכם, לתת את השירות שביקשתם ולשפר את האתר.</li>
+      <li><strong>דברי פרסומת:</strong> רק בהסכמתכם המפורשת, ואפשר להסיר את עצמכם בכל עת.</li>
+      <li><strong>לא סוחרים במידע:</strong> איננו מוכרים או משכירים מידע אישי.</li>
+      <li><strong>הזכויות שלכם:</strong> לעיין במידע, לבקש לתקנו או למחוק אותו.</li>
+    </ul>
+    <p class="small">זהו תקציר בלבד. הנוסח המלא מופיע להלן, והוא הקובע.</p>
+  </div>
 
-  <h2>עוגיות (Cookies)</h2>
-  <p>האתר אינו עושה שימוש בעוגיות פרסום. לצורך ניתוח סטטיסטי של השימוש באתר ושיפורו אנו נעזרים בשירות <span dir="ltr">Google Analytics</span> של חברת Google, המציב עוגיות לצורך מדידת תנועה (כגון מספר מבקרים, עמודים נצפים ומשך שהייה). המידע הנאסף הוא מצרפי ואנונימי ואינו מזהה אתכם אישית. ניתן לחסום עוגיות דרך הגדרות הדפדפן, או להתקין את תוסף ההסרה של Google בכתובת <span dir="ltr">tools.google.com/dlpage/gaoptout</span>.</p>
+  <h2 class="num" id="who">מי אנחנו ועל מה חלה המדיניות</h2>
+  <p>האתר <span dir="ltr">legalmind.co.il</span> מופעל על-ידי א.ר. ליגל מיינד בע"מ ("<span dir="ltr">Legal Mind</span>" או "אנחנו"), המספקת הדרכה, ליווי והטמעה של כלי בינה מלאכותית לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות. <span dir="ltr">Legal Mind</span> היא בעלת השליטה במאגר המידע, כמשמעות המונח בחוק הגנת הפרטיות, התשמ"א-1981 ("חוק הגנת הפרטיות").</p>
+  <p>המדיניות חלה על מידע שנאסף באתר, בפניות אלינו בדואר אלקטרוני, בטלפון ובוואטסאפ, ובקהילת <span dir="ltr">Legal Mind</span> בוואטסאפ. היא אינה חלה על מידע שאנו מעבדים במסגרת שירות ללקוח לפי הסכם התקשרות, שכן מידע כזה כפוף להסכם עצמו.</p>
 
-  <h2>השימוש במידע</h2>
-  <p>פרטים שנמסרו בפנייה ישמשו אך ורק למענה לפנייה, לתיאום פגישה או למתן השירות שביקשת. הצטרפות לקהילת הוואטסאפ שלנו נעשית מיוזמתך וכפופה לתנאי השימוש של <span dir="ltr">WhatsApp</span>.</p>
+  <h2 class="num" id="collect">איזה מידע אנחנו אוספים</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">מקור המידע</th><th scope="col">המידע שנאסף</th></tr></thead>
+      <tbody>
+        <tr><td>טופס "השארת פרטים"</td><td>שם מלא, טלפון ואימייל (חובה); תחום עיסוק ו"איך הגעתם אלינו" (רשות); האם הסכמתם לקבל דיוור; וסוג הדפדפן והמכשיר (<span dir="ltr">User Agent</span>), שמתועד אוטומטית.</td></tr>
+        <tr><td>פנייה בדואר אלקטרוני, בטלפון או בוואטסאפ</td><td>פרטי ההתקשרות ותוכן הפנייה, כולל קבצים שצירפתם.</td></tr>
+        <tr><td>קהילת <span dir="ltr">Legal Mind</span> בוואטסאפ</td><td>שם הפרופיל, מספר הטלפון ותמונת הפרופיל, והודעות שתפרסמו בקהילה.</td></tr>
+        <tr><td>גלישה באתר</td><td>כתובת <span dir="ltr">IP</span>, מזהה השמור בעוגייה, סוג הדפדפן והמכשיר, הדפים שנצפו, משך השהייה, מקור ההגעה ומיקום כללי (מדינה או עיר). הנתונים נאספים באמצעות <span dir="ltr">Google Analytics</span> ורישומי השרת.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>אין חובה חוקית למסור לנו מידע, ומסירתו תלויה ברצונכם. אפשר לגלוש באתר בלי למסור פרטים. אם לא תמלאו את שדות החובה בטופס, לא נוכל לחזור אליכם בדרך זו, אך תמיד אפשר לפנות אלינו ישירות. ההסכמה לדיוור נפרדת מהשארת הפרטים, אינה מסומנת מראש ואינה תנאי לכך שנחזור אליכם.</p>
 
-  <h2>העברת מידע לצדדים שלישיים</h2>
-  <p>איננו מוכרים או משכירים מידע אישי. מידע יועבר לצד שלישי רק ככל הנדרש לתפעול האתר ולניתוח השימוש בו (ספקית האירוח ו-<span dir="ltr">Google Analytics</span>), או אם נידרש לכך על פי דין.</p>
+  <h2 class="num" id="use">למה אנחנו משתמשים במידע</h2>
+  <ul>
+    <li><strong>מענה ושירות:</strong> לחזור אליכם, לתאם שיחת היכרות ולתת את ההדרכה, הליווי או ההטמעה שביקשתם.</li>
+    <li><strong>דיוור וקהילה:</strong> משלוח עדכונים, הזמנות לוובינרים ומידע על שירותינו למי שהסכים לכך, והפעלת הקהילה בוואטסאפ (<a href="#marketing">פרק 4</a>).</li>
+    <li><strong>שיפור האתר:</strong> מדידה סטטיסטית של השימוש באתר ושל מקורות ההגעה אליו.</li>
+    <li><strong>אבטחה ועמידה בדין:</strong> מניעת שימוש לרעה בטפסים, עמידה בהוראות הדין והגנה על זכויותינו.</li>
+  </ul>
+  <p>לא נשתמש במידע למטרה אחרת בלי לעדכן אתכם מראש, ובמקרה הצורך לבקש את הסכמתכם.</p>
 
-  <h2>אבטחת מידע</h2>
-  <p>אנחנו נוקטים אמצעים סבירים ומקובלים לאבטחת המידע. כעורכי דין, סודיות ואבטחת מידע הם חלק מהדנ"א המקצועי שלנו.</p>
+  <h2 class="num" id="marketing">דיוור, דברי פרסומת וקהילת הוואטסאפ</h2>
+  <h3>דברי פרסומת</h3>
+  <p>חלק מהתכנים שאנו שולחים, כמו מידע על הדרכות וקורסים בתשלום, הם "דברי פרסומת" כמשמעותם בסעיף 30א לחוק התקשורת (בזק ושידורים), התשמ"ב-1982. נשלח אותם בדואר אלקטרוני, ב-<span dir="ltr">SMS</span> או בוואטסאפ רק למי שנתן לכך הסכמה מפורשת מראש, למשל בסימון התיבה בטופס. כל דבר פרסומת יסומן במילה "פרסומת" ויכלול את פרטינו ודרך פשוטה להסרה.</p>
+  <p>בנוסף, החוק מתיר פנייה חד-פעמית לבית עסק (כגון משרד עורכי דין) שבה נציע לו להצטרף לדיוור. מי שלא יסכים לא יקבל מאיתנו דברי פרסומת. הודעות שירות, כמו תיאום פגישה או תזכורת לוובינר שנרשמתם אליו, אינן דברי פרסומת.</p>
+  <h3>הסרה מרשימת התפוצה</h3>
+  <p>אפשר להסיר את עצמכם בכל עת: בקישור ההסרה שבכל דיוור, בהשבה להודעה במילה "הסר", או בהודעה לכתובת <a href="mailto:info@legalmind.co.il" dir="ltr">info@legalmind.co.il</a>. נכבד את הבקשה ללא דיחוי. כדי לוודא שלא נפנה אליכם שוב, נשמור רק רישום מצומצם של פרטי הקשר ושל מועד ההסרה.</p>
+  <h3>קהילת <span dir="ltr">Legal Mind</span> בוואטסאפ</h3>
+  <ul>
+    <li>ההצטרפות לקהילה היא ביוזמתכם. בקהילה מתפרסמים עדכונים מקצועיים, הזמנות לאירועים ומעת לעת גם מידע על שירותים בתשלום, ובהצטרפותכם אתם מסכימים לקבל בה תכנים אלה, לרבות דברי פרסומת.</li>
+    <li>אפשר לעזוב את הקהילה בכל עת, ועזיבתה תיחשב סירוב לקבלת התכנים המתפרסמים בה.</li>
+    <li>שם הפרופיל ומספר הטלפון שלכם גלויים למנהלי הקהילה, ולפי הגדרות וואטסאפ ייתכן שגם לחברים אחרים.</li>
+    <li>לא נעתיק את מספרי הטלפון של חברי הקהילה לרשימות דיוור, ולא נשלח דברי פרסומת בהודעה פרטית בלי הסכמה נפרדת.</li>
+  </ul>
 
-  <h2>זכויותיך</h2>
-  <p>בהתאם לחוק הגנת הפרטיות, התשמ"א-1981, על תיקוניו, עומדת לך זכות לעיין במידע המוחזק אודותיך, לבקש את תיקונו או את מחיקתו. לפניות בענייני פרטיות: <a href="mailto:asaf@legalmind.co.il" dir="ltr">asaf@legalmind.co.il</a> או <a href="mailto:roy@legalmind.co.il" dir="ltr">roy@legalmind.co.il</a>.</p>
+  <h2 class="num" id="cookies">עוגיות וכלי מדידה</h2>
+  <p>באתר פועל שירות <span dir="ltr">Google Analytics</span> של <span dir="ltr">Google</span>, המציב עוגיות (<span dir="ltr">Cookies</span>) לצורך מדידה סטטיסטית של השימוש באתר. אנו בוחנים את הנתונים באופן מצרפי, ואיננו מצליבים אותם עם פרטים שמסרתם כדי לזהות אתכם. האתר אינו משתמש בעוגיות פרסום, בפיקסלים של רשתות חברתיות או בפרסום חוזר. אם נוסיף כלים כאלה, נעדכן את המדיניות ונבקש את הסכמתכם כנדרש.</p>
+  <p>הגופנים באתר נטענים משירות <span dir="ltr">Google Fonts</span>, ולכן כתובת ה-<span dir="ltr">IP</span> שלכם נמסרת לשרתי <span dir="ltr">Google</span>. אפשר לחסום או למחוק עוגיות בהגדרות הדפדפן, או להתקין את <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">תוסף הדפדפן של <span dir="ltr">Google</span> לביטול <span dir="ltr">Google Analytics</span></a>, בלי שהדבר יפגע בגלישה באתר.</p>
 
-  <h2>שינויים במדיניות</h2>
-  <p>מדיניות זו עשויה להתעדכן מעת לעת. הנוסח המחייב הוא זה המפורסם באתר במועד הגלישה.</p>
+  <h2 class="num" id="sharing">מסירת מידע לצדדים שלישיים והעברתו לחו"ל</h2>
+  <p>איננו מוכרים, משכירים או מוסרים מידע אישי לאחרים לצורכי השיווק שלהם. אנו מוסרים מידע רק לגורמים הבאים, ובהיקף הדרוש בלבד:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">הגורם</th><th scope="col">מטרת המסירה</th></tr></thead>
+      <tbody>
+        <tr><td>חברת <span dir="ltr">Vercel Inc.</span></td><td>אירוח האתר.</td></tr>
+        <tr><td>חברת <span dir="ltr">Supabase Inc.</span></td><td>אחסון הפרטים הנמסרים בטופס.</td></tr>
+        <tr><td>חברת <span dir="ltr">Google LLC</span></td><td>דואר אלקטרוני (<span dir="ltr">Google Workspace</span>), מדידת שימוש באתר וטעינת גופנים.</td></tr>
+        <tr><td>שירות <span dir="ltr">WhatsApp</span> של <span dir="ltr">Meta</span></td><td>תקשורת איתכם והפעלת הקהילה.</td></tr>
+        <tr><td>ספקי דיוור ומערכות לניהול לקוחות</td><td>משלוח דיוור למי שהסכים לכך וניהול פניות, ככל שנעשה בהם שימוש.</td></tr>
+        <tr><td>יועצים מקצועיים (כגון רואי חשבון ועורכי דין)</td><td>ייעוץ לחברה, תחת חובת סודיות.</td></tr>
+        <tr><td>רשויות ובתי משפט</td><td>כאשר הדין או צו שיפוטי מחייבים זאת, או להגנה על זכויותינו.</td></tr>
+        <tr><td>רוכש או חברה ממוזגת</td><td>במקרה של מיזוג או מכירת הפעילות, בכפוף להתחייבות לנהוג במידע לפי מדיניות זו.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>ספקי השירות מחויבים לשמור על המידע ולאבטח אותו. חלקם מאחסנים את המידע מחוץ לישראל, בעיקר בארצות הברית ובאיחוד האירופי. ההעברה נעשית בהתאם לתקנות הגנת הפרטיות (העברת מידע אל מאגרי מידע שמחוץ לגבולות המדינה), התשס"א-2001, ובמסירת המידע אתם מסכימים לה.</p>
+
+  <h2 class="num" id="retention">כמה זמן נשמור את המידע</h2>
+  <ul>
+    <li><strong>פניות שלא הבשילו להתקשרות:</strong> עד 24 חודשים מהקשר האחרון.</li>
+    <li><strong>רשימת הדיוור:</strong> כל עוד ההסכמה בתוקף.</li>
+    <li><strong>לקוחות:</strong> במשך ההתקשרות, ולאחריה ככל שנדרש לפי דין או להגנה מפני תביעות.</li>
+    <li><strong>נתוני <span dir="ltr">Google Analytics</span>:</strong> עד 14 חודשים.</li>
+  </ul>
+  <p>מידע שאינו נחוץ עוד יימחק או יהפוך לאנונימי.</p>
+
+  <h2 class="num" id="security">אבטחת מידע</h2>
+  <p>אנו נוקטים אמצעי אבטחה סבירים בהתאם לתקנות הגנת הפרטיות (אבטחת מידע), התשע"ז-2017, ובהם הצפנת התעבורה (<span dir="ltr">HTTPS</span>), הגבלת הגישה למידע לבעלי תפקיד ושימוש בספקי ענן העומדים בתקני אבטחה מקובלים. כעורכי דין, סודיות ואבטחת מידע הם חלק מהדנ"א המקצועי שלנו. עם זאת, אין מערכת החסינה לחלוטין, ואיננו יכולים להבטיח הגנה מוחלטת.</p>
+
+  <h2 class="num" id="rights">הזכויות שלכם</h2>
+  <ul>
+    <li><strong>עיון:</strong> לעיין במידע עליכם המוחזק אצלנו (סעיף 13 לחוק הגנת הפרטיות).</li>
+    <li><strong>תיקון ומחיקה:</strong> לבקש לתקן או למחוק מידע שאינו נכון, שלם, ברור או מעודכן (סעיף 14). לבקשתכם נמחק גם מידע שאינו נחוץ לנו עוד, אלא אם עלינו לשמור אותו לפי דין.</li>
+    <li><strong>דיוור ישיר:</strong> לדרוש בכתב שהמידע עליכם יימחק מהמאגר המשמש לדיוור ישיר, או שלא יימסר לאחרים (סעיף 17ו). נפעל לפי הדרישה ונאשר לכם זאת בכתב.</li>
+    <li><strong>חזרה מהסכמה לדיוור:</strong> בכל עת, כמפורט <a href="#marketing">בפרק 4</a>.</li>
+  </ul>
+  <p>לפנייה כתבו לכתובת <a href="mailto:info@legalmind.co.il" dir="ltr">info@legalmind.co.il</a>, וציינו את שמכם ואת פרטי הקשר שמסרתם לנו. ייתכן שנבקש לאמת את זהותכם. נשיב בתוך 30 ימים לכל המאוחר. אם אינכם מרוצים מהטיפול, אפשר לפנות <a href="https://www.gov.il/he/departments/the_privacy_protection_authority" target="_blank" rel="noopener">לרשות להגנת הפרטיות</a>.</p>
+
+  <h2 class="num" id="more">הוראות נוספות</h2>
+  <p><strong>קטינים:</strong> האתר מיועד לאנשי מקצוע בגירים, ואיננו אוספים ביודעין מידע על קטינים מתחת לגיל 18.</p>
+  <p><strong>קישורים חיצוניים:</strong> השימוש בשירותים שהאתר מקשר אליהם, כמו וואטסאפ, לינקדאין, פייסבוק ו-<span dir="ltr">Google Drive</span>, כפוף למדיניות הפרטיות של מפעיליהם.</p>
+  <p><strong>שינויים:</strong> נעדכן את המדיניות מעת לעת, ומועד העדכון יופיע בראש הדף. אם שינוי יחייב את הסכמתכם, נבקש אותה מראש.</p>
+
+  <h2 class="num" id="contact">יצירת קשר</h2>
+  <p><strong>א.ר. ליגל מיינד בע"מ</strong><br>
+  רחוב היצירה 33, רמת גן<br>
+  לכל פנייה, לרבות בענייני פרטיות ודיוור: <a href="mailto:info@legalmind.co.il" dir="ltr">info@legalmind.co.il</a></p>
 
   <div class="foot">© 2026 א.ר. ליגל מיינד בע"מ. כל הזכויות שמורות.</div>
 </div>
