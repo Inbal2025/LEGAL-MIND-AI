@@ -368,6 +368,7 @@ html.nofx .rv,html.nofx .h1 .w,html.nofx .cite{opacity:1!important;transform:non
 @media(max-width:640px){.hero-bg{background-image:url("office-bg-mobile.jpg");background-position:center top;height:clamp(900px,140vh,1500px)}}
 .hero{z-index:1}
 .h1{text-shadow:0 8px 40px rgba(0,0,0,.8),0 2px 8px rgba(0,0,0,.6)}
+.h1sub{margin:18px auto 0;max-width:40rem;text-align:center;font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.7;color:var(--ink-2);text-shadow:0 2px 16px rgba(0,0,0,.8);text-wrap:balance}
 .hub b,.hub span{text-shadow:0 4px 28px rgba(0,0,0,.85)}
 .hero .wq,.bk,.sub,.stat{text-shadow:0 2px 16px rgba(0,0,0,.8)}
 .cube{box-shadow:0 40px 90px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.7),0 0 90px rgba(99,194,184,.35)}
@@ -424,11 +425,12 @@ html.nofx .rv,html.nofx .h1 .w,html.nofx .cite{opacity:1!important;transform:non
   </div>
   <div class="copy">
     <h1 class="h1" id="h1"><span class="w">Claude</span> <span class="w">מחובר</span> <span class="w">לנבו.</span> <span class="w">אנחנו</span> <span class="w">מכניסים</span> <span class="w">אותו</span> <span class="w">למשרד</span> <span class="w">שלכם.</span></h1>
+    <p class="h1sub">Claude, הבינה המלאכותית של Anthropic, מחפש עכשיו במאגר של נבו. אנחנו בונים סביבו את שיטת העבודה של המשרד.</p>
     <div class="acts acts-top"><a class="btn" href="#lead"><span>לבחינת התאמה</span></a><a class="btn ghost" href="#how"><span>איך זה עובד</span></a></div>
     <h2 class="wq wq2">אז מה הבשורה?</h2>
     <div class="bridge">
-      <p class="bk">עד היום היו לכם שניים שלא מדברים זה עם זה: AI שכותב יפה אבל ממציא פסיקה, ונבו, שבה הכול קיים אבל צריך לחפש לבד. מהיום, לראשונה בישראל, Claude מחובר ישירות לנבו. שואלים שאלה, הוא מחפש במאגר ומחזיר פסקי דין וסעיפי חוק, כל אחד עם קישור למקור. לוחצים, ומגיעים.</p>
-      <p class="bk">אבל קונקטור הוא כלי, לא שיטת עבודה. ההטמעה היא מה שהופך אותו לחלק מהמשרד: בונים כלי לסוגי התיקים שלכם, בלשון המשרד, עם נוהל בדיקה, ומלמדים את הצוות לעבוד איתו.</p>
+      <p class="bk">עד היום היו לכם שניים שלא מדברים זה עם זה: AI שכותב יפה אבל לפעמים ממציא פסיקה, ונבו, שבה הכול קיים אבל צריך לחפש לבד. מהיום Claude מחובר ישירות לנבו. שואלים שאלה, הוא מחפש במאגר ומחזיר פסקי דין וסעיפי חוק, כל אחד עם קישור למקור. לוחצים, ומגיעים.</p>
+      <p class="bk">אבל קונקטור הוא כלי, לא שיטת עבודה. ההטמעה היא מה שהופך אותו לחלק מהמשרד: בונים כלי לסוגי התיקים שלכם, במנוי שמגן על חומר הלקוחות, בלשון המשרד, עם נוהל בדיקה, ומלמדים את הצוות לעבוד איתו.</p>
     </div>
     <p class="sub">בסוף ההטמעה יש למשרד כלי משלו: מחובר לנבו, כותב כמו המשרד, ונשאר אצלכם. <b>כשאנחנו יוצאים, הכלי נשאר.</b></p>
     <div class="acts"><a class="btn" href="#lead"><span>לבחינת התאמה</span></a><a class="btn ghost" href="#how"><span>איך זה עובד</span></a></div>
@@ -442,7 +444,7 @@ html.nofx .rv,html.nofx .h1 .w,html.nofx .cite{opacity:1!important;transform:non
   <div class="demo rv d3" id="demo">
     <div class="bar"><i></i><i></i><i></i><span style="color:var(--teal-l)">המחשה · Claude מחובר לנבו</span></div>
     <div class="msg q"><span class="who">עו״ד</span><p>מה נפסק בשנתיים האחרונות על ביטול הסכם אספקה בגלל איחורים חוזרים?</p></div>
-    <div class="msg a"><span class="who">Claude</span><p>מצאתי בנבו שלושה פסקי דין רלוונטיים. המרכזי: <span class="cite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>ע״א 1234/20 פלוני נ׳ אלמוני (להמחשה)</span>, שם נקבע שאיחורים חוזרים באספקה עולים כדי הפרה יסודית לפי סעיף 6 לחוק החוזים (תרופות). להציג את שני האחרים, או לנסח את סעיף ההפרה בנוסח המשרד?</p></div>
+    <div class="msg a"><span class="who">Claude</span><p>מצאתי בנבו שלושה פסקי דין רלוונטיים. המרכזי: <span class="cite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>ע״א 4321/24 פלוני נ׳ אלמוני (להמחשה)</span>, שם נקבע שאיחורים חוזרים באספקה עולים כדי הפרה יסודית לפי סעיף 6 לחוק החוזים (תרופות). להציג את שני האחרים, או לנסח את סעיף ההפרה בנוסח המשרד?</p></div>
   </div>
 </section>
 
@@ -459,7 +461,7 @@ html.nofx .rv,html.nofx .h1 .w,html.nofx .cite{opacity:1!important;transform:non
 
 <!-- ADMIN -->
 <section class="band wrap" id="admin" style="padding-top:0">
-  <div class="admin rv"><h3>וגם האדמיניסטרציה, שאף אחד לא פתח בשבילה משרד</h3><p>ההטמעה לא נעצרת בכתיבה המשפטית. גם העבודה שגוזלת שעות ולא מייצרת שקל נכנסת לכלי של המשרד.</p>
+  <div class="admin rv"><h3>וגם האדמיניסטרציה, שאף אחד לא פתח בשבילה משרד</h3><p>ההטמעה לא נעצרת בכתיבה המשפטית. גם העבודה שגוזלת שעות ולא מייצרת שקל מקבלת מענה באותה הטמעה.</p>
     <div class="chips"><span>ניהול משימות שוטף ומעקב ביצוע</span><span>סיכומי פגישות ותמלולים</span><span>יומן ומעקב מועדים</span><span>דיווחי שעות וחיוב</span><span>מעקב מסמכים וגרסאות</span><span>התכתבויות ופולואו-אפ שוטף</span></div></div>
 </section>
 
@@ -472,7 +474,7 @@ html.nofx .rv,html.nofx .h1 .w,html.nofx .cite{opacity:1!important;transform:non
   </div>
   <div class="g4 g2">
     <article class="card nv rv d1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg></span><h3>עו״ד מטמיע אצל עו״ד</h3><p>לפני הכול אנחנו עו״ד. את הכאב אנחנו מכירים מבפנים, ולכן השיחה קצרה, ובונים רק מה שבאמת חוסך זמן במשרד.</p></article>
-    <article class="card rv d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>חיסיון, אתיקה ואימות</h3><p>מה מותר להזין ולאיזה כלי, ואיך מאמתים כל אסמכתה מול המקור בנבו לפני שהיא נכנסת לכתב טענות. יוצאים עם נוהל כתוב שהצוות עובד לפיו.</p></article>
+    <article class="card rv d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>חיסיון, אתיקה ואימות</h3><p>מה מותר להזין ולאיזה כלי, איזה מנוי מתאים למשרד, ואיך מאמתים כל אסמכתה מול המקור בנבו לפני שהיא נכנסת לכתב טענות. יוצאים עם נוהל כתוב שהצוות עובד לפיו.</p></article>
   </div>
 </section>
 
