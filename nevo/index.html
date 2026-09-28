@@ -584,7 +584,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
     <details><summary>זה יחליף אותי? <i aria-hidden="true">+</i></summary><div class="a"><div>לא. זה מקצר עבודה שחוזרת על עצמה: איתור מקורות, ניסוח ראשוני, סריקת מסמכים. שיקול הדעת והאסטרטגיה נשארים אצלכם.</div></div></details>
     <details><summary>מתאים לכל גודל משרד? <i aria-hidden="true">+</i></summary><div class="a"><div>כן. התכולה נגזרת מגודל המשרד ומתחומי העיסוק. גם מחלקות משפטיות בארגונים, בהתאם למדיניות אבטחת המידע שלהן.</div></div></details>
     <details><summary>עדיף לי לנסות לבד קודם <i aria-hidden="true">+</i></summary><div class="a"><div>לגמרי לגיטימי. מה שההטמעה חוסכת זה חודשים של ניסוי וטעייה, ומה שהיא מוסיפה זה כלים שכבר מותאמים למשרד. כשתרצו, אנחנו כאן.</div></div></details>
-    <details><summary>כמה זה עולה? <i aria-hidden="true">+</i></summary><div class="a"><div>תלוי בהיקף: מפגש אחד, סדנה לצוות או הטמעה מלאה עם ליווי. אחרי שיחת התאמה קצרה נדע להגיד מספר מדויק.</div></div></details>
+    <details><summary>כמה זה עולה? <i aria-hidden="true">+</i></summary><div class="a"><div>הכול תלוי בהיקף ההטמעה. לכן בטופס אנחנו שואלים כמה עורכי דין יש במשרד: התשובה נותנת לנו אומדן ראשון עוד לפני שיחת הטלפון. אחרי האפיון, כשנקבע יחד את היקף ההטמעה, תקבלו הצעת מחיר מסודרת.</div></div></details>
   </div>
 </section>
 
@@ -610,6 +610,12 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
         <label><input type="radio" name="practiceArea" value="עו״ד"><span>עו״ד</span></label>
         <label><input type="radio" name="practiceArea" value="מחלקה משפטית"><span>מחלקה משפטית</span></label>
         <label><input type="radio" name="practiceArea" value="אחר"><span>אחר</span></label>
+      </div></fieldset>
+      <fieldset class="pills"><legend>מספר עורכי הדין במשרד</legend><div>
+        <label><input type="radio" name="firmSize" value="1 עד 3"><span>1 עד 3</span></label>
+        <label><input type="radio" name="firmSize" value="4 עד 10"><span>4 עד 10</span></label>
+        <label><input type="radio" name="firmSize" value="11 עד 30"><span>11 עד 30</span></label>
+        <label><input type="radio" name="firmSize" value="מעל 30"><span>מעל 30</span></label>
       </div></fieldset>
       <fieldset class="pills"><legend>מה מעניין אתכם?</legend><div>
         <label><input type="radio" name="interest" value="עוד לא בטוח/ה, תמליצו לי"><span>עוד לא בטוח/ה, תמליצו לי</span></label>
@@ -702,7 +708,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
       if(!f.elements.privacyConsent.checked){note.textContent='יש למלא את כל השדות המסומנים בכוכבית ולאשר את מדיניות הפרטיות.';note.classList.add('on');f.elements.privacyConsent.focus();return}
       if(f.elements.website.value){success();return}
       function pick(k){var x=f.querySelector('input[name='+k+']:checked');return x?x.value:''}
-      var extra=['דף נחיתה /nevo','מעניין: '+(pick('interest')||'לא צוין'),'דיוור: '+(f.elements.marketingConsent.checked?'כן':'לא')];for(var uk in utm)extra.push(uk.replace('utm_','')+': '+utm[uk]);
+      var extra=['דף נחיתה /nevo','מספר עורכי דין: '+(pick('firmSize')||'לא צוין'),'מעניין: '+(pick('interest')||'לא צוין'),'דיוור: '+(f.elements.marketingConsent.checked?'כן':'לא')];for(var uk in utm)extra.push(uk.replace('utm_','')+': '+utm[uk]);
       var payload={token:LM_FORM_TOKEN,full_name:n.value.trim(),phone:normPhone(p.value),email:em.value.trim(),area:pick('practiceArea')||'',source:extra.join(' | ')};
       sending=true;btn.classList.add('busy');btn.setAttribute('aria-busy','true');
       var ctl=('AbortController' in window)?new AbortController():null,tm=setTimeout(function(){if(ctl)ctl.abort()},15000);
