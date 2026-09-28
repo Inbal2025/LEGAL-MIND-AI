@@ -103,6 +103,20 @@ main,header,footer{position:relative;z-index:1}
 .whoami .wl{font-family:var(--sans);font-weight:700;font-size:clamp(1.25rem,2.2vw,1.6rem);line-height:1.4;color:var(--ink);text-wrap:balance}
 .whoami .wb{font-size:clamp(1.02rem,1.4vw,1.15rem);line-height:1.8;color:#C3CCC7;max-width:46rem;text-wrap:pretty}
 .hero .wq2{margin-top:clamp(28px,4vw,48px);max-width:46rem;text-wrap:balance}
+/* bridge: before / after + partnership */
+.bridge{width:100%;max-width:60rem;margin-top:clamp(22px,3vw,34px);display:grid;gap:clamp(20px,3vw,30px);justify-items:center}
+.ba{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;text-align:right}
+@media(max-width:700px){.ba{grid-template-columns:minmax(0,1fr)}}
+.bc{min-width:0;border:1px solid var(--hair-2);border-radius:18px;padding:clamp(18px,2.4vw,26px);background:rgba(255,255,255,.03)}
+.bc.now{border-color:rgba(99,194,184,.4);background:rgba(99,194,184,.07)}
+.bc h4{margin:0 0 12px;font-family:"Bona Nova","Frank Ruhl Libre",serif;font-weight:700;font-size:clamp(1.35rem,2vw,1.7rem);color:var(--ink-3);letter-spacing:.02em}
+.bc.now h4{color:var(--teal-l)}
+.bc ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.bc li{position:relative;padding-inline-start:18px;font-size:clamp(1rem,1.3vw,1.1rem);line-height:1.7;color:var(--ink-2)}
+.bc li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:7px;height:7px;border-radius:50%;background:var(--ink-3)}
+.bc.now li::before{background:var(--teal)}
+.bk{max-width:46rem;text-align:center;font-size:clamp(1.02rem,1.4vw,1.15rem);line-height:1.8;color:var(--ink-2)}
+.bk b{display:block;font-family:var(--sans);font-weight:700;font-size:clamp(1.2rem,1.9vw,1.45rem);color:var(--ink);margin-bottom:8px}
 .sub{margin-top:22px;font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.75;color:var(--ink-2);max-width:46rem;text-align:center}
 .sub b{color:var(--ink);font-weight:600}
 .diff{margin-top:20px;padding:18px 22px;border:1px solid rgba(99,194,184,.25);background:rgba(99,194,184,.06);border-radius:14px;max-width:46rem;text-align:center;color:var(--ink-2);font-size:1rem;line-height:1.7}
@@ -351,6 +365,19 @@ html.nofx .rv,html.nofx .h1 .w,html.nofx .cite{opacity:1!important;transform:non
       <p class="wb">עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, ממייסדי <span style="white-space:nowrap">LEGAL MIND</span>, מגיעים מתוך הפרקטיקה המשפטית, ובשילוב ההבנה העמוקה של עולם הבינה המלאכותית ואופן ההטמעה שלה בארגונים פיתחו מומחיות בהטמעה של בינה מלאכותית בעולם המשפט. לצדם צוות של אנשי אפיון, אנשי IT, מומחי אוטומציה ומתכנתים.</p>
     </div>
     <h2 class="wq wq2">והקשר בין הטמעת <span style="white-space:nowrap">ה-AI</span> לשיתוף הפעולה של <span style="white-space:nowrap">LEGAL MIND</span> עם נבו?</h2>
+    <div class="bridge">
+      <div class="ba">
+        <div class="bc then"><h4>עד היום</h4><ul>
+          <li>יש לכם AI שכותב יפה, אבל לא מכיר את הדין הישראלי. כשהוא מצטט פסק דין, אתם צריכים לבדוק אם הוא קיים.</li>
+          <li>ויש לכם את נבו, שבו הכל קיים, אבל צריך לחפש לבד, פסק דין אחרי פסק דין.</li>
+        </ul></div>
+        <div class="bc now"><h4>מהיום</h4><ul>
+          <li>Claude נכנס לתוך נבו. אתם שואלים שאלה, הוא מחפש בנבו, ועונה עם קישור לפסק הדין או לסעיף. לוחצים ומגיעים למקור. זה הקונקטור.</li>
+          <li>אבל קונקטור לבד לא משנה איך משרד עובד. ההטמעה היא כל השאר: מאפיינים איפה הזמן הולך במשרד, בונים כלים לסוגי התיקים שלכם, מנסחים אותם בלשון המשרד, קובעים נוהל בדיקה, מלמדים את הצוות, ומלווים אחרי. נבו היא המאגר שהכלים האלה יונקים ממנו.</li>
+        </ul></div>
+      </div>
+      <p class="bk"><b>ומה הקשר לשיתוף הפעולה?</b>נבו מביאה את המאגר המשפטי המקיף בישראל. <span style="white-space:nowrap">LEGAL MIND</span> מביאה את ההטמעה: עורכי דין עם שנים רבות של פרקטיקה ולמעלה מעשור בבינה מלאכותית, שמגיעים למשרד ובונים את שיטת העבודה איתכם, על תיקים אמיתיים. כששתי החברות עובדות יחד, מה שנבנה במשרד יושב על המאגר הנכון מהיום הראשון, ומה שנבו נותנת נכנס לשגרת העבודה ולא נשאר כלי נוסף בצד.</p>
+    </div>
     <p class="sub">בסוף ההטמעה, למשרד שלכם יש כלי AI משלו: מחובר למאגר החקיקה, הפסיקה והספרות של נבו, מנוסח בלשון המשרד, ונשאר אצלכם. אנחנו מגיעים למשרד, מאפיינים את תהליכי העבודה, ובונים אותו איתכם. <b>כשאנחנו יוצאים, הכלי נשאר, והצוות יודע לתחזק אותו.</b></p>
     <div class="diff"><b>ההבדל בינינו לבין עוד הדרכת AI:</b> אנחנו קודם כל עורכי דין פעילים. על השאלות שמטרידות משרד לפני שמכניסים AI, מה מזינים, איך מאמתים אסמכתה, איפה עובר קו החיסיון, כבר ענינו בעצמנו בשטח.</div>
     <div class="acts"><a class="btn" href="#lead"><span>לבחינת התאמה</span></a><a class="btn ghost" href="#how"><span>איך זה עובד</span></a></div>
