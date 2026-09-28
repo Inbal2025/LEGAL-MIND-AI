@@ -619,33 +619,16 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
 <section class="band wrap" id="lead" style="padding-top:0">
   <div class="formp rv">
     <span class="cl">בואו נתחיל</span>
-    <h2 class="h2">רוצים משרד שעובד חכם, עם AI שמכיר אתכם?</h2>
-    <p class="lede">השאירו פרטים ונחזור אליכם לשיחה קצרה: מה במשרד שווה להטמיע, ומה לא. בלי התחייבות ובלי הצגות.</p>
+    <h2 class="h2">בואו נכיר את המשרד שלכם</h2>
+    <p class="lede">השאירו פרטים, ונחזור אליכם אישית לבחינת התאמה. ללא התחייבות.</p>
     <form class="form" id="cf" data-source="nevo" method="post" novalidate>
       <div class="g2">
         <div class="fx"><input id="cn" name="fullName" type="text" autocomplete="name" placeholder=" " required maxlength="80" aria-describedby="cn-msg"><label for="cn">שם מלא *</label><div class="fmsg" id="cn-msg" role="alert"></div></div>
         <div class="fx"><input id="cp" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder=" " required maxlength="20" dir="ltr" aria-describedby="cp-msg"><label for="cp">טלפון *</label><div class="fmsg" id="cp-msg" role="alert"></div></div>
       </div>
       <div class="fx"><input id="ce" name="email" type="email" autocomplete="email" placeholder=" " required maxlength="120" dir="ltr" spellcheck="false" autocapitalize="off" aria-describedby="ce-msg"><label for="ce">אימייל *</label><div class="fmsg" id="ce-msg" role="alert"></div></div>
-      <fieldset class="pills"><legend>תחום עיסוק</legend><div>
-        <label><input type="radio" name="practiceArea" value="עו״ד"><span>עו״ד</span></label>
-        <label><input type="radio" name="practiceArea" value="מחלקה משפטית"><span>מחלקה משפטית</span></label>
-        <label><input type="radio" name="practiceArea" value="אחר"><span>אחר</span></label>
-      </div></fieldset>
-      <fieldset class="pills"><legend>מספר עורכי הדין במשרד</legend><div>
-        <label><input type="radio" name="firmSize" value="1 עד 3"><span>1 עד 3</span></label>
-        <label><input type="radio" name="firmSize" value="4 עד 10"><span>4 עד 10</span></label>
-        <label><input type="radio" name="firmSize" value="11 עד 30"><span>11 עד 30</span></label>
-        <label><input type="radio" name="firmSize" value="מעל 30"><span>מעל 30</span></label>
-      </div></fieldset>
-      <fieldset class="pills"><legend>מה מעניין אתכם?</legend><div>
-        <label><input type="radio" name="interest" value="עוד לא בטוח/ה, תמליצו לי"><span>עוד לא בטוח/ה, תמליצו לי</span></label>
-        <label><input type="radio" name="interest" value="הטמעה מלאה עם ליווי"><span>הטמעה מלאה עם ליווי</span></label>
-        <label><input type="radio" name="interest" value="מפגש אחד להתחלה"><span>מפגש אחד להתחלה</span></label>
-        <label><input type="radio" name="interest" value="סדנה לצוות"><span>סדנה לצוות</span></label>
-        <label><input type="radio" name="interest" value="ליווי אישי"><span>ליווי אישי</span></label>
-        <label><input type="radio" name="interest" value="מחלקה משפטית בארגון"><span>מחלקה משפטית בארגון</span></label>
-      </div></fieldset>
+      <fieldset class="pills"><legend>מספר עורכי הדין במשרד</legend><div><label><input type="radio" name="firmSize" value="1"><span>1</span></label><label><input type="radio" name="firmSize" value="1–5"><span><bdi dir="ltr">1–5</bdi></span></label><label><input type="radio" name="firmSize" value="6–10"><span><bdi dir="ltr">6–10</bdi></span></label><label><input type="radio" name="firmSize" value="11 ומעלה"><span>11 ומעלה</span></label></div></fieldset>
+      <fieldset class="pills"><legend>תחום העיסוק העיקרי</legend><div><label><input type="radio" name="practiceArea" value="מקרקעין ונדל״ן"><span>מקרקעין ונדל״ן</span></label><label><input type="radio" name="practiceArea" value="מסחרי וחברות"><span>מסחרי וחברות</span></label><label><input type="radio" name="practiceArea" value="דיני משפחה"><span>דיני משפחה</span></label><label><input type="radio" name="practiceArea" value="דיני עבודה"><span>דיני עבודה</span></label><label><input type="radio" name="practiceArea" value="נזיקין וביטוח"><span>נזיקין וביטוח</span></label><label><input type="radio" name="practiceArea" value="משפט פלילי"><span>משפט פלילי</span></label><label><input type="radio" name="practiceArea" value="מיסים"><span>מיסים</span></label><label><input type="radio" name="practiceArea" value="משפט מנהלי ושלטון מקומי"><span>משפט מנהלי ושלטון מקומי</span></label><label><input type="radio" name="practiceArea" value="הוצאה לפועל וחדלות פירעון"><span>הוצאה לפועל וחדלות פירעון</span></label><label><input type="radio" name="practiceArea" value="תכנון ובנייה"><span>תכנון ובנייה</span></label><label><input type="radio" name="practiceArea" value="מגוון תחומים"><span>מגוון תחומים</span></label><label><input type="radio" name="practiceArea" value="אחר"><span>אחר</span></label></div></fieldset>
       <label class="switch"><input type="checkbox" name="privacyConsent" value="yes" required aria-required="true"><i></i><span>קראתי ואני מסכים/ה ל<a href="https://www.legalmind.co.il/privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>. *</span></label>
       <label class="switch"><input type="checkbox" name="marketingConsent" value="yes"><i></i><span>אני מאשר/ת קבלת תכנים ועדכונים מ-LEGAL MIND בהתאם ל<a href="https://www.legalmind.co.il/privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>.</span></label>
       <div class="hp" aria-hidden="true"><label>אל תמלאו שדה זה<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -729,7 +712,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
       if(!f.elements.privacyConsent.checked){note.textContent='יש למלא את כל השדות המסומנים בכוכבית ולאשר את מדיניות הפרטיות.';note.classList.add('on');f.elements.privacyConsent.focus();return}
       if(f.elements.website.value){success();return}
       function pick(k){var x=f.querySelector('input[name='+k+']:checked');return x?x.value:''}
-      var extra=['דף נחיתה /nevo','מספר עורכי דין: '+(pick('firmSize')||'לא צוין'),'מעניין: '+(pick('interest')||'לא צוין'),'דיוור: '+(f.elements.marketingConsent.checked?'כן':'לא')];for(var uk in utm)extra.push(uk.replace('utm_','')+': '+utm[uk]);
+      var extra=['דף נחיתה /nevo','מספר עורכי דין: '+(pick('firmSize')||'לא צוין'),'דיוור: '+(f.elements.marketingConsent.checked?'כן':'לא')];for(var uk in utm)extra.push(uk.replace('utm_','')+': '+utm[uk]);
       var payload={token:LM_FORM_TOKEN,full_name:n.value.trim(),phone:normPhone(p.value),email:em.value.trim(),area:pick('practiceArea')||'',source:extra.join(' | ')};
       sending=true;btn.classList.add('busy');btn.setAttribute('aria-busy','true');
       var ctl=('AbortController' in window)?new AbortController():null,tm=setTimeout(function(){if(ctl)ctl.abort()},15000);
