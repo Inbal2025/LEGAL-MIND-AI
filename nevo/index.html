@@ -459,6 +459,16 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
 .cube{width:clamp(104px,15vw,164px)}
 #why{padding-top:clamp(36px,4.5vw,60px)!important}
 #proof{padding-bottom:clamp(20px,3vw,40px)!important}
+
+/* v4: hero paragraphs in glass panels */
+.panel{width:100%;max-width:58rem;margin:clamp(26px,3.6vw,40px) auto 0;padding:clamp(26px,3.6vw,44px) clamp(20px,3.4vw,44px);border-radius:26px;border:1px solid rgba(150,224,214,.22);background:linear-gradient(160deg,rgba(11,27,22,.8),rgba(7,19,15,.72));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.07);display:grid;justify-items:center;text-align:center}
+.panel .wq2{margin-top:0}
+.panel .bridge{margin-top:clamp(16px,2.2vw,24px);gap:clamp(14px,2vw,22px)}
+.panel .sub{margin-top:clamp(16px,2.2vw,24px)}
+.whoami.panel{gap:12px}
+.whoami.panel .wq{margin-top:0}
+.hero .wq,.bk,.sub,.wl,.wb{text-shadow:none}
+.bk{color:#D6DDD9}
 </style>
 <noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}</style></noscript>
 </head>
@@ -483,13 +493,15 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
     <h1 class="h1" id="h1"><span class="w">Claude</span> <span class="w">מחובר</span> <span class="w">לנבו.</span> <span class="w">אנחנו</span> <span class="w">מכניסים</span> <span class="w">אותו</span> <span class="w">למשרד</span> <span class="w">שלכם.</span></h1>
     <p class="h1sub">Claude, הבינה המלאכותית של Anthropic, עובד עכשיו על הפסיקה והחקיקה של נבו. אנחנו הופכים את זה לשיטת העבודה של המשרד.</p>
     <div class="acts acts-top"><a class="btn" href="#lead"><span>לבחינת התאמה</span></a><a class="btn ghost" href="#how"><span>איך זה עובד</span></a></div>
+    <div class="panel news">
     <h2 class="wq wq2">אז מה הבשורה?</h2>
     <div class="bridge">
-      <p class="bk">עד היום היו לכם שניים שלא מדברים זה עם זה: AI שכותב יפה אבל לפעמים ממציא פסיקה, ונבו, שבה הכול קיים אבל צריך לחפש לבד. מהיום הם באותו חדר. שואלים שאלה, Claude מחפש בנבו ומחזיר פסקי דין וסעיפי חוק, כל אחד עם קישור למקור. לוחצים, ומגיעים.</p>
-      <p class="bk">אבל חיבור הוא כלי, לא שיטת עבודה. ההטמעה היא מה שהופך אותו לחלק מהמשרד: בונים כלי לסוגי התיקים שלכם, במנוי שמגן על חומר הלקוחות, בלשון המשרד, עם נוהל בדיקה, ומלמדים את הצוות לעבוד איתו.</p>
+      <p class="bk">עד היום היו לכם שניים שלא מדברים זה עם זה: AI שכותב יפה אבל לפעמים ממציא פסיקה, ונבו, שבה הכול קיים אבל צריך לחפש לבד. מהיום הם באותו חדר. שואלים שאלה, Claude מחפש בנבו ומחזיר פסקי דין וסעיפי חוק, כל אחד עם קישור למקור.</p>
+      <p class="bk">אבל חיבור הוא כלי, לא שיטת עבודה. ההטמעה הופכת אותו לחלק מהמשרד: כלי לסוגי התיקים שלכם, בלשון המשרד, במנוי שמגן על חומר הלקוחות, עם נוהל בדיקה וצוות שיודע לעבוד איתו.</p>
     </div>
     <p class="sub">בסוף ההטמעה יש למשרד שיטת עבודה משלו עם AI: מחוברת לנבו, כותבת כמו המשרד, ונשארת אצלכם. <b>כשאנחנו יוצאים, היא נשארת.</b></p>
-    <div class="whoami">
+    </div>
+    <div class="whoami panel">
       <h2 class="wq">אז מי אנחנו, <span style="white-space:nowrap">LEGAL MIND</span>?</h2>
       <p class="wl">לפני הכול אנחנו עו״ד. הבינה המלאכותית היא מכפיל הכוח.</p>
       <p class="wb">עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, ממייסדי <span style="white-space:nowrap">LEGAL MIND</span>, מגיעים מתוך הפרקטיקה המשפטית ומטמיעים בינה מלאכותית במשרדי עורכי דין. לצדם אנשי IT, מתכנתים, מומחי אוטומציה, ועוד צוות שלם שעובד מאחורי הקלעים כדי שתקבלו את השירות הטוב ביותר.</p>
