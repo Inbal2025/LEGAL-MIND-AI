@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="בונוס לסדרת Claude בתוך Excel: חמישה סקילים שנכתבו על ידי Legal Mind לעורכי דין, עם שלושה פרומפטים מוכנים להעתקה לכל סקיל.">
+<title>בונוס: חמישה סקילים לעורכי דין | Legal Mind</title>
+<link rel="canonical" href="https://www.legalmind.co.il/guides/claude-excel-bonus.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Legal Mind">
+<meta property="og:title" content="בונוס: חמישה סקילים לעורכי דין | Legal Mind">
+<meta property="og:description" content="בונוס לסדרת Claude בתוך Excel: חמישה סקילים שנכתבו על ידי Legal Mind לעורכי דין, עם שלושה פרומפטים מוכנים להעתקה לכל סקיל.">
+<meta property="og:url" content="https://www.legalmind.co.il/guides/claude-excel-bonus.html">
+<meta property="og:image" content="https://www.legalmind.co.il/guides/og-guides.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+
+:root{--navy:#0d2740;--navy2:#173e57;--teal:#11736d;--cyan:#2bc0b7;--orange:#b84a21;--gold:#b48a38;--red:#b3263b;--green:#2f7b52;--ink:#1d2b34;--muted:#607178;--bg:#f4f8f7;--paper:#fff;--line:#d7e2df;--soft:#e9f4f2;--shadow:0 16px 40px rgba(13,39,64,.10);--width:1220px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:72px}body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans Hebrew",sans-serif;font-size:16px;line-height:1.72}img{max-width:100%;height:auto}a{color:inherit}bdi[dir=ltr],[dir=ltr]{unicode-bidi:isolate}.skip{position:fixed;top:-80px;right:16px;z-index:100;background:#fff;border:2px solid var(--teal);border-radius:9px;padding:10px 14px;font-weight:800}.skip:focus{top:10px}.backbar{position:sticky;top:0;z-index:50;min-height:44px;border-bottom:1px solid #bdd5d2;background:#dcefee;padding:9px 14px;text-align:center}.backbar a{color:var(--teal);font-size:14px;font-weight:800;text-decoration:none}.backbar a:before{content:"→";margin-left:7px}.hero,.layout,.center-main,.center-brand{width:min(100%,var(--width));margin-inline:auto}.hero{display:grid;gap:18px;padding:26px 18px 24px}.eyebrow{margin:0 0 7px;color:var(--teal);font-size:13px;font-weight:900;letter-spacing:.03em}.hero h1,.center-hero h1{margin:0 0 10px;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.95rem,5.2vw,2.85rem);line-height:1.18}.hero-copy{max-width:82ch;color:var(--muted);font-size:1.06rem}.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:0}.facts div{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:12px}.facts dt{color:var(--teal);font-size:12px;font-weight:900}.facts dd{margin:2px 0 0;color:var(--navy);font-weight:700}.layout{display:grid;grid-template-columns:286px minmax(0,1fr);gap:28px;padding:8px 14px 60px}.surface{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 9px 28px rgba(13,39,64,.06)}.guide-section{scroll-margin-top:72px;padding:26px 22px}.guide-section+.guide-section{border-top:1px solid var(--line)}.section-number,.sec-num{display:block;margin:0 0 2px;color:var(--teal);font-size:12px;font-weight:900;letter-spacing:.08em}.guide-section h2,.sec-title{margin:0 0 14px;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.5rem,3.5vw,2rem);line-height:1.25}.guide-section h3,.sec-body h3{margin:22px 0 8px;color:var(--navy);font-size:1.15rem}.guide-section p,.sec-body p{margin:0 0 13px}.guide-section ul,.guide-section ol,.sec-body ul,.sec-body ol{padding-right:25px}.guide-section li,.sec-body li{margin:6px 0}.desktop-toc{order:-1;position:sticky;top:64px;align-self:start;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:16px;box-shadow:0 8px 24px rgba(13,39,64,.06);max-height:calc(100vh - 84px);overflow:auto}.desktop-toc h2{margin:0 0 10px;color:var(--navy);font-size:1rem}.desktop-toc ol{margin:0;padding:0;list-style:none}.desktop-toc li+li{border-top:1px solid #edf1f0}.desktop-toc a{display:block;position:relative;padding:8px 2px;padding-inline-start:32px;color:var(--teal);font-size:14px;text-decoration:none;line-height:1.4}.desktop-toc a span:first-child{position:absolute;inset-inline-start:2px;top:8px;font-weight:900}.desktop-toc a[aria-current=location]{color:var(--orange);font-weight:900}.callout,.content-box{margin:20px 0;border-radius:14px;padding:16px 18px}.callout.tip,.content-box.info,.content-box.recommendation{border-right:5px solid var(--teal);background:#edf7f6}.callout.warn,.content-box.warning{border-right:5px solid var(--red);background:#fff4f2}.content-box.legal-example{border-right:5px solid var(--gold);background:#fff9ee}.content-box.knowledge-check{border-right:5px solid var(--orange);background:#fff7f0}.callout-label{display:block;margin-bottom:6px;color:var(--navy);font-weight:900}.bullets{padding-right:24px}.steps{counter-reset:step;list-style:none!important;padding:0!important}.steps li{position:relative;margin:11px 0;padding:12px 50px 12px 12px;border:1px solid var(--line);border-radius:12px;background:#fbfdfd}.steps li:before{counter-increment:step;content:counter(step);position:absolute;right:10px;top:10px;display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--teal);color:#fff;font-weight:900}.shot{margin:20px auto}.shot-frame{overflow:visible;border:1px solid var(--line);border-radius:14px;background:#eef3f3;box-shadow:0 8px 24px rgba(13,39,64,.08)}.shot-frame img{display:block;width:100%;height:100%;object-fit:contain;border-radius:13px}.shot-source{display:flex;align-items:center;gap:8px;margin:0 0 8px;border-radius:10px;background:#e9f4f2;padding:8px 12px;color:var(--navy);font-size:13.5px;line-height:1.45}
+.shot-source:before{content:"";flex:0 0 auto;width:15px;height:15px;border:2px solid var(--teal);border-radius:50% 50% 50% 3px;background:#fff}
+.shot-source b{font-weight:900}
+.shot-target.is-quiet{background:none}
+.guide-section h3.answer-head{display:flex;align-items:center;gap:9px;margin:26px 0 4px;border-bottom:2px solid var(--teal);padding-bottom:8px}
+.answer-head:before{content:"";flex:0 0 auto;width:19px;height:19px;border:2.5px solid var(--teal);border-radius:50% 50% 50% 4px;background:#fff}
+.sub-head{margin:0 0 12px;color:var(--muted);font-size:1.02rem;font-weight:900}
+.shot-target.is-quiet{background:none}
+.one-line{margin:0 0 14px;border-inline-start:4px solid var(--teal);border-radius:0 8px 8px 0;background:#eef7f6;padding:10px 14px;color:var(--navy);font-size:1.06rem;line-height:1.6}
+.one-line strong{color:var(--teal)}
+.shot-legend{margin:9px 0 0;color:var(--muted);font-size:14px}.mk{display:inline-grid;place-items:center;min-width:25px;height:25px;border-radius:50%;background:var(--red);color:#fff;font-weight:900}.mk-tag{font-weight:800}.tbl-wrap{overflow-x:auto;margin:18px 0}.tbl{width:100%;border-collapse:collapse;background:#fff}.tbl th,.tbl td{border:1px solid var(--line);padding:10px;vertical-align:top;text-align:right}.tbl th{background:#e9f4f2;color:var(--navy)}pre,.code{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #263b4a;border-radius:13px;background:#0f2536;color:#ecf8f7;padding:15px;font:14px/1.55 Consolas,monospace}.risk-grid,.cards,.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.risk-card,.card,.decision-card{border:1px solid var(--line);border-radius:14px;background:#fbfdfd;padding:15px}.risk-card.green{border-top:5px solid var(--green)}.risk-card.yellow{border-top:5px solid var(--gold)}.risk-card.red{border-top:5px solid var(--red)}.checklist{list-style:none!important;padding:0!important}.checklist li{position:relative;padding:8px 36px 8px 8px;border-bottom:1px solid #edf1f0}.checklist li:before{content:"✓";position:absolute;right:8px;color:var(--teal);font-weight:900}.workbook{border:1px dashed #8fb8b4;border-radius:16px;background:#f7fbfa;padding:18px;margin:18px 0}.prompt-box{border:1px solid var(--line);border-radius:14px;background:#f7faf9;padding:16px}.bottom-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border:1px solid var(--teal);border-radius:10px;padding:10px 15px;color:var(--teal);font-weight:900;text-decoration:none}.button.primary{background:var(--teal);color:#fff}.source-note{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.guide-nav{display:none}.center-head{background:#fff}.center-brand{padding:13px 18px;color:var(--navy);font-weight:900}.center-hero{background:var(--navy);color:#fff;padding:32px 18px 44px;text-align:center}.center-hero h1{color:#fff}.center-hero p{max-width:820px;margin:0 auto;color:#dcecef;font-size:1.08rem}.center-main{padding:38px 14px 64px}.learning-path{margin:-24px 0 34px;border:1px solid var(--line);border-radius:20px;background:#fff;padding:22px;box-shadow:var(--shadow)}.learning-path ol{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:0;padding:0;list-style:none}.learning-path li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;background:#fafcfc;padding:10px;font-weight:800}.learning-path span,.guide-number{display:grid;place-items:center;width:36px;height:36px;flex:0 0 36px;border-radius:10px;background:var(--teal);color:#fff;font-weight:900}.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.guide-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:#fff;padding:17px;box-shadow:0 8px 24px rgba(13,39,64,.06);border-top:5px solid var(--orange)}.guide-card h2{margin:13px 0 9px;color:var(--navy);font-size:1.28rem;line-height:1.4}.guide-card dl{margin:0 0 14px}.guide-card dl div{border-top:1px solid #e3eae8;padding:9px 0}.guide-card dt{color:#0d625d;font-size:14px;font-weight:900}.guide-card dd{margin:2px 0 0;font-size:15px;line-height:1.55}.guide-card .button{margin-top:auto}.status{display:inline-block;border-radius:999px;background:var(--soft);color:var(--teal);padding:5px 9px;font-size:12px;font-weight:900}.center-footer,footer{text-align:center;color:var(--muted);padding:26px 12px}.mobile-toc{display:none}
+@media(max-width:1000px){.guide-grid{grid-template-columns:repeat(2,1fr)}.learning-path ol{grid-template-columns:1fr}.facts{grid-template-columns:1fr}.risk-grid,.cards,.decision-grid{grid-template-columns:1fr}}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.desktop-toc{display:none!important}.mobile-toc{display:block;margin:0 14px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}.mobile-toc summary{padding:12px 14px;font-weight:900;color:var(--navy)}.mobile-toc ol{margin:0;border-top:1px solid var(--line);padding:8px 32px 12px 12px}.mobile-toc a{display:block;padding:5px 2px;color:var(--teal)}.guide-grid{grid-template-columns:1fr}.bottom-nav{flex-direction:column}.button{width:100%}.guide-section{padding:23px 17px}}
+@media print{.backbar,.desktop-toc,.mobile-toc,.bottom-nav{display:none!important}.layout{display:block;padding:0}.surface{border:0;box-shadow:none}.guide-section{break-inside:avoid}.hero{padding:10px 0}.center-main{padding:0}}
+
+
+/* Full approved content imported from the reviewed Word document */
+.guide-section h4{margin:19px 0 7px;color:var(--teal);font-size:1.04rem}
+.guide-section h5{margin:16px 0 6px;color:var(--navy);font-size:.98rem}
+.major-subsection{margin:28px -22px 14px!important;border-right:6px solid var(--orange);background:#f7faf9;padding:13px 18px;color:var(--navy)!important;font-size:1.28rem!important}
+.source-emphasis{border:1px solid var(--line);border-right:5px solid var(--gold);border-radius:12px;background:#fffaf0;padding:13px 15px;font-weight:700}
+.guide-section .tbl td:empty{min-width:54px;height:40px;background:#fbfdfd}
+.guide-section .tbl th{white-space:nowrap}
+@media(max-width:820px){.major-subsection{margin:25px -17px 12px!important}.guide-section .tbl{min-width:620px}}
+
+/* Numbered screenshot annotations */
+.shot-frame{position:relative}
+.shot-target{position:absolute;z-index:2;border:3px solid var(--red);border-radius:9px;background:none;box-shadow:0 0 0 2px rgba(255,255,255,.82),0 2px 9px rgba(13,39,64,.24);pointer-events:none}
+.shot-target.is-circle{border-radius:999px}
+.shot-target-badge{position:absolute;top:0;left:0;z-index:3;display:grid;place-items:center;width:26px;height:26px;border:2px solid #fff;border-radius:50%;background:var(--red);color:#fff;font-size:14px;font-weight:900;line-height:1;box-shadow:0 2px 8px rgba(13,39,64,.35);transform:translate(-45%,-45%)}
+.shot-target.badge-right>.shot-target-badge{right:0;left:auto;transform:translate(45%,-45%)}
+.shot-target-badge.badge-offset-left{top:50%;left:-18px;transform:translate(-50%,-50%)}
+.shot-target-badge.badge-offset-right{top:50%;left:auto;right:-18px;transform:translate(50%,-50%)}
+.shot-caption{margin:9px 0 0;color:var(--muted);font-size:14px;font-weight:700}
+@media(max-width:640px){.shot-target{border-width:2px;border-radius:6px;box-shadow:0 0 0 1px rgba(255,255,255,.86),0 1px 5px rgba(13,39,64,.24)}.shot-target-badge{width:20px;height:20px;border-width:1.5px;font-size:11px}.shot-target-badge.badge-offset-left{left:-13px}.shot-target-badge.badge-offset-right{right:-13px}}
+.center-kicker{display:inline-flex;align-items:center;justify-content:center;margin:0 auto 18px!important;border:1px solid #2bc0b7;border-radius:999px;padding:8px 16px;color:#7ce5dd!important;font-size:13px!important;font-weight:900}.center-subtitle{max-width:900px!important}.platform-note{max-width:960px!important;margin:20px auto 0!important;border:1px solid rgba(124,229,221,.38);border-radius:14px;background:rgba(255,255,255,.06);padding:13px 16px;color:#eefafa!important;font-size:.97rem!important;line-height:1.65}.platform-note strong{color:#86ebe3}
+
+.copy-block{margin:18px 0;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.copy-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.copy-heading strong{font-size:.95rem;color:var(--navy)}
+.copy-button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:7px 14px;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-button:hover{background:var(--navy)}
+.copy-button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.copy-block .copy-body,.copy-block>p[id]{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--ink);font-size:.95rem;line-height:1.7;white-space:pre-wrap}
+.copy-block .copy-body.ltr{direction:ltr;text-align:left;font-family:ui-monospace,Consolas,monospace;font-size:.88rem}
+.copy-status{display:block;margin-top:8px;min-height:1.1em;font-size:.82rem;font-weight:700;color:var(--green)}
+@media(max-width:700px){.copy-heading{align-items:flex-start;flex-direction:column}.copy-button{width:100%}}
+
+.path-note{margin:16px 0 0;padding:14px 16px;background:var(--soft);border-inline-start:4px solid var(--teal);border-radius:10px;color:var(--ink);font-size:.95rem;line-height:1.7}
+.path-note strong{color:var(--navy)}
+
+.shot-caption{margin:10px 0 6px;color:var(--muted);font-size:.92rem;line-height:1.65}
+.shot-legend-num{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.shot-legend-num li{color:var(--ink);font-size:.92rem;line-height:1.6}
+.shot-legend-num>li>strong:first-child{color:var(--teal);font-weight:900;margin-inline-end:4px}
+
+.copy-block ol,.copy-block ul{margin:0;padding-inline-start:22px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding-block:12px;padding-inline-end:14px;color:var(--ink);font-size:.95rem;line-height:1.75}
+.copy-block>div[id]>p{margin:0 0 8px}
+.copy-block>div[id]{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.copy-block>div[id] ol,.copy-block>div[id] ul{border:0;padding-block:0;background:transparent}
+
+.shot-legend{list-style:none;padding:0;margin:9px 0 0}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+.table-wrap table{border-collapse:collapse;width:100%;font-size:.9rem}
+.table-wrap th{background:var(--navy);color:#fff;padding:9px 10px;text-align:right;font-weight:700}
+.table-wrap td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+.table-wrap tr:nth-child(even) td{background:var(--soft)}
+
+.copy-block>div.copy-plain{white-space:pre-wrap;font-family:ui-monospace,Consolas,monospace;font-size:.85rem;line-height:1.75;direction:rtl;text-align:right;overflow-x:auto}
+
+/* Legal Mind logo - bulb above the wordmark. 130px = about 15% smaller than the main series. */
+.skills-brand{background:#fff;border-bottom:1px solid var(--line);padding:11px 18px;text-align:center}
+.skills-logo{display:inline-block;width:130px;height:auto;object-fit:contain}
+.center-brand{text-align:center}
+@media(max-width:610px){.skills-logo{width:110px}}
+
+.shot-legend li{display:flex;align-items:flex-start;gap:8px;margin:6px 0}
+.shot-legend b{flex:0 0 auto;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:900;font-style:normal;box-shadow:0 1px 3px rgba(13,39,64,.3)}
+
+
+/* Anthropic source quote box, gold accent, distinct from Legal Mind teal boxes */
+.content-box.source-quote{border-right:5px solid var(--gold);background:#fff9ee}
+.content-box.source-quote h3{color:var(--navy);margin-top:0}
+.content-box.source-quote blockquote{margin:10px 0;padding-inline-start:14px;border-inline-start:3px solid #d9c48a;color:var(--ink);font-style:normal}
+.content-box.source-quote .quote-source{margin:12px 0 0;color:var(--muted);font-size:13px}
+
+/* Screenshot placeholder window, shown until the real screenshot is added */
+.shot-pending .shot-frame{display:grid;place-items:center;min-height:186px;border:2px dashed #9db8c4;background:repeating-linear-gradient(45deg,#f5f9f8,#f5f9f8 11px,#edf3f2 11px,#edf3f2 22px);box-shadow:none}
+.shot-pending .pending-label{display:block;max-width:44ch;padding:14px 18px;color:#4d6068;font-size:14px;font-weight:700;line-height:1.65;text-align:center}
+.shot-pending .pending-tag{display:block;width:max-content;margin:0 auto 9px;border-radius:999px;background:#dfeae8;color:var(--teal);padding:4px 13px;font-size:12px;font-weight:900}
+
+/* Secondary hero heading, smaller than h1 but still display size */
+.hero-sub{margin:0 0 12px;color:var(--navy2);font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.2rem,2.9vw,1.62rem);font-weight:400;line-height:1.32}
+
+/* --- bonus panel on the series hub -------------------------------------- */
+.bonus-panel{position:relative;margin:26px 0 0;border-radius:18px;
+  background:linear-gradient(135deg,#0d2740 0%,#123a52 100%);
+  color:#eaf3f2;padding:26px 26px 24px;
+  box-shadow:0 14px 34px rgba(13,39,64,.22);overflow:hidden}
+.bonus-panel:before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;
+  width:5px;background:var(--orange)}
+.bonus-tag{display:inline-block;margin-bottom:20px;border-radius:999px;
+  background:var(--orange);color:#fff;padding:8px 23px;
+  font-size:18px;font-weight:900;letter-spacing:.09em;line-height:1.25;white-space:nowrap}
+.bonus-panel h2{margin:0 0 8px;color:#fff;
+  font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.4rem,3.4vw,1.9rem);
+  line-height:1.25}
+.bonus-panel p{margin:0 0 12px;color:#cfe2e0;font-size:1rem;line-height:1.7}
+.bonus-panel p:last-of-type{margin-bottom:0}
+/* the line that sends readers to the Skills guide: the one sentence in the
+   panel that has to be read, so it is larger, heavier and pure white */
+.bonus-panel p.bonus-lead{color:#fff;font-size:1.12rem;font-weight:800;
+  line-height:1.62;margin-bottom:14px}
+.bonus-panel p.bonus-lead strong{color:#fff;font-weight:900}
+.bonus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:10px;margin:16px 0 18px}
+.bonus-grid div{border:1px solid rgba(255,255,255,.16);border-radius:12px;
+  background:rgba(255,255,255,.05);padding:11px 13px}
+.bonus-grid b{display:block;color:#fff;font-size:.94rem}
+.bonus-grid span{color:#a9c6c3;font-size:.83rem;line-height:1.5}
+.bonus-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.bonus-actions .button{border:0}
+.bonus-actions .button.ghost{background:transparent;border:1px solid rgba(255,255,255,.45);
+  color:#fff}
+.bonus-note{margin-top:34px;color:#9fbcb9;font-size:.83rem;line-height:1.6;
+  padding-inline-start:13px}
+/* the asterisk hangs outside the text column so every line, including the one
+   after the break, starts on the same edge */
+.bonus-note>.note-mark{display:inline-block;width:13px;margin-inline-start:-13px}
+@media(max-width:640px){.bonus-panel{padding:20px 18px}}
+
+/* תמונות רחבות: לחיצה פותחת את הצילום בגודל מלא בלשונית חדשה */
+.shot-frame a{display:block;cursor:zoom-in}
+.shot-zoom{margin:6px 0 0;color:var(--muted);font-size:13px}
+.shot-zoom a{color:var(--teal);font-weight:700;text-decoration:none;border-bottom:1px solid currentColor}
+
+/* Lightbox: full-size screenshot in a pannable frame */
+.lightbox{position:fixed;inset:0;z-index:200;display:none;background:rgba(13,39,64,.93);padding:54px 12px 42px}
+.lightbox.is-open{display:block}
+.lightbox-scroll{overflow:auto;width:100%;height:100%;border-radius:12px;background:#fff;cursor:grab;-webkit-overflow-scrolling:touch}
+.lightbox-scroll.is-dragging{cursor:grabbing}
+.lightbox-scroll img{display:block;max-width:none;width:auto;height:auto;border-radius:0;margin-inline:auto;image-rendering:auto}
+.print-checklist{margin:0 0 4px;min-height:42px;font-size:15px}
+.lightbox-close{position:absolute;top:11px;inset-inline-end:14px;z-index:2;min-height:38px;border:1px solid rgba(255,255,255,.7);border-radius:9px;background:rgba(255,255,255,.15);color:#fff;font-family:inherit;font-size:14px;font-weight:900;padding:7px 15px;cursor:pointer}
+.lightbox-close:hover{background:rgba(255,255,255,.28)}
+.lightbox-hint{position:absolute;bottom:11px;inset-inline:0;margin:0;text-align:center;color:#dcecef;font-size:13px}
+.shot img.is-zoomable{cursor:zoom-in}
+@media(max-width:640px){.lightbox{padding:48px 8px 36px}.lightbox-hint{font-size:12px}}
+
+/* תווית שאומרת לקורא אם הפרומפט מתאים כמעט לכל תיק או לפי סוג התיק.
+   נוספה אחרי שהקריאה כתלמיד הראתה שכל ארבעה עשר נראים חובה במידה שווה. */
+.fit-tag{display:inline-block;margin:0 0 10px;border:1px solid var(--line);border-radius:999px;padding:3px 11px;background:#fff;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.02em}
+.fit-tag.is-core{border-color:#9fd3ce;background:#eefaf8;color:var(--teal)}
+@media(max-width:640px){.fit-tag{border-radius:10px;line-height:1.5}}
+
+.bottom-nav.nav3{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.bottom-nav.nav3>.nav-prev{justify-self:start}
+.bottom-nav.nav3>.nav-home{justify-self:center}
+.bottom-nav.nav3>.nav-next{justify-self:end}
+.bottom-nav.nav3>.nav-slot{display:block}
+@media(max-width:820px){.bottom-nav.nav3{display:flex;flex-direction:column}.bottom-nav.nav3>.nav-slot{display:none}}
+
+.guide-section .section-number{margin:0 0 6px;font-family:Arial,"Segoe UI",sans-serif;font-size:24px;font-weight:900;line-height:1;letter-spacing:.06em;font-variant-numeric:lining-nums tabular-nums}
+@supports (-webkit-text-stroke:1px black){.guide-section .section-number{color:transparent;-webkit-text-stroke:1.2px var(--teal)}}
+
+</style>
+<script defer src="xl/excel-assets-site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<nav class="backbar"><a href="claude-excel.html">חזרה למרכז המדריכים</a></nav>
+<div class="skills-brand"><img class="skills-logo" src="legal-mind-logo-tight.png" alt="לוגו Legal Mind, נורה מעל שם המותג" decoding="async"></div>
+
+<header class="hero">
+<div>
+<p class="eyebrow">בונוס לסדרה</p>
+<h1>חמישה סקילים לעורכי דין</h1>
+<p class="hero-sub">נכתבו על ידי Legal Mind, לעבודה עם <bdi dir="ltr">Claude</bdi> בתוך <bdi dir="ltr">Excel</bdi></p>
+<p class="hero-copy">למי שעוד לא יודע מהו סקיל, אנחנו ב-<bdi dir="ltr">Legal Mind</bdi> ממליצים בחום לקרוא את <strong>המדריך המקיף ל-<bdi dir="ltr">Skills</bdi> לעורכי דין</strong>, שנמצא במדריכי <bdi dir="ltr">Legal Mind</bdi>. העמוד הזה מניח שאתם כבר יודעים מה סקיל עושה, ועוסק בחמישה סקילים מוכנים שנכתבו לעבודה על גיליונות <bdi dir="ltr">Excel</bdi> במשרד עורכי דין.</p>
+</div>
+<dl class="facts">
+<div><dt>מה מקבלים</dt><dd>חמישה סקילים מוכנים להתקנה, וחוברת עבודה בת שמונה עמודים.</dd></div>
+<div><dt>ידע מוקדם</dt><dd>דורש את מדריך 1: התוסף מותקן ואתם יודעים לפתוח את הסרגל.</dd></div>
+<div><dt>מבנה</dt><dd>חמישה סקילים, שלושה פרומפטים מוכנים לכל אחד</dd></div>
+<div><dt>זמן ההתקנה</dt><dd>כשתי דקות לכל סקיל, פעם אחת</dd></div>
+</dl>
+</header>
+
+<nav class="mobile-toc"><details><summary>תוכן העמוד</summary><ol>
+<li><a href="#download"><span>01</span>הורדה והתקנה</a></li>
+<li><a href="#audit"><span>02</span>ביקורת גיליון</a></li>
+<li><a href="#chronology"><span>03</span>ציר עובדות</a></li>
+<li><a href="#reconcile"><span>04</span>טבלת פערים</a></li>
+<li><a href="#billing"><span>05</span>ביקורת חיובים</a></li>
+<li><a href="#filing"><span>06</span>טבלה להגשה</a></li>
+<li><a href="#notes"><span>07</span>שלוש הערות לסיום</a></li>
+</ol></details></nav>
+
+<div class="layout">
+<main class="surface" id="main">
+
+<section class="guide-section" id="download">
+<p class="section-number">01</p>
+<h2>הורדה והתקנה</h2>
+
+<p>אין כאן חבילה אחת שצריך לחלץ. <strong>כל סקיל הוא קובץ אחד שמורידים ומעלים כמו שהוא</strong>, וכפתור ההורדה שלו נמצא בתוך הפרק שמסביר אותו. אפשר להתקין את כולם, ואפשר להתחיל באחד.</p>
+
+<h3>ההתקנה, פעם אחת לכל סקיל</h3>
+<ol class="steps">
+<li>מורידים את קובץ הסקיל מהכפתור שבתוך הפרק שלו כאן בעמוד. <strong>לא פותחים אותו ולא מחלצים אותו.</strong></li>
+<li>נכנסים להגדרות החשבון של <bdi dir="ltr">Claude</bdi> ובוחרים בלשונית <bdi dir="ltr">Skills</bdi>.</li>
+<li>לוחצים על סימן הפלוס, ואז על <bdi dir="ltr">Create skill</bdi>, ואז על <bdi dir="ltr">Upload a skill</bdi>.</li>
+<li>בוחרים את הקובץ שהורדתם. זהו, הסקיל מותקן.</li>
+</ol>
+<p>כשתי דקות לסקיל, וזה נעשה פעם אחת בלבד.</p>
+
+<h3>איך מפעילים סקיל בתוך <bdi dir="ltr">Excel</bdi></h3>
+<p><strong>אחרי שהורדתם את הסקיל והתקנתם אותו לפי ההנחיות למעלה</strong>, היכנסו לחלונית הפרומפט של <bdi dir="ltr">Claude</bdi> בתוך <bdi dir="ltr">Excel</bdi> ולחצו על סימן הלוכסן <bdi dir="ltr">/</bdi>. אחרי שבחרתם מהחלונית שתקפוץ לכם את הסקיל המבוקש, <strong>העתיקו לחלונית את הפרומפט וראו מה התוצאה.</strong></p>
+
+<aside class="callout warn">
+<span class="callout-label">תנאי אחד שבלעדיו שום דבר לא יקרה</span>
+<p>חובה שיהיה פתוח ב-<bdi dir="ltr">Excel</bdi> גיליון <bdi dir="ltr">Excel</bdi> שמתאים לסיטואציה ולמטרת הסקיל. <strong>סקיל של ביקורת חיובים על גיליון <bdi dir="ltr">Excel</bdi> של לוח תשלומים לא ייתן כלום</strong>, וזה ייראה כאילו הסקיל לא עובד.</p>
+</aside>
+
+<aside class="content-box info">
+<h3>ולא רק סקילים, גם פרומפטים</h3>
+<p>מלבד חמשת הסקילים, <strong>הכנו ב-<bdi dir="ltr">Legal Mind</bdi> גם פרומפטים מוכנים להעתקה, שלושה לכל סקיל.</strong> הם מופיעים בהמשך העמוד, כל אחד בתוך הפרק של הסקיל שלו, עם כפתור העתקה.</p>
+<p><strong>הסקיל קובע את שיטת העבודה, והפרומפט אומר על מה להפעיל אותה.</strong> לכן הסדר חשוב: קודם בוחרים את הסקיל מהחלונית ורק אחר כך מדביקים את הפרומפט.</p>
+<p>הפרומפטים נוסחו כדי שאפשר יהיה להדביק אותם כמו שהם, בלי לערוך. אם גיליון <bdi dir="ltr">Excel</bdi> שלכם בנוי אחרת, החליפו את שמות הלשוניות והעמודות ותו לא.</p>
+</aside>
+
+<aside class="content-box recommendation">
+<h3>וגם חוברת עבודה להדפסה</h3>
+<p><strong>העמוד הזה נועד לעבודה מול המסך:</strong> קוראים מה הסקיל עושה, לוחצים העתקה ומדביקים. <strong>החוברת נועדה לקריאה ולשיתוף:</strong> שמונה עמודים להדפסה, ובכל דוגמה בה יש גם פירוט מה הסקיל גורם ל-<bdi dir="ltr">Claude</bdi> לעשות, ושורה שאומרת מה היה קורה בלי הסקיל. זה החומר שאפשר להניח על שולחן של שותף.</p>
+<p><a class="button" href="xl/Legal-Mind-skills-workbook.docx" download>הורדת חוברת העבודה, קובץ <bdi dir="ltr">Word</bdi></a></p>
+</aside>
+</section>
+
+<section class="guide-section" id="audit">
+<p class="section-number">02</p>
+<h2>ביקורת גיליון לפני שסומכים עליו</h2>
+<p class="hero-sub" style="font-size:1rem"><bdi dir="ltr">auditing-legal-spreadsheets</bdi></p>
+
+<p><strong>מטרת הסקיל:</strong> למצוא את מה שגורם למספר להיות שגוי בלי שאף אחד רואה. תאריך או מספר ששמור כטקסט, שורה כפולה, אותו גורם שנכתב בכמה צורות, תא ריק שמחזיר אפס במקום שגיאה, ונוסחה שהוחלפה בערך שהוקלד ידנית. <strong>התוצר הוא דוח, לא תיקון.</strong> אסור לו לשנות תא אחד, גם לא תיקון מובן מאליו.</p>
+<p><a class="button primary" href="xl/auditing-legal-spreadsheets.zip" download>הורדת הסקיל</a></p>
+
+<h3>1. לפני שמוציאים חשבון ללקוח</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-audit-1" type="button">העתקה</button></div>
+<div class="copy-body" id="p-audit-1">תבדוק לי את לשונית השעות לפני שאני מוציא חשבון ללקוח. אל תשנה שום תא, רק תדווח.
+
+תחפש במיוחד: תאריכים או מספרים ששמורים כטקסט, שורות כפולות, אותו עורך דין שנכתב בכמה צורות, ותאים ריקים בעמודות שמשתתפות בחישוב.
+
+תחשב בעצמך מחדש את הסך הכל ותגיד לי אם הוא תואם למה שכתוב בגיליון.
+
+תפריד בין מה שמונע ממני להסתמך על הגיליון עכשיו לבין מה שרק כדאי לתקן.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>2. קובץ שהגיע מהצד השני</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-audit-2" type="button">העתקה</button></div>
+<div class="copy-body" id="p-audit-2">קיבלתי את הקובץ הזה מהצד השני ואני שוקל להסתמך עליו. תבדוק אותו ואל תשנה כלום.
+
+תגיד לי אילו עמודות מחושבות בנוסחה ואילו מכילות ערך שהוקלד ידנית.
+
+תבדוק אם הסכומים בטבלה באמת מסתכמים למה שכתוב בשורת הסיכום.
+
+בסוף תגיד לי במשפט אחד אם אפשר להסתמך עליו כמו שהוא.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>3. לפני בניית גרף או תחשיב</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-audit-3" type="button">העתקה</button></div>
+<div class="copy-body" id="p-audit-3">אני רוצה לבנות גרף לפי חודשים מהנתונים בלשונית הזאת. תבדוק קודם שהנתונים תומכים בזה.
+
+תוודא שכל התאריכים שמורים כתאריכים ולא כטקסט, כי גרף לפי חודשים נשען על זה.
+
+תוודא שהעמודות המספריות אכן מספריות, ותסמן כל שורה חריגה.
+
+תגיד לי במפורש אם אפשר לבנות את הגרף עכשיו או שצריך לתקן קודם, ומה בדיוק.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+</section>
+
+<section class="guide-section" id="chronology">
+<p class="section-number">03</p>
+<h2>בניית ציר עובדות</h2>
+<p class="hero-sub" style="font-size:1rem"><bdi dir="ltr">building-case-chronologies</bdi></p>
+
+<p><strong>מטרת הסקיל:</strong> להפוך ערימת מסמכים או רשימה מבולגנת לציר אירועים מסודר לפי תאריך, שבו לכל שורה רשום המסמך שממנו היא הגיעה והעמוד. <strong>ציר עובדות שאי אפשר להצביע על המקור של כל שורה בו אינו שמיש בהליך.</strong> אסור לו להסיק, אסור לו לאחד אירועים ואסור לו לפרש.</p>
+<p><a class="button primary" href="xl/building-case-chronologies.zip" download>הורדת הסקיל</a></p>
+
+<h3>1. ציר עובדות מרשימה קיימת</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-chr-1" type="button">העתקה</button></div>
+<div class="copy-body" id="p-chr-1">תבנה לי ציר עובדות מסודר מהלשונית הזאת, ממוין לפי תאריך מהמוקדם למאוחר.
+
+בכל שורה תשאיר את שם מסמך המקור ואת מספר העמוד.
+
+אם תאריך לא כתוב במסמך, תשאיר את התא ריק ותסמן לי את השורה. אל תנחש תאריך לפי ההקשר או לפי סדר המסמכים.
+
+אם אותו אירוע מופיע בשני מסמכים, תשאיר את שתי השורות ותסמן אותן. אל תאחד.
+
+בסוף תגיד לי כמה שורות סימנת ולמה.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>2. הוספת מסמך חדש לציר קיים</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-chr-2" type="button">העתקה</button></div>
+<div class="copy-body" id="p-chr-2">צירפתי מסמך נוסף. תוסיף אותו לציר העובדות בלי לשנות שורה קיימת.
+
+כל אירוע במסמך הוא שורה נפרדת. אם יש בו חמישה אירועים בתאריכים שונים, זה חמש שורות ולא שורה אחת מסכמת.
+
+בכל שורה חדשה תרשום את שם המסמך ואת העמוד.
+
+תמיין מחדש את כל הציר, ותגיד לי כמה שורות הוספת והאם המסמך החדש סותר משהו שכבר קיים.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>3. איתור סתירות בין מסמכים</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-chr-3" type="button">העתקה</button></div>
+<div class="copy-body" id="p-chr-3">תעבור על ציר העובדות ותאתר מקומות שבהם שני מסמכים מתארים את אותו אירוע בתאריכים שונים או בתיאורים שסותרים זה את זה.
+
+תשאיר את שתי הגרסאות ותסמן את שתיהן. אל תבחר מי מהן נכונה.
+
+לכל גרסה תציג את שם המסמך ואת העמוד, כדי שאוכל לפתוח ולבדוק בעצמי.
+
+בנוסף, תסמן לי פערי זמן ארוכים ברצף, ובמיוחד דרישה שלא נענתה.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+</section>
+
+<section class="guide-section" id="reconcile">
+<p class="section-number">04</p>
+<h2>השוואה מול המספרים של הצד שכנגד</h2>
+<p class="hero-sub" style="font-size:1rem"><bdi dir="ltr">reconciling-opposing-figures</bdi></p>
+
+<p><strong>מטרת הסקיל:</strong> להפיק טבלת פערים אחת שאפשר להניח על שולחן משא ומתן או לצרף לתגובה. <strong>ההבדל מבקשה רגילה הוא שההשוואה נעשית לפי מפתח זיהוי שנקבע מראש ולא לפי מיקום השורה.</strong> השוואה לפי מיקום נשברת ברגע שחסרה שורה אחת אצל צד אחד, וכל השורות שאחריה יוצגו כפערים למרות שהן זהות.</p>
+<p><a class="button primary" href="xl/reconciling-opposing-figures.zip" download>הורדת הסקיל</a></p>
+
+<h3>1. השוואה בין שתי גרסאות של אותה טבלה</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-rec-1" type="button">העתקה</button></div>
+<div class="copy-body" id="p-rec-1">תשווה בין שתי הלשוניות האלה ותפיק לי טבלת פערים.
+
+לפני שאתה מתחיל, תגיד לי לפי מה אתה מציע לזהות שורה, ותחכה לאישור שלי. אל תשווה לפי מיקום השורה.
+
+תפריד בין שלושה סוגים: שורה שקיימת בשתי הגרסאות והערך בה שונה, שורה שקיימת רק אצלנו, ושורה שקיימת רק אצלם.
+
+תדווח לי על כל התאמה שעשית לצורך ההשוואה, למשל רווחים או סדר של שם.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>2. הפער הכספי במספר אחד</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-rec-2" type="button">העתקה</button></div>
+<div class="copy-body" id="p-rec-2">מתוך טבלת הפערים, תסכם לי בנפרד כמה שקלים לטובתנו וכמה לרעתנו, ותן לי את הפער נטו במספר אחד.
+
+תוודא שסכום השורות הזהות ועוד סכום הפערים משתווה לסך הכל של כל צד. אם זה לא מסתדר, תגיד לי ואל תמשיך.
+
+אל תקבע מי צודק. פער יכול לנבוע גם מהסכמה שאני מכיר ואתה לא.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>3. תנועות בנק מול המספרים של הלקוח</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-rec-3" type="button">העתקה</button></div>
+<div class="copy-body" id="p-rec-3">הלקוח מסר לי רשימת העברות, ובלשונית תנועות הבנק יש מה שהבנק מראה. תשווה ביניהן.
+
+תזהה תנועה לפי צירוף של תאריך, סכום ואסמכתא, ותאשר איתי את המפתח לפני שאתה מתחיל.
+
+תפריד בין תנועה שמופיעה בבנק ולא אצל הלקוח, לבין תנועה שאצל הלקוח ולא בבנק.
+
+לכל פער תציין את הכיוון ואת הסכום, ואל תסיק מי מהם נכון.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+</section>
+
+<section class="guide-section" id="billing">
+<p class="section-number">05</p>
+<h2>ביקורת חיובי שעות ושכר טרחה</h2>
+<p class="hero-sub" style="font-size:1rem"><bdi dir="ltr">reviewing-legal-billing</bdi></p>
+
+<p><strong>מטרת הסקיל:</strong> לבדוק גיליון חיובים <strong>מנקודת המבט של מי שישלם אותו.</strong> אותה בדיקה משמשת לפני שליחת חשבון ללקוח וגם כשתוקפים חשבון של הצד שכנגד. הוא מסיים במספר אחד: כמה מהחשבון חשוף להשגה ובאיזה אחוז.</p>
+<p><a class="button primary" href="xl/reviewing-legal-billing.zip" download>הורדת הסקיל</a></p>
+
+<h3>1. לפני שליחת חשבון ללקוח</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-bill-1" type="button">העתקה</button></div>
+<div class="copy-body" id="p-bill-1">תעבור על החיובים בלשונית הזאת לפני שאני שולח את החשבון ללקוח.
+
+לפני שאתה מתחיל, תשאל אותי מה טבלת התעריפים המוסכמת ומה תאריך תחילת הייצוג. אל תניח.
+
+תחפש: שורות כפולות, אותה עבודה שמופיעה פעמיים בניסוח שונה באותו יום, שעות או תאריכים ששמורים כטקסט, ושורות שחסר בהן תעריף.
+
+בסוף תגיד לי כמה מהחשבון חשוף להשגה, בשקלים ובאחוזים.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>2. בדיקת בקשה להוצאות של הצד שכנגד</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-bill-2" type="button">העתקה</button></div>
+<div class="copy-body" id="p-bill-2">הצד השני הגיש בקשה לפסיקת הוצאות. תבדוק אותה בדיוק כמו שגורם משלם היה בודק אותה.
+
+תאתר שורות של חיוב מקובץ, כלומר שורה אחת שבולעת כמה פעולות שונות, ותציין את הזמן שנרשם בכל אחת.
+
+תאתר אותה עבודה שמופיעה בשני ניסוחים שונים.
+
+תסמן עבודה שמתוארכת מחוץ לתקופת הייצוג, וחיוב בשבתות ובחגים.
+
+תפריד בין מה שכמעט בוודאות אפשר לתקוף לבין מה שרק ידרוש מהם הסבר.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>3. הצלבת תעריפים בין לשוניות</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-bill-3" type="button">העתקה</button></div>
+<div class="copy-body" id="p-bill-3">תשווה את התעריף שחויב בכל שורה מול לשונית התעריפים.
+
+תשלוף לכל עורך דין את התעריף מלשונית התעריפים, ואל תסתמך על מה שמוקלד בשורת החיוב.
+
+תדווח גם על תעריף שנמוך מהמוסכם, לא רק על גבוה.
+
+תבדוק מול תאריך התחילה של כל תעריף, כי שינוי באמצע התקופה יכול להיות לגיטימי.
+
+אם שם עורך דין בשורת חיוב לא קיים בטבלת התעריפים, תסמן לי אותו ואל תדלג עליו.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+</section>
+
+<section class="guide-section" id="filing">
+<p class="section-number">06</p>
+<h2>הכנת טבלה למסירה החוצה</h2>
+<p class="hero-sub" style="font-size:1rem"><bdi dir="ltr">producing-filing-ready-tables</bdi></p>
+
+<p><strong>מטרת הסקיל:</strong> גיליון עבודה נועד לחשב. <strong>טבלה שיוצאת החוצה נועדה להיקרא על ידי מי שלא היה בתהליך ולא ישאל שאלות.</strong> הסקיל הופך את הראשון לשני, תמיד על לשונית חדשה, כדי שגיליון העבודה יישאר שלם.</p>
+<p><a class="button primary" href="xl/producing-filing-ready-tables.zip" download>הורדת הסקיל</a></p>
+
+<h3>1. נספח לכתב טענות</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-file-1" type="button">העתקה</button></div>
+<div class="copy-body" id="p-file-1">תכין מהלשונית הזאת טבלה שאפשר לצרף כנספח לכתב טענות.
+
+תעבוד על לשונית חדשה ואל תיגע בגיליון העבודה.
+
+תסיר עמודות עזר, חישובי ביניים והערות פנימיות. אם יש פריט שאתה לא בטוח לגביו, תשאיר אותו בחוץ ותשאל אותי.
+
+תוסיף מספור שורות רץ, ותשאיר עמודת מקור שאומרת מאיפה כל שורה הגיעה.
+
+מתחת לטבלה תוסיף הערה בת שלוש שורות: מה הטבלה כוללת, מה היא לא כוללת, ומה מקור הנתונים.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>2. טבלה לשליחה ללקוח</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-file-2" type="button">העתקה</button></div>
+<div class="copy-body" id="p-file-2">תכין את הטבלה הזאת לשליחה ללקוח, על לשונית חדשה.
+
+תפרמט תאריכים בפורמט ישראלי אחיד, יום לפני חודש, וסכומים עם מפריד אלפים וסימן מטבע.
+
+לפני שאתה מוסר, תוודא שהסך הכל בטבלה החדשה זהה לסך הכל במקור. אם הם לא זהים, תגיד לי ואל תמשיך.
+
+תבחר שלוש שורות אקראיות ותשווה אותן תא מול תא למקור.
+
+בסוף תגיד לי כמה שורות נכללו, כמה היו במקור, ומה לא נכלל ולמה.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+
+<h3>3. טבלה להדפסה</h3>
+<div class="copy-block">
+<div class="copy-heading"><strong>פרומפט מוכן להעתקה</strong><button class="copy-button" data-copy-target="p-file-3" type="button">העתקה</button></div>
+<div class="copy-body" id="p-file-3">תכין את הטבלה הזאת להדפסה ולצירוף לתיק הפיזי.
+
+תגדיר את שורת הכותרת כך שתחזור בראש כל עמוד.
+
+תתאים את רוחב העמודות לעמוד אחד, ותוודא שאין עמודה שנחתכת.
+
+תדגיש ותפריד את שורת הסיכום.
+
+תגיד לי על כמה עמודים זה יצא ואם משהו נחתך.</div>
+<span class="copy-status" aria-live="polite" aria-atomic="true"></span>
+</div>
+</section>
+
+<section class="guide-section" id="notes">
+<p class="section-number">07</p>
+<h2>שלוש הערות לסיום</h2>
+
+<aside class="content-box info">
+<h3>הסקיל אינו מחליף את שיקול הדעת</h3>
+<p>חמשת הסקילים בנויים כך שהם עוצרים ושואלים במקום להכריע. <strong>סתירה בין מסמכים נשארת פתוחה, פער מול הצד שכנגד אינו מסומן כטעות שלהם, וכפילות מוסווית מוצגת כשאלה.</strong> ההכרעה היא של עורך הדין, תמיד.</p>
+</aside>
+
+<aside class="content-box warning">
+<h3>התוצר עדיין נבדק</h3>
+<p>סקיל אינו ערובה לנכונות. הוא מקטין את הסיכוי שמשהו יישמט ומכריח סדר עבודה קבוע, <strong>אבל את התוצאה עדיין בודקים.</strong> כל אחד מהסקילים מסיים בבדיקה משלו, וכדאי להריץ אותה ולא לדלג עליה.</p>
+</aside>
+
+<aside class="content-box recommendation">
+<h3>ומה עושים עם זה הלאה</h3>
+<p>הסקילים האלה נכתבו לעורכי דין בכל תחום התמחות, ולכן הם מנוסחים בכלליות. <strong>אחרי שתעבדו איתם קצת, תגלו שאתם חוזרים על אותן הוראות משלכם.</strong> זה הרגע שבו כדאי לערוך את הסקיל ולהוסיף אותן, או לבנות אחד משלכם. איך עושים את זה מוסבר <strong>במדריך המקיף ל-<bdi dir="ltr">Skills</bdi> לעורכי דין</strong>, שנמצא במדריכי <bdi dir="ltr">Legal Mind</bdi>.</p>
+</aside>
+</section>
+
+<nav class="bottom-nav nav3"><a class="button nav-prev" href="claude-excel-guide-3.html">מדריך 3</a><a class="button primary nav-home" href="claude-excel.html">חזרה למרכז המדריכים</a><span class="nav-slot" aria-hidden="true"></span></nav>
+</main>
+
+<aside class="desktop-toc"><h2>תוכן העמוד</h2><ol>
+<li><a href="#download"><span>01</span>הורדה והתקנה</a></li>
+<li><a href="#audit"><span>02</span>ביקורת גיליון</a></li>
+<li><a href="#chronology"><span>03</span>ציר עובדות</a></li>
+<li><a href="#reconcile"><span>04</span>טבלת פערים</a></li>
+<li><a href="#billing"><span>05</span>ביקורת חיובים</a></li>
+<li><a href="#filing"><span>06</span>טבלה להגשה</a></li>
+<li><a href="#notes"><span>07</span>שלוש הערות לסיום</a></li>
+</ol></aside>
+</div>
+
+<footer>Legal Mind | בונוס לסדרה | חמישה סקילים לעורכי דין, לעבודה עם Claude בתוך Excel</footer>
+
+</body>
+</html>
