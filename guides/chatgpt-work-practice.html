@@ -143,8 +143,8 @@ code{
   border-bottom:1px solid var(--line);
 }
 .brand{ display:flex; align-items:center; gap:10px; font-family:'Frank Ruhl',serif; font-weight:700; font-size:19px; color:var(--ink); }
-.logo-mark{ width:32px; height:32px; object-fit:contain; }
-.logo-hero{ width:76px; height:76px; object-fit:contain; margin:0 auto 14px; display:block; }
+.logo-mark{ width:auto; height:22px; object-fit:contain; }
+.logo-hero{ width:300px; max-width:84%; height:auto; object-fit:contain; margin:0 auto 14px; display:block; }
 
 .progress-rail{ flex:1; height:3px; background:var(--line); margin:0 24px; position:relative; overflow:hidden; border-radius:2px; }
 .progress-fill{ position:absolute; inset-inline-start:0; top:0; bottom:0; width:0%; background:linear-gradient(90deg, var(--brand), var(--gold)); }
@@ -432,7 +432,7 @@ main > .sec:first-of-type{ margin-top:0; border-top:none; padding-top:36px; }
 <nav class="backbar"><a href="chatgpt-work.html">חזרה לדף המרכז</a></nav>
 
 <div class="topbar">
-  <div class="brand"><img class="logo-mark" src="cw-01.png" alt="Legal Mind" /><span>מצב Work</span></div>
+  <div class="brand"><img class="logo-mark" src="/brand/legalmind-logo.webp" alt="Legal Mind" width="800" height="152" /><span>מצב Work</span></div>
   <div class="progress-rail"><div class="progress-fill" id="pfill"></div></div>
   <div class="topbar-meta" id="tmeta">01 / 08</div>
 </div>
@@ -440,7 +440,7 @@ main > .sec:first-of-type{ margin-top:0; border-top:none; padding-top:36px; }
 <header class="hero">
   <div class="hero-grid"></div>
   <div class="hero-inner">
-    <img class="logo-hero" src="cw-01.png" alt="Legal Mind" />
+    <img width="800" height="152" class="logo-hero" src="/brand/legalmind-logo.webp" alt="Legal Mind" />
     <span class="eyebrow"><span class="dot"></span>דף תרגול למשרדי עורכי דין · אוגוסט 2026</span>
     <h1 class="hero-title">דף תרגול: <span class="hi">שישה תרגילים</span> במצב Work</h1>
     <p class="hero-sub">מבצעים מול המסך, תרגיל אחרי תרגיל - כולם על חומר מומצא בלבד. הדף מזכיר, לא מלמד: כל תרגיל מפנה לפרק שבו הוא הוסבר <a href="chatgpt-work-guide.html">במדריך המלא</a>.</p>
