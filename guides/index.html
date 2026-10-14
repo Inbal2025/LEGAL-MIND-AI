@@ -160,6 +160,20 @@
   }
   .scard-warn b { font-weight: 700; }
 
+  /* מדריכים שנכתבו על ידי נבו (לא על ידי Legal Mind) */
+  .scard-nevo .scard-top { background: #861A1E; }
+  .scard-nevo:hover, .scard-nevo:focus-visible { border-color: #861A1E; box-shadow: 0 0 0 1px #861A1E, 0 22px 44px -18px rgba(134,26,30,.35); }
+  .scard-nevo .scard-num { background: #F7E6E6; color: #861A1E; }
+  .scard-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+  .scard-head .scard-num { margin-bottom: 0; }
+  .nevo-badge { display: inline-flex; align-items: center; gap: 8px; background: #F7E6E6; color: #861A1E; border-radius: 999px; padding: 6px 12px 6px 14px; font-size: 13.1px; font-weight: 700; }
+  .nevo-badge img { height: 18px; width: auto; display: block; }
+  .scard-credit { font-size: 12.6px; line-height: 1.5; color: var(--ink-faint); margin: -6px 0 16px; }
+  .scard-nevo .scard-count { color: #861A1E; }
+  .scard-nevo li::before { background: #861A1E; }
+  .scard-nevo .scard-go { background: #861A1E; }
+  .scard-nevo:hover .scard-go { background: #5E1013; }
+
   .info-section {
     max-width: 900px; margin: 64px auto 0; padding: 26px 30px;
     background: var(--paper-raised); border: 1px solid var(--line); border-radius: 10px;
@@ -385,33 +399,40 @@
       </div>
     </a>
 
-    <a class="scard" href="nevo/nevo-claude-personal.pdf" id="nevo-claude-personal" target="_blank" rel="noopener">
+    <a class="scard scard-nevo" href="nevo/nevo-claude-personal.pdf" id="nevo-claude-personal" target="_blank" rel="noopener">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">10</div>
-        <div class="scard-kind">חוברת של נבו · מנוי אישי <bdi dir="ltr">Pro/Max</bdi></div>
+        <div class="scard-head">
+          <div class="scard-num">10</div>
+          <span class="nevo-badge"><img src="/nevo-webinar/assets/nevo-logo.webp" alt="" width="360" height="170">מדריך של נבו</span>
+        </div>
+        <div class="scard-kind">מנוי אישי <bdi dir="ltr">Pro/Max</bdi></div>
         <h2>חיבור נבו ל-<bdi dir="ltr">Claude</bdi> במנוי אישי</h2>
-        <p>חוברת ההדרכה הרשמית של נבו למי שמחזיק מנוי אישי ב-<bdi dir="ltr">Claude</bdi>. אחרי החיבור, <bdi dir="ltr">Claude</bdi> מחפש בנבו פסיקה, חקיקה וספרות משפטית ומצרף קישור לכל מקור. ההתקנה עושים לבד, בכמה דקות.</p>
+        <p>המדריך הרשמי של נבו למי שמחזיק מנוי אישי ב-<bdi dir="ltr">Claude</bdi>. אחרי החיבור, <bdi dir="ltr">Claude</bdi> מחפש בנבו פסיקה, חקיקה וספרות משפטית ומצרף קישור לכל מקור. ההתקנה עושים לבד, בכמה דקות.</p>
         <ul>
           <li>הוספת המחבר של נבו באפליקציית <bdi dir="ltr">Claude</bdi> למחשב</li>
           <li>שם המחבר וכתובת השרת, מוכנים להעתקה</li>
           <li>הזדהות בחשבון נבו: מייל וקוד <bdi dir="ltr">SMS</bdi></li>
           <li>מתן הרשאה לכלים ושאלת בדיקה שמוודאת שהכול עובד</li>
         </ul>
+        <p class="scard-credit">המדריך נכתב על ידי נבו ומוצג כאן כחלק משיתוף הפעולה בין <bdi dir="ltr">Legal Mind</bdi> לנבו.</p>
         <div class="scard-foot">
-          <span class="scard-count">חוברת <bdi dir="ltr">PDF</bdi> · 7 שלבים</span>
-          <span class="scard-go">לחוברת ◀</span>
+          <span class="scard-count"><bdi dir="ltr">PDF</bdi> · 7 שלבים</span>
+          <span class="scard-go">למדריך של נבו ◀</span>
         </div>
       </div>
     </a>
 
-    <a class="scard" href="nevo/nevo-claude-business.pdf" id="nevo-claude-business" target="_blank" rel="noopener">
+    <a class="scard scard-nevo" href="nevo/nevo-claude-business.pdf" id="nevo-claude-business" target="_blank" rel="noopener">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">11</div>
-        <div class="scard-kind">חוברת של נבו · מנוי משרדי <bdi dir="ltr">Team/Enterprise</bdi></div>
+        <div class="scard-head">
+          <div class="scard-num">11</div>
+          <span class="nevo-badge"><img src="/nevo-webinar/assets/nevo-logo.webp" alt="" width="360" height="170">מדריך של נבו</span>
+        </div>
+        <div class="scard-kind">מנוי משרדי <bdi dir="ltr">Team/Enterprise</bdi></div>
         <h2>חיבור נבו ל-<bdi dir="ltr">Claude</bdi> במנוי משרדי</h2>
-        <p>חוברת ההדרכה הרשמית של נבו למשרדים עם מנוי <bdi dir="ltr">Team</bdi> או <bdi dir="ltr">Enterprise</bdi>. כאן החיבור נעשה בשני שלבים: מנהל החשבון מוסיף את נבו פעם אחת לכל המשרד, ואחר כך כל עובד מתחבר אצלו.</p>
+        <p>המדריך הרשמי של נבו למשרדים עם מנוי <bdi dir="ltr">Team</bdi> או <bdi dir="ltr">Enterprise</bdi>. כאן החיבור נעשה בשני שלבים: מנהל החשבון מוסיף את נבו פעם אחת לכל המשרד, ואחר כך כל עובד מתחבר אצלו.</p>
         <p class="scard-warn"><b>שימו לב:</b> חלק א' מיועד רק למי שמוגדר <bdi dir="ltr">Owner</bdi> בחשבון המשרד ב-<bdi dir="ltr">Claude</bdi>. בלי השלב הזה אף עובד לא יוכל להתקין את נבו.</p>
         <ul>
           <li>חלק א', למנהל החשבון: הוספת נבו בהגדרות הארגון</li>
@@ -419,9 +440,10 @@
           <li>הזדהות בחשבון נבו: מייל וקוד <bdi dir="ltr">SMS</bdi></li>
           <li>מתן הרשאה לכלים ושאלת בדיקה שמוודאת שהכול עובד</li>
         </ul>
+        <p class="scard-credit">המדריך נכתב על ידי נבו ומוצג כאן כחלק משיתוף הפעולה בין <bdi dir="ltr">Legal Mind</bdi> לנבו.</p>
         <div class="scard-foot">
-          <span class="scard-count">חוברת <bdi dir="ltr">PDF</bdi> · שני חלקים</span>
-          <span class="scard-go">לחוברת ◀</span>
+          <span class="scard-count"><bdi dir="ltr">PDF</bdi> · שני חלקים</span>
+          <span class="scard-go">למדריך של נבו ◀</span>
         </div>
       </div>
     </a>
