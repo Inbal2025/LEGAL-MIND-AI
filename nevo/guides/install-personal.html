@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
+<title>חיבור נבו ל-Claude</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bord:#1E3A62; --bord-d:#14243F; --ink:#14243F; --cream:#F1F5FB; --cream-2:#E2E9F5; --gold:#D4B062;
+  --page:#FAFAFA; --text:#333333; --muted:#666666;
+  /* mock app neutrals */
+  --app:#FAF9F6; --app-side:#F3F1EC; --line:#E6E1D9; --app-ink:#1F1E1D; --app-muted:#77716A;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --page:#0F1B31; --text:#EEF2F8; --muted:#A9B6CC; --cream:#152642; --cream-2:#1E3A62; --bord:#2E5EA8; }
+}
+:root[data-theme="dark"]{ --page:#0F1B31; --text:#EEF2F8; --muted:#A9B6CC; --cream:#152642; --cream-2:#1E3A62; --bord:#2E5EA8; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--text);font-family:Arimo,Heebo,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 16px 40px}
+header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.logo{width:48px;height:48px;border-radius:12px;background:#AB3224;color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
+header h1{margin:0;font-size:24px;font-weight:800}
+header p{margin:2px 0 0;color:var(--muted);font-size:14px}
+
+.stage-wrap{position:relative;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(15,27,49,.18);background:#ddd}
+.win{position:absolute;top:0;left:0;width:960px;height:600px;transform-origin:0 0;background:var(--app);direction:ltr;
+  font-family:"Segoe UI",Arimo,Heebo,system-ui,sans-serif;color:var(--app-ink);overflow:hidden}
+.titlebar{height:32px;background:#EFECE6;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 12px;gap:8px;font-size:12px;color:var(--app-muted)}
+.titlebar .dots{display:flex;gap:6px;margin-left:auto}
+.titlebar .dots i{width:10px;height:10px;border-radius:50%;background:#D8D2C9}
+#screen{position:absolute;top:32px;left:0;right:0;bottom:0}
+.fade-in{animation:fade .35s ease}
+@keyframes fade{from{opacity:.3}to{opacity:1}}
+
+/* cursor */
+#cursor{position:absolute;left:480px;top:300px;width:22px;height:22px;z-index:50;pointer-events:none;
+  transition:left .7s cubic-bezier(.45,.05,.25,1),top .7s cubic-bezier(.45,.05,.25,1);filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.35))}
+.ripple{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:3px solid var(--bord);z-index:49;pointer-events:none;animation:rip .55s ease-out forwards}
+@keyframes rip{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
+.hl{outline:2.5px solid var(--bord);outline-offset:3px;border-radius:8px;animation:pulse 1.1s ease-in-out infinite}
+@keyframes pulse{50%{outline-color:rgba(46,94,168,.35)}}
+.pressed{transform:scale(.96)}
+
+/* app shell */
+.shell{display:flex;height:100%}
+.side{width:200px;background:var(--app-side);border-right:1px solid var(--line);padding:12px 10px;font-size:13px}
+.side .it{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;color:#3d3a36}
+.side .it.active{background:#E6E1D8;font-weight:600}
+.side .ic{width:14px;height:14px;border:1.6px solid #8b857c;border-radius:4px;flex:none}
+.side .sec{margin:16px 8px 6px;font-size:11px;color:var(--app-muted)}
+.side .bar{height:9px;border-radius:5px;background:#E3DED6;margin:9px 8px}
+.main{flex:1;position:relative;overflow:hidden}
+.btn{font:inherit;font-size:13px;border-radius:8px;padding:7px 14px;border:1px solid var(--line);background:#fff;color:var(--app-ink);cursor:default;transition:transform .12s}
+.btn.dark{background:var(--app-ink);color:#fff;border-color:var(--app-ink)}
+.btn.sm{padding:5px 12px;font-size:12px}
+.muted{color:var(--app-muted)}
+
+.home{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.home h2{font-family:Georgia,serif;font-weight:400;font-size:30px;margin:0}
+.composer{width:560px;min-height:92px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;position:relative;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.composer .send{position:absolute;right:12px;bottom:12px;width:30px;height:30px;border-radius:8px;background:var(--bord);color:#fff;display:grid;place-items:center;font-size:16px}
+
+.cz{padding:28px 34px}
+.cz-head{display:flex;align-items:center;justify-content:space-between}
+.cz h2{font-family:Georgia,serif;font-weight:400;font-size:26px;margin:0}
+.tabs{display:flex;gap:6px;margin:14px 0 16px}
+.tab{font-size:12.5px;padding:5px 10px;border-radius:7px;color:var(--app-muted)}
+.tab.on{background:#ECE8E1;color:var(--app-ink);font-weight:600}
+.search{border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:12.5px;color:var(--app-muted);background:#fff;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px;display:flex;gap:10px;align-items:center}
+.card .sq{width:30px;height:30px;border-radius:7px;background:#E9E4DC;flex:none}
+.card .ln{flex:1}
+.card .ln b{display:block;font-size:12.5px}
+.card .ln i{display:block;height:7px;border-radius:4px;background:#EEE9E2;margin-top:6px;width:80%}
+.card .plus{width:24px;height:24px;border:1px solid var(--line);border-radius:6px;display:grid;place-items:center;color:var(--app-muted)}
+.list-row{height:44px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.list-row .sq{width:22px;height:22px;border-radius:6px;background:#E9E4DC}
+.list-row i{height:8px;border-radius:4px;background:#ECE7E0;width:180px}
+
+.overlay{position:absolute;inset:0;background:rgba(30,25,20,.38);display:grid;place-items:center;z-index:5}
+.modal{width:440px;background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 20px 50px rgba(0,0,0,.25);font-size:13px}
+.modal h3{margin:0 0 6px;font-size:17px}
+.modal p{margin:0 0 14px;font-size:12.5px}
+.field{border:1px solid #D9D3CA;border-radius:8px;height:34px;padding:0 10px;display:flex;align-items:center;font-size:13px;background:#fff;transition:border-color .2s,box-shadow .2s}
+.field.focus{border-color:var(--bord);box-shadow:0 0 0 3px rgba(46,94,168,.15)}
+.field .ph{color:#A9A39B}
+.field.has .ph{display:none}
+.caret{display:inline-block;width:1px;height:15px;background:var(--app-ink);margin-left:1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hint{font-size:11.5px;color:var(--app-muted);margin:5px 0 12px}
+.row-end{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+
+.modal.settings{width:470px;padding:16px 20px;font-size:12px}
+.settings .ro{font-size:12px;color:var(--app-muted);margin-bottom:10px;line-height:1.5}
+.settings .ro b{color:var(--app-ink)}
+.settings h4{margin:10px 0 6px;font-size:12.5px}
+.radio{display:flex;gap:9px;padding:5px 6px;border-radius:7px;align-items:flex-start}
+.radio i{width:14px;height:14px;border-radius:50%;border:1.6px solid #9C958C;flex:none;margin-top:2px;position:relative}
+.radio.on i{border-color:var(--app-ink)}
+.radio.on i::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--app-ink)}
+.radio b{font-weight:600}
+.radio small{display:block;color:var(--app-muted);font-size:11px}
+.tag{font-size:10px;background:#F1E6C8;color:#6A5214;border-radius:4px;padding:1px 5px;margin-left:6px;font-weight:600}
+.sub{margin:4px 0 4px 29px;display:none}
+.sub.open{display:block;animation:fade .3s}
+.sub .field{height:30px;font-size:12px;margin-bottom:6px}
+
+.center{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font-size:13px}
+.nevo-ic{width:52px;height:52px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:#C4302B;font-weight:800;font-family:Arimo,Heebo,sans-serif;font-size:17px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.back{position:absolute;top:18px;left:24px;font-size:13px;color:#3d3a36}
+
+.browser{height:100%;display:flex;flex-direction:column;background:#F2F1EF}
+.browser .addr{height:38px;background:#E9E7E3;display:flex;align-items:center;padding:0 14px;gap:10px;border-bottom:1px solid #DAD6CF}
+.browser .addr .pill{flex:1;max-width:520px;height:24px;border-radius:12px;background:#fff;display:flex;align-items:center;padding:0 12px;font-size:12px;color:#5d5850;gap:6px}
+.browser .body{flex:1;display:grid;place-items:center}
+.bcard{width:430px;background:#fff;border-radius:14px;padding:26px 30px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+.bcard h3{margin:0 0 10px;font-size:18px;font-weight:600}
+.bcard p{font-size:12px;color:var(--app-muted);margin:0 0 16px;line-height:1.5}
+.link{font-size:12px;color:#6b4a43;text-decoration:underline;margin-top:10px;display:inline-block}
+
+.nevo-card{direction:rtl;font-family:Arimo,Heebo,sans-serif;width:420px;background:#fff;border-radius:16px;padding:30px 36px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.nevo-card h3{color:#D2463B;margin:0 0 10px;font-size:20px}
+.nevo-card .lbl{font-size:13px;margin-bottom:10px}
+.nevo-card .field{direction:ltr;height:42px;font-size:14px}
+.nbtn{margin-top:18px;height:42px;border-radius:10px;background:#D9473C;color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px;transition:transform .12s}
+.otp{display:flex;gap:9px;justify-content:center;direction:ltr;margin:14px 0 10px}
+.otp span{width:44px;height:50px;border:1.5px solid #D6D0C8;border-radius:9px;display:grid;place-items:center;font-size:20px;font-weight:600}
+.otp span.cur{border-color:#D9473C}
+.foot{font-size:11.5px;color:#888;margin-top:12px}
+
+.os-dialog{position:absolute;top:44px;left:50%;transform:translateX(-50%);width:440px;background:#fff;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:18px 20px;font-size:13px;z-index:6;animation:fade .3s}
+.os-dialog h4{margin:0 0 10px;font-size:15px}
+.chk{display:flex;gap:8px;align-items:center;font-size:12px;margin:12px 0 16px}
+.chk i{width:15px;height:15px;border:1.5px solid #8f897f;border-radius:3px;display:grid;place-items:center;font-style:normal;font-size:11px;color:#fff}
+.chk.on i{background:var(--app-ink);border-color:var(--app-ink)}
+
+.perm{padding:26px 40px;font-size:13px}
+.perm .hd{display:flex;align-items:center;gap:10px;margin:12px 0 6px}
+.perm .hd b{font-size:16px}
+.perm .hd .btn{margin-left:auto}
+.perm .desc{font-size:12px;color:var(--app-muted);margin-bottom:18px;max-width:640px;line-height:1.5}
+.perm .grp{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);position:relative}
+.dd{border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:12px;background:#fff;display:flex;gap:6px;align-items:center;transition:transform .12s}
+.menu{position:absolute;right:0;top:40px;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:4px;z-index:3;font-size:12px;width:160px;animation:fade .2s}
+.menu div{padding:6px 10px;border-radius:6px}
+.tool{display:flex;align-items:center;justify-content:space-between;padding:10px 0 10px 18px;border-bottom:1px solid #EFEBE5;font-size:12.5px;color:#4a4540}
+.tri{display:flex;gap:6px}
+.tri span{width:20px;height:20px;border-radius:50%;border:1.4px solid #C9C2B8;display:grid;place-items:center;font-size:11px;color:transparent;transition:all .25s}
+.tri span.ok{background:var(--app-ink);border-color:var(--app-ink);color:#fff}
+
+.chat{height:100%;display:flex;flex-direction:column;padding:24px 0 18px;align-items:center}
+.thread{flex:1;width:600px;direction:rtl;font-family:Arimo,Heebo,sans-serif;display:flex;flex-direction:column;gap:14px;overflow:hidden}
+.bubble{align-self:flex-start;background:#EFEBE4;border-radius:14px;padding:10px 14px;font-size:14px;max-width:470px;animation:fade .3s}
+.toolchip{align-self:flex-start;direction:ltr;font-family:"Segoe UI",sans-serif;font-size:12px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;display:flex;gap:7px;align-items:center;animation:fade .3s}
+.spin{width:11px;height:11px;border:2px solid #D5CEC4;border-top-color:var(--bord);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.ans{animation:fade .4s}
+.ans .l{height:9px;border-radius:5px;background:#E7E2DA;margin:9px 0}
+.nlink{display:inline-flex;gap:5px;align-items:center;font-size:12.5px;color:var(--bord);border:1px solid #C9D5EA;background:#EEF2F8;border-radius:7px;padding:4px 9px;margin:4px 0 4px 6px;direction:ltr}
+.chat .composer{width:600px;min-height:64px;direction:rtl;font-family:Arimo,Heebo,sans-serif}
+.chat .composer .send{right:auto;left:12px}
+.done-banner{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--ink);color:#fff;border-radius:16px;padding:22px 34px;text-align:center;direction:rtl;font-family:Arimo,Heebo,sans-serif;z-index:20;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+.done-banner b{display:block;font-size:24px}
+.done-banner span{font-size:14px;opacity:.85}
+@keyframes pop{from{transform:translate(-50%,-50%) scale(.7);opacity:0}}
+
+/* caption + controls */
+.cap{display:flex;gap:14px;align-items:flex-start;background:var(--cream);border-radius:14px;padding:16px 18px;margin-top:16px;min-height:92px}
+.num{width:40px;height:40px;border-radius:50%;background:var(--bord);color:#fff;font-weight:800;display:grid;place-items:center;font-size:18px;flex:none}
+.cap h2{margin:0 0 4px;font-size:19px}
+.cap p{margin:0;font-size:15px;line-height:1.6;color:var(--text)}
+.cap code{font-family:Consolas,monospace;background:var(--cream-2);padding:1px 6px;border-radius:5px;font-size:13.5px}
+.ctl{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.ctl button{font:inherit;font-size:14px;border:1px solid #CBD5E6;background:var(--page);color:var(--text);border-radius:10px;padding:7px 14px;cursor:pointer}
+.ctl button.primary{background:var(--bord);border-color:var(--bord);color:#fff}
+.ctl button:hover{filter:brightness(.96)}
+.dots{display:flex;gap:7px;margin-inline:auto}
+.dots button{width:30px;height:30px;padding:0;border-radius:50%;font-size:13px;font-weight:700}
+.dots button.on{background:var(--bord);border-color:var(--bord);color:#fff}
+.dots button.past{background:var(--cream-2)}
+.note{font-size:12.5px;color:var(--muted);margin-top:14px}
+@media (max-width:640px){ .cap h2{font-size:17px} .cap p{font-size:14px} .dots{order:3;width:100%;justify-content:center} }
+
+.cap > div{min-width:0}
+.cap code{overflow-wrap:anywhere}
+/* copy */
+.copybox{margin-top:16px;border:1px solid #DCE4F2;border-radius:14px;padding:14px 16px 8px;background:var(--page)}
+.copybox h3{margin:0 0 4px;font-size:16px}
+.copybox .sub-h{margin:10px 0 2px;font-size:13px;font-weight:700;color:var(--bord)}
+.cp-row{display:flex;align-items:center;gap:12px;padding:6px 0}
+.cp-lbl{width:130px;flex:none;color:var(--muted);font-size:14px}
+.cp{flex:1;min-width:0;display:flex;align-items:center;gap:10px;justify-content:space-between;border:1px solid #CBD5E6;background:var(--cream);border-radius:10px;padding:8px 12px;cursor:pointer;font:inherit;color:var(--text);text-align:start}
+.cp:hover{border-color:var(--bord)}
+.cp code,.cp .q{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cp code{direction:ltr;unicode-bidi:isolate;font-family:Consolas,monospace;font-size:14px}
+.cp .q{font-size:14px}
+.cp-act{flex:none;font-size:13px;font-weight:700;color:var(--bord)}
+.cp.copied{border-color:#2E7D4F}
+.cp.copied .cp-act{color:#2E7D4F}
+.cap code.copyable{cursor:pointer;border:1px solid #CBD5E6}
+.cap code.copyable::after{content:" ⧉";color:var(--bord)}
+.cap code.copyable.copied{border-color:#2E7D4F}
+.cap code.copyable.copied::after{content:" ✓";color:#2E7D4F}
+@media (max-width:640px){ .cp-row{flex-wrap:wrap;gap:4px} .cp-lbl{width:100%} }
+.win.paused *{animation-play-state:paused!important}
+.backlink{display:inline-block;margin-bottom:14px;font-size:14px;font-weight:700;color:var(--bord);text-decoration:none}
+.backlink:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="./">→ חזרה למדריכי ההתקנה של נבו</a>
+  <header>
+    <div class="logo">נבו</div>
+    <div>
+      <h1>חיבור נבו ל-<bdi>Claude</bdi></h1>
+      <p>המחשה של תהליך ההתקנה במנוי אישי <bdi>Pro/Max</bdi>, שלב אחר שלב</p>
+    </div>
+  </header>
+
+  <div class="stage-wrap" id="wrap">
+    <div class="win" id="win">
+      <div class="titlebar"><span>Claude</span><div class="dots"><i></i><i></i><i></i></div></div>
+      <div id="screen"></div>
+      <svg id="cursor" viewBox="0 0 22 22"><path d="M2 1.5 L2 18 L6.5 13.8 L9.6 20.5 L12.6 19.2 L9.6 12.6 L15.6 12.6 Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+
+  <div class="cap">
+    <div class="num" id="capNum">1</div>
+    <div><h2 id="capTitle"></h2><p id="capText"></p></div>
+  </div>
+
+  <div class="ctl">
+    <button id="bPrev">→ הקודם</button>
+    <button id="bPause">⏸ השהה</button>
+    <button id="bReplay">↻ הצג שוב</button>
+    <div class="dots" id="dots"></div>
+    <button id="bAuto" class="primary">⏹ עצור אחרי כל שלב</button>
+    <button id="bNext">הבא ←</button>
+  </div>
+  <section class="copybox"><h3>להעתקה בזמן ההתקנה</h3><div class="muted" style="font-size:13px">לחיצה על שורה מעתיקה את הערך. מדביקים בשדה המתאים עם <bdi>Ctrl+V</bdi>.</div><div class="cp-row"><span class="cp-lbl">שם המחבר</span><button class="cp" data-copy="nevo-claude"><code>nevo-claude</code><span class="cp-act">העתקה</span></button></div><div class="cp-row"><span class="cp-lbl">כתובת השרת</span><button class="cp" data-copy="https://stream.nevo.co.il/mcp/nevo"><code>https://stream.nevo.co.il/mcp/nevo</code><span class="cp-act">העתקה</span></button></div><div class="cp-row"><span class="cp-lbl">OAuth Client ID</span><button class="cp" data-copy="nevo-claude"><code>nevo-claude</code><span class="cp-act">העתקה</span></button></div><div class="cp-row"><span class="cp-lbl">שאלת בדיקה</span><button class="cp" data-copy="חפש בנבו פסיקה של בית המשפט העליון בעניין חובת הזהירות של מחזיק מקרקעין, והצג קישור לכל מקור."><span class="q">חפש בנבו פסיקה של בית המשפט העליון בעניין חובת הזהירות של מחזיק מקרקעין, והצג קישור לכל מקור.</span><span class="cp-act">העתקה</span></button></div></section>
+  <p class="note">המחשה בלבד: ממשק האפליקציה מוצג באופן מפושט, וייתכנו הבדלים קלים בגרסה שמותקנת אצלכם. ההמחשה מבוססת על אפליקציית <bdi>Claude</bdi> למחשב. בדפדפן התהליך זהה, למעט שני חלונות אישור שלא יופיעו.</p>
+</div>
+
+<script>
+const W=960,H=600;
+const wrap=document.getElementById('wrap'), win=document.getElementById('win'), screen=document.getElementById('screen'), cur=document.getElementById('cursor');
+const $=s=>screen.querySelector(s);
+
+function fit(){const k=wrap.clientWidth/W; win.style.transform=`scale(${k})`; wrap.style.height=(H*k)+'px';}
+addEventListener('resize',fit); fit();
+
+let token=0; const STOP=Symbol('stop');
+let paused=false;
+function wait(ms){const t=token;return new Promise((res,rej)=>{let left=ms;const tick=()=>{if(t!==token)return rej(STOP);if(paused)return setTimeout(tick,100);if(left<=0)return res();const st=Math.min(left,100);left-=st;setTimeout(tick,st);};tick();});}
+function setPaused(v){paused=v;const b=document.getElementById('bPause');if(b){b.textContent=v?'▶ המשך':'⏸ השהה';b.classList.toggle('primary',v);}win.classList.toggle('paused',v);}
+function pos(el){const k=wrap.clientWidth/W, s=win.getBoundingClientRect(), r=el.getBoundingClientRect();
+  return {x:(r.left-s.left+r.width/2)/k, y:(r.top-s.top+r.height/2)/k};}
+async function move(el,dx=0,dy=0){const p=pos(el); cur.style.left=(p.x+dx)+'px'; cur.style.top=(p.y+dy)+'px'; await wait(800);}
+async function click(el,{mark=true}={}){
+  if(mark) el.classList.add('hl');
+  await move(el); await wait(250);
+  const r=document.createElement('div'); r.className='ripple'; r.style.left=cur.style.left; r.style.top=cur.style.top; win.appendChild(r); setTimeout(()=>r.remove(),600);
+  el.classList.add('pressed'); await wait(140); el.classList.remove('pressed'); el.classList.remove('hl'); await wait(250);
+}
+async function type(el,text,speed=55){
+  el.classList.add('focus','has');
+  let v=el.querySelector('.val'); if(!v){v=document.createElement('span');v.className='val';el.appendChild(v);}
+  const c=document.createElement('span'); c.className='caret'; el.appendChild(c);
+  for(const ch of text){v.textContent+=ch; await wait(speed);}
+  await wait(300); c.remove(); el.classList.remove('focus');
+}
+function set(html){screen.innerHTML=html;}
+
+/* ---------- templates ---------- */
+const side=(active)=>`<div class="side">
+  <div class="it"><span class="ic"></span>New chat</div>
+  <div class="it"><span class="ic"></span>Search</div>
+  <div class="it ${active==='cz'?'active':''}" id="nav-cz"><span class="ic"></span>Customize</div>
+  <div class="it"><span class="ic"></span>Projects</div>
+  <div class="sec">Recents</div>
+  <div class="bar" style="width:80%"></div><div class="bar" style="width:65%"></div><div class="bar" style="width:72%"></div><div class="bar" style="width:55%"></div><div class="bar" style="width:68%"></div>
+</div>`;
+const shell=(main,active)=>`<div class="shell">${side(active)}<div class="main" id="main">${main}</div></div>`;
+const homeMain=`<div class="home"><h2>Good afternoon</h2><div class="composer"><span class="muted">How can I help you today?</span><div class="send">↑</div></div></div>`;
+const czMain=(tab)=>`<div class="cz">
+  <div class="cz-head"><h2>Customize</h2><button class="btn dark sm" id="b-add">Add</button></div>
+  <div class="tabs"><span class="tab ${tab==='skills'?'on':''}">Skills</span><span class="tab ${tab==='conn'?'on':''}" id="t-conn">Connectors</span><span class="tab">Plugins</span></div>
+  <div id="cz-body">${tab==='conn'?connBody:skillsBody}</div></div>`;
+const skillsBody=[1,2,3,4,5,6].map(()=>`<div class="list-row"><span class="sq"></span><i></i></div>`).join('');
+const connBody=`<div class="search">Search connectors</div><div class="grid">${['Drive','Mail','Calendar','Docs','Chat','Design'].map(n=>`<div class="card"><span class="sq"></span><div class="ln"><b>${n}</b><i></i></div><span class="plus">+</span></div>`).join('')}</div>`;
+
+const modalBasic=`<div class="overlay"><div class="modal">
+  <h3>Add custom connector</h3><p class="muted">Connect Claude to your data and tools.</p>
+  <div class="field" id="f-name"><span class="ph">Name</span></div>
+  <div class="hint">Shown in the connectors list.</div>
+  <div class="field" id="f-url"><span class="ph">Remote MCP server URL</span></div>
+  <div class="hint">The HTTPS address where the server accepts MCP requests.</div>
+  <div class="row-end"><button class="btn">Cancel</button><button class="btn dark" id="b-cont">Continue</button></div>
+</div></div>`;
+
+const modalSettings=`<div class="overlay"><div class="modal settings">
+  <h3>Add custom connector</h3>
+  <div class="ro"><b>nevo-claude</b><br>https://stream.nevo.co.il/mcp/nevo</div>
+  <h4>Authentication</h4>
+  <div class="radio" id="r-now"><i></i><div><b>Sign in now</b><span class="tag">Detected</span><small>Each user signs in through the server's OAuth flow.</small></div></div>
+  <div class="radio"><i></i><div><b>Sign in when needed</b></div></div>
+  <div class="radio"><i></i><div><b>No sign-in</b></div></div>
+  <h4>OAuth client</h4>
+  <div class="radio"><i></i><div><b>Use Claude's published identity</b></div></div>
+  <div class="radio"><i></i><div><b>Register automatically</b></div></div>
+  <div class="radio" id="r-own"><i></i><div><b>Use your own OAuth client</b><span class="tag">Detected</span></div></div>
+  <div class="sub" id="sub">
+    <div class="field" id="f-cid"><span class="ph">OAuth client ID</span></div>
+    <div class="field"><span class="ph">OAuth client secret (optional)</span></div>
+  </div>
+  <div class="row-end"><button class="btn">Cancel</button><button class="btn dark" id="b-add2">Add</button></div>
+</div></div>`;
+
+/* ---------- scenes ---------- */
+const scenes=[
+{t:'פותחים את חלון ההוספה',
+ x:'באפליקציית <bdi>Claude</bdi> במחשב: לוחצים <b><bdi>Customize</bdi></b>, עוברים ללשונית <b><bdi>Connectors</bdi></b>, ולוחצים <b><bdi>Add</bdi></b>.',
+ run:async()=>{
+  set(shell(homeMain,'')); await wait(700);
+  await click($('#nav-cz'));
+  $('#nav-cz').classList.add('active'); $('#main').innerHTML=czMain('skills'); await wait(600);
+  await click($('#t-conn'));
+  $('#main').innerHTML=czMain('conn'); await wait(700);
+  await click($('#b-add'));
+  screen.firstElementChild.insertAdjacentHTML('beforeend',modalBasic); await wait(500);
+ }},
+{t:'מזינים שני פרטים',
+ x:'שם המחבר: <code dir="ltr">nevo-claude</code><br>כתובת השרת: <code dir="ltr">https://stream.nevo.co.il/mcp/nevo</code><br>ולוחצים <b><bdi>Continue</bdi></b>.',
+ run:async()=>{
+  set(shell(czMain('conn'),'cz')); screen.firstElementChild.insertAdjacentHTML('beforeend',modalBasic); await wait(600);
+  await click($('#f-name')); await type($('#f-name'),'nevo-claude');
+  await click($('#f-url')); await type($('#f-url'),'https://stream.nevo.co.il/mcp/nevo',32);
+  await click($('#b-cont'));
+ }},
+{t:'בוחרים הגדרות ומסיימים',
+ x:'מסמנים <b><bdi>Sign in now</bdi></b> ו-<b><bdi>Use your own OAuth client</bdi></b>. בשדה שנפתח מקלידים <code dir="ltr">nevo-claude</code>, משאירים את שדה ה-<bdi>secret</bdi> ריק, גוללים לתחתית החלון ולוחצים <b><bdi>Add</bdi></b>. אם ליד אחת האפשרויות כבר מופיע <bdi>Detected</bdi>, היא מסומנת מראש. רק ודאו ששתיהן מסומנות.<br><small>אם מופיע כפתור <b><bdi>Advanced settings</bdi></b>, זו גרסה מוקדמת של החלון: לוחצים עליו, מקלידים <code dir="ltr">nevo-claude</code> בשדה <bdi>OAuth Client ID</bdi>, ומשאירים את ה-<bdi>Secret</bdi> ריק.</small>',
+ run:async()=>{
+  set(shell(czMain('conn'),'cz')); screen.firstElementChild.insertAdjacentHTML('beforeend',modalSettings); await wait(700);
+  await click($('#r-now')); $('#r-now').classList.add('on'); await wait(300);
+  await click($('#r-own')); $('#r-own').classList.add('on'); $('#sub').classList.add('open'); await wait(450);
+  await click($('#f-cid')); await type($('#f-cid'),'nevo-claude');
+  await click($('#b-add2'));
+ }},
+{t:'מתחילים את ההזדהות',
+ x:'לוחצים <b><bdi>Connect</bdi></b>. בחלון שנפתח בדפדפן לוחצים <b><bdi>Continue connecting</bdi></b>.',
+ run:async()=>{
+  set(shell(`<div class="back">← Connectors</div><div class="center"><div class="nevo-ic">נבו</div><div class="muted">You're not connected to nevo-claude yet.</div><button class="btn dark" id="b-conn">Connect</button></div>`,'cz'));
+  await wait(700); await click($('#b-conn')); await wait(300);
+  set(`<div class="browser"><div class="addr"><div class="pill">🔒 claude.ai</div></div><div class="body"><div class="bcard">
+    <h3>Finish connecting a connector?</h3><p>Only continue if you started connecting a connector from Claude Desktop.</p>
+    <button class="btn dark" id="b-cc">Continue connecting</button><br><span class="link">Not now</span></div></div></div>`);
+  await wait(700); await click($('#b-cc'));
+ }},
+{t:'מזינים את כתובת המייל',
+ x:'מזינים את כתובת המייל של חשבון נבו שלכם, ולוחצים <b>המשך</b>.',
+ run:async()=>{
+  set(`<div class="browser"><div class="addr"><div class="pill">🔒</div></div><div class="body"><div class="nevo-card">
+    <h3>קישור חשבון נבו</h3><div class="lbl">יש להזין כתובת מייל</div>
+    <div class="field" id="f-mail"><span class="ph">name@example.co.il</span></div>
+    <div class="nbtn" id="b-next">המשך</div>
+    <div class="foot">הפעילות באתר נבו כפופה למדיניות הפרטיות ותנאי השימוש</div></div></div></div>`);
+  await wait(700); await click($('#f-mail')); await type($('#f-mail'),'name@example.co.il');
+  await click($('#b-next'));
+ }},
+{t:'מזינים את הקוד מה-SMS',
+ x:'מזינים את הקוד בן שש הספרות שהתקבל בטלפון. אם נפתח חלון <b><bdi>Open Claude</bdi></b>, מסמנים <b><bdi>Always allow</bdi></b> ולוחצים <b><bdi>Open Claude</bdi></b>.',
+ run:async()=>{
+  set(`<div class="browser"><div class="addr"><div class="pill">🔒</div></div><div class="body"><div class="nevo-card">
+    <h3>קישור חשבון נבו</h3><div class="lbl">שלחנו הודעת SMS עם הקוד למספר 05X-XXXXXXX</div>
+    <div class="otp" id="otp">${'<span></span>'.repeat(6)}</div>
+    <div class="foot">לא קיבלת קוד? אפשר לבקש שליחה חוזרת</div></div></div></div>`);
+  await wait(600);
+  const boxes=[...screen.querySelectorAll('#otp span')];
+  await move(boxes[0]);
+  for(const [i,d] of [...'482173'].entries()){boxes.forEach(b=>b.classList.remove('cur')); boxes[i].classList.add('cur'); await wait(160); boxes[i].textContent=d; await wait(170);}
+  boxes[5].classList.remove('cur'); await wait(600);
+  screen.firstElementChild.insertAdjacentHTML('beforeend',`<div class="os-dialog"><h4>Open Claude?</h4>
+    <div class="muted" style="font-size:12px">https://claude.ai wants to open this application.</div>
+    <div class="chk" id="chk"><i>✓</i>Always allow claude.ai to open links of this type in the associated app</div>
+    <div class="row-end"><button class="btn" id="b-open">Open Claude</button><button class="btn">Cancel</button></div></div>`);
+  await wait(700);
+  await click($('#chk i')); $('#chk').classList.add('on'); await wait(300);
+  await click($('#b-open'));
+ }},
+{t:'מאשרים את הכלים',
+ x:'נבו מחובר. בשורה <b><bdi>Read-only tools</bdi></b> בוחרים <b><bdi>Always allow</bdi></b>, ומוודאים שליד כל ארבעת הכלים הופיע סימן ✓.',
+ run:async()=>{
+  const tools=['Get legal document view links','Get legal documents full text','Initialize a Nevo session','Search Nevo legal corpus'];
+  set(shell(`<div class="perm"><div class="muted">← Connectors</div>
+    <div class="hd"><div class="nevo-ic" style="width:30px;height:30px;font-size:11px;border-radius:7px">נבו</div><b>nevo-claude</b><button class="btn sm">Disconnect</button></div>
+    <div class="desc">Remote MCP server that exposes Nevo's legal-search and document-fetch tools.</div>
+    <b>Tool permissions</b>
+    <div class="grp"><span>⌄ Read-only tools <span class="muted">4</span></span><span class="dd" id="dd">Needs approval ⌄</span></div>
+    ${tools.map(n=>`<div class="tool"><span>${n}</span><span class="tri"><span>✓</span><span></span><span></span></span></div>`).join('')}
+  </div>`,'cz'));
+  await wait(700);
+  await click($('#dd'));
+  $('.grp').insertAdjacentHTML('beforeend',`<div class="menu"><div id="m-aa">Always allow</div><div>Needs approval</div><div>Blocked</div></div>`);
+  await wait(400); await click($('#m-aa'));
+  $('.menu').remove(); $('#dd').textContent='✓ Always allow ⌄';
+  for(const s of screen.querySelectorAll('.tri span:first-child')){s.classList.add('ok'); await wait(260);}
+  await wait(500);
+ }},
+{t:'בודקים שהכול עובד',
+ x:'פותחים שיחה חדשה ושואלים שאלה, למשל: <i>"חפש בנבו פסיקה של בית המשפט העליון בעניין חובת הזהירות של מחזיק מקרקעין, והצג קישור לכל מקור."</i> אם בתשובה מופיעים קישורים לנבו, הכול תקין. אם אין קישורים, לוחצים על <b>+</b> שליד תיבת ההודעה, בוחרים <b><bdi>Connectors</bdi></b> ומוודאים שנבו מסומן.',
+ run:async()=>{
+  set(shell(`<div class="chat"><div class="thread" id="thread"></div><div class="composer" id="comp"><span class="ph muted">איך אפשר לעזור?</span><div class="send" id="b-send">↑</div></div></div>`,''));
+  await wait(600);
+  const comp=$('#comp'); await click(comp,{mark:false});
+  comp.querySelector('.ph').remove();
+  const v=document.createElement('span'); comp.prepend(v);
+  const q='חפש בנבו פסיקה של בית המשפט העליון בעניין חובת הזהירות של מחזיק מקרקעין, והצג קישור לכל מקור.';
+  for(const ch of q){v.textContent+=ch; await wait(22);}
+  await wait(300); await click($('#b-send'));
+  v.remove(); const th=$('#thread');
+  th.insertAdjacentHTML('beforeend',`<div class="bubble">${q}</div>`); await wait(500);
+  th.insertAdjacentHTML('beforeend',`<div class="toolchip"><span class="spin"></span>nevo-claude · Search Nevo legal corpus</div>`); await wait(1500);
+  th.querySelector('.spin').outerHTML='<span style="color:var(--bord)">✓</span>';
+  th.insertAdjacentHTML('beforeend',`<div class="ans"><div class="l" style="width:92%"></div><div class="l" style="width:84%"></div>
+    <span class="nlink">nevo.co.il ↗</span><div class="l" style="width:88%"></div><div class="l" style="width:70%"></div>
+    <span class="nlink">nevo.co.il ↗</span><div class="l" style="width:80%"></div><span class="nlink">nevo.co.il ↗</span></div>`);
+  await wait(1100);
+  screen.insertAdjacentHTML('beforeend',`<div class="done-banner"><b>✓ נבו מחובר</b><span>אפשר להתחיל לעבוד</span></div>`);
+  await wait(800);
+ }},
+];
+
+/* ---------- player ---------- */
+let idx=0, auto=true;
+const dots=document.getElementById('dots');
+scenes.forEach((s,i)=>{const b=document.createElement('button'); b.textContent=i+1; b.title=s.t; b.onclick=()=>play(i); dots.appendChild(b);});
+function caption(i){
+  document.getElementById('capNum').textContent=i+1;
+  document.getElementById('capTitle').textContent=scenes[i].t;
+  document.getElementById('capText').innerHTML=scenes[i].x;
+  [...dots.children].forEach((b,j)=>{b.className=j===i?'on':(j<i?'past':'');});
+}
+async function play(i){
+  token++; idx=i; caption(i); setPaused(false);
+  try{
+    await scenes[i].run();
+    if(auto && i<scenes.length-1){await wait(1500); play(i+1);}
+  }catch(e){ if(e!==STOP) console.error(e); }
+}
+document.getElementById('bNext').onclick=()=>play(Math.min(idx+1,scenes.length-1));
+document.getElementById('bPrev').onclick=()=>play(Math.max(idx-1,0));
+document.getElementById('bPause').onclick=()=>setPaused(!paused);
+document.getElementById('bReplay').onclick=()=>play(idx);
+const bAuto=document.getElementById('bAuto');
+bAuto.onclick=()=>{auto=!auto; bAuto.textContent=auto?'⏹ עצור אחרי כל שלב':'▶ הפעל ברצף'; bAuto.classList.toggle('primary',auto); if(auto) play(idx);};
+/* ---------- copy ---------- */
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); return true; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=t; ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select();
+    let ok=false; try{ok=document.execCommand('copy');}catch(_){} ta.remove(); return ok; }
+}
+function flash(el,lblEl){ el.classList.add('copied'); const o=lblEl&&lblEl.textContent; if(lblEl) lblEl.textContent='הועתק ✓';
+  setTimeout(()=>{el.classList.remove('copied'); if(lblEl) lblEl.textContent=o;},1600); }
+document.querySelectorAll('.cp').forEach(b=>b.addEventListener('click',async()=>{ if(await copyText(b.dataset.copy)) flash(b,b.querySelector('.cp-act')); }));
+const _caption=caption;
+caption=function(i){ _caption(i);
+  document.querySelectorAll('#capText code').forEach(c=>{ c.classList.add('copyable'); c.title='לחצו להעתקה';
+    c.addEventListener('click',async()=>{ if(await copyText(c.textContent)) flash(c); }); });
+};
+document.fonts && document.fonts.ready.then(()=>play(0)) || play(0);
+</script>
+</body>
+</html>
