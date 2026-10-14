@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מדריכי ההתקנה: חיבור נבו ל-Claude · LEGAL MIND</title>
-<meta name="description" content="שני מדריכי התקנה לחיבור מאגר נבו ל-Claude: מנוי אישי ומנוי עסקי. כל השלבים, הדגמה אינטראקטיבית צעד אחר צעד, והמדריך הרשמי של נבו להורדה.">
+<meta name="description" content="מדריכי התקנה לחיבור מאגר נבו ל-Claude: מנוי אישי ומנוי עסקי.">
 <meta name="theme-color" content="#07130F">
 <link rel="canonical" href="https://www.legalmind.co.il/nevo/guides/">
 <meta name="robots" content="noindex, follow">
@@ -121,6 +121,17 @@ footer a{color:var(--teal-l);font-weight:700;text-decoration:none}
 @media (max-width:820px){.guides{grid-template-columns:1fr}.prep ul{grid-template-columns:1fr}}
 @media (max-width:520px){.bar{flex-direction:column;align-items:flex-start}.pick a{flex:1;flex-direction:column;justify-content:center;gap:0;height:auto;min-height:58px;padding:8px 10px;line-height:1.25}.pick a small{white-space:nowrap}.cube{border-radius:14px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.pick a{transition:none}}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.4vw,24px);max-width:820px;margin:0 auto clamp(50px,8vw,90px)}
+.gl{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:clamp(22px,3vw,30px);border-radius:20px;text-decoration:none;color:var(--ink);border:1px solid rgba(99,194,184,.3);background:linear-gradient(160deg,rgba(15,36,30,.95),rgba(7,19,15,.95));box-shadow:0 5px 0 rgba(6,40,34,.9),0 22px 50px rgba(0,0,0,.45);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.gl:hover{transform:translateY(-3px);border-color:rgba(150,224,214,.6);box-shadow:0 8px 0 rgba(6,40,34,.9),0 28px 58px rgba(0,0,0,.5)}
+.gl:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(6,40,34,.9),0 10px 22px rgba(0,0,0,.35)}
+.gl:focus-visible{outline:3px solid var(--teal-l);outline-offset:4px}
+.gl-t{font-family:var(--serif);font-weight:800;font-size:clamp(1.5rem,2.6vw,1.9rem);line-height:1.2}
+.gl-p{color:var(--ink-3);font-size:.98rem}
+.gl-d{color:var(--ink-2);margin:6px 0 14px}
+.gl-go{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 22px;border-radius:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#0F8A7C,#0A6459);box-shadow:0 4px 0 #063c35}
+@media (max-width:700px){.links{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.gl{transition:none}}
 </style>
 </head>
 <body>
@@ -130,95 +141,13 @@ footer a{color:var(--teal-l);font-weight:700;text-decoration:none}
     <div class="cubes" aria-label="LEGAL MIND ונבו"><div class="cube"><img src="/brand/legalmind-logo.webp" alt="LEGAL MIND"></div><div class="cube nv"><img src="/nevo-webinar/assets/nevo-logo.webp" alt="נבו"></div></div>
     <div class="hub">בשיתוף פעולה של <em class="lm">LEGAL MIND</em> עם <em class="nv">נבו</em></div>
     <h1>מדריכי ההתקנה: <em>חיבור נבו ל-Claude</em></h1>
-    <p class="lede">בוחרים לפי סוג המנוי של Claude. בכל מדריך יש את כל השלבים, הדגמה אינטראקטיבית שמראה בדיוק איפה לוחצים ומה מקלידים, והמדריך הרשמי של נבו להורדה.</p>
-    <nav class="pick" aria-label="בחירת מדריך"><a href="#personal">מנוי אישי <small>Pro / Max</small></a><a href="#business">מנוי עסקי <small>Team / Enterprise</small></a></nav>
   </div>
 </header>
-
 <main class="wrap">
-  <section class="prep" aria-labelledby="h-prep">
-    <h2 id="h-prep">לפני שמתחילים</h2>
-    <ul>
-      <li><i>1</i><span><b>מנוי Claude בתשלום.</b> אישי (<bdi>Pro / Max</bdi>) או עסקי (<bdi>Team / Enterprise</bdi>).</span></li>
-      <li><i>2</i><span><b>חשבון נבו פעיל,</b> עם כתובת המייל שלכם ונייד לקבלת קוד <bdi>SMS</bdi>.</span></li>
-      <li><i>3</i><span><b>אפליקציית Claude למחשב</b> או הדפדפן. במנוי עסקי, את החלק הראשון עושה מנהל החשבון (<bdi>Owner</bdi>).</span></li>
-    </ul>
-  </section>
-
-  <div class="guides">
-    <section class="card" id="personal" aria-labelledby="h-personal">
-      <span class="tag">לעורך דין שעובד לבד</span>
-      <h2 id="h-personal">מנוי אישי</h2>
-      <div class="plan"><bdi dir="ltr">Claude Pro / Max</bdi></div>
-      <p>מחברים את נבו לבד, בכמה דקות, ב-8 שלבים.</p>
-      <ol class="steps">
-        <li><b>פותחים את חלון ההוספה:</b> <bdi>Customize</bdi>, לשונית <bdi>Connectors</bdi>, ולוחצים <bdi>Add</bdi>.</li>
-        <li><b>מזינים שני פרטים:</b> שם המחבר וכתובת השרת (להעתקה למטה), ולוחצים <bdi>Continue</bdi>.</li>
-        <li><b>בוחרים הגדרות:</b> מסמנים <bdi>Sign in now</bdi>, וגם <bdi>Use your own OAuth client</bdi>. מקלידים <code>nevo-claude</code> ולוחצים <bdi>Add</bdi>.</li>
-        <li><b>מתחילים את ההזדהות:</b> <bdi>Connect</bdi>, ואז <bdi>Continue connecting</bdi> בדפדפן.</li>
-        <li><b>מזינים את כתובת המייל</b> של חשבון נבו שלכם.</li>
-        <li><b>מזינים את הקוד מה-SMS.</b> אם נפתח חלון <bdi>Open Claude</bdi>, מאשרים.</li>
-        <li><b>מאשרים את הכלים:</b> בשורה <bdi>Read-only tools</bdi> בוחרים <bdi>Always allow</bdi>.</li>
-        <li><b>בודקים:</b> שואלים שאלה בשיחה חדשה. אם בתשובה יש קישורים לנבו, הכול תקין.</li>
-      </ol>
-      <div class="copy" aria-label="להעתקה">
-        <button class="cp" type="button" data-copy="nevo-claude"><span>שם המחבר</span><code>nevo-claude</code><em>העתקה</em></button>
-        <button class="cp" type="button" data-copy="https://stream.nevo.co.il/mcp/nevo"><span>כתובת השרת</span><code>https://stream.nevo.co.il/mcp/nevo</code><em>העתקה</em></button>
-      </div>
-      <div class="acts">
-        <a class="btn main" href="install-personal.html">▶ להדגמה צעד אחר צעד</a>
-        <a class="btn pdf" href="/guides/nevo/nevo-claude-personal.pdf" target="_blank" rel="noopener"><span class="nvb">נבו</span>המדריך הרשמי של נבו (PDF)</a>
-      </div>
-    </section>
-
-    <section class="card" id="business" aria-labelledby="h-business">
-      <span class="tag">למשרד עם כמה עורכי דין</span>
-      <h2 id="h-business">מנוי עסקי</h2>
-      <div class="plan"><bdi dir="ltr">Claude Team / Enterprise</bdi></div>
-      <p>מנהל החשבון מוסיף את נבו פעם אחת לכל המשרד, ואז כל עובד מתחבר אצלו.</p>
-      <span class="part">חלק א׳ · מנהל החשבון (<bdi>Owner</bdi>)</span>
-      <ol class="steps">
-        <li><b>פותחים את הגדרות הארגון:</b> לוחצים על השם בפינה, <bdi>Organization settings</bdi>.</li>
-        <li><b>מוסיפים מחבר:</b> <bdi>Connectors</bdi>, <bdi>Add</bdi>, <bdi>Custom</bdi>, <bdi>Web</bdi>.</li>
-        <li><b>מזינים שני פרטים:</b> שם המחבר וכתובת השרת (להעתקה למטה).</li>
-        <li><b>בוחרים הגדרות:</b> מסמנים <bdi>Sign in now</bdi>, וגם <bdi>Use your own OAuth client</bdi>. מקלידים <code>nevo-claude</code> ולוחצים <bdi>Add</bdi>.</li>
-      </ol>
-      <span class="part">חלק ב׳ · כל עובד במשרד</span>
-      <ol class="steps">
-        <li><b>יוצאים ונכנסים מחדש,</b> ואז <bdi>Customize</bdi>, <bdi>Connectors</bdi>, מחפשים <code>nevo</code> ולוחצים <b>+</b>.</li>
-        <li><b>מתחילים את ההזדהות:</b> <bdi>Connect</bdi>, ואז <bdi>Continue connecting</bdi>.</li>
-        <li><b>מזינים את כתובת המייל</b> של חשבון נבו.</li>
-        <li><b>מזינים את הקוד מה-SMS.</b></li>
-        <li><b>מאשרים את הכלים ובודקים:</b> <bdi>Always allow</bdi>, ושאלה אחת בשיחה חדשה.</li>
-      </ol>
-      <div class="copy" aria-label="להעתקה">
-        <button class="cp" type="button" data-copy="nevo-claude"><span>שם המחבר</span><code>nevo-claude</code><em>העתקה</em></button>
-        <button class="cp" type="button" data-copy="https://stream.nevo.co.il/mcp/nevo"><span>כתובת השרת</span><code>https://stream.nevo.co.il/mcp/nevo</code><em>העתקה</em></button>
-      </div>
-      <div class="acts">
-        <a class="btn main" href="install-business.html">▶ להדגמה צעד אחר צעד</a>
-        <a class="btn pdf" href="/guides/nevo/nevo-claude-business.pdf" target="_blank" rel="noopener"><span class="nvb">נבו</span>המדריך הרשמי של נבו (PDF)</a>
-        <a class="sub-link" href="install-business.html#employees">עובדי המשרד? להדגמה של חלק ב׳ בלבד</a>
-      </div>
-    </section>
+  <div class="links">
+    <a class="gl" href="install-personal.html" id="personal"><span class="gl-t">מנוי אישי</span><span class="gl-p"><bdi dir="ltr">Pro / Max</bdi></span><span class="gl-d">מחברים את נבו לבד, בכמה דקות</span><span class="gl-go">▶ למדריך</span></a>
+    <a class="gl" href="install-business.html" id="business"><span class="gl-t">מנוי עסקי</span><span class="gl-p"><bdi dir="ltr">Team / Enterprise</bdi></span><span class="gl-d">מנהל החשבון מוסיף פעם אחת, וכל עובד מתחבר אצלו</span><span class="gl-go">▶ למדריך</span></a>
   </div>
-
-  <section class="tips" aria-labelledby="h-tips">
-    <h2 id="h-tips">אם משהו לא עובד</h2>
-    <details><summary>בתשובה של Claude אין קישורים לנבו</summary><p>לוחצים על <b>+</b> שליד תיבת ההודעה, בוחרים <bdi>Connectors</bdi> ומוודאים שנבו מסומן. אחר כך שואלים שוב.</p></details>
-    <details><summary>במנוי עסקי, נבו לא מופיע ברשימה של העובד</summary><p>העובד צריך לצאת מהחשבון ולהיכנס מחדש, או לסגור את האפליקציה ולפתוח אותה שוב. רק אחרי זה נבו יופיע בחיפוש.</p></details>
-    <details><summary>מופיע כפתור Advanced settings</summary><p>זו גרסה מוקדמת של החלון. לוחצים עליו, מקלידים <code>nevo-claude</code> בשדה <bdi>OAuth Client ID</bdi>, ומשאירים את ה-<bdi>Secret</bdi> ריק.</p></details>
-  </section>
-
-  <section class="cta">
-    <h2>רוצים שנעשה את זה בשבילכם?</h2>
-    <p>בהטמעה של <bdi>LEGAL MIND</bdi> אנחנו מחברים את נבו, מטמיעים את Claude ואת כלי ה-AI המתקדמים, ומלמדים את הצוות לעבוד איתם.</p>
-    <a class="btn main" href="/nevo/#lead">לבחינת התאמה</a>
-  </section>
 </main>
-<footer><div class="wrap">ההדגמות הן המחשה בלבד, וייתכנו הבדלים קלים בממשק · <a href="/nevo/">LEGAL MIND × נבו</a></div></footer>
-<script>
-document.querySelectorAll('.cp').forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-copy'),em=b.querySelector('em'),o=em.textContent;function done(){b.classList.add('ok');em.textContent='הועתק ✓';setTimeout(function(){b.classList.remove('ok');em.textContent=o},1600)}if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,function(){})}else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}a.remove()}})});
-</script>
 </body>
 </html>
