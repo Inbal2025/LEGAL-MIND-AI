@@ -171,6 +171,8 @@
   .scard-credit { font-size: 12.6px; line-height: 1.5; color: var(--ink-faint); margin: -6px 0 16px; }
   .scard-nevo .scard-count { color: #861A1E; }
   .scard-nevo li::before { background: #861A1E; }
+  .scard-diff { background: #F7E6E6; border-right: 3px solid #861A1E; border-radius: 7px; padding: 10px 12px; margin: 0 0 16px; font-size: 13.4px; line-height: 1.6; color: var(--ink-soft); }
+  .scard-diff b { color: #861A1E; font-weight: 700; }
   .scard-nevo .scard-go { background: #861A1E; }
   .scard-nevo:hover .scard-go { background: #5E1013; }
 
@@ -409,6 +411,7 @@
         <div class="scard-kind">מדריך התקנה · מנוי אישי <bdi dir="ltr">Pro/Max</bdi></div>
         <h2>חיבור נבו ל-<bdi dir="ltr">Claude</bdi> במנוי אישי</h2>
         <p>המדריך הרשמי של נבו להתקנת המחבר (<bdi dir="ltr">Connector</bdi>) שמחבר את מאגר נבו ל-<bdi dir="ltr">Claude</bdi>, למי שמחזיק מנוי אישי. אחרי החיבור, <bdi dir="ltr">Claude</bdi> מחפש בנבו פסיקה, חקיקה וספרות משפטית ומצרף קישור לכל מקור. ההתקנה עושים לבד, בכמה דקות.</p>
+        <p class="scard-diff"><b>למי:</b> מי שמשלם על <bdi dir="ltr">Claude</bdi> באופן אישי, במנוי <bdi dir="ltr">Pro</bdi> או <bdi dir="ltr">Max</bdi>.<br><b>מה שונה:</b> אתם מתקינים הכול לבד, כולל הקלדת שם המחבר וכתובת השרת של נבו. אין מנהל חשבון ואין שלב מקדים.</p>
         <ul>
           <li>הוספת המחבר של נבו באפליקציית <bdi dir="ltr">Claude</bdi> למחשב</li>
           <li>שם המחבר וכתובת השרת, מוכנים להעתקה</li>
@@ -433,10 +436,10 @@
         <div class="scard-kind">מדריך התקנה · מנוי משרדי <bdi dir="ltr">Team/Enterprise</bdi></div>
         <h2>חיבור נבו ל-<bdi dir="ltr">Claude</bdi> במנוי משרדי</h2>
         <p>המדריך הרשמי של נבו להתקנת המחבר (<bdi dir="ltr">Connector</bdi>) שמחבר את מאגר נבו ל-<bdi dir="ltr">Claude</bdi>, למשרדים עם מנוי <bdi dir="ltr">Team</bdi> או <bdi dir="ltr">Enterprise</bdi>. אחרי החיבור, <bdi dir="ltr">Claude</bdi> מחפש בנבו פסיקה, חקיקה וספרות משפטית ומצרף קישור לכל מקור. החיבור נעשה בשני שלבים: מנהל החשבון מוסיף את נבו פעם אחת לכל המשרד, ואחר כך כל עובד מתחבר אצלו.</p>
-        <p class="scard-warn"><b>שימו לב:</b> חלק א' מיועד רק למי שמוגדר <bdi dir="ltr">Owner</bdi> בחשבון המשרד ב-<bdi dir="ltr">Claude</bdi>. בלי השלב הזה אף עובד לא יוכל להתקין את נבו.</p>
+        <p class="scard-diff"><b>למי:</b> משרד עם מנוי <bdi dir="ltr">Team</bdi> או <bdi dir="ltr">Enterprise</bdi>.<br><b>מה שונה:</b> רק מנהל החשבון (<bdi dir="ltr">Owner</bdi>) מקליד את כתובת השרת, פעם אחת, בהגדרות הארגון. העובדים לא מקלידים שום כתובת: הם מוצאים את נבו ברשימת המחברים ומתחברים. בלי השלב של המנהל אף עובד לא יוכל להתקין את נבו.</p>
         <ul>
           <li>חלק א', למנהל החשבון: הוספת נבו בהגדרות הארגון</li>
-          <li>חלק ב', לכל עובד: איתור נבו ברשימת המחברים והתקנה</li>
+          <li>חלק ב', לכל עובד: יציאה וכניסה מחדש לאפליקציה, איתור נבו ברשימת המחברים והתקנה</li>
           <li>הזדהות בחשבון נבו: מייל וקוד <bdi dir="ltr">SMS</bdi></li>
           <li>מתן הרשאה לכלים ושאלת בדיקה שמוודאת שהכול עובד</li>
         </ul>
