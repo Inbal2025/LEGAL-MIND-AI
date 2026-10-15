@@ -633,7 +633,6 @@ const WEBINAR = {
     const li = $('#when-date'); li.classList.remove('tbd'); li.querySelector('span').textContent = WEBINAR.dateLabel;
     $('#micro-hero').innerHTML = '<b>ללא עלות</b> · הקישור לזום ותזכורת יישלחו אחרי ההרשמה.';
     $('#reg-sub').textContent = WEBINAR.dateLabel + ' ' + WEBINAR.platform + '. הקישור לזום ותזכורת יישלחו אחרי ההרשמה.';
-    $('#faq-when').textContent = WEBINAR.dateLabel + ', ' + WEBINAR.platform + '. אחרי ההרשמה יישלחו הקישור ותזכורת לפני שמתחילים.';
     const end = new Date(WEBINAR.date).getTime(), cnt = $('#count');
     const tick = () => { const ms = end - Date.now(); if (ms <= 0) { cnt.hidden = true; return; }
       cnt.hidden = false; $('#c-d').textContent = Math.floor(ms/864e5); $('#c-h').textContent = Math.floor(ms/36e5)%24; $('#c-m').textContent = Math.floor(ms/6e4)%60; };
