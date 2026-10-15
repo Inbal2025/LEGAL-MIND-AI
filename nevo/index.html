@@ -773,7 +773,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
       else{d.open=true;requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('is-open')})})}})})})();
 
   /* ===== lead form → Google Apps Script (sheet 'Legal Mind - לידים') ===== */
-  var LM_FORM_ENDPOINT='https://script.google.com/macros/s/AKfycby2N7tvn76ITL2bge5Vmqscw2t51PgP2Sa5YgthNhHxQW9guf6Tmtonn1ezM3xDuz19/exec',LM_FORM_TOKEN='lm-sheets-2f9KdQ7xZ';
+  var LM_FORM_ENDPOINT='https://script.google.com/macros/s/AKfycbzuDDI1SZ2ivpyxRWAKItnbCcVzXgT3Tf9MPLF_WbnZSSUwioEW9PNBitIR5S3jYDYF/exec',LM_FORM_TOKEN='lm-sheets-2f9KdQ7xZ';
   var utm={};try{var up=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k){if(up.get(k))utm[k]=up.get(k).slice(0,200)})}catch(_){}
   var FIX={'gmial.com':'gmail.com','gmai.com':'gmail.com','gamil.com':'gmail.com','gnail.com':'gmail.com','gmail.co':'gmail.com','gmail.con':'gmail.com','gmail.cm':'gmail.com','gmail.om':'gmail.com','gmail.co.il':'gmail.com','hotmial.com':'hotmail.com','hotmal.com':'hotmail.com','hotmail.co':'hotmail.com','hotmail.con':'hotmail.com','walla.co':'walla.co.il','walla.com':'walla.co.il','wala.co.il':'walla.co.il','yahoo.con':'yahoo.com','yaho.com':'yahoo.com','outlook.con':'outlook.com','outlok.com':'outlook.com','outlook.co':'outlook.com','icloud.con':'icloud.com'};
   function chkEmail(v){v=v.trim();if(!v)return{err:'נא למלא כתובת אימייל'};if(/[֐-׿]/.test(v))return{err:'נראה שהמקלדת בעברית. החליפו לאנגלית והקלידו שוב'};if(/\s/.test(v))return{err:'יש רווח בתוך כתובת האימייל'};var at=(v.match(/@/g)||[]).length;if(at===0)return{err:'חסר @ בכתובת האימייל'};if(at>1)return{err:'יש בכתובת יותר מ־@ אחד'};var parts=v.split('@'),local=parts[0],dom=parts[1].toLowerCase();if(!local)return{err:'חסר שם לפני ה־@'};if(!dom)return{err:'חסר דומיין אחרי ה־@, למשל gmail.com'};if(dom.indexOf('.')<0)return{err:'חסרה סיומת, למשל ‎.com או ‎.co.il'};if(!/^[^@\s]+@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/i.test(v))return{err:'כתובת האימייל לא תקינה, בדקו שוב'};if(FIX[dom])return{warn:local+'@'+FIX[dom]};return{}}
@@ -792,7 +792,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
       if(!f.elements.privacyConsent.checked){note.textContent='יש למלא את כל השדות המסומנים בכוכבית ולאשר את מדיניות הפרטיות.';note.classList.add('on');f.elements.privacyConsent.focus();return}
       if(f.elements.lm_hp_xq.value){success();return}
       function pick(k){var x=f.querySelector('input[name='+k+']:checked');return x?x.value:''}
-      var extra=['דף נחיתה /nevo','מספר עורכי דין: '+(pick('firmSize')||'לא צוין'),'דיוור: '+(f.elements.marketingConsent.checked?'כן':'לא')];for(var uk in utm)extra.push(uk.replace('utm_','')+': '+utm[uk]);
+      var extra=['דף ההטמעות /nevo','מספר עורכי דין: '+(pick('firmSize')||'לא צוין'),'דיוור: '+(f.elements.marketingConsent.checked?'כן':'לא')];for(var uk in utm)extra.push(uk.replace('utm_','')+': '+utm[uk]);
       var payload={token:LM_FORM_TOKEN,full_name:n.value.trim(),phone:normPhone(p.value),email:em.value.trim(),area:pick('practiceArea')||'',source:extra.join(' | ')};
       sending=true;btn.classList.add('busy');btn.setAttribute('aria-busy','true');
       var ctl=('AbortController' in window)?new AbortController():null,tm=setTimeout(function(){if(ctl)ctl.abort()},15000);
