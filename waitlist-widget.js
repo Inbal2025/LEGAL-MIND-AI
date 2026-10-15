@@ -49,7 +49,10 @@
     + "<label class='wl-f'><span>אימייל *</span><input type='email' name='email' required autocomplete='email' inputmode='email' dir='ltr'></label>"
     + "<label class='wl-f'><span>תחום עיסוק</span><select name='area'><option value=''>בחר/י</option><option>עורך/ת דין</option><option>איש/אשת נדל\"ן</option><option>מחלקה משפטית</option><option>אחר</option></select></label>"
     + "</div>"
+    + "<div class='wl-row'>"
+    + "<label class='wl-f'><span>מספר עורכי הדין במשרד</span><select name='firm_size'><option value=''>בחר/י</option><option>1</option><option value='1–5'>‎1–5</option><option value='6–10'>‎6–10</option><option>11 ומעלה</option></select></label>"
     + "<label class='wl-f'><span>איך הגעתם אלינו?</span><select name='source'><option value=''>בחר/י</option><option>חיפוש בגוגל</option><option>לינקדאין</option><option>פייסבוק / אינסטגרם</option><option>המלצה</option><option>קהילת וואטסאפ</option><option>אחר</option></select></label>"
+    + "</div>"
     + "<div class='wl-hp'><label>אל תמלאו<input type='text' name='lm_hp_xq' tabindex='-1' autocomplete='off'></label></div>"
     + "<label class='wl-consent'><input type='checkbox' name='consent' required><span>אני מאשר/ת קבלת תכנים ועדכונים מ-Legal Mind בהתאם ל<a href='privacy.html' target='_blank' rel='noopener'>מדיניות הפרטיות</a>.</span></label>"
     + "<button type='submit' class='wlw-btn'>שליחה</button>"
@@ -82,7 +85,7 @@
       btn.disabled = true; var orig = btn.textContent; btn.textContent = 'שולח...';
       // גם לדף הלידים בגוגל שיטס (אותו מחבר כמו בדף /ai/)
       try {
-        var srcTxt = 'דף הבית' + (location.pathname.indexOf('mobile') !== -1 ? ' (נייד)' : '') + (d.source ? ' | איך הגיעו: ' + d.source : '') + ' | דיוור: כן';
+        var srcTxt = 'דף הבית' + (location.pathname.indexOf('mobile') !== -1 ? ' (נייד)' : '') + (d.source ? ' | איך הגיעו: ' + d.source : '') + ' | עורכי דין במשרד: ' + (d.firm_size || 'לא צוין') + ' | דיוור: כן';
         fetch('https://script.google.com/macros/s/AKfycbzuDDI1SZ2ivpyxRWAKItnbCcVzXgT3Tf9MPLF_WbnZSSUwioEW9PNBitIR5S3jYDYF/exec', { method: 'POST', body: JSON.stringify({ token: 'lm-sheets-2f9KdQ7xZ', full_name: d.full_name, phone: d.phone, email: d.email, area: d.area || '', source: srcTxt }) }).catch(function () {});
       } catch (x) {}
       fetch(SUPABASE_URL + '/rest/v1/waitlist', {
