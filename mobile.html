@@ -849,6 +849,14 @@ html, body{
 .nh-btn:hover .nh-arr{animation:none;transform:translateY(2px);box-shadow:0 3px 0 #136E65,0 6px 12px -4px rgba(19,110,101,.6),inset 0 1px 0 rgba(255,255,255,.45)}
 .nh-btn:active .nh-arr{animation:none;transform:translateY(5px);box-shadow:0 0 0 #136E65,0 2px 4px -2px rgba(19,110,101,.5),inset 0 2px 4px rgba(0,0,0,.18)}
 @media (prefers-reduced-motion:reduce){.nh-arr{animation:none}}
+
+/* official-partnership label: prominent */
+.nh-tag{display:inline-flex!important;align-items:center;gap:10px;margin:18px 0 12px!important;padding:6px 16px 6px 6px;border-radius:999px;
+  background:linear-gradient(90deg,rgba(134,26,30,.55),rgba(134,26,30,.25));border:1px solid rgba(230,120,124,.55);
+  color:#fff!important;font-weight:700!important;font-size:clamp(16px,1.5vw,18px)!important;letter-spacing:.01em!important;
+  box-shadow:0 8px 22px -12px rgba(134,26,30,.9)}
+.nh-tag b{background:#861A1E;color:#fff;font-weight:800;font-size:.8em;padding:4px 11px;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+@media (max-width:600px){.nh-tag{font-size:15.5px!important;padding:5px 14px 5px 5px;gap:8px}}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -956,7 +964,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <span class="nh-x" aria-hidden="true"></span>
         <img src="brand/nevo-logo.webp" alt="נבו" width="360" height="170" decoding="async">
       </div>
-      <span class="nh-tag">חדש · שיתוף פעולה רשמי עם נבו</span>
+      <span class="nh-tag"><b>חדש</b>שיתוף פעולה רשמי עם נבו</span>
       <h2 class="nh-title">מהיום <span dir="ltr">Claude</span> מדבר ישירות עם הפסיקה של נבו.</h2>
       <p class="nh-text">שואלים שאלה משפטית בשפה חופשית, ו-<span dir="ltr">Claude</span> מחפש בכל המאגר של נבו ומחזיר תשובה עם קישור לכל מקור, שאפשר לפתוח ולאמת. הקונקטור הוא של נבו, וההטמעה שלו במשרד, ההדרכות והכלים סביבו נבנים אצלנו בשיתוף פעולה רשמי עם נבו: מהחיבור ועד צוות שיודע לעבוד איתו.</p>
       <a class="nh-btn" href="/nevo/">
