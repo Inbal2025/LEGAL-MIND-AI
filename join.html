@@ -90,7 +90,7 @@ button:disabled{opacity:.6;cursor:default}
           <option>אחר</option>
         </select></label>
 
-      <div class="hp"><label>אל תמלאו<input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+      <div class="hp"><label>אל תמלאו<input type="text" name="lm_hp_xq" tabindex="-1" autocomplete="off" /></label></div>
 
       <label class="consent">
         <input type="checkbox" name="consent" required />
@@ -123,7 +123,7 @@ button:disabled{opacity:.6;cursor:default}
     e.preventDefault();
     msg.className='msg'; msg.textContent='';
     var d = Object.fromEntries(new FormData(f).entries());
-    if (d.company) { return; } // honeypot
+    if (d.lm_hp_xq) { return; } // honeypot
     var consent = f.querySelector('[name=consent]').checked;
     if (!d.full_name || !d.phone || !d.email) { msg.classList.add('err'); msg.textContent='נא למלא שם, טלפון ואימייל.'; return; }
     if (!consent) { msg.classList.add('err'); msg.textContent='נא לאשר את מדיניות הפרטיות.'; return; }

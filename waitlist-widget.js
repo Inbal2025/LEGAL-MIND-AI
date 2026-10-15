@@ -50,7 +50,7 @@
     + "<label class='wl-f'><span>תחום עיסוק</span><select name='area'><option value=''>בחר/י</option><option>עורך/ת דין</option><option>איש/אשת נדל\"ן</option><option>מחלקה משפטית</option><option>אחר</option></select></label>"
     + "</div>"
     + "<label class='wl-f'><span>איך הגעתם אלינו?</span><select name='source'><option value=''>בחר/י</option><option>חיפוש בגוגל</option><option>לינקדאין</option><option>פייסבוק / אינסטגרם</option><option>המלצה</option><option>קהילת וואטסאפ</option><option>אחר</option></select></label>"
-    + "<div class='wl-hp'><label>אל תמלאו<input type='text' name='company' tabindex='-1' autocomplete='off'></label></div>"
+    + "<div class='wl-hp'><label>אל תמלאו<input type='text' name='lm_hp_xq' tabindex='-1' autocomplete='off'></label></div>"
     + "<label class='wl-consent'><input type='checkbox' name='consent' required><span>אני מאשר/ת קבלת תכנים ועדכונים מ-Legal Mind בהתאם ל<a href='privacy.html' target='_blank' rel='noopener'>מדיניות הפרטיות</a>.</span></label>"
     + "<button type='submit' class='wlw-btn'>שליחה</button>"
     + "<p class='wl-msg' role='status' aria-live='polite'></p>"
@@ -75,7 +75,7 @@
       msg.className = 'wl-msg'; msg.textContent = '';
       var d = {};
       new FormData(f).forEach(function (v, k) { d[k] = v; });
-      if (d.company) return;
+      if (d.lm_hp_xq) return;
       var consent = f.querySelector('[name=consent]').checked;
       if (!d.full_name || !d.phone || !d.email) { msg.classList.add('err'); msg.textContent = 'נא למלא שם, טלפון ואימייל.'; return; }
       if (!consent) { msg.classList.add('err'); msg.textContent = 'נא לאשר את מדיניות הפרטיות.'; return; }
