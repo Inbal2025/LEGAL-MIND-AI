@@ -805,6 +805,74 @@ html, body{
 @media (prefers-reduced-motion: reduce){
   .hero-logo-img, .hero-logo-wrap::before{animation:none !important}
 }
+
+/* ---- Nevo partnership card (hero) ---- */
+.nevo-hub{margin-top:30px;max-width:620px;padding:24px 24px 22px;border-radius:22px;position:relative;overflow:hidden;
+  background:radial-gradient(120% 90% at 100% 0%,rgba(134,26,30,.20),transparent 55%),radial-gradient(120% 90% at 0% 100%,rgba(37,169,156,.20),transparent 55%),rgba(19,48,64,.62);
+  border:1px solid rgba(168,217,213,.22);backdrop-filter:blur(18px) saturate(130%);-webkit-backdrop-filter:blur(18px) saturate(130%);
+  box-shadow:0 24px 60px -28px rgba(0,0,0,.7)}
+.nh-logos{display:inline-flex;align-items:center;gap:16px;background:#fff;border-radius:14px;padding:10px 18px;box-shadow:0 10px 24px -14px rgba(0,0,0,.6)}
+.nh-logos img:first-child{height:30px;width:auto}
+.nh-logos img:last-child{height:28px;width:auto}
+.nh-x{width:1px;height:26px;background:#D5DCD9}
+.nh-title{margin:0 0 8px;font-weight:600;font-size:clamp(20px,2vw,24px);line-height:1.3;color:var(--ink)}
+.nh-tag{display:block;margin:16px 0 8px;font-weight:600;font-size:12.5px;letter-spacing:.06em;color:var(--c-teal-soft)}
+.nh-text{margin:0 0 18px;font-size:16.5px;line-height:1.65;color:var(--body)}
+.nh-btn{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:16px;padding:14px 18px 14px 14px;border-radius:16px;
+  background:#fff;color:var(--c-navy);text-decoration:none;overflow:hidden;isolation:isolate;
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 34px -14px rgba(37,169,156,.65),0 0 0 1px rgba(168,217,213,.5);
+  transition:transform .25s ease,box-shadow .25s ease}
+.nh-btn::after{content:"";position:absolute;inset:-40% auto -40% -30%;width:38%;z-index:-1;
+  background:linear-gradient(100deg,transparent,rgba(37,169,156,.22),transparent);transform:skewX(-18deg);animation:nhShine 3.6s ease-in-out infinite}
+@keyframes nhShine{0%{left:-40%}55%,100%{left:120%}}
+.nh-btn:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 20px 40px -14px rgba(37,169,156,.8),0 0 0 1px rgba(37,169,156,.8)}
+.nh-btn-main{font-weight:700;font-size:17px;line-height:1.3}
+.nh-btn-sub{grid-column:1;display:inline-flex;align-items:center;gap:6px;margin-top:3px;font-weight:600;font-size:13px;color:#861A1E}
+.nh-btn-sub svg{width:13px;height:13px;fill:#861A1E}
+.nh-arr{grid-column:2;grid-row:1 / span 2;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--c-teal);color:#fff;transition:transform .25s ease}
+.nh-arr svg{width:20px;height:20px}
+.nh-btn:hover .nh-arr{transform:translateX(-4px)}
+.nh-btn:focus-visible{outline:3px solid var(--c-teal-soft);outline-offset:3px}
+@media (max-width:600px){.nevo-hub{padding:20px 16px 18px}.nh-logos{gap:12px;padding:9px 14px}.nh-logos img:first-child{height:24px}.nh-logos img:last-child{height:22px}.nh-text{font-size:16px}.nh-btn-main{font-size:16px}}
+@media (prefers-reduced-motion:reduce){.nh-btn::after{animation:none;display:none}}
+
+/* ---- Nevo card: promo video + lightbox ---- */
+.nh-video{position:relative;display:block;width:100%;margin-top:16px;padding:0;border:0;border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:16/9;background:#0b1c28;
+  box-shadow:0 0 0 1px rgba(168,217,213,.28),0 18px 40px -18px rgba(0,0,0,.8);transition:transform .25s ease,box-shadow .25s ease}
+.nh-video img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.nh-video::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,15,22,.25),transparent 30%,transparent 70%,rgba(5,15,22,.35))}
+.nh-video:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(37,169,156,.8),0 22px 46px -18px rgba(0,0,0,.85)}
+.nh-video:hover img{transform:scale(1.04)}
+.nh-video:focus-visible{outline:3px solid var(--c-teal-soft);outline-offset:3px}
+.nh-play{position:absolute;z-index:1;top:10px;left:12px;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.95);box-shadow:0 0 0 0 rgba(255,255,255,.55);animation:nhPulse 2.4s ease-out infinite}
+.nh-play svg{width:22px;height:22px;fill:#861A1E;margin-left:3px}
+@keyframes nhPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 18px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+.nh-vcap{position:absolute;z-index:1;top:12px;right:12px;padding:6px 12px;border-radius:999px;background:rgba(5,15,22,.78);color:#fff;font-weight:700;font-size:13.5px;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+.vbox{padding:0;border:0;background:transparent;width:min(1000px,88vw);max-width:none;overflow:visible}
+.vbox::backdrop{background:rgba(5,15,22,.62);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.vbox-frame{aspect-ratio:16/9;width:100%;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 30px 80px -20px rgba(0,0,0,.85),0 0 0 1px rgba(168,217,213,.3)}
+.vbox-frame iframe{width:100%;height:100%;border:0;display:block}
+.vbox-x{position:absolute;top:-52px;left:0;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#0B1C28;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.45)}
+.vbox-x svg{width:20px;height:20px}
+.vbox-x:focus-visible{outline:3px solid var(--c-teal-soft);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.nh-play{animation:none}}
+@media (min-width:1100px){
+  .nevo-hub{width:min(1120px,calc(100vw - 96px));max-width:none;display:grid;grid-template-columns:minmax(0,1fr) 420px;column-gap:30px;align-items:center}
+  .nh-video{margin-top:0;grid-column:2;grid-row:1}
+  .nh-body{grid-column:1;grid-row:1}
+}
+
+/* green arrow: 3D press button */
+.nh-arr{background:linear-gradient(180deg,#34C2B4 0%,#25A99C 55%,#1F968A 100%)!important;
+  box-shadow:0 5px 0 #136E65,0 9px 16px -4px rgba(19,110,101,.65),inset 0 1px 0 rgba(255,255,255,.45);
+  animation:nhPress 2.2s ease-in-out infinite}
+@keyframes nhPress{0%,62%,100%{transform:translateY(0);box-shadow:0 5px 0 #136E65,0 9px 16px -4px rgba(19,110,101,.65),inset 0 1px 0 rgba(255,255,255,.45)}
+  74%{transform:translateY(4px);box-shadow:0 1px 0 #136E65,0 3px 6px -2px rgba(19,110,101,.6),inset 0 1px 0 rgba(255,255,255,.35)}
+  86%{transform:translateY(0);box-shadow:0 5px 0 #136E65,0 9px 16px -4px rgba(19,110,101,.65),inset 0 1px 0 rgba(255,255,255,.45)}}
+.nh-btn:hover .nh-arr{animation:none;transform:translateY(2px);box-shadow:0 3px 0 #136E65,0 6px 12px -4px rgba(19,110,101,.6),inset 0 1px 0 rgba(255,255,255,.45)}
+.nh-btn:active .nh-arr{animation:none;transform:translateY(5px);box-shadow:0 0 0 #136E65,0 2px 4px -2px rgba(19,110,101,.5),inset 0 2px 4px rgba(0,0,0,.18)}
+@media (prefers-reduced-motion:reduce){.nh-arr{animation:none}}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -892,6 +960,28 @@ window.addEventListener('DOMContentLoaded', function(){
           <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <span>למעלה מ-2,000 עו"ד בקהילת <span dir="ltr">Legal Mind</span></span>
         </div>
+        <aside class="nevo-hub" aria-label="שיתוף הפעולה עם נבו">
+        <div class="nh-body">
+          <div class="nh-logos">
+            <img src="brand/legalmind-logo.webp" alt="Legal Mind" width="800" height="152" decoding="async">
+            <span class="nh-x" aria-hidden="true"></span>
+            <img src="brand/nevo-logo.webp" alt="נבו" width="360" height="170" decoding="async">
+          </div>
+          <span class="nh-tag">חדש · שיתוף פעולה רשמי עם נבו</span>
+          <h2 class="nh-title">מהיום <span dir="ltr">Claude</span> מדבר ישירות עם הפסיקה של נבו.</h2>
+          <p class="nh-text">שואלים שאלה משפטית בשפה חופשית, ומקבלים תשובה עם קישור לכל פסק דין, חוק ומקור, שאפשר לפתוח ולאמת. הקונקטור של נבו הוא כלי מרכזי בהטמעת <span dir="ltr">AI</span> במשרד, ואת ההטמעה שלו אנחנו מבצעים בשיתוף פעולה רשמי עם נבו: מהחיבור, דרך הכלים והסקילים, ועד צוות שעובד איתו בשגרה.</p>
+          <a class="nh-btn" href="/nevo/">
+            <span class="nh-btn-main">לכל הפרטים על שיתוף הפעולה עם נבו</span>
+            <span class="nh-btn-sub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>סרטונים · מדריכים · הדגמות</span>
+            <span class="nh-arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span>
+          </a>
+        </div>
+          <button class="nh-video" type="button" data-yt="ToeMGVGqFaE" aria-label="צפייה בסרטון: מהיום אפשר לעבוד אחרת, Legal Mind ונבו">
+            <img src="/nevo/promo-cover.webp" width="1280" height="720" alt="" loading="lazy" decoding="async">
+            <span class="nh-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="nh-vcap">צפו בסרטון</span>
+          </button>
+        </aside>
       </div>
 
     </div>
@@ -1490,5 +1580,33 @@ window.addEventListener('DOMContentLoaded', function(){
 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
 הצטרפות לקהילה
 </a>
+
+<dialog class="vbox" id="vbox" aria-label="סרטון: Legal Mind ונבו">
+  <button class="vbox-x" type="button" aria-label="סגירת הסרטון"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <div class="vbox-frame"></div>
+</dialog>
+<script>
+(function(){
+  var d=document.getElementById('vbox'); if(!d||!d.showModal) return;
+  var box=d.querySelector('.vbox-frame');
+  function stop(){ box.innerHTML=''; }
+  function close(){ stop(); if(d.open) d.close(); }
+  d.addEventListener('close',stop);
+  d.addEventListener('cancel',stop);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && d.open) close(); });
+  d.addEventListener('click',function(e){ if(e.target===d) close(); });
+  d.querySelector('.vbox-x').addEventListener('click',close);
+  document.querySelectorAll('.nh-video').forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+b.getAttribute('data-yt')+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      f.title='סרטון התדמית של Legal Mind ונבו';
+      f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen=true; f.referrerPolicy='strict-origin-when-cross-origin';
+      box.innerHTML=''; box.appendChild(f); d.showModal();
+    });
+  });
+})();
+</script>
 </body>
 </html>
