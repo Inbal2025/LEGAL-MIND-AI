@@ -80,6 +80,11 @@
       if (!d.full_name || !d.phone || !d.email) { msg.classList.add('err'); msg.textContent = 'נא למלא שם, טלפון ואימייל.'; return; }
       if (!consent) { msg.classList.add('err'); msg.textContent = 'נא לאשר את מדיניות הפרטיות.'; return; }
       btn.disabled = true; var orig = btn.textContent; btn.textContent = 'שולח...';
+      // גם לדף הלידים בגוגל שיטס (אותו מחבר כמו בדף /ai/)
+      try {
+        var srcTxt = 'דף הבית' + (location.pathname.indexOf('mobile') !== -1 ? ' (נייד)' : '') + (d.source ? ' | איך הגיעו: ' + d.source : '') + ' | דיוור: כן';
+        fetch('https://script.google.com/macros/s/AKfycbzuDDI1SZ2ivpyxRWAKItnbCcVzXgT3Tf9MPLF_WbnZSSUwioEW9PNBitIR5S3jYDYF/exec', { method: 'POST', body: JSON.stringify({ token: 'lm-sheets-2f9KdQ7xZ', full_name: d.full_name, phone: d.phone, email: d.email, area: d.area || '', source: srcTxt }) }).catch(function () {});
+      } catch (x) {}
       fetch(SUPABASE_URL + '/rest/v1/waitlist', {
         method: 'POST',
         headers: { 'apikey': PUBLISHABLE, 'Authorization': 'Bearer ' + PUBLISHABLE, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
