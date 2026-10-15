@@ -829,7 +829,7 @@ html, body{
 .nh-btn-main{font-weight:700;font-size:17px;line-height:1.3}
 .nh-btn-sub{grid-column:1;display:inline-flex;align-items:center;gap:6px;margin-top:3px;font-weight:600;font-size:13px;color:#861A1E}
 .nh-btn-sub svg{width:13px;height:13px;fill:#861A1E}
-.nh-arr{grid-column:2;grid-row:1 / span 2;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--c-teal);color:#fff;transition:transform .25s ease}
+.nh-arr{grid-column:2;grid-row:1;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--c-teal);color:#fff;transition:transform .25s ease}
 .nh-arr svg{width:20px;height:20px}
 .nh-btn:hover .nh-arr{transform:translateX(-4px)}
 .nh-btn:focus-visible{outline:3px solid var(--c-teal-soft);outline-offset:3px}
@@ -888,7 +888,8 @@ html, body{
 /* YouTube button (same as /nevo/, a bit smaller) */
 .nh-yt{margin-top:20px;display:grid;justify-items:center;text-align:center}
 .nh-yt-ttl{margin:0 0 12px;font-weight:700;font-size:clamp(16px,1.4vw,18px);line-height:1.4;color:var(--ink)}
-.nh-yt-ttl span{display:block;font-weight:600;font-size:.9em;color:var(--c-teal-soft)}
+.nh-yt-ttl .nb{display:inline}
+.nh-yt-ttl .nh-yt-sub{display:block;font-weight:600;font-size:.9em;color:var(--c-teal-soft)}
 .nh-yt .yt-btn{position:relative;display:block;width:100%;max-width:300px;border-radius:12px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.12);box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45);transform:translateY(0);transition:transform .18s ease,box-shadow .18s ease;animation:ytPulse 2.4s ease-out infinite}
 .nh-yt .yt-btn img{display:block;width:100%;height:auto}
 .nh-yt .yt-btn::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 35%,rgba(0,0,0,0) 75%,rgba(0,0,0,.18) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
@@ -999,11 +1000,10 @@ window.addEventListener('DOMContentLoaded', function(){
           <p class="nh-text">שואלים שאלה משפטית בשפה חופשית, ו-<span dir="ltr">Claude</span> מחפש בכל המאגר של נבו ומחזיר תשובה עם קישור לכל מקור, שאפשר לפתוח ולאמת. הקונקטור הוא של נבו, וההטמעה שלו במשרד, ההדרכות והכלים סביבו נבנים אצלנו בשיתוף פעולה רשמי עם נבו: מהחיבור ועד צוות שיודע לעבוד איתו.</p>
           <a class="nh-btn" href="/nevo/">
             <span class="nh-btn-main">לכל הפרטים על שיתוף הפעולה עם נבו</span>
-            <span class="nh-btn-sub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>סרטונים · מדריכים · הדגמות</span>
             <span class="nh-arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span>
           </a>
           <div class="nh-yt">
-            <p class="nh-yt-ttl">לצפייה בסדרת סרטוני ההדרכה ביוטיוב <span>בין השאר על אופן השימוש בקונקטור של נבו</span></p>
+            <p class="nh-yt-ttl">לערוץ היוטיוב של <span dir="ltr" class="nb">Legal Mind</span>: סרטוני ההדרכה של <span dir="ltr" class="nb">Legal Mind</span> ונבו <span class="nh-yt-sub">בין השאר גם על השימוש בקונקטור של נבו</span></p>
             <a class="yt-btn" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener" aria-label="לצפייה בסרטוני ההדרכה של Legal Mind ונבו ביוטיוב (נפתח בלשונית חדשה)"><img src="/nevo/youtube-button.webp" width="900" height="274" alt="YouTube" decoding="async"></a>
           </div>
         </div>
