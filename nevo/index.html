@@ -793,7 +793,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
       if(f.elements.lm_hp_xq.value){success();return}
       function pick(k){var x=f.querySelector('input[name='+k+']:checked');return x?x.value:''}
       var extra=['דף ההטמעות /nevo','מספר עורכי דין: '+(pick('firmSize')||'לא צוין'),'דיוור: '+(f.elements.marketingConsent.checked?'כן':'לא')];for(var uk in utm)extra.push(uk.replace('utm_','')+': '+utm[uk]);
-      var payload={token:LM_FORM_TOKEN,full_name:n.value.trim(),phone:normPhone(p.value),email:em.value.trim(),area:pick('practiceArea')||'',source:extra.join(' | ')};
+      var payload={token:LM_FORM_TOKEN,full_name:n.value.trim(),phone:normPhone(p.value),email:em.value.trim(),area:pick('practiceArea')||'',source:extra.join(' | '),page:location.origin+location.pathname,referrer:document.referrer||'',firmSize:pick('firmSize')||'',marketingConsent:f.elements.marketingConsent.checked?'yes':'no',privacyConsent:'yes'};
       sending=true;btn.classList.add('busy');btn.setAttribute('aria-busy','true');
       var ctl=('AbortController' in window)?new AbortController():null,tm=setTimeout(function(){if(ctl)ctl.abort()},15000);
       fetch(LM_FORM_ENDPOINT,{method:'POST',body:JSON.stringify(payload),signal:ctl?ctl.signal:undefined})

@@ -73,7 +73,7 @@
       var page = location.pathname.indexOf('mobile') !== -1 ? 'דף הבית (נייד)' : 'דף הבית';
       var extra = [page, 'עורכי דין במשרד: ' + (pick('firmSize') || 'לא צוין'), 'דיוור: ' + (f.elements.marketingConsent.checked ? 'כן' : 'לא')];
       for (var uk in utm) extra.push(uk.replace('utm_', '') + ': ' + utm[uk]);
-      var payload = { token: TOKEN, full_name: n.value.trim(), phone: normPhone(p.value), email: em.value.trim(), area: pick('practiceArea') || '', source: extra.join(' | ') };
+      var payload = { token: TOKEN, full_name: n.value.trim(), phone: normPhone(p.value), email: em.value.trim(), area: pick('practiceArea') || '', source: extra.join(' | '), page: location.origin + (location.pathname.indexOf('mobile') !== -1 ? '/ (נייד)' : '/'), referrer: document.referrer || '', firmSize: pick('firmSize') || '', marketingConsent: f.elements.marketingConsent.checked ? 'yes' : 'no', privacyConsent: 'yes' };
       sending = true; btn.classList.add('busy'); btn.setAttribute('aria-busy', 'true');
       var ctl = ('AbortController' in window) ? new AbortController() : null, tm = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
       fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload), signal: ctl ? ctl.signal : undefined })
