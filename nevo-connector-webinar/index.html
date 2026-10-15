@@ -387,7 +387,9 @@ footer{border-top:1px solid var(--hair);padding-block:44px calc(40px + env(safe-
 @media (prefers-reduced-motion:reduce){.eyebrow.eb-big .dot{animation:none}}
 /* gift for participants */
 .gift{display:flex;align-items:flex-start;gap:10px;max-width:560px;margin:16px 0 0;padding:10px 14px;border-radius:14px;border:1px dashed rgba(99,194,184,.45);background:rgba(99,194,184,.07);font-size:15.5px;line-height:1.6;color:var(--ink-2)}
-.gift svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--teal-l)}
+.gift svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--teal-l);transform-origin:50% 60%;animation:giftPop 1.8s ease-in-out infinite}
+@keyframes giftPop{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+@media (prefers-reduced-motion:reduce){.gift svg{animation:none}}
 .gift b{color:var(--teal-l);font-weight:700}
 .gift-sm{display:block;max-width:none;margin:10px auto 0;padding:0;border:0;background:none;font-size:15px;text-align:center}
 /* sticky mobile CTA */
