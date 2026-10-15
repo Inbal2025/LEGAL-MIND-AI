@@ -351,6 +351,8 @@ footer{border-top:1px solid var(--hair);padding-block:44px calc(40px + env(safe-
 @keyframes liveDot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(190,43,48,.55),0 0 14px rgba(190,43,48,.7)}50%{opacity:.3;box-shadow:0 0 0 .5em rgba(190,43,48,0),0 0 4px rgba(190,43,48,.2)}}
 @media (max-width:640px){.eyebrow.eb-big{font-size:17px;white-space:normal;text-align:center;padding:8px 16px}}
 @media (prefers-reduced-motion:reduce){.eyebrow.eb-big .dot{animation:none}}
+.eyebrow .eb-with{color:var(--nevo-b);font-weight:800}
+.eyebrow .eb-nv{display:inline-block;height:.9em;width:auto;vertical-align:middle;background:#fff;padding:.1em .26em;border-radius:.18em;box-sizing:content-box}
 /* sticky mobile CTA */
 .sticky{position:fixed;inset:auto 0 0 0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(7,19,15,.9);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--hair-2);transform:translateY(110%);transition:transform .35s var(--ease);display:none}
@@ -409,7 +411,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px calc(40px + env(safe-
 <!-- ================= HERO ================= -->
 <section class="hero" aria-labelledby="h1">
   <div class="wrap hero-grid">
-    <div class="eb-row"><span class="eyebrow eb-big"><span class="dot" aria-hidden="true"></span>וובינר חי · ללא עלות · LEGAL MIND בשיתוף נבו</span></div>
+    <div class="eb-row"><span class="eyebrow eb-big"><span class="dot" aria-hidden="true"></span>וובינר חי · ללא עלות · LEGAL MIND <span class="eb-with">בשיתוף</span> <img class="eb-nv" src="/nevo-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170"></span></div>
     <div>
       <h1 id="h1">נבו בתוך Claude <span class="nw">ו-ChatGPT.</span><br><span class="accent">ככה עובדים עם זה באמת.</span></h1>
       <p class="lead">וובינר מעשי לעורכי דין. מחברים את הקונקטור, לומדים לשאול שאלה שמחזירה <strong>מקור ולא המצאה</strong>, ובונים סקילים שהופכים חיפוש בנבו ל<strong>שיטת עבודה של המשרד</strong>.</p>
