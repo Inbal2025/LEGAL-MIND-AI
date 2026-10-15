@@ -884,6 +884,22 @@ html, body{
 .nh-btn-main{font-size:21px!important}
 .nh-arr{width:54px!important;height:54px!important}
 @media (max-width:600px){.nh-btn-sub{font-size:17px!important;white-space:nowrap}.nh-btn-sub svg{width:18px!important;height:18px!important}.nh-btn-main{font-size:18px!important}.nh-arr{width:46px!important;height:46px!important}}
+
+/* YouTube button (same as /nevo/, a bit smaller) */
+.nh-yt{margin-top:20px;display:grid;justify-items:center;text-align:center}
+.nh-yt-ttl{margin:0 0 12px;font-weight:700;font-size:clamp(16px,1.4vw,18px);line-height:1.4;color:var(--ink)}
+.nh-yt-ttl span{display:block;font-weight:600;font-size:.9em;color:var(--c-teal-soft)}
+.nh-yt .yt-btn{position:relative;display:block;width:100%;max-width:300px;border-radius:12px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.12);box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45);transform:translateY(0);transition:transform .18s ease,box-shadow .18s ease;animation:ytPulse 2.4s ease-out infinite}
+.nh-yt .yt-btn img{display:block;width:100%;height:auto}
+.nh-yt .yt-btn::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 35%,rgba(0,0,0,0) 75%,rgba(0,0,0,.18) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.nh-yt .yt-btn::before{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;z-index:1;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.28) 50%,rgba(255,255,255,0) 100%);transform:skewX(-18deg);animation:ytShine 3.6s ease-in-out infinite}
+@keyframes ytPulse{0%{box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45),0 0 0 0 rgba(255,0,0,.55)}70%{box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45),0 0 0 16px rgba(255,0,0,0)}100%{box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45),0 0 0 0 rgba(255,0,0,0)}}
+@keyframes ytShine{0%,55%{left:-60%}85%,100%{left:120%}}
+.nh-yt .yt-btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 #2a0c0c,0 18px 36px rgba(0,0,0,.5);animation-play-state:paused}
+.nh-yt .yt-btn:active{transform:translateY(4px);box-shadow:0 1px 0 #2a0c0c,0 6px 14px rgba(0,0,0,.4)}
+.nh-yt .yt-btn:focus-visible{outline:3px solid var(--c-teal-soft);outline-offset:6px}
+@media (max-width:600px){.nh-yt .yt-btn{max-width:260px}}
+@media (prefers-reduced-motion:reduce){.nh-yt .yt-btn{animation:none;transition:none}.nh-yt .yt-btn::before{display:none}}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -986,6 +1002,10 @@ window.addEventListener('DOMContentLoaded', function(){
             <span class="nh-btn-sub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>סרטונים · מדריכים · הדגמות</span>
             <span class="nh-arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span>
           </a>
+          <div class="nh-yt">
+            <p class="nh-yt-ttl">לצפייה בסדרת סרטוני ההדרכה ביוטיוב <span>בין השאר על אופן השימוש בקונקטור של נבו</span></p>
+            <a class="yt-btn" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener" aria-label="לצפייה בסרטוני ההדרכה של Legal Mind ונבו ביוטיוב (נפתח בלשונית חדשה)"><img src="/nevo/youtube-button.webp" width="900" height="274" alt="YouTube" decoding="async"></a>
+          </div>
         </div>
           <button class="nh-video" type="button" data-yt="ToeMGVGqFaE" aria-label="צפייה בסרטון: מהיום אפשר לעבוד אחרת, Legal Mind ונבו">
             <img src="/nevo/promo-cover.webp" width="1280" height="720" alt="" loading="lazy" decoding="async">
