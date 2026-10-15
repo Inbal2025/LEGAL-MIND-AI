@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>וובינר לקהילה: הקונקטור של נבו ב-Claude · LEGAL MIND</title>
+<meta name="description" content="וובינר חי וללא עלות לקהילת LEGAL MIND: מחברים את הקונקטור של נבו ל-Claude, עובדים איתו נכון, טיפים מהשטח וזמן לכל השאלות. יום רביעי 21.10.2026.">
+<meta property="og:title" content="הקונקטור של נבו ב-Claude: ככה עובדים איתו נכון">
+<meta property="og:description" content="וובינר חי וללא עלות לקהילת LEGAL MIND · יום רביעי 21.10.2026 · בזום">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.legalmind.co.il/nevo-connector-webinar/assets/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07130F">
+<meta name="robots" content="noindex">  <!-- טיוטה לבדיקה: להסיר כשמפרסמים -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;700;800;900&family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07130F; --bg-2:#0B1B16; --bg-3:#0F241E;
+  --ink:#F3F0E8; --ink-2:#C3CCC7; --ink-3:#8FA09A;
+  --teal:#63C2B8; --teal-l:#96E0D6; --teal-d:#1D7A70; --cta1:#0F8A7C; --cta2:#0A6459;
+  --nevo:#821819; --nevo-b:#BE2B30;
+  --paper:#F4F1E9; --paper-2:#E9E4D8; --paper-ink:#10201B; --paper-ink-2:#4A5A54;
+  --gpt:#10A37F; --claude:#D97757;
+  --hair:rgba(243,240,232,.09); --hair-2:rgba(243,240,232,.16);
+  --serif:"Frank Ruhl Libre",Georgia,serif; --head:"Heebo","Assistant",system-ui,sans-serif;
+  --sans:"Assistant",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1); --max:1200px; --gut:clamp(16px,5vw,64px); --r:18px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.65 var(--sans);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid var(--teal-l);outline-offset:3px;border-radius:8px}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:54px;padding:0 1.6em;border-radius:14px;
+  font:800 18px/1 var(--head);text-decoration:none;color:#fff;border:0;cursor:pointer;
+  background:linear-gradient(135deg,var(--cta1),var(--cta2));
+  box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 10px 30px -8px rgba(15,138,124,.7);transition:transform .2s var(--ease),box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 16px 36px -8px rgba(15,138,124,.85)}
+.btn .arr{transition:transform .2s var(--ease)}
+.btn:hover .arr{transform:translateX(-4px)}
+.btn-ghost{background:transparent;border:1px solid var(--hair-2);box-shadow:none;font-weight:700}
+.btn-ghost:hover{background:rgba(255,255,255,.04);box-shadow:none}
+.micro{font-size:15px;color:var(--ink-3);margin-top:12px}
+.micro b{color:var(--ink-2);font-weight:600}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(7,19,15,.72);border-bottom:1px solid var(--hair)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;gap:12px}
+.logos{display:flex;align-items:center;gap:12px}
+.logos .lm{height:22px;width:auto}
+.logos .x{color:var(--ink-3);font:500 14px var(--mono)}
+.plate{display:flex;align-items:center;gap:16px;background:#fff;border-radius:14px;padding:9px 18px;box-shadow:0 10px 26px -12px rgba(0,0,0,.7);flex:none}
+.plate .p-lm{height:40px;width:auto}
+.plate .p-nv{height:36px;width:auto}
+.plate .p-div{width:1px;height:32px;background:#D5DCD9}
+.plate.sm .p-lm{height:30px}.plate.sm .p-nv{height:27px}.plate.sm .p-div{height:24px}
+.partner .plate{padding:8px 14px}.partner .plate .p-nv{height:30px}
+.top .btn{min-height:46px;font-size:15px;padding:0 1.1em;border-radius:11px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding-block:clamp(36px,6vw,80px) clamp(56px,8vw,110px);isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(60% 55% at 85% 10%,rgba(99,194,184,.16),transparent 70%),
+             radial-gradient(40% 40% at 10% 85%,rgba(190,43,48,.12),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.35;
+  background-image:linear-gradient(var(--hair) 1px,transparent 1px),linear-gradient(90deg,var(--hair) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:700 17px var(--sans);color:var(--teal-l);
+  border:1px solid rgba(99,194,184,.35);background:rgba(99,194,184,.1);padding:8px 18px;border-radius:999px}
+.eyebrow .dot{width:9px;height:9px}
+@media (max-width:640px){.eyebrow{font-size:14.5px;padding:6px 12px;gap:8px;white-space:nowrap}}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--nevo-b);box-shadow:0 0 0 0 rgba(190,43,48,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(190,43,48,0)}100%{box-shadow:0 0 0 0 rgba(190,43,48,0)}}
+h1{font:900 clamp(36px,5.4vw,66px)/1.08 var(--head);letter-spacing:-.02em;margin:18px 0 18px}
+h1 .nw{white-space:nowrap}
+h1 .accent{font-size:.9em;font-family:var(--serif);font-weight:700;color:var(--teal-l);letter-spacing:0}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--ink-2);max-width:36em;margin:0 0 24px}
+.lead strong{color:var(--ink);font-weight:700}
+.when{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px;padding:0;list-style:none}
+.when li{display:flex;align-items:center;gap:8px;font-size:16px;color:var(--ink-2);background:var(--bg-2);border:1px solid var(--hair-2);padding:8px 14px;border-radius:12px}
+.when li svg{width:18px;height:18px;color:var(--teal)}
+.when li.tbd{border-style:dashed;border-color:rgba(99,194,184,.45);color:var(--teal-l)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* ---------- demo window ---------- */
+.demo{position:relative;border-radius:22px;background:linear-gradient(180deg,#10261F,#0B1B16);border:1px solid var(--hair-2);
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 6px rgba(255,255,255,.02);overflow:hidden;min-height:470px;display:flex;flex-direction:column}
+.demo-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--hair);background:rgba(0,0,0,.18)}
+.demo-dots{display:flex;gap:6px;direction:ltr}
+.demo-dots i{width:10px;height:10px;border-radius:50%;background:#2a3b35}
+.tabs{display:flex;gap:4px;margin-inline-start:auto;background:rgba(0,0,0,.25);padding:4px;border-radius:10px}
+.tab{background:none;border:0;padding:7px 12px;border-radius:7px;cursor:pointer;display:flex;align-items:center;min-height:34px;opacity:.5;transition:opacity .2s,background .2s}
+.tab:hover{opacity:.85}
+.tab .sw{width:9px;height:9px;border-radius:50%}
+.tab[aria-selected="true"]{background:var(--bg-3);opacity:1}
+.demo-body{flex:1;padding:18px 16px 16px;display:flex;flex-direction:column;gap:12px;font-size:15.5px;line-height:1.55}
+.msg{max-width:88%;border-radius:16px;padding:11px 14px;opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.msg.on{opacity:1;transform:none}
+.msg.user{align-self:flex-start;background:var(--bg-3);border:1px solid var(--hair-2);border-start-start-radius:5px}
+.msg.ai{align-self:flex-end;background:rgba(255,255,255,.03);border:1px solid var(--hair);border-start-end-radius:5px;width:88%}
+.who{display:flex;align-items:center;gap:7px;font:700 12.5px var(--head);color:var(--ink-3);margin-bottom:6px}
+.who .av{width:18px;height:18px;object-fit:contain}
+.nm-claude{color:var(--claude)}
+.nm-gpt{color:#fff}
+.cl-wm{height:19px;width:auto;display:block}
+.gpt-wm{display:inline-flex;align-items:center;gap:7px;color:#fff;font:700 17px/1 var(--sans);letter-spacing:-.01em}
+.gpt-wm img{width:20px;height:20px}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--teal-l);vertical-align:-3px;margin-inline-start:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.tool{align-self:flex-end;display:flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--ink-2);
+  background:rgba(130,24,25,.14);border:1px solid rgba(190,43,48,.35);padding:8px 12px;border-radius:12px;opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.tool.on{opacity:1;transform:none}
+.tool .nv{background:#fff;border-radius:5px;padding:3px 5px;display:flex}
+.tool .nv img{height:11px;width:auto}
+.tool .spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--nevo-b);border-radius:50%;animation:spin .8s linear infinite}
+.tool.done .spin{animation:none;border-color:var(--teal);background:var(--teal);position:relative}
+.tool.done .spin::after{content:"";position:absolute;inset:2px 3px 3px 3px;border:solid #07130F;border-width:0 0 2px 2px;transform:rotate(-45deg) translate(1px,-1px)}
+.lines{display:grid;gap:7px;margin:4px 0 10px}
+.lines span{height:9px;border-radius:5px;background:linear-gradient(90deg,rgba(243,240,232,.22),rgba(243,240,232,.08));filter:blur(.6px)}
+.cites{display:flex;flex-wrap:wrap;gap:6px}
+.cite{display:inline-flex;align-items:center;gap:6px;font:500 12px var(--mono);color:var(--teal-l);border:1px solid rgba(99,194,184,.35);background:rgba(99,194,184,.07);padding:4px 8px;border-radius:7px}
+.cite i{display:inline-block;width:58px;height:7px;border-radius:4px;background:rgba(150,224,214,.35);filter:blur(1px)}
+.seal{position:absolute;left:8px;bottom:-14px;width:78px;height:78px;z-index:2;border-radius:50%;display:grid;place-items:center;text-align:center;
+  border:2px dashed rgba(190,43,48,.75);color:#E7666A;font:800 11px/1.15 var(--head);transform:rotate(-14deg) scale(1.6);opacity:0;transition:.35s cubic-bezier(.3,1.6,.5,1);background:rgba(7,19,15,.6)}
+.seal.on{opacity:1;transform:rotate(-14deg) scale(1)}
+.seal b{display:block;font-size:14px}
+.msg.ai{position:relative}
+.skill{align-self:flex-start;display:flex;align-items:center;gap:8px;font:500 13.5px var(--mono);color:var(--ink);background:var(--bg-3);border:1px solid rgba(99,194,184,.45);padding:8px 12px;border-radius:12px;opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.skill.on{opacity:1;transform:none}
+.skill .slash{color:var(--teal-l)}
+.file{align-self:flex-end;display:flex;align-items:center;gap:12px;background:#F4F1E9;color:#10201B;border-radius:12px;padding:10px 14px;opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.file.on{opacity:1;transform:none}
+.file .ic{width:30px;height:36px;border-radius:5px;background:#2B579A;color:#fff;display:grid;place-items:center;font:800 14px var(--head)}
+.file b{display:block;font:700 14px var(--head)}
+.file small{font-size:12.5px;color:#4A5A54}
+.lock{position:absolute;inset:auto 0 0 0;padding:70px 20px 22px;text-align:center;background:linear-gradient(180deg,transparent,rgba(7,19,15,.92) 45%);opacity:0;pointer-events:none;transition:opacity .5s}
+.lock.on{opacity:1;pointer-events:auto}
+.lock p{margin:0 0 12px;font:800 19px var(--head)}
+.lock .btn{min-height:46px;font-size:16px}
+
+/* ---------- formula strip ---------- */
+.formula{border-block:1px solid var(--hair);background:var(--bg-2)}
+.formula .wrap{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 26px;text-align:center;padding-block:clamp(30px,5vw,54px)}
+.formula p{margin:0;font:700 clamp(22px,3vw,34px)/1.25 var(--serif)}
+.formula p span{color:var(--teal-l)}
+.formula p.nv span{color:#E7666A}
+.formula .plus{font:300 40px var(--head);color:var(--ink-3)}
+
+/* ---------- sections ---------- */
+section{padding-block:clamp(64px,9vw,120px)}
+.kicker{font:700 16px var(--sans);color:var(--teal);margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:28px;height:2px;border-radius:2px;background:currentColor}
+.reg-card .kicker{justify-content:center}
+[hidden]{display:none!important}
+h2{font:700 clamp(32px,4.6vw,54px)/1.12 var(--serif);margin:0 0 16px;letter-spacing:-.01em}
+.sub{font-size:clamp(18px,1.9vw,20px);color:var(--ink-2);max-width:40em;margin:0 0 40px}
+
+/* paper section: learn */
+.paper{background:var(--paper);color:var(--paper-ink);position:relative}
+.paper::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:repeating-linear-gradient(0deg,transparent 0 35px,rgba(16,32,27,.05) 35px 36px)}
+.paper .kicker{color:var(--teal-d)}
+.paper .sub{color:var(--paper-ink-2)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+.step{background:#fff;border:1px solid var(--paper-2);border-radius:var(--r);padding:26px 24px 24px;position:relative;
+  box-shadow:0 1px 0 #fff inset,0 18px 40px -26px rgba(16,32,27,.35);transition:transform .25s var(--ease),box-shadow .25s}
+.step:hover{transform:translateY(-4px);box-shadow:0 26px 50px -26px rgba(16,32,27,.45)}
+.step .n{font:500 14px var(--mono);color:var(--teal-d);display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.step .live{font:800 12px var(--head);color:var(--nevo);border:1.5px solid var(--nevo);border-radius:6px;padding:2px 7px;transform:rotate(-4deg)}
+.step h3{font:800 21px/1.3 var(--head);margin:0 0 8px}
+.step p{margin:0;font-size:16.5px;color:var(--paper-ink-2)}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,60px);align-items:center}
+.shelf{display:grid;gap:12px}
+.sk{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:var(--bg-2);border:1px solid var(--hair-2);transition:.25s var(--ease)}
+.sk:hover{border-color:rgba(99,194,184,.5);transform:translateX(-4px)}
+.sk .ico{flex:none;width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:rgba(99,194,184,.1);color:var(--teal-l);font:500 18px var(--mono)}
+.sk b{display:block;font:800 17px var(--head)}
+.sk small{color:var(--ink-3);font-size:15px}
+.sk.locked{border-style:dashed;position:relative;overflow:hidden}
+.sk.locked b,.sk.locked small{filter:blur(5px);user-select:none}
+.sk.locked .tag{position:absolute;inset-inline-end:16px;top:50%;transform:translateY(-50%);font:800 13px var(--head);color:var(--teal-l);background:var(--bg);border:1px solid rgba(99,194,184,.4);padding:5px 10px;border-radius:8px}
+.quote-big{font:700 clamp(24px,2.6vw,32px)/1.35 var(--serif);margin:0 0 18px}
+.quote-big span{color:var(--teal-l)}
+
+/* two tools */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tool-card{border-radius:var(--r);padding:28px;background:var(--bg-2);border:1px solid var(--hair-2);position:relative;overflow:hidden}
+.tool-card::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--c)}
+.tool-card h3{display:flex;align-items:center;gap:10px;font:800 24px var(--head);margin:0 0 10px}
+.tool-card h3{min-height:38px}
+.tool-card .cl-wm{height:30px}
+.tool-card .gpt-wm{font-size:28px;gap:12px}
+.tool-card .gpt-wm img{width:32px;height:32px}
+.tool-card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.tool-card li{display:flex;gap:10px;color:var(--ink-2);font-size:17px}
+.tool-card li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--c);margin-top:.65em}
+.note{margin:22px 0 0;color:var(--ink-3);font-size:16px}
+
+/* speakers */
+.speakers{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.sp{display:flex;gap:20px;align-items:center;padding:22px;border-radius:var(--r);background:var(--bg-2);border:1px solid var(--hair)}
+.sp img{width:112px;height:112px;border-radius:18px;object-fit:cover;flex:none;filter:saturate(.9)}
+.sp h3{font:800 22px var(--head);margin:0}
+.sp .role{color:var(--teal-l);font-weight:600;font-size:16px;margin:2px 0 8px}
+.sp p{margin:0;color:var(--ink-2);font-size:16px;line-height:1.55}
+.partner{margin-top:18px;display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;border:1px dashed rgba(190,43,48,.45);background:rgba(130,24,25,.08);color:var(--ink-2);font-size:16.5px}
+
+/* proof */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:34px}
+.stat{padding:24px;border-radius:var(--r);border:1px solid var(--hair);background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+.stat b{display:block;font:900 clamp(36px,4.4vw,52px)/1 var(--head);color:var(--teal-l)}
+.stat span{color:var(--ink-2);font-size:16.5px}
+.stat b.txt{font-size:clamp(22px,2.3vw,28px);line-height:1.2;margin-bottom:8px}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.q{margin:0;padding:24px;border-radius:var(--r);background:var(--bg-2);border:1px solid var(--hair);display:flex;flex-direction:column;gap:14px}
+.q blockquote{margin:0;font-size:17px;line-height:1.6;color:var(--ink)}
+.q figcaption{margin-top:auto;color:var(--ink-3);font-size:15px}
+.q figcaption b{color:var(--ink-2);display:block}
+
+/* faq */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--hair-2)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font:800 19px var(--head);min-height:44px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:300 28px var(--head);color:var(--teal);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 20px;color:var(--ink-2)}
+
+/* register */
+.reg{position:relative;overflow:hidden}
+.reg-card{max-width:880px;margin-inline:auto;text-align:center;padding:clamp(32px,6vw,64px) clamp(20px,5vw,56px);border-radius:28px;
+  background:radial-gradient(80% 90% at 50% 0%,rgba(99,194,184,.18),transparent 70%),var(--bg-2);border:1px solid rgba(99,194,184,.3)}
+.reg-card h2{margin-bottom:10px}
+.reg-card .sub{margin-inline:auto;margin-bottom:26px}
+#reg-btn{min-height:62px;font-size:20px;padding:0 2.2em}
+.count{display:flex;justify-content:center;gap:10px;margin:0 0 26px;direction:rtl}
+.count div{min-width:74px;padding:12px 8px;border-radius:14px;background:var(--bg);border:1px solid var(--hair-2)}
+.count b{display:block;font:900 32px/1 var(--head);font-variant-numeric:tabular-nums}
+.count span{font-size:13px;color:var(--ink-3)}
+.form-slot{margin:0 auto 18px;max-width:640px}
+.form-ph{display:grid;gap:6px;padding:46px 20px;border:2px dashed rgba(99,194,184,.45);border-radius:16px;color:var(--teal-l);background:rgba(99,194,184,.05)}
+.form-ph span{color:var(--ink-3);font-size:15px}
+.form-slot iframe{width:100%;height:1320px;border:0;border-radius:16px;background:#fff;display:block}
+@media (max-width:640px){.form-slot iframe{height:1700px}.reg-card{padding-inline:10px}}
+.privacy{font-size:14px;color:var(--ink-3);max-width:40em;margin:16px auto 0}
+.privacy a{color:var(--ink-2);display:inline-block;padding-block:6px}
+
+
+/* community */
+.comm{padding-top:0}
+.chead{text-align:center;margin-bottom:clamp(26px,4vw,40px)}
+.chead .kicker{justify-content:center}
+.chead .kicker::after{content:"";width:28px;height:2px;border-radius:2px;background:currentColor}
+.chead h2{margin:0}
+.nw{white-space:nowrap}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1000px;margin-inline:auto}
+.door{position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(22px,3vw,34px);border-radius:20px;border:1px solid var(--hair-2);background:linear-gradient(160deg,rgba(243,240,232,.05),rgba(243,240,232,.015));overflow:hidden;transition:border-color .3s,transform .4s var(--ease)}
+.door::before{content:"";position:absolute;inset:0 0 auto 0;height:3px}
+.door:hover{transform:translateY(-3px)}
+.door p{margin:0;color:var(--ink-2);font-size:17px;line-height:1.7}
+.door p strong{color:var(--ink)}
+.dtop{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.dtop h3{margin:0;font:700 24px var(--serif);flex:1 1 0;min-width:0}
+.dic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;flex:none}
+.dic svg{width:28px;height:28px}
+.cnum{flex-basis:100%;display:inline-flex;align-items:center;gap:10px;width:fit-content;max-width:fit-content;padding:7px 14px;border-radius:99px;border:1px solid rgba(37,211,102,.4);background:rgba(37,211,102,.08);font-size:15px;font-weight:600}
+.cnum i{width:8px;height:8px;border-radius:50%;background:#25D366;box-shadow:0 0 10px #25D366}
+.dwa::before{background:linear-gradient(270deg,#25D366,rgba(37,211,102,0))}
+.dwa:hover{border-color:rgba(37,211,102,.45)}
+.dwa .dic{background:#25D366;box-shadow:0 10px 26px rgba(37,211,102,.28)}
+.dwa .dic svg path{fill:#fff}
+.dsite::before{background:linear-gradient(270deg,var(--teal-l),rgba(99,194,184,0))}
+.dsite:hover{border-color:rgba(99,194,184,.5)}
+.dsite .dic{background:rgba(99,194,184,.12);border:1px solid rgba(99,194,184,.35);color:var(--teal-l)}
+.dbtn{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:12px 22px;border-radius:14px;font:700 17px var(--sans);text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s,background .25s}
+.dbtn svg{width:22px;height:22px}
+.bwa{background:#25D366;color:#0B1F14;box-shadow:0 12px 30px rgba(37,211,102,.25)}
+.bwa svg path{fill:#0B1F14}
+.bwa:hover{background:#1FBE5B;transform:translateY(-2px)}
+.bsite{border:1px solid rgba(99,194,184,.5);color:var(--teal-l);background:rgba(99,194,184,.06)}
+.bsite:hover{background:rgba(99,194,184,.14);transform:translateY(-2px)}
+/* footer */
+footer{border-top:1px solid var(--hair);padding-block:44px calc(40px + env(safe-area-inset-bottom,0px))}
+.foot{display:grid;justify-items:center;text-align:center;gap:16px}
+.foot .tag{margin:0;color:var(--ink-2);font-size:17px}
+.social{display:flex;gap:12px}
+.social a{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;border:1px solid var(--hair-2);color:var(--teal-l);transition:.2s}
+.social a:hover{background:rgba(99,194,184,.12);border-color:rgba(99,194,184,.5)}
+.social svg{width:20px;height:20px;fill:currentColor}
+.foot nav{display:flex;gap:10px;font-size:14.5px;color:var(--ink-3)}
+.foot nav a{color:var(--teal-l);text-decoration:none;display:inline-flex;align-items:center;min-height:40px;padding-inline:6px}
+.foot nav a:hover{text-decoration:underline}
+/* testimonials marquee */
+.wall{display:grid;gap:18px;margin-inline:calc(var(--gut) * -1);overflow:hidden;
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.lane{overflow:hidden}
+.track{display:flex;gap:18px;width:max-content;animation:lane 60s linear infinite;padding-inline:9px}
+.lane.rev .track{animation-direction:reverse;animation-duration:68s}
+.wall:hover .track,.wall:focus-within .track{animation-play-state:paused}
+@keyframes lane{to{transform:translateX(50%)}}
+.tq{margin:0;width:360px;flex:none;padding:22px 22px 18px;border-radius:var(--r);background:var(--bg-2);border:1px solid var(--hair);display:flex;flex-direction:column;gap:14px}
+.tq blockquote{margin:0;font-size:16px;line-height:1.65;color:var(--ink)}
+.tq figcaption{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tq figcaption b{display:block;color:var(--ink-2);font-size:15px}
+.tq figcaption small{color:var(--ink-3);font-size:14px}
+.gsrc{flex:none;width:30px;height:30px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.gsrc svg{width:17px;height:17px}
+@media (max-width:640px){.tq{width:290px}.tq blockquote{font-size:15.5px}}
+@media (prefers-reduced-motion:reduce){.track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.track [aria-hidden=true]{display:none}}
+
+/* inline Nevo logo in large text */
+.nvlogo{display:inline-block;height:.78em;width:auto;vertical-align:-.06em;background:#fff;padding:.1em .24em;border-radius:.16em;box-sizing:content-box;box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
+.partner-line{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;margin:-4px 0 22px;color:var(--ink-2);font-size:17px;font-weight:600}
+.partner-line .plate{padding:7px 14px}
+.partner-line .plate .p-lm{height:26px}.partner-line .plate .p-nv{height:24px}.partner-line .plate .p-div{height:22px}
+.steps.four{grid-template-columns:repeat(4,1fr)}
+@media (max-width:960px){.steps.four{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.steps.four{grid-template-columns:1fr}.partner-line{font-size:15.5px}}
+.tip{align-self:flex-start;display:flex;align-items:center;gap:8px;font:600 14px var(--sans);color:var(--ink);background:rgba(99,194,184,.1);border:1px dashed rgba(99,194,184,.5);padding:8px 12px;border-radius:12px;opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.tip.on{opacity:1;transform:none}
+.tip i{display:inline-block;width:120px;height:8px;border-radius:4px;background:rgba(150,224,214,.35);filter:blur(1.2px)}
+
+/* ---- "more" hub: video + Nevo page + YouTube ---- */
+.more{padding-top:0}
+.hub{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:34px;align-items:center;padding:clamp(22px,3vw,36px);border-radius:26px;
+  background:radial-gradient(120% 90% at 100% 0%,rgba(130,24,25,.18),transparent 55%),radial-gradient(120% 90% at 0% 100%,rgba(99,194,184,.18),transparent 55%),var(--bg-2);
+  border:1px solid rgba(99,194,184,.25);box-shadow:0 30px 70px -40px rgba(0,0,0,.9)}
+.hub h2{margin:0 0 10px}
+.hub-text{margin:0 0 20px;color:var(--ink-2);font-size:17.5px;line-height:1.7}
+.hub-text .nvlogo{height:.95em;vertical-align:-.18em}
+.hub-btn{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 14px 14px 20px;border-radius:16px;background:#fff;color:#10201B;text-decoration:none;font:800 19px var(--head);
+  box-shadow:0 14px 34px -14px rgba(15,138,124,.65),0 0 0 1px rgba(150,224,214,.5);transition:transform .25s var(--ease)}
+.hub-btn:hover{transform:translateY(-2px)}
+.hub-arr{flex:none;width:50px;height:50px;border-radius:13px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(180deg,#34C2B4 0%,#25A99C 55%,#1F968A 100%);box-shadow:0 5px 0 #136E65,0 9px 16px -4px rgba(19,110,101,.65),inset 0 1px 0 rgba(255,255,255,.45);animation:hubPress 2.2s ease-in-out infinite}
+.hub-arr svg{width:22px;height:22px}
+@keyframes hubPress{0%,62%,100%{transform:translateY(0);box-shadow:0 5px 0 #136E65,0 9px 16px -4px rgba(19,110,101,.65),inset 0 1px 0 rgba(255,255,255,.45)}74%{transform:translateY(4px);box-shadow:0 1px 0 #136E65,0 3px 6px -2px rgba(19,110,101,.6),inset 0 1px 0 rgba(255,255,255,.35)}86%{transform:translateY(0)}}
+.hub-btn:active .hub-arr{animation:none;transform:translateY(5px);box-shadow:0 0 0 #136E65}
+.hub-yt{margin-top:22px;display:grid;justify-items:center;text-align:center}
+.hub-yt-ttl{margin:0 0 12px;font:700 16.5px/1.45 var(--sans);color:var(--ink)}
+.hub-yt-ttl>span:last-child{display:block;font-weight:600;font-size:.92em;color:var(--teal-l)}
+.hub .yt-btn{position:relative;display:block;width:100%;max-width:300px;border-radius:12px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.12);box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45);transition:transform .18s ease,box-shadow .18s ease;animation:ytPulse 2.4s ease-out infinite}
+.hub .yt-btn img{display:block;width:100%;height:auto}
+.hub .yt-btn::before{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;z-index:1;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.28),rgba(255,255,255,0));transform:skewX(-18deg);animation:ytShine 3.6s ease-in-out infinite}
+@keyframes ytPulse{0%{box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45),0 0 0 0 rgba(255,0,0,.55)}70%{box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45),0 0 0 16px rgba(255,0,0,0)}100%{box-shadow:0 5px 0 #2a0c0c,0 14px 30px rgba(0,0,0,.45),0 0 0 0 rgba(255,0,0,0)}}
+@keyframes ytShine{0%,55%{left:-60%}85%,100%{left:120%}}
+.hub .yt-btn:hover{transform:translateY(-2px);animation-play-state:paused}
+.hub .yt-btn:active{transform:translateY(4px);box-shadow:0 1px 0 #2a0c0c}
+.hub-video{position:relative;display:block;width:100%;padding:0;border:0;border-radius:18px;overflow:hidden;cursor:pointer;aspect-ratio:16/9;background:#07130F;
+  box-shadow:0 0 0 1px rgba(150,224,214,.28),0 22px 50px -20px rgba(0,0,0,.9);transition:transform .25s var(--ease)}
+.hub-video img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.hub-video:hover{transform:translateY(-3px)}
+.hub-video:hover img{transform:scale(1.04)}
+.hub-play{position:absolute;top:12px;left:12px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.95);animation:nhPulse 2.4s ease-out infinite}
+.hub-play svg{width:22px;height:22px;fill:#821819;margin-left:3px}
+@keyframes nhPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 18px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+.hub-vcap{position:absolute;top:12px;right:12px;padding:6px 12px;border-radius:999px;background:rgba(5,15,22,.78);color:#fff;font:700 13.5px var(--sans);box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+.vbox{padding:0;border:0;background:transparent;width:min(1000px,88vw);max-width:none;overflow:visible}
+.vbox::backdrop{background:rgba(5,15,22,.62);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.vbox-frame{aspect-ratio:16/9;width:100%;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 30px 80px -20px rgba(0,0,0,.85),0 0 0 1px rgba(150,224,214,.3)}
+.vbox-frame iframe{width:100%;height:100%;border:0;display:block}
+.vbox-x{position:absolute;top:-52px;left:0;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#07130F;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.45)}
+.vbox-x svg{width:20px;height:20px}
+@media (max-width:960px){.hub{grid-template-columns:1fr}.hub-video{order:-1}}
+@media (max-width:640px){.hub-btn{font-size:16.5px}.hub .yt-btn{max-width:260px}}
+@media (prefers-reduced-motion:reduce){.hub-arr,.hub .yt-btn,.hub-play{animation:none}.hub .yt-btn::before{display:none}}
+/* sticky mobile CTA */
+.sticky{position:fixed;inset:auto 0 0 0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(7,19,15,.9);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--hair-2);transform:translateY(110%);transition:transform .35s var(--ease);display:none}
+.sticky.on{transform:none}
+.sticky .btn{width:100%}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1080px){.hero-grid{grid-template-columns:1fr}.demo{max-width:560px;width:100%;margin-inline:auto}}
+@media (max-width:960px){
+  .skills-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .quotes{grid-template-columns:1fr}
+  .speakers,.duo,.doors{grid-template-columns:1fr}
+  .formula .wrap{flex-direction:column;gap:6px}
+  .demo{min-height:440px}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .steps,.stats{grid-template-columns:1fr}
+  .stats{gap:12px}
+  .top .btn{display:none}
+  .top .wrap{height:72px;justify-content:center}
+  .plate{gap:12px;padding:8px 14px}.plate .p-lm{height:30px}.plate .p-nv{height:27px}.plate .p-div{height:24px}
+  .sticky{display:block}
+  .cta-row .btn{width:100%}
+  .sp{flex-direction:column;align-items:flex-start}
+  .count div{min-width:64px}
+  footer{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/brand/favicon-192.png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="plate" aria-label="LEGAL MIND">
+      <img class="p-lm" src="/nevo-connector-webinar/assets/lm-logo.webp" alt="LEGAL MIND" width="640" height="122">
+    </div>
+    <a class="btn js-reg" href="https://formy.co.il/forms/vvbynr-lqhylt-legal-mind-hqvnqtvr-shl-nbv-b-claude-21102026-le4ejw" target="_blank" rel="noopener">שריון מקום</a>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>וובינר חי לקהילת LEGAL MIND · ללא עלות</span>
+      <h1 id="h1">הקונקטור של <img class="nvlogo" src="/nevo-connector-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170"> <span class="nw">ב-Claude.</span><br><span class="accent">ככה עובדים איתו נכון.</span></h1>
+      <div class="partner-line"><span>וכחלק משיתוף הפעולה של LEGAL MIND עם נבו</span><span class="plate" aria-hidden="true"><img class="p-lm" src="/nevo-connector-webinar/assets/lm-logo.webp" alt="" width="640" height="122"><span class="p-div"></span><img class="p-nv" src="/nevo-connector-webinar/assets/nevo-logo.webp" alt="" width="360" height="170"></span></div>
+      <p class="lead">וובינר מעשי לחברי הקהילה. נדגים בשידור חי <strong>איך מחברים את הקונקטור ל-Claude</strong>, נסביר איך עובדים איתו נכון כדי לקבל <strong>מקור ולא המצאה</strong>, ניתן טיפים מהשטח, ונשאיר זמן לכל השאלות שלכם.</p>
+      <ul class="when">
+        <li class="tbd" id="when-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>יום רביעי 21.10.2026 · 20:00-21:30</span></li>
+        <li id="when-platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="M16 10l6-3v10l-6-3z"/></svg><span>בזום</span></li>
+        <li id="when-length"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>שעה וחצי, כולל שאלות ותשובות</span></li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn js-reg" href="https://formy.co.il/forms/vvbynr-lqhylt-legal-mind-hqvnqtvr-shl-nbv-b-claude-21102026-le4ejw" target="_blank" rel="noopener">שריון מקום בוובינר <span class="arr" aria-hidden="true">←</span></a>
+        <a class="btn btn-ghost" href="#learn">מה נראה בוובינר</a>
+      </div>
+      <p class="micro" id="micro-hero"><b>נרשמים עכשיו, ומקבלים ראשונים</b> את המועד ואת הקישור לזום.</p>
+    </div>
+
+    <!-- live demo -->
+    <div class="demo" id="demo" data-tool="claude" role="img" aria-label="הדגמה: עורך דין שואל, הקונקטור מחפש בנבו, והתשובה חוזרת עם מקורות. את ההמשך מראים בוובינר.">
+      <div class="demo-bar">
+        <div class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="tabs" aria-hidden="true"><span class="tab" aria-selected="true"><img class="cl-wm" src="/nevo-connector-webinar/assets/claude-wordmark.svg" alt="Claude" width="573" height="125"></span></div>
+      </div>
+      <div class="demo-body" aria-hidden="true">
+        <div class="msg user" id="d-q"><div class="who">עו״ד</div><span id="d-qt"></span><span class="caret" id="d-caret"></span></div>
+        <div class="tool" id="d-tool"><span class="spin"></span><span class="nv"><img src="/nevo-connector-webinar/assets/nevo.webp" alt=""></span><span id="d-toolt">מחפש במאגר נבו · חשבון המשרד</span></div>
+        <div class="msg ai" id="d-a">
+          <div class="who"><img class="av" id="d-av" src="/nevo-connector-webinar/assets/claude-spark.svg" alt=""><span id="d-name" class="nm-claude">Claude</span></div>
+          <div class="lines"><span style="width:96%"></span><span style="width:88%"></span><span style="width:92%"></span><span style="width:60%"></span></div>
+          <div class="cites"><span class="cite">נבו ↗ <i></i></span><span class="cite">נבו ↗ <i></i></span><span class="cite">נבו ↗ <i></i></span></div>
+          <div class="seal" id="d-seal"><span><b>מקור</b>נבו ✓</span></div>
+        </div>
+        <div class="tip" id="d-skill">💡 טיפ מהוובינר: <i></i></div>
+      </div>
+      <div class="lock" id="d-lock"><p>את כל השאר מראים בלייב.</p><a class="btn js-reg" href="https://formy.co.il/forms/vvbynr-lqhylt-legal-mind-hqvnqtvr-shl-nbv-b-claude-21102026-le4ejw" target="_blank" rel="noopener">שריון מקום</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMULA ================= -->
+<div class="formula">
+  <div class="wrap">
+    <p class="nv">הקונקטור מביא את <span>המקורות</span></p>
+    <div class="plus" aria-hidden="true">+</div>
+    <p>הוובינר מלמד <span>איך לעבוד איתם נכון.</span></p>
+  </div>
+</div>
+
+<!-- ================= LEARN (paper) ================= -->
+<section class="paper" id="learn" aria-labelledby="learn-h">
+  <div class="wrap">
+    <p class="kicker">מה נראה בוובינר</p>
+    <h2 id="learn-h">שעה וחצי מעשית, צעד אחר צעד.</h2>
+    <p class="sub">לא נספר לכם מה הכלי יודע לעשות. נעבוד איתו מול העיניים שלכם, ותצאו עם קונקטור מחובר ועם דרך עבודה שאפשר להתחיל בה כבר למחרת.</p>
+    <ol class="steps four">
+      <li class="step rv"><div class="n">01<span class="live">בלייב</span></div><h3>מחברים את הקונקטור</h3><p>נדגים צעד אחר צעד איך מחברים את <img class="nvlogo" src="/nevo-connector-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170"> ל-Claude, לפי סוג המנוי, ואיך בודקים שהחיבור באמת עובד.</p></li>
+      <li class="step rv"><div class="n">02</div><h3>עובדים איתו נכון</h3><p>איך מנסחים שאלה שמחזירה פסק דין עם קישור ולא תשובה כללית, ואיך מאמתים כל אסמכתה מול המקור לפני שהיא נכנסת למסמך.</p></li>
+      <li class="step rv"><div class="n">03<span class="live">בלייב</span></div><h3>טיפים מהשטח</h3><p>מה שלמדנו מעבודה יומיומית עם הקונקטור במשרדים: מה עובד, מה כדאי להימנע ממנו, ואיך חוסכים זמן אמיתי.</p></li>
+      <li class="step rv"><div class="n">04</div><h3>כל השאלות שלכם</h3><p>חלק שלם בוובינר מוקדש לשאלות ותשובות. מביאים את השאלות מהמשרד, ועונים עליהן בשידור חי.</p></li>
+    </ol>
+  </div>
+</section>
+
+
+
+<!-- ================= SPEAKERS ================= -->
+<section style="padding-top:0" aria-labelledby="sp-h">
+  <div class="wrap">
+    <p class="kicker">מי מעביר</p>
+    <h2 id="sp-h">קודם כול עורכי דין.</h2>
+    <p class="sub">שניהם חברים בוועדת הבינה המלאכותית של לשכת עורכי הדין, ומטמיעים בינה מלאכותית במשרדי עורכי דין.</p>
+    <div class="speakers">
+      <div class="sp rv"><img src="/nevo-connector-webinar/assets/asaf.jpg" alt="עו״ד אסף אברמזון" width="320" height="320" loading="lazy">
+        <div><h3>עו״ד אסף אברמזון</h3><div class="role">מייסד שותף ומנכ״ל LEGAL MIND</div><p>מתמחה בהטמעת AI ובבניית תהליכי עבודה חכמים לעולם המשפט.</p></div></div>
+      <div class="sp rv"><img src="/nevo-connector-webinar/assets/roi.jpg" alt="עו״ד רועי נימצוביץ׳" width="320" height="320" loading="lazy">
+        <div><h3>עו״ד רועי נימצוביץ׳</h3><div class="role">מייסד שותף LEGAL MIND</div><p>27 שנים בעולם המשפט, בעסקאות מורכבות, פיננסים וליטיגציה. עובד עם AI למעלה מעשור.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROOF ================= -->
+<section style="padding-top:0" aria-labelledby="pr-h">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat rv"><b class="txt">הדגמה חיה</b><span>חיבור הקונקטור ל-Claude, צעד אחר צעד</span></div>
+      <div class="stat rv"><b class="txt">ועדת הבינה המלאכותית</b><span>של לשכת עורכי הדין, שאסף ורועי חברים בה</span></div>
+      <div class="stat rv"><b class="txt">90 דקות מעשיות</b><span>על המסך, בלייב וללא עלות</span></div>
+    </div>
+    <p class="kicker" style="margin-top:8px">מה אומרים עורכי דין שלמדו איתנו</p>
+    <h2 id="pr-h" class="sr">המלצות של עורכי דין שלמדו עם LEGAL MIND</h2>
+    
+    <div class="wall rv" aria-label="המלצות של עורכי דין"><div class="lane"><div class="track"><figure class="tq"><blockquote>״עבדנו עם אסף על הטמעת בינה מלאכותית במשרד, תוך התאמה מדויקת לאופן החשיבה והעבודה הייחודי שלנו. המטרה שלנו הייתה לאמץ עבודה עם כלים שמשתלבים בדרך שבה אנחנו עובדים, וזה בדיוק מה שהליווי של אסף עוזר לנו להשיג.״</blockquote><figcaption><span><b>עו״ד נמרוד זינגרמן</b><small>שותף, בנאי עזריאל שטרן</small></span></figcaption></figure><figure class="tq"><blockquote>״אסף העביר למשרדנו הדרכה ותהליך של הטמעה מעשית של כלי בינה מלאכותית. עורכי הדין במשרד הגיעו מרקע של כל מיני רמות. אסף העביר את הדברים בגובה העיניים ובסבלנות, רואים שהוא חי ומאוהב בתחום. שולט בכל הניואנסים הקטנים והגדולים. אין שמח ממני שהתחלנו איתו את התהליך שיעזור לנו שנים קדימה.״</blockquote><figcaption><span><b>Adar Zavadski</b><small>ביקורת גוגל</small></span><span class="gsrc" title="ביקורת גוגל"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.1-2 3.2-4.9 3.2-8.2z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.8H1.8v3C3.7 20.4 7.6 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.7c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2v-3H1.8C1 7.9.6 9.6.6 11.5s.4 3.6 1.2 5.2l3.8-3z"/><path fill="#EA4335" d="M12 4.6c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.1 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.3l3.8 3C6.5 6.6 9 4.6 12 4.6z"/></svg></span></figcaption></figure><figure class="tq"><blockquote>״אסף ליווה אותי בהטמעת כלי AI במשרד עורכי הדין שלי, ובראשם Claude ומערכות נוספות. היכולת שלו לתרגם טכנולוגיה מתקדמת לתהליכי עבודה פרקטיים ויעילים יוצאת דופן. בזכות הליווי חסכנו זמן רב, שיפרנו את איכות העבודה והפקנו ערך אמיתי מכלי הבינה המלאכותית.״</blockquote><figcaption><span><b>עו״ד נוי מרינה</b><small>נדל״ן והתחדשות עירונית</small></span></figcaption></figure><figure class="tq"><blockquote>״עשיתי עם אסף ליווי אישי, והפעם עבדנו על Claude בתוך Word עצמו. יצרנו כרטיסי הצעה, וכל הערה אני מחליטה אם להכניס לטיוטה או לא, וההערות נכנסו בצורה כירורגית ומדויקת. בקיצור, תענוג. ממליצה בחום.״</blockquote><figcaption><span><b>עו״ד</b><small>ליווי אישי</small></span></figcaption></figure><figure class="tq"><blockquote>״נרשמתי קודם להדרכה דומה לעורכי דין מכל התחומים, ואז נתקלתי בהדרכה שלך ונרשמתי כי הרגיש הרבה יותר מדויק. הגיים-צ׳יינג׳ר האמיתי הוא שאתה עורך דין מהתחום, זה משנה את כל התמונה. שאלת, התעניינת, עזרת, והכול בסבלנות, בשפה ברורה ונגישה.״</blockquote><figcaption><span><b>עו״ד</b><small>מקרקעין, בוגרת הדרכה</small></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״עבדנו עם אסף על הטמעת בינה מלאכותית במשרד, תוך התאמה מדויקת לאופן החשיבה והעבודה הייחודי שלנו. המטרה שלנו הייתה לאמץ עבודה עם כלים שמשתלבים בדרך שבה אנחנו עובדים, וזה בדיוק מה שהליווי של אסף עוזר לנו להשיג.״</blockquote><figcaption><span><b>עו״ד נמרוד זינגרמן</b><small>שותף, בנאי עזריאל שטרן</small></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״אסף העביר למשרדנו הדרכה ותהליך של הטמעה מעשית של כלי בינה מלאכותית. עורכי הדין במשרד הגיעו מרקע של כל מיני רמות. אסף העביר את הדברים בגובה העיניים ובסבלנות, רואים שהוא חי ומאוהב בתחום. שולט בכל הניואנסים הקטנים והגדולים. אין שמח ממני שהתחלנו איתו את התהליך שיעזור לנו שנים קדימה.״</blockquote><figcaption><span><b>Adar Zavadski</b><small>ביקורת גוגל</small></span><span class="gsrc" title="ביקורת גוגל"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.1-2 3.2-4.9 3.2-8.2z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.8H1.8v3C3.7 20.4 7.6 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.7c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2v-3H1.8C1 7.9.6 9.6.6 11.5s.4 3.6 1.2 5.2l3.8-3z"/><path fill="#EA4335" d="M12 4.6c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.1 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.3l3.8 3C6.5 6.6 9 4.6 12 4.6z"/></svg></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״אסף ליווה אותי בהטמעת כלי AI במשרד עורכי הדין שלי, ובראשם Claude ומערכות נוספות. היכולת שלו לתרגם טכנולוגיה מתקדמת לתהליכי עבודה פרקטיים ויעילים יוצאת דופן. בזכות הליווי חסכנו זמן רב, שיפרנו את איכות העבודה והפקנו ערך אמיתי מכלי הבינה המלאכותית.״</blockquote><figcaption><span><b>עו״ד נוי מרינה</b><small>נדל״ן והתחדשות עירונית</small></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״עשיתי עם אסף ליווי אישי, והפעם עבדנו על Claude בתוך Word עצמו. יצרנו כרטיסי הצעה, וכל הערה אני מחליטה אם להכניס לטיוטה או לא, וההערות נכנסו בצורה כירורגית ומדויקת. בקיצור, תענוג. ממליצה בחום.״</blockquote><figcaption><span><b>עו״ד</b><small>ליווי אישי</small></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״נרשמתי קודם להדרכה דומה לעורכי דין מכל התחומים, ואז נתקלתי בהדרכה שלך ונרשמתי כי הרגיש הרבה יותר מדויק. הגיים-צ׳יינג׳ר האמיתי הוא שאתה עורך דין מהתחום, זה משנה את כל התמונה. שאלת, התעניינת, עזרת, והכול בסבלנות, בשפה ברורה ונגישה.״</blockquote><figcaption><span><b>עו״ד</b><small>מקרקעין, בוגרת הדרכה</small></span></figcaption></figure></div></div><div class="lane rev"><div class="track"><figure class="tq"><blockquote>״אסף, איזה כיף שיש מי שלוקח את כל הידע הזה ומגיש אותו בצורה כל כך נגישה ומקצועית, תוך כדי אווירה מצוינת. למדנו ממך המון וכבר רואים את ההשפעה בעבודה היומיומית! ומבחינתנו זו רק ההתחלה של שיתוף פעולה פורה, הנגשת המידע לכל המחלקות במשרד, המשך הנחיה של בניית סקילים ועוד. תודה רבה לאסף האלוף.״</blockquote><figcaption><span><b>מיכל בכרך</b><small>ביקורת גוגל</small></span><span class="gsrc" title="ביקורת גוגל"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.1-2 3.2-4.9 3.2-8.2z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.8H1.8v3C3.7 20.4 7.6 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.7c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2v-3H1.8C1 7.9.6 9.6.6 11.5s.4 3.6 1.2 5.2l3.8-3z"/><path fill="#EA4335" d="M12 4.6c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.1 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.3l3.8 3C6.5 6.6 9 4.6 12 4.6z"/></svg></span></figcaption></figure><figure class="tq"><blockquote>״אסף ליווה אותי בתחום ה-AI למקרקעין וחשף אותי לכלים חדשניים ולדרכים מעשיות לשלב בינה מלאכותית בעבודה היומיומית. הוא הסביר כל נושא בסבלנות, בצורה ברורה, נגישה ומקצועית, והפך תחום מורכב למשהו שניתן להבין וליישם בפועל.״</blockquote><figcaption><span><b>עו״ד נורית ליפשיץ</b><small>מקרקעין, ליווי אישי</small></span></figcaption></figure><figure class="tq"><blockquote>״וובינר מעולה, מעניין ופרקטי, הכי פרקטי שיש. רועי ואסף מנגישים ידע שיהיה נחוץ לכולם בקרוב. תודה, ומחכים להמשך.״</blockquote><figcaption><span><b>עו״ד</b><small>משתתף וובינר LEGAL MIND</small></span></figcaption></figure><figure class="tq"><blockquote>״אסף הצליח לקחת טכנופובית כמוני ולהטמיע אצלי כלים שהולכים לשנות לי לגמרי את ההתנהלות היומיומית. סבלני מאוד, מקצועי מקסימום, הכי טוב שפגשתי בהוראת בינה מלאכותית. ממליצה בחום.״</blockquote><figcaption><span><b>עו״ד</b><small>ליווי אישי</small></span></figcaption></figure><figure class="tq"><blockquote>״למדתי אצל אסף קורס פרטי בנושא בינה מלאכותית, וזו הייתה חוויה מעולה. הוא יודע להנגיש את החומר בצורה ברורה ומעשית, עם דוגמאות רלוונטיות וממוקדות לעולם המשפטי. ממליץ בלי היסוס.״</blockquote><figcaption><span><b>עו״ד</b><small>קורס פרטי AI</small></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״אסף, איזה כיף שיש מי שלוקח את כל הידע הזה ומגיש אותו בצורה כל כך נגישה ומקצועית, תוך כדי אווירה מצוינת. למדנו ממך המון וכבר רואים את ההשפעה בעבודה היומיומית! ומבחינתנו זו רק ההתחלה של שיתוף פעולה פורה, הנגשת המידע לכל המחלקות במשרד, המשך הנחיה של בניית סקילים ועוד. תודה רבה לאסף האלוף.״</blockquote><figcaption><span><b>מיכל בכרך</b><small>ביקורת גוגל</small></span><span class="gsrc" title="ביקורת גוגל"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.1-2 3.2-4.9 3.2-8.2z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.8H1.8v3C3.7 20.4 7.6 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.7c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2v-3H1.8C1 7.9.6 9.6.6 11.5s.4 3.6 1.2 5.2l3.8-3z"/><path fill="#EA4335" d="M12 4.6c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.1 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.3l3.8 3C6.5 6.6 9 4.6 12 4.6z"/></svg></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״אסף ליווה אותי בתחום ה-AI למקרקעין וחשף אותי לכלים חדשניים ולדרכים מעשיות לשלב בינה מלאכותית בעבודה היומיומית. הוא הסביר כל נושא בסבלנות, בצורה ברורה, נגישה ומקצועית, והפך תחום מורכב למשהו שניתן להבין וליישם בפועל.״</blockquote><figcaption><span><b>עו״ד נורית ליפשיץ</b><small>מקרקעין, ליווי אישי</small></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״וובינר מעולה, מעניין ופרקטי, הכי פרקטי שיש. רועי ואסף מנגישים ידע שיהיה נחוץ לכולם בקרוב. תודה, ומחכים להמשך.״</blockquote><figcaption><span><b>עו״ד</b><small>משתתף וובינר LEGAL MIND</small></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״אסף הצליח לקחת טכנופובית כמוני ולהטמיע אצלי כלים שהולכים לשנות לי לגמרי את ההתנהלות היומיומית. סבלני מאוד, מקצועי מקסימום, הכי טוב שפגשתי בהוראת בינה מלאכותית. ממליצה בחום.״</blockquote><figcaption><span><b>עו״ד</b><small>ליווי אישי</small></span></figcaption></figure><figure class="tq" aria-hidden="true"><blockquote>״למדתי אצל אסף קורס פרטי בנושא בינה מלאכותית, וזו הייתה חוויה מעולה. הוא יודע להנגיש את החומר בצורה ברורה ומעשית, עם דוגמאות רלוונטיות וממוקדות לעולם המשפטי. ממליץ בלי היסוס.״</blockquote><figcaption><span><b>עו״ד</b><small>קורס פרטי AI</small></span></figcaption></figure></div></div></div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section style="padding-top:0" aria-labelledby="faq-h">
+  <div class="wrap faq">
+    <p class="kicker">לפני שנרשמים</p>
+    <h2 id="faq-h">שאלות קצרות, תשובות קצרות.</h2>
+    <details name="faq"><summary>כמה זה עולה?</summary><p>כלום. הוובינר פתוח וללא עלות לעורכי דין.</p></details>
+    <details name="faq"><summary>צריך להבין בטכנולוגיה?</summary><p>צריך ידע בסיסי בעבודה עם Claude: לפתוח שיחה, לשאול שאלה ולקרוא תשובה. מעבר לזה, הוובינר בנוי לעורכי דין, בשפה של עורכי דין ובלי מונחים טכניים.</p></details>
+    <details name="faq"><summary>צריך מנוי לנבו או ל-Claude?</summary><p>כדי לצפות, לא. כדי לעבוד עם הקונקטור אחר כך, צריך מנוי בתשלום ל-Claude, והחיפוש מתבצע בחשבון נבו של המשרד. בוובינר נסביר איך מחברים לפי סוג המנוי.</p></details>
+    <details name="faq"><summary>מתי זה ואיפה?</summary><p id="faq-when">בזום. המועד יפורסם בקרוב, ונרשמים יקבלו אותו ראשונים יחד עם הקישור לזום ותזכורת לפני.</p></details>
+    <details name="faq"><summary>יהיה זמן לשאלות?</summary><p>כן. חלק שלם בוובינר מוקדש לשאלות ותשובות, כדי שתצאו עם תשובות לשאלות של המשרד שלכם.</p></details>
+  </div>
+</section>
+
+<!-- ================= REGISTER ================= -->
+<section class="reg" id="register" aria-labelledby="reg-h">
+  <div class="wrap">
+    <div class="reg-card rv">
+      <p class="kicker">הרשמה</p>
+      <h2 id="reg-h">שריון מקום. שעה וחצי שישנו איך אתם עובדים עם <img class="nvlogo" src="/nevo-connector-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170"></h2>
+      <p class="sub" id="reg-sub">המועד ייקבע בקרוב. נרשמים עכשיו מקבלים אותו ראשונים, עם הקישור לזום ותזכורת לפני שמתחילים.</p>
+      <div class="count" id="count" hidden aria-live="off">
+        <div><b id="c-d">0</b><span>ימים</span></div><div><b id="c-h">0</b><span>שעות</span></div><div><b id="c-m">0</b><span>דקות</span></div>
+      </div>
+      <div class="form-slot" id="form-slot"></div>
+      <a class="btn" id="reg-btn" href="https://formy.co.il/forms/vvbynr-lqhylt-legal-mind-hqvnqtvr-shl-nbv-b-claude-21102026-le4ejw" target="_blank" rel="noopener">שריון מקום בוובינר <span class="arr" aria-hidden="true">←</span></a>
+      <p class="micro">ללא עלות · פחות מדקה · אפשר לבטל בכל רגע</p>
+      <p class="privacy">הפרטים נשמרים אצל א.ר. ליגל מיינד בע״מ וישמשו לשליחת פרטי הוובינר והתזכורות. ניתן לעיין בפרטים, לתקנם או למחקם, כמפורט ב<a href="https://www.legalmind.co.il/privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= MORE (video, Nevo page, YouTube) ================= -->
+<section class="more" id="more" aria-labelledby="more-h">
+  <div class="wrap">
+    <div class="hub rv">
+      <div class="hub-body">
+        <p class="kicker">עד שניפגש בוובינר</p>
+        <h2 id="more-h">רוצים להתחיל כבר עכשיו?</h2>
+        <p class="hub-text">צפו בסרטון התדמית, היכנסו לדף שמרכז את כל המידע על הקונקטור של <img class="nvlogo" src="/nevo-connector-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170">, או התחילו בסדרת סרטוני ההדרכה שלנו ביוטיוב.</p>
+        <a class="hub-btn" href="/nevo/">
+          <span>לכל המידע על הקונקטור של נבו</span>
+          <span class="hub-arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span>
+        </a>
+        <div class="hub-yt">
+          <p class="hub-yt-ttl">לערוץ היוטיוב של <span dir="ltr">Legal Mind</span>: סרטוני ההדרכה של <span dir="ltr">Legal Mind</span> ונבו <span>בין השאר גם על השימוש בקונקטור של נבו</span></p>
+          <a class="yt-btn" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener" aria-label="לערוץ היוטיוב של Legal Mind (נפתח בלשונית חדשה)"><img src="/nevo/youtube-button.webp" width="900" height="274" alt="YouTube" loading="lazy" decoding="async"></a>
+        </div>
+      </div>
+      <button class="hub-video" type="button" data-yt="ToeMGVGqFaE" aria-label="צפייה בסרטון: מהיום אפשר לעבוד אחרת">
+        <img src="/nevo/promo-cover.webp" width="1280" height="720" alt="" loading="lazy" decoding="async">
+        <span class="hub-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="hub-vcap">צפו בסרטון</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMMUNITY ================= -->
+<section class="comm" id="community" aria-labelledby="comm-h">
+  <div class="wrap">
+    <div class="chead rv"><p class="kicker">הקהילה והתכנים</p><h2 id="comm-h">להישאר בחזית <span class="nw">ה-AI</span> בעולם המשפט</h2></div>
+    <div class="doors">
+      <article class="door dwa rv">
+        <div class="dtop"><span class="dic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span><h3>הקהילה</h3><span class="cnum"><i></i>למעלה מ-2,000 עורכי דין כבר בקהילה</span></div>
+        <p>קהילת <strong>LEGAL MIND</strong> היא המקום לעורכי דין שרוצים להישאר בחזית הבינה המלאכותית. מסננים את הרעש ומביאים עדכונים, מדריכים וכלים פרקטיים, לצד דיונים פתוחים ושיתוף ידע מהשטח.</p>
+        <a class="dbtn bwa" href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>הצטרפות לקהילה בוואטסאפ</span></a>
+      </article>
+      <article class="door dsite rv">
+        <div class="dtop"><span class="dic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span><h3>האתר של <span class="nw">LEGAL MIND</span></h3></div>
+        <p>באתר <strong>LEGAL MIND</strong> מחכים לכם וובינרים, מדריכים ותכנים מקצועיים, כולם פתוחים וללא עלות. כי ידע טוב צריך להגיע לכל מי שעוקב אחרינו.</p>
+        <a class="dbtn bsite" href="https://www.legalmind.co.il/" target="_blank" rel="noopener"><span>לאתר של LEGAL MIND</span><span aria-hidden="true">←</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="plate"><img class="p-lm" src="/nevo-connector-webinar/assets/lm-logo.webp" alt="LEGAL MIND" width="640" height="122"></div>
+    <p class="tag">קודם בינה משפטית. אחר כך מלאכותית.</p>
+    <div class="social">
+      <a href="https://www.linkedin.com/company/legal-mind-ai/" target="_blank" rel="noopener" aria-label="LEGAL MIND בלינקדאין"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      <a href="https://www.facebook.com/LegalMindAI" target="_blank" rel="noopener" aria-label="LEGAL MIND בפייסבוק"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
+    </div>
+    <nav aria-label="קישורים משפטיים"><a href="https://www.legalmind.co.il/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a><span aria-hidden="true">·</span><a href="https://www.legalmind.co.il/accessibility.html" target="_blank" rel="noopener">הצהרת נגישות</a></nav>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn js-reg" href="https://formy.co.il/forms/vvbynr-lqhylt-legal-mind-hqvnqtvr-shl-nbv-b-claude-21102026-le4ejw" target="_blank" rel="noopener">שריון מקום בוובינר · ללא עלות</a></div>
+
+<script>
+/* =========================================================
+   הגדרות הוובינר: כאן מעדכנים כשיש מועד וקישור.
+   date:      "2026-11-05T19:00:00+02:00"  (או null עד שנקבע)
+   dateLabel: איך התאריך יוצג, למשל "יום ה׳, 5.11 · 19:00"
+   formUrl:   קישור הטופס בפורמי
+   embed:     true = הטופס מוטמע בדף, false = כפתור שפותח את הטופס
+   ========================================================= */
+const WEBINAR = {
+  date: "2026-10-21T20:00:00+03:00",
+  dateLabel: "יום רביעי 21.10.2026 · 20:00-21:30",
+  platform: "בזום",
+  length: "שעה וחצי, כולל שאלות ותשובות",
+  formUrl: "https://formy.co.il/forms/vvbynr-lqhylt-legal-mind-hqvnqtvr-shl-nbv-b-claude-21102026-le4ejw",   /* קישור הטופס הציבורי בפורמי */
+  embed: false   /* האתר חוסם הטמעה של אתרים חיצוניים, לכן כפתור שפותח את הטופס */
+};
+
+(function(){
+  const $ = s => document.querySelector(s);
+
+  /* ---- date / countdown ---- */
+  if (WEBINAR.date && WEBINAR.dateLabel) {
+    const li = $('#when-date'); li.classList.remove('tbd'); li.querySelector('span').textContent = WEBINAR.dateLabel;
+    $('#micro-hero').innerHTML = '<b>ללא עלות</b> · הקישור לזום ותזכורת יישלחו אחרי ההרשמה.';
+    $('#reg-sub').textContent = WEBINAR.dateLabel + ' ' + WEBINAR.platform + '. הקישור לזום ותזכורת יישלחו אחרי ההרשמה.';
+    $('#faq-when').textContent = WEBINAR.dateLabel + ', ' + WEBINAR.platform + '. אחרי ההרשמה יישלחו הקישור ותזכורת לפני שמתחילים.';
+    const end = new Date(WEBINAR.date).getTime(), cnt = $('#count');
+    const tick = () => { const ms = end - Date.now(); if (ms <= 0) { cnt.hidden = true; return; }
+      cnt.hidden = false; $('#c-d').textContent = Math.floor(ms/864e5); $('#c-h').textContent = Math.floor(ms/36e5)%24; $('#c-m').textContent = Math.floor(ms/6e4)%60; };
+    tick(); setInterval(tick, 30000);
+  }
+  $('#when-platform span').textContent = WEBINAR.platform;
+  $('#when-length span').textContent = WEBINAR.length;
+
+  /* ---- registration: טופס פורמי מוטמע פעם אחת, כל הכפתורים גוללים אליו ---- */
+  const btn = $('#reg-btn'), slot = $('#form-slot');
+  if (WEBINAR.formUrl && WEBINAR.embed) {
+    const f = document.createElement('iframe');
+    f.src = WEBINAR.formUrl + location.search;  /* מעביר UTM מהקישור אל הטופס */
+    f.title = 'טופס הרשמה לוובינר'; f.loading = 'lazy';
+    slot.appendChild(f); btn.hidden = true;
+  } else if (WEBINAR.formUrl) {
+    btn.href = WEBINAR.formUrl + location.search;
+  } else {
+    btn.hidden = true;
+    slot.innerHTML = '<div class="form-ph"><b>כאן יוטמע טופס ההרשמה מפורמי</b><span>שם · אימייל · אישור מדיניות פרטיות</span></div>';
+  }
+
+  /* כל כפתורי ההרשמה בדף פותחים את טופס פורמי */
+  if (WEBINAR.formUrl) document.querySelectorAll('.js-reg').forEach(el => { el.href = WEBINAR.formUrl + location.search; el.target = '_blank'; el.rel = 'noopener'; });
+
+  /* ---- שאלות נפוצות: רק שאלה אחת פתוחה בכל רגע ---- */
+  const faqs = document.querySelectorAll('.faq details');
+  faqs.forEach(d => d.addEventListener('toggle', () => { if (d.open) faqs.forEach(o => { if (o !== d) o.open = false; }); }));
+
+  /* ---- reveal on scroll ---- */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll('.rv').forEach((el,i) => { el.style.transitionDelay = (i%3)*80 + 'ms'; io.observe(el); });
+
+  /* ---- sticky mobile CTA ---- */
+  const sticky = $('#sticky'), hero = $('.hero'), reg = $('#register');
+  let heroOut = false, regIn = false;
+  const upd = () => sticky.classList.toggle('on', heroOut && !regIn);
+  new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; upd(); }).observe(hero);
+  const vis = new Map();
+  const regObs = new IntersectionObserver(es => { es.forEach(e => vis.set(e.target, e.isIntersecting)); regIn = [...vis.values()].some(Boolean); upd(); });
+  [reg, $('#more'), $('#community'), document.querySelector('footer')].forEach(el => regObs.observe(el));
+
+  /* ---- demo ---- */
+  const demo = $('#demo');
+  const Q = {
+    claude: 'תמצא לי בנבו את הפסיקה העדכנית שמבססת את הטענה המרכזית שלנו, עם קישור לכל פסק דין.',
+    gpt:    'תמצא לי בנבו את הפסיקה העדכנית שמבססת את הטענה המרכזית שלנו, עם קישור לכל פסק דין.'
+  };
+  const els = ['#d-q','#d-tool','#d-a','#d-skill','#d-file','#d-seal','#d-lock'].map(s => $(s) || document.createElement('i'));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let run = 0;
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  function setTool(t){
+    demo.dataset.tool = t;
+    document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', b.dataset.t === t));
+    $('#d-av').src = t === 'gpt' ? '/nevo-connector-webinar/assets/openai-blossom.svg' : '/nevo-connector-webinar/assets/claude-spark.svg';
+    $('#d-name').textContent = t === 'gpt' ? 'ChatGPT' : 'Claude';
+    $('#d-name').className = t === 'gpt' ? 'nm-gpt' : 'nm-claude';
+  }
+  function showAll(){ els.forEach(e => e.classList.add('on')); $('#d-tool').classList.add('done'); $('#d-qt').textContent = Q[demo.dataset.tool]; $('#d-caret').style.display='none'; $('#d-toolt').textContent = 'נמצאו מקורות רלוונטיים בנבו'; }
+  async function play(){
+    const id = ++run, alive = () => id === run;
+    els.forEach(e => e.classList.remove('on')); $('#d-tool').classList.remove('done');
+    $('#d-qt').textContent = ''; $('#d-caret').style.display = ''; $('#d-toolt').textContent = 'מחפש במאגר נבו · חשבון המשרד';
+    if (reduce) { showAll(); return; }
+    await wait(500); if(!alive()) return;
+    els[0].classList.add('on');
+    const q = Q[demo.dataset.tool];
+    for (let i = 1; i <= q.length; i++) { if(!alive()) return; $('#d-qt').textContent = q.slice(0,i); await wait(28); }
+    $('#d-caret').style.display = 'none';
+    await wait(450); if(!alive()) return; els[1].classList.add('on');
+    await wait(1700); if(!alive()) return; $('#d-tool').classList.add('done'); $('#d-toolt').textContent = 'נמצאו מקורות רלוונטיים בנבו';
+    await wait(400); if(!alive()) return; els[2].classList.add('on');
+    await wait(900); if(!alive()) return; els[5].classList.add('on');
+    await wait(1300); if(!alive()) return; els[3].classList.add('on');
+    await wait(1100); if(!alive()) return; els[4].classList.add('on');
+    await wait(1100); if(!alive()) return; els[6].classList.add('on');
+    await wait(6000); if(!alive()) return;
+    play();
+  }
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { setTool(b.dataset.t); play(); }));
+  const dio = new IntersectionObserver(([e]) => { if (e.isIntersecting) { play(); dio.disconnect(); } }, {threshold:.3});
+  dio.observe(demo);
+})();
+</script>
+
+<dialog class="vbox" id="vbox" aria-label="סרטון התדמית של Legal Mind ונבו">
+  <button class="vbox-x" type="button" aria-label="סגירת הסרטון"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <div class="vbox-frame"></div>
+</dialog>
+<script>
+(function(){
+  var d=document.getElementById('vbox'); if(!d||!d.showModal) return;
+  var box=d.querySelector('.vbox-frame');
+  function stop(){ box.innerHTML=''; }
+  function close(){ stop(); if(d.open) d.close(); }
+  d.addEventListener('close',stop); d.addEventListener('cancel',stop);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && d.open) close(); });
+  d.addEventListener('click',function(e){ if(e.target===d) close(); });
+  d.querySelector('.vbox-x').addEventListener('click',close);
+  document.querySelectorAll('.hub-video').forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+b.getAttribute('data-yt')+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      f.title='סרטון התדמית של Legal Mind ונבו'; f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen=true; f.referrerPolicy='strict-origin-when-cross-origin';
+      box.innerHTML=''; box.appendChild(f); d.showModal();
+    });
+  });
+})();
+</script>
+</body>
+</html>
