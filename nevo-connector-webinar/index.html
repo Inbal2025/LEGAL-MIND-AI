@@ -473,7 +473,6 @@ footer{border-top:1px solid var(--hair);padding-block:44px calc(40px + env(safe-
       <ul class="when">
         <li class="tbd" id="when-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>יום רביעי 21.10.2026 · 20:30</span></li>
         <li id="when-platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="M16 10l6-3v10l-6-3z"/></svg><span>בזום</span></li>
-        <li id="when-length"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>שעה וחצי, כולל שאלות ותשובות</span></li>
       </ul>
       <div class="cta-row">
         <a class="btn js-reg" href="https://formy.co.il/forms/vvbynr-lqhylt-legal-mind-hqvnqtvr-shl-nbv-b-claude-21102026-le4ejw" target="_blank" rel="noopener">שריון מקום בוובינר <span class="arr" aria-hidden="true">←</span></a>
@@ -544,7 +543,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px calc(40px + env(safe-
     <div class="stats">
       <div class="stat rv"><b class="txt">הדגמה חיה</b><span>חיבור הקונקטור ל-Claude, צעד אחר צעד</span></div>
       <div class="stat rv"><b class="txt">ועדת הבינה המלאכותית</b><span>של לשכת עורכי הדין, שאסף ורועי חברים בה</span></div>
-      <div class="stat rv"><b class="txt">90 דקות מעשיות</b><span>על המסך, בלייב וללא עלות</span></div>
+      <div class="stat rv"><b class="txt">עבודה מעשית</b><span>על המסך, בלייב וללא עלות</span></div>
     </div>
     <p class="kicker" style="margin-top:8px">מה אומרים עורכי דין שלמדו איתנו</p>
     <h2 id="pr-h" class="sr">המלצות של עורכי דין שלמדו עם LEGAL MIND</h2>
@@ -559,7 +558,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px calc(40px + env(safe-
   <div class="wrap">
     <div class="reg-card rv">
       <p class="kicker">הרשמה</p>
-      <h2 id="reg-h">שריון מקום. שעה וחצי שישנו איך אתם עובדים עם <img class="nvlogo" src="/nevo-connector-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170"></h2>
+      <h2 id="reg-h">שריון מקום. ערב אחד שישנה איך אתם עובדים עם <img class="nvlogo" src="/nevo-connector-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170"></h2>
       <p class="sub" id="reg-sub">המועד ייקבע בקרוב. נרשמים עכשיו מקבלים אותו ראשונים, עם הקישור לזום ותזכורת לפני שמתחילים.</p>
       <div class="count" id="count" hidden aria-live="off">
         <div><b id="c-d">0</b><span>ימים</span></div><div><b id="c-h">0</b><span>שעות</span></div><div><b id="c-m">0</b><span>דקות</span></div>
@@ -651,7 +650,6 @@ const WEBINAR = {
   date: "2026-10-21T20:30:00+03:00",
   dateLabel: "יום רביעי 21.10.2026 · 20:30",
   platform: "בזום",
-  length: "שעה וחצי, כולל שאלות ותשובות",
   formUrl: "https://formy.co.il/forms/vvbynr-lqhylt-legal-mind-hqvnqtvr-shl-nbv-b-claude-21102026-le4ejw",   /* קישור הטופס הציבורי בפורמי */
   embed: false   /* האתר חוסם הטמעה של אתרים חיצוניים, לכן כפתור שפותח את הטופס */
 };
@@ -670,7 +668,6 @@ const WEBINAR = {
     tick(); setInterval(tick, 30000);
   }
   $('#when-platform span').textContent = WEBINAR.platform;
-  $('#when-length span').textContent = WEBINAR.length;
 
   /* ---- registration: טופס פורמי מוטמע פעם אחת, כל הכפתורים גוללים אליו ---- */
   const btn = $('#reg-btn'), slot = $('#form-slot');
