@@ -3,7 +3,7 @@
    בלי מזהה, הקובץ לא עושה כלום, ולכן אפשר לפרסם אותו לפני שהפיקסל קיים.
    דף שרוצה לשלוח אירוע המרה מסמן אותו ב-<html data-lm-event="Lead">. */
 (function () {
-  var PIXEL_ID = "";   /* <-- מזהה הפיקסל ממטא (15-16 ספרות) */
+  var PIXEL_ID = "2234362747126278";   /* Legal Mind - legalmind.co.il (נוצר 18.10.2026 בחשבון המודעות של צחי) */
   if (!PIXEL_ID) return;
 
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
