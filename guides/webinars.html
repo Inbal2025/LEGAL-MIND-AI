@@ -130,10 +130,52 @@
   .wcard-date .day { display: block; font-size: 22px; font-weight: 700; line-height: 1; }
   .wcard-date .month { display: block; font-size: 11px; font-weight: 700; margin-top: 4px; letter-spacing: .03em; }
   .wcard-body { flex: 1 1 auto; min-width: 0; }
+  .wthumb {
+    position: relative; display: block; width: 75%; margin: 0 0 14px; padding: 0;
+    border: 0; background: none; cursor: pointer; border-radius: 8px; overflow: hidden;
+  }
   .wcard-thumb {
     display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
-    border-radius: 8px; margin-bottom: 14px; border: 1px solid var(--line);
+    border-radius: 8px; border: 1px solid var(--line); transition: filter .2s ease;
   }
+  .wthumb:hover .wcard-thumb { filter: brightness(.85); }
+  .wthumb:focus-visible { outline: 3px solid var(--brand-bright); outline-offset: 3px; }
+  .film-play {
+    position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px;
+    border-radius: 50%; background: rgba(10,95,94,.92); display: grid; place-items: center;
+    box-shadow: 0 0 0 6px rgba(255,255,255,.3), 0 10px 26px rgba(0,0,0,.35);
+    transition: transform .2s ease, background .2s ease;
+  }
+  .film-play svg { width: 24px; height: 24px; margin-left: 4px; fill: #fff; }
+  .wthumb:hover .film-play { transform: scale(1.08); background: var(--brand); }
+
+  .vbox { padding: 0; border: 0; background: transparent; width: min(70vw, (100vh - 150px) * 16 / 9); max-width: none; overflow: visible; }
+  .vbox-x.vbox-fs { left: 56px; }
+  .vbox-fs .ico-out { display: none; }
+  .vbox-in { position: relative; }
+  .vbox.big { width: 100vw; height: 100vh; max-height: 100vh; margin: 0; }
+  .vbox-in:fullscreen, .vbox.big .vbox-in { width: 100vw; height: 100vh; max-height: none; margin: 0; background: #000; }
+  .vbox-in:fullscreen .vbox-frame, .vbox.big .vbox-in .vbox-frame { width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+  .vbox-in:fullscreen .vbox-x, .vbox.big .vbox-in .vbox-x { top: 16px; left: 16px; z-index: 2; opacity: .85; }
+  .vbox-in:fullscreen .vbox-x.vbox-fs, .vbox.big .vbox-in .vbox-x.vbox-fs { left: 72px; }
+  .vbox-in:fullscreen .vbox-fs .ico-in, .vbox.big .vbox-in .vbox-fs .ico-in { display: none; }
+  .vbox-in:fullscreen .vbox-fs .ico-out, .vbox.big .vbox-in .vbox-fs .ico-out { display: block; }
+  .vbox::backdrop { background: rgba(5,15,22,.62); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+  .vbox-frame { aspect-ratio: 16 / 9; width: 100%; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 30px 80px -20px rgba(0,0,0,.85), 0 0 0 1px rgba(168,217,213,.3); }
+  .vbox-frame iframe { width: 100%; height: 100%; border: 0; display: block; background: #000; }
+  .vbox-x { position: absolute; top: -52px; left: 0; width: 44px; height: 44px; border-radius: 50%; border: 0; background: #fff; color: #0B1C28; display: grid; place-items: center; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.45); }
+  .vbox-x svg { width: 20px; height: 20px; }
+  .vbox-x:focus-visible { outline: 3px solid var(--brand-bright); outline-offset: 3px; }
+
+  .hero p.hero-brand { margin-top: 14px; font-weight: 700; color: #fff; }
+  .hero p.hero-tag { margin-top: 18px; font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 19px; color: var(--brand-bright); }
+  .hero-link {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 18px;
+    font-size: 14.5px; font-weight: 700; color: #fff; text-decoration: none;
+    border: 1px solid rgba(63,191,187,.55); background: rgba(63,191,187,.12);
+    border-radius: 99px; padding: 8px 18px; transition: background .15s ease;
+  }
+  .hero-link:hover { background: rgba(63,191,187,.28); }
   .wcard-kind { font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
   .wcard h2 { font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 19px; line-height: 1.35; margin: 0 0 8px; }
   .wcard p { font-size: 14.4px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 14px; }
@@ -169,7 +211,8 @@
     .wcard-date .day, .wcard-date .month { display: inline; }
     .wcard-date .month { margin-inline-start: 6px; }
     .wcard-body { width: 100%; }
-    .wcard-thumb { max-width: 100%; }
+    .wthumb { width: 100%; }
+    .vbox { width: 94vw; }
   }
 
   :root[data-theme="dark"] {
@@ -193,7 +236,10 @@
   <div class="hero-inner">
     <span class="hero-eyebrow"><span class="dot"></span>הקלטות שידור חי</span>
     <h1>וובינרים</h1>
-    <p>הקלטות מלאות של הוובינרים שקיימנו - כלי <bdi dir="ltr">AI</bdi> מעשיים, הדגמות חיות ואורחים מהתעשייה. לחיצה על "צפייה בהקלטה" פותחת את הסרטון ב-<bdi dir="ltr">Google Drive</bdi>.</p>
+    <p>הקלטות מלאות של הוובינרים של <bdi dir="ltr">Legal Mind</bdi>: כלי <bdi dir="ltr">AI</bdi> מעשיים, הדגמות חיות ואורחים מהתעשייה. לחיצה על הוובינר פותחת את ההקלטה כאן בעמוד.</p>
+    <p class="hero-brand">מה שאתם רואים כאן, אנחנו מטמיעים בפועל: <bdi dir="ltr">Legal Mind</bdi> היא חברה להטמעת בינה מלאכותית במשרדי עורכי דין, בהובלת עו"ד אסף אברמזון ועו"ד רועי נימצוביץ'.</p>
+    <p class="hero-tag">קודם בינה משפטית. אחר כך מלאכותית. וזה כל ההבדל.</p>
+    <a class="hero-link" href="/#about">להכיר את <bdi dir="ltr">Legal Mind</bdi> ◀</a>
   </div>
 </div>
 
@@ -203,13 +249,13 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">11</span><span class="month">אפר׳</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/linkedin.jpg" alt="לינקדאין לעורכי דין" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1Zuvaq81gyzZU0UwdLTX86SkBrCaiIqdu" aria-label="ניגון ההקלטה: לינקדאין לעורכי דין"><img class="wcard-thumb" src="webinar-imgs/linkedin.jpg" alt="לינקדאין לעורכי דין" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · שיווק</div>
       <h2>לינקדאין לעורכי דין</h2>
       <p>בניית נוכחות מקצועית בלינקדאין - מסדרת שיווק ו-<bdi dir="ltr">AI</bdi> לעו"ד מקרקעין.</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-278MB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1Zuvaq81gyzZU0UwdLTX86SkBrCaiIqdu/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1Zuvaq81gyzZU0UwdLTX86SkBrCaiIqdu" href="https://drive.google.com/file/d/1Zuvaq81gyzZU0UwdLTX86SkBrCaiIqdu/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
@@ -217,13 +263,13 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">24</span><span class="month">אפר׳</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/geo.jpg" alt="GEO - אופטימיזציה למנועי AI" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1kIlMYpImrmHhg8jocWd_PGe0XtHd-nao" aria-label="ניגון ההקלטה: GEO - אופטימיזציה למנועי AI"><img class="wcard-thumb" src="webinar-imgs/geo.jpg" alt="GEO - אופטימיזציה למנועי AI" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · <bdi dir="ltr">GEO</bdi></div>
       <h2><bdi dir="ltr">GEO</bdi> - אופטימיזציה למנועי <bdi dir="ltr">AI</bdi><span class="wcard-guest">מרצה: <a href="https://www.arkaot.co.il" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">עו"ד ענבל וקנין צוקר</a></span></h2>
       <p>איך לגרום למשרד להופיע בתשובות של כלי בינה מלאכותית.</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-4.78GB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1kIlMYpImrmHhg8jocWd_PGe0XtHd-nao/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1kIlMYpImrmHhg8jocWd_PGe0XtHd-nao" href="https://drive.google.com/file/d/1kIlMYpImrmHhg8jocWd_PGe0XtHd-nao/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
@@ -231,13 +277,13 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">14</span><span class="month">מאי</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/claude-word.jpg" alt="התוסף של Claude ב-Word" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1nzvblBY8xtJw5BeenDxCPNglLbVjbZ84" aria-label="ניגון ההקלטה: התוסף של Claude ב-Word"><img class="wcard-thumb" src="webinar-imgs/claude-word.jpg" alt="התוסף של Claude ב-Word" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Claude</bdi></div>
       <h2>התוסף של <bdi dir="ltr">Claude</bdi> ב-<bdi dir="ltr">Word</bdi></h2>
       <p>עבודה נכונה עם <bdi dir="ltr">Claude</bdi> בתוך <bdi dir="ltr">Word</bdi> - עריכת מסמכים משפטיים.</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-191MB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1nzvblBY8xtJw5BeenDxCPNglLbVjbZ84/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1nzvblBY8xtJw5BeenDxCPNglLbVjbZ84" href="https://drive.google.com/file/d/1nzvblBY8xtJw5BeenDxCPNglLbVjbZ84/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
@@ -245,13 +291,13 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">19</span><span class="month">מאי</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/real-estate.jpg" alt="ניתוח כדאיות כלכלית של עסקת מקרקעין" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1c45KhWQxSl6mX_F3FzMr8mMmOUBVOK3b" aria-label="ניגון ההקלטה: ניתוח כדאיות כלכלית של עסקת מקרקעין"><img class="wcard-thumb" src="webinar-imgs/real-estate.jpg" alt="ניתוח כדאיות כלכלית של עסקת מקרקעין" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · מקרקעין</div>
       <h2>ניתוח כדאיות כלכלית של עסקת מקרקעין<span class="wcard-guest">אורח: אורי גנץ</span></h2>
       <p>ניתוח כדאיות כלכלית של עסקת מקרקעין באמצעות <bdi dir="ltr">Claude</bdi>.</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-226MB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1c45KhWQxSl6mX_F3FzMr8mMmOUBVOK3b/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1c45KhWQxSl6mX_F3FzMr8mMmOUBVOK3b" href="https://drive.google.com/file/d/1c45KhWQxSl6mX_F3FzMr8mMmOUBVOK3b/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
@@ -259,13 +305,13 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">25</span><span class="month">מאי</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/lovable.jpg" alt="בניית עמוד נחיתה ב-Lovable" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1he0sZmfxbc5iKRQynz5pGx5k00JxL6Yb" aria-label="ניגון ההקלטה: בניית עמוד נחיתה ב-Lovable"><img class="wcard-thumb" src="webinar-imgs/lovable.jpg" alt="בניית עמוד נחיתה ב-Lovable" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Lovable</bdi></div>
       <h2>בניית עמוד נחיתה ב-<bdi dir="ltr">Lovable</bdi></h2>
       <p>הדגמה חיה של בניית עמוד נחיתה בפלטפורמת <bdi dir="ltr">Lovable</bdi>.</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-1.79GB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1he0sZmfxbc5iKRQynz5pGx5k00JxL6Yb/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1he0sZmfxbc5iKRQynz5pGx5k00JxL6Yb" href="https://drive.google.com/file/d/1he0sZmfxbc5iKRQynz5pGx5k00JxL6Yb/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
@@ -273,13 +319,13 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">17</span><span class="month">יונ׳</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/timeless.jpg" alt="Timeless בפעולה" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1iT4QvUlgrVeBamxoQgvDXLYu1ZkYSxZ_" aria-label="ניגון ההקלטה: Timeless בפעולה"><img class="wcard-thumb" src="webinar-imgs/timeless.jpg" alt="Timeless בפעולה" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Timeless</bdi></div>
       <h2><bdi dir="ltr">Timeless</bdi> בפעולה<span class="wcard-guest">אורח: מייסד Timeless</span></h2>
       <p>איך <bdi dir="ltr">AI</bdi> מתעד, מסכם ועוקב אחרי פגישות ומחזיר שעות בשבוע.</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-463MB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1iT4QvUlgrVeBamxoQgvDXLYu1ZkYSxZ_/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1iT4QvUlgrVeBamxoQgvDXLYu1ZkYSxZ_" href="https://drive.google.com/file/d/1iT4QvUlgrVeBamxoQgvDXLYu1ZkYSxZ_/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
@@ -287,13 +333,13 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">12</span><span class="month">יול׳</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/base44-geo.jpg" alt="דף נחיתה ב-Base44 שמופיע ב-AI" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1HuA7nfjDf9fWQBM3uQaUiA1Hh8_HPbXE" aria-label="ניגון ההקלטה: דף נחיתה ב-Base44 שמופיע ב-AI"><img class="wcard-thumb" src="webinar-imgs/base44-geo.jpg" alt="דף נחיתה ב-Base44 שמופיע ב-AI" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Base44</bdi> / <bdi dir="ltr">GEO</bdi></div>
       <h2>דף נחיתה ב-<bdi dir="ltr">Base44</bdi> שמופיע ב-<bdi dir="ltr">AI</bdi><span class="wcard-guest">מרצה: <a href="https://www.arkaot.co.il" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">עו"ד ענבל וקנין צוקר</a></span></h2>
       <p>בניית דף נחיתה ב-<bdi dir="ltr">Base44</bdi> שמאותר על ידי כלי בינה מלאכותית (<bdi dir="ltr">GEO</bdi>).</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-237MB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1HuA7nfjDf9fWQBM3uQaUiA1Hh8_HPbXE/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1HuA7nfjDf9fWQBM3uQaUiA1Hh8_HPbXE" href="https://drive.google.com/file/d/1HuA7nfjDf9fWQBM3uQaUiA1Hh8_HPbXE/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
@@ -301,13 +347,13 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">26</span><span class="month">יול׳</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/community.jpg" alt="קהילת Legal Mind Family" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1Ir_izWQD2Wl7W_DpHPLc36BynS1JdVhg" aria-label="ניגון ההקלטה: קהילת Legal Mind Family"><img class="wcard-thumb" src="webinar-imgs/community.jpg" alt="קהילת Legal Mind Family" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · קהילה</div>
       <h2>קהילת <bdi dir="ltr">Legal Mind Family</bdi></h2>
       <p>מפגש קהילתי של <bdi dir="ltr">Legal Mind Family</bdi>.</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-185MB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1Ir_izWQD2Wl7W_DpHPLc36BynS1JdVhg/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1Ir_izWQD2Wl7W_DpHPLc36BynS1JdVhg" href="https://drive.google.com/file/d/1Ir_izWQD2Wl7W_DpHPLc36BynS1JdVhg/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
@@ -315,24 +361,67 @@
   <div class="wcard">
     <div class="wcard-date"><span class="day">1</span><span class="month">ספט׳</span></div>
     <div class="wcard-body">
-      <img class="wcard-thumb" src="webinar-imgs/whatsapp-base44.jpg" alt="בניית סוכן AI אישי ל-WhatsApp" width="800" height="450" loading="lazy">
+      <button class="wthumb" type="button" data-drive="1dJkQf4ZLonw4Ad7aSj9uyCFGdxtO5_2E" aria-label="ניגון ההקלטה: בניית סוכן AI אישי ל-WhatsApp"><img class="wcard-thumb" src="webinar-imgs/whatsapp-base44.jpg" alt="בניית סוכן AI אישי ל-WhatsApp" width="800" height="450" loading="lazy"><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
       <div class="wcard-kind">וובינר · <bdi dir="ltr">Base44</bdi> / <bdi dir="ltr">WhatsApp</bdi></div>
       <h2>בניית סוכן <bdi dir="ltr">AI</bdi> אישי ל-<bdi dir="ltr">WhatsApp</bdi></h2>
       <p>בניית סוכן <bdi dir="ltr">AI</bdi> אישי בשידור חי ב-<bdi dir="ltr">Base44</bdi> וחיבורו ל-<bdi dir="ltr">WhatsApp</bdi>.</p>
       <div class="wcard-foot">
         <span class="wcard-note">כ-763MB · <bdi dir="ltr">MP4</bdi></span>
-        <a class="wcard-go" href="https://drive.google.com/file/d/1dJkQf4ZLonw4Ad7aSj9uyCFGdxtO5_2E/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
+        <a class="wcard-go" data-drive="1dJkQf4ZLonw4Ad7aSj9uyCFGdxtO5_2E" href="https://drive.google.com/file/d/1dJkQf4ZLonw4Ad7aSj9uyCFGdxtO5_2E/view?usp=sharing" target="_blank" rel="noopener">צפייה בהקלטה ◀</a>
       </div>
     </div>
   </div>
 
   <div class="note-section">
-    <b>לתשומת לב:</b> ההקלטות מתארחות ב-<bdi dir="ltr">Google Drive</bdi> ונפתחות בכרטיסייה חדשה. חלק מהקבצים גדולים (עד כ-5<bdi dir="ltr">GB</bdi>) ועשויים לדרוש כמה שניות טעינה.
+    <b>לתשומת לב:</b> ההקלטות נפתחות כאן בעמוד. חלק מהקבצים גדולים (עד כ-5<bdi dir="ltr">GB</bdi>) ועשויים לדרוש כמה שניות טעינה.
   </div>
 
 </div>
 
 <footer><bdi>Legal Mind</bdi> · מדריכי <bdi dir="ltr">AI</bdi> לעורכי דין · כל הזכויות שמורות ל<bdi>Legal Mind</bdi></footer>
 
+<dialog class="vbox" id="vbox" aria-label="ניגון הקלטה">
+<div class="vbox-in">
+  <button class="vbox-x" type="button" aria-label="סגירת ההקלטה" title="סגירה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <button class="vbox-x vbox-fs" type="button" aria-label="מסך מלא" title="מסך מלא"><svg class="ico-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 9 4 4 9 4"/><polyline points="15 4 20 4 20 9"/><polyline points="20 15 20 20 15 20"/><polyline points="9 20 4 20 4 15"/></svg><svg class="ico-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 4 9 9 4 9"/><polyline points="15 4 15 9 20 9"/><polyline points="15 20 15 15 20 15"/><polyline points="9 20 9 15 4 15"/></svg></button>
+  <div class="vbox-frame"></div>
+</div>
+</dialog>
+<script>
+(function(){
+  var d=document.getElementById('vbox'); if(!d||!d.showModal) return;
+  var box=d.querySelector('.vbox-frame');
+  var fsb=d.querySelector('.vbox-fs');
+  function label(on){ fsb.setAttribute('aria-label',on?'חזרה לחלון':'מסך מלא'); fsb.title=on?'חזרה לחלון':'מסך מלא'; }
+  function big(on){ d.classList.toggle('big',on); label(on); }
+  function stop(){ box.innerHTML=''; d.classList.remove('big'); }
+  function close(){ if(document.fullscreenElement) document.exitFullscreen(); stop(); if(d.open) d.close(); }
+  document.addEventListener('fullscreenchange',function(){ label(!!document.fullscreenElement); });
+  d.addEventListener('close',stop);
+  d.addEventListener('cancel',stop);
+  d.addEventListener('click',function(e){ if(e.target===d) close(); });
+  d.querySelector('.vbox-x').addEventListener('click',close);
+  // full screen on the player window; pressing again returns to the 70% window
+  fsb.addEventListener('click',function(){
+    if(document.fullscreenElement){ document.exitFullscreen(); return; }
+    if(d.classList.contains('big')){ big(false); return; }
+    var inn=d.querySelector('.vbox-in');
+    // if the browser refuses real full screen, fill the browser window instead
+    if(inn.requestFullscreen) inn.requestFullscreen().catch(function(){ big(true); });
+    else big(true);
+  });
+  document.querySelectorAll('[data-drive]').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      var f=document.createElement('iframe');
+      f.src='https://drive.google.com/file/d/'+b.getAttribute('data-drive')+'/preview';
+      f.title='הקלטת וובינר';
+      f.allow='autoplay; fullscreen';
+      f.allowFullscreen=true;
+      box.innerHTML=''; box.appendChild(f); d.showModal();
+    });
+  });
+})();
+</script>
 </body>
 </html>

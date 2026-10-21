@@ -112,6 +112,15 @@
   }
   .hero h1 bdi { color: var(--brand-bright); }
   .hero p { font-size: 18.9px; line-height: 1.6; color: #DCE7EA; max-width: 640px; margin: 0 auto; }
+  .hero p.hero-brand { margin-top: 14px; font-weight: 700; color: #fff; }
+  .hero p.hero-tag { margin-top: 18px; font-family: 'Frank Ruhl', serif; font-weight: 700; font-size: 19px; color: var(--brand-bright); }
+  .hero-link {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 18px;
+    font-size: 14.5px; font-weight: 700; color: #fff; text-decoration: none;
+    border: 1px solid rgba(63,191,187,.55); background: rgba(63,191,187,.12);
+    border-radius: 99px; padding: 8px 18px; transition: background .15s ease;
+  }
+  .hero-link:hover { background: rgba(63,191,187,.28); }
 
   .wrap { max-width: 1180px; margin: -56px auto 0; padding: 0 28px; position: relative; z-index: 2; }
 
@@ -228,6 +237,9 @@
     <span class="hero-eyebrow"><span class="dot"></span>מרכז המדריכים</span>
     <h1>מדריכי <bdi dir="ltr">AI</bdi> מעשיים לעורכי דין ולמשרדי עורכי דין</h1>
     <p>בחרו סדרה. כל סדרה עומדת בפני עצמה, צעד אחר צעד, עם צילומי מסך אמיתיים ודף תרגול בסופה.</p>
+    <p class="hero-brand">מה שאתם לומדים כאן, אנחנו מטמיעים בפועל: <bdi dir="ltr">Legal Mind</bdi> היא חברה להטמעת בינה מלאכותית במשרדי עורכי דין, בהובלת עו"ד אסף אברמזון ועו"ד רועי נימצוביץ'.</p>
+    <p class="hero-tag">קודם בינה משפטית. אחר כך מלאכותית. וזה כל ההבדל.</p>
+    <a class="hero-link" href="/#about">להכיר את <bdi dir="ltr">Legal Mind</bdi> ◀</a>
   </div>
 </div>
 
