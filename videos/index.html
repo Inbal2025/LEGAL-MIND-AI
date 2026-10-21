@@ -148,12 +148,13 @@
   .vbox-x.vbox-fs { left: 56px; }
   .vbox-fs .ico-out { display: none; }
   .vbox-in { position: relative; }
-  .vbox-in:fullscreen { width: 100vw; height: 100vh; max-height: none; margin: 0; background: #000; }
-  .vbox-in:fullscreen .vbox-frame { width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
-  .vbox-in:fullscreen .vbox-x { top: 16px; left: 16px; z-index: 2; opacity: .85; }
-  .vbox-in:fullscreen .vbox-x.vbox-fs { left: 72px; }
-  .vbox-in:fullscreen .vbox-fs .ico-in { display: none; }
-  .vbox-in:fullscreen .vbox-fs .ico-out { display: block; }
+  .vbox.big { width: 100vw; height: 100vh; max-height: 100vh; margin: 0; }
+  .vbox-in:fullscreen, .vbox.big .vbox-in { width: 100vw; height: 100vh; max-height: none; margin: 0; background: #000; }
+  .vbox-in:fullscreen .vbox-frame, .vbox.big .vbox-in .vbox-frame { width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+  .vbox-in:fullscreen .vbox-x, .vbox.big .vbox-in .vbox-x { top: 16px; left: 16px; z-index: 2; opacity: .85; }
+  .vbox-in:fullscreen .vbox-x.vbox-fs, .vbox.big .vbox-in .vbox-x.vbox-fs { left: 72px; }
+  .vbox-in:fullscreen .vbox-fs .ico-in, .vbox.big .vbox-in .vbox-fs .ico-in { display: none; }
+  .vbox-in:fullscreen .vbox-fs .ico-out, .vbox.big .vbox-in .vbox-fs .ico-out { display: block; }
   .vbox::backdrop { background: rgba(5,15,22,.62); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
   .vbox-frame { aspect-ratio: 16 / 9; width: 100%; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 30px 80px -20px rgba(0,0,0,.85), 0 0 0 1px rgba(168,217,213,.3); }
   .vbox-frame video, .vbox-frame iframe { width: 100%; height: 100%; border: 0; display: block; background: #000; }
@@ -233,7 +234,7 @@
 (function(){
   var d=document.getElementById('vbox'); if(!d||!d.showModal) return;
   var box=d.querySelector('.vbox-frame');
-  function stop(){ box.innerHTML=''; }
+  function stop(){ box.innerHTML=''; d.classList.remove('big'); }
   function close(){ if(document.fullscreenElement) document.exitFullscreen(); stop(); if(d.open) d.close(); }
   var fsb=d.querySelector('.vbox-fs');
   document.addEventListener('fullscreenchange',function(){
@@ -247,11 +248,18 @@
   // full screen on the player window; pressing again (or Esc) returns to the 70% window
   fsb.addEventListener('click',function(){
     if(document.fullscreenElement){ document.exitFullscreen(); return; }
+    if(d.classList.contains('big')){ big(false); return; }
     var v=box.querySelector('video');
-    var inn=d.querySelector(".vbox-in");
-    if(inn.requestFullscreen) inn.requestFullscreen();
+    var inn=d.querySelector('.vbox-in');
+    // if the browser refuses real full screen, fill the browser window instead
+    if(inn.requestFullscreen) inn.requestFullscreen().catch(function(){ big(true); });
     else if(v&&v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+    else big(true);
   });
+  function big(on){
+    d.classList.toggle('big',on);
+    fsb.setAttribute('aria-label',on?'חזרה לחלון':'מסך מלא'); fsb.title=on?'חזרה לחלון':'מסך מלא';
+  }
   document.querySelectorAll('.film').forEach(function(b){
     b.addEventListener('click',function(){
       var v=document.createElement('video');
