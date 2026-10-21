@@ -44,22 +44,32 @@
   ],
   "redirects": [
     {
+      "source": "/skills-guide",
+      "destination": "/skills-guide/",
+      "permanent": true
+    },
+    {
       "source": "/skills",
-      "destination": "/skills/",
+      "destination": "/skills-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/skills/:path*",
+      "destination": "/skills-guide/:path*",
       "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/skills/",
+      "source": "/skills-guide/",
       "destination": "https://tsahinim.github.io/legal-mind-claude-guides/skills-compact/index.html"
     },
     {
-      "source": "/skills/:dir/",
+      "source": "/skills-guide/:dir/",
       "destination": "https://tsahinim.github.io/legal-mind-claude-guides/skills-compact/:dir/index.html"
     },
     {
-      "source": "/skills/:path*",
+      "source": "/skills-guide/:path*",
       "destination": "https://tsahinim.github.io/legal-mind-claude-guides/skills-compact/:path*"
     }
   ]
