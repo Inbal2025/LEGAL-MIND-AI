@@ -51,6 +51,14 @@
   ],
   "rewrites": [
     {
+      "source": "/skills/",
+      "destination": "https://tsahinim.github.io/legal-mind-claude-guides/skills-compact/index.html"
+    },
+    {
+      "source": "/skills/:dir/",
+      "destination": "https://tsahinim.github.io/legal-mind-claude-guides/skills-compact/:dir/index.html"
+    },
+    {
       "source": "/skills/:path*",
       "destination": "https://tsahinim.github.io/legal-mind-claude-guides/skills-compact/:path*"
     }
