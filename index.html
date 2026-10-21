@@ -175,6 +175,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .body-lead{font-family:"Assistant",sans-serif;font-weight:400;font-size:clamp(16px,1.4vw,18px);line-height:1.65;letter-spacing:0.16px;color:var(--body);margin:0}
 .caption-uc{font-family:"Assistant",sans-serif;font-weight:600;font-size:12px;line-height:1.4;letter-spacing:0.96px;text-transform:uppercase;color:var(--muted)}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:9999px;border:1px solid var(--hairline);background:rgba(19,48,64,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);font-family:"Assistant",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:0.96px;text-transform:uppercase}
+.eyebrow.eyebrow-xl{font-size:34.5px;padding:12px 30px;gap:16px;letter-spacing:1px}.eyebrow.eyebrow-xl::before{width:14px;height:14px}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c-teal);box-shadow:0 0 10px rgba(37,169,156,0.7)}
 
 /* ---------- buttons ---------- */
@@ -1141,7 +1142,7 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="container">
     <div class="about-grid">
       <div class="reveal">
-                <span class="eyebrow">מי אנחנו</span>
+                <span class="eyebrow eyebrow-xl">מי אנחנו</span>
         <h2 class="display-xl" style="margin-top:18px;margin-bottom:24px">סקפטי? גם אנחנו היינו.</h2>
         <p class="body-lead">23:00. הטיוטה חוזרת בפעם הרביעית. מחר דדליין, והראש כבר לא צלול. אתה מכיר את הערב הזה. גם אנחנו.</p>
         <p class="body-lead">אנחנו רועי ואסף, עורכי דין שעוסקים במגוון תחומים משפטיים, ולמרות שנים של היכרות עם עולם הטכנולוגיה - בסוף העומס הוא שהביא אותנו אל ה-AI...</p>
