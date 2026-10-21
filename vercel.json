@@ -54,6 +54,16 @@
       "permanent": true
     },
     {
+      "source": "/skills/",
+      "destination": "/skills-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/skills/:dir/",
+      "destination": "/skills-guide/:dir/",
+      "permanent": true
+    },
+    {
       "source": "/skills/:path*",
       "destination": "/skills-guide/:path*",
       "permanent": true
