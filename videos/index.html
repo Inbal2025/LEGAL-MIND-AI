@@ -157,6 +157,9 @@
   .vbox-x.vbox-fs { left: 56px; }
   .vbox-fs .ico-out { display: none; }
   .vbox-in { position: relative; }
+  /* vertical (9:16) videos: a tall narrow window that fits the screen height */
+  .vbox.tall { width: min(94vw, (100vh - 150px) * 9 / 16); width: min(94vw, (100svh - 150px) * 9 / 16); }
+  .vbox.tall .vbox-frame { aspect-ratio: 9 / 16; }
   .vbox.big { width: 100vw; height: 100vh; max-height: 100vh; margin: 0; }
   .vbox-in:fullscreen, .vbox.big .vbox-in { width: 100vw; height: 100vh; max-height: none; margin: 0; background: #000; }
   .vbox-in:fullscreen .vbox-frame, .vbox.big .vbox-in .vbox-frame { width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
@@ -229,6 +232,17 @@
     <h2><bdi dir="ltr">Claude</bdi> ו-<bdi dir="ltr">Notion</bdi>: משימות התיק נפתחות לבד</h2>
     <p><bdi>Claude</bdi> קורא את חומרי התיק, מסכם מה חסר ופותח ב-<bdi dir="ltr">Notion</bdi> רשימת משימות לתיק, עם סימון לכל משימה שבוצעה.</p>
     <span class="vcard-guest">מציג: עו"ד אסף אברמזון</span><span class="vcard-note">כ-6 דקות</span>
+  </div>
+  <div class="vcard">
+    <button class="film" type="button" data-src="claude-projects.mp4?v=2310" data-tall aria-label="ניגון הסרטון: Claude Projects">
+      <img src="claude-projects-cover.webp?v=2310" alt="" width="1280" height="720" loading="lazy">
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
+      <span class="film-time" aria-hidden="true">8:50</span>
+    </button>
+    <div class="vcard-kind">חדש · <bdi dir="ltr">Claude Projects</bdi></div>
+    <h2><bdi dir="ltr">Claude Projects</bdi>: הפרויקטים החדשים ומה הם משנים למשרד</h2>
+    <p>פרויקט לכל תיק, וכל משימה נפתחת בו בנפרד: <bdi>Claude</bdi> עובד על כמה משימות במקביל, ממשיך גם כשהמחשב סגור, ומציע תוכנית לאישורכם לפני שהוא מתחיל.</p>
+    <span class="vcard-note">כ-9 דקות</span>
   </div>
   <div class="vcard">
     <button class="film" type="button" data-yt="NPUtjXrteL8" aria-label="ניגון הסרטון: ברוכים הבאים לסדרה">
@@ -406,6 +420,7 @@
   document.querySelectorAll('.film').forEach(function(b){
     b.addEventListener('click',function(){
       box.innerHTML='';
+      d.classList.toggle('tall',b.hasAttribute('data-tall'));
       var yt=b.getAttribute('data-yt');
       if(yt){
         var f=document.createElement('iframe');
