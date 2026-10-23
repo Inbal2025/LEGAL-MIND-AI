@@ -84,6 +84,8 @@ a{color:inherit}
 @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(190,43,48,0)}100%{box-shadow:0 0 0 0 rgba(190,43,48,0)}}
 h1{font:900 clamp(36px,5.4vw,66px)/1.08 var(--head);letter-spacing:-.02em;margin:18px 0 18px}
 h1 .nw{white-space:nowrap}
+h1 .cl-txt{color:var(--claude)}
+h1 .cl-spark{display:inline-block;height:.8em;width:auto;vertical-align:-.06em;margin-inline:.14em .04em}
 h1 .accent{font-size:.9em;font-family:var(--serif);font-weight:700;color:var(--teal-l);letter-spacing:0}
 .lead{font-size:clamp(18px,2vw,21px);color:var(--ink-2);max-width:36em;margin:0 0 24px}
 .lead strong{color:var(--ink);font-weight:700}
@@ -408,7 +410,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px calc(40px + env(safe-
   <div class="wrap hero-grid">
     <div class="eb-row"><span class="eyebrow eb-big"><span class="dot" aria-hidden="true"></span>וובינר חי · ללא עלות · LEGAL MIND <span class="eb-with">בשיתוף</span> <img class="eb-nv" src="/nevo-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170"></span></div>
     <div>
-      <h1 id="h1">נבו בתוך <span class="nw">Claude.</span><br><span class="accent">ככה עובדים עם זה באמת.</span></h1>
+      <h1 id="h1">נבו בתוך <span class="nw"><span class="cl-txt">Claude</span><img class="cl-spark" src="/nevo-webinar/assets/claude-spark.svg" alt="" width="125" height="125">.</span><br><span class="accent">ככה עובדים עם זה באמת.</span></h1>
       <p class="lead">וובינר מעשי לעורכי דין. מחברים את הקונקטור, לומדים לשאול שאלה שמחזירה <strong>מקור ולא המצאה</strong>, ובונים סקילים שהופכים חיפוש בנבו ל<strong>שיטת עבודה של המשרד</strong>.</p>
       <ul class="when">
         <li class="tbd" id="when-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>יום ראשון 1.11.2026 · 20:00</span></li>
