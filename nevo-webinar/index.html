@@ -13,6 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#07130F">
 <meta name="robots" content="noindex">  <!-- טיוטה לבדיקה: להסיר כשמפרסמים -->
+<script src="/nevo-webinar/meta-pixel.js"></script>  <!-- Meta Pixel לקמפיין הממומן (המזהה בתוך הקובץ) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;700;800;900&family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -674,6 +675,18 @@ const WEBINAR = {
   embed: false   /* האתר חוסם הטמעה של אתרים חיצוניים, לכן כפתור שפותח את הטופס */
 };
 
+/* קישור ההרשמה: מעביר לטופס את ה-UTM מהקישור, ובנוסף ממלא בפורמי את השדה הנסתר "מקור הגעה"
+   (facebook | cpc | שם הקמפיין | שם המודעה), או את האתר המפנה כשאין UTM, או "ישיר". */
+const REG_SOURCE_FIELD = "e40334a5-0684-4f2f-bd75-b328604482d0";
+function regUrl(){
+  const q = new URLSearchParams(location.search);
+  const utm = ['utm_source','utm_medium','utm_campaign','utm_content'].map(k => (q.get(k)||'').slice(0,80)).filter(Boolean);
+  let src = utm.join(' | ');
+  if (!src) { try { src = document.referrer ? new URL(document.referrer).hostname : ''; } catch(_) {} }
+  q.set(REG_SOURCE_FIELD, src || 'ישיר');
+  return WEBINAR.formUrl + '?' + q.toString();
+}
+
 (function(){
   const $ = s => document.querySelector(s);
 
@@ -695,18 +708,19 @@ const WEBINAR = {
   const btn = $('#reg-btn'), slot = $('#form-slot');
   if (WEBINAR.formUrl && WEBINAR.embed) {
     const f = document.createElement('iframe');
-    f.src = WEBINAR.formUrl + location.search;  /* מעביר UTM מהקישור אל הטופס */
+    f.src = regUrl();  /* מעביר UTM ומקור הגעה אל הטופס */
     f.title = 'טופס הרשמה לוובינר'; f.loading = 'lazy';
     slot.appendChild(f); btn.hidden = true;
   } else if (WEBINAR.formUrl) {
-    btn.href = WEBINAR.formUrl + location.search;
+    btn.href = regUrl(); btn.removeAttribute('target');
   } else {
     btn.hidden = true;
     slot.innerHTML = '<div class="form-ph"><b>כאן יוטמע טופס ההרשמה מפורמי</b><span>שם · אימייל · אישור מדיניות פרטיות</span></div>';
   }
 
   /* כל כפתורי ההרשמה בדף פותחים את טופס פורמי */
-  if (WEBINAR.formUrl) document.querySelectorAll('.js-reg').forEach(el => { el.href = WEBINAR.formUrl + location.search; el.target = '_blank'; el.rel = 'noopener'; });
+  /* הטופס נפתח באותה לשונית: אחרי ההרשמה פורמי מחזיר לדף התודה שלנו, ובדפדפן של פייסבוק לשונית חדשה מבלבלת */
+  if (WEBINAR.formUrl) document.querySelectorAll('.js-reg').forEach(el => { el.href = regUrl(); el.removeAttribute('target'); el.rel = 'noopener'; });
 
   /* ---- שאלות נפוצות: רק שאלה אחת פתוחה בכל רגע ---- */
   const faqs = document.querySelectorAll('.faq details');
