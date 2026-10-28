@@ -145,7 +145,7 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .pc2{bottom:0;left:calc(50% - clamp(80px,6.7vw,105px));animation:bobS 7.8s ease-in-out -2.6s infinite}
 .pc3{bottom:0;left:0;animation:bobS 7.4s ease-in-out -5s infinite}
 @keyframes bobS{0%,100%{translate:0 0}50%{translate:0 -5px}}
-.pc3 .gst{position:absolute;top:16px;right:16px;white-space:nowrap;margin:0;box-shadow:0 4px 10px -4px rgba(20,32,26,.45);font:700 12px var(--font);background:var(--yellow);color:var(--t-yellow);border-radius:999px;padding:2px 10px}
+.gst{display:inline-flex;align-items:center;gap:.35em;white-space:nowrap;background:var(--forest);color:var(--mint);font-family:var(--display);font-weight:700;letter-spacing:.03em;border-radius:999px;box-shadow:0 4px 0 #0c1812,0 10px 18px -8px rgba(10,30,20,.5)}.gst::before{content:"";flex:none;width:.32em;height:.32em;border-radius:50%;background:#6FE39A;box-shadow:0 0 0 .14em rgba(111,227,154,.25)}.pc3 .gst{position:absolute;top:16px;right:16px;margin:0;font-size:18px;line-height:1;padding:4px 11px 5px}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
 .ai3d{position:absolute;bottom:2%;right:-4%;width:clamp(220px,20vw,290px);background:var(--forest);color:var(--bone);border-radius:16px;padding:14px 16px;font-size:14px;transform:none}
 .ai3d .who{display:flex;align-items:center;gap:8px;font-weight:700;color:#F0A787;margin-bottom:6px}
@@ -334,7 +334,7 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .host:hover .ph img{transform:scale(1.05)}
 .host h3{font:700 clamp(40px,3.6vw,56px)/1 var(--display);margin:22px 0 8px;letter-spacing:0}
 .host p{margin:0;font:500 18px/1.45 var(--font);color:var(--ink-2)}
-.host .gst{display:inline-block;margin-top:16px;font:700 30px var(--font);background:var(--yellow);color:var(--t-yellow);border-radius:999px;padding:8px 28px}
+.host .gst{margin-top:18px;font-size:34px;line-height:1;padding:7px 26px 9px}
 
 /* ===== about legal mind ===== */
 .about{padding:clamp(44px,5.5vw,80px) 0}
@@ -498,7 +498,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
   .photo-card{position:relative;inset:auto!important;width:calc((100% - 16px)/3);padding:5px 5px 9px;border-radius:14px}
   .photo-card img{border-radius:10px}
   .photo-card b{font-size:13px;margin:7px 2px 0}.photo-card small{font-size:11.5px;margin:2px 2px 0}
-  .pc3 .gst{font-size:11px;padding:1px 7px;top:10px;right:10px}
+  .pc3 .gst{font-size:14px;padding:3px 8px 4px;top:10px;right:10px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -552,7 +552,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       <div class="cards-layer">
         <div class="photo-card pc1"><img src="/notion-webinar/assets/asaf-l.jpg?v=2" alt="" width="720" height="900"><b>עו״ד אסף אברמזון</b><small>מייסד שותף ומנכ״ל <span class="nw">LEGAL MIND</span></small></div>
         <div class="photo-card pc2"><img src="/notion-webinar/assets/roi-l.jpg?v=2" alt="" width="720" height="900"><b>עו״ד רועי נימצוביץ׳</b><small>מייסד שותף ב-<span class="nw">LEGAL MIND</span></small></div>
-        <div class="photo-card pc3"><img src="/notion-webinar/assets/lior-l.jpg" alt="" width="720" height="900"><b>ליאור פרייס</b><small>מפתח אוטומציות</small><span class="gst">מרצה אורח</span></div>
+        <div class="photo-card pc3"><img src="/notion-webinar/assets/lior-l.jpg?v=2" alt="" width="720" height="900"><b>ליאור פרייס</b><small>מפתח אוטומציות</small><span class="gst">מרצה אורח</span></div>
       </div>
     </div>
   </div>
@@ -629,7 +629,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
         <h3>עו״ד אסף אברמזון</h3><p>מייסד שותף ומנכ״ל <bdi>LEGAL MIND</bdi>.&rlm; מתמחה בהטמעת AI ובבניית תהליכי עבודה חכמים לעולם המשפט.</p></article>
       <article class="host rv" style="--d:.2s"><div class="ph"><img src="/notion-webinar/assets/roi-l.jpg?v=2" alt="עו״ד רועי נימצוביץ׳" width="720" height="900" loading="lazy"></div>
         <h3>עו״ד רועי נימצוביץ׳</h3><p>מייסד שותף ב-<bdi>LEGAL MIND</bdi>.&rlm; בעל ניסיון של מעל 20 שנה בעסקאות מורכבות, פיננסים וליטיגציה.</p></article>
-      <article class="host rv" style="--d:.3s"><div class="ph"><img src="/notion-webinar/assets/lior-l.jpg" alt="ליאור פרייס" width="720" height="900" loading="lazy"></div>
+      <article class="host rv" style="--d:.3s"><div class="ph"><img src="/notion-webinar/assets/lior-l.jpg?v=2" alt="ליאור פרייס" width="720" height="900" loading="lazy"></div>
         <h3>ליאור פרייס</h3><p>מפתח אוטומציות. יציג מערכת לניהול משרד עו״ד ב-Notion ואת האוטומציות שמחברות אותה לכלים.</p><span class="gst">מרצה אורח</span></article>
     </div>
   </div>
