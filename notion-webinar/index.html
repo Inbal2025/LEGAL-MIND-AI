@@ -206,7 +206,21 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .task.done .av{box-shadow:none;opacity:.85}
 .counter b{display:inline-block}
 .hint{margin:36px 0 0;font:700 clamp(42px,4.8vw,74px)/1 var(--display);letter-spacing:0;color:var(--ink);max-width:24ch}
-.hint .nowrap{white-space:nowrap}.ai-logos{display:inline-flex;gap:.14em;margin-right:.18em;vertical-align:baseline}.ai-logos img{height:.72em;width:auto;display:block}
+/* the three tools on one board: Notion -> Claude -> ChatGPT, a dot travels the links and each tile lights as it arrives */
+.ai-flow{display:flex;align-items:center;margin-top:28px}
+.af-t{flex:none;width:64px;height:64px;border-radius:18px;background:#fff;display:grid;place-items:center;--sh:0 5px 0 var(--sage-3),0 16px 24px -14px rgba(20,40,30,.45);box-shadow:var(--sh);transform:scale(.55);opacity:0;transition:transform .7s cubic-bezier(.3,1.6,.5,1),opacity .4s}
+.af-t img{width:36px;height:36px}
+.ai-flow.in .af-t{transform:none;opacity:1}.ai-flow.in .af2{transition-delay:.2s}.ai-flow.in .af3{transition-delay:.4s}
+.af-l{position:relative;flex:none;width:46px;height:3px;background:repeating-linear-gradient(90deg,#9FB79A 0 7px,transparent 7px 13px)}
+.af-l i{position:absolute;top:50%;right:-4px;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#3F9E5E;box-shadow:0 0 0 4px rgba(63,158,94,.18);opacity:0}
+.ai-flow.in .af-l i{animation:afDot1 5.4s ease-in-out 1.2s infinite}.ai-flow.in .af-l2 i{animation-name:afDot2}
+.ai-flow.in .af1{animation:afGlow1 5.4s ease-in-out 1.2s infinite}.ai-flow.in .af2{animation:afGlow2 5.4s ease-in-out 1.2s infinite}.ai-flow.in .af3{animation:afGlow3 5.4s ease-in-out 1.2s infinite}
+@keyframes afDot1{0%{right:-4px;opacity:0}4%{opacity:1}22%{right:calc(100% - 6px);opacity:1}26%,100%{right:calc(100% - 6px);opacity:0}}
+@keyframes afDot2{0%,26%{right:-4px;opacity:0}30%{opacity:1}48%{right:calc(100% - 6px);opacity:1}52%,100%{right:calc(100% - 6px);opacity:0}}
+@keyframes afGlow1{0%,8%,100%{box-shadow:var(--sh)}3%{box-shadow:var(--sh),0 0 0 7px rgba(127,196,143,.4)}}
+@keyframes afGlow2{0%,21%,34%,100%{box-shadow:var(--sh);translate:0 0}26%{box-shadow:var(--sh),0 0 0 7px rgba(127,196,143,.4);translate:0 -3px}}
+@keyframes afGlow3{0%,47%,60%,100%{box-shadow:var(--sh);translate:0 0}52%{box-shadow:var(--sh),0 0 0 7px rgba(127,196,143,.4);translate:0 -3px}}
+@media (max-width:620px){.af-t{width:54px;height:54px;border-radius:16px}.af-t img{width:30px;height:30px}.af-l{width:36px}}
 
 /* ===== stacking sheets ===== */
 .sheets-head{padding-top:clamp(44px,5.5vw,80px);padding-bottom:36px}
@@ -487,7 +501,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  h1 .mask > span,.fade,.rv,.sheet .ui{transform:none!important;opacity:1!important}
+  h1 .mask > span,.fade,.rv,.sheet .ui,.af-t{transform:none!important;opacity:1!important}
 }
 </style>
 </head>
@@ -565,7 +579,8 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
         <button class="task done" type="button" tabindex="-1"><span class="t-top"><span class="tag chip-green">תיק 198</span></span><b>עדכון לקוח על החלטה</b><span class="t-foot"><span class="av" style="--a:#7B5CD6">מ</span><span>עו״ד מיכל</span></span></button>
       </div></div>
     </div>
-    <p class="hint rv">בוובינר נבנה לוח כזה מאפס, ונראה איך Claude <span class="nowrap">ו-ChatGPT<span class="ai-logos" aria-hidden="true"><img src="/notion-webinar/assets/claude-spark.svg" alt=""><img src="/notion-webinar/assets/chatgpt-logo.svg" alt=""></span></span> עובדים איתו.</p>
+    <p class="hint rv">בוובינר נבנה לוח כזה מאפס, ונראה איך Claude <span class="nw">ו-ChatGPT</span> עובדים איתו.</p>
+    <div class="ai-flow rv" style="--d:.15s" aria-hidden="true"><span class="af-t af1"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></span><span class="af-l"><i></i></span><span class="af-t af2"><img src="/notion-webinar/assets/claude-spark.svg" alt=""></span><span class="af-l af-l2"><i></i></span><span class="af-t af3"><img src="/notion-webinar/assets/chatgpt-logo.svg" alt=""></span></div>
   </div>
 </section>
 
