@@ -208,6 +208,67 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .chat .gpt b{color:#0E7A61}
 .chat .gpt{background:#EEF7F3}
 
+
+/* app windows inside the sheets */
+.ui .win{display:flex;align-items:center;gap:7px;margin:-8px -8px 18px;padding:0 6px 14px;border-bottom:1px solid #EEF1EB;font:500 13px var(--font);color:var(--muted)}
+.ui .win i{width:11px;height:11px;border-radius:50%;background:#E5E2DC}.ui .win i:nth-child(1){background:#F0857A}.ui .win i:nth-child(2){background:#F4C25C}.ui .win i:nth-child(3){background:#7FC48F}
+.ui .win span{margin-inline-start:auto}
+.ui-head{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.ui .ui-head h4{margin:0;display:block;font:700 clamp(34px,3vw,46px)/.9 var(--display);letter-spacing:0}
+.ui-head small{display:block;margin-top:4px;font:500 14px var(--font);color:var(--muted)}
+.tile{--c1:#8fd19e;--c2:#4f9d63;--edge:#2e6b3f;flex:none;width:54px;height:54px;border-radius:17px;display:grid;place-items:center;position:relative;
+  background:linear-gradient(150deg,var(--c1),var(--c2));box-shadow:inset 0 2px 0 rgba(255,255,255,.42),inset 0 -6px 10px rgba(0,0,0,.15),0 5px 0 var(--edge),0 14px 20px -10px rgba(10,30,20,.45);transform:rotate(-6deg)}
+.tile::after{content:"";position:absolute;inset:5px 8px auto;height:34%;border-radius:12px 12px 40% 40%;background:linear-gradient(rgba(255,255,255,.35),rgba(255,255,255,0))}
+.tile svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))}
+.tn-amber{--c1:#f7cf7c;--c2:#e09b2d;--edge:#9b6512}.tn-coral{--c1:#f6a493;--c2:#e0614d;--edge:#9c3a2b}.tn-violet{--c1:#c0aef2;--c2:#7b5cd6;--edge:#4e3797}
+.av{--a:#7FC48F;flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--a);color:#fff;font:700 17px var(--font);box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+.av.sm{width:32px;height:32px;font-size:13px}
+.st,.due{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:6px 13px;font:600 14px var(--font);white-space:nowrap}
+.st::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.st-blue{background:#DCE9F3;color:#1F5E8C}.st-amber{background:#F6E8C3;color:#8A6512}.st-violet{background:#E7DFF3;color:#6B4A99}.st-green{background:#D6EBCF;color:#2F6B3B}.st-red{background:#F5DCD6;color:#A0402E}
+.leads{display:grid;gap:10px}
+.lrow{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:14px;padding:12px 14px;border-radius:18px;background:#F6F8F3;transition:transform .25s var(--ease),background .25s}
+.lrow:hover{transform:translateX(-5px);background:#EEF4EA}
+.who b{display:block;font:700 18px/1.25 var(--font)}.who small{font:500 13.5px var(--font);color:var(--muted)}
+.owner{display:flex;align-items:center;gap:8px;font:600 15px var(--font);color:var(--ink-2)}
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.day{background:#F6F8F3;border-radius:20px;padding:14px 10px;min-height:210px;display:flex;flex-direction:column;gap:8px}
+.day .dn{font:600 13px var(--font);color:var(--muted)}
+.day b{font:700 54px/.82 var(--display);color:var(--ink);margin-bottom:6px}
+.day.today{background:var(--forest);color:var(--bone)}.day.today .dn{color:#A9BBAE}.day.today b{color:var(--mint)}
+.ev{display:block;border-radius:12px;padding:8px 10px;font:600 13.5px/1.3 var(--font);border-inline-start:4px solid currentColor}
+.ev em{display:block;font-style:normal;font:600 12px var(--font);opacity:.75;margin-bottom:2px}
+.ev b{display:block;font:700 14px/1.25 var(--font)}.ev small{display:block;font:500 12px var(--font);opacity:.85}
+.ev-red{background:#F5DCD6;color:#A0402E}.ev-blue{background:#DCE9F3;color:#1F5E8C}.ev-amber{background:#F6E8C3;color:#8A6512}.ev-violet{background:#E7DFF3;color:#6B4A99}
+.day.today .ev{background:rgba(255,255,255,.1);color:var(--bone)}
+.free{font:500 13px var(--font);color:var(--muted);opacity:.8}
+.prog{display:flex;align-items:center;gap:14px;margin:-6px 0 18px;font:600 15px var(--font);color:var(--muted)}
+.prog .bar{flex:1;height:10px;border-radius:999px;background:#EEF1EB;overflow:hidden}
+.prog .bar i{display:block;height:100%;width:var(--p,25%);border-radius:999px;background:linear-gradient(90deg,#3F7D50,#7FC48F);transition:width .5s var(--ease)}
+.tasks{display:grid;gap:10px}
+.trow{position:relative;display:flex;align-items:center;gap:14px;padding:15px 16px;border-radius:18px;background:#F6F8F3;cursor:pointer;transition:transform .25s var(--ease),background .25s}
+.trow:hover{transform:translateX(-5px);background:#EEF4EA}
+.trow input{position:absolute;opacity:0;pointer-events:none}
+.ck{flex:none;width:28px;height:28px;border-radius:50%;border:2.5px solid #A3B9A8;display:grid;place-items:center;transition:background .25s,border-color .25s}
+.ck::after{content:"✓";color:#fff;font:700 15px/1 var(--font);transform:scale(0);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.trow input:checked + .ck{background:#3F7D50;border-color:#3F7D50}.trow input:checked + .ck::after{transform:scale(1)}
+.trow input:focus-visible + .ck{outline:3px solid var(--ink);outline-offset:2px}
+.tt{flex:1;font:600 18px/1.3 var(--font);transition:color .25s}
+.trow input:checked ~ .tt{text-decoration:line-through;text-decoration-thickness:2px;color:var(--muted)}
+.msgs{display:flex;flex-direction:column;gap:14px}
+.m{display:flex;align-items:flex-end;gap:10px;max-width:92%}
+.m p{margin:0;padding:12px 16px;border-radius:20px;font:500 16.5px/1.5 var(--font)}
+.m.me{align-self:flex-start}.m.me p{background:var(--forest);color:var(--bone);border-end-start-radius:6px}
+.m.me .av{font-size:10.5px}
+.m.bot{align-self:flex-end}.m.bot p{background:#F4EFFB;border-end-end-radius:6px}
+.m.gpt p{background:#E7F5EF}
+.m .nm{display:block;font:700 13px var(--font);margin:0 6px 4px;color:#B85C37}.m.gpt .nm{color:#0E7A61}
+.av.cl{background:#FBEDE6}.av.cl img{width:18px;height:18px}.av.gp{background:#0E7A61;font-size:10.5px}
+.composer{display:flex;align-items:center;gap:10px;margin-top:18px;padding:8px 8px 8px 18px;border-radius:999px;background:#F6F8F3;font:500 15px var(--font);color:var(--muted)}
+.composer span{flex:1;padding-inline-start:10px}
+.composer b{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#7FC48F;color:#0F2418;font:700 18px var(--font);box-shadow:0 3px 0 #3F7D50}
+@media (max-width:860px){.lrow{grid-template-columns:auto 1fr auto}.lrow .owner{display:none}.week{grid-template-columns:repeat(3,1fr)}.week .day:nth-child(n+4){display:none}.day{min-height:170px}}
+
 /* ===== hosts ===== */
 .hosts-sec{background:var(--sage);color:var(--ink)}
 .hosts-sec .lead{color:var(--ink-2)}
@@ -452,45 +513,28 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
     <h3>לידים ולקוחות</h3>
     <div class="txt"><p>כל פנייה שנכנסת למשרד נרשמת, מקבלת אחראי וצעד הבא, עד שהיא הופכת ללקוח ולתיק.</p>
       <ul><li>מאגר לידים ולקוחות אחד לכל המשרד</li><li>מקור הפנייה, סטטוס ומעקב</li><li>פתיחת תיק בלחיצה</li></ul></div>
-    <div class="ui" data-ui><h4>📥 לידים</h4>
-      <table><thead><tr><th>שם</th><th>מקור</th><th>אחראי</th><th>סטטוס</th></tr></thead><tbody>
-        <tr><td><b>ליד מהאתר</b></td><td>טופס באתר</td><td>עו״ד דני</td><td><span class="pill chip-blue">שיחת היכרות</span></td></tr>
-        <tr><td><b>הפניה מלקוח</b></td><td>טלפון</td><td>עו״ד מיכל</td><td><span class="pill chip-yellow">הצעת מחיר</span></td></tr>
-        <tr><td><b>חברת נדל״ן</b></td><td>לינקדאין</td><td>עו״ד דני</td><td><span class="pill chip-purple">פגישה</span></td></tr>
-        <tr><td><b>לקוח חוזר</b></td><td>מייל</td><td>עו״ד מיכל</td><td><span class="pill chip-green">נפתח תיק</span></td></tr>
-      </tbody></table></div>
+    <div class="ui" data-ui><div class="win" aria-hidden="true"><i></i><i></i><i></i><span>משרד כהן ושות׳ / לידים</span></div><div class="ui-head"><span class="tile tn-green"><svg viewBox="0 0 24 24"><path d="M3.5 13.5h4.5l1.8 2.8h4.4l1.8-2.8h4.5"/><path d="M5.6 5h12.8l2.1 8.5V19a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1v-5.5z"/></svg></span><div><h4>לידים</h4><small>4 פניות חדשות השבוע</small></div></div><div class="leads"><div class="lrow"><span class="av" style="--a:#7FC48F">ל</span><span class="who"><b>ליד מהאתר</b><small>טופס באתר · היום</small></span><span class="owner"><span class="av sm" style="--a:#E0A64B">ד</span>עו״ד דני</span><span class="st st-blue">שיחת היכרות</span></div><div class="lrow"><span class="av" style="--a:#E0A64B">פ</span><span class="who"><b>הפניה מלקוח</b><small>טלפון · אתמול</small></span><span class="owner"><span class="av sm" style="--a:#9C7AD6">מ</span>עו״ד מיכל</span><span class="st st-amber">הצעת מחיר</span></div><div class="lrow"><span class="av" style="--a:#9C7AD6">ח</span><span class="who"><b>חברת נדל״ן</b><small>לינקדאין · יום ב׳</small></span><span class="owner"><span class="av sm" style="--a:#E0A64B">ד</span>עו״ד דני</span><span class="st st-violet">פגישה</span></div><div class="lrow"><span class="av" style="--a:#E07A64">ק</span><span class="who"><b>לקוח חוזר</b><small>מייל · יום א׳</small></span><span class="owner"><span class="av sm" style="--a:#9C7AD6">מ</span>עו״ד מיכל</span><span class="st st-green">נפתח תיק</span></div></div></div>
   </div></article>
 
   <article class="sheet s2"><div class="wrap">
     <h3>תיקים ומועדים</h3>
     <div class="txt"><p>כל תיק עם המועדים, הדיונים והמסמכים שלו, ותמונה אחת של כל מה שקורה השבוע במשרד.</p>
       <ul><li>כרטיס לכל תיק</li><li>יומן מועדים ודיונים</li><li>תזכורת לפני כל מועד</li></ul></div>
-    <div class="ui" data-ui><h4>📅 מועדים השבוע</h4>
-      <div class="cal"><div><b>א׳ 8</b><span class="chip-pink">כתב הגנה · 198</span></div><div><b>ב׳ 9</b><span class="chip-blue">פגישה: ליד</span></div><div><b>ג׳ 10</b><span class="chip-yellow">מסמכים · 220</span><span class="chip-purple">חתימה · 214</span></div><div><b>ד׳ 11</b></div><div><b>ה׳ 12</b><span class="chip-pink">דיון · 205</span></div></div></div>
+    <div class="ui" data-ui><div class="win" aria-hidden="true"><i></i><i></i><i></i><span>משרד כהן ושות׳ / יומן</span></div><div class="ui-head"><span class="tile tn-amber"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M12 14h2M8 17h2"/></svg></span><div><h4>מועדים השבוע</h4><small>5 אירועים · 3 תיקים</small></div></div><div class="week"><div class="day"><span class="dn">ראשון</span><b>8</b><span class="ev ev-red"><em>09:00</em><b>כתב הגנה</b><small>תיק 198</small></span></div><div class="day"><span class="dn">שני</span><b>9</b><span class="ev ev-blue"><em>11:30</em><b>פגישה</b><small>ליד מהאתר</small></span></div><div class="day today"><span class="dn">שלישי · היום</span><b>10</b><span class="ev ev-amber"><em>10:00</em><b>מסמכים</b><small>תיק 220</small></span><span class="ev ev-violet"><em>14:00</em><b>חתימה</b><small>תיק 214</small></span></div><div class="day"><span class="dn">רביעי</span><b>11</b><span class="free">אין מועדים</span></div><div class="day"><span class="dn">חמישי</span><b>12</b><span class="ev ev-red"><em>08:30</em><b>דיון</b><small>תיק 205</small></span></div></div></div>
   </div></article>
 
   <article class="sheet s3"><div class="wrap">
     <h3>משימות הצוות</h3>
     <div class="txt"><p>מי עושה מה, ועד מתי. במקום טבלאות, פתקים ומיילים מפוזרים, כל המשימות של המשרד במקום אחד.</p>
       <ul><li>משימות לפי עו״ד ולפי תיק</li><li>מה פתוח היום ומה מחכה</li><li>תבניות למשימות שחוזרות</li></ul></div>
-    <div class="ui" data-ui><h4>✅ היום במשרד</h4>
-      <div class="todo">
-        <label><input type="checkbox" checked><span>לשלוח ללקוח טיוטת הסכם</span><em>עו״ד מיכל</em></label>
-        <label><input type="checkbox"><span>להכין תצהיר לדיון</span><em>עו״ד דני</em></label>
-        <label><input type="checkbox"><span>לבדוק נסח טאבו</span><em>תיק 214</em></label>
-        <label><input type="checkbox"><span>לחזור לליד מהאתר</span><em>עו״ד דני</em></label>
-      </div></div>
+    <div class="ui" data-ui><div class="win" aria-hidden="true"><i></i><i></i><i></i><span>משרד כהן ושות׳ / משימות</span></div><div class="ui-head"><span class="tile tn-coral"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="m8 12.3 2.8 2.8L16.5 9"/></svg></span><div><h4>היום במשרד</h4><small>לחצו על משימה כדי לסמן אותה</small></div></div><div class="prog"><span id="prog-t">1 מתוך 4 הושלמו</span><span class="bar"><i id="prog-b"></i></span></div><div class="tasks"><label class="trow"><input type="checkbox" checked><span class="ck"></span><span class="tt">לשלוח ללקוח טיוטת הסכם</span><span class="due st-green">היום</span><span class="av sm" style="--a:#9C7AD6">מ</span></label><label class="trow"><input type="checkbox"><span class="ck"></span><span class="tt">להכין תצהיר לדיון</span><span class="due st-red">מחר</span><span class="av sm" style="--a:#E0A64B">ד</span></label><label class="trow"><input type="checkbox"><span class="ck"></span><span class="tt">לבדוק נסח טאבו · תיק 214</span><span class="due st-amber">יום ה׳</span><span class="av sm" style="--a:#9C7AD6">מ</span></label><label class="trow"><input type="checkbox"><span class="ck"></span><span class="tt">לחזור לליד מהאתר</span><span class="due st-blue">השבוע</span><span class="av sm" style="--a:#E0A64B">ד</span></label></div></div>
   </div></article>
 
   <article class="sheet s4"><div class="wrap">
     <h3>אוטומציות ובינה מלאכותית</h3>
     <div class="txt"><p>תהליכים שחוזרים על עצמם קורים לבד, ו-Claude ו-ChatGPT עובדים ישירות מול מערכת הניהול של המשרד.</p>
       <ul><li>מליד חדש ועד פתיחת תיק, בלי עבודה ידנית</li><li>שאלות על המשרד בשפה חופשית</li><li>חיבור לכלים נוספים</li></ul></div>
-    <div class="ui chat" data-ui><h4>🤖 שואלים את המשרד</h4>
-      <p class="me">מה פתוח השבוע בתיקים של המשרד?</p>
-      <p class="bot"><b><img src="/notion-webinar/assets/claude-spark.svg" alt="">Claude</b>שלושה מועדים השבוע: כתב הגנה בתיק 198, דיון בתיק 205, ומסמכים שחסרים מלקוח בתיק 220.</p>
-      <p class="me">תפתח משימת מעקב לכל אחד מהם.</p>
-      <p class="bot gpt"><b>ChatGPT</b>נוצרו שלוש משימות בלוח המשימות, עם האחראי והמועד של כל אחת.</p></div>
+    <div class="ui" data-ui><div class="win" aria-hidden="true"><i></i><i></i><i></i><span>משרד כהן ושות׳ / שיחה</span></div><div class="ui-head"><span class="tile tn-violet"><svg viewBox="0 0 24 24"><path d="M12 3.5c.6 3.9 2.6 5.9 6.5 6.5-3.9.6-5.9 2.6-6.5 6.5-.6-3.9-2.6-5.9-6.5-6.5 3.9-.6 5.9-2.6 6.5-6.5z"/><path d="M18.5 15.5c.3 1.7 1.1 2.5 2.8 2.8-1.7.3-2.5 1.1-2.8 2.8-.3-1.7-1.1-2.5-2.8-2.8 1.7-.3 2.5-1.1 2.8-2.8z"/></svg></span><div><h4>שואלים את המשרד</h4><small>Claude ו-ChatGPT מחוברים למערכת</small></div></div><div class="msgs"><div class="m me"><span class="av sm" style="--a:#15261E">עו״ד</span><p>מה פתוח השבוע בתיקים של המשרד?</p></div><div class="m bot"><span class="av sm cl"><img src="/notion-webinar/assets/claude-spark.svg" alt=""></span><div><span class="nm">Claude</span><p>שלושה מועדים השבוע: כתב הגנה בתיק 198, דיון בתיק 205, ומסמכים שחסרים מלקוח בתיק 220.</p></div></div><div class="m me"><span class="av sm" style="--a:#15261E">עו״ד</span><p>תפתח משימת מעקב לכל אחד מהם.</p></div><div class="m bot gpt"><span class="av sm gp">GPT</span><div><span class="nm">ChatGPT</span><p>נוצרו שלוש משימות בלוח, עם האחראי והמועד של כל אחת. ✓</p></div></div></div><div class="composer" aria-hidden="true"><span>שאלו את המשרד…</span><b>↑</b></div></div>
   </div></article>
 </section>
 
@@ -634,6 +678,11 @@ function regUrl(){
     recount();
   });
 
+
+  /* ---- tasks window: progress follows the checkboxes ---- */
+  const boxes = [...document.querySelectorAll('.tasks input')], pt = $('#prog-t'), pb = $('#prog-b');
+  const prog = () => { const d = boxes.filter(b => b.checked).length; pt.textContent = d + ' מתוך ' + boxes.length + ' הושלמו'; pb.style.setProperty('--p', (d / boxes.length * 100) + '%'); };
+  boxes.forEach(b => b.addEventListener('change', prog)); prog();
   /* ---- sticky mobile CTA ---- */
   const sticky = $('#sticky'); let heroOut = false, regIn = false;
   const upd = () => sticky.classList.toggle('on', heroOut && !regIn);
