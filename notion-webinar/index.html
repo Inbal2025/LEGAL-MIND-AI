@@ -402,10 +402,22 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
 .foot nav{display:flex;gap:18px}
 .foot .tm{font-size:14px;color:var(--muted)}
 
-/* sticky mobile CTA */
-.sticky{position:fixed;inset:auto 0 0 0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--sage);transform:translateY(110%);transition:transform .3s var(--ease);display:none}
-.sticky.on{transform:none}
-.sticky .btn{--edge:5px;width:100%;min-height:56px;font-size:18px}
+/* floating registration dock: follows the visitor on every screen size */
+.sticky{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:min(760px,calc(100% - 32px));
+  transform:translate(-50%,160%);opacity:0;transition:transform .5s var(--ease),opacity .3s;pointer-events:none}
+.sticky.on{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+.dock{display:flex;align-items:center;gap:14px;background:var(--forest);color:var(--bone);border-radius:999px;padding:10px 12px 10px 10px;
+  box-shadow:0 26px 50px -22px rgba(20,32,26,.7),inset 0 0 0 1px rgba(255,255,255,.07)}
+.dock-n{flex:none;width:48px;height:48px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 3px 0 #8FAA97}
+.dock-n img{width:30px;height:30px}
+.dock-t{flex:1;min-width:0;line-height:1.25}
+.dock-t b{display:block;font:700 18px var(--font);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dock-t small{display:flex;align-items:center;gap:7px;margin-top:3px;font:600 14px var(--font);color:#B9CBBE;white-space:nowrap;overflow:hidden}
+.dock-t small i{flex:none;width:8px;height:8px;border-radius:50%;background:#6FE39A;animation:ping 1.8s ease-out infinite}
+.dock-t #dock-cd{color:var(--mint)}
+.dock-t .ts{display:none}
+.sticky .btn{--edge:5px;flex:none;min-height:54px;padding:0 28px;font-size:19px;margin-bottom:5px}
+footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
 
 /* reveal: parts of a section enter one after another */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
@@ -450,8 +462,12 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
   .h-cta .btn{width:100%}
   .brandclose{flex-wrap:wrap}.brandclose p{flex-basis:100%;white-space:normal}
   .brandclose .btn,.about-cta .btn{width:100%;margin-right:0}
-  .sticky{display:block}
-  footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+  .sticky{bottom:calc(10px + env(safe-area-inset-bottom,0px));width:calc(100% - 20px)}
+  .dock{gap:10px;padding:8px 8px 8px 8px}
+  .dock-n{width:40px;height:40px}.dock-n img{width:25px;height:25px}
+  .dock-t b{font-size:15px}.dock-t small{font-size:12.5px;gap:5px}
+  .dock-t .opt,.dock-t .tl{display:none}.dock-t .ts{display:inline}
+  .sticky .btn{min-height:48px;padding:0 18px;font-size:16.5px}.sticky .btn .arr{display:none}
   .count{gap:18px}
   .stage{height:auto;perspective:none}
   .stage .scene{display:none}
@@ -657,7 +673,11 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
   </div>
 </footer>
 
-<div class="sticky" id="sticky"><a class="btn js-reg" href="https://formy.co.il/forms/vvbynr-legal-mind-nyhvl-mshrd-vd-bamtsvt-notion-4112026-bgdsel" rel="noopener">שריון מקום בוובינר · ללא עלות</a></div>
+<div class="sticky" id="sticky"><div class="dock">
+  <span class="dock-n" aria-hidden="true"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></span>
+  <span class="dock-t"><b><span class="tl">וובינר: ניהול משרד עו״ד ב-Notion</span><span class="ts">וובינר Notion · חינם</span></b><small><i aria-hidden="true"></i><span id="dock-cd">יום רביעי 4.11</span> · 20:30<span class="opt"> · בזום · ללא עלות</span></small></span>
+  <a class="btn js-reg" href="https://formy.co.il/forms/vvbynr-legal-mind-nyhvl-mshrd-vd-bamtsvt-notion-4112026-bgdsel" rel="noopener">שריון מקום <span class="arr" aria-hidden="true">←</span></a>
+</div></div>
 
 <script>
 /* =========================================================
@@ -689,6 +709,12 @@ function regUrl(){
   const tick = () => { const ms = end - Date.now(); if (ms <= 0) { cnt.hidden = true; return; }
     cnt.hidden = false; $('#c-d').textContent = Math.floor(ms/864e5); $('#c-h').textContent = Math.floor(ms/36e5)%24; $('#c-m').textContent = Math.floor(ms/6e4)%60; };
   tick(); setInterval(tick, 30000);
+  /* the dock says how close the webinar is, in words */
+  const dcd = $('#dock-cd');
+  const dockWhen = () => { const now = new Date(), d = new Date(WEBINAR.date), ms = d - now;
+    const day = x => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime(), days = Math.round((day(d) - day(now)) / 864e5);
+    dcd.textContent = ms <= 0 ? 'עכשיו בשידור' : days === 0 ? 'היום' : days === 1 ? 'מחר' : days === 2 ? 'מחרתיים' : 'עוד ' + days + ' ימים'; };
+  dockWhen(); setInterval(dockWhen, 60000);
 
   /* כל כפתורי ההרשמה פותחים את טופס פורמי באותה לשונית: אחרי ההרשמה פורמי מחזיר לדף התודה שלנו */
   document.querySelectorAll('.js-reg, #reg-btn').forEach(el => { el.href = regUrl(); el.removeAttribute('target'); el.rel = 'noopener'; });
@@ -757,13 +783,11 @@ function regUrl(){
   const boxes = [...document.querySelectorAll('.tasks input')], pt = $('#prog-t'), pb = $('#prog-b');
   const prog = () => { const d = boxes.filter(b => b.checked).length; pt.textContent = d + ' מתוך ' + boxes.length + ' הושלמו'; pb.style.setProperty('--p', (d / boxes.length * 100) + '%'); };
   boxes.forEach(b => b.addEventListener('change', prog)); prog();
-  /* ---- sticky mobile CTA ---- */
+  /* ---- registration dock: shown once the hero button scrolls away, hidden while the registration card itself is on screen ---- */
   const sticky = $('#sticky'); let heroOut = false, regIn = false;
   const upd = () => sticky.classList.toggle('on', heroOut && !regIn);
-  new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; upd(); }).observe($('.h-cta'));
-  const vis = new Map();
-  const ro = new IntersectionObserver(es => { es.forEach(e => vis.set(e.target, e.isIntersecting)); regIn = [...vis.values()].some(Boolean); upd(); });
-  [$('#register'), $('#community'), document.querySelector('footer')].forEach(el => ro.observe(el));
+  new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting && e.boundingClientRect.top < 0; upd(); }).observe($('.h-cta'));
+  new IntersectionObserver(([e]) => { regIn = e.isIntersecting; upd(); }, { threshold: .25 }).observe($('#register'));
 })();
 </script>
 </body>
