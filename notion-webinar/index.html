@@ -113,13 +113,12 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(111,227,154,.6)}70%,100%{box-shadow:0 0 0 9px rgba(111,227,154,0)}}
 .hb-avs{display:flex}.hb-avs .av{width:28px;height:28px;font-size:12px;border:2px solid var(--forest);box-shadow:none}.hb-avs .av + .av{margin-right:-9px}
 .hb-cols{position:relative;flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;min-height:0}
-.hb-col{background:rgba(255,255,255,.055);border-radius:16px;padding:10px 9px;min-height:0}
+.hb-col{background:rgba(255,255,255,.055);border-radius:16px;padding:10px 9px;min-height:0;overflow:hidden}
 .hb-col[data-k=new]{--k:#F08A75;--ke:#C25A45}.hb-col[data-k=doing]{--k:#F2C063;--ke:#B98420}.hb-col[data-k=done]{--k:#7FD39A;--ke:#3E8F57}
 .hb-col h5{margin:0 3px 9px;display:flex;align-items:center;gap:8px;font:700 22px/1 var(--display);letter-spacing:.02em;color:#fff}
 .hb-col h5 i{width:10px;height:10px;border-radius:3px;background:var(--k);box-shadow:0 0 12px var(--k)}
 .hb-col h5 em{margin-right:auto;font:700 12px/1 var(--font);font-style:normal;background:rgba(255,255,255,.1);color:#CFE0D3;border-radius:999px;padding:4px 9px}
-.hb-list{display:flex;flex-direction:column;gap:11px;transition:opacity .35s}
-.hb-fade .hb-list{opacity:0}
+.hb-list{display:flex;flex-direction:column;gap:11px}
 .hb-c{position:relative;background:#F5F8F2;color:var(--ink);border-radius:13px;padding:11px 12px 10px;box-shadow:0 4px 0 var(--ke);transition:box-shadow .4s,transform .3s var(--ease)}
 .hb-c b{display:block;font:700 clamp(13px,1.05vw,15.5px)/1.3 var(--font)}
 .hb-m{display:flex;align-items:center;gap:6px;margin-top:7px}
@@ -127,6 +126,8 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .hb-m .chip{font:700 11px/1.5 var(--font);border-radius:6px;padding:0 7px}
 .hb-col[data-k=done] .hb-c{padding-left:36px}.hb-col[data-k=done] .hb-c b{color:var(--muted)}
 .hb-col[data-k=done] .hb-c::after{content:"✓";position:absolute;top:8px;left:9px;width:19px;height:19px;border-radius:50%;background:#3E8F57;color:#fff;display:grid;place-items:center;font:700 11px/1 var(--font)}
+.hb-c.fresh{box-shadow:0 0 0 3px #6FE39A,0 0 22px rgba(111,227,154,.55),0 4px 0 var(--ke)}
+.hb-c.fresh::before{content:"מהטופס באתר";position:absolute;top:-9px;left:10px;background:#6FE39A;color:#0F2418;font:700 11px/1 var(--font);border-radius:999px;padding:3px 8px}
 .hb-c.grab{z-index:3;transform:rotate(-3deg) scale(1.05);box-shadow:0 18px 30px -12px rgba(0,0,0,.6),0 4px 0 var(--ke)}
 .hb-cursor{position:absolute;top:0;left:0;z-index:6;pointer-events:none;display:flex;align-items:flex-start;transform:translate(60px,230px);transition:transform .75s var(--ease)}
 .hb-cursor svg{width:22px;height:22px;fill:#F2C063;stroke:#15261E;stroke-width:1.4;stroke-linejoin:round;filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}
@@ -511,7 +512,7 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
             <div class="hb-col" data-k="doing"><h5><i></i>בטיפול<em>2</em></h5><div class="hb-list"><div class="hb-c" data-id="c"><b>הגשת כתב הגנה</b><span class="hb-m"><span class="av" style="--a:#7B5CD6">מ</span><span class="chip chip-pink">12.11</span></span></div><div class="hb-c" data-id="d"><b>הכנה לדיון קדם משפט</b><span class="hb-m"><span class="av" style="--a:#E09B2D">ד</span><span class="chip chip-pink">18.11</span></span></div></div></div>
             <div class="hb-col" data-k="done"><h5><i></i>הושלם<em>1</em></h5><div class="hb-list"><div class="hb-c" data-id="e"><b>פתיחת תיק ללקוח חדש</b><span class="hb-m"><span class="av" style="--a:#E09B2D">ד</span><span class="chip chip-purple">תיק 220</span></span></div></div></div>
           </div>
-          <div class="hb-cursor" id="hb-cur"><svg viewBox="0 0 24 24"><path d="M5 3.5l14 6.6-6.2 1.9-2.6 6.3z"/></svg><span>ליאור</span></div>
+          <div class="hb-cursor" id="hb-cur"><svg viewBox="0 0 24 24"><path d="M5 3.5l14 6.6-6.2 1.9-2.6 6.3z"/></svg></div>
         </div>
       </div>
       <div class="cards-layer">
@@ -735,21 +736,29 @@ function regUrl(){
       { duration: 700, easing: 'cubic-bezier(.3,.7,.25,1)' }).onfinish = () => { if (to === 2) { burst(t); doneN.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.3)' }, { transform: 'scale(1)' }], { duration: 500, easing: 'ease-out' }); } };
   });
 
-  /* ---- hero board: a teammate's cursor moves cards on its own ---- */
+  /* ---- hero board: as in Notion: a form entry lands in New, cards are dragged one column on, done stays done ---- */
   const hb = $('#hb');
   if (hb && !reduce) {
-    const cur = $('#hb-cur'), lists = [...hb.querySelectorAll('.hb-list')], start = lists.map(l => [...l.children]);
+    const cur = $('#hb-cur'), lists = [...hb.querySelectorAll('.hb-list')];
+    const pool = [['פנייה: הסכם גירושין', 'ר', '#E0614D'], ['פנייה: הסכם מכר דירה', 'מ', '#7B5CD6'],
+      ['פנייה: עריכת צוואה', 'ד', '#E09B2D'], ['פנייה: חברת נדל״ן', 'ר', '#E0614D']];
+    let p = 0;
     const hcount = () => hb.querySelectorAll('.hb-col').forEach(c => c.querySelector('em').textContent = c.querySelectorAll('.hb-c').length);
-    const aim = el => { const b = hb.getBoundingClientRect(), r = el.getBoundingClientRect(); cur.style.transform = `translate(${r.left - b.left + r.width * .3}px,${r.top - b.top + r.height * .55}px)`; };
-    const move = (id, to) => { const c = hb.querySelector(`[data-id="${id}"]`); aim(c);
-      setTimeout(() => { c.classList.add('grab'); const f = c.getBoundingClientRect(); lists[to].prepend(c); hcount();
+    const aim = el => { const b = hb.getBoundingClientRect(), r = el.getBoundingClientRect(); cur.style.transform = `translate(${r.left - b.left + r.width * .18}px,${r.top - b.top + r.height * .8}px)`; };
+    const oldest = k => lists[k].lastElementChild;
+    const move = from => { const c = oldest(from); if (!c) return; aim(c);
+      setTimeout(() => { c.classList.add('grab'); const f = c.getBoundingClientRect(); lists[from + 1].prepend(c); hcount();
         const l = c.getBoundingClientRect(); aim(c);
         c.animate([{ transform: `translate(${f.left - l.left}px,${f.top - l.top}px) rotate(-3deg) scale(1.05)` }, { transform: 'rotate(-3deg) scale(1.05)' }], { duration: 750, easing: 'cubic-bezier(.2,.75,.2,1)' });
         setTimeout(() => c.classList.remove('grab'), 900); }, 850); };
-    const reset = () => { hb.classList.add('hb-fade'); cur.style.transform = '';
-      setTimeout(() => { lists.forEach((l, i) => start[i].forEach(c => l.appendChild(c))); hcount(); hb.classList.remove('hb-fade'); }, 400); };
-    const steps = [() => move('c', 2), () => move('a', 1), reset];
+    const arrive = () => { const [t, a, col] = pool[p++ % pool.length], c = document.createElement('div'); c.className = 'hb-c fresh';
+      c.innerHTML = `<b>${t}</b><span class="hb-m"><span class="av" style="--a:${col}">${a}</span><span class="chip chip-blue">ליד</span></span>`;
+      lists[0].prepend(c); hcount();
+      c.animate([{ opacity: 0, transform: 'translateY(-18px) scale(.94)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: 'cubic-bezier(.2,.75,.2,1)' });
+      setTimeout(() => c.classList.remove('fresh'), 2400); };
+    const steps = [() => move(1), () => move(0), arrive];
     let n = 0, timer = null;
+    aim(oldest(1));
     new IntersectionObserver(([e]) => { clearInterval(timer); timer = null;
       if (e.isIntersecting) timer = setInterval(() => { if (!document.hidden) steps[n++ % steps.length](); }, 2800); }).observe(hb);
   }
