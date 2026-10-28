@@ -275,7 +275,22 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 .link-row a:hover{transform:translateY(-4px);background:#fff}
 .link-row b{font:700 21px var(--font)}
 .link-row span{font:400 17px/1.45 var(--font);color:var(--ink-2)}
-.link-row svg{width:30px;height:30px;margin-bottom:8px}
+.link-row .ic{--c1:#2bd46f;--c2:#1aa856;--edge:#137a3c;position:relative;width:76px;height:76px;border-radius:24px;display:grid;place-items:center;margin-bottom:14px;
+  background:linear-gradient(150deg,var(--c1),var(--c2));
+  box-shadow:inset 0 3px 0 rgba(255,255,255,.45),inset 0 -8px 14px rgba(0,0,0,.18),0 8px 0 var(--edge),0 22px 28px -12px rgba(10,30,20,.45);
+  transform:rotate(-7deg);transition:transform .35s cubic-bezier(.3,1.6,.5,1);animation:tileFloat 5s ease-in-out infinite}
+.link-row .ic::after{content:"";position:absolute;inset:6px 10px auto;height:34%;border-radius:18px 18px 40% 40%;background:linear-gradient(rgba(255,255,255,.38),rgba(255,255,255,0));pointer-events:none}
+.link-row .ic svg{width:40px;height:40px;fill:#fff;margin:0;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.link-row .ics{display:flex;gap:14px}
+.link-row .ics .ic:nth-child(2){transform:rotate(6deg);animation-delay:-1.4s}
+.link-row .ic.t-yt{--c1:#ff4b4b;--c2:#e01e1e;--edge:#9b1212}
+.link-row .ic.t-fb{--c1:#4b9bff;--c2:#1877f2;--edge:#0f4fa8}
+.link-row .ic.t-li{--c1:#2d8fd1;--c2:#0a66c2;--edge:#06437f}
+.link-row .ic.t-mail{--c1:#3d6b55;--c2:#1e3a2d;--edge:#0d1f16}
+.link-row a:nth-child(2) .ic{animation-delay:-1s}.link-row a:nth-child(3) .ic{animation-delay:-2s}.link-row a:nth-child(4) .ic{animation-delay:-3s}
+@keyframes tileFloat{0%,100%{translate:0 0}50%{translate:0 -6px}}
+.link-row a:hover .ic{transform:rotate(0) scale(1.08) translateY(-4px)}
+
 footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
 .brandclose{display:flex;flex-wrap:wrap;align-items:center;gap:18px 36px;padding:clamp(28px,4vw,44px) clamp(24px,4vw,48px);background:var(--sage-2);border-radius:28px}
 .brandclose img{height:clamp(40px,4vw,58px);width:auto}
@@ -536,10 +551,10 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
 <!-- ================= LINKS ================= -->
 <section class="links" id="community" aria-label="LEGAL MIND ברשת">
   <div class="wrap link-row">
-    <a class="rv" href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#1F8F55" aria-hidden="true"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9 0-3.17-1.24-6.16-3.48-8.41A11.82 11.82 0 0 0 12.05 0zm5.42 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35z"/></svg><b>קהילת LEGAL MIND</b><span>למעלה מ-2,000 עורכי דין בוואטסאפ: עדכונים, מדריכים וכלים.</span></a>
-    <a class="rv" style="--d:.08s" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#E62117" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8z"/><path fill="#fff" d="M9.8 15.1V8.9l5.8 3.1z"/></svg><b>ערוץ היוטיוב</b><span>סרטוני הדרכה מעשיים לעבודה עם בינה מלאכותית במשרד.</span></a>
-    <a class="rv" style="--d:.16s" href="https://www.facebook.com/LegalMindAI" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg><b>פייסבוק ולינקדאין</b><span>עדכונים, וובינרים ותכנים חדשים.</span></a>
-    <a class="rv" style="--d:.24s" href="mailto:info@legalmind.co.il"><svg viewBox="0 0 24 24" fill="#14201A" aria-hidden="true"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2 .9v.3l8 5.1 8-5.1v-.3H4zm16 2.6-7.46 4.75a1 1 0 0 1-1.08 0L4 9v9h16V9z"/></svg><b>info@legalmind.co.il</b><span>שאלה לפני הוובינר, או רוצים להטמיע בינה מלאכותית במשרד?</span></a>
+    <a class="rv" href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener"><span class="ic t-wa" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9 0-3.17-1.24-6.16-3.48-8.41A11.82 11.82 0 0 0 12.05 0zm5.42 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35z"/></svg></span><b>קהילת LEGAL MIND</b><span>למעלה מ-2,000 עורכי דין בוואטסאפ: עדכונים, מדריכים וכלים.</span></a>
+    <a class="rv" style="--d:.08s" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener"><span class="ic t-yt" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4.8v14.4l11.8-7.2z"/></svg></span><b>ערוץ היוטיוב</b><span>סרטוני הדרכה מעשיים לעבודה עם בינה מלאכותית במשרד.</span></a>
+    <a class="rv" style="--d:.16s" href="https://www.facebook.com/LegalMindAI" target="_blank" rel="noopener"><span class="ics"><span class="ic t-fb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></span><span class="ic t-li" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span></span><b>פייסבוק ולינקדאין</b><span>עדכונים, וובינרים ותכנים חדשים.</span></a>
+    <a class="rv" style="--d:.24s" href="mailto:info@legalmind.co.il"><span class="ic t-mail" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2 .9v.3l8 5.1 8-5.1v-.3H4zm16 2.6-7.46 4.75a1 1 0 0 1-1.08 0L4 9v9h16V9z"/></svg></span><b>info@legalmind.co.il</b><span>שאלה לפני הוובינר, או רוצים להטמיע בינה מלאכותית במשרד?</span></a>
   </div>
 </section>
 </main>
