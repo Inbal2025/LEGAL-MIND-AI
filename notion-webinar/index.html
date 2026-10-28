@@ -106,14 +106,16 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 .chip-blue{background:var(--blue);color:var(--t-blue)}.chip-yellow{background:var(--yellow);color:var(--t-yellow)}.chip-green{background:var(--green);color:var(--t-green)}
 .chip-pink{background:var(--pink);color:var(--t-pink)}.chip-purple{background:var(--purple);color:var(--t-purple)}
 .float{position:absolute;transform-style:preserve-3d}
-.photo-card{width:clamp(160px,13.5vw,215px);background:#fff;border-radius:18px;padding:8px 8px 12px;transform:translateZ(110px) rotate(var(--rot,-4deg))}
+.cards-layer{position:absolute;inset:0;pointer-events:none;z-index:2}
+.photo-card{position:absolute;width:clamp(185px,15.5vw,240px);background:#fff;border-radius:18px;padding:8px 8px 12px;box-shadow:0 24px 50px -28px rgba(20,32,26,.55)}
 .photo-card img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:12px}
 .photo-card b{display:block;font:700 15px/1.25 var(--font);margin:10px 4px 0}
 .photo-card small{display:block;font:500 13px var(--font);color:var(--muted);margin:2px 4px 0}
-.pc1{top:-2%;left:-7%;--rot:-6deg;animation:bob 7s ease-in-out infinite}
-.pc2{bottom:-12%;left:26%;--rot:4deg;animation:bob 8s ease-in-out -2s infinite}
-.pc3{top:30%;right:-9%;--rot:-3deg;animation:bob 7.5s ease-in-out -4s infinite}
-.pc3 .gst{display:inline-block;margin:6px 4px 0;font:700 12px var(--font);background:var(--yellow);color:var(--t-yellow);border-radius:999px;padding:2px 10px}
+.pc1{top:-3%;left:-5%;animation:bob 7s ease-in-out infinite}
+.pc2{top:20%;right:-6%;animation:bob 8s ease-in-out -2s infinite}
+.pc3{bottom:-10%;left:22%;width:clamp(140px,11vw,170px);animation:bob 7.5s ease-in-out -4s infinite}
+.pc3 b{font-size:14px}.pc3 small{font-size:12px}
+.pc3 .gst{display:inline-block;white-space:nowrap;margin:6px 4px 0;font:700 12px var(--font);background:var(--yellow);color:var(--t-yellow);border-radius:999px;padding:2px 10px}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
 .ai3d{position:absolute;bottom:2%;right:-4%;width:clamp(220px,20vw,290px);background:var(--forest);color:var(--bone);border-radius:16px;padding:14px 16px;font-size:14px;transform:translateZ(160px) rotate(2deg)}
 .ai3d .who{display:flex;align-items:center;gap:8px;font-weight:700;color:#F0A787;margin-bottom:6px}
@@ -201,9 +203,9 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 .hosts-sec{background:var(--sage);color:var(--ink)}
 .hosts-sec .lead{color:var(--ink-2)}
 .hosts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3.4vw,52px);margin-top:64px;perspective:1200px}
-.host{transition:rotate .5s var(--ease),translate .5s var(--ease)}
-.host:hover{rotate:0deg!important;translate:0 -6px}
-.host:nth-child(1){rotate:-2deg}.host:nth-child(2){rotate:1.5deg;margin-top:28px}.host:nth-child(3){rotate:-1deg}
+.host{transition:translate .5s var(--ease)}
+.host:hover{translate:0 -6px}
+
 .host .ph{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--sage-3)}
 .host .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .host:hover .ph img{transform:scale(1.05)}
@@ -297,7 +299,6 @@ footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
   .sheet h3{height:44px;font-size:22px}
   .sheet .ui{min-height:0}
   .hosts{grid-template-columns:1fr;gap:56px}
-  .host:nth-child(2){margin-top:0}
   .about .row,.reg-grid{grid-template-columns:1fr}
   .link-row{grid-template-columns:1fr 1fr}
   .cal{grid-template-columns:repeat(3,1fr)}.cal div:nth-child(n+4){display:none}
@@ -306,9 +307,10 @@ footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
   body{font-size:17px}
   .nav .wrap{height:64px}.nav .btn{display:none}.marks .lm{height:22px}
   h1{font-size:clamp(44px,12.5vw,64px)}
-  .photo-card{width:132px}
+  .photo-card{width:136px}
   .scene{--rx:8deg;--ry:-6deg}
-  .pc1{left:2%;top:2%}.pc2{left:30%;bottom:-4%}.pc3{right:2%;top:26%}
+  .pc1{left:0;top:0}.pc2{right:0;top:18%}.pc3{left:26%;bottom:-6%;width:108px}
+  .pc3 .gst{font-size:11px;padding:2px 8px}
   .ai3d{display:none}
   .board3d{inset:8% 4% 14% 8%}
   .cube-hero{right:44%;top:4%}
@@ -372,11 +374,13 @@ footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
               <div class="b3-c">עדכון לקוח על החלטה<small>נשלח</small></div></div>
           </div>
         </div>
-        <div class="float photo-card pc1"><img src="/notion-webinar/assets/asaf-l.jpg" alt="" width="720" height="900"><b>עו״ד אסף אברמזון</b><small>מייסד שותף ומנכ״ל LEGAL MIND</small></div>
-        <div class="float photo-card pc2"><img src="/notion-webinar/assets/roi-l.jpg" alt="" width="720" height="900"><b>עו״ד רועי נימצוביץ׳</b><small>מייסד שותף LEGAL MIND</small></div>
-        <div class="float photo-card pc3"><img src="/notion-webinar/assets/lior-l.jpg" alt="" width="720" height="900"><b>ליאור פרייס</b><small>מפתח אוטומציות</small><span class="gst">משתתף אורח</span></div>
         <div class="float ai3d"><div class="who"><img src="/notion-webinar/assets/claude-spark.svg" alt="">Claude</div><p>פתחתי ב-Notion כרטיס לליד החדש וקבעתי משימת מעקב לשבוע הבא. <span class="ok">✓</span></p></div>
         <div class="cube-wrap cube-hero"><div class="cube"><i class="f1"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f2"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f3"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f4"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f5"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f6"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i></div></div>
+      </div>
+      <div class="cards-layer">
+        <div class="photo-card pc1"><img src="/notion-webinar/assets/asaf-l.jpg" alt="" width="720" height="900"><b>עו״ד אסף אברמזון</b><small>מייסד שותף ומנכ״ל LEGAL MIND</small></div>
+        <div class="photo-card pc2"><img src="/notion-webinar/assets/roi-l.jpg" alt="" width="720" height="900"><b>עו״ד רועי נימצוביץ׳</b><small>מייסד שותף LEGAL MIND</small></div>
+        <div class="photo-card pc3"><img src="/notion-webinar/assets/lior-l.jpg" alt="" width="720" height="900"><b>ליאור פרייס</b><small>מפתח אוטומציות</small><span class="gst">משתתף אורח</span></div>
       </div>
     </div>
   </div>
