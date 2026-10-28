@@ -292,7 +292,8 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .about ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .about li{background:var(--sage-2);border-radius:18px;padding:18px 22px;font:700 19px var(--font)}
 .about li small{display:block;font:500 16px var(--font);color:var(--muted);margin-top:2px}
-.about .tlink{display:inline-block;margin-top:28px}
+.about .tlink{display:inline-block}
+.about-cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px 32px;margin-top:34px}
 
 /* ===== testimonials ===== */
 .quotes-sec{background:var(--sage);padding:clamp(44px,5.5vw,80px) 0 clamp(36px,4.5vw,60px)}
@@ -358,6 +359,10 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
 .brandclose img{height:clamp(40px,4vw,58px);width:auto}
 .brandclose p{margin:0;font:700 clamp(20px,2vw,28px)/1.3 var(--font);letter-spacing:-.01em}
 .brandclose small{display:block;font:500 16px var(--font);color:var(--muted);margin-top:4px}
+.brandclose{flex-wrap:nowrap}.brandclose img{flex:none}.brandclose p{flex:0 1 auto;min-width:0}
+.brandclose .btn{flex:none;margin-right:auto;margin-bottom:var(--edge);--edge:6px;min-height:58px;padding:0 28px;font-size:19px}
+.brandclose p{font-size:clamp(20px,1.5vw,23px)}
+@media (min-width:1200px){.brandclose p{white-space:nowrap}}.brandclose{column-gap:28px}.brandclose img{height:clamp(40px,3.4vw,52px)}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px 40px;margin-top:40px;font:400 16px/1.55 var(--font);color:var(--ink-2)}
 .foot p{margin:0 0 6px;max-width:60ch}
 .foot nav{display:flex;gap:18px}
@@ -404,6 +409,8 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
   .b3-cols{grid-template-columns:1fr 1fr}.b3-cols .b3-col:nth-child(3){display:none}
   .link-row{grid-template-columns:1fr}
   .h-cta .btn{width:100%}
+  .brandclose{flex-wrap:wrap}.brandclose p{flex-basis:100%;white-space:normal}
+  .brandclose .btn,.about-cta .btn{width:100%;margin-right:0}
   .sticky{display:block}
   footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
   .count{gap:18px}
@@ -470,7 +477,7 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
       </div>
       <div class="cards-layer">
         <div class="photo-card pc1"><img src="/notion-webinar/assets/asaf-l.jpg?v=2" alt="" width="720" height="900"><b>עו״ד אסף אברמזון</b><small>מייסד שותף ומנכ״ל <span class="nw">LEGAL MIND</span></small></div>
-        <div class="photo-card pc2"><img src="/notion-webinar/assets/roi-l.jpg?v=2" alt="" width="720" height="900"><b>עו״ד רועי נימצוביץ׳</b><small>מייסד שותף LEGAL MIND</small></div>
+        <div class="photo-card pc2"><img src="/notion-webinar/assets/roi-l.jpg?v=2" alt="" width="720" height="900"><b>עו״ד רועי נימצוביץ׳</b><small>מייסד שותף ב-<span class="nw">LEGAL MIND</span></small></div>
         <div class="photo-card pc3"><img src="/notion-webinar/assets/lior-l.jpg" alt="" width="720" height="900"><b>ליאור פרייס</b><small>מפתח אוטומציות</small><span class="gst">משתתף אורח</span></div>
       </div>
     </div>
@@ -545,9 +552,9 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
     <p class="lead rv" style="--d:.1s">אסף ורועי, מייסדי LEGAL MIND, חברים בוועדת הבינה המלאכותית של לשכת עורכי הדין ומטמיעים בינה מלאכותית בעולם המשפט והנדל״ן. איתם: ליאור פרייס, מפתח אוטומציות.</p>
     <div class="hosts">
       <article class="host rv" style="--d:.1s"><div class="ph"><img src="/notion-webinar/assets/asaf-l.jpg?v=2" alt="עו״ד אסף אברמזון" width="720" height="900" loading="lazy"></div>
-        <h3>עו״ד אסף אברמזון</h3><p>מייסד שותף ומנכ״ל LEGAL MIND. מתמחה בהטמעת AI ובבניית תהליכי עבודה חכמים לעולם המשפט.</p></article>
+        <h3>עו״ד אסף אברמזון</h3><p>מייסד שותף ומנכ״ל <bdi>LEGAL MIND</bdi>.&rlm; מתמחה בהטמעת AI ובבניית תהליכי עבודה חכמים לעולם המשפט.</p></article>
       <article class="host rv" style="--d:.2s"><div class="ph"><img src="/notion-webinar/assets/roi-l.jpg?v=2" alt="עו״ד רועי נימצוביץ׳" width="720" height="900" loading="lazy"></div>
-        <h3>עו״ד רועי נימצוביץ׳</h3><p>מייסד שותף LEGAL MIND. 20 שנים בעולם המשפט, בעסקאות מורכבות, פיננסים וליטיגציה.</p></article>
+        <h3>עו״ד רועי נימצוביץ׳</h3><p>מייסד שותף ב-<bdi>LEGAL MIND</bdi>.&rlm; בעל ניסיון של מעל 20 שנה בעסקאות מורכבות, פיננסים וליטיגציה.</p></article>
       <article class="host rv" style="--d:.3s"><div class="ph"><img src="/notion-webinar/assets/lior-l.jpg" alt="ליאור פרייס" width="720" height="900" loading="lazy"></div>
         <h3>ליאור פרייס</h3><p>מפתח אוטומציות. יציג מערכת לניהול משרד עו״ד ב-Notion ואת האוטומציות שמחברות אותה לכלים.</p><span class="gst">משתתף אורח</span></article>
     </div>
@@ -559,7 +566,8 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
   <div class="wrap row">
     <div><h2 class="sr" id="about-h">על LEGAL MIND</h2>
       <p class="big rv"><b>LEGAL MIND</b> מטמיעה <mark class="m1">בינה מלאכותית</mark> בעולם <mark class="m2">המשפט</mark> ו<mark class="m3">הנדל״ן</mark>: הדרכות, וובינרים וליווי אישי, ובניית <mark class="m4">תהליכי עבודה</mark> שמתאימים לאופן שבו המשרד חושב ועובד.</p>
-      <a class="tlink rv" style="--d:.15s" href="https://www.legalmind.co.il/#about" target="_blank" rel="noopener">עוד על LEGAL MIND ←</a></div>
+      <div class="about-cta rv" style="--d:.15s"><a class="btn fit" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener">לבחינת התאמה למשרד <span class="arr" aria-hidden="true">←</span></a>
+      <a class="tlink" href="https://www.legalmind.co.il/#about" target="_blank" rel="noopener">עוד על LEGAL MIND ←</a></div></div>
     <ul>
       <li class="rv" style="--d:.1s">למעלה מ-2,000 עורכי דין<small>בקהילת LEGAL MIND</small></li>
       <li class="rv" style="--d:.2s">ועדת הבינה המלאכותית<small>של לשכת עורכי הדין, שאסף ורועי חברים בה</small></li>
@@ -604,7 +612,7 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
 
 <footer>
   <div class="wrap">
-    <div class="brandclose"><img src="/notion-webinar/assets/lm-logo.webp" alt="LEGAL MIND" width="640" height="122"><p>מטמיעים בינה מלאכותית בעולם המשפט והנדל״ן.<small>עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, מייסדי LEGAL MIND</small></p></div>
+    <div class="brandclose"><img src="/notion-webinar/assets/lm-logo.webp" alt="LEGAL MIND" width="640" height="122"><p>מטמיעים בינה מלאכותית בעולם המשפט והנדל״ן.<small>עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, מייסדי LEGAL MIND</small></p><a class="btn fit" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener">לבחינת התאמה למשרד <span class="arr" aria-hidden="true">←</span></a></div>
     <div class="foot">
       <div><p><b>LEGAL MIND</b> מטמיעה בינה מלאכותית בעולם המשפט והנדל״ן. מייסדים: עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳. <a href="https://www.legalmind.co.il/" target="_blank" rel="noopener">www.legalmind.co.il</a> · <a href="https://www.linkedin.com/company/legal-mind-ai/" target="_blank" rel="noopener">לינקדאין</a> · <a href="https://www.facebook.com/LegalMindAI" target="_blank" rel="noopener">פייסבוק</a></p>
         <p class="tm">Notion הוא סימן מסחרי של Notion Labs, Inc. הוובינר מועבר על ידי LEGAL MIND ואינו מטעם Notion.</p></div>
