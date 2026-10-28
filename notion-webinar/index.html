@@ -206,6 +206,7 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .task.done .av{box-shadow:none;opacity:.85}
 .counter b{display:inline-block}
 .hint{margin:36px 0 0;font:700 clamp(42px,4.8vw,74px)/1 var(--display);letter-spacing:0;color:var(--ink);max-width:24ch}
+.hint .nowrap{white-space:nowrap}.ai-logos{display:inline-flex;gap:.14em;margin-right:.18em;vertical-align:baseline}.ai-logos img{height:.72em;width:auto;display:block}
 
 /* ===== stacking sheets ===== */
 .sheets-head{padding-top:clamp(44px,5.5vw,80px);padding-bottom:36px}
@@ -564,7 +565,7 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
         <button class="task done" type="button" tabindex="-1"><span class="t-top"><span class="tag chip-green">תיק 198</span></span><b>עדכון לקוח על החלטה</b><span class="t-foot"><span class="av" style="--a:#7B5CD6">מ</span><span>עו״ד מיכל</span></span></button>
       </div></div>
     </div>
-    <p class="hint rv">בוובינר נבנה לוח כזה מאפס, ונראה איך Claude ו-ChatGPT עובדים איתו.</p>
+    <p class="hint rv">בוובינר נבנה לוח כזה מאפס, ונראה איך Claude <span class="nowrap">ו-ChatGPT<span class="ai-logos" aria-hidden="true"><img src="/notion-webinar/assets/claude-spark.svg" alt=""><img src="/notion-webinar/assets/chatgpt-logo.svg" alt=""></span></span> עובדים איתו.</p>
   </div>
 </section>
 
