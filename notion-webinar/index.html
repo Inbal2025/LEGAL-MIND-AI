@@ -99,9 +99,9 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 @keyframes fin{to{opacity:1;transform:none}}
 
 /* 3D stage */
-.stage{position:relative;height:clamp(520px,46vw,680px);perspective:1600px}
+.stage{position:relative;height:clamp(600px,50vw,720px);perspective:1600px}
 .scene{position:absolute;inset:0;transform-style:preserve-3d;transform:translate(var(--tx,0px),var(--ty,0px));transition:transform .6s var(--ease)}
-.board3d{position:absolute;inset:14% 22% 16% 22%;background:var(--bone);border-radius:22px;transform:translateZ(0);padding:22px;display:grid;grid-template-rows:auto auto 1fr;gap:12px;font-size:14px}
+.board3d{position:absolute;inset:4% 3% 56% 3%;background:var(--bone);border-radius:22px;transform:translateZ(0);padding:22px;display:grid;grid-template-rows:auto auto 1fr;gap:12px;font-size:14px}
 .b3-top{display:flex;align-items:center;gap:10px;font:700 22px var(--font)}
 .b3-top img{width:26px;height:26px}
 .b3-tabs{display:flex;gap:14px;color:var(--muted);font-weight:500}
@@ -115,13 +115,13 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .chip-pink{background:var(--pink);color:var(--t-pink)}.chip-purple{background:var(--purple);color:var(--t-purple)}
 .float{position:absolute;transform-style:preserve-3d}
 .cards-layer{position:absolute;inset:0;pointer-events:none;z-index:2}
-.photo-card{position:absolute;width:clamp(168px,14vw,216px);background:#fff;border-radius:18px;padding:8px 8px 12px;box-shadow:0 24px 50px -28px rgba(20,32,26,.55)}
+.photo-card{position:absolute;width:clamp(160px,13.4vw,210px);background:#fff;border-radius:18px;padding:8px 8px 12px;box-shadow:0 24px 50px -28px rgba(20,32,26,.55)}
 .photo-card img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:12px}
 .photo-card b{display:block;font:700 15px/1.25 var(--font);margin:10px 4px 0}
 .photo-card small{display:block;font:500 13px var(--font);color:var(--muted);margin:2px 4px 0}
-.pc1{top:2%;left:0;animation:bob 7s ease-in-out infinite}
-.pc2{top:2%;right:0;animation:bob 8s ease-in-out -2s infinite}
-.pc3{bottom:0;left:calc(50% - clamp(84px,7vw,108px));animation:bob 7.5s ease-in-out -4s infinite}
+.pc1{bottom:0;left:0;animation:bob 7s ease-in-out infinite}
+.pc2{bottom:0;right:0;animation:bob 8s ease-in-out -2s infinite}
+.pc3{bottom:0;left:calc(50% - clamp(80px,6.7vw,105px));animation:bob 7.5s ease-in-out -4s infinite}
 .pc3 .gst{display:inline-block;white-space:nowrap;margin:6px 4px 0;font:700 12px var(--font);background:var(--yellow);color:var(--t-yellow);border-radius:999px;padding:2px 10px}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
 .ai3d{position:absolute;bottom:2%;right:-4%;width:clamp(220px,20vw,290px);background:var(--forest);color:var(--bone);border-radius:16px;padding:14px 16px;font-size:14px;transform:none}
