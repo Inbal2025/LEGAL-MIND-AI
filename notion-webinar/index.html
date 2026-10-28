@@ -101,16 +101,36 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 /* 3D stage */
 .stage{position:relative;height:clamp(600px,50vw,720px);perspective:1600px}
 .scene{position:absolute;inset:0;transform-style:preserve-3d;transform:translate(var(--tx,0px),var(--ty,0px));transition:transform .6s var(--ease)}
-.board3d{position:absolute;inset:4% 3% 56% 3%;background:var(--bone);border-radius:22px;transform:translateZ(0);padding:22px;display:grid;grid-template-rows:auto auto 1fr;gap:12px;font-size:14px}
-.b3-top{display:flex;align-items:center;gap:10px;font:700 22px var(--font)}
-.b3-top img{width:26px;height:26px}
-.b3-tabs{display:flex;gap:14px;color:var(--muted);font-weight:500}
-.b3-tabs b{color:var(--ink);font-weight:700;border-bottom:2px solid var(--ink)}
-.b3-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-content:start}
-.b3-col h4{margin:0 0 8px;font:700 13px var(--font)}
-.b3-col h4 span{padding:2px 10px;border-radius:999px}
-.b3-c{background:#fff;border-radius:10px;padding:9px 10px;margin-bottom:8px;font-weight:600;line-height:1.35}
-.b3-c small{display:block;font-weight:500;color:var(--muted);font-size:12px;margin-top:4px}
+.board3d{position:absolute;inset:3% 2% 53% 2%;background:var(--forest);color:var(--bone);border-radius:26px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:14px;
+  box-shadow:0 46px 80px -44px rgba(20,32,26,.75),inset 0 0 0 1px rgba(255,255,255,.06);overflow:hidden}
+.board3d::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% 0%,rgba(127,196,143,.18),transparent 70%);pointer-events:none}
+.hb-top{position:relative;display:flex;align-items:center;gap:12px}
+.hb-title{display:flex;align-items:center;gap:12px;font:700 clamp(28px,2.4vw,36px)/1 var(--display);color:#fff;letter-spacing:.01em}
+.hb-n{width:36px;height:36px;border-radius:11px;background:#fff;display:grid;place-items:center;box-shadow:0 3px 0 #8FAA97}
+.hb-n img{width:24px;height:24px}
+.hb-live{margin-right:auto;display:flex;align-items:center;gap:9px;font:600 13px var(--font);color:#B9CBBE}
+.hb-live > i{width:8px;height:8px;border-radius:50%;background:#6FE39A;animation:ping 1.8s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(111,227,154,.6)}70%,100%{box-shadow:0 0 0 9px rgba(111,227,154,0)}}
+.hb-avs{display:flex}.hb-avs .av{width:28px;height:28px;font-size:12px;border:2px solid var(--forest);box-shadow:none}.hb-avs .av + .av{margin-right:-9px}
+.hb-cols{position:relative;flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;min-height:0}
+.hb-col{background:rgba(255,255,255,.055);border-radius:16px;padding:10px 9px;min-height:0}
+.hb-col[data-k=new]{--k:#F08A75;--ke:#C25A45}.hb-col[data-k=doing]{--k:#F2C063;--ke:#B98420}.hb-col[data-k=done]{--k:#7FD39A;--ke:#3E8F57}
+.hb-col h5{margin:0 3px 9px;display:flex;align-items:center;gap:8px;font:700 22px/1 var(--display);letter-spacing:.02em;color:#fff}
+.hb-col h5 i{width:10px;height:10px;border-radius:3px;background:var(--k);box-shadow:0 0 12px var(--k)}
+.hb-col h5 em{margin-right:auto;font:700 12px/1 var(--font);font-style:normal;background:rgba(255,255,255,.1);color:#CFE0D3;border-radius:999px;padding:4px 9px}
+.hb-list{display:flex;flex-direction:column;gap:11px;transition:opacity .35s}
+.hb-fade .hb-list{opacity:0}
+.hb-c{position:relative;background:#F5F8F2;color:var(--ink);border-radius:13px;padding:11px 12px 10px;box-shadow:0 4px 0 var(--ke);transition:box-shadow .4s,transform .3s var(--ease)}
+.hb-c b{display:block;font:700 clamp(13px,1.05vw,15.5px)/1.3 var(--font)}
+.hb-m{display:flex;align-items:center;gap:6px;margin-top:7px}
+.hb-m .av{width:24px;height:24px;font-size:12px;box-shadow:none}
+.hb-m .chip{font:700 11px/1.5 var(--font);border-radius:6px;padding:0 7px}
+.hb-col[data-k=done] .hb-c{padding-left:36px}.hb-col[data-k=done] .hb-c b{color:var(--muted)}
+.hb-col[data-k=done] .hb-c::after{content:"✓";position:absolute;top:8px;left:9px;width:19px;height:19px;border-radius:50%;background:#3E8F57;color:#fff;display:grid;place-items:center;font:700 11px/1 var(--font)}
+.hb-c.grab{z-index:3;transform:rotate(-3deg) scale(1.05);box-shadow:0 18px 30px -12px rgba(0,0,0,.6),0 4px 0 var(--ke)}
+.hb-cursor{position:absolute;top:0;left:0;z-index:6;pointer-events:none;display:flex;align-items:flex-start;transform:translate(60px,230px);transition:transform .75s var(--ease)}
+.hb-cursor svg{width:22px;height:22px;fill:#F2C063;stroke:#15261E;stroke-width:1.4;stroke-linejoin:round;filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}
+.hb-cursor span{margin:16px -4px 0 0;background:#F2C063;color:#15261E;font:700 11.5px/1 var(--font);border-radius:7px;padding:4px 8px;box-shadow:0 3px 8px rgba(0,0,0,.3)}
 .chip-blue{background:var(--blue);color:var(--t-blue)}.chip-yellow{background:var(--yellow);color:var(--t-yellow)}.chip-green{background:var(--green);color:var(--t-green)}
 .chip-pink{background:var(--pink);color:var(--t-pink)}.chip-purple{background:var(--purple);color:var(--t-purple)}
 .float{position:absolute;transform-style:preserve-3d}
@@ -151,23 +171,40 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .live-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;margin-bottom:40px}
 .counter{display:flex;align-items:baseline;gap:12px;font:500 19px var(--font);color:var(--ink-2)}
 .counter b{font:700 clamp(84px,8vw,128px)/.9 var(--display);color:var(--ink);letter-spacing:0;font-variant-numeric:tabular-nums}
-.board{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.lane-col{background:var(--sage-2);border-radius:var(--r);padding:20px;min-height:380px}
-.lane-col h3{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px;font:700 18px var(--font)}
-.lane-col h3 span{padding:4px 14px;border-radius:999px}
-.lane-col h3 em{font-style:normal;font-weight:500;color:var(--muted)}
-.task{all:unset;box-sizing:border-box;display:block;width:100%;background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:12px;cursor:pointer;
-  transition:transform .25s var(--ease),background .25s}
-.task:hover{transform:translateY(-3px) rotate(-.6deg)}
-.task:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.task b{display:block;font:700 18px/1.35 var(--font);color:var(--ink)}
-.task .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font:500 14px var(--font);color:var(--muted)}
-.task .tag{border-radius:6px;padding:2px 9px;font-weight:600}
-.task .go{display:block;margin-top:10px;font:600 14px var(--font);color:var(--t-green)}
-.task.done b{text-decoration:line-through;text-decoration-thickness:2px;color:var(--muted)}
-.task.done .go{display:none}
-.task.moving{animation:land .45s var(--ease)}
-@keyframes land{from{opacity:0;transform:translateY(-14px) scale(.96)}to{opacity:1;transform:none}}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.lane-col{position:relative;border-radius:32px;padding:22px 20px 26px;min-height:470px}
+.lane-col[data-k=new]{background:var(--linen);--ec:#D9CCAE}
+.lane-col[data-k=doing]{background:var(--moss);--ec:#93B183}
+.lane-col[data-k=done]{background:var(--forest-2);color:var(--bone)}
+.lc-head{display:flex;align-items:center;gap:14px;margin:0 2px 22px}
+.lc-head h3{margin:0;font:700 clamp(42px,3.8vw,58px)/1 var(--display);letter-spacing:.01em}
+.lc-head em{margin-right:auto;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font:700 34px/1 var(--display);font-style:normal;background:rgba(255,255,255,.7);color:var(--ink)}
+.lane-col[data-k=done] .lc-head em{background:rgba(255,255,255,.1);color:var(--mint)}
+.lc-list{display:flex;flex-direction:column;gap:18px}
+.task{all:unset;box-sizing:border-box;display:block;width:100%;position:relative;background:#fff;border-radius:20px;padding:16px 18px 15px;cursor:pointer;--e:6px;
+  box-shadow:0 var(--e) 0 var(--ec,#ccc),0 calc(var(--e) + 12px) 26px -16px rgba(20,32,26,.5);transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+.task:hover{transform:translateY(-3px);box-shadow:0 calc(var(--e) + 3px) 0 var(--ec,#ccc),0 calc(var(--e) + 18px) 30px -16px rgba(20,32,26,.55)}
+.task:active{transform:translateY(var(--e));box-shadow:0 0 0 var(--ec,#ccc),0 2px 6px -4px rgba(20,32,26,.4)}
+.task:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+.t-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.task .tag{border-radius:8px;padding:3px 10px;font:700 13px/1.4 var(--font)}
+.due{display:inline-flex;align-items:center;gap:5px;font:600 13.5px var(--font);color:var(--muted)}
+.due svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.due.hot{color:var(--t-pink)}
+.task b{display:block;font:700 clamp(18px,1.45vw,21px)/1.3 var(--font);color:var(--ink)}
+.t-foot{display:flex;align-items:center;gap:9px;margin-top:14px;font:600 14px var(--font);color:var(--ink-2)}
+.t-foot .av{width:30px;height:30px;font-size:13px}
+.task .go{margin-right:auto;white-space:nowrap;background:#7FC48F;color:#0F2418;border-radius:999px;padding:6px 13px;font:700 13px/1 var(--font);box-shadow:0 3px 0 #3F7D50;transition:transform .2s var(--ease)}
+.task:hover .go{transform:translateX(-4px)}
+.task.done{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.09);cursor:default}
+.task.done:hover,.task.done:active{transform:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.09)}
+.task.done b{color:#DCE7DF}
+.task.done .t-foot{color:#A9BDB0}
+.task.done .tag{background:rgba(169,232,188,.16);color:var(--mint)}
+.task.done .av{box-shadow:none;opacity:.85}
+.task.done::after{content:"✓";position:absolute;top:13px;left:15px;width:32px;height:32px;border-radius:50%;background:#7FC48F;color:#0F2418;display:grid;place-items:center;font:700 17px/1 var(--font);box-shadow:0 3px 0 #3F7D50}
+.counter b{display:inline-block}
+.bit{position:fixed;z-index:60;width:9px;height:9px;border-radius:2px;pointer-events:none}
 .hint{margin:36px 0 0;font:700 clamp(42px,4.8vw,74px)/1 var(--display);letter-spacing:0;color:var(--ink);max-width:24ch}
 
 /* ===== stacking sheets ===== */
@@ -381,13 +418,19 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
 
 @media (max-width:1100px){
   .hero-grid{grid-template-columns:1fr}
-  .stage{height:min(520px,92vw);margin-top:10px}
+  .stage{height:auto;margin-top:10px}
+  .stage .scene{position:relative;inset:auto;height:330px}
+  .board3d{inset:0}
+  .cards-layer{position:relative;inset:auto;display:flex;justify-content:center;gap:24px;margin-top:26px}
+  .photo-card{position:relative;inset:auto!important;width:min(220px,calc((100% - 48px)/3))}
+  .pc3{order:1}.pc2{order:2}
   .nav nav a:not(.btn){display:none}
   .marks .lm{height:40px}.marks .sep{height:44px}.marks .nt{font-size:33px}.marks .nt img{width:46px;height:46px}
 }
 @media (max-width:860px){
   .board{grid-template-columns:1fr}
   .lane-col{min-height:0}
+  .hb-lt{display:none}
   .sheet .wrap{grid-template-columns:1fr}
   .sheet{margin:0 8px 14px}
   .sheet h3{height:48px;font-size:40px}
@@ -406,7 +449,6 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
   .board3d{inset:8% 4% 14% 8%}
   .cube-hero{right:40%;top:3%}
   .ai3d{width:210px;font-size:13px}
-  .b3-cols{grid-template-columns:1fr 1fr}.b3-cols .b3-col:nth-child(3){display:none}
   .link-row{grid-template-columns:1fr}
   .h-cta .btn{width:100%}
   .brandclose{flex-wrap:wrap}.brandclose p{flex-basis:100%;white-space:normal}
@@ -459,20 +501,17 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
     <!-- 3D workspace -->
     <div class="stage fade d3" id="stage" aria-hidden="true">
       <div class="scene" id="scene">
-        <div class="board3d">
-          <div class="b3-top"><img src="/notion-webinar/assets/notion-logo.svg" alt="">משימות המשרד</div>
-          <div class="b3-tabs"><b>לוח</b><span>לפי עו״ד</span><span>השבוע</span><span>יומן</span></div>
-          <div class="b3-cols">
-            <div class="b3-col"><h4><span class="chip-pink">חדש</span></h4>
-              <div class="b3-c">שיחת היכרות: ליד מהאתר<small>מעקב בשבוע הבא</small></div>
-              <div class="b3-c">הצעת שכר טרחה<small>עו״ד דני</small></div></div>
-            <div class="b3-col"><h4><span class="chip-yellow">בטיפול</span></h4>
-              <div class="b3-c">הגשת כתב הגנה<small>מועד: 12.11</small></div>
-              <div class="b3-c">הכנה לדיון קדם משפט<small>דיון: 18.11</small></div></div>
-            <div class="b3-col"><h4><span class="chip-green">הושלם</span></h4>
-              <div class="b3-c">פתיחת תיק ללקוח חדש<small>עו״ד מיכל</small></div>
-              <div class="b3-c">עדכון לקוח על החלטה<small>נשלח</small></div></div>
+        <div class="board3d" id="hb">
+          <div class="hb-top">
+            <span class="hb-title"><span class="hb-n"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></span>משימות המשרד</span>
+            <span class="hb-live"><span class="hb-avs"><span class="av" style="--a:#E0614D">א</span><span class="av" style="--a:#7B5CD6">ר</span><span class="av" style="--a:#E09B2D">ל</span></span><i></i><span class="hb-lt">3 עובדים עכשיו</span></span>
           </div>
+          <div class="hb-cols">
+            <div class="hb-col" data-k="new"><h5><i></i>חדש<em>2</em></h5><div class="hb-list"><div class="hb-c" data-id="a"><b>שיחת היכרות: ליד מהאתר</b><span class="hb-m"><span class="av" style="--a:#E09B2D">ד</span><span class="chip chip-blue">ליד</span></span></div><div class="hb-c" data-id="b"><b>הצעת שכר טרחה</b><span class="hb-m"><span class="av" style="--a:#7B5CD6">מ</span><span class="chip chip-blue">ליד</span></span></div></div></div>
+            <div class="hb-col" data-k="doing"><h5><i></i>בטיפול<em>2</em></h5><div class="hb-list"><div class="hb-c" data-id="c"><b>הגשת כתב הגנה</b><span class="hb-m"><span class="av" style="--a:#7B5CD6">מ</span><span class="chip chip-pink">12.11</span></span></div><div class="hb-c" data-id="d"><b>הכנה לדיון קדם משפט</b><span class="hb-m"><span class="av" style="--a:#E09B2D">ד</span><span class="chip chip-pink">18.11</span></span></div></div></div>
+            <div class="hb-col" data-k="done"><h5><i></i>הושלם<em>1</em></h5><div class="hb-list"><div class="hb-c" data-id="e"><b>פתיחת תיק ללקוח חדש</b><span class="hb-m"><span class="av" style="--a:#E09B2D">ד</span><span class="chip chip-purple">תיק 220</span></span></div></div></div>
+          </div>
+          <div class="hb-cursor" id="hb-cur"><svg viewBox="0 0 24 24"><path d="M5 3.5l14 6.6-6.2 1.9-2.6 6.3z"/></svg><span>ליאור</span></div>
         </div>
       </div>
       <div class="cards-layer">
@@ -493,19 +532,19 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
       <p class="counter rv" style="--d:.2s" aria-live="polite"><b id="done-n">2</b><span>משימות הושלמו היום</span></p>
     </div>
     <div class="board" data-ui>
-      <div class="lane-col rv" style="--d:.1s" data-col="0"><h3><span class="chip-pink">חדש</span><em data-count></em></h3>
-        <button class="task" type="button"><b>שיחת היכרות עם ליד מהאתר</b><span class="meta"><span class="tag chip-blue">ליד</span><span>עו״ד דני</span></span><span class="go">להעביר לטיפול ←</span></button>
-        <button class="task" type="button"><b>הצעת שכר טרחה לחברת נדל״ן</b><span class="meta"><span class="tag chip-blue">ליד</span><span>עו״ד מיכל</span></span><span class="go">להעביר לטיפול ←</span></button>
-        <button class="task" type="button"><b>בדיקת הסכם שכירות</b><span class="meta"><span class="tag chip-purple">תיק 214</span><span>מועד: 20.11</span></span><span class="go">להעביר לטיפול ←</span></button>
-      </div>
-      <div class="lane-col rv" style="--d:.2s" data-col="1"><h3><span class="chip-yellow">בטיפול</span><em data-count></em></h3>
-        <button class="task" type="button"><b>הגשת כתב הגנה</b><span class="meta"><span class="tag chip-pink">מועד: 12.11</span><span class="tag chip-purple">תיק 198</span></span><span class="go">לסמן כהושלם ←</span></button>
-        <button class="task" type="button"><b>הכנה לדיון קדם משפט</b><span class="meta"><span class="tag chip-pink">דיון: 18.11</span><span>עו״ד מיכל</span></span><span class="go">לסמן כהושלם ←</span></button>
-      </div>
-      <div class="lane-col rv" style="--d:.3s" data-col="2"><h3><span class="chip-green">הושלם</span><em data-count></em></h3>
-        <button class="task done" type="button" tabindex="-1"><b>פתיחת תיק ללקוח חדש</b><span class="meta"><span class="tag chip-green">הושלם</span><span>עו״ד דני</span></span></button>
-        <button class="task done" type="button" tabindex="-1"><b>עדכון לקוח על החלטה</b><span class="meta"><span class="tag chip-green">הושלם</span></span></button>
-      </div>
+      <div class="lane-col rv" style="--d:.1s" data-col="0" data-k="new"><div class="lc-head"><span class="tile tn-coral"><svg viewBox="0 0 24 24"><path d="M12 4v10"/><path d="M7.5 9.5 12 14l4.5-4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span><h3>חדש</h3><em data-count></em></div><div class="lc-list">
+        <button class="task" type="button"><span class="t-top"><span class="tag chip-blue">ליד</span><span class="due hot"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>היום 14:00</span></span><b>שיחת היכרות עם ליד מהאתר</b><span class="t-foot"><span class="av" style="--a:#E09B2D">ד</span><span>עו״ד דני</span><span class="go">להעביר לטיפול ←</span></span></button>
+        <button class="task" type="button"><span class="t-top"><span class="tag chip-blue">ליד</span><span class="due"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>מחר</span></span><b>הצעת שכר טרחה לחברת נדל״ן</b><span class="t-foot"><span class="av" style="--a:#7B5CD6">מ</span><span>עו״ד מיכל</span><span class="go">להעביר לטיפול ←</span></span></button>
+        <button class="task" type="button"><span class="t-top"><span class="tag chip-purple">תיק 214</span><span class="due"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>20.11</span></span><b>בדיקת הסכם שכירות</b><span class="t-foot"><span class="av" style="--a:#E09B2D">ד</span><span>עו״ד דני</span><span class="go">להעביר לטיפול ←</span></span></button>
+      </div></div>
+      <div class="lane-col rv" style="--d:.2s" data-col="1" data-k="doing"><div class="lc-head"><span class="tile tn-amber"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></svg></span><h3>בטיפול</h3><em data-count></em></div><div class="lc-list">
+        <button class="task" type="button"><span class="t-top"><span class="tag chip-purple">תיק 198</span><span class="due hot"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>12.11</span></span><b>הגשת כתב הגנה</b><span class="t-foot"><span class="av" style="--a:#7B5CD6">מ</span><span>עו״ד מיכל</span><span class="go">לסמן כהושלם ←</span></span></button>
+        <button class="task" type="button"><span class="t-top"><span class="tag chip-purple">תיק 205</span><span class="due"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>דיון 18.11</span></span><b>הכנה לדיון קדם משפט</b><span class="t-foot"><span class="av" style="--a:#E09B2D">ד</span><span>עו״ד דני</span><span class="go">לסמן כהושלם ←</span></span></button>
+      </div></div>
+      <div class="lane-col rv" style="--d:.3s" data-col="2" data-k="done"><div class="lc-head"><span class="tile tn-green"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><h3>הושלם</h3><em data-count></em></div><div class="lc-list">
+        <button class="task done" type="button" tabindex="-1"><span class="t-top"><span class="tag chip-green">תיק 220</span></span><b>פתיחת תיק ללקוח חדש</b><span class="t-foot"><span class="av" style="--a:#E09B2D">ד</span><span>עו״ד דני</span></span></button>
+        <button class="task done" type="button" tabindex="-1"><span class="t-top"><span class="tag chip-green">תיק 198</span></span><b>עדכון לקוח על החלטה</b><span class="t-foot"><span class="av" style="--a:#7B5CD6">מ</span><span>עו״ד מיכל</span></span></button>
+      </div></div>
     </div>
     <p class="hint rv">בוובינר נבנה לוח כזה מאפס, ונראה איך Claude ו-ChatGPT עובדים איתו.</p>
   </div>
@@ -670,21 +709,50 @@ function regUrl(){
     stage.addEventListener('pointerleave', () => { scene.style.removeProperty('--tx'); scene.style.removeProperty('--ty'); });
   }
 
-  /* ---- live board: a click moves a task to the next column ---- */
+  /* ---- live board: a click flies a task to the next column ---- */
   const cols = [...document.querySelectorAll('.lane-col')], doneN = $('#done-n');
   const labels = ['להעביר לטיפול ←', 'לסמן כהושלם ←'];
   const recount = () => { cols.forEach(c => c.querySelector('[data-count]').textContent = c.querySelectorAll('.task').length);
     doneN.textContent = cols[2].querySelectorAll('.task').length; };
   recount();
+  const burst = el => { const r = el.getBoundingClientRect(), cx = r.left + 30, cy = r.top + 28;
+    const pal = ['#7FC48F', '#F2C063', '#F08A75', '#A9E8BC', '#C0AEF2'];
+    for (let i = 0; i < 16; i++) { const b = document.createElement('i'); b.className = 'bit'; b.style.left = cx + 'px'; b.style.top = cy + 'px'; b.style.background = pal[i % 5];
+      document.body.appendChild(b); const a = Math.random() * Math.PI * 2, d = 50 + Math.random() * 70;
+      b.animate([{ transform: 'translate(0,0) rotate(0)', opacity: 1 }, { transform: `translate(${Math.cos(a) * d}px,${Math.sin(a) * d - 30}px) rotate(${Math.random() * 540}deg)`, opacity: 0 }],
+        { duration: 800 + Math.random() * 300, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = () => b.remove(); } };
   document.querySelector('.board').addEventListener('click', e => {
     const t = e.target.closest('.task'); if (!t || t.classList.contains('done')) return;
-    const from = +t.closest('.lane-col').dataset.col, to = from + 1;
-    const dest = cols[to].querySelector('h3');
-    dest.after(t); t.classList.remove('moving'); void t.offsetWidth; t.classList.add('moving');
-    if (to === 2) { t.classList.add('done'); t.tabIndex = -1; const g = t.querySelector('.go'); if (g) g.remove(); }
+    const to = +t.closest('.lane-col').dataset.col + 1, f = t.getBoundingClientRect();
+    cols[to].querySelector('.lc-list').prepend(t);
+    if (to === 2) { t.classList.add('done'); t.tabIndex = -1; t.querySelector('.go')?.remove(); t.querySelector('.due')?.remove();
+      t.querySelector('.tag').className = 'tag chip-green'; }
     else t.querySelector('.go').textContent = labels[to];
     recount();
+    if (reduce) return;
+    const l = t.getBoundingClientRect(), dx = f.left - l.left, dy = f.top - l.top;
+    t.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: `translate(${dx / 2}px,${dy / 2 - 70}px) rotate(${dx > 0 ? -4 : 4}deg) scale(1.06)`, offset: .45 }, { transform: 'none' }],
+      { duration: 700, easing: 'cubic-bezier(.3,.7,.25,1)' }).onfinish = () => { if (to === 2) { burst(t); doneN.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.3)' }, { transform: 'scale(1)' }], { duration: 500, easing: 'ease-out' }); } };
   });
+
+  /* ---- hero board: a teammate's cursor moves cards on its own ---- */
+  const hb = $('#hb');
+  if (hb && !reduce) {
+    const cur = $('#hb-cur'), lists = [...hb.querySelectorAll('.hb-list')], start = lists.map(l => [...l.children]);
+    const hcount = () => hb.querySelectorAll('.hb-col').forEach(c => c.querySelector('em').textContent = c.querySelectorAll('.hb-c').length);
+    const aim = el => { const b = hb.getBoundingClientRect(), r = el.getBoundingClientRect(); cur.style.transform = `translate(${r.left - b.left + r.width * .3}px,${r.top - b.top + r.height * .55}px)`; };
+    const move = (id, to) => { const c = hb.querySelector(`[data-id="${id}"]`); aim(c);
+      setTimeout(() => { c.classList.add('grab'); const f = c.getBoundingClientRect(); lists[to].prepend(c); hcount();
+        const l = c.getBoundingClientRect(); aim(c);
+        c.animate([{ transform: `translate(${f.left - l.left}px,${f.top - l.top}px) rotate(-3deg) scale(1.05)` }, { transform: 'rotate(-3deg) scale(1.05)' }], { duration: 750, easing: 'cubic-bezier(.2,.75,.2,1)' });
+        setTimeout(() => c.classList.remove('grab'), 900); }, 850); };
+    const reset = () => { hb.classList.add('hb-fade'); cur.style.transform = '';
+      setTimeout(() => { lists.forEach((l, i) => start[i].forEach(c => l.appendChild(c))); hcount(); hb.classList.remove('hb-fade'); }, 400); };
+    const steps = [() => move('c', 2), () => move('a', 1), reset];
+    let n = 0, timer = null;
+    new IntersectionObserver(([e]) => { clearInterval(timer); timer = null;
+      if (e.isIntersecting) timer = setInterval(() => { if (!document.hidden) steps[n++ % steps.length](); }, 2800); }).observe(hb);
+  }
 
 
   /* ---- tasks window: progress follows the checkboxes ---- */
