@@ -326,9 +326,13 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 .about mark{color:inherit;padding:0 .14em;border-radius:.18em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .about .m1{background:var(--mint)}.about .m2{background:var(--euca)}.about .m3{background:var(--moss)}.about .m4{background:var(--linen)}
 .about .row{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(24px,5vw,80px);align-items:end}
-.about ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.about li{background:var(--sage-2);border-radius:18px;padding:18px 22px;font:700 19px var(--font)}
-.about li small{display:block;font:500 16px var(--font);color:var(--muted);margin-top:2px}
+.about ul{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.about li{display:flex;align-items:center;gap:20px;background:#fff;border-radius:22px;padding:20px 24px;box-shadow:0 6px 0 var(--sage-3),0 22px 30px -20px rgba(20,40,30,.4);transition:translate .35s var(--ease),box-shadow .35s var(--ease)}
+.about li:hover{translate:0 -4px;box-shadow:0 10px 0 var(--sage-3),0 28px 34px -20px rgba(20,40,30,.45)}
+.about li .tile{transform:rotate(-7deg)}.about li:nth-child(2) .tile{transform:rotate(6deg)}
+.about li b{display:block;font:700 clamp(32px,2.7vw,40px)/.95 var(--display);letter-spacing:.01em;color:var(--ink)}
+.about li small{display:block;font:500 16px/1.4 var(--font);color:var(--muted);margin-top:6px}
+@media (max-width:620px){.about li{gap:16px;padding:18px}.about li b{font-size:28px}.about li .tile{width:48px;height:48px}}
 .about .tlink{display:inline-block}
 .about-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px 32px;margin-top:34px}
 
@@ -621,9 +625,9 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       <p class="big rv"><b>LEGAL MIND</b> מטמיעה <mark class="m1">בינה מלאכותית</mark> בעולם <mark class="m2">המשפט</mark> ו<mark class="m3">הנדל״ן</mark>: הדרכות, וובינרים וליווי אישי, ובניית <mark class="m4">תהליכי עבודה</mark> שמתאימים לאופן שבו המשרד חושב ועובד.</p>
       <div class="about-cta rv" style="--d:.15s"><a class="btn fit" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener">לבחינת התאמה למשרד <span class="arr" aria-hidden="true">←</span></a></div></div>
     <ul>
-      <li class="rv" style="--d:.1s">למעלה מ-2,000 עורכי דין<small>בקהילת LEGAL MIND</small></li>
-      <li class="rv" style="--d:.2s">ועדת הבינה המלאכותית<small>של לשכת עורכי הדין, שאסף ורועי חברים בה</small></li>
-      <li class="rv" style="--d:.3s">משפט ונדל״ן<small>הטמעה במשרדי עורכי דין ובחברות נדל״ן</small></li>
+      <li class="rv" style="--d:.1s"><span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.8 14.2c2.5-.2 4.3 1.4 4.7 4.3"/></svg></span><span><b>למעלה מ-2,000 עורכי דין</b><small>בקהילת LEGAL MIND</small></span></li>
+      <li class="rv" style="--d:.2s"><span class="tile tn-violet" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v16"/><path d="M8 20h8"/><path d="M5 7.5h14"/><path d="M5 7.5 2.8 13a2.4 2.4 0 0 0 4.4 0z"/><path d="M19 7.5 16.8 13a2.4 2.4 0 0 0 4.4 0z"/></svg></span><span><b>ועדת הבינה המלאכותית</b><small>של לשכת עורכי הדין, שאסף ורועי חברים בה</small></span></li>
+      <li class="rv" style="--d:.3s"><span class="tile tn-amber" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20h17"/><path d="M6 20V6.5L13 4v16"/><path d="M13 9h5v11"/><path d="M9.2 9v.01M9.2 12.5v.01M9.2 16v.01M15.6 13v.01M15.6 16.5v.01"/></svg></span><span><b>משפט ונדל״ן</b><small>הטמעה במשרדי עורכי דין ובחברות נדל״ן</small></span></li>
     </ul>
   </div>
 </section>
@@ -788,6 +792,13 @@ function regUrl(){
   const upd = () => sticky.classList.toggle('on', heroOut && !regIn);
   new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting && e.boundingClientRect.top < 0; upd(); }).observe($('.h-cta'));
   new IntersectionObserver(([e]) => { regIn = e.isIntersecting; upd(); }, { threshold: .25 }).observe($('#register'));
+  /* ---- buttons centred under the text lines themselves, not under the paragraph box (ragged lines leave empty space on the left) ---- */
+  const centre = () => [['.h-sub', '.h-cta'], ['.about .big', '.about-cta']].forEach(([ps, cs]) => {
+    const p = $(ps), c = $(cs), r = document.createRange(); c.style.maxWidth = c.style.width = c.style.marginRight = '';
+    if (matchMedia('(max-width:620px)').matches) return; r.selectNodeContents(p);
+    const ls = [...r.getClientRects()], L = Math.min(...ls.map(x => x.left)), R = Math.max(...ls.map(x => x.right));
+    c.style.maxWidth = 'none'; c.style.width = (R - L) + 'px'; c.style.marginRight = (p.getBoundingClientRect().right - R) + 'px'; });
+  centre(); addEventListener('resize', centre); document.fonts && document.fonts.ready.then(centre);
 })();
 </script>
 </body>
