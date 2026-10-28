@@ -55,13 +55,13 @@ a{color:inherit}
 .tlink:hover{opacity:.7}
 
 /* nav */
-.nav{position:sticky;top:0;z-index:40;background:var(--sage)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
-.marks{display:flex;align-items:center;gap:14px;text-decoration:none}
-.marks .lm{height:26px;width:auto}
-.marks .sep{width:1.5px;height:28px;border-radius:2px;background:rgba(20,32,26,.28)}
-.marks .nt{display:flex;align-items:center;gap:7px;font:700 21px var(--font);direction:ltr}
-.marks .nt img{width:30px;height:30px}
+.nav{position:relative;z-index:40;background:var(--sage)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:76px;padding-top:28px;padding-bottom:12px}
+.marks{display:flex;align-items:center;gap:36px;text-decoration:none}
+.marks .lm{height:78px;width:auto}
+.marks .sep{width:2.5px;height:84px;border-radius:2px;background:rgba(20,32,26,.28)}
+.marks .nt{display:flex;align-items:center;gap:18px;font:700 63px/1 var(--font);letter-spacing:-.02em;direction:ltr}
+.marks .nt img{width:90px;height:90px}
 .nav nav{display:flex;align-items:center;gap:28px}
 .nav nav a{font:500 17px var(--font);text-decoration:none;color:var(--ink-2)}
 .nav nav a:hover{color:var(--ink)}
@@ -291,7 +291,8 @@ footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
 @media (max-width:1100px){
   .hero-grid{grid-template-columns:1fr}
   .stage{height:min(520px,92vw);margin-top:10px}
-  .nav nav a{display:none}
+  .nav nav a:not(.btn){display:none}
+  .marks .lm{height:60px}.marks .sep{height:64px}.marks .nt{font-size:48px}.marks .nt img{width:70px;height:70px}
 }
 @media (max-width:860px){
   .board{grid-template-columns:1fr}
@@ -307,14 +308,12 @@ footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
 }
 @media (max-width:620px){
   body{font-size:17px}
-  .nav .wrap{height:64px}.nav .btn{display:none}.marks .lm{height:22px}
+  .nav .wrap{min-height:64px;padding-top:18px;justify-content:center}.nav .btn{display:none}
+  .marks{gap:14px}.marks .lm{height:30px}.marks .sep{height:36px;width:2px}.marks .nt{font-size:25px;gap:8px}.marks .nt img{width:36px;height:36px}
   h1{font-size:clamp(44px,12.5vw,64px)}
-  .photo-card{width:136px}
-  .pc1{left:0;top:0}.pc2{right:0;top:18%}.pc3{left:18%;bottom:-8%}
-  .pc3 .gst{font-size:11px;padding:2px 8px}
   .ai3d{display:none}
   .board3d{inset:8% 4% 14% 8%}
-  .cube-hero{right:4%;top:-3%}
+  .cube-hero{right:40%;top:3%}
   .ai3d{width:210px;font-size:13px}
   .b3-cols{grid-template-columns:1fr 1fr}.b3-cols .b3-col:nth-child(3){display:none}
   .link-row{grid-template-columns:1fr}
@@ -322,6 +321,13 @@ footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
   .sticky{display:block}
   footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
   .count{gap:18px}
+  .stage{height:auto;perspective:none}
+  .stage .scene{display:none}
+  .cards-layer{position:relative;inset:auto;display:flex;gap:8px;justify-content:space-between;padding:8px 0 4px}
+  .photo-card{position:relative;inset:auto!important;width:calc((100% - 16px)/3);padding:5px 5px 9px;border-radius:14px}
+  .photo-card img{border-radius:10px}
+  .photo-card b{font-size:13px;margin:7px 2px 0}.photo-card small{font-size:11.5px;margin:2px 2px 0}
+  .pc3 .gst{font-size:11px;padding:1px 7px;margin:5px 2px 0}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
