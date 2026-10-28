@@ -92,7 +92,7 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 
 /* 3D stage */
 .stage{position:relative;height:clamp(500px,48vw,680px);perspective:1600px}
-.scene{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx,14deg)) rotateY(var(--ry,-16deg));transition:transform .6s var(--ease)}
+.scene{position:absolute;inset:0;transform-style:preserve-3d;transform:translate(var(--tx,0px),var(--ty,0px));transition:transform .6s var(--ease)}
 .board3d{position:absolute;inset:4% 6% 12% 10%;background:var(--bone);border-radius:22px;transform:translateZ(0);padding:22px;display:grid;grid-template-rows:auto auto 1fr;gap:12px;font-size:14px}
 .b3-top{display:flex;align-items:center;gap:10px;font:800 22px var(--font)}
 .b3-top img{width:26px;height:26px}
@@ -117,7 +117,7 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 .pc3 b{font-size:14px}.pc3 small{font-size:12px}
 .pc3 .gst{display:inline-block;white-space:nowrap;margin:6px 4px 0;font:700 12px var(--font);background:var(--yellow);color:var(--t-yellow);border-radius:999px;padding:2px 10px}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
-.ai3d{position:absolute;bottom:2%;right:-4%;width:clamp(220px,20vw,290px);background:var(--forest);color:var(--bone);border-radius:16px;padding:14px 16px;font-size:14px;transform:translateZ(160px) rotate(2deg)}
+.ai3d{position:absolute;bottom:2%;right:-4%;width:clamp(220px,20vw,290px);background:var(--forest);color:var(--bone);border-radius:16px;padding:14px 16px;font-size:14px;transform:none}
 .ai3d .who{display:flex;align-items:center;gap:8px;font-weight:700;color:#F0A787;margin-bottom:6px}
 .ai3d .who img{width:18px;height:18px}
 .ai3d p{margin:0}
@@ -134,7 +134,7 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 .cube .f6{transform:rotateX(-90deg) translateZ(calc(var(--s,96px)/2));background:#DDE5D7}
 .cube .f5 img,.cube .f6 img{display:none}
 @keyframes turn{from{transform:rotateX(-20deg) rotateY(0)}to{transform:rotateX(-20deg) rotateY(360deg)}}
-.cube-hero{--s:clamp(70px,6.4vw,100px);top:10%;right:40%;transform:translateZ(200px)}
+.cube-hero{--s:clamp(62px,5.6vw,84px);top:0;right:44%;transform:translateZ(200px)}
 
 /* ===== live board ===== */
 .sec{padding:clamp(88px,11vw,160px) 0}
@@ -269,7 +269,10 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 .link-row span{font:400 17px/1.45 var(--font);color:var(--ink-2)}
 .link-row svg{width:30px;height:30px;margin-bottom:8px}
 footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
-.mark{font:900 clamp(52px,14.2vw,212px)/.82 var(--font);letter-spacing:-.06em;margin:0;color:var(--ink);direction:ltr;text-align:left;white-space:nowrap}
+.brandclose{display:flex;flex-wrap:wrap;align-items:center;gap:18px 36px;padding:clamp(28px,4vw,44px) clamp(24px,4vw,48px);background:var(--sage-2);border-radius:28px}
+.brandclose img{height:clamp(40px,4vw,58px);width:auto}
+.brandclose p{margin:0;font:700 clamp(20px,2vw,28px)/1.3 var(--font);letter-spacing:-.01em}
+.brandclose small{display:block;font:500 16px var(--font);color:var(--muted);margin-top:4px}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px 40px;margin-top:40px;font:400 16px/1.55 var(--font);color:var(--ink-2)}
 .foot p{margin:0 0 6px;max-width:60ch}
 .foot nav{display:flex;gap:18px}
@@ -308,12 +311,11 @@ footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
   .nav .wrap{height:64px}.nav .btn{display:none}.marks .lm{height:22px}
   h1{font-size:clamp(44px,12.5vw,64px)}
   .photo-card{width:136px}
-  .scene{--rx:8deg;--ry:-6deg}
   .pc1{left:0;top:0}.pc2{right:0;top:18%}.pc3{left:26%;bottom:-6%;width:108px}
   .pc3 .gst{font-size:11px;padding:2px 8px}
   .ai3d{display:none}
   .board3d{inset:8% 4% 14% 8%}
-  .cube-hero{right:44%;top:4%}
+  .cube-hero{right:4%;top:-3%}
   .ai3d{width:210px;font-size:13px}
   .b3-cols{grid-template-columns:1fr 1fr}.b3-cols .b3-col:nth-child(3){display:none}
   .link-row{grid-template-columns:1fr}
@@ -530,7 +532,7 @@ footer{padding:clamp(72px,9vw,120px) 0 40px;overflow:hidden}
 
 <footer>
   <div class="wrap">
-    <p class="mark" aria-hidden="true">LEGAL MIND</p>
+    <div class="brandclose"><img src="/notion-webinar/assets/lm-logo.webp" alt="LEGAL MIND" width="640" height="122"><p>מטמיעים בינה מלאכותית בעולם המשפט והנדל״ן.<small>עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, מייסדי LEGAL MIND</small></p></div>
     <div class="foot">
       <div><p><b>LEGAL MIND</b> מטמיעה בינה מלאכותית בעולם המשפט והנדל״ן. מייסדים: עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳. <a href="https://www.legalmind.co.il/" target="_blank" rel="noopener">www.legalmind.co.il</a> · <a href="https://www.linkedin.com/company/legal-mind-ai/" target="_blank" rel="noopener">לינקדאין</a> · <a href="https://www.facebook.com/LegalMindAI" target="_blank" rel="noopener">פייסבוק</a></p>
         <p class="tm">Notion הוא סימן מסחרי של Notion Labs, Inc. הוובינר מועבר על ידי LEGAL MIND ואינו מטעם Notion.</p></div>
@@ -584,8 +586,8 @@ function regUrl(){
   if (!reduce && matchMedia('(pointer:fine)').matches) {
     stage.addEventListener('pointermove', e => { const r = stage.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      scene.style.setProperty('--ry', (-16 + x * 18).toFixed(2) + 'deg'); scene.style.setProperty('--rx', (14 - y * 14).toFixed(2) + 'deg'); });
-    stage.addEventListener('pointerleave', () => { scene.style.removeProperty('--ry'); scene.style.removeProperty('--rx'); });
+      scene.style.setProperty('--tx', (x * 14).toFixed(1) + 'px'); scene.style.setProperty('--ty', (y * 10).toFixed(1) + 'px'); });
+    stage.addEventListener('pointerleave', () => { scene.style.removeProperty('--tx'); scene.style.removeProperty('--ty'); });
   }
 
   /* ---- live board: a click moves a task to the next column ---- */
