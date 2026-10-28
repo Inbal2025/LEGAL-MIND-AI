@@ -64,11 +64,11 @@ a{color:inherit}
 /* nav */
 .nav{position:relative;z-index:40;background:var(--sage)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:76px;padding-top:28px;padding-bottom:12px}
-.marks{display:flex;align-items:center;gap:36px;text-decoration:none}
-.marks .lm{height:78px;width:auto}
-.marks .sep{width:2.5px;height:84px;border-radius:2px;background:rgba(20,32,26,.28)}
-.marks .nt{display:flex;align-items:center;gap:18px;font:700 63px/1 var(--font);letter-spacing:-.02em;direction:ltr}
-.marks .nt img{width:90px;height:90px}
+.marks{display:flex;align-items:center;gap:24px;text-decoration:none}
+.marks .lm{height:46px;width:auto}
+.marks .sep{width:2px;height:50px;border-radius:2px;background:rgba(20,32,26,.28)}
+.marks .nt{display:flex;align-items:center;gap:11px;font:700 38px/1 var(--font);letter-spacing:-.02em;direction:ltr}
+.marks .nt img{width:54px;height:54px}
 .nav nav{display:flex;align-items:center;gap:28px}
 .nav nav a{font:500 17px var(--font);text-decoration:none;color:var(--ink-2)}
 .nav nav a:hover{color:var(--ink)}
@@ -77,8 +77,9 @@ a{color:inherit}
 
 /* ===== hero ===== */
 .hero{position:relative;padding:clamp(20px,3vw,40px) 0 clamp(40px,5vw,64px);overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:center}
-.h-when{display:flex;flex-wrap:wrap;gap:4px 26px;font:700 clamp(38px,4.4vw,64px)/1 var(--display);letter-spacing:0;color:var(--ink-2);margin:0 0 24px}
+.nav .wrap,.hero .wrap{max-width:1560px}
+.hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(24px,5vw,96px);align-items:center}
+.h-when{display:flex;flex-wrap:wrap;gap:4px 18px;font:700 clamp(26px,2.5vw,38px)/1.1 var(--display);letter-spacing:0;color:var(--ink-2);margin:0 0 24px}
 .h-when b{font-weight:800;color:var(--ink)}
 .h-when .live{display:inline-flex;align-items:center;gap:.25em;font-weight:700;color:var(--t-pink)}
 .h-when .live i{width:.32em;height:.32em;border-radius:50%;background:#D9483B;animation:blink 1.6s ease-in-out infinite}
@@ -88,7 +89,7 @@ h1 .mask{display:block;overflow:hidden;padding-bottom:.06em;white-space:nowrap}
 h1 .mask > span{display:block;transform:translateY(105%);animation:rise 1s var(--ease) forwards}
 h1 .mask + .mask > span{animation-delay:.12s}
 h1 .ntw{display:inline-flex;align-items:center;gap:.12em;direction:ltr}
-h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
+h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 @keyframes rise{to{transform:none}}
 .h-sub{font:400 clamp(19px,1.5vw,22px)/1.5 var(--font);color:var(--ink-2);max-width:36ch;margin:0 0 30px}
 .h-sub b{font-weight:700;color:var(--ink)}
@@ -98,9 +99,9 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 @keyframes fin{to{opacity:1;transform:none}}
 
 /* 3D stage */
-.stage{position:relative;height:clamp(500px,48vw,680px);perspective:1600px}
+.stage{position:relative;height:clamp(520px,46vw,680px);perspective:1600px}
 .scene{position:absolute;inset:0;transform-style:preserve-3d;transform:translate(var(--tx,0px),var(--ty,0px));transition:transform .6s var(--ease)}
-.board3d{position:absolute;inset:4% 6% 12% 10%;background:var(--bone);border-radius:22px;transform:translateZ(0);padding:22px;display:grid;grid-template-rows:auto auto 1fr;gap:12px;font-size:14px}
+.board3d{position:absolute;inset:14% 22% 16% 22%;background:var(--bone);border-radius:22px;transform:translateZ(0);padding:22px;display:grid;grid-template-rows:auto auto 1fr;gap:12px;font-size:14px}
 .b3-top{display:flex;align-items:center;gap:10px;font:700 22px var(--font)}
 .b3-top img{width:26px;height:26px}
 .b3-tabs{display:flex;gap:14px;color:var(--muted);font-weight:500}
@@ -114,13 +115,13 @@ h1 .ntw img{width:.82em;height:.82em;transform:translateY(.02em)}
 .chip-pink{background:var(--pink);color:var(--t-pink)}.chip-purple{background:var(--purple);color:var(--t-purple)}
 .float{position:absolute;transform-style:preserve-3d}
 .cards-layer{position:absolute;inset:0;pointer-events:none;z-index:2}
-.photo-card{position:absolute;width:clamp(185px,15.5vw,240px);background:#fff;border-radius:18px;padding:8px 8px 12px;box-shadow:0 24px 50px -28px rgba(20,32,26,.55)}
+.photo-card{position:absolute;width:clamp(168px,14vw,216px);background:#fff;border-radius:18px;padding:8px 8px 12px;box-shadow:0 24px 50px -28px rgba(20,32,26,.55)}
 .photo-card img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:12px}
 .photo-card b{display:block;font:700 15px/1.25 var(--font);margin:10px 4px 0}
 .photo-card small{display:block;font:500 13px var(--font);color:var(--muted);margin:2px 4px 0}
-.pc1{top:-3%;left:-5%;animation:bob 7s ease-in-out infinite}
-.pc2{top:20%;right:-6%;animation:bob 8s ease-in-out -2s infinite}
-.pc3{bottom:-4%;left:12%;animation:bob 7.5s ease-in-out -4s infinite}
+.pc1{top:2%;left:0;animation:bob 7s ease-in-out infinite}
+.pc2{top:2%;right:0;animation:bob 8s ease-in-out -2s infinite}
+.pc3{bottom:0;left:calc(50% - clamp(84px,7vw,108px));animation:bob 7.5s ease-in-out -4s infinite}
 .pc3 .gst{display:inline-block;white-space:nowrap;margin:6px 4px 0;font:700 12px var(--font);background:var(--yellow);color:var(--t-yellow);border-radius:999px;padding:2px 10px}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
 .ai3d{position:absolute;bottom:2%;right:-4%;width:clamp(220px,20vw,290px);background:var(--forest);color:var(--bone);border-radius:16px;padding:14px 16px;font-size:14px;transform:none}
@@ -316,7 +317,7 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
   .hero-grid{grid-template-columns:1fr}
   .stage{height:min(520px,92vw);margin-top:10px}
   .nav nav a:not(.btn){display:none}
-  .marks .lm{height:60px}.marks .sep{height:64px}.marks .nt{font-size:48px}.marks .nt img{width:70px;height:70px}
+  .marks .lm{height:40px}.marks .sep{height:44px}.marks .nt{font-size:33px}.marks .nt img{width:46px;height:46px}
 }
 @media (max-width:860px){
   .board{grid-template-columns:1fr}
@@ -378,9 +379,9 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
 <section class="hero" aria-labelledby="h1">
   <div class="wrap hero-grid">
     <div>
-      <p class="h-when fade"><span class="live"><i aria-hidden="true"></i>וובינר חי</span><span><b>יום רביעי 4.11</b> · 20:30</span><span>בזום · ללא עלות</span></p>
+      <p class="h-when fade"><span class="live"><i aria-hidden="true"></i>וובינר חי</span><span>·</span><span><b>יום רביעי 4.11</b> · 20:30</span><span>·</span><span>בזום · ללא עלות</span></p>
       <h1 id="h1"><span class="mask"><span>המשרד שלכם,</span></span><span class="mask"><span>ב-<span class="ntw"><img src="/notion-webinar/assets/notion-logo.svg" alt="" width="33" height="34">Notion</span>.</span></span></h1>
-      <p class="h-sub fade d1">ניהול <b>לידים, לקוחות, תיקים, מועדים ומשימות</b> במקום אחד, עם חיבור ל-Claude, ל-ChatGPT ולכלים נוספים. וובינר של LEGAL MIND, שמטמיעה בינה מלאכותית בעולם המשפט והנדל״ן.</p>
+      <p class="h-sub fade d1"><b>לידים, לקוחות, תיקים ומשימות</b> במקום אחד, עם חיבור ל-Claude ול-ChatGPT.</p>
       <div class="h-cta fade d2">
         <a class="btn js-reg" href="https://formy.co.il/forms/vvbynr-legal-mind-nyhvl-mshrd-vd-bamtsvt-notion-4112026-bgdsel" rel="noopener">שריון מקום בוובינר <span class="arr" aria-hidden="true">←</span></a>
         <a class="tlink" href="#board">איך זה נראה במשרד</a>
@@ -405,11 +406,9 @@ footer{padding:clamp(36px,4.5vw,60px) 0 40px;overflow:hidden}
               <div class="b3-c">עדכון לקוח על החלטה<small>נשלח</small></div></div>
           </div>
         </div>
-        <div class="float ai3d"><div class="who"><img src="/notion-webinar/assets/claude-spark.svg" alt="">Claude</div><p>פתחתי ב-Notion כרטיס לליד החדש וקבעתי משימת מעקב לשבוע הבא. <span class="ok">✓</span></p></div>
-        <div class="cube-wrap cube-hero"><div class="cube"><i class="f1"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f2"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f3"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f4"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f5"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i><i class="f6"><img src="/notion-webinar/assets/notion-logo.svg" alt=""></i></div></div>
       </div>
       <div class="cards-layer">
-        <div class="photo-card pc1"><img src="/notion-webinar/assets/asaf-l.jpg?v=2" alt="" width="720" height="900"><b>עו״ד אסף אברמזון</b><small>מייסד שותף ומנכ״ל LEGAL MIND</small></div>
+        <div class="photo-card pc1"><img src="/notion-webinar/assets/asaf-l.jpg?v=2" alt="" width="720" height="900"><b>עו״ד אסף אברמזון</b><small>מייסד שותף ומנכ״ל <span class="nw">LEGAL MIND</span></small></div>
         <div class="photo-card pc2"><img src="/notion-webinar/assets/roi-l.jpg?v=2" alt="" width="720" height="900"><b>עו״ד רועי נימצוביץ׳</b><small>מייסד שותף LEGAL MIND</small></div>
         <div class="photo-card pc3"><img src="/notion-webinar/assets/lior-l.jpg" alt="" width="720" height="900"><b>ליאור פרייס</b><small>מפתח אוטומציות</small><span class="gst">משתתף אורח</span></div>
       </div>
