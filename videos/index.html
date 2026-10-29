@@ -182,6 +182,36 @@
   }
   .vcard-note { font-size: 12.4px; color: var(--ink-faint); margin-inline-start: 10px; }
 
+  /* featured card: spans both columns, film beside the text, with the prompt from the video below */
+  .vcard.feat { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 0 22px; align-items: start; scroll-margin-top: 16px; }
+  .vcard.feat .film { margin-bottom: 0; }
+  .vcard.feat .prompt { grid-column: 1 / -1; }
+  .prompt { margin-top: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+  .prompt summary {
+    list-style: none; cursor: pointer; padding: 13px 16px; display: flex; align-items: center; gap: 10px;
+    font-size: 15.5px; font-weight: 800; color: var(--brand-strong);
+  }
+  .prompt summary::-webkit-details-marker { display: none; }
+  .prompt summary::after { content: "▾"; margin-inline-start: auto; transition: transform .2s ease; }
+  .prompt[open] summary::after { transform: rotate(180deg); }
+  .prompt summary:focus-visible { outline: 3px solid var(--brand-bright); outline-offset: 2px; border-radius: 10px; }
+  .prompt-body { padding: 0 16px 16px; }
+  .prompt-pre { font-size: 14.2px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 12px; }
+  .prompt-box { position: relative; background: var(--paper-raised); border: 1px solid var(--line); border-inline-start: 4px solid var(--brand); border-radius: 8px; padding: 14px 16px 16px; }
+  .prompt-box-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+  .prompt-box-head strong { font-size: 13px; letter-spacing: .05em; color: var(--ink-faint); }
+  .prompt-copy {
+    font: inherit; font-size: 13.6px; font-weight: 700; cursor: pointer; color: #fff; background: var(--brand-strong);
+    border: 0; border-radius: 99px; padding: 7px 16px; transition: background .15s ease;
+  }
+  .prompt-copy:hover { background: var(--brand); }
+  .prompt-copy:focus-visible { outline: 3px solid var(--brand-bright); outline-offset: 2px; }
+  .prompt-copy.done { background: #2E7D32; }
+  .prompt-text { font-size: 15px; line-height: 1.75; color: var(--ink); white-space: pre-line; }
+  .prompt-text mark { background: #FFF1B8; color: inherit; border-radius: 3px; padding: 0 3px; }
+  .prompt-stance { margin: 12px 0 0; font-size: 14.2px; line-height: 1.6; color: var(--ink-soft); }
+  .prompt-stance strong { color: var(--ink); }
+
   footer { max-width: 1180px; margin: 40px auto 0; padding: 24px 28px 44px; text-align: center; font-size: 13.1px; color: var(--ink-faint); }
 
   @media (max-width: 600px) {
@@ -192,6 +222,10 @@
     .vgrid { grid-template-columns: 1fr; }
     .vcard { padding: 14px 14px 18px; }
     .vcard h2 { font-size: 19px; }
+    .vcard.feat { grid-template-columns: 1fr; }
+    .vcard.feat .film { margin-bottom: 16px; }
+    .prompt-body { padding: 0 12px 14px; }
+    .prompt-box { padding: 12px 12px 14px; }
     .vbox { width: 94vw; }
   }
 </style>
@@ -221,6 +255,42 @@
 <div class="wrap">
 
   <div class="vgrid">
+
+  <div class="vcard feat" id="nevo-check">
+    <button class="film" type="button" data-yt="EWr39AlafBI" aria-label="ניגון הסרטון: בודקים את הפסיקה של הצד השני">
+      <img src="yt/EWr39AlafBI.webp" alt="" width="960" height="540">
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
+      <span class="film-time" aria-hidden="true">14:21</span>
+    </button>
+    <div>
+      <div class="vcard-kind">חדש · הדרכה · נבו + <bdi dir="ltr">Claude</bdi></div>
+      <h2>בודקים את הפסיקה של הצד השני</h2>
+      <p>הצד השני הגיש סיכומים עם ציטוטים מפסיקה. איך בודקים לפני הדיון שכל פסק דין באמת קיים, שהציטוט מדויק מילה במילה ושהתוצאה שמתוארת נכונה? <bdi>Claude</bdi> בודק כל ציטוט מול פסק הדין המקורי בנבו, מסמן כל מילה שהשתנתה או הושמטה, ומחזיר טבלת אקסל עם קישור לכל פסק דין ומסמך וורד עם הנקודות החזקות לדיון.</p>
+      <span class="vcard-note" style="margin-inline-start:0">כ-14 דקות</span>
+    </div>
+    <details class="prompt" id="nevo-check-prompt">
+      <summary>📋 ההוראה המלאה מהסרטון, להעתקה</summary>
+      <div class="prompt-body">
+        <p class="prompt-pre"><strong>לפני ששולחים:</strong> ודאו שה-<bdi dir="ltr">connector</bdi> של נבו דלוק, העלו את קובץ הסיכומים, והחליפו את מה שבסוגריים המרובעים בפרטי התיק שלכם.</p>
+        <div class="prompt-box">
+          <div class="prompt-box-head">
+            <strong>ההוראה להעתקה</strong>
+            <button class="prompt-copy" type="button" data-copy="nevo-check-text">העתקת ההוראה</button>
+          </div>
+          <div class="prompt-text" id="nevo-check-text">מחר בבוקר יש לי דיון. אני מייצג את <mark>[הצד שלכם, למשל: התובעת, נועה לוי]</mark>. מצורפים הסיכומים שהגיש הצד השני. אני חושד שחלק מהציטוטים נכתבו בעזרת בינה מלאכותית.
+תבדוק בנבו כל פסק דין שמצוטט בסיכומים:
+(1) שהוא קיים, עם אותם מספר, צדדים ותאריך.
+(2) תשווה כל ציטוט לנוסח המקורי בנבו מילה במילה, ותסמן כל מילה שהשתנתה, כל מילה או משפט שהושמטו, ואם זה משנה את המשמעות.
+(3) שמה שכתוב על התוצאה של פסק הדין (נדחה, התקבל, התקבל בחלקו) נכון.
+תפעיל סוכני משנה במקביל.
+בסוף תכין לי טבלת אקסל בעברית: הפניה, הציטוט בסיכומים, הנוסח המקורי מנבו, מה השתנה, סטטוס בצבע (ירוק = תקין, צהוב = שינוי שמשנה משמעות, אדום = לא נמצא או תוצאה שגויה) וקישור לנבו.
+וגם מסמך וורד קצר עם שלוש הנקודות הכי חזקות שלי לדיון.
+אל תשלח שום דבר לאף אחד.</div>
+        </div>
+        <p class="prompt-stance"><strong>העמדה של <bdi dir="ltr">Legal Mind</bdi>:</strong> אפשר להיעזר בטבלה ובמסמך ש-<bdi>Claude</bdi> הכין. אבל כל ציטוט מפסק דין שאתם עומדים להביא בבית המשפט, בודקים מול פסק הדין המקורי בנבו, דרך הקישור שבטבלה.</p>
+      </div>
+    </details>
+  </div>
 
   <div class="vcard">
     <button class="film" type="button" data-src="claude-notion.mp4?v=2110" aria-label="ניגון הסרטון: Claude ו-Notion">
@@ -438,6 +508,22 @@
       var p=v.play(); if(p&&p.catch) p.catch(function(){});
     });
   });
+})();
+// copy button for the prompt shown under a video; the #...-prompt link opens it
+(function(){
+  document.querySelectorAll('.prompt-copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=document.getElementById(b.getAttribute('data-copy')).innerText.trim();
+      function ok(){ b.textContent='הועתק ✓'; b.classList.add('done'); setTimeout(function(){ b.textContent='העתקת ההוראה'; b.classList.remove('done'); },2200); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok,fallback); } else fallback();
+      function fallback(){
+        var a=document.createElement('textarea'); a.value=t; a.style.position='fixed'; a.style.opacity='0';
+        document.body.appendChild(a); a.select(); try{ document.execCommand('copy'); ok(); }catch(e){} a.remove();
+      }
+    });
+  });
+  var h=location.hash&&document.getElementById(location.hash.slice(1));
+  if(h&&h.tagName==='DETAILS'){ h.open=true; h.scrollIntoView(); }
 })();
 </script>
 
