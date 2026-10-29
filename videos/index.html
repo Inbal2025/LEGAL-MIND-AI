@@ -185,6 +185,14 @@
   /* featured card: spans both columns, film beside the text, with the prompt from the video below */
   .vcard.feat { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 0 22px; align-items: start; scroll-margin-top: 16px; }
   .vcard.feat .film { margin-bottom: 0; }
+  .newest {
+    position: absolute; top: 28px; right: 12px; z-index: 1;
+    font-size: 15px; font-weight: 800; color: #3A2200; letter-spacing: .02em;
+    background: linear-gradient(180deg, #FFECA0 0%, #E9BA46 45%, #D4A028 55%, #B07C16 100%);
+    border: 1px solid #FFF8D2; border-radius: 99px; padding: 5px 14px;
+    box-shadow: 0 0 0 1px rgba(120,80,0,.35), 0 6px 16px rgba(0,0,0,.4);
+    text-shadow: 0 1px 0 rgba(255,245,200,.7);
+  }
   .vcard.feat .prompt { grid-column: 1 / -1; }
   .prompt { margin-top: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
   .prompt summary {
@@ -259,11 +267,12 @@
   <div class="vcard feat" id="nevo-check">
     <button class="film" type="button" data-yt="EWr39AIafBI" aria-label="ניגון הסרטון: בודקים את הפסיקה של הצד השני">
       <img src="yt/EWr39AIafBI.webp" alt="" width="960" height="540">
+      <span class="newest">החדש ביותר</span>
       <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
       <span class="film-time" aria-hidden="true">14:21</span>
     </button>
     <div>
-      <div class="vcard-kind">חדש · הדרכה · נבו + <bdi dir="ltr">Claude</bdi></div>
+      <div class="vcard-kind">הדרכה · נבו + <bdi dir="ltr">Claude</bdi></div>
       <h2>בודקים את הפסיקה של הצד השני</h2>
       <p>הצד השני הגיש סיכומים עם ציטוטים מפסיקה. איך בודקים לפני הדיון שכל פסק דין באמת קיים, שהציטוט מדויק מילה במילה ושהתוצאה שמתוארת נכונה? <bdi>Claude</bdi> בודק כל ציטוט מול פסק הדין המקורי בנבו, מסמן כל מילה שהשתנתה או הושמטה, ומחזיר טבלת אקסל עם קישור לכל פסק דין ומסמך וורד עם הנקודות החזקות לדיון.</p>
       <span class="vcard-note" style="margin-inline-start:0">כ-14 דקות</span>
