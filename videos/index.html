@@ -194,6 +194,17 @@
     text-shadow: 0 1px 0 rgba(255,245,200,.7);
   }
   .vcard.feat .prompt { grid-column: 1 / -1; }
+  .vlink {
+    display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 14px; text-align: start;
+    font: inherit; font-size: 14.2px; line-height: 1.5; color: var(--ink-soft); cursor: pointer;
+    background: var(--brand-wash); border: 1px solid #BFDCDA; border-radius: 10px; padding: 10px 12px;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .vlink strong { color: var(--brand-strong); }
+  .vlink:hover { background: #D3EAE8; border-color: var(--brand); }
+  .vlink:focus-visible { outline: 3px solid var(--brand-bright); outline-offset: 2px; }
+  .vlink-ico { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--brand-strong); display: grid; place-items: center; }
+  .vlink-ico svg { width: 14px; height: 14px; margin-left: 2px; fill: #fff; }
   .prompt { margin-top: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
   .prompt summary {
     list-style: none; cursor: pointer; padding: 13px 16px; display: flex; align-items: center; gap: 10px;
@@ -276,6 +287,10 @@
       <h2>בודקים את הפסיקה של הצד השני</h2>
       <p>הצד השני הגיש סיכומים עם ציטוטים מפסיקה. איך בודקים לפני הדיון שכל פסק דין באמת קיים, שהציטוט מדויק מילה במילה ושהתוצאה שמתוארת נכונה? <bdi>Claude</bdi> בודק כל ציטוט מול פסק הדין המקורי בנבו, מסמן כל מילה שהשתנתה או הושמטה, ומחזיר טבלת אקסל עם קישור לכל פסק דין ומסמך וורד עם הנקודות החזקות לדיון.</p>
       <span class="vcard-note" style="margin-inline-start:0">כ-14 דקות</span>
+      <button class="vlink" type="button" data-yt="pPLiSS-4Py8" aria-label="ניגון הסרטון: הקונקטור של נבו">
+        <span class="vlink-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
+        <span><strong>עוד לא חיברתם את נבו?</strong> הסרטון של עו"ד אסף אברמזון: איך מחברים את הקונקטור של נבו ל-<bdi dir="ltr">Claude</bdi> ואיך משתמשים בו</span>
+      </button>
     </div>
     <details class="prompt" id="nevo-check-prompt">
       <summary>📋 ההוראה המלאה מהסרטון, להעתקה</summary>
@@ -496,7 +511,7 @@
     d.classList.toggle('big',on);
     fsb.setAttribute('aria-label',on?'חזרה לחלון':'מסך מלא'); fsb.title=on?'חזרה לחלון':'מסך מלא';
   }
-  document.querySelectorAll('.film').forEach(function(b){
+  document.querySelectorAll('.film, .vlink').forEach(function(b){
     b.addEventListener('click',function(){
       box.innerHTML='';
       d.classList.toggle('tall',b.hasAttribute('data-tall'));
