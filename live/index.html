@@ -687,6 +687,8 @@ section{position:relative}
 @keyframes nudge{50%{transform:translateY(5px)}}
 @media (max-width:980px){.ask-tease{order:8}}
 .hside{gap:clamp(24px,3vw,40px)}
+.two-q{margin:0 24px 12px;padding:10px 14px;border-radius:12px;background:#FFE9E7;color:#8E1B15;font:600 15px/1.45 var(--text)}
+@media (max-width:640px){.two-q{margin:0 16px 12px}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -748,7 +750,7 @@ section{position:relative}
   <div class="wrap">
     <h2 id="how-h" data-rise>ככה זה עובד.</h2>
     <ol class="rundown" id="rundown">
-      <li data-rise><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8"/></svg></span><b>שואלים בהרשמה</b><p>שאלה אחת, בשדה השאלה בטופס ההרשמה, עד 300 תווים.</p></li>
+      <li data-rise><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8"/></svg></span><b>שואלים בהרשמה</b><p>שאלה אחת, בשדה השאלה בטופס ההרשמה, עד 150 תווים.</p></li>
       <li data-rise style="--i:1"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></span><b>אנחנו ממיינים</b><p>מקבצים לפי נושאים. שאלות דומות מקבלות תשובה אחת, כך שיותר אנשים נענים.</p></li>
       <li data-rise style="--i:2"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span><b>עולים לאוויר</b><p>יום חמישי, 5.11 בשעה 20:00, בזום. אסף ורועי עונים ומראים על המסך.</p></li>
       <li data-rise style="--i:3"><span class="dot live-dot" aria-hidden="true"><i></i></span><b>עונים על כמה שיותר</b><p>נעשה כל מאמץ להגיע לכמה שיותר שאלות, ובכל שבוע לייב חדש.</p></li>
@@ -760,7 +762,7 @@ section{position:relative}
   <div class="wrap">
     <h2 id="ex-h" data-rise>איך נראית שאלה חכמה.</h2>
     <div class="anat" data-rise>
-      <p class="anat-q"><span class="c1">אנחנו משרד ליטיגציה ועובדים עם הקונקטור של נבו.</span> <span class="c2">ביקשנו פסיקה עדכנית על חובת הקטנת נזק, וקיבלנו גם פסקי דין שבוטלו בערעור.</span> <span class="c3">איך מנסחים את הבקשה כך ש-Claude יבדוק בעצמו מה קרה לכל פסק דין בערעור?</span></p>
+      <p class="anat-q"><span class="c1">אנחנו משרד ליטיגציה עם הקונקטור של נבו.</span> <span class="c2">קיבלנו גם פסקי דין שבוטלו בערעור.</span> <span class="c3">איך מבקשים ש-Claude יבדוק מה קרה לכל פסק דין בערעור?</span></p>
       <div class="anat-key">
         <p><i class="k1"></i><b>ההקשר</b>מי אתם ובמה אתם עובדים</p>
         <p><i class="k2"></i><b>מה ניסיתם</b>ומה בדיוק לא עבד</p>
@@ -770,7 +772,7 @@ section{position:relative}
     <div class="bank" data-rise>
       <h3>שאלות לדוגמה, ברמה של משרד שכבר עובד עם Claude</h3>
       <div class="tabs" role="tablist" aria-label="נושאים"><button class="tab on" type="button" role="tab" aria-selected="true" data-t="nevo">הקונקטור של נבו</button><button class="tab" type="button" role="tab" aria-selected="false" data-t="skills">סקילים</button><button class="tab" type="button" role="tab" aria-selected="false" data-t="word">Claude בתוך Word</button></div>
-      <div class="pane on" role="tabpanel" data-p="nevo"><button class="qb" type="button"><span class="qt">כשהקונקטור מחזיר עשר אסמכתאות, איך בונים בדיקה שיטתית שמוודאת שכל ציטוט מופיע כלשונו, שההלכה לא שונתה בערעור, ושלא חסרה פסיקה סותרת מהשנה האחרונה?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך מגדירים סקיל שמריץ מחקר בנבו בשלבים: קודם החקיקה, אחר כך הלכות העליון, ובסוף פסיקת הערכאות הדיוניות, ומציג במפורש איפה הן לא מתיישבות זו עם זו?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">במזכר שנכתב עם הקונקטור, איך מבטיחים שכל טענה מחוברת לאסמכתה ספציפית עם קישור לנבו, ושאין אף משפט שנשען על הידע הכללי של Claude?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div><div class="pane" role="tabpanel" data-p="skills"><button class="qb" type="button"><span class="qt">אנחנו רוצים סקיל אחד לכל המשרד, שמכיר את סגנון הכתיבה שלנו ואת התבניות. איך מחלקים בין הוראות הסקיל, קבצי העזר וההנחיות בפרויקט, כך שלא יתנגשו?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך בודקים סקיל לפני שמפיצים אותו במשרד: אילו מקרי קצה להריץ, איך מוודאים שהתוצר יציב בין ריצות, ואיך מנהלים גרסאות כשמעדכנים אותו?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">מתי נכון לפצל סקיל גדול לכמה סקילים קטנים שעובדים יחד, ואיך מונעים מצב ש-Claude מפעיל את הסקיל הלא נכון?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div><div class="pane" role="tabpanel" data-p="word"><button class="qb" type="button"><span class="qt">בהסכם של 60 עמודים עם הפניות פנימיות, איך עובדים עם Claude בתוך Word כך שתיקון בסעיף אחד יעדכן את כל ההפניות אליו, בלי לשבור מספור ובלי שינויים מחוץ למעקב?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך מלמדים את Claude בתוך Word את העמדות של המשרד, כך שבכל סקירת חוזה הוא יסמן חריגות מהן, יציע נוסח חלופי ויסביר בהערה למה?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">כשהצד השני מחזיר טיוטה בלי סימון שינויים, איך משחזרים עם Claude בתוך Word מה השתנה מול הגרסה שלנו, ומנסחים תגובה מנומקת לכל שינוי?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div>
+      <div class="pane on" role="tabpanel" data-p="nevo"><button class="qb" type="button"><span class="qt">כשהקונקטור מחזיר עשר אסמכתאות, איך בודקים בשיטה שכל ציטוט מופיע כלשונו ושההלכה לא שונתה בערעור?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך בונים סקיל שחוקר בנבו בשלבים, חקיקה ואז העליון ואז הערכאות הדיוניות, ומראה איפה הן סותרות?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">במזכר שנכתב עם הקונקטור, איך מבטיחים שכל טענה מחוברת לאסמכתה ספציפית עם קישור לנבו, ושאין אף משפט שנשען על הידע הכללי של Claude?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div><div class="pane" role="tabpanel" data-p="skills"><button class="qb" type="button"><span class="qt">סקיל אחד לכל המשרד, עם הסגנון והתבניות שלנו: מה נכנס להוראות הסקיל, מה לקבצי העזר ומה להנחיות הפרויקט?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך בודקים סקיל לפני שמפיצים אותו במשרד: אילו מקרי קצה להריץ, איך מוודאים שהתוצר יציב בין ריצות, ואיך מנהלים גרסאות כשמעדכנים אותו?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">מתי נכון לפצל סקיל גדול לכמה סקילים קטנים שעובדים יחד, ואיך מונעים מצב ש-Claude מפעיל את הסקיל הלא נכון?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div><div class="pane" role="tabpanel" data-p="word"><button class="qb" type="button"><span class="qt">בהסכם של 60 עמודים, איך גורמים ל-Claude בתוך Word לתקן סעיף ולעדכן את ההפניות אליו, בלי לשבור מספור?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך מלמדים את Claude בתוך Word את העמדות של המשרד, כך שבכל סקירת חוזה הוא יסמן חריגות מהן, יציע נוסח חלופי ויסביר בהערה למה?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">הצד השני החזיר טיוטה בלי סימון שינויים. איך Claude בתוך Word משחזר מה השתנה ומנסח תגובה לכל שינוי?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div>
     </div>
   </div>
 </section>
@@ -782,7 +784,7 @@ section{position:relative}
       <p class="why" data-rise style="--i:1">ככה נספיק לענות לכמה שיותר מכם. נעשה כל מאמץ לענות בלייב על כמה שיותר שאלות, ושאלות דומות נאחד לתשובה אחת שמתאימה לכולם.</p>
       <p class="fine" data-rise style="--i:2">ייתכן שנקריא את השאלה בלייב, בלי השם שלכם. לכן לא כותבים בה פרטים מזהים של לקוחות.</p>
     </div>
-    <form class="ask2" id="ask" action="#" novalidate data-rise style="--i:2"><div class="a2-h"><span class="a2-q" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 9a3 3 0 1 1 4.3 2.7c-.9.45-1.5 1.1-1.5 2.1v.4"/><circle cx="12" cy="18" r=".6" fill="currentColor"/></svg></span><div><label for="q">עכשיו תורכם.</label><small>שאלה אחת לאסף ולרועי, עד 300 תווים</small></div></div><textarea id="q" maxlength="300" rows="5" placeholder="ההקשר, מה ניסיתם, ומה אתם רוצים לדעת"></textarea><div class="a2-chips" aria-label="הוספת פתיח לשאלה"><button type="button" data-p="אנחנו משרד ">+ ההקשר</button><button type="button" data-p=" ניסינו ">+ מה ניסיתם</button><button type="button" data-p=" איך ">+ השאלה</button></div><div class="lvl a2-lvl" id="meter"><div class="track" aria-hidden="true"><span id="fill"></span></div><span class="cnt"><b id="cnum">0</b>/300</span></div><button class="key a2-go" type="submit"><span>שריון מקום ושליחת השאלה</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span></button><p class="a2-fine">השאלה נשמרת רק אחרי שמסיימים את ההרשמה בטופס.</p></form>
+    <form class="ask2" id="ask" action="#" novalidate data-rise style="--i:2"><div class="a2-h"><span class="a2-q" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 9a3 3 0 1 1 4.3 2.7c-.9.45-1.5 1.1-1.5 2.1v.4"/><circle cx="12" cy="18" r=".6" fill="currentColor"/></svg></span><div><label for="q">עכשיו תורכם.</label><small>שאלה אחת לאסף ולרועי, עד 150 תווים</small></div></div><textarea id="q" maxlength="150" rows="5" placeholder="ההקשר, מה ניסיתם, ומה אתם רוצים לדעת"></textarea><div class="a2-chips" aria-label="הוספת פתיח לשאלה"><button type="button" data-p="אנחנו משרד ">+ ההקשר</button><button type="button" data-p=" ניסינו ">+ מה ניסיתם</button><button type="button" data-p=" איך ">+ השאלה</button></div><div class="lvl a2-lvl" id="meter"><div class="track" aria-hidden="true"><span id="fill"></span></div><span class="cnt"><b id="cnum">0</b>/150</span></div><button class="key a2-go" type="submit"><span>שריון מקום ושליחת השאלה</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span></button><p class="two-q" id="twoq" hidden>נראה שיש כאן יותר משאלה אחת. כדי שנספיק לענות לכמה שיותר משתתפים, השאירו רק אחת.</p><p class="a2-fine">השאלה נשמרת רק אחרי שמסיימים את ההרשמה בטופס.</p></form>
   </div>
 </section>
 
@@ -855,7 +857,7 @@ section{position:relative}
 <script>
 (function(){
   var FORM='https://formy.co.il/forms/vtq-shl-vvbynr-legal-mind-x-nbv-hqvnqtvr-b-claude-1112026-iqeuq7';
-  var QID='7c7f5f1c-2e24-4499-a9d1-5337997d3a94', SRC='e40334a5-0684-4f2f-bd75-b328604482d0', MAX=300;
+  var QID='7c7f5f1c-2e24-4499-a9d1-5337997d3a94', SRC='e40334a5-0684-4f2f-bd75-b328604482d0', MAX=150;
   var $=function(s){return document.querySelector(s)}, q=$('#q'), fillEl=$('#fill'), cnum=$('#cnum');
 
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -882,8 +884,9 @@ section{position:relative}
 
   function meterUpdate(){
     var n=q.value.length; fillEl.style.width=(n/MAX*100)+'%';
-    var m=document.getElementById('meter'); m.classList.toggle('warn',n>=240&&n<MAX); m.classList.toggle('full',n>=MAX);
+    var m=document.getElementById('meter'); m.classList.toggle('warn',n>=120&&n<MAX); m.classList.toggle('full',n>=MAX);
     cnum.textContent=n;
+    var tq=document.getElementById('twoq'); if(tq) tq.hidden=((q.value.match(/[?？]/g)||[]).length<2);
   }
   var talkT; q.addEventListener('input',function(){meterUpdate(); var h=document.querySelector('.hero'); h.classList.add('talk'); clearTimeout(talkT); talkT=setTimeout(function(){h.classList.remove('talk')},700);});
 
