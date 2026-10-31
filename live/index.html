@@ -701,6 +701,16 @@ section{position:relative}
 .link-row{grid-template-columns:repeat(5,minmax(0,1fr))}
 .link-row a:nth-child(5) .ic{animation-delay:-4s}
 @media (max-width:980px){.link-row{grid-template-columns:1fr 1fr}.link-row a:last-child{grid-column:1/-1}}
+.nv-card{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(18px,3vw,40px);margin-top:clamp(24px,3vw,40px);padding:clamp(22px,3vw,34px);border-radius:26px;background:#F4FAF7;color:var(--ink);box-shadow:0 12px 0 #0A2620}
+.nv-logo{display:grid;place-items:center;width:clamp(110px,12vw,150px);aspect-ratio:1;border-radius:22px;background:#fff;box-shadow:0 0 0 1.5px #E6D6D3,0 6px 0 #D7C3BF}
+.nv-logo img{width:72%;height:auto}
+.nv-badge{display:inline-block;margin:0 0 10px;padding:6px 14px;border-radius:999px;background:#8B1F24;color:#fff;font:600 14.5px var(--head)}
+.nv-h{margin:0 0 8px;font:700 clamp(30px,1rem + 1.6vw,46px)/1 var(--display)}
+.nv-p{margin:0;max-width:62ch;font-size:clamp(17px,.9rem + .4vw,19px);line-height:1.6;color:var(--ink-2)}
+.nv-link{align-self:end;white-space:nowrap;font:700 17px var(--head);color:#8B1F24;text-decoration:none}
+.nv-link:hover{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:980px){.nv-card{grid-template-columns:auto 1fr}.nv-link{grid-column:1/-1;justify-self:start}}
+@media (max-width:640px){.nv-card{grid-template-columns:1fr}.nv-logo{width:96px}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -830,8 +840,16 @@ section{position:relative}
     </div>
     <div class="lm-body">
       <p class="lm-text" data-rise>LEGAL MIND מטמיעה בינה מלאכותית בעולם המשפט והנדל״ן: הדרכות, וובינרים וליווי אישי, ובניית תהליכי עבודה שמתאימים לאופן שבו המשרד חושב ועובד. את החברה הקימו ומובילים עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳.</p>
-      <a class="lm-nevo" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener" data-rise style="--i:1"><span class="nv-plate"><img src="/live/assets/nevo-plain.webp" alt="נבו" loading="lazy"></span><span>בשיתוף פעולה רשמי עם נבו</span></a>
       <a class="key lm-cta" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener" data-rise style="--i:1"><span>לבחינת התאמה למשרד שלכם</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span></a>
+    </div>
+    <div class="nv-card" data-rise>
+      <div class="nv-logo"><img src="/live/assets/nevo-plain.webp" alt="נבו" loading="lazy"></div>
+      <div class="nv-txt">
+        <p class="nv-badge">שותף הטמעה מקצועי של נבו</p>
+        <p class="nv-h">LEGAL MIND רשומה באקדמיית נבו כשותף הטמעה מקצועי</p>
+        <p class="nv-p">באקדמיית נבו, עורכי דין שמחפשים ליווי בהטמעה יכולים לבחור בצוות של LEGAL MIND: ליווי אישי והטמעה של כלי בינה מלאכותית משפטיים במשרד, מההיכרות הראשונה ועד תהליכי עבודה מותאמים, והדרכות לעבודה נכונה עם הקונקטור של נבו.</p>
+      </div>
+      <a class="nv-link" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener">לשיתוף הפעולה עם נבו ←</a>
     </div>
     <ul class="lm-facts">
       <li data-rise><b>קהילה <bdi dir="ltr">+2,000</bdi></b><span>עורכי דין בקהילת LEGAL MIND</span></li>
