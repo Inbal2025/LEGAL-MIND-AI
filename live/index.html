@@ -690,6 +690,9 @@ section{position:relative}
 .two-q{margin:0 24px 12px;padding:10px 14px;border-radius:12px;background:#FFE9E7;color:#8E1B15;font:600 15px/1.45 var(--text)}
 @media (max-width:640px){.two-q{margin:0 16px 12px}}
 .ticker .tag{box-shadow:0 4px 0 #7E1612,0 0 0 22px var(--deep)}
+.tk-wrap{display:flex;justify-content:flex-start;margin-bottom:12px}
+.tk-label{margin:0;display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 12px;border-radius:999px;background:var(--deep);color:#EAF4F0;font:700 clamp(22px,1rem + .6vw,28px)/1 var(--display);box-shadow:0 4px 0 #0A2620}
+.tk-label span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#FFD66B;color:#13231F;font:700 16px var(--head)}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -734,17 +737,20 @@ section{position:relative}
     </div>
   </div>
 
+  <div class="wrap tk-wrap"><p class="tk-label"><span aria-hidden="true">?</span>דוגמאות לשאלות שנשאלות נכון</p></div>
   <div class="ticker" aria-label="שאלות לדוגמה, כמו בלייב">
     <span class="tag"><i></i>שאלות לאוויר</span>
     <div class="run" id="run">
-      <span>הקונקטור מחזיר פסק דין עם קישור. איך בודקים מהר שהציטוט עצמו באמת מופיע בו?</span>
-      <span>ביקשתי פסיקה עדכנית וקיבלתי גם פסקי דין שבוטלו בערעור. איך מונעים את זה מראש?</span>
-      <span>איך גורמים לקונקטור להביא רק את העליון מהשנים האחרונות, בלי כל השאר?</span>
-      <span>אפשר לחבר את הקונקטור לסקיל, כך שכל מזכר ייבנה עם אסמכתאות מנבו באותו מבנה?</span>
+      <span>הקונקטור של נבו מחזיר פסק דין עם קישור. איך בודקים מהר שהציטוט עצמו באמת מופיע בו?</span>
       <span>יש לנו נוסח קבוע לכתבי טענות. איך מפיצים אותו כסקיל לכל המשרד בלי שכל אחד יעלה קובץ?</span>
-      <span>איפה עובר הגבול בין הנחיה בפרויקט לבין סקיל, כשהם מתנגשים?</span>
       <span>Claude ב-Word כותב מחדש סעיף שלם. איך גורמים לו לתקן רק מילים, בסימון שינויים?</span>
+      <span>לפני שמעלים חומר של לקוח ל-Claude, מה בדיוק צריך להשחיר, ומה מותר להשאיר?</span>
+      <span>הקונקטור של נבו מביא לי הכול. איך מקבלים ממנו רק את העליון מהשנים האחרונות?</span>
+      <span>איפה עובר הגבול בין הנחיה בפרויקט לבין סקיל, כשהם מתנגשים?</span>
+      <span>פרויקט לכל תיק או פרויקט לכל תחום: מה עובד טוב יותר במשרד שכבר עובד עם Claude?</span>
       <span>בהסכם ארוך עם הפניות פנימיות, איך Claude ב-Word מתקן סעיף בלי לשבור את המספור?</span>
+      <span>אפשר לחבר את הקונקטור של נבו לסקיל, כך שכל מזכר ייבנה עם אסמכתאות באותו מבנה?</span>
+      <span>Claude מסכם פרוטוקול ארוך ומשמיט החלטות. איך מוודאים שלא פספס כלום?</span>
     </div>
   </div>
 </section>
@@ -775,7 +781,7 @@ section{position:relative}
     <div class="bank" data-rise>
       <h3>שאלות לדוגמה, ברמה של משרד שכבר עובד עם Claude</h3>
       <div class="tabs" role="tablist" aria-label="נושאים"><button class="tab on" type="button" role="tab" aria-selected="true" data-t="nevo">הקונקטור של נבו</button><button class="tab" type="button" role="tab" aria-selected="false" data-t="skills">סקילים</button><button class="tab" type="button" role="tab" aria-selected="false" data-t="word">Claude בתוך Word</button></div>
-      <div class="pane on" role="tabpanel" data-p="nevo"><button class="qb" type="button"><span class="qt">כשהקונקטור מחזיר עשר אסמכתאות, איך בודקים בשיטה שכל ציטוט מופיע כלשונו ושההלכה לא שונתה בערעור?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך בונים סקיל שחוקר בנבו בשלבים, חקיקה ואז העליון ואז הערכאות הדיוניות, ומראה איפה הן סותרות?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">במזכר שנכתב עם הקונקטור, איך מבטיחים שכל טענה מחוברת לאסמכתה ספציפית עם קישור לנבו, ושאין אף משפט שנשען על הידע הכללי של Claude?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div><div class="pane" role="tabpanel" data-p="skills"><button class="qb" type="button"><span class="qt">סקיל אחד לכל המשרד, עם הסגנון והתבניות שלנו: מה נכנס להוראות הסקיל, מה לקבצי העזר ומה להנחיות הפרויקט?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך בודקים סקיל לפני שמפיצים אותו במשרד: אילו מקרי קצה להריץ, איך מוודאים שהתוצר יציב בין ריצות, ואיך מנהלים גרסאות כשמעדכנים אותו?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">מתי נכון לפצל סקיל גדול לכמה סקילים קטנים שעובדים יחד, ואיך מונעים מצב ש-Claude מפעיל את הסקיל הלא נכון?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div><div class="pane" role="tabpanel" data-p="word"><button class="qb" type="button"><span class="qt">בהסכם של 60 עמודים, איך גורמים ל-Claude בתוך Word לתקן סעיף ולעדכן את ההפניות אליו, בלי לשבור מספור?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך מלמדים את Claude בתוך Word את העמדות של המשרד, כך שבכל סקירת חוזה הוא יסמן חריגות מהן, יציע נוסח חלופי ויסביר בהערה למה?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">הצד השני החזיר טיוטה בלי סימון שינויים. איך Claude בתוך Word משחזר מה השתנה ומנסח תגובה לכל שינוי?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div>
+      <div class="pane on" role="tabpanel" data-p="nevo"><button class="qb" type="button"><span class="qt">כשהקונקטור של נבו מחזיר עשר אסמכתאות, איך בודקים בשיטה שכל ציטוט מופיע כלשונו ושההלכה לא שונתה בערעור?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך בונים סקיל שחוקר בנבו בשלבים, חקיקה ואז העליון ואז הערכאות הדיוניות, ומראה איפה הן סותרות?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">במזכר שנכתב עם הקונקטור של נבו, איך מבטיחים שכל טענה מחוברת לאסמכתה ספציפית עם קישור לנבו, ושאין אף משפט שנשען על הידע הכללי של Claude?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div><div class="pane" role="tabpanel" data-p="skills"><button class="qb" type="button"><span class="qt">סקיל אחד לכל המשרד, עם הסגנון והתבניות שלנו: מה נכנס להוראות הסקיל, מה לקבצי העזר ומה להנחיות הפרויקט?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך בודקים סקיל לפני שמפיצים אותו במשרד: אילו מקרי קצה להריץ, איך מוודאים שהתוצר יציב בין ריצות, ואיך מנהלים גרסאות כשמעדכנים אותו?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">מתי נכון לפצל סקיל גדול לכמה סקילים קטנים שעובדים יחד, ואיך מונעים מצב ש-Claude מפעיל את הסקיל הלא נכון?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div><div class="pane" role="tabpanel" data-p="word"><button class="qb" type="button"><span class="qt">בהסכם של 60 עמודים, איך גורמים ל-Claude בתוך Word לתקן סעיף ולעדכן את ההפניות אליו, בלי לשבור מספור?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">איך מלמדים את Claude בתוך Word את העמדות של המשרד, כך שבכל סקירת חוזה הוא יסמן חריגות מהן, יציע נוסח חלופי ויסביר בהערה למה?</span><span class="use">להשתמש בשאלה הזו ←</span></button><button class="qb" type="button"><span class="qt">הצד השני החזיר טיוטה בלי סימון שינויים. איך Claude בתוך Word משחזר מה השתנה ומנסח תגובה לכל שינוי?</span><span class="use">להשתמש בשאלה הזו ←</span></button></div>
     </div>
   </div>
 </section>
