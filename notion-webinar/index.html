@@ -390,7 +390,7 @@ h1 .ntw img{width:.62em;height:.62em;transform:translateY(-.04em)}
 
 /* ===== links + footer ===== */
 .links{padding:clamp(36px,4.5vw,60px) 0 0}
-.link-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.link-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .link-row a{display:flex;flex-direction:column;gap:6px;background:var(--sage-2);border-radius:22px;padding:24px 24px 26px;text-decoration:none;transition:transform .25s var(--ease),background .25s}
 .link-row a:hover{transform:translateY(-4px);background:#fff}
 .link-row b{font:700 21px var(--font)}
@@ -504,6 +504,19 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   h1 .mask > span,.fade,.rv,.sheet .ui,.af-t{transform:none!important;opacity:1!important}
 }
+.link-row a:nth-child(5) .ic{animation-delay:-4s}
+@media (max-width:980px){.link-row a:last-child:nth-child(odd){grid-column:1/-1}}
+/* Nevo partner card */
+.nv-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(18px,3vw,40px);margin-top:clamp(28px,3.5vw,48px);padding:clamp(22px,3vw,34px);border-radius:var(--r);background:#fff;box-shadow:0 6px 0 var(--sage-3),0 22px 30px -20px rgba(20,40,30,.4)}
+.nv-logo{display:grid;place-items:center;width:clamp(110px,12vw,150px);aspect-ratio:1;border-radius:22px;background:#fff;box-shadow:0 0 0 1.5px #E6D6D3,0 6px 0 #D7C3BF}
+.nv-logo img{width:72%;height:auto}
+.nv-badge{display:inline-block;margin:0 0 10px;padding:6px 14px;border-radius:999px;background:#8B1F24;color:#fff;font:600 14.5px var(--font)}
+.nv-h{margin:0 0 8px;font:700 clamp(30px,1rem + 1.6vw,46px)/1 var(--display);color:var(--ink)}
+.nv-p{margin:0;max-width:62ch;font:400 clamp(17px,.9rem + .4vw,19px)/1.6 var(--font);color:var(--ink-2)}
+.nv-link{align-self:end;white-space:nowrap;font:700 17px var(--font);color:#8B1F24;text-decoration:none}
+.nv-link:hover{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:980px){.nv-card{grid-template-columns:auto 1fr}.nv-link{grid-column:1/-1;justify-self:start}}
+@media (max-width:640px){.nv-card{grid-template-columns:1fr}.nv-logo{width:96px}}
 </style>
 </head>
 <body>
@@ -647,6 +660,17 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
       <li class="rv" style="--d:.3s"><span class="tile tn-amber" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 20h17"/><path d="M6 20V6.5L13 4v16"/><path d="M13 9h5v11"/><path d="M9.2 9v.01M9.2 12.5v.01M9.2 16v.01M15.6 13v.01M15.6 16.5v.01"/></svg></span><span><b>משפט ונדל״ן</b><small>הטמעה במשרדי עורכי דין ובחברות נדל״ן</small></span></li>
     </ul>
   </div>
+  <div class="wrap">
+    <div class="nv-card rv">
+      <div class="nv-logo"><img src="/notion-webinar/assets/nevo-plain.webp" alt="נבו" width="436" height="205" loading="lazy"></div>
+      <div class="nv-txt">
+        <p class="nv-badge">שותף הטמעה מקצועי של נבו</p>
+        <p class="nv-h">LEGAL MIND רשומה באקדמיית נבו כשותף הטמעה מקצועי</p>
+        <p class="nv-p">באקדמיית נבו, עורכי דין שמחפשים ליווי בהטמעה יכולים לבחור בצוות של LEGAL MIND: ליווי אישי והטמעה של כלי בינה מלאכותית משפטיים במשרד, מההיכרות הראשונה ועד תהליכי עבודה מותאמים, והדרכות לעבודה נכונה עם הקונקטור של נבו.</p>
+      </div>
+      <a class="nv-link" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener">לשיתוף הפעולה עם נבו ←</a>
+    </div>
+  </div>
 </section>
 
 <!-- ================= TESTIMONIALS ================= -->
@@ -677,7 +701,8 @@ footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
   <div class="wrap link-row">
     <a class="rv" href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener"><span class="ic t-wa" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9 0-3.17-1.24-6.16-3.48-8.41A11.82 11.82 0 0 0 12.05 0zm5.42 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35z"/></svg></span><b>קהילת LEGAL MIND</b><span>למעלה מ-2,000 עורכי דין בוואטסאפ: עדכונים, מדריכים וכלים.</span></a>
     <a class="rv" style="--d:.08s" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener"><span class="ic t-yt" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4.8v14.4l11.8-7.2z"/></svg></span><b>ערוץ היוטיוב</b><span>סרטוני הדרכה מעשיים לעבודה עם בינה מלאכותית במשרד.</span></a>
-    <a class="rv" style="--d:.16s" href="https://www.facebook.com/LegalMindAI" target="_blank" rel="noopener"><span class="ics"><span class="ic t-fb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></span><span class="ic t-li" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span></span><b>פייסבוק ולינקדאין</b><span>עדכונים, וובינרים ותכנים חדשים.</span></a>
+    <a class="rv" style="--d:.16s" href="https://www.facebook.com/LegalMindAI" target="_blank" rel="noopener"><span class="ic t-fb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></span><b>פייסבוק</b><span>עדכונים, וובינרים ותכנים חדשים.</span></a>
+    <a class="rv" style="--d:.2s" href="https://www.linkedin.com/company/legal-mind-ai/" target="_blank" rel="noopener"><span class="ic t-li" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span><b>לינקדאין</b><span>LEGAL MIND בלינקדאין.</span></a>
     <a class="rv" style="--d:.24s" href="mailto:info@legalmind.co.il"><span class="ic t-mail" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2 .9v.3l8 5.1 8-5.1v-.3H4zm16 2.6-7.46 4.75a1 1 0 0 1-1.08 0L4 9v9h16V9z"/></svg></span><b>info@legalmind.co.il</b><span>שאלה לפני הוובינר, או רוצים להטמיע בינה מלאכותית במשרד?</span></a>
   </div>
 </section>
