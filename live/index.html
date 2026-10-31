@@ -693,6 +693,11 @@ section{position:relative}
 .tk-wrap{display:flex;justify-content:flex-start;margin-bottom:12px}
 .tk-label{margin:0;display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 12px;border-radius:999px;background:var(--deep);color:#EAF4F0;font:700 clamp(22px,1rem + .6vw,28px)/1 var(--display);box-shadow:0 4px 0 #0A2620}
 .tk-label span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#FFD66B;color:#13231F;font:700 16px var(--head)}
+.lm-nevo{display:inline-flex;align-items:center;gap:14px;margin:0 0 24px;color:#EEF6F2;text-decoration:none;font:700 clamp(26px,1rem + 1vw,34px)/1 var(--display)}
+.lm-nevo .nv-plate{display:inline-grid;place-items:center;background:#fff;border-radius:14px;padding:8px 14px;box-shadow:0 5px 0 #0A2620}
+.lm-nevo img{height:34px;width:auto;display:block}
+.lm-nevo:hover span:last-child{text-decoration:underline;text-underline-offset:4px}
+.lm-body{display:flex;flex-direction:column;align-items:flex-start}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -822,6 +827,7 @@ section{position:relative}
     </div>
     <div class="lm-body">
       <p class="lm-text" data-rise>LEGAL MIND מטמיעה בינה מלאכותית בעולם המשפט והנדל״ן: הדרכות, וובינרים וליווי אישי, ובניית תהליכי עבודה שמתאימים לאופן שבו המשרד חושב ועובד. את החברה הקימו ומובילים עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳.</p>
+      <a class="lm-nevo" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener" data-rise style="--i:1"><span class="nv-plate"><img src="/live/assets/nevo-plain.webp" alt="נבו" loading="lazy"></span><span>בשיתוף פעולה רשמי עם נבו</span></a>
       <a class="key lm-cta" href="https://www.legalmind.co.il/nevo/" target="_blank" rel="noopener" data-rise style="--i:1"><span>לבחינת התאמה למשרד שלכם</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span></a>
     </div>
     <ul class="lm-facts">
