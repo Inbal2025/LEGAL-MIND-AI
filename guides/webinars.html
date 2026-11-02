@@ -138,6 +138,14 @@
     display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
     border-radius: 8px; border: 1px solid var(--line); transition: filter .2s ease;
   }
+  .wthumb .newest {
+    position: absolute; top: 12px; left: 12px; z-index: 1;
+    font-size: 15px; font-weight: 800; color: #3A2200; letter-spacing: .02em;
+    background: linear-gradient(180deg, #FFECA0 0%, #E9BA46 45%, #D4A028 55%, #B07C16 100%);
+    border: 1px solid #FFF8D2; border-radius: 99px; padding: 5px 14px;
+    box-shadow: 0 0 0 1px rgba(120,80,0,.35), 0 6px 16px rgba(0,0,0,.4);
+    text-shadow: 0 1px 0 rgba(255,245,200,.7);
+  }
   .wthumb:hover .wcard-thumb { filter: brightness(.85); }
   .wthumb:focus-visible { outline: 3px solid var(--brand-bright); outline-offset: 3px; }
   .film-play {
@@ -245,6 +253,20 @@
 
 <div class="wrap">
 
+
+  <div class="wcard">
+    <div class="wcard-date"><span class="day">1</span><span class="month">נוב׳</span></div>
+    <div class="wcard-body">
+      <button class="wthumb" type="button" data-yt="5UmE7G4BAv4" aria-label="ניגון ההקלטה: הקונקטור של נבו בתוך Claude"><img class="wcard-thumb" src="webinar-imgs/nevo-connector-webinar.jpg" alt="וובינר: הקונקטור של נבו בתוך Claude" width="800" height="450" loading="lazy"><span class="newest">החדש ביותר</span><span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span></button>
+      <div class="wcard-kind">וובינר · נבו + <bdi dir="ltr">Claude</bdi></div>
+      <h2>הקונקטור של נבו בתוך <bdi dir="ltr">Claude</bdi><span class="wcard-guest">וובינר משותף של <bdi dir="ltr">Legal Mind</bdi> ונבו</span></h2>
+      <p>איך מחברים את הקונקטור של נבו ל-<bdi dir="ltr">Claude</bdi>, איך בודקים שהוא באמת מחובר, ואיך עובדים איתו: חיפוש פסיקה עם קישור לכל מקור בנבו, וסקילים שמפיקים מזכר משפטי וציר זמן של תיק.</p>
+      <div class="wcard-foot">
+        <span class="wcard-note">כ-47 דקות · <bdi dir="ltr">YouTube</bdi></span>
+        <a class="wcard-go" data-yt="5UmE7G4BAv4" href="https://www.youtube.com/watch?v=5UmE7G4BAv4" target="_blank" rel="noopener">צפייה בוובינר ◀</a>
+      </div>
+    </div>
+  </div>
 
   <div class="wcard">
     <div class="wcard-date"><span class="day">11</span><span class="month">אפר׳</span></div>
@@ -409,6 +431,17 @@
     // if the browser refuses real full screen, fill the browser window instead
     if(inn.requestFullscreen) inn.requestFullscreen().catch(function(){ big(true); });
     else big(true);
+  });
+  document.querySelectorAll('[data-yt]').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+b.getAttribute('data-yt')+'?autoplay=1&rel=0';
+      f.title='הקלטת וובינר';
+      f.allow='autoplay; fullscreen; encrypted-media; picture-in-picture';
+      f.allowFullscreen=true;
+      box.innerHTML=''; box.appendChild(f); d.showModal();
+    });
   });
   document.querySelectorAll('[data-drive]').forEach(function(b){
     b.addEventListener('click',function(e){
