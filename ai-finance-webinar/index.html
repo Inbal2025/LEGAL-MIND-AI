@@ -388,9 +388,9 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
 
 
 /* ===== receipt hero ===== */
-.hero-grid{position:relative;z-index:3;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:30px}
+.hero-grid{position:relative;z-index:3;display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;padding-top:30px}
 .hero-copy{text-align:right}
-.hero-copy h1{margin-top:0;font-size:clamp(72px,3.6rem + 4.6vw,150px)}
+.hero-copy h1{margin-top:0;font-size:clamp(68px,3.2rem + 4vw,128px)}
 .hero-copy .sub{margin:22px 0 0;max-width:36ch}
 .hero-copy .when{justify-content:flex-start}
 .hero-copy .free{margin:12px 0 0;font:600 16px var(--text);color:var(--mint-d)}
@@ -608,6 +608,25 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
 @media (max-width:640px){.slip{width:170px;font-size:13px}.merged{width:250px}.trust2{grid-template-columns:1fr}.ticker{margin-top:-18px}.tk{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.tk-track{animation:none}.desk .slip{opacity:0}.desk .merged{opacity:1;transform:translate(-50%,-50%)}.ph-list li{opacity:1;transform:none}.ph-stamp{opacity:.95;transform:translate(-50%,-50%) rotate(-10deg)}}
 
+
+/* ===== big faces in the hero ===== */
+.hero-faces{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:end;padding-top:40px}
+.hf{margin:0;animation:bobS 6s ease-in-out infinite}
+.hf.f-roy{animation-delay:-2s}.hf.f-guest{animation-delay:-4s}
+.hf.f-asaf,.hf.f-roy{transform:translateY(-22px)}
+@keyframes bobS{0%,100%{translate:0 0}50%{translate:0 -5px}}
+.hf-ph{border-radius:26px;overflow:hidden;aspect-ratio:4/5;background:#F6E7D6;box-shadow:0 0 0 5px #fff,0 30px 50px -24px rgba(18,22,51,.5)}
+.hf-ph img{width:100%;height:100%;object-fit:cover}
+.hf figcaption{padding-top:14px;text-align:center;min-height:calc(2.6em + 40px)}
+.hf b{display:block;font:700 clamp(24px,1rem + .9vw,32px)/1 var(--display)}
+.hf span{display:block;margin-top:4px;font:600 14.5px var(--text);color:var(--royal)}
+.hf .gst{font-style:normal;margin-top:10px;font-size:14px}
+.demo{padding-top:60px}
+.demo-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+@media (max-width:980px){.demo-grid{grid-template-columns:1fr}.hero-faces{max-width:560px;margin-inline:auto;width:100%}}
+@media (max-width:640px){.hero-faces{gap:10px}.hf.f-asaf,.hf.f-roy{transform:translateY(-12px)}.hf b{font-size:19px}.hf span{font-size:12px}.hf-ph{border-radius:18px;box-shadow:0 0 0 3px #fff,0 18px 30px -16px rgba(18,22,51,.5)}.hf figcaption{min-height:0}}
+@media (prefers-reduced-motion:reduce){.hf{animation:none}}
+
 /* meet Financy */
 .meet-card{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center;background:var(--card);border:1px solid rgba(18,22,51,.08);border-radius:36px;padding:40px;box-shadow:0 30px 60px -40px rgba(18,22,51,.5)}
 .meet-logo{position:relative;overflow:hidden;border-radius:30px;aspect-ratio:4/3;display:grid;place-items:center;
@@ -736,13 +755,28 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
         <div><b data-u="s">00</b><span>שניות</span></div>
       </div>
       <div class="cta-row rv" style="--d:.3s"><a class="btn pulse js-reg" id="hero-btn" href="#register">שריון מקום בוובינר <span class="arr" aria-hidden="true">←</span></a></div>
-      <div class="mini-hosts rv" style="--d:.36s">
-        <div class="faces"><img src="/ai-finance-webinar/assets/asaf-l.jpg" alt="" width="720" height="900"><img src="/ai-finance-webinar/assets/roi-l.jpg" alt="" width="720" height="900"><img src="/ai-finance-webinar/assets/eliron-l.jpg" alt="" width="720" height="900"></div>
-        <p><b>עו״ד אסף אברמזון</b>, מייסד <bdi>LEGAL MIND</bdi>,<br>ולצידו <b>עו״ד רועי נימצוביץ׳</b>, מייסד <bdi>LEGAL MIND</bdi><br>מרצה אורח: <b>אלירון ג׳יני</b>, <bdi>Open-Finance.ai</bdi></p>
-      </div>
     </div>
 
-    <div class="hero-paper rv" style="--d:.15s">
+    <div class="hero-faces rv" style="--d:.15s" aria-label="מי מעביר את הוובינר">
+      <figure class="hf f-asaf"><div class="hf-ph"><img src="/ai-finance-webinar/assets/asaf-l.jpg" alt="עו״ד אסף אברמזון" width="720" height="900"></div><figcaption><b>עו״ד אסף אברמזון</b><span>מייסד <bdi>LEGAL MIND</bdi></span></figcaption></figure>
+      <figure class="hf f-roy"><div class="hf-ph"><img src="/ai-finance-webinar/assets/roi-l.jpg" alt="עו״ד רועי נימצוביץ׳" width="720" height="900"></div><figcaption><b>עו״ד רועי נימצוביץ׳</b><span>מייסד <bdi>LEGAL MIND</bdi></span></figcaption></figure>
+      <figure class="hf f-guest"><div class="hf-ph"><img src="/ai-finance-webinar/assets/eliron-l.jpg" alt="אלירון ג׳יני" width="720" height="900"></div><figcaption><b>אלירון ג׳יני</b><span><bdi>Open-Finance.ai</bdi></span><em class="gst">מרצה אורח</em></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-label="דוגמאות לשאלות שאפשר לשאול את Claude על הכסף"><div class="tk-track"><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה הוצאנו על אוכל החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">על אילו מנויים אני משלם כל חודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה נשאר עד המשכורת?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">חויבנו פעמיים על משהו?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה עלה לנו הרכב השנה?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">מה ההוצאה הכי גדולה החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">הכסף יספיק עד סוף החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה נכנס לעסק ברבעון?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">איפה אפשר לחסוך החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">מה השתנה לעומת החודש שעבר?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה הוצאנו על אוכל החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">על אילו מנויים אני משלם כל חודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה נשאר עד המשכורת?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">חויבנו פעמיים על משהו?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה עלה לנו הרכב השנה?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">מה ההוצאה הכי גדולה החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">הכסף יספיק עד סוף החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה נכנס לעסק ברבעון?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">איפה אפשר לחסוך החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">מה השתנה לעומת החודש שעבר?</span></div></div>
+
+<!-- ================= RECEIPT DEMO ================= -->
+<section class="sec demo" aria-labelledby="dm-h">
+  <div class="wrap demo-grid">
+    <div>
+      <h2 class="h2 rv" id="dm-h">שואלים.<br><em><bdi>Claude</bdi> מסמן.</em></h2>
+      <p class="lead rv" style="--d:.1s">ככה זה נראה כשהפירוט מחובר: שואלים במילים רגילות, ו-<bdi>Claude</bdi> קורא את הפעולות בחשבון, מסמן את השורות הרלוונטיות ועונה. לחצו על אחת השאלות ונסו בעצמכם.</p>
+      <p class="lead rv" style="--d:.16s">החותמת לא במקרה: החיבור הוא <b>לצפייה בלבד</b>.</p>
+    </div>
+    <div class="hero-paper rv" style="--d:.1s">
       <div class="paper-wrap">
         <div class="paper" id="paper" aria-label="פירוט חשבון לדוגמה">
           <div class="p-head"><img src="/ai-finance-webinar/assets/financy-ink.png" alt="Financy" width="951" height="284"><span>פירוט חשבון · נובמבר</span></div>
@@ -764,9 +798,6 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
     </div>
   </div>
 </section>
-
-<!-- ================= TICKER ================= -->
-<div class="ticker" aria-label="דוגמאות לשאלות שאפשר לשאול את Claude על הכסף"><div class="tk-track"><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה הוצאנו על אוכל החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">על אילו מנויים אני משלם כל חודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה נשאר עד המשכורת?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">חויבנו פעמיים על משהו?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה עלה לנו הרכב השנה?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">מה ההוצאה הכי גדולה החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">הכסף יספיק עד סוף החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה נכנס לעסק ברבעון?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">איפה אפשר לחסוך החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">מה השתנה לעומת החודש שעבר?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה הוצאנו על אוכל החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">על אילו מנויים אני משלם כל חודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה נשאר עד המשכורת?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">חויבנו פעמיים על משהו?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה עלה לנו הרכב השנה?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">מה ההוצאה הכי גדולה החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">הכסף יספיק עד סוף החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">כמה נכנס לעסק ברבעון?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">איפה אפשר לחסוך החודש?</span><span class="tk"><img src="/ai-finance-webinar/assets/claude-spark.svg" alt="">מה השתנה לעומת החודש שעבר?</span></div></div>
 
 <!-- ================= SCATTERED TO ONE PLACE ================= -->
 <section class="sec scatter" aria-labelledby="sc-h">
@@ -1071,7 +1102,7 @@ function regUrl(){
     setTimeout(() => ask(0), 250 + L.length * 230 + 700);
     setInterval(() => { if (!userPicked && !document.hidden) ask((qi + 1) % Q.length); }, 7000);
   };
-  printOut();
+  { const po = new IntersectionObserver(es => { if (es[0].isIntersecting) { printOut(); po.disconnect(); } }, {threshold:.3}); po.observe(document.getElementById('paper')); }
   /* ---------- scroll-triggered scenes: desk, phone, plug ---------- */
   const once = (el, fn, th) => { if (!el) return; const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { fn(); o.disconnect(); } }), {threshold: th || .35}); o.observe(el); };
   ['#desk','#phone','#plug'].forEach(id => once($(id), () => $(id).classList.add('in')));
