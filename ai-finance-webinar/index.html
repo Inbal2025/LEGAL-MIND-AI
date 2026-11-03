@@ -105,7 +105,7 @@ h1 .claude img{display:inline-block;height:.6em;width:auto;vertical-align:.04em;
 .when{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 18px;margin:26px 0 0;font:700 clamp(32px,1.4rem + 1.2vw,48px)/1 var(--display);color:var(--ink)}
 .when span{display:inline-flex;align-items:baseline;gap:18px}
 .when span+span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);transform:translateY(-7px)}
-.clock{display:flex;justify-content:center;align-items:flex-start;gap:10px;margin:26px auto 0}
+.clock{direction:ltr;display:flex;justify-content:center;align-items:flex-start;gap:10px;margin:26px auto 0}
 .clock div{min-width:96px;padding:12px 10px 10px;border-radius:20px;background:#fff;border:1px solid rgba(18,22,51,.08);box-shadow:0 6px 0 #D9DDF7,0 16px 30px -12px rgba(29,38,135,.35)}
 .clock b,.count b{display:block;font:700 64px/1 var(--display);font-variant-numeric:tabular-nums}
 .clock b{color:var(--royal)}
@@ -340,7 +340,7 @@ h1 .claude img{display:inline-block;height:.6em;width:auto;vertical-align:.04em;
 .reg-card::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;left:-120px;top:-160px;background:radial-gradient(circle,rgba(242,193,78,.35),transparent 65%)}
 .reg-card h2{font:700 clamp(70px,3rem + 4vw,130px)/.86 var(--display);margin:0;position:relative}
 .reg-card .lead{color:#D7DBFF;position:relative}
-.count{display:flex;gap:12px;margin-top:24px;position:relative}
+.count{direction:ltr;display:flex;gap:12px;margin-top:24px;position:relative}
 .count div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:10px 14px;min-width:78px;text-align:center}
 .count b{display:block;font:700 46px/1 var(--display)}
 .count span{font-size:13px;color:#C9CDFA}
@@ -648,6 +648,15 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
 .hero-side{display:flex;flex-direction:column;align-items:center;gap:30px;padding-top:30px}
 .hero-side .hero-faces{width:100%;padding-top:24px}
 @media (max-width:640px){.topic{padding:12px 14px 12px 12px;gap:6px 12px;border-radius:20px}.tp-tag{font-size:14px;padding:0 10px;border-radius:12px}.tp-main{font-size:31px}.tp-sub{font-size:13px}}
+.fin-plate{display:inline-flex;flex-direction:column;align-items:center;gap:16px;margin:0 0 30px;padding:22px 34px 22px 26px;background:#fff;border:2px solid #CDD2F5;border-radius:30px;box-shadow:0 7px 0 #CDD2F5,0 24px 40px -22px rgba(18,22,51,.5)}
+.fin-plate img{height:92px;width:auto}
+.fp-txt{display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:16px;border-top:3px solid var(--royal-l);white-space:nowrap;align-self:stretch}
+.fp-txt b{font:700 46px/1 var(--display);color:var(--royal)}
+.fp-txt small{font:600 19px/1 var(--text);color:var(--ink-2)}
+.fin-go{margin:0 0 34px}
+.btn.ink{--top:#3A4170;--mid:#121633;--edge:#000;--glow:rgba(18,22,51,.45)}
+.btn.ink img{height:34px;width:auto;margin-inline:2px}
+@media (max-width:640px){.fin-plate{gap:12px;padding:16px 22px;border-radius:22px}.fin-plate img{height:64px}.fp-txt{padding-top:12px}.fp-txt b{font-size:28px}.fp-txt small{font-size:14px}.btn.ink img{height:24px}}
 /* meet Financy */
 .meet-card{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center;background:var(--card);border:1px solid rgba(18,22,51,.08);border-radius:36px;padding:40px;box-shadow:0 30px 60px -40px rgba(18,22,51,.5)}
 .meet-logo{position:relative;overflow:hidden;border-radius:30px;aspect-ratio:4/3;display:grid;place-items:center;
@@ -658,6 +667,7 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
 .meet .h2{font-size:clamp(50px,2.4rem + 2.6vw,88px)}
 .banks{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .banks span{font:600 14px var(--text);padding:7px 12px;border-radius:999px;background:var(--paper);border:1px solid rgba(18,22,51,.08)}
+.meet-go{margin:26px 0 0}
 .meet-link{display:inline-block;margin-top:20px;font:700 17px var(--text);color:var(--royal);text-decoration:none}
 .meet-link:hover{text-decoration:underline;text-underline-offset:4px}
 @media (max-width:980px){.meet-card{grid-template-columns:1fr;padding:24px}}
@@ -766,7 +776,7 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1 id="h1" class="rv" style="--d:.05s"><span class="w1">הכסף שלכם,</span><span class="w2">מדבר עם <span class="claude">Claude<img src="/ai-finance-webinar/assets/claude-spark.svg" alt="" width="26" height="26"></span>.</span></h1>
-      <p class="sub rv" style="--d:.12s">במקום לקפוץ בין אתר הבנק, חברות האשראי ואקסל שמישהו צריך לעדכן: בוובינר נראה איך מערכת <bdi>Financy</bdi> של <bdi>Open-Finance.ai</bdi> אוספת את הבנק והאשראי למקום אחד, ואיך מחברים אותה ל-<bdi>Claude</bdi>, רק לצפייה ובאישור שלכם. מאותו רגע שואלים את <bdi>Claude</bdi> על הכסף כמו ששואלים חבר.</p>
+      <p class="sub rv" style="--d:.12s">במקום לקפוץ בין אתר הבנק, חברות האשראי ואקסל שמישהו צריך לעדכן: בוובינר נראה איך <bdi>Financy</bdi>, סוכן ה-AI של <bdi>Open-Finance.ai</bdi>, אוסף את הבנק והאשראי למקום אחד, ואיך מחברים אותו ל-<bdi>Claude</bdi>, רק לצפייה ובאישור שלכם. מאותו רגע שואלים את <bdi>Claude</bdi> על הכסף כמו ששואלים חבר.</p>
       <p class="when rv" style="--d:.18s"><span>יום ראשון, 8.11</span><span>20:00</span><span>ב-<bdi>Google Meet</bdi></span></p>
       <p class="free rv" style="--d:.2s">וובינר בונוס לקהילת <bdi>LEGAL MIND</bdi> · ללא עלות</p>
       <div class="clock rv" style="--d:.24s" aria-label="הזמן שנשאר עד הוובינר">
@@ -805,8 +815,10 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
 <section class="sec demo" aria-labelledby="dm-h">
   <div class="wrap demo-grid">
     <div>
+      <div class="fin-plate rv"><img src="/ai-finance-webinar/assets/financy-ink.png" alt="Financy" width="951" height="284"><span class="fp-txt"><b>סוכן AI לכסף שלכם</b><small>מבית <bdi>Open-Finance.ai</bdi></small></span></div>
+      <p class="fin-go rv"><a class="btn ink" href="https://financy.open-finance.ai/" target="_blank" rel="noopener">לאתר של <img src="/ai-finance-webinar/assets/financy-logo-white.png" alt="Financy" width="951" height="284"> <span class="arr" aria-hidden="true">←</span></a></p>
       <h2 class="h2 rv" id="dm-h">שואלים.<br><em><bdi>Claude</bdi> מסמן.</em></h2>
-      <p class="lead rv" style="--d:.1s">ככה זה נראה: <b><bdi>Financy</bdi></b> של <bdi>Open-Finance.ai</bdi> מחברת את הבנק והאשראי, ודרכה <bdi>Claude</bdi> מקבל גישה לפירוט. שואלים במילים רגילות, ו-<bdi>Claude</bdi> קורא את הפעולות בחשבון, מסמן את השורות הרלוונטיות ועונה. לחצו על אחת השאלות ונסו בעצמכם.</p>
+      <p class="lead rv" style="--d:.1s">ככה זה נראה: <b><bdi>Financy</bdi></b> של <bdi>Open-Finance.ai</bdi> מחבר את הבנק והאשראי, ודרכו <bdi>Claude</bdi> מקבל גישה לפירוט. שואלים במילים רגילות, ו-<bdi>Claude</bdi> קורא את הפעולות בחשבון, מסמן את השורות הרלוונטיות ועונה. לחצו על אחת השאלות ונסו בעצמכם.</p>
       <p class="lead rv" style="--d:.16s">החותמת לא במקרה: הגישה של <bdi>Claude</bdi> לנתונים דרך <bdi>Financy</bdi> היא <b>לצפייה בלבד</b>.</p>
     </div>
     <div class="hero-paper rv" style="--d:.1s">
@@ -830,6 +842,23 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
       </div>
     </div>
   </div>
+</section>
+
+<!-- ================= MEET FINANCY ================= -->
+<section class="sec meet" aria-labelledby="mf-h" >
+  <div class="wrap"><div class="meet-card rv">
+    <div class="meet-logo" aria-hidden="true"><span class="shine"></span><img src="/ai-finance-webinar/assets/financy-logo-white.png" alt="" width="951" height="284"></div>
+    <div class="meet-txt">
+      <p class="kick">הכירו את הכלי</p>
+      <h2 class="h2" id="mf-h"><bdi>Financy</bdi>.<br><em>הבינה המלאכותית פוגשת את הכסף שלכם.</em></h2>
+      <p class="lead"><bdi>Financy</bdi> הוא סוכן AI של <bdi>Open-Finance.ai</bdi> שעובד על הנתונים הכספיים שלכם. הוא מתחבר לבנקים ולחברות האשראי בישראל בגישת צפייה, וכסף לא זז בלי אישור שלכם במסך של הבנק. שואלים אותו במילים רגילות, מקבלים סיכומים והתראות, ואפשר לחבר את אותו מידע ל-<bdi>Claude</bdi>.</p>
+      <p class="lead"><bdi>Open-Finance.ai</bdi> בונה את התשתית שמחברת, מאחדת ומסדרת את הנתונים מהבנקים ומחברות האשראי. בנקים, גופים מוסדיים וחברות מימון כבר עובדים עליה, והיא פועלת ברישיון ובפיקוח רשות ניירות ערך.</p>
+      <div class="banks" aria-label="מתחבר לבנקים ולחברות האשראי">
+        <span>הפועלים</span><span>לאומי</span><span>דיסקונט</span><span>מזרחי טפחות</span><span>הבינלאומי</span><span>ישראכרט</span><span>מקס</span><span>כאל</span>
+      </div>
+      <p class="meet-go"><a class="btn ink" href="https://financy.open-finance.ai/" target="_blank" rel="noopener">לאתר של <img src="/ai-finance-webinar/assets/financy-logo-white.png" alt="Financy" width="951" height="284"> <span class="arr" aria-hidden="true">←</span></a></p>
+    </div>
+  </div></div>
 </section>
 
 <!-- ================= SCATTERED TO ONE PLACE ================= -->
@@ -865,22 +894,6 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
       <div class="bill-total"><span>סה״כ לתשלום<small>ובנוסף: שאלות ותשובות בסוף</small></span><b>₪0</b></div>
     </div>
   </div>
-</section>
-
-<!-- ================= MEET FINANCY ================= -->
-<section class="sec meet" aria-labelledby="mf-h" style="padding-top:10px">
-  <div class="wrap"><div class="meet-card rv">
-    <div class="meet-logo" aria-hidden="true"><span class="shine"></span><img src="/ai-finance-webinar/assets/financy-logo-white.png" alt="" width="951" height="284"></div>
-    <div class="meet-txt">
-      <p class="kick">הכירו את הכלי</p>
-      <h2 class="h2" id="mf-h"><bdi>Financy</bdi>.<br><em>הבינה המלאכותית פוגשת את הכסף שלכם.</em></h2>
-      <p class="lead"><bdi>Financy</bdi> הוא עוזר חכם של <bdi>Open-Finance.ai</bdi>. הוא מתחבר לבנקים ולחברות האשראי בישראל בגישת צפייה, וכסף לא זז בלי אישור שלכם במסך של הבנק. שואלים אותו במילים רגילות, מקבלים סיכומים והתראות, ואפשר לחבר את אותו מידע ל-<bdi>Claude</bdi>.</p>
-      <div class="banks" aria-label="מתחבר לבנקים ולחברות האשראי">
-        <span>הפועלים</span><span>לאומי</span><span>דיסקונט</span><span>מזרחי טפחות</span><span>הבינלאומי</span><span>ישראכרט</span><span>מקס</span><span>כאל</span>
-      </div>
-      <a class="meet-link" href="https://financy.open-finance.ai/" target="_blank" rel="noopener">לאתר של <bdi>Financy</bdi> ←</a>
-    </div>
-  </div></div>
 </section>
 
 <!-- ================= SECURITY ================= -->
@@ -1008,7 +1021,7 @@ footer{padding:30px 0 120px;border-top:1px solid rgba(18,22,51,.1)}
 <section class="reg" id="register" aria-labelledby="rg-h">
   <div class="wrap"><div class="reg-card">
     <div><h2 id="rg-h" class="rv">נתראה<br>ב-8.11.</h2>
-      <p class="lead rv" style="--d:.1s">ערב אחד שיעשה סדר בכסף: איך <bdi>Financy</bdi> של <bdi>Open-Finance.ai</bdi> מתחברת ל-<bdi>Claude</bdi>, בבטחה ובפרטיות. וובינר חי וללא עלות, והקישור לפגישה נשלח אליכם מיד אחרי ההרשמה.</p>
+      <p class="lead rv" style="--d:.1s">ערב אחד שיעשה סדר בכסף: איך <bdi>Financy</bdi> של <bdi>Open-Finance.ai</bdi> מתחבר ל-<bdi>Claude</bdi>, בבטחה ובפרטיות. וובינר חי וללא עלות, והקישור לפגישה נשלח אליכם מיד אחרי ההרשמה.</p>
       <div class="count rv" style="--d:.2s" id="count" aria-live="off"><div><b data-u="d">0</b><span>ימים</span></div><div><b data-u="h">00</b><span>שעות</span></div><div><b data-u="m">00</b><span>דקות</span></div><div><b data-u="s">00</b><span>שניות</span></div></div></div>
     <div class="reg-side rv" style="--d:.15s">
       <div class="facts2"><b>יום ראשון, 8.11.2026</b><span>בשעה 20:00 · ב-<bdi>Google Meet</bdi> · ללא עלות</span></div>
