@@ -29,8 +29,9 @@
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.65 var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip}
+main,section,footer{overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.65 var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;max-width:100%}
 img{max-width:100%;display:block}
 a{color:inherit}
 .wrap{width:min(1180px,100% - 40px);margin-inline:auto}
