@@ -193,6 +193,9 @@
     box-shadow: 0 0 0 1px rgba(120,80,0,.35), 0 6px 16px rgba(0,0,0,.4);
     text-shadow: 0 1px 0 rgba(255,245,200,.7);
   }
+  /* this cover has its title near the top-left, so the badge sits smaller and higher */
+  #gpts-to-skills .newest { top: 19px; left: 10px; font-size: 13px; padding: 3px 11px; }
+  @media (max-width: 600px) { #gpts-to-skills .newest { font-size: 12px; padding: 2px 10px; } }
   .vcard.feat .prompt { grid-column: 1 / -1; }
   .vlink {
     display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 14px; text-align: start;
@@ -277,7 +280,7 @@
 
   <div class="vcard" id="gpts-to-skills">
     <button class="film" type="button" data-yt="A45_TNLnqCc" aria-label="ניגון הסרטון: מ-GPTs לסקילים">
-      <img src="yt/gpts-cover.webp?v=0511" alt="" width="960" height="540">
+      <img src="yt/gpts-cover.webp?v=0611" alt="" width="960" height="540">
       <span class="newest">החדש ביותר</span>
       <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
       <span class="film-time" aria-hidden="true">13:05</span>
