@@ -185,6 +185,13 @@
   .scard-nevo .scard-num { background: #F7E6E6; color: #861A1E; }
   .scard-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
   .scard-head .scard-num { margin-bottom: 0; }
+  .scard-newest {
+    display: inline-block; font-size: 14px; font-weight: 800; color: #3A2200; letter-spacing: .02em; white-space: nowrap;
+    background: linear-gradient(180deg, #FFECA0 0%, #E9BA46 45%, #D4A028 55%, #B07C16 100%);
+    border: 1px solid #FFF8D2; border-radius: 99px; padding: 6px 14px;
+    box-shadow: 0 0 0 1px rgba(120,80,0,.35), 0 4px 10px rgba(0,0,0,.18);
+    text-shadow: 0 1px 0 rgba(255,245,200,.7);
+  }
   .nevo-badge { display: inline-flex; align-items: center; gap: 8px; background: #F7E6E6; color: #861A1E; border-radius: 999px; padding: 6px 12px 6px 14px; font-size: 13.1px; font-weight: 700; }
   .nevo-badge img { height: 18px; width: auto; display: block; }
   .scard-credit { font-size: 12.6px; line-height: 1.5; color: var(--ink-faint); margin: -6px 0 16px; }
@@ -246,10 +253,33 @@
 <div class="wrap">
   <div class="series-cards">
 
+    <a class="scard" href="/skills-guide/" id="skills-guide">
+      <div class="scard-top"></div>
+      <div class="scard-body">
+        <div class="scard-head">
+          <div class="scard-num">1</div>
+          <span class="scard-newest">החדש ביותר</span>
+        </div>
+        <div class="scard-kind">מדריך · <bdi dir="ltr">Skills</bdi> ב-<bdi dir="ltr">Claude</bdi></div>
+        <h2>המדריך המקיף על <bdi dir="ltr">Skills</bdi> ב-<bdi dir="ltr">Claude</bdi></h2>
+        <p>מה זה <bdi dir="ltr">Skill</bdi>, איך מפעילים, איך בונים ואיך בודקים, על ארבעת ה-<bdi dir="ltr">Skills</bdi> של <bdi dir="ltr">Legal Mind</bdi> בשיתוף נבו. כל דוגמה רצה מקצה לקצה, וכל מסך מופיע בצילום.</p>
+        <ul>
+          <li>מה זה <bdi dir="ltr">Skill</bdi>, התקנה והפעלה</li>
+          <li>בניית <bdi dir="ltr">Skill</bdi> משלכם, בלי שורת קוד</li>
+          <li>ערכת ארבעת ה-<bdi dir="ltr">Skills</bdi> של <bdi dir="ltr">Legal Mind</bdi> בשיתוף נבו</li>
+          <li>ארבעת קובצי ה-<bdi dir="ltr">Skills</bdi> להורדה, במתנה</li>
+        </ul>
+        <div class="scard-foot">
+          <span class="scard-count">3 מדריכים + 4 <bdi dir="ltr">Skills</bdi> להורדה</span>
+          <span class="scard-go">למדריך ◀</span>
+        </div>
+      </div>
+    </a>
+
     <a class="scard" href="claude-team.html">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">1</div>
+        <div class="scard-num">2</div>
         <div class="scard-kind">מדריך · <bdi dir="ltr">Claude Team</bdi></div>
         <h2>מעבר בטוח למנוי <bdi dir="ltr">Team</bdi> של <bdi dir="ltr">Claude</bdi></h2>
         <p>ליווי מלא לפני המעבר, במהלכו ואחריו, כולל גיבוי מלא לפני כל פעולה שאי אפשר לבטל.</p>
@@ -270,7 +300,7 @@
     <a class="scard" href="chatgpt-work.html">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">2</div>
+        <div class="scard-num">3</div>
         <div class="scard-kind">מדריך · <bdi dir="ltr">ChatGPT Work</bdi></div>
         <h2>מצב <bdi dir="ltr">Work</bdi> ב-<bdi dir="ltr">ChatGPT</bdi></h2>
         <p>מ-עוזר שעונה, לסוכן שמבצע: נותנים יעד שלם ומקבלים בסוף קובץ מוגמר. מתחיל מאפס.</p>
@@ -290,7 +320,7 @@
     <a class="scard" href="ai-map.html">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">3</div>
+        <div class="scard-num">4</div>
         <div class="scard-kind">מפה · השוואה</div>
         <h2>מפת ה-<bdi dir="ltr">AI</bdi> לעורכי דין</h2>
         <p>שלוש אימפריות, אותן חמש קומות. איפה <bdi dir="ltr">Claude</bdi>, <bdi dir="ltr">ChatGPT</bdi> ו-<bdi dir="ltr">Gemini</bdi> באמת נבדלים, ואיפה רק השמות שונים.</p>
@@ -310,7 +340,7 @@
     <a class="scard" href="claude-team-usage.html">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">4</div>
+        <div class="scard-num">5</div>
         <div class="scard-kind">מדריך · <bdi dir="ltr">Claude Team</bdi></div>
         <h2>מדריך על מנוי <bdi dir="ltr">Team</bdi> ב-<bdi dir="ltr">Claude</bdi></h2>
         <p>לכל עו"ד במשרד, מהיחיד ועד המחלקה המשפטית: מה עובד אחר רואה, איך משתפים תיק בלי לפתוח אותו לכולם, ואיך מגדירים איך כל המשרד עובד.</p>
@@ -330,7 +360,7 @@
     <a class="scard" href="claude-opus-5-5.html">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">5</div>
+        <div class="scard-num">6</div>
         <div class="scard-kind">מודל חדש</div>
         <h2><bdi dir="ltr">Anthropic</bdi> משיקה עבור <bdi dir="ltr">Claude</bdi> את המודל <bdi dir="ltr">Opus&nbsp;5.5</bdi></h2>
         <p>מה השתנה במודל החדש, מה כל יכולת חדשה נותנת לעורכי דין בכל תחומי העיסוק, למי יש גישה לפי המנוי, ואיך בוחרים בו.</p>
@@ -350,7 +380,7 @@
     <a class="scard" href="chatgpt-gpt-6.html">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">6</div>
+        <div class="scard-num">7</div>
         <div class="scard-kind">מודלים חדשים</div>
         <h2><bdi dir="ltr">OpenAI</bdi> משיקה עבור <bdi dir="ltr">ChatGPT</bdi> את <bdi dir="ltr">GPT&#8209;6&nbsp;Sol</bdi> ו-<bdi dir="ltr">GPT&#8209;6&nbsp;Luna</bdi></h2>
         <p>מה חדש בשני המודלים, מה ההבדל ביניהם ומתי עובדים עם כל אחד, מה זה נותן לעורכי דין, ומה חשוב לדעת במנוי <bdi dir="ltr">ChatGPT Business</bdi>.</p>
@@ -370,7 +400,7 @@
     <a class="scard" href="chatgpt-business.html">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">7</div>
+        <div class="scard-num">8</div>
         <div class="scard-kind">מדריך · <bdi dir="ltr">ChatGPT Business</bdi></div>
         <h2>מעבר בטוח למנוי <bdi dir="ltr">Business</bdi> ב-<bdi dir="ltr">ChatGPT</bdi></h2>
         <p>ליווי מלא לפני המעבר, במהלכו ואחריו: מהכנה וגיבוי, דרך מיזוג החשבון והמידע, ועד בדיקות ושחזור ההנחיות האישיות.</p>
@@ -390,7 +420,7 @@
     <a class="scard" href="claude-desktop.html">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">8</div>
+        <div class="scard-num">9</div>
         <div class="scard-kind">מדריך · <bdi dir="ltr">Claude Desktop</bdi></div>
         <h2>האפליקציה <bdi dir="ltr">Claude Desktop</bdi>: היכרות, התקנה וההבדל מהדפדפן</h2>
         <p>מה זה <bdi dir="ltr">Claude Desktop</bdi>, במה הוא שונה מ-<bdi dir="ltr">Claude</bdi> בדפדפן, מה חשוב לדעת על אבטחת מידע, ואיך מתקינים אותו ב-<bdi dir="ltr">Windows</bdi> שלב אחר שלב.</p>
@@ -410,7 +440,7 @@
     <a class="scard" href="claude-excel.html" id="claude-excel">
       <div class="scard-top"></div>
       <div class="scard-body">
-        <div class="scard-num">9</div>
+        <div class="scard-num">10</div>
         <div class="scard-kind">מדריך · <bdi dir="ltr">Claude</bdi> בתוך <bdi dir="ltr">Excel</bdi></div>
         <h2>המדריך המקיף לעורכי דין על <bdi dir="ltr">Claude</bdi> בתוך <bdi dir="ltr">Excel</bdi></h2>
         <p>מהתקנת התוסף, דרך תרגול על תיק בדוי ועד לעבודה מסודרת על גיליונות המשרד. מתחילים מהבסיס, בלי ידע מוקדם ב-<bdi dir="ltr">Excel</bdi>.</p>
@@ -431,7 +461,7 @@
       <div class="scard-top"></div>
       <div class="scard-body">
         <div class="scard-head">
-          <div class="scard-num">10</div>
+          <div class="scard-num">11</div>
           <span class="nevo-badge"><img src="/nevo-webinar/assets/nevo-logo.webp" alt="" width="360" height="170">מדריך של נבו</span>
         </div>
         <div class="scard-kind">מדריך התקנה · מנוי אישי <bdi dir="ltr">Pro/Max</bdi></div>
@@ -455,7 +485,7 @@
       <div class="scard-top"></div>
       <div class="scard-body">
         <div class="scard-head">
-          <div class="scard-num">11</div>
+          <div class="scard-num">12</div>
           <span class="nevo-badge"><img src="/nevo-webinar/assets/nevo-logo.webp" alt="" width="360" height="170">מדריך של נבו</span>
         </div>
         <div class="scard-kind">מדריך התקנה · מנוי משרדי <bdi dir="ltr">Team/Enterprise</bdi></div>
