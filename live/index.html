@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl" data-lm-reg="manual">
 <head>
+<script src="/meta-pixel.js"></script>  <!-- Meta Pixel, נטען רק אחרי הסכמה -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>לייב שאלות ותשובות עם אסף ורועי · LEGAL MIND</title>
@@ -938,11 +939,12 @@ section{position:relative}
     return u.toString();
   }
   function go(e){ if(e) e.preventDefault(); var url=formUrl(), t=q.value.trim();
-    if(t){ fly(t,q,document.querySelector('.hcast'),function(){location.href=url}); } else location.href=url; }
+    if(t){ fly(t,q,document.querySelector('.hcast'),function(){lmGo(url)}); } else lmGo(url); }
+  function lmGo(u){ var on=window.lmTrack&&window.lmTrack('RegisterClick',{content_name:'live'}); setTimeout(function(){location.href=u},on?300:0); }
   $('#ask').addEventListener('submit',go);
   document.querySelectorAll('.js-reg').forEach(function(a){
     a.href=FORM;
-    a.addEventListener('click',function(e){ if(!q.value.trim()){ e.preventDefault(); location.href=formUrl(); return;} go(e); });
+    a.addEventListener('click',function(e){ if(!q.value.trim()){ e.preventDefault(); lmGo(formUrl()); return;} go(e); });
   });
 
   function meterUpdate(){
