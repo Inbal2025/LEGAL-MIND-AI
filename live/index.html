@@ -398,8 +398,8 @@ section{position:relative}
   .tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut)}.tab{flex:none}}
 
 /* broadcast clock */
-.clock{display:inline-flex;align-items:flex-end;gap:10px;margin:4px 0 clamp(20px,2.6vw,30px);padding:14px 18px 12px;border-radius:18px;background:var(--deep);color:#fff;box-shadow:0 8px 0 #0A2620;flex-wrap:wrap}
-.clock .cl-h{flex-basis:100%;display:flex;align-items:center;gap:8px;font:600 14px var(--text);color:#BFD8D0;margin-bottom:2px}
+.clock{display:inline-flex;align-items:flex-end;gap:10px;margin:4px 0 clamp(20px,2.6vw,30px);padding:14px 18px 12px;border-radius:18px;background:var(--deep);color:#fff;box-shadow:0 8px 0 #0A2620;flex-wrap:wrap;direction:ltr}
+.clock .cl-h{flex-basis:100%;display:flex;align-items:center;gap:8px;font:600 14px var(--text);color:#BFD8D0;margin-bottom:2px;direction:rtl}
 .clock .cl-h i{width:9px;height:9px;border-radius:50%;background:var(--red);animation:rec 1.2s steps(2,jump-none) infinite}
 .clock .u{display:flex;flex-direction:column;align-items:center;min-width:2.1ch}
 .clock b{font:700 clamp(48px,1rem + 3vw,78px)/.9 var(--display);font-variant-numeric:tabular-nums;color:#fff}
