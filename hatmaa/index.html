@@ -774,13 +774,13 @@ footer{padding-bottom:90px}
 .team-tag{margin:0 auto 10px;display:table;padding:6px 16px;border-radius:999px;background:var(--teal);color:#06231E;font:800 15px var(--sans)}
 .team-h{font-size:clamp(30px,4vw,52px);color:#fff}
 .team-p{color:var(--ink-2)}
-.tm-grid{list-style:none;margin:clamp(30px,4vw,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,24px)}
+.tm-grid{list-style:none;margin:clamp(30px,4vw,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);max-width:900px;margin-inline:auto}
 .tm-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:clamp(18px,2vw,26px) 14px 22px;border-radius:20px;background:rgba(15,36,30,.9)}
 .tm-card b{font:900 clamp(19px,1.7vw,23px)/1.2 var(--serif);color:#fff;margin-top:14px}
 .tm-card span:not(.cf){font-size:15.5px;line-height:1.55;color:var(--ink-2)}
 .cube3d{width:92px;height:92px;perspective:520px;margin:10px 0 18px}
 .cb{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-22deg) rotateY(-32deg);animation:cbspin 9s ease-in-out infinite}
-.tm-card:nth-child(2) .cb{animation-delay:-2.2s}.tm-card:nth-child(3) .cb{animation-delay:-4.4s}.tm-card:nth-child(4) .cb{animation-delay:-6.6s}
+.tm-card:nth-child(2) .cb{animation-delay:-2.2s}.tm-card:nth-child(3) .cb{animation-delay:-4.4s}
 .cf{position:absolute;inset:0;display:grid;place-items:center;border-radius:14px;background:#14A394;color:#fff;transform:translateZ(46px);box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
 .cf svg{width:46px;height:46px}
 .cf.back{transform:rotateY(180deg) translateZ(46px);background:#0A6459}
@@ -874,10 +874,10 @@ footer{padding-bottom:90px}
   <p class="cmte rv">שניהם חברים בוועדת הבינה המלאכותית של לשכת עורכי הדין.</p>
   
   <div class="team rv">
-    <p class="team-tag">בנוסף לאסף ורועי</p>
+    <p class="team-tag">את ההטמעה מבצעים אסף ורועי, ולצדם:</p>
     <p class="team-h">צוות ההטמעות של LEGAL MIND</p>
-    <p class="team-p">כל הטמעה מגיעה עם צוות מקצועי שלם, שכל אחד בו אחראי על חלק אחר בעבודה.</p>
-    <ul class="tm-grid"><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M12 7.5l2.5 1v2c0 1.6-1.1 2.6-2.5 3-1.4-.4-2.5-1.4-2.5-3v-2z"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי IT</b><span>מנויים, הרשאות ואבטחת מידע לפי המדיניות של המשרד.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי אוטומציות מורכבות</b><span>מחברים את הכלים לתהליכים שחוזרים במשרד, כדי שהעבודה תרוץ ברקע.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מתכנתים</b><span>בונים סקילים וכלים ייעודיים לפי סוגי התיקים והתבניות של המשרד.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 11l2 2 4-4"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מטמיעים</b><span>מדריכים את הצוות במשרד על המשימות האמיתיות שלו, אחד על אחד ובקבוצות.</span></li></ul>
+    <p class="team-p">צוות שעובד בצמוד לעו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳ בכל הטמעה: הם מטמיעים במשרד ומדריכים את הצוות, והצוות דואג לכל השאר.</p>
+    <ul class="tm-grid"></ul>
   </div>
   <div class="stay rv"><p class="stay-h">לא מתקינים תוכנה והולכים.</p><p class="stay-p">בחודשים הראשונים אחרי ההטמעה אנחנו בקשר רציף איתכם, עם הדרכות וליווי, ובודקים יחד שהכלים באמת עובדים בשבילכם. וגם בסיום ההטמעה, תמיד יש למי לפנות עם כל שאלה.</p></div>
 </section>
