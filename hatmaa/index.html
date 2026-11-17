@@ -737,6 +737,20 @@ footer{padding-bottom:90px}
 
 .hx{padding-top:clamp(26px,3vw,44px);row-gap:clamp(14px,1.8vw,24px)}
 @media(max-width:760px){.hx{padding-top:22px}}
+
+.next{margin-top:clamp(24px,3vw,36px);padding:clamp(20px,2.4vw,30px);border-radius:22px;background:rgba(11,27,22,.86);border:1px solid rgba(99,194,184,.26)}
+.next-h{margin:0 0 16px;font:900 clamp(21px,2vw,27px)/1.2 var(--serif);color:var(--ink)}
+.next-who{display:grid;grid-template-columns:auto auto 1fr;gap:14px;align-items:center}
+.next-who figure{margin:0;text-align:center}
+.next-who img{width:clamp(84px,7.4vw,108px);height:clamp(84px,7.4vw,108px);object-fit:cover;object-position:center top;border-radius:18px;border:3px solid #E9F4F1;display:block}
+.next-who figcaption{margin-top:6px;font:800 13.5px/1.25 var(--sans);color:var(--teal-l)}
+.next-who p{margin:0;font-size:16.5px;line-height:1.55;color:var(--ink)}
+.next-steps{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px;border-right:3px solid rgba(99,194,184,.45);padding-right:16px}
+.next-steps li{position:relative;font-size:16.5px;line-height:1.55;color:var(--ink-2)}
+.next-steps li::before{content:"";position:absolute;right:-24px;top:.5em;width:13px;height:13px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px #0B1B16}
+.next-steps b{color:var(--ink)}
+@media(max-width:520px){.next-who{grid-template-columns:auto auto}.next-who p{grid-column:1/-1}}
+.next-sub{margin:18px 0 0;font:800 16.5px var(--sans);color:var(--teal-l)}.next-sub+.next-steps{margin-top:10px}
 </style>
 <noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
@@ -763,13 +777,26 @@ footer{padding-bottom:90px}
   <div class="hx-copy">
     <h1 class="hx-h1"><span class="w">הטמעת</span> <span class="w">בינה</span> <span class="w">מלאכותית</span> <span class="w">אצלכם</span> <span class="w">במשרד.</span></h1>
     <p class="hx-tag">קודם הבנה משפטית. אחר כך טכנולוגיה.</p>
-    <p class="hx-lede">השאירו פרטים, ועו״ד אסף אברמזון או עו״ד רועי נימצוביץ׳ יחזרו אליכם אישית כדי לבדוק מה מתאים למשרד שלכם: אילו כלים, לאילו משימות, ובאיזה היקף.</p>
+    <p class="hx-lede">השאירו פרטים, ונבדוק יחד מה מתאים למשרד שלכם: אילו כלים, לאילו משימות, ובאיזה היקף.</p>
     <ul class="hx-facts">
       <li><b>עורכי דין, לא חברת טכנולוגיה.</b> מגיעים מתוך הפרקטיקה המשפטית.</li>
       <li><b>חברים בוועדת הבינה המלאכותית</b> של לשכת עורכי הדין.</li>
       <li><b>יותר מ-2,000 עורכי דין</b> בקהילת LEGAL MIND.</li>
     </ul>
-    <div class="hx-duo" aria-hidden="true"><img src="/hatmaa/assets/asaf.webp" alt="" width="560" height="560"><img src="/hatmaa/assets/roy.webp" alt="" width="560" height="560"><span>אסף ורועי חוזרים אליכם אישית</span></div>
+    <div class="next">
+      <p class="next-h">מי יחזור אליכם אחרי שתמלאו את הטופס?</p>
+      <div class="next-who">
+        <figure><img src="/hatmaa/assets/asaf-sq.webp" alt="עו״ד אסף אברמזון" width="900" height="900"><figcaption>עו״ד אסף<br>אברמזון</figcaption></figure>
+        <figure><img src="/hatmaa/assets/roy-sq.webp" alt="עו״ד רועי נימצוביץ׳" width="900" height="900"><figcaption>עו״ד רועי<br>נימצוביץ׳</figcaption></figure>
+        <p>אחד מהם, או מישהו מצוות ההטמעה של LEGAL MIND.</p>
+      </div>
+      <p class="next-sub">ומה קורה בשיחה:</p>
+      <ul class="next-steps">
+        <li><b>שיחת היכרות קצרה.</b> מספרים לנו על המשרד, על תחומי העיסוק ועל המשימות שחוזרות על עצמן.</li>
+        <li><b>תשובה כנה.</b> אם הטמעה תועיל לכם, באיזה היקף, ומה כדאי לעשות קודם.</li>
+        <li><b>ההחלטה נשארת אצלכם.</b> בלי עלות ובלי התחייבות, גם אם בסוף לא מתקדמים.</li>
+      </ul>
+    </div>
   </div>
   <div class="hx-form">
     <div class="fcard">
