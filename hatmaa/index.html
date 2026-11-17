@@ -717,6 +717,17 @@ html.nofx .hx-h1 .w{animation:none;opacity:1;transform:none}
 .a3-q{margin:0;font:800 clamp(24px,2.8vw,38px)/1.1 var(--serif);color:var(--teal-l)}
 @media(max-width:980px){.team-list{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.team-list{grid-template-columns:1fr}}
+
+/* floating fit-check button */
+.fitbar{position:fixed;z-index:60;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);display:inline-flex;align-items:center;gap:14px;max-width:calc(100vw - 32px);padding:16px 28px;border-radius:999px;background:#F6D86B;color:#0B1B16;font:900 clamp(16px,1.5vw,19px)/1.2 var(--serif);box-shadow:0 8px 0 #B88A1E,0 22px 44px -14px rgba(0,0,0,.85);transition:transform .25s var(--ease),opacity .25s,box-shadow .15s;white-space:nowrap}
+.fitbar i{font-style:normal;font-size:1.2em}
+.fitbar:hover{transform:translateX(-50%) translateY(-2px)}
+.fitbar:active{transform:translateX(-50%) translateY(5px);box-shadow:0 3px 0 #B88A1E,0 10px 20px -10px rgba(0,0,0,.8)}
+.fitbar:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.fitbar.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(24px)}
+@media(max-width:560px){.fitbar{white-space:normal;text-align:center;justify-content:center;width:calc(100vw - 24px);padding:14px 18px;font-size:16px}}
+@media(prefers-reduced-motion:reduce){.fitbar{transition:opacity .2s}}
+footer{padding-bottom:90px}
 </style>
 <noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
@@ -899,6 +910,8 @@ html.nofx .hx-h1 .w{animation:none;opacity:1;transform:none}
   </div>
 </section>
 </main>
+<a class="fitbar" id="fitbar" href="#lead"><span>לבדיקת התאמה להטמעת בינה מלאכותית במשרד שלכם</span><i aria-hidden="true">←</i></a>
+
 
 <footer>
   <div class="wrap foot">
@@ -995,6 +1008,12 @@ document.querySelectorAll('.film-play').forEach(function(b){b.addEventListener('
   document.querySelectorAll('.hx-h1 .w').forEach(function(w,i){w.style.animationDelay=(.1+i*.09)+'s'});
   var t=document.querySelector('.pa-tog');
   if(t)t.addEventListener('click',function(){var fs=t.closest('fieldset');fs.classList.add('open');t.setAttribute('aria-expanded','true')});
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById('fitbar'),f=document.querySelector('.fcard');if(!b||!f||!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(e){b.classList.toggle('hide',e[0].isIntersecting)},{threshold:.25}).observe(f);
 })();
 </script>
 </body>
