@@ -800,7 +800,31 @@ footer{padding-bottom:90px}
 .tm-card span:not(.cf){font-size:clamp(17px,1.4vw,19px)!important;line-height:1.6;color:var(--ink)!important}
 
 .team-tag{font-size:clamp(24px,2.6vw,34px)!important;padding:14px 34px!important;border-radius:999px;margin-bottom:18px!important}
-</style>
+
+/* ===== draft: hero continues the ad ===== */
+#lead .hx-h1{font-size:clamp(34px,3.7vw,60px);line-height:1.04}
+.duo{margin:clamp(18px,2.2vw,28px) 0 0;position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(0,0,0,.9),0 0 0 1px rgba(99,194,184,.28)}
+.duo img{display:block;width:100%;height:auto}
+.duo{background:#0B1B16}.duo figcaption{position:relative;margin-top:-34px;padding:0 14px 14px}
+.duo-names{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.duo-names span{background:rgba(255,255,255,.95);border-radius:16px;padding:10px 12px;text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.duo-names b{display:block;font:900 clamp(17px,1.6vw,22px)/1.2 var(--serif);color:#0F1428}
+.duo-names i{display:block;font-style:normal;font-weight:800;font-size:clamp(13px,1.1vw,15px);color:#0F8A7C;margin-top:2px}
+.duo-cmte{margin:10px 0 0;text-align:center;background:rgba(255,255,255,.95);color:#0F1428;border-radius:999px;padding:8px 14px;font:800 clamp(15px,1.3vw,18px)/1.3 var(--serif)}
+.crew{margin-top:clamp(16px,2vw,22px);padding:clamp(16px,1.8vw,22px);border-radius:24px;background:rgba(10,24,30,.92);border:2px solid var(--teal)}
+.crew-h{margin:0;text-align:center;font:800 clamp(18px,1.6vw,23px)/1.25 var(--serif);color:#fff}
+.crew-h em{font-style:normal;color:var(--teal-l)}
+.crew-list{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.crew-list li{display:flex;flex-direction:column;align-items:center;background:rgba(15,36,30,.9);border-radius:18px;padding:14px 6px 12px}
+.crew-list b{font:900 clamp(15px,1.3vw,18px)/1.2 var(--serif);color:#fff;text-align:center;margin-top:6px;white-space:nowrap}
+.crew .cube3d{width:62px;height:62px;margin:6px 0 8px}
+.crew .cf{transform:translateZ(31px);border-radius:10px}
+.crew .cf svg{width:30px;height:30px}
+.crew .cf.back{transform:rotateY(180deg) translateZ(31px)}.crew .cf.rt{transform:rotateY(90deg) translateZ(31px)}.crew .cf.lf{transform:rotateY(-90deg) translateZ(31px)}.crew .cf.tp{transform:rotateX(90deg) translateZ(31px)}.crew .cf.bt{transform:rotateX(-90deg) translateZ(31px)}
+.crew-list li:nth-child(2) .cb{animation-delay:-2.2s}.crew-list li:nth-child(3) .cb{animation-delay:-4.4s}
+.callback{margin:12px 0 0;text-align:center;font:800 clamp(16px,1.3vw,18px)/1.45 var(--serif);color:var(--teal-l)}
+@media(max-width:560px){.duo-names b{font-size:15px}.duo-names span{padding:8px}.crew-list{gap:8px}.crew-list b{font-size:14.5px}.crew .cube3d{width:52px;height:52px}}
+.fb-s{display:none}@media(max-width:560px){.fitbar{width:auto;padding:11px 22px;font-size:16px;white-space:nowrap}.fb-l{display:none}.fb-s{display:inline}}</style>
 <noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/brand/favicon-192.png">
@@ -824,26 +848,21 @@ footer{padding-bottom:90px}
 <header class="hx wrap" id="lead">
   <div class="hx-logo"><img class="hlogo" src="/brand/legalmind-logo-light.webp" alt="LEGAL MIND" width="800" height="152"></div>
   <div class="hx-copy">
-    <h1 class="hx-h1"><span class="w">הטמעת</span> <span class="w">בינה</span> <span class="w">מלאכותית</span> <span class="w">אצלכם</span> <span class="w">במשרד.</span></h1>
+    <h1 class="hx-h1"><span class="w">הטמעת</span> <span class="w">בינה</span> <span class="w">מלאכותית</span> <span class="w">במשרדי</span> <span class="w">עורכי</span> <span class="w">דין</span> <span class="w">ובעולם</span> <span class="w">המשפט.</span></h1>
     <p class="hx-tag">קודם הבנה משפטית. אחר כך טכנולוגיה.</p>
-    <p class="hx-lede">השאירו פרטים, ונבדוק יחד מה מתאים למשרד שלכם: אילו כלים, לאילו משימות, ובאיזה היקף.</p>
-    <ul class="hx-facts">
-      <li><b>עורכי דין, לא חברת טכנולוגיה.</b> מגיעים מתוך הפרקטיקה המשפטית.</li>
-      <li><b>חברים בוועדת הבינה המלאכותית</b> של לשכת עורכי הדין.</li>
-      <li><b>יותר מ-2,000 עורכי דין</b> בקהילת LEGAL MIND.</li>
-    </ul>
-    <div class="next">
-      <p class="next-h">מי יחזור אליכם אחרי שתמלאו את הטופס?</p>
-      <div class="next-who">
-        <figure><img src="/hatmaa/assets/asaf-sq.webp" alt="עו״ד אסף אברמזון" width="900" height="900"><figcaption>עו״ד אסף<br>אברמזון</figcaption></figure>
-        <figure><img src="/hatmaa/assets/roy-sq.webp" alt="עו״ד רועי נימצוביץ׳" width="900" height="900"><figcaption>עו״ד רועי<br>נימצוביץ׳</figcaption></figure>
-        <p>אחד מהם, או מישהו מצוות ההטמעה של LEGAL MIND.</p>
-      </div>
-      <p class="next-sub">ומה קורה בשיחה:</p>
-      <ul class="next-steps">
-        <li><b>שיחת היכרות קצרה.</b> מספרים לנו על המשרד, על תחומי העיסוק ועל המשימות שחוזרות על עצמן.</li>
-        <li><b>תשובה כנה.</b> אם הטמעה תועיל לכם, באיזה היקף, ומה כדאי לעשות קודם.</li>
-        <li><b>ההחלטה נשארת אצלכם.</b> בלי עלות ובלי התחייבות, גם אם בסוף לא מתקדמים.</li>
+    <figure class="duo">
+      <img src="/hatmaa/assets/duo.webp?v=1" width="1122" height="540" alt="עו״ד רועי נימצוביץ׳ ועו״ד אסף אברמזון, מייסדי LEGAL MIND">
+      <figcaption>
+        <div class="duo-names"><span><b>עו״ד אסף אברמזון</b><i>מייסד LEGAL MIND</i></span><span><b>עו״ד רועי נימצוביץ׳</b><i>מייסד LEGAL MIND</i></span></div>
+        <p class="duo-cmte">חברי ועדת הבינה המלאכותית של לשכת עורכי הדין</p>
+      </figcaption>
+    </figure>
+    <div class="crew">
+      <p class="crew-h">מאחוריהם עומד צוות הטמעה <em>ברמה הגבוהה ביותר</em></p>
+      <ul class="crew-list">
+        <li><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M12 7.5l2.5 1v2c0 1.6-1.1 2.6-2.5 3-1.4-.4-2.5-1.4-2.5-3v-2z"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי IT</b></li>
+        <li><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי אוטומציות</b></li>
+        <li><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מתכנתים</b></li>
       </ul>
     </div>
   </div>
@@ -863,6 +882,7 @@ footer{padding-bottom:90px}
       <label class="switch"><input type="checkbox" name="marketingConsent" value="yes"><i></i><span>אני מאשר/ת קבלת תכנים ועדכונים מ-LEGAL MIND בהתאם ל<a href="https://www.legalmind.co.il/privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>.</span></label>
       <div class="hp" aria-hidden="true"><label>אל תמלאו שדה זה<input type="text" name="lm_hp_xq" tabindex="-1" autocomplete="off"></label></div>
       <button class="go" type="submit">שלחו ונחזור אליכם</button>
+      <p class="callback">צוות LEGAL MIND ייצור איתכם קשר בהקדם האפשרי לבדיקת התאמה.</p>
       <p class="fsend" role="alert" aria-live="assertive"></p>
       <p class="pnote">מסירת הפרטים אינה חובה ונעשית בהסכמתכם. הפרטים נשמרים אצל א.ר. ליגל מיינד בע״מ, ישמשו למענה לפנייה ולבחינת התאמה בלבד, ולא יועברו לצד שלישי אלא כמפורט ב<a href="https://www.legalmind.co.il/privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>. ניתן לבקש לעיין בפרטים, לתקנם או למחקם, כמפורט במדיניות הפרטיות.</p>
     </form>
@@ -991,7 +1011,7 @@ footer{padding-bottom:90px}
   </div>
 </section>
 </main>
-<a class="fitbar" id="fitbar" href="#lead"><span>לבדיקת התאמה להטמעת בינה מלאכותית במשרד שלכם</span><i aria-hidden="true">←</i></a>
+<a class="fitbar" id="fitbar" href="#lead"><span class="fb-l">לבדיקת התאמה להטמעת בינה מלאכותית במשרד שלכם</span><span class="fb-s">לבדיקת התאמה למשרד שלכם</span><i aria-hidden="true">←</i></a>
 
 
 <footer>
@@ -1093,7 +1113,7 @@ document.querySelectorAll('.film-play').forEach(function(b){b.addEventListener('
 </script>
 <script>
 (function(){
-  var b=document.getElementById('fitbar'),f=document.querySelector('.fcard');if(!b||!f||!('IntersectionObserver' in window))return;
+  var b=document.getElementById('fitbar'),f=document.getElementById('lead');if(!b||!f||!('IntersectionObserver' in window))return;
   new IntersectionObserver(function(e){b.classList.toggle('hide',e[0].isIntersecting)},{threshold:.25}).observe(f);
 })();
 </script>
