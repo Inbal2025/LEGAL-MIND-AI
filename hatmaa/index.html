@@ -728,6 +728,12 @@ html.nofx .hx-h1 .w{animation:none;opacity:1;transform:none}
 @media(max-width:560px){.fitbar{white-space:normal;text-align:center;justify-content:center;width:calc(100vw - 24px);padding:14px 18px;font-size:16px}}
 @media(prefers-reduced-motion:reduce){.fitbar{transition:opacity .2s}}
 footer{padding-bottom:90px}
+
+.hx-logo{grid-column:1/-1;justify-self:center;margin-bottom:clamp(6px,1.4vw,18px)}
+.hx .hx-logo .hlogo{width:clamp(230px,26vw,360px);height:auto;margin:0}
+.hx-copy{padding-top:0}
+.hx{padding-top:clamp(84px,9vw,120px);row-gap:clamp(18px,2.4vw,32px)}
+.fc-h{font-size:clamp(22px,2vw,28px);line-height:1.2}
 </style>
 <noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
@@ -750,8 +756,8 @@ footer{padding-bottom:90px}
 
 <!-- HERO -->
 <header class="hx wrap" id="lead">
+  <div class="hx-logo"><img class="hlogo" src="/brand/legalmind-logo-light.webp" alt="LEGAL MIND" width="800" height="152"></div>
   <div class="hx-copy">
-    <img class="hlogo" src="/brand/legalmind-logo-light.webp" alt="LEGAL MIND" width="800" height="152">
     <h1 class="hx-h1"><span class="w">הטמעת</span> <span class="w">בינה</span> <span class="w">מלאכותית</span> <span class="w">אצלכם</span> <span class="w">במשרד.</span></h1>
     <p class="hx-tag">קודם הבנה משפטית. אחר כך טכנולוגיה.</p>
     <p class="hx-lede">השאירו פרטים, ועו״ד אסף אברמזון או עו״ד רועי נימצוביץ׳ יחזרו אליכם אישית כדי לבדוק מה מתאים למשרד שלכם: אילו כלים, לאילו משימות, ובאיזה היקף.</p>
@@ -764,7 +770,7 @@ footer{padding-bottom:90px}
   </div>
   <div class="hx-form">
     <div class="fcard">
-      <p class="fc-h">בדיקת התאמה למשרד</p>
+      <p class="fc-h">לבדיקת התאמה להטמעת בינה מלאכותית למשרד שלכם</p>
       <p class="fc-s">ללא עלות וללא התחייבות. לוקח פחות מדקה.</p>
       <form class="form" id="cf" data-source="hatmaa" method="post" novalidate>
       <div class="g2">
