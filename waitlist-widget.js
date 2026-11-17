@@ -78,7 +78,7 @@
       var ctl = ('AbortController' in window) ? new AbortController() : null, tm = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
       fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload), signal: ctl ? ctl.signal : undefined })
         .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json().catch(function () { return { ok: true }; }); })
-        .then(function (j) { if (j && j.error) throw new Error(j.error); success(); })
+        .then(function (j) { if (j && j.error) throw new Error(j.error); if (window.lmTrack) window.lmTrack('Lead', { content_name: 'fit-' + (location.pathname.replace(/[^a-z]/gi, '') || 'home') }); success(); })
         .catch(function () { note.textContent = 'השליחה לא הצליחה. נסו שוב בעוד רגע.'; note.classList.add('on'); })
         .then(function () { clearTimeout(tm); sending = false; btn.classList.remove('busy'); btn.removeAttribute('aria-busy'); });
     });
