@@ -588,7 +588,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
 .hx{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,64px);align-items:start;padding-top:clamp(96px,11vw,140px);padding-bottom:clamp(48px,6vw,88px)}
 .hx-copy{padding-top:clamp(8px,2vw,28px)}
 .hx .hlogo{width:clamp(180px,20vw,260px);margin:0 0 clamp(22px,3vw,34px)}
-.hx-h1{font:900 clamp(40px,5.4vw,78px)/1.02 var(--serif);letter-spacing:-.03em;margin:0;max-width:16ch}
+.hx-h1{font:900 clamp(40px,5.4vw,78px)/1.02 var(--serif);letter-spacing:-.03em;margin:0;max-width:none}
 .hx-tag{font:800 clamp(20px,2.3vw,30px)/1.25 var(--serif);color:var(--teal-l);margin:clamp(14px,1.6vw,20px) 0 0}
 .hx-lede{font-size:clamp(17px,1.35vw,19.5px);line-height:1.6;color:var(--ink);margin:clamp(16px,2vw,24px) 0 0;max-width:46ch}
 .hx-facts{list-style:none;padding:0;margin:clamp(22px,2.6vw,32px) 0 0;display:grid;gap:10px}
@@ -652,6 +652,33 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
 @media(max-width:980px){.hx{grid-template-columns:1fr}.gap-in{grid-template-columns:1fr}.gap-list{grid-column:1;grid-row:auto}.a3-cols{grid-template-columns:1fr}}
 @media(max-width:760px){.fduo2{grid-template-columns:1fr}.hx{padding-top:92px}}
 @media(prefers-reduced-motion:reduce){.pk-list.on li{animation:none}}
+
+/* ===== hatmaa v3: life from the office photo ===== */
+.hx-h1 .w{display:inline-block;opacity:0;transform:translateY(20px);animation:wu .75s var(--ease) forwards}
+.hx-h1{text-shadow:0 8px 40px rgba(0,0,0,.75)}
+.gap{background:#07130F;color:var(--ink);overflow:hidden;isolation:isolate}
+.gap::before{content:"";position:absolute;inset:0;z-index:-2;background:url("/nevo/office-bg.jpg") center 30%/cover no-repeat fixed}
+.gap::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(5,16,12,.82)}
+.gap-h{color:var(--ink)}
+.gap-h::after{content:"";display:block;width:84px;height:6px;border-radius:6px;background:var(--teal);margin-top:22px}
+.gap-p{color:var(--teal-l)}
+.gap-list li{background:rgba(15,36,30,.78);border:1px solid rgba(99,194,184,.22)}
+.gap-list b{color:var(--ink)}
+.gap-list span{color:var(--ink-2)}
+.last{position:relative;overflow:hidden;isolation:isolate;background:#07130F}
+.last::before{content:"";position:absolute;inset:0;z-index:-2;background:url("/nevo/office-bg.jpg") center 40%/cover no-repeat}
+.last::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(5,16,12,.78)}
+.last .h2{font-size:clamp(30px,4vw,54px)}
+.pa-more{display:none}
+.pills.open .pa-more{display:inline-flex}
+.pa-tog{display:block;margin:10px auto 0;background:none;border:0;color:var(--teal-l);font:700 15px var(--sans);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.pills.open .pa-tog{display:none}
+.fp2 .ph{transition:transform .35s var(--ease)}
+.fp2:hover .ph{transform:translateY(-4px) scale(1.03)}
+.pk-chip{transition:background .2s,color .2s,transform .15s}
+@media(max-width:640px){.gap::before{background-attachment:scroll;background-image:url("/nevo/office-bg-mobile.jpg")}}
+@media(prefers-reduced-motion:reduce){.hx-h1 .w{animation:none;opacity:1;transform:none}.fp2:hover .ph{transform:none}}
+html.nofx .hx-h1 .w{animation:none;opacity:1;transform:none}
 </style>
 <noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
@@ -676,7 +703,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
 <header class="hx wrap" id="lead">
   <div class="hx-copy">
     <img class="hlogo" src="/brand/legalmind-logo-light.webp" alt="LEGAL MIND" width="800" height="152">
-    <h1 class="hx-h1">הטמעת בינה מלאכותית אצלכם במשרד.</h1>
+    <h1 class="hx-h1"><span class="w">הטמעת</span> <span class="w">בינה</span> <span class="w">מלאכותית</span> <span class="w">אצלכם</span> <span class="w">במשרד.</span></h1>
     <p class="hx-tag">קודם הבנה משפטית. אחר כך טכנולוגיה.</p>
     <p class="hx-lede">השאירו פרטים, ועו״ד אסף אברמזון או עו״ד רועי נימצוביץ׳ יחזרו אליכם אישית כדי לבדוק מה מתאים למשרד שלכם: אילו כלים, לאילו משימות, ובאיזה היקף.</p>
     <ul class="hx-facts">
@@ -697,7 +724,7 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
       </div>
       <div class="fx"><input id="ce" name="email" type="email" autocomplete="email" placeholder=" " required maxlength="120" dir="ltr" spellcheck="false" autocapitalize="off" aria-describedby="ce-msg"><label for="ce">אימייל *</label><div class="fmsg" id="ce-msg" role="alert"></div></div>
       <fieldset class="pills"><legend>מספר עורכי הדין במשרד</legend><div><label><input type="radio" name="firmSize" value="1"><span>1</span></label><label><input type="radio" name="firmSize" value="1–5"><span><bdi dir="ltr">1–5</bdi></span></label><label><input type="radio" name="firmSize" value="6–10"><span><bdi dir="ltr">6–10</bdi></span></label><label><input type="radio" name="firmSize" value="11 ומעלה"><span>11 ומעלה</span></label></div></fieldset>
-      <fieldset class="pills"><legend>תחום העיסוק העיקרי</legend><div><label><input type="radio" name="practiceArea" value="מקרקעין ונדל״ן"><span>מקרקעין ונדל״ן</span></label><label><input type="radio" name="practiceArea" value="מסחרי וחברות"><span>מסחרי וחברות</span></label><label><input type="radio" name="practiceArea" value="דיני משפחה"><span>דיני משפחה</span></label><label><input type="radio" name="practiceArea" value="דיני עבודה"><span>דיני עבודה</span></label><label><input type="radio" name="practiceArea" value="נזיקין וביטוח"><span>נזיקין וביטוח</span></label><label><input type="radio" name="practiceArea" value="משפט פלילי"><span>משפט פלילי</span></label><label><input type="radio" name="practiceArea" value="מיסים"><span>מיסים</span></label><label><input type="radio" name="practiceArea" value="משפט מנהלי ושלטון מקומי"><span>משפט מנהלי ושלטון מקומי</span></label><label><input type="radio" name="practiceArea" value="הוצאה לפועל וחדלות פירעון"><span>הוצאה לפועל וחדלות פירעון</span></label><label><input type="radio" name="practiceArea" value="תכנון ובנייה"><span>תכנון ובנייה</span></label><label><input type="radio" name="practiceArea" value="מגוון תחומים"><span>מגוון תחומים</span></label><label><input type="radio" name="practiceArea" value="אחר"><span>אחר</span></label></div></fieldset>
+      <fieldset class="pills"><legend>תחום העיסוק העיקרי</legend><div><label><input type="radio" name="practiceArea" value="מקרקעין ונדל״ן"><span>מקרקעין ונדל״ן</span></label><label><input type="radio" name="practiceArea" value="מסחרי וחברות"><span>מסחרי וחברות</span></label><label><input type="radio" name="practiceArea" value="דיני משפחה"><span>דיני משפחה</span></label><label><input type="radio" name="practiceArea" value="דיני עבודה"><span>דיני עבודה</span></label><label><input type="radio" name="practiceArea" value="נזיקין וביטוח"><span>נזיקין וביטוח</span></label><label class="pa-more"><input type="radio" name="practiceArea" value="משפט פלילי"><span>משפט פלילי</span></label><label class="pa-more"><input type="radio" name="practiceArea" value="מיסים"><span>מיסים</span></label><label class="pa-more"><input type="radio" name="practiceArea" value="משפט מנהלי ושלטון מקומי"><span>משפט מנהלי ושלטון מקומי</span></label><label class="pa-more"><input type="radio" name="practiceArea" value="הוצאה לפועל וחדלות פירעון"><span>הוצאה לפועל וחדלות פירעון</span></label><label class="pa-more"><input type="radio" name="practiceArea" value="תכנון ובנייה"><span>תכנון ובנייה</span></label><label><input type="radio" name="practiceArea" value="מגוון תחומים"><span>מגוון תחומים</span></label><label><input type="radio" name="practiceArea" value="אחר"><span>אחר</span></label></div><button type="button" class="pa-tog" aria-expanded="false">תחומים נוספים</button></fieldset>
       <label class="switch"><input type="checkbox" name="privacyConsent" value="yes" required aria-required="true"><i></i><span>קראתי ואני מסכים/ה ל<a href="https://www.legalmind.co.il/privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>. *</span></label>
       <label class="switch"><input type="checkbox" name="marketingConsent" value="yes"><i></i><span>אני מאשר/ת קבלת תכנים ועדכונים מ-LEGAL MIND בהתאם ל<a href="https://www.legalmind.co.il/privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>.</span></label>
       <div class="hp" aria-hidden="true"><label>אל תמלאו שדה זה<input type="text" name="lm_hp_xq" tabindex="-1" autocomplete="off"></label></div>
@@ -755,12 +782,6 @@ main,.wall,.lane{overflow-x:clip;max-width:100%}
     <li class="step rv d3"><span class="n">03</span><article class="card" data-n="03"><h3>המשרד עובד חכם</h3><p><b>מהיום הראשון אחרי ההטמעה, המשרד עובד אחרת.</b> כלי AI מותאמים בכל שולחן: מחקר עם מקורות, ניסוח בלשון המשרד, מסמכים שנבדקים מהר יותר, ואדמיניסטרציה שרצה ברקע. בחודשים הראשונים אנחנו בקשר רציף, בודקים יחד את המדדים שקבענו באפיון, עם הדרכות וליווי בהתאם לסוג ההטמעה.</p></article></li>
     <li class="step rv d4"><span class="n">04</span><article class="card" data-n="04"><h3>ליווי שוטף</h3><p><b>תמיד יש למי לפנות, גם בסיום ההטמעה.</b> ליווי שוטף בהתאם לסוג ההטמעה שתבחרו ובהיקף שנקבע יחד: תמיכה, סדנאות, ליווי אישי, ועדכון על כל מה שמתחדש.</p></article></li>
   </ol>
-</section>
-
-<!-- ADMIN -->
-<section class="band wrap" id="admin" style="padding-top:0">
-  <div class="admin rv"><h3>ומה לגבי האדמיניסטרציה, שאף אחד לא פתח בשבילה משרד?</h3><p>ההטמעה לא נעצרת בכתיבה המשפטית. גם העבודה שגוזלת שעות ולא מייצרת שקל מקבלת מענה באותה הטמעה.</p>
-    <div class="chips"><span>ניהול משימות שוטף ומעקב ביצוע</span><span>סיכומי פגישות ותמלולים</span><span>יומן ומעקב מועדים</span><span>דיווחי שעות וחיוב</span><span>מעקב מסמכים וגרסאות</span><span>התכתבויות ומעקב אחרי פניות</span></div></div>
 </section>
 
 <!-- PROOF -->
@@ -904,6 +925,13 @@ document.querySelectorAll('.film-play').forEach(function(b){b.addEventListener('
     var map=['מקרקעין ונדל״ן','מסחרי וחברות','דיני משפחה','דיני עבודה','נזיקין וביטוח',null];
     var v=map[i];if(v){var r=document.querySelector('input[name="practiceArea"][value="'+v+'"]');if(r)r.checked=true}}
   chips.forEach(function(c){c.addEventListener('click',function(){show(+c.dataset.i)})});
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.hx-h1 .w').forEach(function(w,i){w.style.animationDelay=(.1+i*.09)+'s'});
+  var t=document.querySelector('.pa-tog');
+  if(t)t.addEventListener('click',function(){var fs=t.closest('fieldset');fs.classList.add('open');t.setAttribute('aria-expanded','true')});
 })();
 </script>
 </body>
