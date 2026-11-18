@@ -876,6 +876,12 @@ main .band .head{margin-bottom:clamp(18px,2.2vw,30px)}
 
 .a3-q{margin:0 0 clamp(16px,2vw,30px)!important;font-size:clamp(40px,5.6vw,76px)!important;line-height:1.05!important}
 .a3-big{line-height:1!important}
+
+/* second underline draws when scrolled into view */
+.hand-scroll .hand path{animation:none;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s cubic-bezier(.6,.1,.3,1) .3s}
+.hand-scroll .hand path:last-child{transition-delay:.9s}
+.hand-scroll.drawn .hand path{stroke-dashoffset:0}
+@media(prefers-reduced-motion:reduce){.hand-scroll .hand path{transition:none;stroke-dashoffset:0}}
 </style>
 <noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
@@ -965,7 +971,7 @@ main .band .head{margin-bottom:clamp(18px,2.2vw,30px)}
 <section class="about3" id="about">
   <div class="wrap about3-in">
     <h2 class="a3-q rv">אז מי זאת <bdi>LEGAL MIND</bdi>?</h2><p class="a3-big rv" aria-hidden="true">LEGAL MIND</p>
-    <p class="a3-tag rv">קודם בינה משפטית. אחר כך מלאכותית.</p>
+    <p class="a3-tag rv"><span class="hand-ul hand-scroll">קודם בינה משפטית. אחר כך מלאכותית.<svg class="hand" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M396 13 C 330 8, 270 17, 200 12 S 70 9, 4 15"/><path pathLength="1" d="M388 19 C 320 15, 240 21, 160 17 S 50 16, 16 20"/></svg></span></p>
     <div class="a3-cols">
       <p class="rv">LEGAL MIND מטמיעה בינה מלאכותית בעולם המשפט והנדל״ן: הדרכות, וובינרים וליווי אישי, ובניית תהליכי עבודה שמתאימים לאופן שבו המשרד חושב ועובד. את החברה ייסדו עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, כדי להנגיש את עולם הבינה המלאכותית למשרדי עורכי הדין ולעולם המשפט.</p>
       <p class="rv">לפני הכול אנחנו עורכי דין, והבינה המלאכותית היא מכפיל הכוח. לצדנו אנשי IT, מתכנתים ומומחי אוטומציה, וקהילה של יותר מ-2,000 עורכי דין.</p>
@@ -1130,6 +1136,10 @@ document.querySelectorAll('.film-play').forEach(function(b){b.addEventListener('
   var b=document.getElementById('fitbar'),f=document.getElementById('lead');if(!b||!f||!('IntersectionObserver' in window))return;
   new IntersectionObserver(function(e){b.classList.toggle('hide',e[0].isIntersecting)},{threshold:0}).observe(f);
 })();
+</script>
+<script>
+(function(){var h=document.querySelector('.hand-scroll');if(!h)return;if(!('IntersectionObserver' in window)){h.classList.add('drawn');return;}
+new IntersectionObserver(function(e,o){if(e[0].isIntersecting){h.classList.add('drawn');o.disconnect();}},{threshold:0,rootMargin:'0px 0px -15% 0px'}).observe(h);setTimeout(function(){h.classList.add('drawn')},6000);})();
 </script>
 </body>
 </html>
