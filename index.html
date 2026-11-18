@@ -962,6 +962,16 @@ html, body{
 .hero-cta-top{margin:22px 0 26px}
 @media (max-width:560px){.cta-gold{width:100%;padding:14px 18px}}
 .nav-cta .btn.nav-gold{background:linear-gradient(135deg,#F6D86B,#E9C24A);color:#0B1B16;font-weight:800;box-shadow:0 4px 0 #B88A1E}
+
+/* hero = who Legal Mind is (site, not landing page) 18.11 */
+.hero-id{margin:0;font-family:"Heebo","Assistant",sans-serif;font-weight:900;font-size:clamp(34px,4.4vw,62px);line-height:1.08;letter-spacing:-.02em;color:#FFFFFF;max-width:14em}
+.hero-slogan{margin:clamp(14px,1.6vw,20px) 0 0;font-family:"Heebo","Assistant",sans-serif;font-weight:800;font-size:clamp(20px,2.1vw,28px);line-height:1.3;color:#F3F0E8}
+.hero-slogan .hl-accent{color:#96E0D6}
+.hero-desc{margin:clamp(12px,1.4vw,18px) 0 0;font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:#DCE6E2;max-width:34em}
+.story-sec{padding:clamp(40px,5vw,72px) clamp(20px,5vw,48px) clamp(8px,2vw,24px)}
+.story{max-width:860px;margin:0 auto}
+.story p{margin:0 0 14px}
+.story .hero-ctas{margin-top:22px}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -1032,23 +1042,10 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="container">
     <div class="hero-grid">
       <div class="hero-copy reveal hero-entrance">
-        <p class="hero-what"><b>Legal Mind</b> מטמיעה בינה מלאכותית במשרדי עורכי דין ובעולם המשפט</p>
-        <h1 class="display-mega hero-h1"><span class="hl-white">קודם בינה משפטית.</span><br>
-<span class="hl-white">אחר כך מלאכותית.</span>
-<span class="hl-accent">וזה כל ההבדל.</span></h1>
-        <p class="body-lead hero-sub hero-tagline">הדרכה, ליווי והטמעת AI - לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות.</p>
+        <h1 class="hero-id">הטמעת בינה מלאכותית במשרדי עורכי דין ובעולם המשפט</h1>
+        <p class="hero-slogan">קודם בינה משפטית. אחר כך מלאכותית. <span class="hl-accent">וזה כל ההבדל.</span></p>
+        <p class="hero-desc">הדרכה, ליווי והטמעה של בינה מלאכותית לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות.</p>
         <div class="hero-cta-top"><a href="#fit" class="cta-gold">לבדיקת התאמה להטמעת בינה מלאכותית במשרד שלכם <i aria-hidden="true">←</i></a></div>
-        <p class="body-lead hero-sub">עו"ד? בטח כבר נתקלת בזה.</p>
-        <p class="body-lead hero-sub">את מהפכת ה-AI אי אפשר לפספס, וברור שגם אתה - עו"ד עמוס שעסוק בלי דקה מיותרת - ניסית במשרד. הזנת פרומפטים, הגדרת לצ'אט תפקידים ("פעל כעורך דין ותיק..."), תיקנת, דייקת, ביקשת, אפילו התחננת... וקיבלת טקסט שנראה... בסדר. אה רגע, חסרים בו סעיפים חשובים. אוי, הוא ממציא חקיקה ופסיקה שלעיתים נשמעות משכנעות יותר מהמקור האמיתי. ככה אי אפשר לעבוד.</p>
-        <p class="body-lead hero-sub">עד לכאן אתה צודק.</p>
-        <p class="body-lead hero-sub">אבל אם הסקת מכל זה שכלי ה-AI עדיין לא מוכנים לעבודה משפטית שוטפת - טוב שהגעת לכאן. כעורכי דין ותיקים (20 שנות ניסיון מצטברות) בתחום דינמי כמו מקרקעין, אנחנו אומרים לך מניסיון: AI שינה לנו את המשרד. הוא חוסך לנו שעות עבודה ומייצר תוצרים אמינים ומבוססים - כשיודעים איך לעבוד איתו. וזה ממש לא מסובך. אנחנו כבר מסבירים.</p>
-        <div class="hero-ctas">
-          <a href="#fit" class="btn btn-primary">
-            לבחינת התאמה
-            <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <a href="#about" class="btn btn-outline">למה אנחנו?</a>
-        </div>
         <div class="hero-trust">
           <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <span>למעלה מ-2,000 עו"ד בקהילת <span dir="ltr">Legal Mind</span></span>
@@ -1102,6 +1099,25 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
 <!-- AUDIENCES -->
+<!-- WHO WE TALK TO (moved out of the hero, 18.11) -->
+<section class="story-sec" aria-label="למה Legal Mind">
+  <div class="container">
+    <div class="story reveal">
+        <p class="body-lead">עו"ד? בטח כבר נתקלת בזה.</p>
+        <p class="body-lead">את מהפכת ה-AI אי אפשר לפספס, וברור שגם אתה - עו"ד עמוס שעסוק בלי דקה מיותרת - ניסית במשרד. הזנת פרומפטים, הגדרת לצ'אט תפקידים ("פעל כעורך דין ותיק..."), תיקנת, דייקת, ביקשת, אפילו התחננת... וקיבלת טקסט שנראה... בסדר. אה רגע, חסרים בו סעיפים חשובים. אוי, הוא ממציא חקיקה ופסיקה שלעיתים נשמעות משכנעות יותר מהמקור האמיתי. ככה אי אפשר לעבוד.</p>
+        <p class="body-lead">עד לכאן אתה צודק.</p>
+        <p class="body-lead">אבל אם הסקת מכל זה שכלי ה-AI עדיין לא מוכנים לעבודה משפטית שוטפת - טוב שהגעת לכאן. כעורכי דין ותיקים (20 שנות ניסיון מצטברות) בתחום דינמי כמו מקרקעין, אנחנו אומרים לך מניסיון: AI שינה לנו את המשרד. הוא חוסך לנו שעות עבודה ומייצר תוצרים אמינים ומבוססים - כשיודעים איך לעבוד איתו. וזה ממש לא מסובך. אנחנו כבר מסבירים.</p>
+        <div class="hero-ctas">
+          <a href="#fit" class="btn btn-primary">
+            לבחינת התאמה
+            <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#about" class="btn btn-outline">למה אנחנו?</a>
+        </div>
+    </div>
+  </div>
+</section>
+
 <section id="audiences">
   <div class="container">
     <div class="section-head reveal">
