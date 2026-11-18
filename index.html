@@ -1360,7 +1360,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <div class="lmac-cover">
           <span class="lmac-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-5h6v5"/><path d="M9 10h.01"/><path d="M14.99 10H15"/></svg></span>
           <span class="lmac-eyebrow">עולם הנדל"ן</span>
-          <h3 class="lmac-title">חברות ואנשי נדל"ן - יש לכם <span dir="ltr">Game Changer</span></h3>
+          <h3 class="lmac-title">חברות ואנשי נדל"ן</h3>
           <p class="lmac-opener">בינה מלאכותית היא שובר שוויון אמיתי.</p>
           <span class="lmac-hint">למידע נוסף <span class="arr">→</span></span>
         </div>
@@ -1398,6 +1398,10 @@ window.addEventListener('DOMContentLoaded', function(){
 
     </div>
   </div>
+<style>/* 18.11: compact cards, the full text opens on click (it was cut off inside the hover panel) */
+@media (min-width:881px){#audiences .lmac-track{align-items:flex-start}#audiences .lmac-card{height:auto;cursor:pointer}#audiences .lmac-cover{position:relative;inset:auto;justify-content:flex-start;padding:26px 28px 24px}#audiences .lmac-card:hover .lmac-cover{opacity:1}#audiences .lmac-panel{position:relative;inset:auto;display:none;opacity:1;transform:none;pointer-events:auto;overflow:visible;background:transparent;padding:0 28px 26px}#audiences .lmac-card.open .lmac-panel{display:flex}#audiences .lmac-card.open .lmac-hint{display:none}#audiences .lmac-panel>.lmac-eyebrow,#audiences .lmac-panel>.lmac-title{display:none}}
+</style>
+<script>document.querySelectorAll('#audiences .lmac-card').forEach(function(c){c.addEventListener('click',function(e){if(e.target.closest('a'))return;c.classList.toggle('open')})});</script>
 </section>
 
 <!-- HOW WE IMPLEMENT (as on /hatmaa/) -->
