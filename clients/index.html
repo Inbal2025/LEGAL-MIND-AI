@@ -82,7 +82,7 @@ form .btn{width:100%;min-height:50px}
 (function () {
   var f = document.getElementById('f'), go = document.getElementById('go'), msg = document.getElementById('msg');
   var out = new URLSearchParams(location.search).get('out');
-  var reasons = { device_removed: 'המכשיר הזה נותק, כי נכנסתם ממכשיר שלישי. אפשר להיכנס שוב.', inactive: 'הגישה של המייל הזה לאזור האישי הסתיימה.', expired: 'עברו 30 יום מהכניסה האחרונה. היכנסו שוב.', denied: 'אין גישה לאזור האישי עם המייל הזה.' };
+  var reasons = { device_removed: 'המכשיר הזה נותק, כי נכנסתם ממכשיר שלישי. אפשר להיכנס שוב.', inactive: 'הגישה של המייל הזה לאזור האישי הסתיימה.', expired: 'עברו 30 יום מהכניסה האחרונה. היכנסו שוב.', denied: 'אין גישה לאזור האישי עם המייל הזה.', link: 'הקישור כבר לא בתוקף. כל קישור עובד פעם אחת ל-10 דקות, וכל בקשה חדשה מבטלת את הקישור הקודם. בקשו קישור חדש, ולחצו על המייל האחרון שהגיע.', browser: 'הקישור נפתח בדפדפן אחר מזה שביקש אותו. בקשו קישור חדש, ופתחו את המייל באותו מחשב ובאותו דפדפן.' };
   if (out) { msg.textContent = reasons[out] || reasons.denied; msg.className = 'msg err'; }
   // already signed in? go straight to the dashboard
   if (!LM.MOCK) LM.sb.auth.getSession().then(function (r) { if (r.data.session) location.replace(LM.CFG.home); });

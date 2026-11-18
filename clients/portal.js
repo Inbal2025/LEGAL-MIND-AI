@@ -121,7 +121,14 @@
   async function requireMember() {
     if (MOCK) return MOCKDATA.profile;
     var s = await sb.auth.getSession();
-    if (!s.data.session) { location.replace('/clients/'); return null; }
+    if (!s.data.session) {
+      // came from an email link that did not work: old/used/expired link, or opened in another browser
+      var q = location.search + location.hash, why = '';
+      if (/error_code=otp_expired|error_description/.test(q)) why = 'link';
+      else if (/[?&]code=/.test(q)) why = 'browser';
+      location.replace('/clients/' + (why ? '?out=' + why : ''));
+      return null;
+    }
     var r = await rpc('portal_register_device', { p_device: deviceId(), p_label: deviceLabel() });
     if (r.error || !r.data || r.data.ok === false) {
       await sb.auth.signOut();
