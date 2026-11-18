@@ -1115,6 +1115,20 @@ html, body{
 @media (max-width:640px){.keep-grid{grid-template-columns:1fr}.hf-nums{gap:18px;width:100%;justify-content:space-between}.hero-founders{padding:14px 16px}}
 #community .cm-grid{list-style:none;margin:clamp(22px,3vw,36px) 0 clamp(26px,3.2vw,40px);padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}#community .cm-grid li{padding:22px 20px;border-radius:20px;background:rgba(15,36,30,.8);border:1px solid rgba(99,194,184,.22)}#community .cm-grid i{display:grid;margin:0 0 0 auto;float:none;place-items:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(150deg,#2fb3a3,#0f8a7c);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 5px 0 #095a51}#community .cm-grid svg{width:23px;height:23px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}#community .cm-grid b{display:block;margin:14px 0 6px;font:500 clamp(20px,1.8vw,24px)/1.25 "Frank Ruhl Libre","Heebo",serif;color:#fff}#community .cm-grid span{display:block;font-size:16px;line-height:1.6;color:#DCE6E2}@media (max-width:900px){#community .cm-grid{grid-template-columns:1fr 1fr}}@media (max-width:560px){#community .cm-grid{grid-template-columns:1fr}}
 .h2-sub{display:block;margin-top:.3em;font-size:.55em;line-height:1.3;color:#96E0D6}
+/* 18.11: team block 25% smaller, wide cards instead of tall cubes */
+.lmteam-sec .team{max-width:1040px;padding:clamp(22px,3vw,40px);margin-top:clamp(28px,3.6vw,46px)}
+.lmteam-sec .team-h{font-size:clamp(24px,3vw,39px)}
+.lmteam-sec .team-p{font-size:clamp(16px,1.3vw,18px)!important}
+.lmteam-sec .team-tag{font-size:15px;padding:6px 16px}
+.lmteam-sec .tm-grid{max-width:none;margin-top:clamp(20px,2.6vw,30px);gap:14px}
+.lmteam-sec .tm-card{direction:rtl;display:grid;grid-template-columns:58px 1fr;column-gap:16px;row-gap:2px;align-items:center;text-align:right;padding:16px 18px}
+.lmteam-sec .cube3d{grid-row:span 2;width:52px;height:52px;margin:0;perspective:320px}
+.lmteam-sec .cf{transform:translateZ(26px);border-radius:10px}
+.lmteam-sec .cf.back{transform:rotateY(180deg) translateZ(26px)}.lmteam-sec .cf.rt{transform:rotateY(90deg) translateZ(26px)}.lmteam-sec .cf.lf{transform:rotateY(-90deg) translateZ(26px)}.lmteam-sec .cf.tp{transform:rotateX(90deg) translateZ(26px)}.lmteam-sec .cf.bt{transform:rotateX(-90deg) translateZ(26px)}
+.lmteam-sec .cf svg{width:26px;height:26px}
+.lmteam-sec .tm-card b{margin:0;font-size:clamp(18px,1.5vw,21px);align-self:end}
+.lmteam-sec .tm-card span:not(.cf){font-size:clamp(15px,1.1vw,16px)!important;line-height:1.5;align-self:start}
+@media(max-width:980px){.lmteam-sec .tm-grid{grid-template-columns:1fr}}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -1237,7 +1251,7 @@ window.addEventListener('DOMContentLoaded', function(){
     <p class="lmab-tag"><span class="lmab-ul">קודם בינה משפטית. אחר כך מלאכותית.<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M396 13 C 330 8, 270 17, 200 12 S 70 9, 4 15"/><path pathLength="1" d="M388 19 C 320 15, 240 21, 160 17 S 50 16, 16 20"/></svg></span></p>
     <div class="lmab-cols">
       <p>LEGAL MIND מטמיעה בינה מלאכותית בעולם המשפט והנדל״ן: הדרכות, וובינרים וליווי אישי, ובניית תהליכי עבודה שמתאימים לאופן שבו המשרד חושב ועובד. את החברה ייסדו עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, כדי להנגיש את עולם הבינה המלאכותית למשרדי עורכי הדין ולעולם המשפט.</p>
-      <p>לצדנו אנשי IT, מתכנתים ומומחי אוטומציה, וקהילה של יותר מ-2,000 עורכי דין.</p>
+      <p>לצדנו אנשי IT, מתכנתים ומומחי אוטומציה.</p>
     </div>
   </div>
 </section>
@@ -1264,7 +1278,7 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow eyebrow-xl">עם מי אנחנו עובדים</span>
-      <h2 class="display-h2">לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות.</h2>
+      <h2 class="display-h2">עורכי דין, אנשי נדל"ן ומחלקות משפטיות.</h2>
     </div>
     <div class="aud-btns reveal">
       <a href="#aud-law" class="btn btn-outline">לעורכי דין</a>
@@ -1281,7 +1295,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <p class="body">אנחנו מכירים את משרד עורכי הדין שלכם מבפנים, כי אנחנו חיים את שלנו. לכל משרד עורכי דין יש ידע חשוב שמפוזר בין תיקים, מיילים וזיכרון של עובדים, שיטות עבודה שאף אחד לא תיעד, תהליכים שחוזרים על עצמם, ביורוקרטיה, עדכונים שאין זמן לעקוב אחריהם, טפסים בלתי נגמרים...</p>
         <p class="body aud-beat">גם לנו היו.</p>
         <p class="body">את הפתרונות בנינו קודם כל לעצמנו - מתוך העבודה המשפטית בתחום דינמי כמו נדל"ן, על כמויות הדאטה העצומות שלו, הניירת, ניתוח הנתונים, המיסוי, הטאבו וכל הטוב הזה. ראינו בזמן אמת איך המערכות שבנינו חוסכות לנו זמן, מייעלות את העבודה, מבצעות בקרת איכות ובקיצור - הופכות לעובד הכי חרוץ במשרד, מכפיל הכוח שלנו - תחת הבקרה האנושית והמשפטית שלנו.</p>
-        <p class="body">גם לך מגיע ליהנות מיתרונות העבודה שהטכנולוגיה מציעה ב-2026. המערכות נבנות ומוטמעות בהתאמה אישית למשרד שלכם, והדוגמאות בהדרכות נלקחות מתחום העיסוק שלכם - לא משהו גנרי. אנחנו לומדים אותך ואת המשרד, ומתאימים לכם פתרון מדויק שמהווה המשך ישיר של העבודה שלכם - רק מהיר ויעיל בהרבה מהיום.</p>
+        <p class="body">גם לכם מגיע ליהנות מהיתרונות שהטכנולוגיה מציעה היום. המערכות נבנות ומוטמעות בהתאמה אישית למשרד שלכם, והדוגמאות בהדרכות נלקחות מתחום העיסוק שלכם - לא משהו גנרי. אנחנו לומדים אתכם ואת המשרד, ומתאימים לכם פתרון מדויק שמהווה המשך ישיר של העבודה שלכם - רק מהיר ויעיל בהרבה מהיום.</p>
       </article>
 
       <article class="feature-card glass" id="aud-realestate">
@@ -1338,10 +1352,10 @@ window.addEventListener('DOMContentLoaded', function(){
     <h2 class="lm-h2">לא מצגת. משרד שעובד אחרת.</h2>
     <p class="lm-lede">בסוף ההטמעה המשרד לא נשאר עם הבטחות, אלא עם דברים שאפשר לגעת בהם:</p>
     <ul class="keep-grid">
-      <li><b>תכנית עבודה כתובה</b><span>מה בונים, באיזה סדר, מי במשרד מוביל, ואיך מודדים הצלחה.</span></li>
-      <li><b>כלים מותאמים בכל שולחן</b><span>עוזרים, תבניות ופרומפטים שבנויים על המסמכים והתהליכים של המשרד.</span></li>
-      <li><b>צוות שיודע לעבוד</b><span>עורכי הדין והצוות מתאמנים על המשימות שלהם, לא על דוגמאות כלליות.</span></li>
-      <li><b>מנויים והרשאות מוגדרים</b><span>פרטיות ואבטחת מידע לפי המדיניות של המשרד, כבר מהיום הראשון.</span></li>
+      <li><b>תכנית כתובה להמשך</b><span>מסמך אחד שמסכם מה נבנה, מי אחראי על מה, ואיך ממשיכים להתקדם גם בלעדינו.</span></li>
+      <li><b>כלים שעובדים על החומר שלכם</b><span>עוזרים, תבניות ופרומפטים שבנויים על המסמכים, הסגנון והתהליכים של המשרד.</span></li>
+      <li><b>צוות שממשיך לבד</b><span>עורכי הדין והצוות יודעים להשתמש בכלים בעצמם, ולא תלויים בנו בכל שאלה.</span></li>
+      <li><b>כללי עבודה ברורים</b><span>מי משתמש במה, איזה מידע מותר להזין, ומי בודק תוצר לפני שהוא יוצא מהמשרד.</span></li>
     </ul>
   </div>
 </section>
@@ -1377,7 +1391,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">עשיתי עם אסף ליווי אישי, והפעם עבדנו על <span dir="ltr">Claude</span> בתוך <span dir="ltr">Word</span> עצמו. יצרנו כרטיסי הצעה, וכל הערה אני מחליטה אם להכניס לטיוטה או לא - וההערות נכנסו בצורה כירורגית ומדויקת. בקיצור, תענוג. ממליצה בחום.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">ליווי אישי</div></div></div></article>
       <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">אסף הצליח לקחת טכנופובית כמוני ולהטמיע אצלי כלים שהולכים לשנות לי לגמרי את ההתנהלות היומיומית. סבלני מאוד, מקצועי מקסימום - הכי טוב שפגשתי בהוראת בינה מלאכותית. ממליצה בחום.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">ליווי אישי</div></div></div></article>
       <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">למדתי אצל אסף קורס פרטי בנושא בינה מלאכותית, וזו הייתה חוויה מעולה. הוא יודע להנגיש את החומר בצורה ברורה ומעשית, עם דוגמאות רלוונטיות וממוקדות לעולם המשפטי. מי שמחפש להיכנס לעולם ה-AI ולהבין איך הוא משדרג את העבודה היומיומית - ממליץ בלי היסוס.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">קורס פרטי AI</div></div></div></article>
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">וובינר מעולה, מעניין ופרקטי - הכי פרקטי שיש. רועי ואסף מנגישים ידע שיהיה נחוץ לכולם בקרוב. תודה, ומחכים להמשך.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">משתתף וובינר Legal Mind</div></div></div></article>
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">וובינר מעולה, מעניין ופרקטי - הכי פרקטי שיש. רועי ואסף מנגישים ידע שיהיה נחוץ לכולם בקרוב. תודה, ומחכים להמשך.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">משתתף וובינר LEGAL MIND</div></div></div></article>
       <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">עבדנו עם אסף על הטמעת בינה מלאכותית במשרד, תוך התאמה מדויקת לאופן החשיבה והעבודה הייחודי שלנו. המטרה שלנו הייתה לאמץ עבודה עם כלים שמשתלבים בדרך שבה אנחנו עובדים, וזה בדיוק מה שהליווי של אסף עוזר לנו להשיג.</p><div class="who"><span class="avatar">נ</span><div><div class="nm">עו״ד נמרוד זינגרמן</div><div class="rl">שותף · בנאי עזריאל שטרן</div></div></div></article>
       </div></div>
     <script>document.querySelectorAll('#testimonials .testi-track').forEach(function(t){t.innerHTML+=t.innerHTML;});</script>
@@ -1403,7 +1417,7 @@ window.addEventListener('DOMContentLoaded', function(){
             <span class="nh-arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></span>
       </a>
       <div class="nh-yt">
-        <p class="nh-yt-ttl">לערוץ היוטיוב של <span dir="ltr" class="nb">Legal Mind</span>: סרטוני ההדרכה של <span dir="ltr" class="nb">Legal Mind</span> ונבו <span class="nh-yt-sub">בין השאר גם על השימוש בקונקטור של נבו</span></p>
+        <p class="nh-yt-ttl">לערוץ היוטיוב של <span dir="ltr" class="nb">LEGAL MIND</span>: סרטוני ההדרכה של <span dir="ltr" class="nb">LEGAL MIND</span> ונבו <span class="nh-yt-sub">בין השאר גם על השימוש בקונקטור של נבו</span></p>
         <a class="yt-btn" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener" aria-label="לצפייה בסרטוני ההדרכה של Legal Mind ונבו ביוטיוב (נפתח בלשונית חדשה)"><img src="/nevo/youtube-button.webp" width="900" height="274" alt="YouTube" decoding="async"></a>
       </div>
     </div>
@@ -1522,7 +1536,6 @@ window.addEventListener('DOMContentLoaded', function(){
 <section id="contact" class="cta-band dawn reveal">
   <div class="cta-bloom" aria-hidden="true"></div>
   <div class="inner">
-    <span class="eyebrow eyebrow-xl">בואו נתחיל</span>
     <h2 class="display-h2">המשרד הבא שנדלק יכול להיות שלכם.</h2>
     <p class="body-lead">נבין איפה המשרד נמצא היום, ונראה לכם לאן אפשר להגיע. בלי התחייבות ובלי הצגות.</p>
     <div class="ctas">
@@ -1530,7 +1543,7 @@ window.addEventListener('DOMContentLoaded', function(){
         לבדיקת התאמה
         <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" class="btn btn-wa" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>הצטרפות לקהילת <span dir="ltr">Legal Mind</span> בוואטסאפ</a>
+      <a href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" class="btn btn-wa" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>הצטרפות לקהילת <span dir="ltr">LEGAL MIND</span> בוואטסאפ</a>
     </div>
     <div class="contacts">
       <div>אפשר גם במייל: <a href="mailto:info@legalmind.co.il" dir="ltr">info@legalmind.co.il</a></div>
@@ -1568,9 +1581,9 @@ window.addEventListener('DOMContentLoaded', function(){
     <div>
       <h3>יצירת קשר</h3>
       <ul>
-        <li><a href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener">קהילת <span dir="ltr">Legal Mind</span> בוואטסאפ</a></li>
+        <li><a href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener">קהילת <span dir="ltr">LEGAL MIND</span> בוואטסאפ</a></li>
         <li><a href="mailto:info@legalmind.co.il" dir="ltr">info@legalmind.co.il</a></li>
-        <li><a class="ft-yt" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener"><svg class="yt-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF0000" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8z"/><path fill="#fff" d="M9.8 15.1 15.6 12 9.8 8.9z"/></svg>ערוץ היוטיוב של <span dir="ltr">Legal Mind</span></a></li>
+        <li><a class="ft-yt" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener"><svg class="yt-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF0000" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8z"/><path fill="#fff" d="M9.8 15.1 15.6 12 9.8 8.9z"/></svg>ערוץ היוטיוב של <span dir="ltr">LEGAL MIND</span></a></li>
       </ul>
     </div>
     <div>
@@ -1596,7 +1609,7 @@ window.addEventListener('DOMContentLoaded', function(){
     <span class="wa-ico" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
     </span>
-    <span class="who-lbl">הצטרפות לקהילת Legal Mind</span>
+    <span class="who-lbl">הצטרפות לקהילת LEGAL MIND</span>
   </a>
 </div>
 
@@ -1714,7 +1727,7 @@ window.addEventListener('DOMContentLoaded', function(){
     b.addEventListener('click',function(){
       var f=document.createElement('iframe');
       f.src='https://www.youtube-nocookie.com/embed/'+b.getAttribute('data-yt')+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-      f.title='סרטון התדמית של Legal Mind ונבו';
+      f.title='סרטון התדמית של LEGAL MIND ונבו';
       f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
       f.allowFullscreen=true; f.referrerPolicy='strict-origin-when-cross-origin';
       box.innerHTML=''; box.appendChild(f); d.showModal();
