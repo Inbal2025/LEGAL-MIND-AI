@@ -882,8 +882,25 @@ main .band .head{margin-bottom:clamp(18px,2.2vw,30px)}
 .hand-scroll .hand path:last-child{transition-delay:.9s}
 .hand-scroll.drawn .hand path{stroke-dashoffset:0}
 @media(prefers-reduced-motion:reduce){.hand-scroll .hand path{transition:none;stroke-dashoffset:0}}
+
+/* ===== clients logo strip ===== */
+.clients{position:relative;padding:clamp(26px,3.6vw,46px) 0 clamp(6px,1.6vw,14px);overflow-x:clip}
+.cl-k{text-align:center;margin:0 0 16px;font-weight:700;font-size:clamp(1rem,1.3vw,1.15rem);color:var(--teal-l);letter-spacing:.01em}
+.cl-wall{overflow:hidden;display:flex;justify-content:flex-start;-webkit-mask-image:linear-gradient(to left,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to left,transparent,#000 7%,#000 93%,transparent)}
+.cl-track{display:flex;width:max-content;animation:clSlide 70s linear infinite;contain:paint}
+.cl-set{display:flex}
+.cl-wall:hover .cl-track{animation-play-state:paused}
+@keyframes clSlide{from{transform:translateX(50%)}to{transform:translateX(0)}}
+.cl{flex:none;margin:0 0 0 14px;width:clamp(150px,15vw,184px);height:112px;display:grid;grid-template-rows:1fr auto;place-items:center;gap:6px;padding:14px 12px 10px;border-radius:16px;border:1px solid var(--hair-2);background:linear-gradient(160deg,rgba(243,240,232,.075),rgba(243,240,232,.02))}
+.cl img{max-height:46px;max-width:128px;width:auto;height:auto;filter:brightness(0) invert(1);opacity:.92}
+.cl-w{font-weight:800;font-size:1.12rem;color:var(--ink);text-align:center;line-height:1.2}
+.cl figcaption{font-size:.76rem;line-height:1.3;color:#AEB9B3;text-align:center}
+@media (max-width:640px){.cl{width:140px;height:104px}.cl img{max-height:40px;max-width:112px}.cl-track{animation-duration:55s}}
+html.nofx .cl-track{animation:none}
+.clients .cl::before,.clients .cl::after{content:none!important;display:none!important}
 </style>
-<noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}</style></noscript>
+<noscript><style>.rv,.h1 .w,.cite{opacity:1!important;transform:none!important}
+</style></noscript>
 <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/brand/favicon-192.png">
 <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
@@ -947,6 +964,12 @@ main .band .head{margin-bottom:clamp(18px,2.2vw,30px)}
     </div>
   </div>
 </header>
+
+<!-- CLIENTS -->
+<section class="clients" aria-label="לקוחות LEGAL MIND">
+  <p class="cl-k">בין הלקוחות של LEGAL MIND</p>
+  <div class="cl-wall"><div class="cl-track"><div class="cl-set"><figure class="cl"><img src="/hatmaa/assets/clients/bar.svg?v=1" alt="לשכת עורכי הדין" loading="lazy" decoding="async"><figcaption>לשכת עורכי הדין</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/nevo.webp?v=1" alt="נבו" loading="lazy" decoding="async"><figcaption>נבו</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/ebn.svg?v=1" alt="ארדינסט, בן נתן, טולידאנו (EBN)" loading="lazy" decoding="async"><figcaption>ארדינסט, בן נתן, טולידאנו (EBN)</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/hachshara.png?v=1" alt="הכשרת הישוב (קבוצת נמרודי)" loading="lazy" decoding="async"><figcaption>הכשרת הישוב (קבוצת נמרודי)</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/kcb.webp?v=1" alt="קרן כהן בלחרסקי (KCB)" loading="lazy" decoding="async"><figcaption>קרן כהן בלחרסקי (KCB)</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/banai.png?v=1" alt="בנאי עזריאל שטרן" loading="lazy" decoding="async"><figcaption>בנאי עזריאל שטרן</figcaption></figure><figure class="cl t"><span class="cl-w">אורלי כתב</span><figcaption>יחסי ציבור</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/lombrozo.png?v=1" alt="י. לומברוזו ושות׳" loading="lazy" decoding="async"><figcaption>י. לומברוזו ושות׳</figcaption></figure><figure class="cl t"><span class="cl-w">דורין צהר</span><figcaption>עו״ד</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/boaron.png?v=1" alt="חן בוארון טרסיוק" loading="lazy" decoding="async"><figcaption>חן בוארון טרסיוק</figcaption></figure><figure class="cl t"><span class="cl-w">בני זלמנוביץ׳</span><figcaption>עו״ד</figcaption></figure></div><div class="cl-set" aria-hidden="true"><figure class="cl"><img src="/hatmaa/assets/clients/bar.svg?v=1" alt="" loading="lazy" decoding="async"><figcaption>לשכת עורכי הדין</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/nevo.webp?v=1" alt="" loading="lazy" decoding="async"><figcaption>נבו</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/ebn.svg?v=1" alt="" loading="lazy" decoding="async"><figcaption>ארדינסט, בן נתן, טולידאנו (EBN)</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/hachshara.png?v=1" alt="" loading="lazy" decoding="async"><figcaption>הכשרת הישוב (קבוצת נמרודי)</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/kcb.webp?v=1" alt="" loading="lazy" decoding="async"><figcaption>קרן כהן בלחרסקי (KCB)</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/banai.png?v=1" alt="" loading="lazy" decoding="async"><figcaption>בנאי עזריאל שטרן</figcaption></figure><figure class="cl t"><span class="cl-w">אורלי כתב</span><figcaption>יחסי ציבור</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/lombrozo.png?v=1" alt="" loading="lazy" decoding="async"><figcaption>י. לומברוזו ושות׳</figcaption></figure><figure class="cl t"><span class="cl-w">דורין צהר</span><figcaption>עו״ד</figcaption></figure><figure class="cl"><img src="/hatmaa/assets/clients/boaron.png?v=1" alt="" loading="lazy" decoding="async"><figcaption>חן בוארון טרסיוק</figcaption></figure><figure class="cl t"><span class="cl-w">בני זלמנוביץ׳</span><figcaption>עו״ד</figcaption></figure></div></div></div>
+</section>
 
 <!-- FOUNDERS -->
 <section class="band wrap" id="who">
