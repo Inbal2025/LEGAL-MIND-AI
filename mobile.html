@@ -1129,6 +1129,15 @@ html, body{
 .lmteam-sec .tm-card b{margin:0;font-size:clamp(18px,1.5vw,21px);align-self:end}
 .lmteam-sec .tm-card span:not(.cf){font-size:clamp(15px,1.1vw,16px)!important;line-height:1.5;align-self:start}
 @media(max-width:980px){.lmteam-sec .tm-grid{grid-template-columns:1fr}}
+/* client area entry (19.11): lock in the top bar + full-width entry at the top of the menu */
+.nav-end{display:inline-flex;align-items:center;gap:4px}
+.nav-client-ico{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid rgba(243,240,232,.18)}
+.nav-client-ico .cl-ico{width:19px;height:19px;fill:none;stroke:#96E0D6;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.menu-client{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 24px 4px;min-height:52px;border-radius:12px;border:1px solid rgba(243,240,232,.24);color:#F3F0E8;font:600 18px "Assistant",sans-serif;text-decoration:none}
+.menu-client .cl-ico{width:18px;height:18px;fill:none;stroke:#96E0D6;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ft-client{display:inline-flex;align-items:center;gap:8px}.ft-client .cl-ico{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* 19.11: client-area button with a hairline of gold; more air between Nevo, the gold CTA and the client button */
+.ft-client .cl-ico{stroke:#D9B65E}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -1168,6 +1177,8 @@ window.addEventListener('DOMContentLoaded', function(){
   <a class="brand" href="#top" aria-label="Legal Mind - לחזרה למעלה">
     <img class="brand-logo" src="brand/legalmind-logo-light.webp" alt="Legal Mind" width="800" height="152" decoding="async">
   </a>
+  <span class="nav-end">
+  <a class="nav-client-ico" href="/clients/" aria-label="אזור אישי ללקוחות LEGAL MIND" title="אזור אישי ללקוחות LEGAL MIND"><svg class="cl-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></a>
   <button class="hamburger" id="hamburger" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
       <line x1="3" y1="6" x2="21" y2="6"/>
@@ -1175,6 +1186,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <line x1="3" y1="18" x2="21" y2="18"/>
     </svg>
   </button>
+  </span>
 </nav>
 
 <!-- MENU OVERLAY -->
@@ -1190,6 +1202,7 @@ window.addEventListener('DOMContentLoaded', function(){
       </svg>
     </button>
   </div>
+  <a class="menu-client" href="/clients/"><svg class="cl-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg><span>אזור אישי ללקוחות <span dir="ltr">LEGAL MIND</span></span></a>
   <ul class="menu-list">
     <li><a href="#audiences" data-menu-link>עם מי אנחנו עובדים</a></li>
     <li><a href="#about" data-menu-link>מי אנחנו</a></li>
@@ -1583,6 +1596,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <ul>
         <li><a href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener">קהילת <span dir="ltr">LEGAL MIND</span> בוואטסאפ</a></li>
         <li><a href="mailto:info@legalmind.co.il" dir="ltr">info@legalmind.co.il</a></li>
+        <li><a class="ft-client" href="/clients/"><svg class="cl-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>אזור אישי ללקוחות <span dir="ltr">LEGAL MIND</span></a></li>
         <li><a class="ft-yt" href="https://www.youtube.com/@legalmindisrael" target="_blank" rel="noopener"><svg class="yt-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF0000" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8z"/><path fill="#fff" d="M9.8 15.1 15.6 12 9.8 8.9z"/></svg>ערוץ היוטיוב של <span dir="ltr">LEGAL MIND</span></a></li>
       </ul>
     </div>
