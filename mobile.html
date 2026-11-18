@@ -39,7 +39,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&family=Heebo:wght@700;800;900&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
 <style>
 :root{
   /* Brand palette - exact values from spec */
@@ -927,7 +927,7 @@ html, body{
 .nav-cta .btn.nav-gold{background:linear-gradient(135deg,#F6D86B,#E9C24A);color:#0B1B16;font-weight:800;box-shadow:0 4px 0 #B88A1E}
 
 /* hero = who Legal Mind is (site, not landing page) 18.11 */
-.hero-id{margin:0;font-family:"Heebo","Assistant",sans-serif;font-weight:900;font-size:clamp(34px,4.4vw,62px);line-height:1.08;letter-spacing:-.02em;color:#FFFFFF;max-width:14em}
+.hero-id{margin:0;font-family:"Heebo","Assistant",sans-serif;font-weight:900;font-size:clamp(34px,3.9vw,54px);line-height:1.08;letter-spacing:-.02em;color:#FFFFFF;max-width:14em}
 .hero-slogan{margin:clamp(14px,1.6vw,20px) 0 0;font-family:"Heebo","Assistant",sans-serif;font-weight:800;font-size:clamp(20px,2.1vw,28px);line-height:1.3;color:#F3F0E8}
 .hero-slogan .hl-accent{color:#96E0D6}
 .hero-desc{margin:clamp(12px,1.4vw,18px) 0 0;font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:#DCE6E2;max-width:34em}
@@ -935,6 +935,145 @@ html, body{
 .story{max-width:860px;margin:0 auto}
 .story p{margin:0 0 14px}
 .story .hero-ctas{margin-top:22px}
+
+/* hero: "implementation" constellation, the office connects to its tools one by one (18.11) */
+.impl-viz{width:100%;max-width:520px;margin-inline:auto;aspect-ratio:1/1}
+.impl-viz svg{width:100%;height:100%;overflow:visible;font-family:"Heebo","Assistant",sans-serif}
+.iv-orbit{fill:none;stroke:rgba(150,224,214,.14);stroke-width:1.2;stroke-dasharray:3 7;transform-origin:260px 260px;animation:ivSpin 90s linear infinite}
+.iv-line{fill:none;stroke:#63C2B8;stroke-width:2;stroke-linecap:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);opacity:.85}
+.impl-viz.go .iv-line{animation:ivDraw .7s cubic-bezier(.2,.7,.2,1) var(--d) forwards}
+.iv-dot{fill:#F6D86B;opacity:0;offset-distance:0%}
+.impl-viz.go .iv-dot{animation:ivFlow 3.6s ease-in-out var(--d) infinite}
+.iv-node rect{fill:rgba(12,36,40,.92);stroke:rgba(150,224,214,.28);stroke-width:1.2;transition:stroke .4s}
+.iv-node text{fill:#DCE6E2;font-size:21px;font-weight:700;text-anchor:middle}
+.iv-node{opacity:.35}
+.impl-viz.go .iv-node{animation:ivOn .6s ease var(--d) forwards}
+.iv-hub .iv-ring{fill:none;stroke:#E9C24A;stroke-width:2;opacity:.7;transform-origin:0 0;animation:ivPulse 3.2s ease-in-out 1s infinite}
+.iv-hub .iv-core{fill:#0F2E2A;stroke:#96E0D6;stroke-width:1.5}
+.iv-hub text{text-anchor:middle;fill:#FFFFFF;font-weight:800}
+.iv-hub-t1{font-size:25px}.iv-hub-t2{font-size:25px;fill:#96E0D6!important}
+@keyframes ivDraw{to{stroke-dashoffset:0}}
+@keyframes ivOn{to{opacity:1}}
+.iv-node{--glow:0}
+@keyframes ivFlow{0%{opacity:0;offset-distance:0%}12%{opacity:1}80%{opacity:1}100%{opacity:0;offset-distance:100%}}
+@keyframes ivPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.07);opacity:.25}}
+@keyframes ivSpin{to{transform:rotate(360deg)}}
+.impl-viz .iv-node{animation-fill-mode:forwards}
+.impl-viz.lit .iv-node rect{stroke:#63C2B8}
+.impl-viz .iv-node:nth-of-type(n){}
+@media (prefers-reduced-motion:reduce){.iv-line{animation:none;stroke-dashoffset:0}.iv-node{animation:none;opacity:1}.iv-dot,.iv-orbit,.iv-hub .iv-ring{animation:none}.iv-dot{display:none}}
+@media (min-width:1100px){.hero .hero-grid{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}.hero .impl-viz{align-self:start;margin-top:clamp(0px,2vw,24px)}}
+@media (max-width:1099px){.hero .impl-viz{max-width:400px}}
+/* type: bolder Heebo headings, larger menu and body text (18.11) */
+.display-mega,.display-xl,.display-lg,.display-h1,.display-h2{font-family:"Heebo","Assistant",sans-serif;font-weight:800;letter-spacing:-.01em}
+.nav-links a{font-size:15.5px}
+.body-lead{font-size:clamp(17px,1.35vw,19px);line-height:1.7}
+
+/* founders: same presentation as /hatmaa/ (framed photo, teal name plate, short bio) 18.11 */
+:root{--lm-head:"Heebo","Assistant",sans-serif}
+.lmw-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,4vw,56px);max-width:960px;margin:clamp(30px,4vw,52px) auto 0}
+.lmw-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(34px,3.6vw,46px)}
+.lmw-ph{position:relative;width:100%;max-width:420px;aspect-ratio:1;border-radius:28px;background:#E9F4F1;padding:9px;box-shadow:0 30px 70px -30px rgba(0,0,0,.85);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.lmw-card:hover .lmw-ph{transform:translateY(-4px)}
+.lmw-ph img{width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:21px;display:block}
+.lmw-plate{position:absolute;inset-inline:22px;bottom:-26px;background:#0F8A7C;border-radius:16px;padding:12px 18px;text-align:right;box-shadow:0 10px 0 #0A5E54,0 18px 34px -12px rgba(0,0,0,.7)}
+.lmw-plate b{display:block;color:#fff;font:900 clamp(20px,2vw,26px)/1.15 var(--lm-head)}
+.lmw-plate span{display:block;color:#CFF5EE;font:700 13.5px "Assistant",sans-serif;margin-top:3px}
+.lmw-card p{margin:8px 0 0;font-size:17px;line-height:1.7;color:#DCE6E2;max-width:44ch}
+.lmw-cmte{margin:clamp(30px,3.5vw,44px) auto 0;text-align:center;font:800 clamp(19px,2.1vw,26px)/1.35 var(--lm-head);color:#96E0D6;max-width:30ch}
+@media (max-width:760px){.lmw-grid{grid-template-columns:1fr;max-width:420px}}
+@media (prefers-reduced-motion:reduce){.lmw-card:hover .lmw-ph{transform:none}}
+
+/* implementation team block, same as /hatmaa/ (18.11) */
+.lmteam{--serif:"Heebo","Assistant",sans-serif;--sans:"Assistant",sans-serif;--ink:#F3F0E8;--ink-2:#C3CCC7;--teal:#63C2B8;--teal-l:#96E0D6;padding:0 clamp(16px,4vw,32px)}
+.team{max-width:1100px;margin:clamp(40px,5vw,64px) auto 0;padding:clamp(26px,3.6vw,46px);border-radius:26px;background:#0F8A7C;color:#fff;box-shadow:0 30px 70px -34px rgba(0,0,0,.85)}
+.team-h{margin:0;font:900 clamp(26px,3.2vw,42px)/1.12 var(--serif);text-align:center}
+.team-p{margin:12px auto 0;max-width:64ch;text-align:center;font-size:clamp(16.5px,1.35vw,19px);line-height:1.6;color:#E3FAF6}
+.team{background:#0B1B16;border:2px solid rgba(99,194,184,.45);color:var(--ink);padding:clamp(30px,4vw,56px)}
+.team-tag{margin:0 auto 10px;display:table;padding:6px 16px;border-radius:999px;background:var(--teal);color:#06231E;font:800 15px var(--sans)}
+.team-h{font-size:clamp(30px,4vw,52px);color:#fff}
+.team-p{color:var(--ink-2)}
+.tm-grid{list-style:none;margin:clamp(30px,4vw,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);max-width:900px;margin-inline:auto}
+.tm-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:clamp(18px,2vw,26px) 14px 22px;border-radius:20px;background:rgba(15,36,30,.9)}
+.tm-card b{font:900 clamp(19px,1.7vw,23px)/1.2 var(--serif);color:#fff;margin-top:14px}
+.tm-card span:not(.cf){font-size:15.5px;line-height:1.55;color:var(--ink-2)}
+.cube3d{width:92px;height:92px;perspective:520px;margin:10px 0 18px}
+.cb{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-22deg) rotateY(-32deg);animation:cbspin 9s ease-in-out infinite}
+.tm-card:nth-child(2) .cb{animation-delay:-2.2s}.tm-card:nth-child(3) .cb{animation-delay:-4.4s}
+.cf{position:absolute;inset:0;display:grid;place-items:center;border-radius:14px;background:#14A394;color:#fff;transform:translateZ(46px);box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.cf svg{width:46px;height:46px}
+.cf.back{transform:rotateY(180deg) translateZ(46px);background:#0A6459}
+.cf.rt{transform:rotateY(90deg) translateZ(46px);background:#0F8A7C}
+.cf.lf{transform:rotateY(-90deg) translateZ(46px);background:#0C7468}
+.cf.tp{transform:rotateX(90deg) translateZ(46px);background:#3FE0CC}
+.cf.bt{transform:rotateX(-90deg) translateZ(46px);background:#08493F}
+@keyframes cbspin{0%,100%{transform:rotateX(-22deg) rotateY(-32deg)}50%{transform:rotateX(-22deg) rotateY(-14deg) translateY(-6px)}}
+.tm-card:hover .cb{animation-play-state:paused;transform:rotateX(-22deg) rotateY(0deg) translateY(-8px)}
+@media(max-width:980px){.tm-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.tm-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.cb{animation:none}}
+.team-tag{font-size:17px;padding:8px 20px}
+.team-p{font-size:clamp(19px,1.7vw,23px)!important;line-height:1.6;color:var(--ink)!important;max-width:60ch}
+.tm-card b{font-size:clamp(22px,2vw,27px)}
+.tm-card span:not(.cf){font-size:clamp(17px,1.4vw,19px)!important;line-height:1.6;color:var(--ink)!important}
+.team-tag{font-size:clamp(24px,2.6vw,34px)!important;padding:14px 34px!important;border-radius:999px;margin-bottom:18px!important}
+
+/* "אז מי זאת LEGAL MIND?" (same as /hatmaa/, without the giant white word) 18.11 */
+.lmab{padding:clamp(56px,7vw,110px) clamp(20px,5vw,48px) clamp(24px,3vw,40px)}
+.lmab-in{max-width:1100px;margin:0 auto}
+.lmab-q{margin:0;font:800 clamp(36px,5vw,68px)/1.05 var(--lm-head,"Heebo","Assistant",sans-serif);color:#96E0D6}
+.lmab-tag{margin:clamp(16px,2vw,24px) 0 0;font:800 clamp(20px,2.4vw,32px)/1.3 var(--lm-head,"Heebo","Assistant",sans-serif);color:#96E0D6}
+.lmab-ul{position:relative;display:inline-block;padding-bottom:.28em}
+.lmab-ul svg{position:absolute;left:-2%;right:-2%;bottom:-.12em;width:104%;height:.55em;overflow:visible;pointer-events:none}
+.lmab-ul path{fill:none;stroke:#F6D86B;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.lmab-ul path:first-child{stroke-width:6}.lmab-ul path:last-child{stroke-width:3.5;opacity:.75}
+.lmab.revealed .lmab-ul path,.lmab .revealed .lmab-ul path{animation:lmabDraw 1.1s cubic-bezier(.6,.1,.3,1) .3s forwards}
+.lmab.revealed .lmab-ul path:last-child,.lmab .revealed .lmab-ul path:last-child{animation-delay:.9s}
+@keyframes lmabDraw{to{stroke-dashoffset:0}}
+.lmab-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,56px);margin-top:clamp(26px,3.4vw,44px)}
+.lmab-cols p{margin:0;font-size:clamp(17px,1.35vw,19px);line-height:1.7;color:#F3F0E8}
+@media (max-width:980px){.lmab-cols{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.lmab-ul path{stroke-dashoffset:0;animation:none!important}}
+
+/* 18.11: headings in Frank Ruhl Libre (thin, dignified); new blocks: numbers, how we implement, security, open content */
+:root{--lm-head:"Frank Ruhl Libre","Heebo",serif}
+.display-mega,.display-xl,.display-lg,.display-h1,.display-h2,.hero-id,.hero-slogan,.lmab-q,.lmab-tag,.lmw-cmte,.lmteam .team-h,.lmteam .tm-card b,.lm-h2,.lmhow h3,.lmsec h3,.lmlatest-grid b,.lmnum b,.stay-h{font-family:"Frank Ruhl Libre","Heebo",serif!important;font-weight:500!important;letter-spacing:0!important}
+.hero-id{font-size:clamp(34px,3.7vw,52px)!important;line-height:1.15!important}
+.lmw-plate b{font-family:"Frank Ruhl Libre","Heebo",serif!important;font-weight:700!important}
+.lmsec,.lmhow,.lmlatest{padding:clamp(48px,6vw,96px) clamp(20px,5vw,48px)}
+.lm-in{max-width:1100px;margin:0 auto}
+.lm-k{display:inline-block;margin:0 0 12px;padding:6px 16px;border-radius:999px;background:rgba(99,194,184,.14);border:1px solid rgba(99,194,184,.35);color:#96E0D6;font:700 15px "Assistant",sans-serif}
+.lm-h2{margin:0;font-size:clamp(30px,3.6vw,48px);line-height:1.15;color:#fff}
+.lm-lede{margin:12px 0 0;max-width:60ch;font-size:clamp(17px,1.35vw,19px);line-height:1.65;color:#DCE6E2}
+.lm-c{text-align:center}.lm-c .lm-lede{margin-inline:auto}
+.lmnums{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(28px,3.4vw,44px)}
+.lmnum{padding:18px 16px;border-radius:18px;background:rgba(15,36,30,.78);border:1px solid rgba(99,194,184,.22);text-align:center}
+.lmnum b{display:block;font-size:clamp(28px,2.8vw,40px);line-height:1.1;color:#96E0D6}
+.lmnum span{display:block;margin-top:6px;font-size:15.5px;line-height:1.45;color:#DCE6E2}
+.lmhow ol{list-style:none;margin:clamp(28px,3.4vw,44px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:right}
+.lmhow li{position:relative;padding:26px 20px 22px;border-radius:20px;background:rgba(15,36,30,.8);border:1px solid rgba(99,194,184,.22)}
+.lmhow .n{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#0F8A7C;color:#fff;font:800 17px "Assistant",sans-serif;box-shadow:0 5px 0 #0A5E54}
+.lmhow h3{margin:16px 0 8px;font-size:clamp(22px,2vw,26px);color:#fff}
+.lmhow p{margin:0;font-size:16.5px;line-height:1.65;color:#DCE6E2}
+.lmhow p b{color:#fff;font-weight:700}
+.stay{max-width:820px;margin:clamp(30px,4vw,48px) auto 0;padding:clamp(22px,3vw,34px) clamp(22px,3.4vw,40px);border-radius:22px;background:rgba(15,36,30,.85);border:1px solid rgba(99,194,184,.28);text-align:center}
+.stay-h{margin:0;font-size:clamp(24px,2.8vw,34px);color:#fff}
+.stay-p{margin:12px auto 0;max-width:58ch;font-size:clamp(16.5px,1.3vw,18.5px);line-height:1.65;color:#DCE6E2}
+.lmsec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(26px,3.2vw,40px)}
+.lmsec-card{padding:24px 22px;border-radius:20px;background:rgba(15,36,30,.8);border:1px solid rgba(99,194,184,.22)}
+.lmsec-card i{display:grid;place-items:center;width:52px;height:52px;border-radius:15px;background:linear-gradient(150deg,#2fb3a3,#0f8a7c);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 5px 0 #095a51}
+.lmsec-card i svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.lmsec-card h3{margin:16px 0 8px;font-size:clamp(21px,1.9vw,25px);color:#fff}
+.lmsec-card p{margin:0;font-size:16.5px;line-height:1.65;color:#DCE6E2}
+.lmsec-more{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:#96E0D6;font:700 16.5px "Assistant",sans-serif;border-bottom:1px solid rgba(150,224,214,.5);text-decoration:none}
+.lmlatest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(26px,3.2vw,40px)}
+.lmlatest-grid a{display:flex;flex-direction:column;gap:6px;padding:24px 22px;border-radius:20px;background:#F1F7F3;color:#0D1F1A;text-decoration:none;box-shadow:0 6px 0 #B6D0C5;transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+.lmlatest-grid a:hover{transform:translateY(-4px);box-shadow:0 10px 0 #A6C4B8}
+.lmlatest-grid b{font-size:clamp(22px,2vw,26px);color:#0D1F1A}
+.lmlatest-grid span{font-size:16px;line-height:1.55;color:#38504A}
+.lmlatest-grid em{margin-top:auto;padding-top:10px;font:700 15.5px "Assistant",sans-serif;font-style:normal;color:#0F8A7C}
+@media (max-width:980px){.lmnums{grid-template-columns:1fr 1fr}.lmhow ol{grid-template-columns:1fr 1fr}.lmsec-grid,.lmlatest-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.lmhow ol{grid-template-columns:1fr}}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -961,7 +1100,7 @@ window.addEventListener('DOMContentLoaded', function(){
 </script>
 <script src="/meta-pixel.js"></script>  <!-- Meta Pixel, נטען רק אחרי הסכמה -->
 </head>
-<body>
+<body data-fit-end>
 <script>(function(){try{if(/mobile\.html$/i.test(location.pathname)){history.replaceState(null,"",location.pathname.replace(/mobile\.html$/i,"")+location.search+location.hash);}}catch(e){}})();</script>
   <a class="skip-link" href="#top">דלג לתוכן</a>
 <div class="scroll-progress" aria-hidden="true"><i></i></div>
@@ -1022,10 +1161,7 @@ window.addEventListener('DOMContentLoaded', function(){
     <p class="hero-slogan reveal">קודם בינה משפטית. אחר כך מלאכותית. <span class="hl-accent">וזה כל ההבדל.</span></p>
     <p class="hero-desc reveal">הדרכה, ליווי והטמעה של בינה מלאכותית לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות.</p>
     <div class="hero-cta-top reveal"><a href="#fit" class="cta-gold">לבדיקת התאמה להטמעת בינה מלאכותית במשרד שלכם <i aria-hidden="true">←</i></a></div>
-    <div class="hero-trust reveal">
-      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span>למעלה מ-<span dir="ltr">2,000</span> עו"ד בקהילת <span dir="ltr">Legal Mind</span></span>
-    </div>
+    <div class="impl-viz" aria-hidden="true"><svg viewBox="0 0 520 520" role="presentation"><defs><radialGradient id="ivGlow"><stop offset="0" stop-color="#63C2B8" stop-opacity=".35"/><stop offset="1" stop-color="#63C2B8" stop-opacity="0"/></radialGradient></defs><circle class="iv-orbit" cx="260" cy="260" r="190"/><circle cx="260" cy="260" r="248" fill="rgba(7,19,15,.55)"/><circle cx="260" cy="260" r="150" fill="url(#ivGlow)"/><path class="iv-line" d="M260.0 190.0 L260.0 104.0" style="--len:86.0;--d:0.60s"/><circle class="iv-dot" r="3.4" style="--d:1.50s;offset-path:path('M260.0 190.0 L260.0 104.0')"/><path class="iv-line" d="M309.5 210.5 L370.3 149.7" style="--len:86.0;--d:1.15s"/><circle class="iv-dot" r="3.4" style="--d:2.05s;offset-path:path('M309.5 210.5 L370.3 149.7')"/><path class="iv-line" d="M330.0 260.0 L416.0 260.0" style="--len:86.0;--d:1.70s"/><circle class="iv-dot" r="3.4" style="--d:2.60s;offset-path:path('M330.0 260.0 L416.0 260.0')"/><path class="iv-line" d="M309.5 309.5 L370.3 370.3" style="--len:86.0;--d:2.25s"/><circle class="iv-dot" r="3.4" style="--d:3.15s;offset-path:path('M309.5 309.5 L370.3 370.3')"/><path class="iv-line" d="M260.0 330.0 L260.0 416.0" style="--len:86.0;--d:2.80s"/><circle class="iv-dot" r="3.4" style="--d:3.70s;offset-path:path('M260.0 330.0 L260.0 416.0')"/><path class="iv-line" d="M210.5 309.5 L149.7 370.3" style="--len:86.0;--d:3.35s"/><circle class="iv-dot" r="3.4" style="--d:4.25s;offset-path:path('M210.5 309.5 L149.7 370.3')"/><path class="iv-line" d="M190.0 260.0 L104.0 260.0" style="--len:86.0;--d:3.90s"/><circle class="iv-dot" r="3.4" style="--d:4.80s;offset-path:path('M190.0 260.0 L104.0 260.0')"/><path class="iv-line" d="M210.5 210.5 L149.7 149.7" style="--len:86.0;--d:4.45s"/><circle class="iv-dot" r="3.4" style="--d:5.35s;offset-path:path('M210.5 210.5 L149.7 149.7')"/><g class="iv-hub" transform="translate(260 260)"><circle class="iv-ring" r="70"/><circle class="iv-core" r="62"/><text class="iv-hub-t1" y="-4" direction="rtl">המשרד</text><text class="iv-hub-t2" y="22" direction="rtl">שלכם</text></g><g class="iv-node" style="--d:1.15s" transform="translate(260.0 70.0)"><rect x="-64.7" y="-22" width="129.3" height="44" rx="22"/><text y="7" >Claude</text></g><g class="iv-node" style="--d:1.70s" transform="translate(394.4 125.6)"><rect x="-72.0" y="-22" width="144.0" height="44" rx="22"/><text y="7" >ChatGPT</text></g><g class="iv-node" style="--d:2.25s" transform="translate(450.0 260.0)"><rect x="-72.0" y="-22" width="144.0" height="44" rx="22"/><text y="7" >Copilot</text></g><g class="iv-node" style="--d:2.80s" transform="translate(394.4 394.4)"><rect x="-48.2" y="-22" width="96.4" height="44" rx="22"/><text y="7" direction="rtl">נבו</text></g><g class="iv-node" style="--d:3.35s" transform="translate(260.0 450.0)"><rect x="-50.0" y="-22" width="100.0" height="44" rx="22"/><text y="7" >Word</text></g><g class="iv-node" style="--d:3.90s" transform="translate(125.6 394.4)"><rect x="-72.0" y="-22" width="144.0" height="44" rx="22"/><text y="7" >Outlook</text></g><g class="iv-node" style="--d:4.45s" transform="translate(70.0 260.0)"><rect x="-66.5" y="-22" width="133.0" height="44" rx="22"/><text y="7" direction="rtl">היומן</text></g><g class="iv-node" style="--d:5.00s" transform="translate(125.6 125.6)"><rect x="-66.5" y="-22" width="133.0" height="44" rx="22"/><text y="7" direction="rtl">הצוות</text></g></svg></div>
     <aside class="nevo-hub reveal" aria-label="שיתוף הפעולה עם נבו">
     <div class="nh-body">
       <div class="nh-logos">
@@ -1033,8 +1169,8 @@ window.addEventListener('DOMContentLoaded', function(){
         <span class="nh-x" aria-hidden="true"></span>
         <img src="brand/nevo-logo.webp" alt="נבו" width="360" height="170" decoding="async">
       </div>
-      <span class="nh-tag">חדש · שיתוף פעולה רשמי עם נבו</span>
-      <h2 class="nh-title">מהיום <span dir="ltr">Claude</span> מדבר ישירות עם הפסיקה של נבו.</h2>
+      <span class="nh-tag">שיתוף פעולה רשמי עם נבו</span>
+      <h2 class="nh-title"><span dir="ltr">Claude</span> מדבר ישירות עם הפסיקה של נבו.</h2>
       <p class="nh-text">שואלים שאלה משפטית בשפה חופשית, ו-<span dir="ltr">Claude</span> מחפש בכל המאגר של נבו ומחזיר תשובה עם קישור לכל מקור, שאפשר לפתוח ולאמת. הקונקטור הוא של נבו, וההטמעה שלו במשרד, ההדרכות והכלים סביבו נבנים אצלנו בשיתוף פעולה רשמי עם נבו: מהחיבור ועד צוות שיודע לעבוד איתו.</p>
       <a class="nh-btn" href="/nevo/">
         <span class="nh-btn-main">לכל הפרטים על שיתוף הפעולה עם נבו</span>
@@ -1070,21 +1206,20 @@ window.addEventListener('DOMContentLoaded', function(){
 </div>
 
 <!-- AUDIENCES -->
-<!-- WHO WE TALK TO (moved out of the hero, 18.11) -->
-<section class="story-sec" aria-label="למה Legal Mind">
-  <div class="container">
-    <div class="story reveal">
-    <p class="body-lead">עו"ד? בטח כבר נתקלת בזה.</p>
-    <p class="body-lead">את מהפכת ה-AI אי אפשר לפספס, וברור שגם אתה - עו"ד עמוס שעסוק בלי דקה מיותרת - ניסית במשרד. הזנת פרומפטים, הגדרת לצ'אט תפקידים ("פעל כעורך דין ותיק..."), תיקנת, דייקת, ביקשת, אפילו התחננת... וקיבלת טקסט שנראה... בסדר. אה רגע, חסרים בו סעיפים חשובים. אוי, הוא ממציא חקיקה ופסיקה שלעיתים נשמעות משכנעות יותר מהמקור האמיתי. ככה אי אפשר לעבוד.</p>
-    <p class="body-lead">עד לכאן אתה צודק.</p>
-    <p class="body-lead">אבל אם הסקת מכל זה שכלי ה-AI עדיין לא מוכנים לעבודה משפטית שוטפת - טוב שהגעת לכאן. כעורכי דין ותיקים (20 שנות ניסיון מצטברות) בתחום דינמי כמו מקרקעין, אנחנו אומרים לך מניסיון: AI שינה לנו את המשרד. הוא חוסך לנו שעות עבודה ומייצר תוצרים אמינים ומבוססים - כשיודעים איך לעבוד איתו. וזה ממש לא מסובך. אנחנו כבר מסבירים.</p>
-    <div class="hero-ctas">
-      <a href="#fit" class="btn btn-primary">
-        לבחינת התאמה
-        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <a href="#about" class="btn btn-outline">למה אנחנו?</a>
+<!-- WHO IS LEGAL MIND (as on /hatmaa/) -->
+<section class="lmab" aria-label="אז מי זאת LEGAL MIND">
+  <div class="lmab-in reveal">
+    <h2 class="lmab-q">אז מי זאת <bdi>LEGAL MIND</bdi>?</h2>
+    <p class="lmab-tag"><span class="lmab-ul">קודם בינה משפטית. אחר כך מלאכותית.<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M396 13 C 330 8, 270 17, 200 12 S 70 9, 4 15"/><path pathLength="1" d="M388 19 C 320 15, 240 21, 160 17 S 50 16, 16 20"/></svg></span></p>
+    <div class="lmab-cols">
+      <p>LEGAL MIND מטמיעה בינה מלאכותית בעולם המשפט והנדל״ן: הדרכות, וובינרים וליווי אישי, ובניית תהליכי עבודה שמתאימים לאופן שבו המשרד חושב ועובד. את החברה ייסדו עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, כדי להנגיש את עולם הבינה המלאכותית למשרדי עורכי הדין ולעולם המשפט.</p>
+      <p>לפני הכול אנחנו עורכי דין, והבינה המלאכותית היא מכפיל הכוח. לצדנו אנשי IT, מתכנתים ומומחי אוטומציה, וקהילה של יותר מ-2,000 עורכי דין.</p>
     </div>
+    <div class="lmnums">
+      <div class="lmnum"><b dir="ltr">+2,000</b><span>עורכי דין בקהילת LEGAL MIND</span></div>
+      <div class="lmnum"><b>20 שנה</b><span>ניסיון בעולם המשפט</span></div>
+      <div class="lmnum"><b>עשור</b><span>של עבודה עם בינה מלאכותית</span></div>
+      <div class="lmnum"><b>הוועדה</b><span>חברים בוועדת הבינה המלאכותית של לשכת עורכי הדין</span></div>
     </div>
   </div>
 </section>
@@ -1149,40 +1284,25 @@ window.addEventListener('DOMContentLoaded', function(){
     <div class="section-head reveal">
       <span class="eyebrow eyebrow-xl">מי אנחנו</span>
       <h2 class="display-h2">סקפטי? גם אנחנו היינו.</h2>
-      <p class="body-lead lead">23:00. הטיוטה חוזרת בפעם הרביעית. מחר דדליין, והראש כבר לא צלול. אתה מכיר את הערב הזה. גם אנחנו.</p>
-      <p class="body-lead lead">אנחנו רועי ואסף, עורכי דין שעוסקים במגוון תחומים משפטיים, ולמרות שנים של היכרות עם עולם הטכנולוגיה - בסוף העומס הוא שהביא אותנו אל ה-AI...</p>
-      <p class="body-lead lead">לרועי יש מאחוריו כבר עשור של עבודה עם בינה מלאכותית, מהימים שאיש עוד לא דיבר על זה - וגם למעלה מ-20 שנות מומחיות בעסקאות מורכבות, מעולמות הפיננסים והליטיגציה, שנוגעות ברוב סוגיות הליבה של המשפט. אסף בא מעולם אחר: הוא היה בין הראשונים בסטארטאפ טכנולוגי, אחראי שם על המשפט והתפעול, ראה מקרוב מה טכנולוגיה טובה יכולה לעשות לאנשי מקצוע, וחשוב מזה - מה לא.</p>
-      <p class="body-lead lead">מה שמחבר בינינו זו ההבנה מה באמת מטריד עורך דין: הפחד לפספס פרט קטן, האחריות שתמיד נשארת אצלך, הסודיות שאסור לסדוק והשעון שלא מפסיק לרוץ. הפידבקים שאנחנו מקבלים מהשטח אומרים דבר אחד: לא משנה אם אתה בליטיגציה, במשפחה, במסחרי או בנדל"ן - הכאב הוא אותו כאב.</p>
-      <p class="body-lead lead">אז כן, גם אנחנו ישבנו מול ה-AI בהתחלה ואמרנו "זה לא זה"... כמעט ויתרנו. מה ששינה הכול לא היה עוד כלי חדש - זו הייתה שיטה. לימדנו אותו איך אנחנו עובדים, מה הלקוחות צריכים ואיפה עובר הקו האדום.</p>
-      <p class="body-lead lead" style="font-weight:600;color:var(--ink)">ואז זה התחיל לעבוד באמת.</p>
-      <p class="body-lead lead">היום, עם מעל 2,000 עורכי דין מכל התחומים שנמצאים איתנו בקהילת <span dir="ltr">Legal Mind</span>, הדרכות, הטמעות, למידה שוטפת והתפתחות שלא עוצרת - אנחנו עובדים אחרת. רוצה גם? <a href="#fit" class="aud-link">לבחינת התאמה</a>.</p>
+      <p class="body-lead">23:00. הטיוטה חוזרת בפעם הרביעית, מחר דדליין. גם אנחנו הכרנו את הערב הזה, ובהתחלה גם אנחנו ישבנו מול ה-AI ואמרנו "זה לא זה".</p>
+      <p class="body-lead">מה ששינה הכול לא היה עוד כלי, אלא שיטה: לימדנו אותו איך אנחנו עובדים, מה הלקוחות צריכים, ואיפה עובר הקו האדום.</p>
+      <p class="body-lead" style="font-weight:600;color:var(--ink)">היום אנחנו מביאים את השיטה הזו למשרדים אחרים, עם קהילה של יותר מ-2,000 עורכי דין מכל התחומים.</p>
     </div>
-
-
-
-    <div class="founders reveal stagger">
-
-      <article class="founder glass">
-        <div class="photo">
-          <img src="asaf.jpg" alt="עו״ד אסף אברמזון" loading="lazy" />
+    <div class="lmw reveal">
+        <div class="lmw-grid">
+          <div class="lmw-card"><div class="lmw-ph"><img src="/hatmaa/assets/asaf-sq.webp" width="900" height="900" alt="עו״ד אסף אברמזון" loading="lazy"><div class="lmw-plate"><b>עו״ד אסף אברמזון</b><span>מייסד ומנכ״ל, LEGAL MIND</span></div></div><p>מתמחה בהטמעת בינה מלאכותית במשרדי עורכי דין ובבניית תהליכי עבודה חכמים לעולם המשפט, עד סקילים שמחזיקים את שיטת העבודה של המשרד. משלב מומחיות משפטית עם הבנה עמוקה בבינה מלאכותית.</p></div>
+          <div class="lmw-card"><div class="lmw-ph"><img src="/hatmaa/assets/roy-sq.webp" width="900" height="900" alt="עו״ד רועי נימצוביץ׳" loading="lazy"><div class="lmw-plate"><b>עו״ד רועי נימצוביץ׳</b><span>מייסד שותף, LEGAL MIND</span></div></div><p>עשרים שנה בעולם המשפט, בעסקאות מורכבות, פיננסים וליטיגציה. עובד עם בינה מלאכותית למעלה מעשור, ויודע בדיוק איפה היא חוסכת לעורך דין שעות, ואיפה אסור לסמוך עליה בלי בדיקה.</p></div>
         </div>
-        <div class="meta">
-          <div class="name">עו"ד אסף אברמזון</div>
-          <div class="role">מייסד ומנכ"ל · <span dir="ltr">Legal Mind</span></div>
-        </div>
-      </article>
-
-      <article class="founder glass">
-        <div class="photo">
-          <img src="roy.jpg" alt="עו״ד רועי נימצוביץ׳" loading="lazy" />
-        </div>
-        <div class="meta">
-          <div class="name">עו"ד רועי נימצוביץ'</div>
-          <div class="role">שותף-מייסד · <span dir="ltr">Legal Mind</span></div>
-        </div>
-      </article>
-
-    </div>
+        <p class="lmw-cmte">שניהם חברים בוועדת הבינה המלאכותית של לשכת עורכי הדין.</p>
+      </div>
+      <div class="lmteam">
+  <div class="team reveal">
+    <p class="team-tag">את ההטמעה מבצעים אסף ורועי, ולצדם:</p>
+    <p class="team-h">צוות ההטמעות של LEGAL MIND</p>
+    <p class="team-p">ב-LEGAL MIND, בנוסף לעו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, שמבצעים בעצמם את ההטמעות, פועל צוות הטמעות מקצועי שעובד בצמוד אליהם בכל משרד.</p>
+    <ul class="tm-grid"><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M12 7.5l2.5 1v2c0 1.6-1.1 2.6-2.5 3-1.4-.4-2.5-1.4-2.5-3v-2z"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי IT</b><span>מנויים, הרשאות ואבטחת מידע לפי המדיניות של המשרד.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי אוטומציות מורכבות</b><span>מחברים את הכלים לתהליכים שחוזרים במשרד, כדי שהעבודה תרוץ ברקע.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מתכנתים</b><span>בונים סקילים וכלים ייעודיים לפי סוגי התיקים והתבניות של המשרד.</span></li></ul>
+  </div>
+      </div>
   </div>
 </section>
 
@@ -1244,7 +1364,52 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </section>
 
+<!-- HOW WE IMPLEMENT (as on /hatmaa/) -->
+<section class="lmhow" aria-label="כיצד אנחנו מבצעים הטמעה נכונה">
+  <div class="lm-in lm-c reveal">
+    <span class="lm-k">כיצד אנחנו מבצעים הטמעה נכונה</span>
+    <h2 class="lm-h2">מתחילים בשיחה. מסיימים במשרד שעובד חכם.</h2>
+    <p class="lm-lede">הטמעה מקצה לקצה, עם כלי הבינה המלאכותית המתקדמים בתחום.</p>
+    <ol>
+      <li><span class="n">01</span><h3>אפיון</h3><p><b>מבינים איפה הזמן הולך.</b> מאתרים את התהליכים שגוזלים הכי הרבה זמן, ויוצאים עם תכנית כתובה: מה בונים, באיזה סדר, מי במשרד מוביל, ואיך מודדים הצלחה.</p></li>
+      <li><span class="n">02</span><h3>בנייה והדרכה</h3><p><b>בוחרים את הכלים הנכונים למשרד.</b> מתנסים בהם על מסמכים אמיתיים של המשרד: מחקר, ניסוח, בדיקת מסמכים ואדמיניסטרציה. הצוות מתאמן על המשימות שלו, לא על דוגמאות כלליות.</p></li>
+      <li><span class="n">03</span><h3>המשרד עובד חכם</h3><p><b>מהיום הראשון אחרי ההטמעה, המשרד עובד אחרת.</b> כלים מותאמים בכל שולחן, ובחודשים הראשונים קשר רציף ובדיקה משותפת של המדדים שנקבעו באפיון.</p></li>
+      <li><span class="n">04</span><h3>ליווי שוטף</h3><p><b>תמיד יש למי לפנות, גם בסיום ההטמעה.</b> תמיכה, סדנאות, ליווי אישי ועדכון על כל מה שמתחדש, בהיקף שנקבע יחד.</p></li>
+    </ol>
+    <div class="stay"><p class="stay-h">לא מתקינים תוכנה והולכים.</p><p class="stay-p">בחודשים הראשונים אחרי ההטמעה אנחנו בקשר רציף איתכם, עם הדרכות וליווי, ובודקים יחד שהכלים באמת עובדים בשבילכם. וגם בסיום ההטמעה, תמיד יש למי לפנות עם כל שאלה.</p></div>
+  </div>
+</section>
+
+<!-- SECURITY AND CONFIDENTIALITY -->
+<section class="lmsec" aria-label="אבטחת מידע וסודיות">
+  <div class="lm-in reveal">
+    <span class="lm-k">אבטחת מידע וסודיות</span>
+    <h2 class="lm-h2">המידע של המשרד נשאר מוגן.</h2>
+    <p class="lm-lede">זו השאלה הראשונה של כל עורך דין, ובצדק. כך אנחנו עובדים:</p>
+    <div class="lmsec-grid">
+      <div class="lmsec-card"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></i><h3>מנוי שמתאים למשרד</h3><p>בוחרים מנוי ומגדירים אותו כך שהמידע של המשרד לא ישמש לאימון המודלים, כבר מהיום הראשון.</p></div>
+      <div class="lmsec-card"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></i><h3>הרשאות לפי מדיניות המשרד</h3><p>מומחי ה-IT שלנו מגדירים מנויים, הרשאות ואבטחת מידע לפי המדיניות והרגולציה של המשרד.</p></div>
+      <div class="lmsec-card"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 16l9-9 3 3-9 9H6z"/></svg></i><h3>האחריות נשארת אצל עורך הדין</h3><p>כל תוצר נבדק על ידי עורך דין לפני שהוא יוצא מהמשרד. הבינה המלאכותית היא כלי עבודה, לא תחליף לשיקול הדעת.</p></div>
+    </div>
+    <a class="lmsec-more" href="https://www.youtube.com/watch?v=sfr2diEKrwQ" target="_blank" rel="noopener">לסרטון של עו״ד רועי נימצוביץ׳ על פרטיות ותיקון 13 ←</a>
+  </div>
+</section>
+
 <!-- COMMUNITY -->
+<!-- OPEN CONTENT -->
+<section class="lmlatest" aria-label="תכנים פתוחים">
+  <div class="lm-in reveal">
+    <span class="lm-k">תכנים פתוחים לכולם</span>
+    <h2 class="lm-h2">ללמוד איתנו, גם בלי הטמעה.</h2>
+    <p class="lm-lede">סרטוני הדרכה, מדריכים כתובים ווובינרים על בינה מלאכותית לעורכי דין. הכול פתוח וללא עלות.</p>
+    <div class="lmlatest-grid">
+      <a href="/videos/"><b>סרטוני הדרכה</b><span>צעד אחרי צעד, על המסך עצמו: Claude, ChatGPT, Copilot ונבו.</span><em>לכל הסרטונים ←</em></a>
+      <a href="/guides/"><b>מדריכים כתובים</b><span>מדריכים מעוצבים, עם פרומפטים מוכנים להעתקה.</span><em>לכל המדריכים ←</em></a>
+      <a href="/guides/webinars.html"><b>וובינרים</b><span>מפגשים חיים והקלטות של הוובינרים של LEGAL MIND.</span><em>לוובינרים ←</em></a>
+    </div>
+  </div>
+</section>
+
 <section id="community">
   <div class="container">
     <div class="section-head reveal">
@@ -1495,7 +1660,7 @@ window.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
 
-<script defer src="/waitlist-widget.js"></script><!-- floating community join button -->
+<script defer src="/waitlist-widget.js?v=2"></script><!-- floating community join button -->
 <style>
 .community-float{
   position:fixed;bottom:calc(72px + env(safe-area-inset-bottom,0px));left:12px;z-index:75;
@@ -1547,5 +1712,6 @@ document.querySelectorAll('.faq-item').forEach(function(d){
   });
 });
 </script>
+<script>(function(){var v=document.querySelector(".impl-viz");if(!v)return;function go(){v.classList.add("go")}setTimeout(go,1800);if(!("IntersectionObserver" in window)){go();return}var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){go();io.disconnect()}},{threshold:.35});io.observe(v)})();</script>
 </body>
 </html>

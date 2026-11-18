@@ -109,6 +109,7 @@
     document.head.appendChild(style);
     var trust = document.querySelector('.trust-band');
     var contact = document.getElementById('contact');
+    if (document.body.hasAttribute('data-fit-end') && contact) { inject(contact, 'after'); return; }   // home: one form only, after the closing call to action
     if (trust) inject(trust, 'after');
     else if (contact) inject(contact, 'before');
     var footers = document.querySelectorAll('footer');
