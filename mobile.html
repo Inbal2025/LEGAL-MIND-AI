@@ -1080,6 +1080,39 @@ html, body{
 .lmnevo{padding:clamp(24px,4vw,56px) clamp(20px,5vw,48px)}
 .lmnevo .nevo-hub{margin:0 auto;max-width:1100px}
 .hero-brand{color:#96E0D6;letter-spacing:.02em}
+
+/* 18.11 redesign: founders in the hero, the city lights up through the method, dawn at the end */
+.hero-founders{display:flex;align-items:center;gap:18px 26px;flex-wrap:wrap;margin-top:clamp(26px,3.4vw,44px);padding:16px 22px;border-radius:22px;background:rgba(11,28,40,.62);border:1px solid rgba(150,224,214,.2);backdrop-filter:blur(6px);max-width:980px}
+.hf-faces{display:flex;direction:ltr}
+.hf-faces img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #0B1C28;box-shadow:0 0 0 2px rgba(150,224,214,.55)}
+.hf-faces img+img{margin-left:-14px}
+.hf-who{margin:0;display:flex;flex-direction:column;gap:3px;flex:1 1 260px}
+.hf-who b{font:500 20px/1.25 "Frank Ruhl Libre","Heebo",serif;color:#fff}
+.hf-who span{font-size:15px;line-height:1.45;color:#C3CCC7}
+.hf-nums{list-style:none;margin:0;padding:0;display:flex;gap:26px}
+.hf-nums li{display:flex;flex-direction:column;align-items:center;text-align:center}
+.hf-nums b{font:500 26px/1.1 "Frank Ruhl Libre","Heebo",serif;color:#96E0D6}
+.hf-nums span{font-size:14px;color:#C3CCC7;margin-top:3px}
+.lmhow{position:relative}
+.sky{position:relative;height:clamp(110px,14vw,170px);margin:clamp(22px,3vw,36px) auto 0;max-width:1100px;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,rgba(11,28,40,0) 0%,rgba(11,28,40,.4) 40%,rgba(255,176,96,calc(var(--p,0)*.42)) 100%);border-bottom:1px solid rgba(150,224,214,.18)}
+.sky::before{content:"";position:absolute;inset:auto 0 0 0;height:70%;background:radial-gradient(60% 90% at 50% 100%,rgba(255,190,120,calc(var(--p,0)*.5)),transparent 70%)}
+.sky svg{position:absolute;inset:0;width:100%;height:100%}
+.sky .b{fill:#0A1A24;stroke:rgba(150,224,214,.12);stroke-width:1}
+.sky .w{fill:rgba(150,224,214,.07);transition:fill .6s ease}
+.sky .w.on{fill:#FFD98A}
+.sky .w.on.t{fill:#96E0D6}
+.lmhow li{transition:border-color .6s,box-shadow .6s}
+.lmhow li.lit{border-color:rgba(255,217,138,.55);box-shadow:0 0 40px -12px rgba(255,200,120,.45)}
+.lmkeep{padding:clamp(48px,6vw,96px) clamp(20px,5vw,48px)}
+.keep-grid{list-style:none;margin:clamp(26px,3.2vw,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.keep-grid li{position:relative;padding:26px 22px 22px;border-radius:20px;background:rgba(15,36,30,.8);border:1px solid rgba(99,194,184,.22)}
+.keep-grid li::before{content:"";display:block;width:12px;height:16px;margin-bottom:16px;border-radius:2px;background:#FFD98A;box-shadow:0 0 16px rgba(255,217,138,.8)}
+.keep-grid b{display:block;font:500 clamp(21px,1.9vw,25px)/1.25 "Frank Ruhl Libre","Heebo",serif;color:#fff}
+.keep-grid span{display:block;margin-top:8px;font-size:16.5px;line-height:1.6;color:#DCE6E2}
+.cta-band.dawn{background:linear-gradient(180deg,#0B1C28 0%,rgba(11,28,40,.72) 30%,rgba(11,28,40,.45) 62%,rgba(150,80,40,.35) 100%),url('hero-bg.jpg') center 40%/cover no-repeat}
+.cta-band.dawn::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:radial-gradient(70% 100% at 50% 100%,rgba(255,180,100,.42),transparent 70%);pointer-events:none;z-index:1}
+@media (max-width:980px){.keep-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.keep-grid{grid-template-columns:1fr}.hf-nums{gap:18px;width:100%;justify-content:space-between}.hero-founders{padding:14px 16px}}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -1144,7 +1177,7 @@ window.addEventListener('DOMContentLoaded', function(){
   <ul class="menu-list">
     <li><a href="#audiences" data-menu-link>עם מי אנחנו עובדים</a></li>
     <li><a href="#about" data-menu-link>מי אנחנו</a></li>
-    <li><a href="#approach" data-menu-link>הגישה שלנו</a></li>
+    <li><a href="#how" data-menu-link>הגישה שלנו</a></li>
     <li><a href="#community" data-menu-link>הקהילה</a></li>
     <li><a href="/guides/webinars.html">וובינרים</a></li>
     <li><a href="/guides/">מדריכים</a></li>
@@ -1171,22 +1204,30 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </section>
 
-<!-- PULL QUOTE -->
-<section class="pullquote-sec" aria-label="מי אנחנו בקצרה">
+<!-- ABOUT / FOUNDERS -->
+<section id="about">
   <div class="container">
-    <blockquote class="pullquote reveal">
-      <p>לפני הכול אנחנו עורכי דין ואנשי נדל"ן.<br>ה-<span dir="ltr">AI</span> הוא רק מכפיל הכוח.</p>
-      <footer>עו"ד אסף אברמזון ועו"ד רועי נימצוביץ', מייסדי <span dir="ltr">Legal Mind</span></footer>
-    </blockquote>
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow-xl">מי אנחנו</span>
+      <h2 class="display-h2">קודם כול, עורכי דין.</h2>
+      <p class="body-lead">אנחנו יודעים איך נראה יום במשרד, מה לקוח מצפה לקבל, ואיפה עובר הקו האדום. על הבסיס הזה אנחנו חוקרים בינה מלאכותית כבר שנים, ובנינו שיטת עבודה שמתאימה לאופן שבו משרד עורכי דין באמת עובד.</p>
+      <p class="body-lead" style="font-weight:600;color:var(--ink)">את השיטה הזו אנחנו מביאים למשרד שלכם.</p>
+    </div>
+    <div class="lmw reveal">
+        <div class="lmw-grid">
+          <div class="lmw-card"><div class="lmw-ph"><img src="/hatmaa/assets/asaf-sq-w.webp" width="900" height="900" alt="עו״ד אסף אברמזון" loading="lazy"><div class="lmw-plate"><b>עו״ד אסף אברמזון</b><span>מייסד ומנכ״ל, LEGAL MIND</span></div></div><p>מתמחה בהטמעת בינה מלאכותית במשרדי עורכי דין ובבניית תהליכי עבודה חכמים לעולם המשפט, עד סקילים שמחזיקים את שיטת העבודה של המשרד. משלב מומחיות משפטית עם הבנה עמוקה בבינה מלאכותית.</p></div>
+          <div class="lmw-card"><div class="lmw-ph"><img src="/hatmaa/assets/roy-sq-w.webp" width="900" height="900" alt="עו״ד רועי נימצוביץ׳" loading="lazy"><div class="lmw-plate"><b>עו״ד רועי נימצוביץ׳</b><span>מייסד שותף, LEGAL MIND</span></div></div><p>עשרים שנה בעולם המשפט, בעסקאות מורכבות, פיננסים וליטיגציה. מהחלוצים של הבינה המלאכותית בעולם המשפט בישראל, ויודע בדיוק איפה היא חוסכת לעורך דין שעות, ואיפה אסור לסמוך עליה בלי בדיקה.</p></div>
+        </div>
+    <div class="lmnums">
+      <div class="lmnum"><b dir="ltr">+2,000</b><span>עורכי דין בקהילת LEGAL MIND</span></div>
+      <div class="lmnum"><b>מהחלוצים</b><span>בהטמעת בינה מלאכותית במשרדי עורכי דין בישראל</span></div>
+      <div class="lmnum"><b>הוועדה</b><span>חברים בוועדת הבינה המלאכותית של לשכת עורכי הדין</span></div>
+    </div>
+      </div>
+
   </div>
 </section>
 
-<!-- TRUST BAND -->
-<div class="trust-band reveal">
-  <p>בין לקוחותינו: משרדים מובילים, עורכי דין עצמאיים ומחלקות משפטיות בחברות</p>
-</div>
-
-<!-- AUDIENCES -->
 <!-- WHO IS LEGAL MIND (as on /hatmaa/) -->
 <section class="lmab" aria-label="אז מי זאת LEGAL MIND">
   <div class="lmab-in reveal">
@@ -1194,15 +1235,28 @@ window.addEventListener('DOMContentLoaded', function(){
     <p class="lmab-tag"><span class="lmab-ul">קודם בינה משפטית. אחר כך מלאכותית.<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M396 13 C 330 8, 270 17, 200 12 S 70 9, 4 15"/><path pathLength="1" d="M388 19 C 320 15, 240 21, 160 17 S 50 16, 16 20"/></svg></span></p>
     <div class="lmab-cols">
       <p>LEGAL MIND מטמיעה בינה מלאכותית בעולם המשפט והנדל״ן: הדרכות, וובינרים וליווי אישי, ובניית תהליכי עבודה שמתאימים לאופן שבו המשרד חושב ועובד. את החברה ייסדו עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, כדי להנגיש את עולם הבינה המלאכותית למשרדי עורכי הדין ולעולם המשפט.</p>
-      <p>לפני הכול אנחנו עורכי דין, והבינה המלאכותית היא מכפיל הכוח. לצדנו אנשי IT, מתכנתים ומומחי אוטומציה, וקהילה של יותר מ-2,000 עורכי דין.</p>
-    </div>
-    <div class="lmnums">
-      <div class="lmnum"><b dir="ltr">+2,000</b><span>עורכי דין בקהילת LEGAL MIND</span></div>
-      <div class="lmnum"><b>מהחלוצים</b><span>בהטמעת בינה מלאכותית במשרדי עורכי דין בישראל</span></div>
-      <div class="lmnum"><b>הוועדה</b><span>חברים בוועדת הבינה המלאכותית של לשכת עורכי הדין</span></div>
+      <p>לצדנו אנשי IT, מתכנתים ומומחי אוטומציה, וקהילה של יותר מ-2,000 עורכי דין.</p>
     </div>
   </div>
 </section>
+
+<section class="lmteam-sec" aria-label="צוות ההטמעות">
+  <div class="container">
+      <div class="lmteam">
+  <div class="team reveal">
+    <p class="team-tag">את ההטמעה מבצעים אסף ורועי, ולצדם:</p>
+    <p class="team-h">צוות ההטמעות של LEGAL MIND</p>
+    <p class="team-p">ב-LEGAL MIND, בנוסף לעו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, שמבצעים בעצמם את ההטמעות, פועל צוות הטמעות מקצועי שעובד בצמוד אליהם בכל משרד.</p>
+    <ul class="tm-grid"><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M12 7.5l2.5 1v2c0 1.6-1.1 2.6-2.5 3-1.4-.4-2.5-1.4-2.5-3v-2z"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי IT</b><span>מנויים, הרשאות ואבטחת מידע לפי המדיניות של המשרד.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי אוטומציות מורכבות</b><span>מחברים את הכלים לתהליכים שחוזרים במשרד, כדי שהעבודה תרוץ ברקע.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מתכנתים</b><span>בונים סקילים וכלים ייעודיים לפי סוגי התיקים והתבניות של המשרד.</span></li></ul>
+  </div>
+      </div>
+  </div>
+</section>
+
+<!-- TRUST BAND -->
+<div class="trust-band reveal">
+  <p>בין לקוחותינו: משרדים מובילים, עורכי דין עצמאיים ומחלקות משפטיות בחברות</p>
+</div>
 
 <section id="audiences">
   <div class="container">
@@ -1235,7 +1289,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <p class="body">בנדל"ן בינה מלאכותית היא שובר שוויון אמיתי: נדל"ן זה דאטה, כמויות עצומות של מסמכים, מספרים וגרסאות - שרוב הזמן נעולות בקלסרים, בסריקות ובאקסלים שאף אחד לא פותח. מי שיודע להשתמש בדאטה הזאת עם AI - עובד בעולם אחר, כמונו.</p>
         <p class="body">עם ניסיון מצטבר של 20 שנים בעולם הנדל"ן, אנחנו חיים את התחום: מסחרי ופרטי, תכנון ובנייה, עסקאות מורכבות, נכסים מניבים והתחדשות עירונית.</p>
         <p class="body">אם אתה יזם, חברת בנייה או איש מקצוע בתחום הנדל"ן, המערכת שנבנה לך תהיה על הפרויקטים והמסמכים שלך, לא על דוגמאות גנריות.</p>
-        <p class="body">ככה זה עוזר לנו ביום-יום, מאז שהכנסנו את ה-AI לתיקים אמיתיים במשרד - כבר אי אפשר לחזור אחורה:</p>
+        <p class="body">ככה זה עוזר לנו ביום-יום, מאז שהכנסנו את הבינה המלאכותית לתיקים אמיתיים במשרד - כבר אי אפשר לחזור אחורה:</p>
         <ul class="bulb-list">
           <li>ניתוח דאטה - נסחי טאבו, מסמכי זכויות ובדיקות נאותות בהיקפים גדולים ובתיקים מורכבים</li>
           <li>מידע תכנוני - תב"עות, זכויות בנייה, היתרים</li>
@@ -1249,7 +1303,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <span class="mini-label">ארגונים וחברות</span>
         <h3 class="title">מחלקות משפטיות בחברות וארגונים</h3>
         <p class="body aud-opener">צוות קטן. דרישות שרק גדלות.</p>
-        <p class="body">יועץ משפטי בארגון מכיר את זה: עומס פניות מהגורמים העסקיים, חוזים בהיקפים גדולים, רגולציה שמתעדכנת כל הזמן - וצוות שאמור להספיק הכל. ה-AI לא מקטין את הדרישות, אבל הוא משנה לגמרי את קצב המענה: טיוטות ראשונות בדקות, ניתוח חוזים בהיקפים שלא היו אפשריים, ידע ארגוני שזמין לכולם במקום לשבת אצל אדם אחד.</p>
+        <p class="body">יועץ משפטי בארגון מכיר את זה: עומס פניות מהגורמים העסקיים, חוזים בהיקפים גדולים, רגולציה שמתעדכנת כל הזמן - וצוות שאמור להספיק הכל. הבינה המלאכותית לא מקטינה את הדרישות, אבל הוא משנה לגמרי את קצב המענה: טיוטות ראשונות בדקות, ניתוח חוזים בהיקפים שלא היו אפשריים, ידע ארגוני שזמין לכולם במקום לשבת אצל אדם אחד.</p>
         <p class="body">אנחנו יודעים להתאים הדרכה והטמעה לסביבה ארגונית - כולל עבודה לפי מדיניות אבטחת המידע ודרישות הרגולציה של הארגון שלך. ההדרכות נבנות על החוזים, הפניות והתהליכים שלכם, והצוות יוצא איתן לעבודה כבר באותו שבוע.</p>
         <p class="body">אם אתה רוצה שהמחלקה המשפטית תפסיק להיות צוואר בקבוק ותתחיל להיות מכפיל כוח - <a href="#fit" class="aud-link">לבחינת התאמה</a>.</p>
       </article>
@@ -1258,98 +1312,13 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </section>
 
-<!-- ABOUT / FOUNDERS -->
-<section id="about">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow eyebrow-xl">מי אנחנו</span>
-      <h2 class="display-h2">סקפטי? גם אנחנו היינו.</h2>
-      <p class="body-lead">23:00. הטיוטה חוזרת בפעם הרביעית, מחר דדליין. גם אנחנו הכרנו את הערב הזה, ובהתחלה גם אנחנו ישבנו מול ה-AI ואמרנו "זה לא זה".</p>
-      <p class="body-lead">מה ששינה הכול לא היה עוד כלי, אלא שיטה: לימדנו אותו איך אנחנו עובדים, מה הלקוחות צריכים, ואיפה עובר הקו האדום.</p>
-      <p class="body-lead" style="font-weight:600;color:var(--ink)">היום אנחנו מביאים את השיטה הזו למשרדים אחרים, עם קהילה של יותר מ-2,000 עורכי דין מכל התחומים.</p>
-    </div>
-    <div class="lmw reveal">
-        <div class="lmw-grid">
-          <div class="lmw-card"><div class="lmw-ph"><img src="/hatmaa/assets/asaf-sq-w.webp" width="900" height="900" alt="עו״ד אסף אברמזון" loading="lazy"><div class="lmw-plate"><b>עו״ד אסף אברמזון</b><span>מייסד ומנכ״ל, LEGAL MIND</span></div></div><p>מתמחה בהטמעת בינה מלאכותית במשרדי עורכי דין ובבניית תהליכי עבודה חכמים לעולם המשפט, עד סקילים שמחזיקים את שיטת העבודה של המשרד. משלב מומחיות משפטית עם הבנה עמוקה בבינה מלאכותית.</p></div>
-          <div class="lmw-card"><div class="lmw-ph"><img src="/hatmaa/assets/roy-sq-w.webp" width="900" height="900" alt="עו״ד רועי נימצוביץ׳" loading="lazy"><div class="lmw-plate"><b>עו״ד רועי נימצוביץ׳</b><span>מייסד שותף, LEGAL MIND</span></div></div><p>עשרים שנה בעולם המשפט, בעסקאות מורכבות, פיננסים וליטיגציה. מהחלוצים של הבינה המלאכותית בעולם המשפט בישראל, ויודע בדיוק איפה היא חוסכת לעורך דין שעות, ואיפה אסור לסמוך עליה בלי בדיקה.</p></div>
-        </div>
-        <p class="lmw-cmte">שניהם חברים בוועדת הבינה המלאכותית של לשכת עורכי הדין.</p>
-      </div>
-      <div class="lmteam">
-  <div class="team reveal">
-    <p class="team-tag">את ההטמעה מבצעים אסף ורועי, ולצדם:</p>
-    <p class="team-h">צוות ההטמעות של LEGAL MIND</p>
-    <p class="team-p">ב-LEGAL MIND, בנוסף לעו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳, שמבצעים בעצמם את ההטמעות, פועל צוות הטמעות מקצועי שעובד בצמוד אליהם בכל משרד.</p>
-    <ul class="tm-grid"><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M12 7.5l2.5 1v2c0 1.6-1.1 2.6-2.5 3-1.4-.4-2.5-1.4-2.5-3v-2z"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי IT</b><span>מנויים, הרשאות ואבטחת מידע לפי המדיניות של המשרד.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מומחי אוטומציות מורכבות</b><span>מחברים את הכלים לתהליכים שחוזרים במשרד, כדי שהעבודה תרוץ ברקע.</span></li><li class="tm-card"><div class="cube3d" aria-hidden="true"><div class="cb"><span class="cf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="cf back"></span><span class="cf rt"></span><span class="cf lf"></span><span class="cf tp"></span><span class="cf bt"></span></div></div><b>מתכנתים</b><span>בונים סקילים וכלים ייעודיים לפי סוגי התיקים והתבניות של המשרד.</span></li></ul>
-  </div>
-      </div>
-  </div>
-</section>
-
-<!-- LIMITS / DISCLOSURE -->
-<section id="limits">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow eyebrow-xl">גילוי נאות - בכל זאת עורכי דין</span>
-      <h2 class="display-h2">מה הבינה המלאכותית לא תעשה</h2>
-    </div>
-    <ul class="bulb-list reveal">
-      <li>לא יחליף שיקול דעת משפטי</li>
-      <li>לא יחתום במקומך</li>
-      <li>לא יישא באחריות המקצועית - היא נשארת אצל עורך הדין, וכך צריך להיות</li>
-    </ul>
-    <p class="body-lead limits-note reveal">עורך הדין הוא המפקח. ה-AI הוא כלי העבודה. ככה אנחנו עובדים, וככה נלמד אותך לעבוד.</p>
-  </div>
-</section>
-
-<!-- BENEFIT -->
-<section id="benefit">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow eyebrow-xl">בלי קסמים</span>
-      <h2 class="display-h2">תועלת והתייעלות</h2>
-      <p class="body-lead lead">אנחנו לא מבטיחים קסמים. מה שאנחנו כן יודעים, מהניסיון שלנו ושל עורכי הדין שעברו אצלנו: כשיודעים לעבוד נכון עם בינה מלאכותית, החיסכון בזמן וההתייעלות מורגשים מהר - בניסוח, בניתוח מסמכים, בעבודה השוטפת. התועלת מדברת בעד עצמה, ולכן כבר המפגש הראשון מתבצע על תוצרים אמיתיים מהעבודה שלך.</p>
-    </div>
-  </div>
-</section>
-
-<!-- APPROACH -->
-<section id="approach">
-  <style>#approach .approach-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:40px}#approach .approach-card{padding:24px;display:flex;flex-direction:column;gap:8px;border-radius:16px}#approach .ac-num{font-weight:300;font-size:14px;color:var(--c-teal);letter-spacing:.18em}#approach .ac-title{font-weight:500;font-size:19px;color:var(--ink);margin:0;line-height:1.3}#approach .ac-body{font-size:14.5px;line-height:1.62;color:var(--body);margin:0}#approach .tools-block{display:flex;flex-direction:column;align-items:center;gap:16px}#approach .tools-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}#approach .spark-line{height:1px;width:100%;max-width:520px;background:linear-gradient(90deg,transparent,var(--c-teal),transparent);background-size:200% 100%;animation:lmSweep 3.6s linear infinite;opacity:.65}@keyframes lmSweep{from{background-position:200% 0}to{background-position:-200% 0}}#approach .tools-row{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px}#approach .tool-chip{padding:22px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;border-radius:16px}#approach .tool-chip .glyph{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid var(--hairline);animation:lmToolBobM 5.6s ease-in-out infinite}#approach .tool-chip:nth-child(2) .glyph{animation-delay:.7s}#approach .tool-chip:nth-child(3) .glyph{animation-delay:1.4s}#approach .tool-chip:nth-child(4) .glyph{animation-delay:2.1s}@keyframes lmToolBobM{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@media(prefers-reduced-motion:reduce){#approach .tool-chip .glyph{animation:none}}#approach .tool-name{font-weight:600;font-size:15px;color:var(--ink)}#approach .tool-tag{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}#approach .approach-note{max-width:560px;margin:30px auto 0;text-align:center;font-size:14px;color:var(--muted);line-height:1.6}#approach .tools-cta{margin-top:26px;display:flex;justify-content:center}</style>
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow eyebrow-xl">הגישה שלנו</span>
-      <h2 class="display-h2">שיטת עבודה - לא כלים.</h2>
-      <p class="body-lead lead">אתה מכיר אותם טוב: <span dir="ltr">ChatGPT</span>, <span dir="ltr">Claude</span>, <span dir="ltr">Gemini</span>, <span dir="ltr">Copilot</span>... אבל רוב מי שעובד איתם היום מנצל רק חלק קטן מהיכולת שלהם. ההבדל בין תוצר בינוני לתוצר מעולה שאפשר לעבוד איתו (ולא עליו...) זו שיטת העבודה. זה בדיוק מה שאנחנו מביאים: שיטת עבודה נכונה, מתודולוגיה שעובדת מהשטח.</p>
-    </div>
-    <div class="approach-grid reveal stagger">
-      <article class="approach-card glass"><span class="ac-num">01</span><h3 class="ac-title">מתחילים מהיום, עם מה שיש</h3><p class="ac-body">בלי כלים חדשים ש"אתה חייב לנסות" - עובדים עם הכלים שיש לך. השיטה כבר תביא את התוצאות.</p></article>
-      <article class="approach-card glass"><span class="ac-num">02</span><h3 class="ac-title">ניצול מלא של היכולות הקיימות</h3><p class="ac-body">רוב מי שעובד עם הכלים האלה מנצל חלק קטן ממה שהם באמת יודעים לעשות. אנחנו מראים לך את כל השאר.</p></article>
-      <article class="approach-card glass"><span class="ac-num">03</span><h3 class="ac-title">מתודולוגיה - זה ההבדל</h3><p class="ac-body">אותו כלי בדיוק יכול להוציא תוצר בינוני כמו תוצר מעולה. מה שמפריד ביניהם הוא אופן העבודה - וזו השיטה שאנחנו מלמדים.</p></article>
-    </div>
-    <div class="tools-block reveal">
-      <span class="tools-label">הכלים שאנחנו עובדים איתם</span>
-      <div class="spark-line" aria-hidden="true"></div>
-      <div class="tools-row">
-        <div class="tool-chip glass gpt"><span class="glyph" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="#EDEDF3"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span><span class="tool-name" dir="ltr">ChatGPT</span><span class="tool-tag" dir="ltr">OpenAI</span></div>
-        <div class="tool-chip glass claude"><span class="glyph" aria-hidden="true"><svg width="29" height="29" viewBox="0 0 24 24" fill="#D97757"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span><span class="tool-name" dir="ltr">Claude</span><span class="tool-tag" dir="ltr">Anthropic</span></div>
-        <div class="tool-chip glass gemini"><span class="glyph" aria-hidden="true"><svg width="29" height="29" viewBox="0 0 24 24"><defs><linearGradient id="lmgemg2" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4F8EF7"/><stop offset="1" stop-color="#9168F0"/></linearGradient></defs><path fill="url(#lmgemg2)" d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81Z"/></svg></span><span class="tool-name" dir="ltr">Gemini</span><span class="tool-tag" dir="ltr">Google</span></div>
-        <div class="tool-chip glass copilot"><span class="glyph" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 48 48" fill="none" stroke="#4F8EF7" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M22.32 19.203a3.99 3.99 0 0 1 3.838-2.878h11.57a3.99 3.99 0 0 1-3.838-2.869l-1.13-3.857a3.99 3.99 0 0 0-3.838-2.868m-2.678 20.138l-.57 1.938a3.99 3.99 0 0 1-3.838 2.868H10.703a3.99 3.99 0 0 1 3.847 2.888l1.102 3.819a3.99 3.99 0 0 0 3.838 2.887"/><path d="M28.751 6.73h-13.85c-3.96 0-6.335 5.225-7.912 10.46c-1.89 6.193-4.332 14.485 2.764 14.485h5.985a4 4 0 0 0 3.847-2.906c1.045-3.639 2.86-9.974 4.293-14.82c.732-2.45 1.33-4.559 2.261-5.87a3.13 3.13 0 0 1 2.612-1.349m-9.499 34.54h13.85c3.961 0 6.336-5.225 7.913-10.46c1.88-6.202 4.331-14.485-2.764-14.485h-5.985a4 4 0 0 0-3.847 2.897a1797 1797 0 0 1-4.294 14.819c-.731 2.46-1.33 4.56-2.26 5.88a3.13 3.13 0 0 1-2.613 1.349"/></svg></span><span class="tool-name" dir="ltr">Copilot</span><span class="tool-tag" dir="ltr">Microsoft</span></div>
-      </div>
-    </div>
-    <p class="approach-note reveal">כשעובדים נכון, התוצר מדויק ואמין יותר - ותמיד נשאר באחריותך המקצועית. ה-AI הוא כלי העבודה; שיקול הדעת נשאר שלך.</p>
-    <div class="tools-cta reveal">
-      <a href="#fit" class="btn btn-primary">רוצים לעלות על המסלול? <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-    </div>
-  </div>
-</section>
-
 <!-- HOW WE IMPLEMENT (as on /hatmaa/) -->
-<section class="lmhow" aria-label="כיצד אנחנו מבצעים הטמעה נכונה">
+<section class="lmhow" id="how" aria-label="כיצד אנחנו מבצעים הטמעה נכונה">
   <div class="lm-in lm-c reveal">
     <span class="lm-k">כיצד אנחנו מבצעים הטמעה נכונה</span>
     <h2 class="lm-h2">מתחילים בשיחה. מסיימים במשרד שעובד חכם.</h2>
     <p class="lm-lede">הטמעה מקצה לקצה, עם כלי הבינה המלאכותית המתקדמים בתחום.</p>
+    <div class="sky" aria-hidden="true"><svg viewBox="0 0 1100 170" preserveAspectRatio="xMidYMax slice"><g><rect class="b" x="0" y="93" width="59" height="77"/><rect class="b" x="62" y="95" width="74" height="75"/><rect class="b" x="139" y="69" width="87" height="101"/><rect class="b" x="229" y="37" width="70" height="133"/><rect class="b" x="302" y="24" width="69" height="146"/><rect class="b" x="374" y="97" width="81" height="73"/><rect class="b" x="458" y="88" width="66" height="82"/><rect class="b" x="527" y="33" width="69" height="137"/><rect class="b" x="599" y="84" width="81" height="86"/><rect class="b" x="683" y="78" width="43" height="92"/><rect class="b" x="729" y="73" width="51" height="97"/><rect class="b" x="783" y="106" width="61" height="64"/><rect class="b" x="847" y="73" width="41" height="97"/><rect class="b" x="891" y="63" width="77" height="107"/><rect class="b" x="971" y="79" width="93" height="91"/><rect class="b" x="1067" y="94" width="44" height="76"/></g><g class="ws"><rect class="w" x="7" y="103" width="5" height="7"/><rect class="w" x="18" y="103" width="5" height="7"/><rect class="w" x="40" y="103" width="5" height="7"/><rect class="w" x="7" y="116" width="5" height="7"/><rect class="w" x="29" y="116" width="5" height="7"/><rect class="w" x="40" y="116" width="5" height="7"/><rect class="w" x="7" y="129" width="5" height="7"/><rect class="w" x="18" y="129" width="5" height="7"/><rect class="w" x="29" y="129" width="5" height="7"/><rect class="w" x="40" y="129" width="5" height="7"/><rect class="w" x="7" y="142" width="5" height="7"/><rect class="w" x="29" y="142" width="5" height="7"/><rect class="w" x="40" y="142" width="5" height="7"/><rect class="w" x="7" y="155" width="5" height="7"/><rect class="w" x="18" y="155" width="5" height="7"/><rect class="w" x="29" y="155" width="5" height="7"/><rect class="w" x="40" y="155" width="5" height="7"/><rect class="w" x="69" y="105" width="5" height="7"/><rect class="w" x="80" y="105" width="5" height="7"/><rect class="w" x="91" y="105" width="5" height="7"/><rect class="w" x="102" y="105" width="5" height="7"/><rect class="w" x="113" y="105" width="5" height="7"/><rect class="w" x="124" y="105" width="5" height="7"/><rect class="w" x="69" y="118" width="5" height="7"/><rect class="w" x="80" y="118" width="5" height="7"/><rect class="w" x="91" y="118" width="5" height="7"/><rect class="w" x="102" y="118" width="5" height="7"/><rect class="w" x="113" y="118" width="5" height="7"/><rect class="w" x="124" y="118" width="5" height="7"/><rect class="w" x="69" y="131" width="5" height="7"/><rect class="w" x="80" y="131" width="5" height="7"/><rect class="w" x="91" y="131" width="5" height="7"/><rect class="w" x="102" y="131" width="5" height="7"/><rect class="w" x="113" y="131" width="5" height="7"/><rect class="w" x="124" y="131" width="5" height="7"/><rect class="w" x="69" y="144" width="5" height="7"/><rect class="w" x="80" y="144" width="5" height="7"/><rect class="w" x="91" y="144" width="5" height="7"/><rect class="w" x="102" y="144" width="5" height="7"/><rect class="w" x="113" y="144" width="5" height="7"/><rect class="w" x="124" y="144" width="5" height="7"/><rect class="w" x="80" y="157" width="5" height="7"/><rect class="w" x="91" y="157" width="5" height="7"/><rect class="w" x="113" y="157" width="5" height="7"/><rect class="w" x="124" y="157" width="5" height="7"/><rect class="w" x="146" y="79" width="5" height="7"/><rect class="w" x="157" y="79" width="5" height="7"/><rect class="w" x="168" y="79" width="5" height="7"/><rect class="w" x="179" y="79" width="5" height="7"/><rect class="w" x="190" y="79" width="5" height="7"/><rect class="w" x="201" y="79" width="5" height="7"/><rect class="w" x="146" y="92" width="5" height="7"/><rect class="w" x="157" y="92" width="5" height="7"/><rect class="w" x="168" y="92" width="5" height="7"/><rect class="w" x="179" y="92" width="5" height="7"/><rect class="w" x="190" y="92" width="5" height="7"/><rect class="w" x="146" y="105" width="5" height="7"/><rect class="w" x="157" y="105" width="5" height="7"/><rect class="w" x="168" y="105" width="5" height="7"/><rect class="w" x="179" y="105" width="5" height="7"/><rect class="w" x="190" y="105" width="5" height="7"/><rect class="w" x="146" y="118" width="5" height="7"/><rect class="w" x="157" y="118" width="5" height="7"/><rect class="w" x="168" y="118" width="5" height="7"/><rect class="w" x="179" y="118" width="5" height="7"/><rect class="w" x="190" y="118" width="5" height="7"/><rect class="w" x="201" y="118" width="5" height="7"/><rect class="w" x="212" y="118" width="5" height="7"/><rect class="w" x="146" y="131" width="5" height="7"/><rect class="w" x="157" y="131" width="5" height="7"/><rect class="w" x="168" y="131" width="5" height="7"/><rect class="w" x="179" y="131" width="5" height="7"/><rect class="w" x="190" y="131" width="5" height="7"/><rect class="w" x="212" y="131" width="5" height="7"/><rect class="w" x="146" y="144" width="5" height="7"/><rect class="w" x="157" y="144" width="5" height="7"/><rect class="w" x="179" y="144" width="5" height="7"/><rect class="w" x="201" y="144" width="5" height="7"/><rect class="w" x="212" y="144" width="5" height="7"/><rect class="w" x="146" y="157" width="5" height="7"/><rect class="w" x="179" y="157" width="5" height="7"/><rect class="w" x="190" y="157" width="5" height="7"/><rect class="w" x="201" y="157" width="5" height="7"/><rect class="w" x="212" y="157" width="5" height="7"/><rect class="w" x="236" y="47" width="5" height="7"/><rect class="w" x="247" y="47" width="5" height="7"/><rect class="w" x="258" y="47" width="5" height="7"/><rect class="w" x="269" y="47" width="5" height="7"/><rect class="w" x="280" y="47" width="5" height="7"/><rect class="w" x="236" y="60" width="5" height="7"/><rect class="w" x="247" y="60" width="5" height="7"/><rect class="w" x="280" y="60" width="5" height="7"/><rect class="w" x="236" y="73" width="5" height="7"/><rect class="w" x="247" y="73" width="5" height="7"/><rect class="w" x="280" y="73" width="5" height="7"/><rect class="w" x="236" y="86" width="5" height="7"/><rect class="w" x="247" y="86" width="5" height="7"/><rect class="w" x="258" y="86" width="5" height="7"/><rect class="w" x="269" y="86" width="5" height="7"/><rect class="w" x="280" y="86" width="5" height="7"/><rect class="w" x="236" y="99" width="5" height="7"/><rect class="w" x="258" y="99" width="5" height="7"/><rect class="w" x="269" y="99" width="5" height="7"/><rect class="w" x="280" y="99" width="5" height="7"/><rect class="w" x="236" y="112" width="5" height="7"/><rect class="w" x="247" y="112" width="5" height="7"/><rect class="w" x="258" y="112" width="5" height="7"/><rect class="w" x="280" y="112" width="5" height="7"/><rect class="w" x="236" y="125" width="5" height="7"/><rect class="w" x="247" y="125" width="5" height="7"/><rect class="w" x="258" y="125" width="5" height="7"/><rect class="w" x="269" y="125" width="5" height="7"/><rect class="w" x="236" y="138" width="5" height="7"/><rect class="w" x="247" y="138" width="5" height="7"/><rect class="w" x="258" y="138" width="5" height="7"/><rect class="w" x="269" y="138" width="5" height="7"/><rect class="w" x="236" y="151" width="5" height="7"/><rect class="w" x="247" y="151" width="5" height="7"/><rect class="w" x="258" y="151" width="5" height="7"/><rect class="w" x="269" y="151" width="5" height="7"/><rect class="w" x="280" y="151" width="5" height="7"/><rect class="w" x="309" y="34" width="5" height="7"/><rect class="w" x="320" y="34" width="5" height="7"/><rect class="w" x="342" y="34" width="5" height="7"/><rect class="w" x="353" y="34" width="5" height="7"/><rect class="w" x="309" y="47" width="5" height="7"/><rect class="w" x="320" y="47" width="5" height="7"/><rect class="w" x="331" y="47" width="5" height="7"/><rect class="w" x="309" y="60" width="5" height="7"/><rect class="w" x="320" y="60" width="5" height="7"/><rect class="w" x="331" y="60" width="5" height="7"/><rect class="w" x="342" y="60" width="5" height="7"/><rect class="w" x="353" y="60" width="5" height="7"/><rect class="w" x="309" y="73" width="5" height="7"/><rect class="w" x="320" y="73" width="5" height="7"/><rect class="w" x="331" y="73" width="5" height="7"/><rect class="w" x="342" y="73" width="5" height="7"/><rect class="w" x="353" y="73" width="5" height="7"/><rect class="w" x="331" y="86" width="5" height="7"/><rect class="w" x="342" y="86" width="5" height="7"/><rect class="w" x="353" y="86" width="5" height="7"/><rect class="w" x="309" y="99" width="5" height="7"/><rect class="w" x="320" y="99" width="5" height="7"/><rect class="w" x="331" y="99" width="5" height="7"/><rect class="w" x="342" y="99" width="5" height="7"/><rect class="w" x="353" y="99" width="5" height="7"/><rect class="w" x="309" y="112" width="5" height="7"/><rect class="w" x="320" y="112" width="5" height="7"/><rect class="w" x="331" y="112" width="5" height="7"/><rect class="w" x="353" y="112" width="5" height="7"/><rect class="w" x="342" y="125" width="5" height="7"/><rect class="w" x="353" y="125" width="5" height="7"/><rect class="w" x="309" y="138" width="5" height="7"/><rect class="w" x="320" y="138" width="5" height="7"/><rect class="w" x="331" y="138" width="5" height="7"/><rect class="w" x="342" y="138" width="5" height="7"/><rect class="w" x="320" y="151" width="5" height="7"/><rect class="w" x="331" y="151" width="5" height="7"/><rect class="w" x="342" y="151" width="5" height="7"/><rect class="w" x="353" y="151" width="5" height="7"/><rect class="w" x="392" y="107" width="5" height="7"/><rect class="w" x="403" y="107" width="5" height="7"/><rect class="w" x="414" y="107" width="5" height="7"/><rect class="w" x="425" y="107" width="5" height="7"/><rect class="w" x="436" y="107" width="5" height="7"/><rect class="w" x="381" y="120" width="5" height="7"/><rect class="w" x="392" y="120" width="5" height="7"/><rect class="w" x="414" y="120" width="5" height="7"/><rect class="w" x="425" y="120" width="5" height="7"/><rect class="w" x="381" y="133" width="5" height="7"/><rect class="w" x="392" y="133" width="5" height="7"/><rect class="w" x="403" y="133" width="5" height="7"/><rect class="w" x="414" y="133" width="5" height="7"/><rect class="w" x="436" y="133" width="5" height="7"/><rect class="w" x="381" y="146" width="5" height="7"/><rect class="w" x="414" y="146" width="5" height="7"/><rect class="w" x="425" y="146" width="5" height="7"/><rect class="w" x="436" y="146" width="5" height="7"/><rect class="w" x="381" y="159" width="5" height="7"/><rect class="w" x="392" y="159" width="5" height="7"/><rect class="w" x="414" y="159" width="5" height="7"/><rect class="w" x="425" y="159" width="5" height="7"/><rect class="w" x="476" y="98" width="5" height="7"/><rect class="w" x="487" y="98" width="5" height="7"/><rect class="w" x="498" y="98" width="5" height="7"/><rect class="w" x="509" y="98" width="5" height="7"/><rect class="w" x="465" y="111" width="5" height="7"/><rect class="w" x="476" y="111" width="5" height="7"/><rect class="w" x="487" y="111" width="5" height="7"/><rect class="w" x="498" y="111" width="5" height="7"/><rect class="w" x="465" y="124" width="5" height="7"/><rect class="w" x="476" y="124" width="5" height="7"/><rect class="w" x="487" y="124" width="5" height="7"/><rect class="w" x="509" y="124" width="5" height="7"/><rect class="w" x="476" y="137" width="5" height="7"/><rect class="w" x="487" y="137" width="5" height="7"/><rect class="w" x="498" y="137" width="5" height="7"/><rect class="w" x="509" y="137" width="5" height="7"/><rect class="w" x="465" y="150" width="5" height="7"/><rect class="w" x="476" y="150" width="5" height="7"/><rect class="w" x="487" y="150" width="5" height="7"/><rect class="w" x="498" y="150" width="5" height="7"/><rect class="w" x="509" y="150" width="5" height="7"/><rect class="w" x="534" y="43" width="5" height="7"/><rect class="w" x="545" y="43" width="5" height="7"/><rect class="w" x="556" y="43" width="5" height="7"/><rect class="w" x="567" y="43" width="5" height="7"/><rect class="w" x="578" y="43" width="5" height="7"/><rect class="w" x="534" y="56" width="5" height="7"/><rect class="w" x="545" y="56" width="5" height="7"/><rect class="w" x="556" y="56" width="5" height="7"/><rect class="w" x="567" y="56" width="5" height="7"/><rect class="w" x="578" y="56" width="5" height="7"/><rect class="w" x="534" y="69" width="5" height="7"/><rect class="w" x="545" y="69" width="5" height="7"/><rect class="w" x="556" y="69" width="5" height="7"/><rect class="w" x="567" y="69" width="5" height="7"/><rect class="w" x="534" y="82" width="5" height="7"/><rect class="w" x="545" y="82" width="5" height="7"/><rect class="w" x="556" y="82" width="5" height="7"/><rect class="w" x="567" y="82" width="5" height="7"/><rect class="w" x="578" y="82" width="5" height="7"/><rect class="w" x="534" y="95" width="5" height="7"/><rect class="w" x="545" y="95" width="5" height="7"/><rect class="w" x="556" y="95" width="5" height="7"/><rect class="w" x="578" y="95" width="5" height="7"/><rect class="w" x="556" y="108" width="5" height="7"/><rect class="w" x="567" y="108" width="5" height="7"/><rect class="w" x="545" y="121" width="5" height="7"/><rect class="w" x="556" y="121" width="5" height="7"/><rect class="w" x="567" y="121" width="5" height="7"/><rect class="w" x="578" y="121" width="5" height="7"/><rect class="w" x="534" y="134" width="5" height="7"/><rect class="w" x="545" y="134" width="5" height="7"/><rect class="w" x="556" y="134" width="5" height="7"/><rect class="w" x="567" y="134" width="5" height="7"/><rect class="w" x="534" y="147" width="5" height="7"/><rect class="w" x="545" y="147" width="5" height="7"/><rect class="w" x="556" y="147" width="5" height="7"/><rect class="w" x="567" y="147" width="5" height="7"/><rect class="w" x="545" y="160" width="5" height="7"/><rect class="w" x="567" y="160" width="5" height="7"/><rect class="w" x="578" y="160" width="5" height="7"/><rect class="w" x="606" y="94" width="5" height="7"/><rect class="w" x="617" y="94" width="5" height="7"/><rect class="w" x="628" y="94" width="5" height="7"/><rect class="w" x="639" y="94" width="5" height="7"/><rect class="w" x="650" y="94" width="5" height="7"/><rect class="w" x="661" y="94" width="5" height="7"/><rect class="w" x="606" y="107" width="5" height="7"/><rect class="w" x="617" y="107" width="5" height="7"/><rect class="w" x="628" y="107" width="5" height="7"/><rect class="w" x="639" y="107" width="5" height="7"/><rect class="w" x="650" y="107" width="5" height="7"/><rect class="w" x="661" y="107" width="5" height="7"/><rect class="w" x="606" y="120" width="5" height="7"/><rect class="w" x="617" y="120" width="5" height="7"/><rect class="w" x="628" y="120" width="5" height="7"/><rect class="w" x="650" y="120" width="5" height="7"/><rect class="w" x="606" y="133" width="5" height="7"/><rect class="w" x="617" y="133" width="5" height="7"/><rect class="w" x="628" y="133" width="5" height="7"/><rect class="w" x="639" y="133" width="5" height="7"/><rect class="w" x="650" y="133" width="5" height="7"/><rect class="w" x="661" y="133" width="5" height="7"/><rect class="w" x="606" y="146" width="5" height="7"/><rect class="w" x="628" y="146" width="5" height="7"/><rect class="w" x="639" y="146" width="5" height="7"/><rect class="w" x="650" y="146" width="5" height="7"/><rect class="w" x="606" y="159" width="5" height="7"/><rect class="w" x="617" y="159" width="5" height="7"/><rect class="w" x="628" y="159" width="5" height="7"/><rect class="w" x="639" y="159" width="5" height="7"/><rect class="w" x="650" y="159" width="5" height="7"/><rect class="w" x="661" y="159" width="5" height="7"/><rect class="w" x="701" y="88" width="5" height="7"/><rect class="w" x="712" y="88" width="5" height="7"/><rect class="w" x="690" y="101" width="5" height="7"/><rect class="w" x="712" y="101" width="5" height="7"/><rect class="w" x="701" y="114" width="5" height="7"/><rect class="w" x="712" y="114" width="5" height="7"/><rect class="w" x="690" y="127" width="5" height="7"/><rect class="w" x="712" y="127" width="5" height="7"/><rect class="w" x="690" y="140" width="5" height="7"/><rect class="w" x="701" y="140" width="5" height="7"/><rect class="w" x="712" y="140" width="5" height="7"/><rect class="w" x="690" y="153" width="5" height="7"/><rect class="w" x="701" y="153" width="5" height="7"/><rect class="w" x="712" y="153" width="5" height="7"/><rect class="w" x="736" y="83" width="5" height="7"/><rect class="w" x="747" y="83" width="5" height="7"/><rect class="w" x="758" y="83" width="5" height="7"/><rect class="w" x="769" y="83" width="5" height="7"/><rect class="w" x="736" y="96" width="5" height="7"/><rect class="w" x="747" y="96" width="5" height="7"/><rect class="w" x="758" y="96" width="5" height="7"/><rect class="w" x="736" y="109" width="5" height="7"/><rect class="w" x="747" y="109" width="5" height="7"/><rect class="w" x="758" y="109" width="5" height="7"/><rect class="w" x="736" y="122" width="5" height="7"/><rect class="w" x="747" y="122" width="5" height="7"/><rect class="w" x="758" y="122" width="5" height="7"/><rect class="w" x="769" y="122" width="5" height="7"/><rect class="w" x="736" y="135" width="5" height="7"/><rect class="w" x="747" y="135" width="5" height="7"/><rect class="w" x="758" y="135" width="5" height="7"/><rect class="w" x="747" y="148" width="5" height="7"/><rect class="w" x="758" y="148" width="5" height="7"/><rect class="w" x="769" y="148" width="5" height="7"/><rect class="w" x="736" y="161" width="5" height="7"/><rect class="w" x="758" y="161" width="5" height="7"/><rect class="w" x="769" y="161" width="5" height="7"/><rect class="w" x="801" y="116" width="5" height="7"/><rect class="w" x="812" y="116" width="5" height="7"/><rect class="w" x="834" y="116" width="5" height="7"/><rect class="w" x="790" y="129" width="5" height="7"/><rect class="w" x="801" y="129" width="5" height="7"/><rect class="w" x="812" y="129" width="5" height="7"/><rect class="w" x="823" y="129" width="5" height="7"/><rect class="w" x="790" y="142" width="5" height="7"/><rect class="w" x="801" y="142" width="5" height="7"/><rect class="w" x="812" y="142" width="5" height="7"/><rect class="w" x="823" y="142" width="5" height="7"/><rect class="w" x="834" y="142" width="5" height="7"/><rect class="w" x="790" y="155" width="5" height="7"/><rect class="w" x="801" y="155" width="5" height="7"/><rect class="w" x="812" y="155" width="5" height="7"/><rect class="w" x="834" y="155" width="5" height="7"/><rect class="w" x="854" y="83" width="5" height="7"/><rect class="w" x="865" y="83" width="5" height="7"/><rect class="w" x="876" y="83" width="5" height="7"/><rect class="w" x="854" y="96" width="5" height="7"/><rect class="w" x="865" y="96" width="5" height="7"/><rect class="w" x="876" y="96" width="5" height="7"/><rect class="w" x="854" y="109" width="5" height="7"/><rect class="w" x="865" y="109" width="5" height="7"/><rect class="w" x="876" y="109" width="5" height="7"/><rect class="w" x="854" y="122" width="5" height="7"/><rect class="w" x="865" y="122" width="5" height="7"/><rect class="w" x="876" y="122" width="5" height="7"/><rect class="w" x="854" y="135" width="5" height="7"/><rect class="w" x="865" y="135" width="5" height="7"/><rect class="w" x="876" y="135" width="5" height="7"/><rect class="w" x="854" y="148" width="5" height="7"/><rect class="w" x="854" y="161" width="5" height="7"/><rect class="w" x="876" y="161" width="5" height="7"/><rect class="w" x="898" y="73" width="5" height="7"/><rect class="w" x="909" y="73" width="5" height="7"/><rect class="w" x="920" y="73" width="5" height="7"/><rect class="w" x="931" y="73" width="5" height="7"/><rect class="w" x="942" y="73" width="5" height="7"/><rect class="w" x="953" y="73" width="5" height="7"/><rect class="w" x="909" y="86" width="5" height="7"/><rect class="w" x="920" y="86" width="5" height="7"/><rect class="w" x="931" y="86" width="5" height="7"/><rect class="w" x="942" y="86" width="5" height="7"/><rect class="w" x="953" y="86" width="5" height="7"/><rect class="w" x="909" y="99" width="5" height="7"/><rect class="w" x="920" y="99" width="5" height="7"/><rect class="w" x="931" y="99" width="5" height="7"/><rect class="w" x="942" y="99" width="5" height="7"/><rect class="w" x="953" y="99" width="5" height="7"/><rect class="w" x="898" y="112" width="5" height="7"/><rect class="w" x="909" y="112" width="5" height="7"/><rect class="w" x="931" y="112" width="5" height="7"/><rect class="w" x="942" y="112" width="5" height="7"/><rect class="w" x="953" y="112" width="5" height="7"/><rect class="w" x="898" y="125" width="5" height="7"/><rect class="w" x="920" y="125" width="5" height="7"/><rect class="w" x="931" y="125" width="5" height="7"/><rect class="w" x="942" y="125" width="5" height="7"/><rect class="w" x="953" y="125" width="5" height="7"/><rect class="w" x="898" y="138" width="5" height="7"/><rect class="w" x="909" y="138" width="5" height="7"/><rect class="w" x="920" y="138" width="5" height="7"/><rect class="w" x="931" y="138" width="5" height="7"/><rect class="w" x="942" y="138" width="5" height="7"/><rect class="w" x="909" y="151" width="5" height="7"/><rect class="w" x="920" y="151" width="5" height="7"/><rect class="w" x="931" y="151" width="5" height="7"/><rect class="w" x="942" y="151" width="5" height="7"/><rect class="w" x="953" y="151" width="5" height="7"/><rect class="w" x="978" y="89" width="5" height="7"/><rect class="w" x="989" y="89" width="5" height="7"/><rect class="w" x="1000" y="89" width="5" height="7"/><rect class="w" x="1011" y="89" width="5" height="7"/><rect class="w" x="1022" y="89" width="5" height="7"/><rect class="w" x="1044" y="89" width="5" height="7"/><rect class="w" x="989" y="102" width="5" height="7"/><rect class="w" x="1000" y="102" width="5" height="7"/><rect class="w" x="1011" y="102" width="5" height="7"/><rect class="w" x="1022" y="102" width="5" height="7"/><rect class="w" x="1033" y="102" width="5" height="7"/><rect class="w" x="1044" y="102" width="5" height="7"/><rect class="w" x="978" y="115" width="5" height="7"/><rect class="w" x="989" y="115" width="5" height="7"/><rect class="w" x="1000" y="115" width="5" height="7"/><rect class="w" x="1011" y="115" width="5" height="7"/><rect class="w" x="1022" y="115" width="5" height="7"/><rect class="w" x="1033" y="115" width="5" height="7"/><rect class="w" x="978" y="128" width="5" height="7"/><rect class="w" x="989" y="128" width="5" height="7"/><rect class="w" x="1000" y="128" width="5" height="7"/><rect class="w" x="1011" y="128" width="5" height="7"/><rect class="w" x="1022" y="128" width="5" height="7"/><rect class="w" x="1033" y="128" width="5" height="7"/><rect class="w" x="1044" y="128" width="5" height="7"/><rect class="w" x="989" y="141" width="5" height="7"/><rect class="w" x="1000" y="141" width="5" height="7"/><rect class="w" x="1011" y="141" width="5" height="7"/><rect class="w" x="1022" y="141" width="5" height="7"/><rect class="w" x="1033" y="141" width="5" height="7"/><rect class="w" x="1044" y="141" width="5" height="7"/><rect class="w" x="978" y="154" width="5" height="7"/><rect class="w" x="1011" y="154" width="5" height="7"/><rect class="w" x="1044" y="154" width="5" height="7"/><rect class="w" x="1074" y="104" width="5" height="7"/><rect class="w" x="1085" y="104" width="5" height="7"/><rect class="w" x="1096" y="104" width="5" height="7"/><rect class="w" x="1074" y="117" width="5" height="7"/><rect class="w" x="1085" y="117" width="5" height="7"/><rect class="w" x="1096" y="117" width="5" height="7"/><rect class="w" x="1074" y="130" width="5" height="7"/><rect class="w" x="1085" y="130" width="5" height="7"/><rect class="w" x="1096" y="130" width="5" height="7"/><rect class="w" x="1085" y="143" width="5" height="7"/><rect class="w" x="1096" y="143" width="5" height="7"/><rect class="w" x="1085" y="156" width="5" height="7"/><rect class="w" x="1096" y="156" width="5" height="7"/></g></svg></div>
     <ol>
       <li><span class="n">01</span><h3>אפיון</h3><p><b>מבינים איפה הזמן הולך.</b> מאתרים את התהליכים שגוזלים הכי הרבה זמן, ויוצאים עם תכנית כתובה: מה בונים, באיזה סדר, מי במשרד מוביל, ואיך מודדים הצלחה.</p></li>
       <li><span class="n">02</span><h3>בנייה והדרכה</h3><p><b>בוחרים את הכלים הנכונים למשרד.</b> מתנסים בהם על מסמכים אמיתיים של המשרד: מחקר, ניסוח, בדיקת מסמכים ואדמיניסטרציה. הצוות מתאמן על המשימות שלו, לא על דוגמאות כלליות.</p></li>
@@ -1357,6 +1326,21 @@ window.addEventListener('DOMContentLoaded', function(){
       <li><span class="n">04</span><h3>ליווי שוטף</h3><p><b>תמיד יש למי לפנות, גם בסיום ההטמעה.</b> תמיכה, סדנאות, ליווי אישי ועדכון על כל מה שמתחדש, בהיקף שנקבע יחד.</p></li>
     </ol>
     <div class="stay"><p class="stay-h">לא מתקינים תוכנה והולכים.</p><p class="stay-p">בחודשים הראשונים אחרי ההטמעה אנחנו בקשר רציף איתכם, עם הדרכות וליווי, ובודקים יחד שהכלים באמת עובדים בשבילכם. וגם בסיום ההטמעה, תמיד יש למי לפנות עם כל שאלה.</p></div>
+  </div>
+</section>
+
+<!-- WHAT STAYS IN THE OFFICE -->
+<section class="lmkeep" id="keep" aria-label="מה נשאר במשרד אחרי ההטמעה">
+  <div class="lm-in reveal">
+    <span class="lm-k">מה נשאר במשרד אחרי ההטמעה</span>
+    <h2 class="lm-h2">לא מצגת. משרד שעובד אחרת.</h2>
+    <p class="lm-lede">בסוף ההטמעה המשרד לא נשאר עם הבטחות, אלא עם דברים שאפשר לגעת בהם:</p>
+    <ul class="keep-grid">
+      <li><b>תכנית עבודה כתובה</b><span>מה בונים, באיזה סדר, מי במשרד מוביל, ואיך מודדים הצלחה.</span></li>
+      <li><b>כלים מותאמים בכל שולחן</b><span>עוזרים, תבניות ופרומפטים שבנויים על המסמכים והתהליכים של המשרד.</span></li>
+      <li><b>צוות שיודע לעבוד</b><span>עורכי הדין והצוות מתאמנים על המשימות שלהם, לא על דוגמאות כלליות.</span></li>
+      <li><b>מנויים והרשאות מוגדרים</b><span>פרטיות ואבטחת מידע לפי המדיניות של המשרד, כבר מהיום הראשון.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -1372,6 +1356,29 @@ window.addEventListener('DOMContentLoaded', function(){
       <div class="lmsec-card"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 16l9-9 3 3-9 9H6z"/></svg></i><h3>האחריות נשארת אצל עורך הדין</h3><p>כל תוצר נבדק על ידי עורך דין לפני שהוא יוצא מהמשרד. הבינה המלאכותית היא כלי עבודה, לא תחליף לשיקול הדעת.</p></div>
     </div>
     <a class="lmsec-more" href="https://www.youtube.com/watch?v=sfr2diEKrwQ" target="_blank" rel="noopener">לסרטון של עו״ד רועי נימצוביץ׳ על פרטיות ותיקון 13 ←</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (placeholders) -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow-xl">מה אומרים עלינו</span>
+      <h2 class="display-h2">עורכי דין שכבר עובדים אחרת</h2>
+      <p class="body-lead lead">מתוך עשרות עורכי דין שעברו אצלנו הדרכה, ליווי אישי וובינרים - אלה כמה מהקולות.</p>
+    </div>
+    <style>#testimonials .testi-marquee{height:560px;overflow:hidden;margin-top:6px;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 10%,#000 90%,transparent)}#testimonials .testi-track{display:flex;flex-direction:column;gap:16px;animation:lmScrollM 60s linear infinite;will-change:transform}@keyframes lmScrollM{from{transform:translateY(0)}to{transform:translateY(-50%)}}@media(prefers-reduced-motion:reduce){#testimonials .testi-track{animation:none}}</style>
+    <div class="testi-marquee reveal"><div class="testi-track">
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">אסף ליווה אותי בתחום ה-AI למקרקעין וחשף אותי לכלים חדשניים ולדרכים מעשיות לשלב בינה מלאכותית בעבודה היומיומית. הוא הסביר כל נושא בסבלנות, בצורה ברורה, נגישה ומקצועית, והפך תחום מורכב למשהו שניתן להבין וליישם בפועל. ממליצה בחום לכל מי שרוצה להטמיע כלי AI בעבודתו בצורה מקצועית ופרקטית.</p><div class="who"><span class="avatar">נ</span><div><div class="nm">עו״ד נורית ליפשיץ</div><div class="rl">מקרקעין · ליווי אישי</div></div></div></article>
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">אסף ליווה אותי בהטמעת כלי AI במשרד עורכי הדין שלי, ובראשם <span dir="ltr">Claude</span> ומערכות נוספות. היכולת שלו לתרגם טכנולוגיה מתקדמת לתהליכי עבודה פרקטיים ויעילים יוצאת דופן. בזכות הליווי חסכנו זמן רב, שיפרנו את איכות העבודה והפקנו ערך אמיתי מכלי הבינה המלאכותית. אסף מקצועי, זמין, יסודי ומבין לעומק גם את הטכנולוגיה וגם את הצרכים העסקיים של הלקוח. ממליץ עליו בחום לכל ארגון או בעל מקצוע שרוצה לשלב AI בצורה נכונה ואפקטיבית.</p><div class="who"><span class="avatar">נ</span><div><div class="nm">עו״ד נוי מרינה</div><div class="rl">נדל"ן והתחדשות עירונית</div></div></div></article>
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">נרשמתי קודם להדרכה דומה לעורכי דין מכל התחומים, ואז נתקלתי בהדרכה שלך ונרשמתי כי הרגיש הרבה יותר מדויק. הגיים-צ׳יינג׳ר האמיתי הוא שאתה עורך דין מהתחום - זה משנה את כל התמונה. שאלת, התעניינת, עזרת, והכול בסבלנות, בשפה ברורה ונגישה. תודה על ההשקעה, האכפתיות והדרך שאתה מוביל.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד · מקרקעין</div><div class="rl">בוגרת הדרכה</div></div></div></article>
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">עשיתי עם אסף ליווי אישי, והפעם עבדנו על <span dir="ltr">Claude</span> בתוך <span dir="ltr">Word</span> עצמו. יצרנו כרטיסי הצעה, וכל הערה אני מחליטה אם להכניס לטיוטה או לא - וההערות נכנסו בצורה כירורגית ומדויקת. בקיצור, תענוג. ממליצה בחום.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">ליווי אישי</div></div></div></article>
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">אסף הצליח לקחת טכנופובית כמוני ולהטמיע אצלי כלים שהולכים לשנות לי לגמרי את ההתנהלות היומיומית. סבלני מאוד, מקצועי מקסימום - הכי טוב שפגשתי בהוראת בינה מלאכותית. ממליצה בחום.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">ליווי אישי</div></div></div></article>
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">למדתי אצל אסף קורס פרטי בנושא בינה מלאכותית, וזו הייתה חוויה מעולה. הוא יודע להנגיש את החומר בצורה ברורה ומעשית, עם דוגמאות רלוונטיות וממוקדות לעולם המשפטי. מי שמחפש להיכנס לעולם ה-AI ולהבין איך הוא משדרג את העבודה היומיומית - ממליץ בלי היסוס.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">קורס פרטי AI</div></div></div></article>
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">וובינר מעולה, מעניין ופרקטי - הכי פרקטי שיש. רועי ואסף מנגישים ידע שיהיה נחוץ לכולם בקרוב. תודה, ומחכים להמשך.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">משתתף וובינר Legal Mind</div></div></div></article>
+      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">עבדנו עם אסף על הטמעת בינה מלאכותית במשרד, תוך התאמה מדויקת לאופן החשיבה והעבודה הייחודי שלנו. המטרה שלנו הייתה לאמץ עבודה עם כלים שמשתלבים בדרך שבה אנחנו עובדים, וזה בדיוק מה שהליווי של אסף עוזר לנו להשיג.</p><div class="who"><span class="avatar">נ</span><div><div class="nm">עו״ד נמרוד זינגרמן</div><div class="rl">שותף · בנאי עזריאל שטרן</div></div></div></article>
+      </div></div>
+    <script>document.querySelectorAll('#testimonials .testi-track').forEach(function(t){t.innerHTML+=t.innerHTML;});</script>
   </div>
 </section>
 
@@ -1434,29 +1441,6 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </section>
 
-<!-- TESTIMONIALS (placeholders) -->
-<section id="testimonials">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow eyebrow-xl">מה אומרים עלינו</span>
-      <h2 class="display-h2">עורכי דין שכבר עובדים אחרת</h2>
-      <p class="body-lead lead">מתוך עשרות עורכי דין שעברו אצלנו הדרכה, ליווי אישי וובינרים - אלה כמה מהקולות.</p>
-    </div>
-    <style>#testimonials .testi-marquee{height:560px;overflow:hidden;margin-top:6px;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 10%,#000 90%,transparent)}#testimonials .testi-track{display:flex;flex-direction:column;gap:16px;animation:lmScrollM 60s linear infinite;will-change:transform}@keyframes lmScrollM{from{transform:translateY(0)}to{transform:translateY(-50%)}}@media(prefers-reduced-motion:reduce){#testimonials .testi-track{animation:none}}</style>
-    <div class="testi-marquee reveal"><div class="testi-track">
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">אסף ליווה אותי בתחום ה-AI למקרקעין וחשף אותי לכלים חדשניים ולדרכים מעשיות לשלב בינה מלאכותית בעבודה היומיומית. הוא הסביר כל נושא בסבלנות, בצורה ברורה, נגישה ומקצועית, והפך תחום מורכב למשהו שניתן להבין וליישם בפועל. ממליצה בחום לכל מי שרוצה להטמיע כלי AI בעבודתו בצורה מקצועית ופרקטית.</p><div class="who"><span class="avatar">נ</span><div><div class="nm">עו״ד נורית ליפשיץ</div><div class="rl">מקרקעין · ליווי אישי</div></div></div></article>
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">אסף ליווה אותי בהטמעת כלי AI במשרד עורכי הדין שלי, ובראשם <span dir="ltr">Claude</span> ומערכות נוספות. היכולת שלו לתרגם טכנולוגיה מתקדמת לתהליכי עבודה פרקטיים ויעילים יוצאת דופן. בזכות הליווי חסכנו זמן רב, שיפרנו את איכות העבודה והפקנו ערך אמיתי מכלי הבינה המלאכותית. אסף מקצועי, זמין, יסודי ומבין לעומק גם את הטכנולוגיה וגם את הצרכים העסקיים של הלקוח. ממליץ עליו בחום לכל ארגון או בעל מקצוע שרוצה לשלב AI בצורה נכונה ואפקטיבית.</p><div class="who"><span class="avatar">נ</span><div><div class="nm">עו״ד נוי מרינה</div><div class="rl">נדל"ן והתחדשות עירונית</div></div></div></article>
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">נרשמתי קודם להדרכה דומה לעורכי דין מכל התחומים, ואז נתקלתי בהדרכה שלך ונרשמתי כי הרגיש הרבה יותר מדויק. הגיים-צ׳יינג׳ר האמיתי הוא שאתה עורך דין מהתחום - זה משנה את כל התמונה. שאלת, התעניינת, עזרת, והכול בסבלנות, בשפה ברורה ונגישה. תודה על ההשקעה, האכפתיות והדרך שאתה מוביל.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד · מקרקעין</div><div class="rl">בוגרת הדרכה</div></div></div></article>
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">עשיתי עם אסף ליווי אישי, והפעם עבדנו על <span dir="ltr">Claude</span> בתוך <span dir="ltr">Word</span> עצמו. יצרנו כרטיסי הצעה, וכל הערה אני מחליטה אם להכניס לטיוטה או לא - וההערות נכנסו בצורה כירורגית ומדויקת. בקיצור, תענוג. ממליצה בחום.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">ליווי אישי</div></div></div></article>
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">אסף הצליח לקחת טכנופובית כמוני ולהטמיע אצלי כלים שהולכים לשנות לי לגמרי את ההתנהלות היומיומית. סבלני מאוד, מקצועי מקסימום - הכי טוב שפגשתי בהוראת בינה מלאכותית. ממליצה בחום.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">ליווי אישי</div></div></div></article>
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">למדתי אצל אסף קורס פרטי בנושא בינה מלאכותית, וזו הייתה חוויה מעולה. הוא יודע להנגיש את החומר בצורה ברורה ומעשית, עם דוגמאות רלוונטיות וממוקדות לעולם המשפטי. מי שמחפש להיכנס לעולם ה-AI ולהבין איך הוא משדרג את העבודה היומיומית - ממליץ בלי היסוס.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">קורס פרטי AI</div></div></div></article>
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">וובינר מעולה, מעניין ופרקטי - הכי פרקטי שיש. רועי ואסף מנגישים ידע שיהיה נחוץ לכולם בקרוב. תודה, ומחכים להמשך.</p><div class="who"><span class="avatar">ע</span><div><div class="nm">עו״ד</div><div class="rl">משתתף וובינר Legal Mind</div></div></div></article>
-      <article class="testi-card glass"><div class="quote-mark">”</div><p class="quote">עבדנו עם אסף על הטמעת בינה מלאכותית במשרד, תוך התאמה מדויקת לאופן החשיבה והעבודה הייחודי שלנו. המטרה שלנו הייתה לאמץ עבודה עם כלים שמשתלבים בדרך שבה אנחנו עובדים, וזה בדיוק מה שהליווי של אסף עוזר לנו להשיג.</p><div class="who"><span class="avatar">נ</span><div><div class="nm">עו״ד נמרוד זינגרמן</div><div class="rl">שותף · בנאי עזריאל שטרן</div></div></div></article>
-      </div></div>
-    <script>document.querySelectorAll('#testimonials .testi-track').forEach(function(t){t.innerHTML+=t.innerHTML;});</script>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section id="faq">
   <div class="container">
@@ -1511,15 +1495,15 @@ window.addEventListener('DOMContentLoaded', function(){
 </section>
 
 <!-- FINAL CTA -->
-<section id="contact" class="cta-band reveal">
+<section id="contact" class="cta-band dawn reveal">
   <div class="cta-bloom" aria-hidden="true"></div>
   <div class="inner">
-    <span class="eyebrow eyebrow-xl">בוא נתחיל</span>
-    <h2 class="display-h2">בוא נבחן התאמה, ותדע אם זה בשבילך.</h2>
-    <p class="body-lead">נבין איפה אתה היום, ונראה לך לאן אפשר להגיע. בלי התחייבות ובלי הצגות.</p>
+    <span class="eyebrow eyebrow-xl">בואו נתחיל</span>
+    <h2 class="display-h2">המשרד הבא שנדלק יכול להיות שלכם.</h2>
+    <p class="body-lead">נבין איפה המשרד נמצא היום, ונראה לכם לאן אפשר להגיע. בלי התחייבות ובלי הצגות.</p>
     <div class="ctas">
       <a href="#fit" class="btn btn-primary">
-        לבחינת התאמה
+        לבדיקת התאמה
         <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" class="btn btn-wa" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>הצטרפות לקהילת <span dir="ltr">Legal Mind</span> בוואטסאפ</a>
@@ -1724,5 +1708,12 @@ document.querySelectorAll('.faq-item').forEach(function(d){
 });
 </script>
 <script>(function(){var v=document.querySelector(".impl-viz");if(!v||v.dataset.run)return;var T=v.querySelectorAll(".iv-tool"),L=v.querySelectorAll(".iv-ln"),P=v.querySelectorAll(".iv-pk"),M=v.querySelectorAll(".iv-minis i"),O=v.querySelector(".iv-office");var rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;function go(){if(v.dataset.run)return;v.dataset.run=1;if(rm){T.forEach(function(t){t.classList.add("in","on")});L.forEach(function(l){l.style.transition="none";l.classList.add("on")});M.forEach(function(m){m.classList.add("on")});O.classList.add("all");return}T.forEach(function(t,i){setTimeout(function(){t.classList.add("in")},i*90)});var order=[0,4,2,6,7,3,1,5];order.forEach(function(i,k){setTimeout(function(){L[i].classList.add("on");setTimeout(function(){T[i].classList.add("on");M[i].classList.add("on");P[i].classList.add("on");try{P[i].firstChild.beginElement()}catch(e){}if(k==order.length-1)setTimeout(function(){O.classList.add("all")},300)},950)},1000+k*480)})}setTimeout(go,1800);if(!("IntersectionObserver" in window)){go();return}var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){go();io.disconnect()}},{threshold:.35});io.observe(v)})();</script>
+<script>(function(){var s=document.querySelector(".lmhow");if(!s)return;var sky=s.querySelector(".sky"),W=[].slice.call(s.querySelectorAll(".sky .w")),L=s.querySelectorAll("li");
+for(var i=W.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=W[i];W[i]=W[j];W[j]=t}W.forEach(function(w,i){if(i%9==0)w.classList.add("t")});
+var lit=0,raf=0;function f(){raf=0;var r=s.getBoundingClientRect(),vh=innerHeight,p=Math.max(0,Math.min(1,(vh*.9-r.top)/(r.height*.9)));sky.style.setProperty("--p",p.toFixed(3));
+var k=Math.round(W.length*Math.min(1,p*1.15)*.9);while(lit<k){W[lit++].classList.add("on")}while(lit>k){W[--lit].classList.remove("on")}
+L.forEach(function(li,i){li.classList.toggle("lit",p>(i+.6)/(L.length+.6))})}
+if(matchMedia("(prefers-reduced-motion: reduce)").matches){W.forEach(function(w,i){if(i<W.length*.6)w.classList.add("on")});return}
+addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(f)},{passive:true});addEventListener("resize",f);f()})();</script>
 </body>
 </html>
