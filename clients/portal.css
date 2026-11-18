@@ -255,3 +255,7 @@ a.tile:active,button.tile:active{transform:translateY(5px);box-shadow:inset 0 1p
 .card{border-radius:22px}
 @media (max-width:520px){.sec-head .tb{width:58px;height:58px;border-radius:18px}.sec-head .tb .ico{width:30px;height:30px}.back{height:50px;font-size:16px}}
 @media (prefers-reduced-motion:reduce){a.tile:hover,a.tile:active,button.tile:hover,button.tile:active,.back:hover,.back:active,.btn-gold:hover,.btn-gold:active{transform:none}}
+
+.note.how p{margin:0 0 8px}
+.note.how ol{margin:4px 0 10px;padding-inline-start:20px}
+.note.how li{margin:0 0 4px}
