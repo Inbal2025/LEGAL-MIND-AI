@@ -867,35 +867,6 @@ html.nofx .hand-ul .hand path{animation:none;stroke-dashoffset:0}
 main .band{padding-top:clamp(34px,4vw,60px)!important;padding-bottom:clamp(34px,4vw,60px)!important}
 main .band .head{margin-bottom:clamp(18px,2.2vw,30px)}
 
-/* ===== friendlier light form (18.11) ===== */
-.fcard{--ink:#16231F;--ink-2:#3D504A;--ink-3:#6E7F79;--hair-2:rgba(22,35,31,.14);--teal-l:#0D7C70;
-  background:linear-gradient(180deg,#FBF8F2 0%,#F3EFE6 100%);border:0;border-radius:26px;color:var(--ink);
-  box-shadow:0 30px 70px -30px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.6) inset}
-.fcard .fc-h{color:#10201B}
-.fcard .fc-s{color:var(--ink-2);margin:10px 0 12px;font-size:16.5px;line-height:1.5}
-.fc-perks{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start}
-.fc-perks li{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:#E3F1EC;color:#0D6B60;font-weight:700;font-size:14px}
-.fc-perks li::before{content:"";width:14px;height:14px;border-radius:50%;background:#0F8A7C url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l4 4 10-10'/%3E%3C/svg%3E") center/10px no-repeat}
-.fcard .fx input{background:#fff;border:1.5px solid rgba(22,35,31,.12);border-radius:16px;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.04)}
-.fcard .fx input:focus{border-color:#0F8A7C;box-shadow:0 0 0 4px rgba(15,138,124,.14)}
-.fcard .fx label{color:var(--ink-3)}
-.fcard .fx input:focus+label,.fcard .fx input:not(:placeholder-shown)+label{color:#0D7C70}
-.fcard .pills legend{color:var(--ink);font-weight:700}
-.fcard .pills span{background:#fff;border:1.5px solid rgba(22,35,31,.12);color:var(--ink-2);box-shadow:0 1px 2px rgba(0,0,0,.04)}
-.fcard .pills label:hover span{border-color:#0F8A7C;color:#0D6B60}
-.fcard .pills input:checked+span{background:#0F8A7C;border-color:#0F8A7C;color:#fff}
-.fcard .switch{color:var(--ink-2)}
-.fcard .switch i{background:#fff;border-color:rgba(22,35,31,.35)}
-.fcard .switch i::after{border-color:#fff}
-.fcard .switch input:checked+i{background:#0F8A7C;border-color:#0F8A7C}
-.fcard .switch a{color:#0D7C70}
-.fcard .go{border-radius:99px;background:linear-gradient(135deg,#12A08F,#0B6F63);box-shadow:0 12px 26px -10px rgba(11,111,99,.6)}
-.fcard .callback{color:#0D6B60}
-.fcard .pnote{color:var(--ink-3)}
-.fcard .pnote a{color:#0D7C70}
-.fcard .fmsg,.fcard .fsend{color:#B4412E}
-.fcard .pa-tog{color:#0D7C70}
-
 /* bigger, nicer top CTA */
 .nav-cta{height:46px;padding:0 20px;border-radius:99px;font-size:16px;font-weight:800;gap:10px;background:linear-gradient(135deg,#F6D86B,#E9C24A);color:#0B1B16;box-shadow:0 6px 0 #B88A1E,0 14px 28px -12px rgba(0,0,0,.7)}
 .nav-cta i{font-style:normal;font-size:1.15em}
@@ -950,8 +921,7 @@ main .band .head{margin-bottom:clamp(18px,2.2vw,30px)}
   <div class="hx-form">
     <div class="fcard">
       <p class="fc-h">לבדיקת התאמה להטמעת בינה מלאכותית למשרד שלכם</p>
-      <p class="fc-s">ממלאים כמה פרטים, ואנחנו חוזרים אליכם לשיחה קצרה.</p>
-      <ul class="fc-perks"><li>ללא עלות</li><li>ללא התחייבות</li><li>פחות מדקה</li></ul>
+      <p class="fc-s">ללא עלות וללא התחייבות. לוקח פחות מדקה.</p>
       <form class="form" id="cf" data-source="hatmaa" method="post" novalidate>
       <div class="g2">
         <div class="fx"><input id="cn" name="fullName" type="text" autocomplete="name" placeholder=" " required maxlength="80" aria-describedby="cn-msg"><label for="cn">שם מלא *</label><div class="fmsg" id="cn-msg" role="alert"></div></div>
