@@ -936,30 +936,36 @@ html, body{
 .story p{margin:0 0 14px}
 .story .hero-ctas{margin-top:22px}
 
-/* hero: the office window, the tools fly in and dock one by one (18.11, replaces the hub) */
-.impl-viz{width:100%;max-width:500px;margin-inline:auto;perspective:1200px}
-.iv-win{position:relative;border-radius:26px;background:linear-gradient(160deg,rgba(18,50,46,.92),rgba(7,22,20,.94));border:1px solid rgba(150,224,214,.28);box-shadow:0 40px 90px -40px rgba(0,0,0,.9),0 0 0 1px rgba(99,194,184,.06),0 0 120px -30px rgba(99,194,184,.35);padding:18px 20px 20px;transform:rotateX(8deg) rotateY(-10deg);transform-style:preserve-3d;animation:ivFloat 7s ease-in-out infinite}
-.iv-bar{display:flex;align-items:center;justify-content:space-between;padding:0 4px 14px;border-bottom:1px solid rgba(150,224,214,.14)}
-.iv-bar b{font:500 21px "Frank Ruhl Libre","Heebo",serif;color:#F3F0E8}
-.iv-dots{display:flex;gap:6px;direction:ltr}.iv-dots i{width:10px;height:10px;border-radius:50%;background:rgba(243,240,232,.22)}
-.iv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:18px 2px 6px;direction:ltr}
-.iv-slot{position:relative;aspect-ratio:1;border-radius:20px;border:1.5px dashed rgba(150,224,214,.28);display:grid;place-items:center}
-.iv-tile{width:84%;aspect-ratio:1;border-radius:18px;background:#F7FBFA;display:grid;place-items:center;box-shadow:0 6px 0 #B6D0C5,0 18px 26px -14px rgba(0,0,0,.7);opacity:0;transform:translate(var(--fx),var(--fy)) rotate(var(--fr)) scale(.8)}
-.iv-tile img{width:58%;height:58%;object-fit:contain}
-.iv-tile.iv-wide img{width:82%;height:46%}
-.iv-ok{position:absolute;top:-7px;left:-7px;width:22px;height:22px;border-radius:50%;background:#2fb3a3;box-shadow:0 0 0 3px #0B1C28;opacity:0;transform:scale(.4)}
-.iv-ok::after{content:"";position:absolute;left:7px;top:4px;width:5px;height:10px;border:solid #fff;border-width:0 2.4px 2.4px 0;transform:rotate(45deg)}
-.iv-foot{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(150,224,214,.14);font:600 15.5px "Assistant",sans-serif;color:#C3CCC7;opacity:0}
-.iv-foot i{width:9px;height:9px;border-radius:50%;background:#3FE0CC;box-shadow:0 0 12px #3FE0CC}
-.impl-viz.go .iv-tile{animation:ivLand .9s cubic-bezier(.34,1.45,.64,1) var(--d) forwards}
-.impl-viz.go .iv-ok{animation:ivOk .35s cubic-bezier(.34,1.6,.64,1) var(--d) forwards}
-.impl-viz.go .iv-foot{animation:ivFade .6s ease 4.4s forwards}
-@keyframes ivLand{0%{opacity:0;transform:translate(var(--fx),var(--fy)) rotate(var(--fr)) scale(.8)}35%{opacity:1}100%{opacity:1;transform:none}}
-@keyframes ivOk{to{opacity:1;transform:scale(1)}}
-@keyframes ivFade{to{opacity:1}}
-@keyframes ivFloat{0%,100%{transform:rotateX(8deg) rotateY(-10deg) translateY(0)}50%{transform:rotateX(6deg) rotateY(-6deg) translateY(-8px)}}
-@media (prefers-reduced-motion:reduce){.iv-win{animation:none}.iv-tile,.iv-ok,.iv-foot{animation:none!important;opacity:1;transform:none}}
-@media (max-width:1099px){.hero .impl-viz{max-width:400px;margin-top:8px}.iv-win{transform:none;animation:none}}
+/* hero: tools scattered in space, each one draws a live line into the office (18.11 v3) */
+.impl-viz{position:relative;width:100%;max-width:520px;margin-inline:auto;aspect-ratio:1;container-type:inline-size;animation:ivFloat 8s ease-in-out infinite}
+.iv-net{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.iv-ln{fill:none;stroke:#63C2B8;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:.85;filter:drop-shadow(0 0 4px rgba(63,224,204,.55));transition:stroke-dashoffset 1s cubic-bezier(.6,0,.3,1)}
+.iv-ln.on{stroke-dashoffset:0}
+.iv-pk{fill:#BFFFF5;opacity:0;filter:drop-shadow(0 0 6px #3FE0CC);transition:opacity .4s}
+.iv-pk.on{opacity:1}
+.iv-tool{position:absolute;aspect-ratio:1;border-radius:22%;background:#F7FBFA;display:grid;place-items:center;box-shadow:0 5px 0 #B6D0C5,0 16px 26px -12px rgba(0,0,0,.75);opacity:0;transform:scale(.5);transition:opacity .5s,transform .7s cubic-bezier(.34,1.5,.64,1),box-shadow .5s}
+.iv-tool img{width:60%;height:60%;object-fit:contain}
+.iv-tool.iv-wide img{width:84%;height:50%}
+.iv-tool.in{opacity:1;transform:none;animation:ivBob var(--b) ease-in-out infinite}
+.iv-tool.on{box-shadow:0 5px 0 #B6D0C5,0 16px 26px -12px rgba(0,0,0,.75),0 0 0 3px rgba(63,224,204,.55),0 0 26px rgba(63,224,204,.45)}
+.iv-office{position:absolute;box-sizing:border-box;border-radius:6cqw;background:linear-gradient(160deg,rgba(18,50,46,.96),rgba(7,22,20,.97));border:1px solid rgba(150,224,214,.3);box-shadow:0 30px 70px -30px rgba(0,0,0,.9),0 0 90px -24px rgba(99,194,184,.4);padding:3.2cqw 3.4cqw;display:flex;flex-direction:column;transition:box-shadow .8s}
+.iv-office.all{box-shadow:0 30px 70px -30px rgba(0,0,0,.9),0 0 0 2px rgba(63,224,204,.5),0 0 120px -10px rgba(63,224,204,.55)}
+.iv-bar{display:flex;align-items:center;justify-content:space-between;padding-bottom:2cqw;border-bottom:1px solid rgba(150,224,214,.16)}
+.iv-bar b{font:500 4.4cqw/1 "Frank Ruhl Libre","Heebo",serif;color:#F3F0E8}
+.iv-dots{display:flex;gap:1.1cqw;direction:ltr}.iv-dots i{width:1.8cqw;height:1.8cqw;border-radius:50%;background:rgba(243,240,232,.22)}
+.iv-minis{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw;align-content:center;padding:2cqw 0;direction:ltr}
+.iv-minis i{aspect-ratio:1;border-radius:1.8cqw;border:1px dashed rgba(150,224,214,.3);display:grid;place-items:center;transition:background .4s,border-color .4s}
+.iv-minis img{width:58%;height:58%;object-fit:contain;opacity:0;transform:scale(.3);transition:opacity .35s,transform .5s cubic-bezier(.34,1.7,.64,1)}
+.iv-minis i.iv-wide img{width:86%}
+.iv-minis i.on{background:#F7FBFA;border:1px solid #F7FBFA}
+.iv-minis i.on img{opacity:1;transform:none}
+.iv-foot{display:flex;align-items:center;justify-content:center;gap:1.6cqw;font:600 3.2cqw/1 "Assistant",sans-serif;color:#C3CCC7;opacity:0;transition:opacity .6s}
+.iv-foot i{width:1.7cqw;height:1.7cqw;border-radius:50%;background:#3FE0CC;box-shadow:0 0 2.4cqw #3FE0CC}
+.iv-office.all .iv-foot{opacity:1}
+@keyframes ivBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.2cqw)}}
+@keyframes ivFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (prefers-reduced-motion:reduce){.impl-viz,.iv-tool.in{animation:none}.iv-pk{display:none}}
+@media (max-width:1099px){.hero .impl-viz{max-width:420px;margin-top:8px}}
 @media (min-width:1100px){.hero .hero-grid{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}.hero .impl-viz{align-self:start;margin-top:clamp(0px,2vw,24px)}}
 /* type: bolder Heebo headings, larger menu and body text (18.11) */
 .display-mega,.display-xl,.display-lg,.display-h1,.display-h2{font-family:"Heebo","Assistant",sans-serif;font-weight:800;letter-spacing:-.01em}
@@ -1073,6 +1079,7 @@ html, body{
 @media (max-width:560px){.lmhow ol{grid-template-columns:1fr}}
 .lmnevo{padding:clamp(24px,4vw,56px) clamp(20px,5vw,48px)}
 .lmnevo .nevo-hub{margin:0 auto;max-width:1100px}
+.hero-brand{color:#96E0D6;letter-spacing:.02em}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -1156,11 +1163,11 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="hero-photo" aria-hidden="true"></div>
   <div class="container hero-entrance">
 
-    <h1 class="hero-id reveal">הטמעת בינה מלאכותית במשרדי עורכי דין ובעולם המשפט</h1>
+    <h1 class="hero-id reveal"><span class="hero-brand" dir="ltr">LEGAL MIND</span> מטמיעה בינה מלאכותית במשרדי עורכי דין ובעולם המשפט</h1>
     <p class="hero-slogan reveal">קודם בינה משפטית. אחר כך מלאכותית. <span class="hl-accent">וזה כל ההבדל.</span></p>
     <p class="hero-desc reveal">הדרכה, ליווי והטמעה של בינה מלאכותית לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות.</p>
     <div class="hero-cta-top reveal"><a href="#fit" class="cta-gold">לבדיקת התאמה להטמעת בינה מלאכותית במשרד שלכם <i aria-hidden="true">←</i></a></div>
-    <div class="impl-viz" aria-label="הכלים שמוטמעים במשרד: Claude, ChatGPT, Gemini, Copilot, Word, Outlook, Google Calendar ונבו"><div class="iv-win"><div class="iv-bar"><span class="iv-dots"><i></i><i></i><i></i></span><b>המשרד שלכם</b></div><div class="iv-grid"><div class="iv-slot"><div class="iv-tile" style="--fx:-150px;--fy:-120px;--fr:-18deg;--d:0.50s"><img src="/brand/tools/claude.svg" alt="Claude" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:1.05s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:-60px;--fy:-170px;--fr:12deg;--d:0.92s"><img src="/brand/tools/chatgpt.svg" alt="ChatGPT" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:1.47s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:70px;--fy:-160px;--fr:-10deg;--d:1.34s"><img src="/brand/tools/gemini.svg" alt="Gemini" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:1.89s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:160px;--fy:-110px;--fr:16deg;--d:1.76s"><img src="/brand/tools/copilot.svg" alt="Copilot" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:2.31s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:-170px;--fy:130px;--fr:14deg;--d:2.18s"><img src="/brand/tools/word.svg" alt="Word" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:2.73s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:-70px;--fy:175px;--fr:-12deg;--d:2.60s"><img src="/brand/tools/outlook.svg" alt="Outlook" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:3.15s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:60px;--fy:170px;--fr:10deg;--d:3.02s"><img src="/brand/tools/google-calendar.svg" alt="Google Calendar" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:3.57s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile iv-wide" style="--fx:170px;--fy:120px;--fr:-15deg;--d:3.44s"><img src="/brand/tools/../nevo-logo.webp" alt="נבו" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:3.99s" aria-hidden="true"></i></div></div><div class="iv-foot"><i></i><span>הכלים מחוברים, והצוות יודע לעבוד איתם</span></div></div></div>
+    <div class="impl-viz" aria-label="כל הכלים מתחברים למשרד: Claude, ChatGPT, Gemini, Copilot, Word, Outlook, Google Calendar ונבו"><svg class="iv-net" viewBox="0 0 500 500" aria-hidden="true"><path class="iv-ln" id="ivp0" d="M91.6 89.0C90.3 149.7 167.1 140.9 181.5 176.5" pathLength="1"/><circle class="iv-pk" r="3.6"><animateMotion begin="indefinite" dur="1.5s" repeatCount="indefinite"><mpath href="#ivp0"/></animateMotion></circle><path class="iv-ln" id="ivp1" d="M217.6 59.4C265.9 89.3 222.1 146.8 243.2 176.5" pathLength="1"/><circle class="iv-pk" r="3.6"><animateMotion begin="indefinite" dur="1.5s" repeatCount="indefinite"><mpath href="#ivp1"/></animateMotion></circle><path class="iv-ln" id="ivp2" d="M367.9 83.3C315.2 93.0 336.9 157.8 308.6 176.5" pathLength="1"/><circle class="iv-pk" r="3.6"><animateMotion begin="indefinite" dur="1.5s" repeatCount="indefinite"><mpath href="#ivp2"/></animateMotion></circle><path class="iv-ln" id="ivp3" d="M437.9 202.8C420.8 237.9 380.5 208.4 362.0 224.2" pathLength="1"/><circle class="iv-pk" r="3.6"><animateMotion begin="indefinite" dur="1.5s" repeatCount="indefinite"><mpath href="#ivp3"/></animateMotion></circle><path class="iv-ln" id="ivp4" d="M421.8 355.4C417.3 318.8 373.4 336.6 362.0 317.6" pathLength="1"/><circle class="iv-pk" r="3.6"><animateMotion begin="indefinite" dur="1.5s" repeatCount="indefinite"><mpath href="#ivp4"/></animateMotion></circle><path class="iv-ln" id="ivp5" d="M310.6 432.0C265.1 408.4 302.4 354.6 281.6 329.5" pathLength="1"/><circle class="iv-pk" r="3.6"><animateMotion begin="indefinite" dur="1.5s" repeatCount="indefinite"><mpath href="#ivp5"/></animateMotion></circle><path class="iv-ln" id="ivp6" d="M130.0 417.3C183.9 412.8 169.2 345.5 199.5 329.5" pathLength="1"/><circle class="iv-pk" r="3.6"><animateMotion begin="indefinite" dur="1.5s" repeatCount="indefinite"><mpath href="#ivp6"/></animateMotion></circle><path class="iv-ln" id="ivp7" d="M76.0 260.7C101.7 227.6 135.5 269.4 158.0 257.2" pathLength="1"/><circle class="iv-pk" r="3.6"><animateMotion begin="indefinite" dur="1.5s" repeatCount="indefinite"><mpath href="#ivp7"/></animateMotion></circle></svg><div class="iv-tool" style="left:7.000%;top:6.600%;width:13.200%;--b:3.0s"><img src="/brand/tools/claude.svg" alt="Claude" loading="eager" decoding="async"></div><div class="iv-tool" style="left:37.200%;top:1.600%;width:10.400%;--b:4.3s"><img src="/brand/tools/chatgpt.svg" alt="ChatGPT" loading="eager" decoding="async"></div><div class="iv-tool" style="left:70.800%;top:5.600%;width:12.000%;--b:5.6s"><img src="/brand/tools/gemini.svg" alt="Gemini" loading="eager" decoding="async"></div><div class="iv-tool" style="left:87.400%;top:34.200%;width:10.000%;--b:3.0s"><img src="/brand/tools/copilot.svg" alt="Copilot" loading="eager" decoding="async"></div><div class="iv-tool" style="left:83.400%;top:68.200%;width:12.400%;--b:4.3s"><img src="/brand/tools/word.svg" alt="Word" loading="eager" decoding="async"></div><div class="iv-tool" style="left:58.200%;top:86.200%;width:10.800%;--b:5.6s"><img src="/brand/tools/outlook.svg" alt="Outlook" loading="eager" decoding="async"></div><div class="iv-tool" style="left:16.600%;top:82.200%;width:11.600%;--b:3.0s"><img src="/brand/tools/google-calendar.svg" alt="Google Calendar" loading="eager" decoding="async"></div><div class="iv-tool iv-wide" style="left:2.400%;top:46.000%;width:12.800%;--b:4.3s"><img src="/brand/tools/../nevo-logo.webp" alt="נבו" loading="eager" decoding="async"></div><div class="iv-office" style="left:32.000%;top:35.600%;width:40.000%;height:30.000%"><div class="iv-bar"><b>המשרד שלכם</b><span class="iv-dots"><i></i><i></i><i></i></span></div><div class="iv-minis"><i class=""><img src="/brand/tools/claude.svg" alt="" loading="eager" decoding="async"></i><i class=""><img src="/brand/tools/chatgpt.svg" alt="" loading="eager" decoding="async"></i><i class=""><img src="/brand/tools/gemini.svg" alt="" loading="eager" decoding="async"></i><i class=""><img src="/brand/tools/copilot.svg" alt="" loading="eager" decoding="async"></i><i class=""><img src="/brand/tools/word.svg" alt="" loading="eager" decoding="async"></i><i class=""><img src="/brand/tools/outlook.svg" alt="" loading="eager" decoding="async"></i><i class=""><img src="/brand/tools/google-calendar.svg" alt="" loading="eager" decoding="async"></i><i class="iv-wide"><img src="/brand/tools/../nevo-logo.webp" alt="" loading="eager" decoding="async"></i></div><div class="iv-foot"><i></i><span>הכול מחובר</span></div></div></div>
   </div>
 </section>
 
@@ -1716,6 +1723,6 @@ document.querySelectorAll('.faq-item').forEach(function(d){
   });
 });
 </script>
-<script>(function(){var v=document.querySelector(".impl-viz");if(!v)return;function go(){v.classList.add("go")}setTimeout(go,1800);if(!("IntersectionObserver" in window)){go();return}var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){go();io.disconnect()}},{threshold:.35});io.observe(v)})();</script>
+<script>(function(){var v=document.querySelector(".impl-viz");if(!v||v.dataset.run)return;var T=v.querySelectorAll(".iv-tool"),L=v.querySelectorAll(".iv-ln"),P=v.querySelectorAll(".iv-pk"),M=v.querySelectorAll(".iv-minis i"),O=v.querySelector(".iv-office");var rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;function go(){if(v.dataset.run)return;v.dataset.run=1;if(rm){T.forEach(function(t){t.classList.add("in","on")});L.forEach(function(l){l.style.transition="none";l.classList.add("on")});M.forEach(function(m){m.classList.add("on")});O.classList.add("all");return}T.forEach(function(t,i){setTimeout(function(){t.classList.add("in")},i*90)});var order=[0,4,2,6,7,3,1,5];order.forEach(function(i,k){setTimeout(function(){L[i].classList.add("on");setTimeout(function(){T[i].classList.add("on");M[i].classList.add("on");P[i].classList.add("on");try{P[i].firstChild.beginElement()}catch(e){}if(k==order.length-1)setTimeout(function(){O.classList.add("all")},300)},950)},1000+k*480)})}setTimeout(go,1800);if(!("IntersectionObserver" in window)){go();return}var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){go();io.disconnect()}},{threshold:.35});io.observe(v)})();</script>
 </body>
 </html>
