@@ -952,6 +952,16 @@ html, body{
 @media (max-width:980px){.lm-links .link-row{grid-template-columns:1fr 1fr}.lm-links .link-row a:last-child{grid-column:1/-1}}
 @keyframes tileFloat{0%,100%{translate:0 0}50%{translate:0 -6px}}
 .find-us{--serif:"Assistant",sans-serif;padding:clamp(40px,5vw,64px) clamp(16px,4vw,32px)}
+
+/* hero: what Legal Mind does + the main fit-check button, right at the top (18.11) */
+.hero-what{margin:0 0 18px;font-family:"Heebo","Assistant",sans-serif;font-weight:800;font-size:clamp(22px,2.3vw,32px);line-height:1.3;color:#F3F0E8;max-width:22em}
+.hero-what b{color:#96E0D6;font-weight:800}
+.cta-gold{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:60px;padding:14px 28px;border-radius:99px;font-family:"Assistant",sans-serif;font-weight:800;font-size:clamp(17px,1.5vw,20px);line-height:1.25;text-align:center;text-decoration:none;color:#0B1B16;background:linear-gradient(135deg,#F6D86B,#E9C24A);box-shadow:0 6px 0 #B88A1E,0 18px 34px -14px rgba(0,0,0,.75);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+.cta-gold:hover{transform:translateY(-2px);box-shadow:0 8px 0 #B88A1E,0 22px 40px -14px rgba(0,0,0,.8)}
+.cta-gold i{font-style:normal;font-size:1.2em}
+.hero-cta-top{margin:22px 0 26px}
+@media (max-width:560px){.cta-gold{width:100%;padding:14px 18px}}
+.nav-cta .btn.nav-gold{background:linear-gradient(135deg,#F6D86B,#E9C24A);color:#0B1B16;font-weight:800;box-shadow:0 4px 0 #B88A1E}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -1007,8 +1017,8 @@ window.addEventListener('DOMContentLoaded', function(){
     <a class="nav-nevo" href="/nevo/">לשיתוף פעולה עם <span class="nv-chip"><img src="/nevo-webinar/assets/nevo-logo.webp" alt="נבו" width="360" height="170"></span></a>
   </div>
   <div class="nav-cta">
-    <a href="#fit" class="btn btn-primary">
-      לבחינת התאמה
+    <a href="#fit" class="btn btn-primary nav-gold">
+      לבדיקת התאמה למשרד
       <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
   </div>
@@ -1022,11 +1032,12 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="container">
     <div class="hero-grid">
       <div class="hero-copy reveal hero-entrance">
-        <span class="eyebrow eyebrow-xl">AI מעשי לעורכי דין</span>
+        <p class="hero-what"><b>Legal Mind</b> מטמיעה בינה מלאכותית במשרדי עורכי דין ובעולם המשפט</p>
         <h1 class="display-mega hero-h1"><span class="hl-white">קודם בינה משפטית.</span><br>
 <span class="hl-white">אחר כך מלאכותית.</span>
 <span class="hl-accent">וזה כל ההבדל.</span></h1>
         <p class="body-lead hero-sub hero-tagline">הדרכה, ליווי והטמעת AI - לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות.</p>
+        <div class="hero-cta-top"><a href="#fit" class="cta-gold">לבדיקת התאמה להטמעת בינה מלאכותית במשרד שלכם <i aria-hidden="true">←</i></a></div>
         <p class="body-lead hero-sub">עו"ד? בטח כבר נתקלת בזה.</p>
         <p class="body-lead hero-sub">את מהפכת ה-AI אי אפשר לפספס, וברור שגם אתה - עו"ד עמוס שעסוק בלי דקה מיותרת - ניסית במשרד. הזנת פרומפטים, הגדרת לצ'אט תפקידים ("פעל כעורך דין ותיק..."), תיקנת, דייקת, ביקשת, אפילו התחננת... וקיבלת טקסט שנראה... בסדר. אה רגע, חסרים בו סעיפים חשובים. אוי, הוא ממציא חקיקה ופסיקה שלעיתים נשמעות משכנעות יותר מהמקור האמיתי. ככה אי אפשר לעבוד.</p>
         <p class="body-lead hero-sub">עד לכאן אתה צודק.</p>
