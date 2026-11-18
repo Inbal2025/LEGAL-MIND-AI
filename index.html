@@ -1150,6 +1150,8 @@ html, body{
 .cta-band.dawn::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:radial-gradient(70% 100% at 50% 100%,rgba(255,180,100,.42),transparent 70%);pointer-events:none;z-index:1}
 @media (max-width:980px){.keep-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.keep-grid{grid-template-columns:1fr}.hf-nums{gap:18px;width:100%;justify-content:space-between}.hero-founders{padding:14px 16px}}
+#community .cm-grid{list-style:none;margin:clamp(22px,3vw,36px) 0 clamp(26px,3.2vw,40px);padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}#community .cm-grid li{padding:22px 20px;border-radius:20px;background:rgba(15,36,30,.8);border:1px solid rgba(99,194,184,.22)}#community .cm-grid i{display:grid;margin:0 0 0 auto;float:none;place-items:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(150deg,#2fb3a3,#0f8a7c);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 5px 0 #095a51}#community .cm-grid svg{width:23px;height:23px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}#community .cm-grid b{display:block;margin:14px 0 6px;font:500 clamp(20px,1.8vw,24px)/1.25 "Frank Ruhl Libre","Heebo",serif;color:#fff}#community .cm-grid span{display:block;font-size:16px;line-height:1.6;color:#DCE6E2}@media (max-width:900px){#community .cm-grid{grid-template-columns:1fr 1fr}}@media (max-width:560px){#community .cm-grid{grid-template-columns:1fr}}
+section.hero{padding-bottom:80px!important}
 </style>
 <script>
 /* Early safety net: reveal all content after 800ms even if module script fails */
@@ -1486,6 +1488,21 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </section>
 
+<!-- COMMUNITY (above the open content, 18.11) -->
+<section id="community">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow-xl">הקהילה</span>
+      <h2 class="display-xl">קהילת <span dir="ltr">LEGAL MIND</span></h2>
+      <p class="body-lead lead">מעל 2,000 עורכי דין מכל תחומי המשפט, שלומדים יחד לעבוד נכון עם בינה מלאכותית. ההצטרפות בוואטסאפ, ללא עלות. זה מה שמקבלים בקהילה:</p>
+    </div>
+    <ul class="cm-grid reveal"><li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></i><b>ראשונים לדעת</b><span>כל חדשה חשובה מעולם הבינה המלאכותית בעולם המשפט מגיעה אליכם קודם, עם הסבר מה היא אומרת למשרד.</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg></i><b>לייב שבועי בזום</b><span>פעם בשבוע עו״ד אסף אברמזון ועו״ד רועי נימצוביץ׳ עונים בשידור חי על השאלות שחברי הקהילה שלחו להם.</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></i><b>סקילים מוכנים</b><span>סקילים שאפשר להתקין ולהתחיל לעבוד איתם מיד, בלי לבנות מאפס.</span></li><li><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 14.5c3 0 6 1.7 6 5"/></svg></i><b>עמיתים מכל התחומים</b><span>אלפיים עורכי דין שמשתפים מה עובד להם, ושואלים כשמשהו לא.</span></li></ul>
+    <div class="reveal">
+      <a href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener" class="btn btn-primary community-btn"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>הצטרפות לקהילה בוואטסאפ</a>
+    </div>
+  </div>
+</section>
+
 <!-- OPEN CONTENT -->
 <section class="lmlatest" aria-label="תכנים פתוחים">
   <div class="lm-in reveal">
@@ -1493,22 +1510,9 @@ window.addEventListener('DOMContentLoaded', function(){
     <h2 class="lm-h2">ללמוד איתנו, גם בלי הטמעה.</h2>
     <p class="lm-lede">סרטוני הדרכה, מדריכים כתובים ווובינרים על בינה מלאכותית לעורכי דין. הכול פתוח וללא עלות.</p>
     <div class="lmlatest-grid">
-      <a href="/videos/"><b>סרטוני הדרכה</b><span>צעד אחרי צעד, על המסך עצמו: Claude, ChatGPT, Copilot ונבו.</span><em>לכל הסרטונים ←</em></a>
+      <a href="/videos/"><b>סרטוני הדרכה</b><span>צעד אחרי צעד, על המסך עצמו: <span dir="ltr">Claude</span>, <span dir="ltr">ChatGPT</span>, <span dir="ltr">Copilot</span> ונבו.</span><em>לכל הסרטונים ←</em></a>
       <a href="/guides/"><b>מדריכים כתובים</b><span>מדריכים מעוצבים, עם פרומפטים מוכנים להעתקה.</span><em>לכל המדריכים ←</em></a>
-      <a href="/guides/webinars.html"><b>וובינרים</b><span>מפגשים חיים והקלטות של הוובינרים של LEGAL MIND.</span><em>לוובינרים ←</em></a>
-    </div>
-  </div>
-</section>
-
-<section id="community">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow eyebrow-xl">הקהילה</span>
-      <h2 class="display-xl">קהילת <span dir="ltr">Legal Mind</span></h2>
-      <p class="body-lead lead">קהילת הבינה המלאכותית לעורכי דין בישראל - מעל 2,000 חברים מכל תחומי המשפט. עדכונים שוטפים על כלים, פרומפטים, סקילים ואירועים. ההצטרפות ללא עלות.</p>
-    </div>
-    <div class="reveal">
-      <a href="https://chat.whatsapp.com/H4QqSkRSKs8CCdWamiWj4Z" target="_blank" rel="noopener" class="btn btn-primary community-btn"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>הצטרפות לקהילה בוואטסאפ</a>
+      <a href="/guides/webinars.html"><b>וובינרים</b><span>מפגשים חיים והקלטות של הוובינרים של <span dir="ltr" style="white-space:nowrap">LEGAL MIND</span>.</span><em>לוובינרים ←</em></a>
     </div>
   </div>
 </section>
