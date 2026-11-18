@@ -936,34 +936,31 @@ html, body{
 .story p{margin:0 0 14px}
 .story .hero-ctas{margin-top:22px}
 
-/* hero: "implementation" constellation, the office connects to its tools one by one (18.11) */
-.impl-viz{width:100%;max-width:520px;margin-inline:auto;aspect-ratio:1/1}
-.impl-viz svg{width:100%;height:100%;overflow:visible;font-family:"Heebo","Assistant",sans-serif}
-.iv-orbit{fill:none;stroke:rgba(150,224,214,.14);stroke-width:1.2;stroke-dasharray:3 7;transform-origin:260px 260px;animation:ivSpin 90s linear infinite}
-.iv-line{fill:none;stroke:#63C2B8;stroke-width:2;stroke-linecap:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);opacity:.85}
-.impl-viz.go .iv-line{animation:ivDraw .7s cubic-bezier(.2,.7,.2,1) var(--d) forwards}
-.iv-dot{fill:#F6D86B;opacity:0;offset-distance:0%}
-.impl-viz.go .iv-dot{animation:ivFlow 3.6s ease-in-out var(--d) infinite}
-.iv-node rect{fill:rgba(12,36,40,.92);stroke:rgba(150,224,214,.28);stroke-width:1.2;transition:stroke .4s}
-.iv-node text{fill:#DCE6E2;font-size:21px;font-weight:700;text-anchor:middle}
-.iv-node{opacity:.35}
-.impl-viz.go .iv-node{animation:ivOn .6s ease var(--d) forwards}
-.iv-hub .iv-ring{fill:none;stroke:#E9C24A;stroke-width:2;opacity:.7;transform-origin:0 0;animation:ivPulse 3.2s ease-in-out 1s infinite}
-.iv-hub .iv-core{fill:#0F2E2A;stroke:#96E0D6;stroke-width:1.5}
-.iv-hub text{text-anchor:middle;fill:#FFFFFF;font-weight:800}
-.iv-hub-t1{font-size:25px}.iv-hub-t2{font-size:25px;fill:#96E0D6!important}
-@keyframes ivDraw{to{stroke-dashoffset:0}}
-@keyframes ivOn{to{opacity:1}}
-.iv-node{--glow:0}
-@keyframes ivFlow{0%{opacity:0;offset-distance:0%}12%{opacity:1}80%{opacity:1}100%{opacity:0;offset-distance:100%}}
-@keyframes ivPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.07);opacity:.25}}
-@keyframes ivSpin{to{transform:rotate(360deg)}}
-.impl-viz .iv-node{animation-fill-mode:forwards}
-.impl-viz.lit .iv-node rect{stroke:#63C2B8}
-.impl-viz .iv-node:nth-of-type(n){}
-@media (prefers-reduced-motion:reduce){.iv-line{animation:none;stroke-dashoffset:0}.iv-node{animation:none;opacity:1}.iv-dot,.iv-orbit,.iv-hub .iv-ring{animation:none}.iv-dot{display:none}}
+/* hero: the office window, the tools fly in and dock one by one (18.11, replaces the hub) */
+.impl-viz{width:100%;max-width:500px;margin-inline:auto;perspective:1200px}
+.iv-win{position:relative;border-radius:26px;background:linear-gradient(160deg,rgba(18,50,46,.92),rgba(7,22,20,.94));border:1px solid rgba(150,224,214,.28);box-shadow:0 40px 90px -40px rgba(0,0,0,.9),0 0 0 1px rgba(99,194,184,.06),0 0 120px -30px rgba(99,194,184,.35);padding:18px 20px 20px;transform:rotateX(8deg) rotateY(-10deg);transform-style:preserve-3d;animation:ivFloat 7s ease-in-out infinite}
+.iv-bar{display:flex;align-items:center;justify-content:space-between;padding:0 4px 14px;border-bottom:1px solid rgba(150,224,214,.14)}
+.iv-bar b{font:500 21px "Frank Ruhl Libre","Heebo",serif;color:#F3F0E8}
+.iv-dots{display:flex;gap:6px;direction:ltr}.iv-dots i{width:10px;height:10px;border-radius:50%;background:rgba(243,240,232,.22)}
+.iv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:18px 2px 6px;direction:ltr}
+.iv-slot{position:relative;aspect-ratio:1;border-radius:20px;border:1.5px dashed rgba(150,224,214,.28);display:grid;place-items:center}
+.iv-tile{width:84%;aspect-ratio:1;border-radius:18px;background:#F7FBFA;display:grid;place-items:center;box-shadow:0 6px 0 #B6D0C5,0 18px 26px -14px rgba(0,0,0,.7);opacity:0;transform:translate(var(--fx),var(--fy)) rotate(var(--fr)) scale(.8)}
+.iv-tile img{width:58%;height:58%;object-fit:contain}
+.iv-tile.iv-wide img{width:82%;height:46%}
+.iv-ok{position:absolute;top:-7px;left:-7px;width:22px;height:22px;border-radius:50%;background:#2fb3a3;box-shadow:0 0 0 3px #0B1C28;opacity:0;transform:scale(.4)}
+.iv-ok::after{content:"";position:absolute;left:7px;top:4px;width:5px;height:10px;border:solid #fff;border-width:0 2.4px 2.4px 0;transform:rotate(45deg)}
+.iv-foot{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(150,224,214,.14);font:600 15.5px "Assistant",sans-serif;color:#C3CCC7;opacity:0}
+.iv-foot i{width:9px;height:9px;border-radius:50%;background:#3FE0CC;box-shadow:0 0 12px #3FE0CC}
+.impl-viz.go .iv-tile{animation:ivLand .9s cubic-bezier(.34,1.45,.64,1) var(--d) forwards}
+.impl-viz.go .iv-ok{animation:ivOk .35s cubic-bezier(.34,1.6,.64,1) var(--d) forwards}
+.impl-viz.go .iv-foot{animation:ivFade .6s ease 4.4s forwards}
+@keyframes ivLand{0%{opacity:0;transform:translate(var(--fx),var(--fy)) rotate(var(--fr)) scale(.8)}35%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes ivOk{to{opacity:1;transform:scale(1)}}
+@keyframes ivFade{to{opacity:1}}
+@keyframes ivFloat{0%,100%{transform:rotateX(8deg) rotateY(-10deg) translateY(0)}50%{transform:rotateX(6deg) rotateY(-6deg) translateY(-8px)}}
+@media (prefers-reduced-motion:reduce){.iv-win{animation:none}.iv-tile,.iv-ok,.iv-foot{animation:none!important;opacity:1;transform:none}}
+@media (max-width:1099px){.hero .impl-viz{max-width:400px;margin-top:8px}.iv-win{transform:none;animation:none}}
 @media (min-width:1100px){.hero .hero-grid{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}.hero .impl-viz{align-self:start;margin-top:clamp(0px,2vw,24px)}}
-@media (max-width:1099px){.hero .impl-viz{max-width:400px}}
 /* type: bolder Heebo headings, larger menu and body text (18.11) */
 .display-mega,.display-xl,.display-lg,.display-h1,.display-h2{font-family:"Heebo","Assistant",sans-serif;font-weight:800;letter-spacing:-.01em}
 .nav-links a{font-size:15.5px}
@@ -1163,7 +1160,7 @@ window.addEventListener('DOMContentLoaded', function(){
     <p class="hero-slogan reveal">קודם בינה משפטית. אחר כך מלאכותית. <span class="hl-accent">וזה כל ההבדל.</span></p>
     <p class="hero-desc reveal">הדרכה, ליווי והטמעה של בינה מלאכותית לעורכי דין, לאנשי נדל"ן ולמחלקות משפטיות.</p>
     <div class="hero-cta-top reveal"><a href="#fit" class="cta-gold">לבדיקת התאמה להטמעת בינה מלאכותית במשרד שלכם <i aria-hidden="true">←</i></a></div>
-    <div class="impl-viz" aria-hidden="true"><svg viewBox="0 0 520 520" role="presentation"><defs><radialGradient id="ivGlow"><stop offset="0" stop-color="#63C2B8" stop-opacity=".35"/><stop offset="1" stop-color="#63C2B8" stop-opacity="0"/></radialGradient></defs><circle class="iv-orbit" cx="260" cy="260" r="190"/><circle cx="260" cy="260" r="248" fill="rgba(7,19,15,.55)"/><circle cx="260" cy="260" r="150" fill="url(#ivGlow)"/><path class="iv-line" d="M260.0 190.0 L260.0 104.0" style="--len:86.0;--d:0.60s"/><circle class="iv-dot" r="3.4" style="--d:1.50s;offset-path:path('M260.0 190.0 L260.0 104.0')"/><path class="iv-line" d="M309.5 210.5 L370.3 149.7" style="--len:86.0;--d:1.15s"/><circle class="iv-dot" r="3.4" style="--d:2.05s;offset-path:path('M309.5 210.5 L370.3 149.7')"/><path class="iv-line" d="M330.0 260.0 L416.0 260.0" style="--len:86.0;--d:1.70s"/><circle class="iv-dot" r="3.4" style="--d:2.60s;offset-path:path('M330.0 260.0 L416.0 260.0')"/><path class="iv-line" d="M309.5 309.5 L370.3 370.3" style="--len:86.0;--d:2.25s"/><circle class="iv-dot" r="3.4" style="--d:3.15s;offset-path:path('M309.5 309.5 L370.3 370.3')"/><path class="iv-line" d="M260.0 330.0 L260.0 416.0" style="--len:86.0;--d:2.80s"/><circle class="iv-dot" r="3.4" style="--d:3.70s;offset-path:path('M260.0 330.0 L260.0 416.0')"/><path class="iv-line" d="M210.5 309.5 L149.7 370.3" style="--len:86.0;--d:3.35s"/><circle class="iv-dot" r="3.4" style="--d:4.25s;offset-path:path('M210.5 309.5 L149.7 370.3')"/><path class="iv-line" d="M190.0 260.0 L104.0 260.0" style="--len:86.0;--d:3.90s"/><circle class="iv-dot" r="3.4" style="--d:4.80s;offset-path:path('M190.0 260.0 L104.0 260.0')"/><path class="iv-line" d="M210.5 210.5 L149.7 149.7" style="--len:86.0;--d:4.45s"/><circle class="iv-dot" r="3.4" style="--d:5.35s;offset-path:path('M210.5 210.5 L149.7 149.7')"/><g class="iv-hub" transform="translate(260 260)"><circle class="iv-ring" r="70"/><circle class="iv-core" r="62"/><text class="iv-hub-t1" y="-4" direction="rtl">המשרד</text><text class="iv-hub-t2" y="22" direction="rtl">שלכם</text></g><g class="iv-node" style="--d:1.15s" transform="translate(260.0 70.0)"><rect x="-64.7" y="-22" width="129.3" height="44" rx="22"/><text y="7" >Claude</text></g><g class="iv-node" style="--d:1.70s" transform="translate(394.4 125.6)"><rect x="-72.0" y="-22" width="144.0" height="44" rx="22"/><text y="7" >ChatGPT</text></g><g class="iv-node" style="--d:2.25s" transform="translate(450.0 260.0)"><rect x="-72.0" y="-22" width="144.0" height="44" rx="22"/><text y="7" >Copilot</text></g><g class="iv-node" style="--d:2.80s" transform="translate(394.4 394.4)"><rect x="-48.2" y="-22" width="96.4" height="44" rx="22"/><text y="7" direction="rtl">נבו</text></g><g class="iv-node" style="--d:3.35s" transform="translate(260.0 450.0)"><rect x="-50.0" y="-22" width="100.0" height="44" rx="22"/><text y="7" >Word</text></g><g class="iv-node" style="--d:3.90s" transform="translate(125.6 394.4)"><rect x="-72.0" y="-22" width="144.0" height="44" rx="22"/><text y="7" >Outlook</text></g><g class="iv-node" style="--d:4.45s" transform="translate(70.0 260.0)"><rect x="-66.5" y="-22" width="133.0" height="44" rx="22"/><text y="7" direction="rtl">היומן</text></g><g class="iv-node" style="--d:5.00s" transform="translate(125.6 125.6)"><rect x="-66.5" y="-22" width="133.0" height="44" rx="22"/><text y="7" direction="rtl">הצוות</text></g></svg></div>
+    <div class="impl-viz" aria-label="הכלים שמוטמעים במשרד: Claude, ChatGPT, Gemini, Copilot, Word, Outlook, Google Calendar ונבו"><div class="iv-win"><div class="iv-bar"><span class="iv-dots"><i></i><i></i><i></i></span><b>המשרד שלכם</b></div><div class="iv-grid"><div class="iv-slot"><div class="iv-tile" style="--fx:-150px;--fy:-120px;--fr:-18deg;--d:0.50s"><img src="/brand/tools/claude.svg" alt="Claude" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:1.05s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:-60px;--fy:-170px;--fr:12deg;--d:0.92s"><img src="/brand/tools/chatgpt.svg" alt="ChatGPT" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:1.47s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:70px;--fy:-160px;--fr:-10deg;--d:1.34s"><img src="/brand/tools/gemini.svg" alt="Gemini" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:1.89s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:160px;--fy:-110px;--fr:16deg;--d:1.76s"><img src="/brand/tools/copilot.svg" alt="Copilot" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:2.31s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:-170px;--fy:130px;--fr:14deg;--d:2.18s"><img src="/brand/tools/word.svg" alt="Word" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:2.73s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:-70px;--fy:175px;--fr:-12deg;--d:2.60s"><img src="/brand/tools/outlook.svg" alt="Outlook" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:3.15s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile" style="--fx:60px;--fy:170px;--fr:10deg;--d:3.02s"><img src="/brand/tools/google-calendar.svg" alt="Google Calendar" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:3.57s" aria-hidden="true"></i></div><div class="iv-slot"><div class="iv-tile iv-wide" style="--fx:170px;--fy:120px;--fr:-15deg;--d:3.44s"><img src="/brand/tools/../nevo-logo.webp" alt="נבו" width="48" height="48" loading="eager" decoding="async"></div><i class="iv-ok" style="--d:3.99s" aria-hidden="true"></i></div></div><div class="iv-foot"><i></i><span>הכלים מחוברים, והצוות יודע לעבוד איתם</span></div></div></div>
   </div>
 </section>
 
