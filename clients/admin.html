@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<script>(function(){var t;try{t=localStorage.getItem("lm-theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}document.documentElement.setAttribute("data-theme",t)})();</script>
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ניהול האזור האישי | LEGAL MIND</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/clients/portal.css">
+<style>
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s3);flex-wrap:wrap}
+.pending{display:flex;align-items:baseline;gap:12px;text-decoration:none;color:var(--body);cursor:pointer;padding:8px 0}
+.pending b{font:300 44px/1 var(--head);color:var(--ink);font-variant-numeric:tabular-nums}
+.pending span{font-size:14.5px;color:var(--muted)}
+.pending:not(.zero) span{color:var(--gold)}
+/* sections as small ceramic tiles instead of a tab bar (same buttons and logic) */
+.tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin:var(--s3) 0 var(--s3)}
+.tabs button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:64px;padding:10px 12px;border:0;border-radius:18px;cursor:pointer;font:600 16px var(--sans);color:var(--tk);
+  background:linear-gradient(165deg,var(--tf),var(--tf2));box-shadow:inset 0 1px 0 var(--tile-hl),0 4px 0 var(--te),0 12px 20px -14px var(--tile-amb);transition:transform .2s,box-shadow .2s}
+.tabs button:nth-child(1){--tf:var(--clay-f);--tf2:var(--clay-f2);--te:var(--clay-e);--tk:var(--clay-k)}
+.tabs button:nth-child(2){--tf:var(--sand-f);--tf2:var(--sand-f2);--te:var(--sand-e);--tk:var(--sand-k)}
+.tabs button:nth-child(3){--tf:var(--sage-f);--tf2:var(--sage-f2);--te:var(--sage-e);--tk:var(--sage-k)}
+.tabs button:nth-child(4){--tf:var(--teal-f);--tf2:var(--teal-f2);--te:var(--teal-e);--tk:var(--teal-k)}
+.tabs button:nth-child(5){--tf:var(--gold-f);--tf2:var(--gold-f2);--te:var(--gold-e);--tk:var(--gold-k)}
+.tabs button:nth-child(6){--tf:var(--clay-f);--tf2:var(--clay-f2);--te:var(--clay-e);--tk:var(--clay-k)}
+.tabs button:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 var(--tile-hl),0 7px 0 var(--te),0 18px 26px -14px var(--tile-amb)}
+.tabs button[aria-selected="true"]{transform:translateY(3px);box-shadow:inset 0 2px 6px rgba(0,0,0,.12),0 1px 0 var(--te);outline:2px solid var(--tk);outline-offset:3px}
+.tabs .badge{background:var(--te);color:var(--tk)}
+@media (max-width:900px){.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.tabs button{transition:none}.tabs button:hover,.tabs button[aria-selected="true"]{transform:none}}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:right;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{color:var(--muted);font:600 12.5px var(--sans);letter-spacing:.02em;padding-top:0}
+td{color:var(--body);font-variant-numeric:tabular-nums}
+td b{color:var(--ink);font-weight:600}
+tbody tr:hover td{background:rgba(var(--fg-rgb),.015)}
+.row-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--s2);align-items:end;margin-bottom:var(--s4);padding:var(--s3);border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.row-form .btn{min-height:48px}
+.alert{color:var(--gold)}
+.scroll{overflow-x:auto}
+.quiet{color:var(--muted);font-size:15px;padding:var(--s2) 0}
+.inbox{display:grid;grid-template-columns:340px minmax(0,1fr);gap:var(--s4);align-items:start}
+.ifl{display:flex;gap:2px;flex-wrap:wrap;margin-bottom:var(--s2)}
+.ifl button{border:0;background:transparent;color:var(--muted);border-radius:8px;padding:6px 10px;font:500 14px var(--sans);cursor:pointer}
+.ifl button:hover{color:var(--hi)}
+.ifl button[aria-pressed="true"]{color:var(--hi);background:var(--surface-2)}
+.ilist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);max-height:72vh;overflow:auto}
+.ilist a{display:block;padding:14px 12px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);transition:background .2s}
+.ilist a:hover{background:rgba(var(--fg-rgb),.02)}
+.ilist a[aria-current="true"]{background:var(--surface-2);box-shadow:inset -2px 0 0 var(--teal)}
+.ilist .r1{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--muted)}
+.ilist b{display:flex;align-items:center;gap:8px;color:var(--ink);font:500 16px/1.4 var(--head);margin:5px 0 4px}
+.idet{min-height:420px;padding:clamp(20px,3vw,32px)}
+.idet .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s2);flex-wrap:wrap;padding-bottom:var(--s3);margin-bottom:var(--s3);border-bottom:1px solid var(--line)}
+.idet h2{font-size:clamp(22px,2.1vw,27px);font-weight:400}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ctl select{background:var(--input-bg);border:1px solid var(--line-2);border-radius:8px;color:var(--ink);font:500 14px var(--sans);padding:7px 10px;direction:rtl}
+.mode{display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:10px;align-self:flex-start}
+.mode button{border:0;background:transparent;color:var(--muted);border-radius:7px;padding:6px 12px;font:500 14px var(--sans);cursor:pointer}
+.mode button[aria-pressed="true"]{background:var(--ivory);color:var(--on-ivory)}
+.mode button.note[aria-pressed="true"]{background:rgba(var(--gold-rgb),.18);color:var(--gold)}
+@media (max-width:980px){.inbox{grid-template-columns:1fr}}
+</style>
+</head>
+<body dir="rtl">
+<div class="demo hide" id="demo">תצוגת דוגמה: הנתונים בדף הזה אינם אמיתיים, ושום שינוי לא נשמר.</div>
+<header class="top"></header>
+<main class="wrap">
+  <div class="page-head" style="border-bottom:0;padding-bottom:0"><div><h1>ניהול האזור האישי</h1><p class="muted" style="font-size:15.5px">משרדים, משתמשים, תכנים ופניות. כל שינוי נשמר מיד.</p></div>
+  <a class="pending zero" id="pending" href="#tickets"><b id="pendingN">0</b><span id="pendingT">פניות ממתינות לטיפול</span></a></div>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-t="tickets">פניות <span class="badge hide" id="tabBadge"></span></button>
+    <button role="tab" aria-selected="false" data-t="offices">משרדים</button>
+    <button role="tab" aria-selected="false" data-t="members">משתמשים</button>
+    <button role="tab" aria-selected="false" data-t="content">תכנים</button>
+    <button role="tab" aria-selected="false" data-t="log">יומן כניסות</button>
+    <button role="tab" aria-selected="false" data-t="alerts">התראות</button>
+  </div>
+  <section class="pane card" id="pane" role="tabpanel"></section>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="/clients/portal.js"></script>
+<script>
+(async function () {
+  var $ = function (id) { return document.getElementById(id); }, E = LM.esc;
+  var me = await LM.requireMember(); if (!me) return;
+  if (!me.is_admin) { location.replace(LM.link('/clients/home.html')); return; }
+  if (LM.MOCK) $('demo').classList.remove('hide');
+  LM.header(me, 'admin');
+
+  var MOCK = {
+    offices: [{ id: 'o1', name: 'משרד לדוגמה ושות׳', seats: 8, used: 5, active: true, ends_at: '2027-11-18' }, { id: 'o2', name: 'משרד דוגמה ב׳', seats: 3, used: 3, active: true, ends_at: '2027-06-01' }],
+    members: [{ id: 'm1', office: 'משרד לדוגמה ושות׳', name: 'דנה לוי', email: 'dana@example.com', devices: 2, last: '2026-11-18', active: true }, { id: 'm2', office: 'משרד דוגמה ב׳', name: 'יואב כהן', email: 'yoav@example.com', devices: 1, last: '2026-11-15', active: true }],
+    content: [{ id: 'b1', title: 'חוברת הדרכה: Claude לעורכי דין', kind: 'חוברת', scope: 'כל הלקוחות' }, { id: 'o1', title: 'נוהל העבודה עם בינה מלאכותית במשרד', kind: 'חוברת', scope: 'משרד לדוגמה ושות׳' }],
+    log: [{ at: '2026-11-18 21:04', who: 'דנה לוי', office: 'משרד לדוגמה ושות׳', what: 'פתחה: חוברת הדרכה: Claude לעורכי דין', device: 'Windows Chrome', ip: '1.2.3.x' }],
+    alerts: [{ at: '2026-11-17 10:12', who: 'יואב כהן', what: 'כניסות מ-4 מקומות שונים ב-24 שעות', status: 'פתוח' }]
+  };
+  // ---------- support inbox (פניות)
+  var MT = {
+    staff: [{ id: 'a1', name: 'עו״ד אסף אברמזון' }, { id: 'a2', name: 'עו״ד רועי נימצוביץ׳' }],
+    rows: [
+      { ref: 'LM-1005', subject: 'איך מוסיפים עובדת חדשה לאזור האישי?', category: 'שאלה על כלי', status: 'open', who: 'יואב כהן', office: 'משרד דוגמה ב׳', assignee: '', updated_at: new Date(Date.now() - 1800000).toISOString(), unread: true },
+      { ref: 'LM-1004', subject: 'הקונקטור של נבו לא מופיע אצל אחת העובדות', category: 'בעיה טכנית', status: 'waiting_client', who: 'דנה לוי', office: 'משרד לדוגמה ושות׳', assignee: 'עו״ד אסף אברמזון', updated_at: new Date(Date.now() - 3600000 * 3).toISOString(), unread: false },
+      { ref: 'LM-1003', subject: 'בקשה לסקיל שמסכם פרוטוקולים של דיונים', category: 'בקשה לסקיל או תבנית', status: 'in_progress', who: 'דנה לוי', office: 'משרד לדוגמה ושות׳', assignee: 'עו״ד רועי נימצוביץ׳', updated_at: new Date(Date.now() - 86400000).toISOString(), unread: false },
+      { ref: 'LM-1001', subject: 'הדרכה נוספת לצוות המזכירות', category: 'בקשת הדרכה', status: 'closed', who: 'דנה לוי', office: 'משרד לדוגמה ושות׳', assignee: 'עו״ד אסף אברמזון', updated_at: new Date(Date.now() - 86400000 * 16).toISOString(), unread: false }
+    ],
+    threads: {
+      'LM-1005': [{ id: 11, author_type: 'client', author_name: 'יואב כהן', body: 'הצטרפה אלינו עורכת דין חדשה. איך מוסיפים אותה לאזור האישי?', created_at: new Date(Date.now() - 1800000).toISOString() }],
+      'LM-1004': [
+        { id: 1, author_type: 'client', author_name: 'דנה לוי', body: 'שלום, אצל מיכל במשרד הקונקטור של נבו לא מופיע ברשימת הכלים של Claude, למרות שאצלי הוא עובד.', created_at: new Date(Date.now() - 86400000 * 2).toISOString(), attachment_name: 'צילום-מסך.png', has_file: true },
+        { id: 8, author_type: 'staff', author_name: 'עו״ד אסף אברמזון', body: 'כנראה המנוי שלה עוד לא שויך לצוות. לבדוק בהגדרות הארגון לפני השיחה.', internal: true, created_at: new Date(Date.now() - 3600000 * 4).toISOString() },
+        { id: 2, author_type: 'staff', author_name: 'עו״ד אסף אברמזון', body: 'תודה דנה, זה מוכר לנו. אפשר לבקש ממיכל לפתוח את Claude ולבדוק ב-Settings תחת Connectors? אם נבו לא מופיע שם, נחבר אותו יחד בשיחה קצרה.', created_at: new Date(Date.now() - 3600000 * 3).toISOString() }
+      ],
+      'LM-1003': [{ id: 3, author_type: 'client', author_name: 'דנה לוי', body: 'נשמח לסקיל שלוקח פרוטוקול דיון ומוציא ממנו סיכום קצר, מועדים והחלטות.', created_at: new Date(Date.now() - 86400000 * 5).toISOString() }],
+      'LM-1001': [{ id: 5, author_type: 'client', author_name: 'דנה לוי', body: 'אפשר לקבוע הדרכה של שעה לצוות המזכירות?', created_at: new Date(Date.now() - 86400000 * 20).toISOString() }, { id: 7, author_type: 'system', author_name: '', body: 'דנה לוי סימנו שהפנייה נפתרה.', created_at: new Date(Date.now() - 86400000 * 16).toISOString() }]
+    }
+  };
+  var T = LM.TICKET, ifilter = 'active', icur = null;
+  async function tcall(action, payload) {
+    payload = payload || {};
+    if (!LM.MOCK) { var r = await LM.fn('tickets-admin', Object.assign({ action: action }, payload)); return r.data || {}; }
+    var rows = MT.rows;
+    if (action === 'counts') return { open: rows.filter(function (t) { return t.status === 'open'; }).length, unread: rows.filter(function (t) { return t.unread && t.status !== 'closed'; }).length };
+    if (action === 'list') return { rows: rows.filter(function (t) { return ifilter === 'all' || (ifilter === 'active' ? (t.status === 'open' || t.status === 'in_progress') : ifilter === 'waiting' ? t.status === 'waiting_client' : t.status === 'closed'); }) };
+    var t = rows.find(function (x) { return x.ref === payload.ref; });
+    if (!t) return {};
+    if (action === 'get') { t.unread = false; return Object.assign({}, t, { email: 'dana@example.com', category_label: t.category, assignee: (MT.staff.find(function (s) { return s.name === t.assignee; }) || {}).id || '', messages: MT.threads[t.ref] || [], staff: MT.staff }); }
+    if (action === 'reply') { (MT.threads[t.ref] = MT.threads[t.ref] || []).push({ id: Date.now(), author_type: 'staff', author_name: me.full_name, body: payload.body, internal: payload.internal, created_at: new Date().toISOString() }); if (!payload.internal) t.status = payload.status || 'waiting_client'; t.updated_at = new Date().toISOString(); return { ok: true }; }
+    if (action === 'set_status') { t.status = payload.status; if (payload.status === 'closed') (MT.threads[t.ref] = MT.threads[t.ref] || []).push({ author_type: 'system', body: 'הפנייה נסגרה על ידי ' + me.full_name + '.', created_at: new Date().toISOString() }); return { ok: true }; }
+    if (action === 'assign') { t.assignee = (MT.staff.find(function (s) { return s.id === payload.assignee; }) || {}).name || ''; if (t.status === 'open' && t.assignee) t.status = 'in_progress'; return { ok: true }; }
+    return {};
+  }
+  async function refreshCounts() {
+    var c = await tcall('counts');
+    var n = c.open || 0, u = c.unread || 0;
+    $('pendingN').textContent = n;
+    $('pendingT').textContent = n === 1 ? 'פנייה ממתינה לטיפול' : 'פניות ממתינות לטיפול';
+    $('pending').classList.toggle('zero', !n);
+    $('tabBadge').textContent = u || n; $('tabBadge').classList.toggle('hide', !(u || n));
+  }
+  function tchip(st) { return '<span class="chip st-' + E(st) + '">' + E(T.staffStatus[st] || st) + '</span>'; }
+  async function drawInboxList() {
+    var rows = (await tcall('list', { filter: ifilter })).rows || [];
+    var el = document.getElementById('ilist'); if (!el) return;
+    el.innerHTML = rows.length ? rows.map(function (t) {
+      return '<li><a href="#ticket=' + E(t.ref) + '" aria-current="' + (t.ref === icur) + '"><span class="r1"><span dir="ltr">' + E(t.ref) + '</span>' + tchip(t.status) + '</span><b>' + (t.unread ? '<span class="dot" title="לא נקראה"></span>' : '') + E(t.subject) + '</b><span class="r1"><span>' + E(t.who) + ' · ' + E(t.office) + '</span><span>' + E(LM.when(t.updated_at)) + '</span></span>' + (t.assignee ? '<span class="r1"><span>בטיפול: ' + E(t.assignee) + '</span></span>' : '') + '</a></li>';
+    }).join('') : '<li class="quiet" style="padding:14px 12px">אין פניות ברשימה הזו.</li>';
+  }
+  async function drawTicket(ref) {
+    icur = ref; var box = document.getElementById('idet'); if (!box) return;
+    box.innerHTML = '<p class="muted">טוען...</p>';
+    var t = await tcall('get', { ref: ref });
+    if (!t || !t.ref) { box.innerHTML = '<p class="muted">הפנייה לא נמצאה.</p>'; return; }
+    var msgs = (t.messages || []).map(function (m) {
+      if (m.author_type === 'system') return '<div class="sys">' + E(m.body) + ' · ' + E(LM.when(m.created_at)) + '</div>';
+      var cls = m.author_type === 'client' ? 'client' : (m.internal ? 'internal' : 'staff');
+      return '<div class="bub ' + cls + '"><div class="meta"><b>' + E(m.author_name) + '</b>' + (m.internal ? '<span>הערה פנימית, הלקוח לא רואה</span>' : '') + '<span>' + E(LM.when(m.created_at)) + '</span></div>' + E(m.body)
+        + (m.has_file ? '<div><button class="att" type="button" data-file="' + E(m.id) + '">' + LM.ICONS.clip + E(m.attachment_name || 'קובץ מצורף') + '</button></div>' : '') + '</div>';
+    }).join('');
+    var staffOpts = '<option value="">ללא שיוך</option>' + (t.staff || []).map(function (s) { return '<option value="' + E(s.id) + '"' + (s.id === t.assignee ? ' selected' : '') + '>' + E(s.name) + '</option>'; }).join('');
+    var stOpts = Object.keys(T.staffStatus).map(function (k) { return '<option value="' + k + '"' + (k === t.status ? ' selected' : '') + '>' + E(T.staffStatus[k]) + '</option>'; }).join('');
+    box.innerHTML = '<div class="hd"><div><h2>' + E(t.subject) + '</h2><div class="ctl" style="margin-top:8px;color:var(--muted);font-size:14.5px"><span dir="ltr">' + E(t.ref) + '</span>' + tchip(t.status) + '<span>' + E(t.category_label || '') + '</span><span>' + E(t.who) + ' · ' + E(t.office) + '</span></div></div>'
+      + '<div class="ctl"><label class="muted" style="font-size:13.5px">שיוך <select id="asg">' + staffOpts + '</select></label><label class="muted" style="font-size:13.5px">מצב <select id="stSel">' + stOpts + '</select></label>' + (t.status !== 'closed' ? '<button class="btn btn-ghost" id="closeT" type="button">סגירת הפנייה</button>' : '') + '</div></div>'
+      + '<div class="thread">' + msgs + '</div>'
+      + '<form class="composer" id="sf"><div class="mode" role="group" aria-label="סוג הודעה"><button type="button" aria-pressed="true" data-m="reply">תשובה ללקוח</button><button type="button" class="note" aria-pressed="false" data-m="note">הערה פנימית</button></div>'
+      + '<textarea id="sb" placeholder="כתבו תשובה ללקוח..." aria-label="תשובה"></textarea>'
+      + '<div class="ctl" style="justify-content:space-between"><label class="muted" style="font-size:14px" id="afterL">אחרי השליחה: <select id="after"><option value="waiting_client">ממתינה ללקוח</option><option value="in_progress">נשארת בטיפול</option><option value="closed">נסגרת</option></select></label><button class="btn btn-gold" id="ss">שליחה</button></div><p class="msg" id="smsg" role="status"></p></form>';
+    var mode = 'reply';
+    box.querySelector('.mode').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return; mode = b.getAttribute('data-m');
+      box.querySelectorAll('.mode button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      $('sb').placeholder = mode === 'note' ? 'הערה לצוות בלבד. הלקוח לא יראה אותה.' : 'כתבו תשובה ללקוח...';
+      $('afterL').style.visibility = mode === 'note' ? 'hidden' : 'visible'; $('ss').textContent = mode === 'note' ? 'שמירת הערה' : 'שליחה';
+    });
+    $('sf').addEventListener('submit', async function (e) {
+      e.preventDefault(); var body = $('sb').value.trim(); if (!body) return;
+      $('ss').disabled = true;
+      var r = await tcall('reply', { ref: ref, body: body, internal: mode === 'note', status: $('after').value });
+      if (!r.ok) { $('ss').disabled = false; $('smsg').className = 'msg err'; $('smsg').textContent = 'השליחה לא הצליחה.'; return; }
+      await refreshCounts(); await drawInboxList(); drawTicket(ref);
+    });
+    $('asg').addEventListener('change', async function () { await tcall('assign', { ref: ref, assignee: this.value }); await drawInboxList(); drawTicket(ref); });
+    $('stSel').addEventListener('change', async function () { await tcall('set_status', { ref: ref, status: this.value }); await refreshCounts(); await drawInboxList(); drawTicket(ref); });
+    if ($('closeT')) $('closeT').addEventListener('click', async function () { await tcall('set_status', { ref: ref, status: 'closed' }); await refreshCounts(); await drawInboxList(); drawTicket(ref); });
+    box.querySelectorAll('[data-file]').forEach(function (b) {
+      b.addEventListener('click', async function () {
+        if (LM.MOCK) { alert('בתצוגת הדוגמה אין קובץ אמיתי.'); return; }
+        var r = await tcall('file_url', { message_id: Number(b.getAttribute('data-file')) }); if (r.url) location.href = r.url;
+      });
+    });
+    drawInboxList();
+  }
+
+  async function load(kind) {
+    if (LM.MOCK) return MOCK[kind];
+    var r = await LM.fn('admin', { action: 'list_' + kind }); return (r.data && r.data.rows) || [];
+  }
+  async function act(action, payload) {
+    if (LM.MOCK) { $('msg').textContent = 'בתצוגת הדוגמה שום שינוי לא נשמר.'; $('msg').className = 'msg ok'; return true; }
+    var r = await LM.fn('admin', Object.assign({ action: action }, payload));
+    var ok = !r.error && r.data && r.data.ok;
+    $('msg').textContent = ok ? 'נשמר.' : 'השינוי לא נשמר: ' + ((r.data && r.data.error) || 'שגיאה'); $('msg').className = 'msg ' + (ok ? 'ok' : 'err');
+    return ok;
+  }
+
+  var VIEWS = {
+    tickets: async function () {
+      setTimeout(async function () {
+        document.querySelector('.ifl').addEventListener('click', function (e) {
+          var b = e.target.closest('button'); if (!b) return; ifilter = b.getAttribute('data-f');
+          document.querySelectorAll('.ifl button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          drawInboxList();
+        });
+        await drawInboxList();
+        var m = location.hash.match(/ticket=([\w-]+)/);
+        if (m) drawTicket(m[1].toUpperCase());
+      });
+      return '<div class="inbox"><div><div class="ifl" role="group" aria-label="סינון"><button aria-pressed="true" data-f="active">פתוחות</button><button aria-pressed="false" data-f="waiting">ממתינות ללקוח</button><button aria-pressed="false" data-f="closed">סגורות</button><button aria-pressed="false" data-f="all">הכול</button></div><ul class="ilist" id="ilist"></ul></div>'
+        + '<div class="idet card" id="idet"><p class="muted">בחרו פנייה מהרשימה כדי לקרוא ולענות.</p></div></div>';
+    },
+    offices: async function () {
+      var rows = await load('offices');
+      return '<form class="row-form" data-act="add_office"><div class="field"><label>שם המשרד</label><input name="name" dir="rtl" style="text-align:right" required></div><div class="field"><label>מכסת משתמשים</label><input name="seats" type="number" min="1" value="5" required></div><div class="field"><label>פתוח עד</label><input name="ends_at" type="date"></div><button class="btn btn-gold">הוספת משרד</button></form>'
+        + '<div class="scroll"><table><thead><tr><th>משרד</th><th>משתמשים</th><th>פתוח עד</th><th></th></tr></thead><tbody>'
+        + rows.map(function (o) { return '<tr><td><b>' + E(o.name) + '</b></td><td>' + o.used + ' מתוך ' + o.seats + '</td><td>' + E(o.ends_at || '') + '</td><td><button class="btn btn-ghost danger" data-a="deactivate_office" data-id="' + E(o.id) + '">סגירת גישה</button></td></tr>'; }).join('') + '</tbody></table></div>';
+    },
+    members: async function () {
+      var rows = await load('members'), offs = await load('offices');
+      return '<form class="row-form" data-act="add_member"><div class="field"><label>משרד</label><select name="office_id" dir="rtl" style="text-align:right">' + offs.map(function (o) { return '<option value="' + E(o.id) + '">' + E(o.name) + '</option>'; }).join('') + '</select></div><div class="field"><label>שם מלא</label><input name="full_name" dir="rtl" style="text-align:right" required></div><div class="field"><label>מייל</label><input name="email" type="email" required></div><button class="btn btn-gold">הוספת משתמש</button></form>'
+        + '<div class="scroll"><table><thead><tr><th>שם</th><th>משרד</th><th>מייל</th><th>מכשירים</th><th>כניסה אחרונה</th><th></th></tr></thead><tbody>'
+        + rows.map(function (m) { return '<tr><td><b>' + E(m.name) + '</b></td><td>' + E(m.office) + '</td><td dir="ltr" style="text-align:right">' + E(m.email) + '</td><td>' + m.devices + '/2</td><td>' + E(m.last || '') + '</td><td><button class="btn btn-ghost danger" data-a="remove_member" data-id="' + E(m.id) + '">הסרה וניתוק</button></td></tr>'; }).join('') + '</tbody></table></div>';
+    },
+    content: async function () {
+      var rows = await load('content');
+      return '<p class="muted" style="margin:0 0 var(--s3)">הקבצים עצמם נשמרים באחסון הסגור. כאן רואים כל פריט ולמי הוא פתוח.</p>' + (rows.length ? '' : '<p class="quiet">עוד לא עלו תכנים.</p>') + '<div class="scroll"><table><thead><tr><th>פריט</th><th>סוג</th><th>פתוח ל</th></tr></thead><tbody>'
+        + rows.map(function (c) { return '<tr><td><b>' + E(c.title) + '</b></td><td>' + E(c.kind) + '</td><td>' + E(c.scope) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    },
+    log: async function () {
+      var rows = await load('log');
+      return '<div class="scroll"><table><thead><tr><th>מתי</th><th>מי</th><th>משרד</th><th>מה</th><th>מכשיר</th><th>כתובת</th></tr></thead><tbody>'
+        + rows.map(function (l) { return '<tr><td>' + E(l.at) + '</td><td><b>' + E(l.who) + '</b></td><td>' + E(l.office) + '</td><td>' + E(l.what) + '</td><td dir="ltr" style="text-align:right">' + E(l.device) + '</td><td dir="ltr" style="text-align:right">' + E(l.ip) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    },
+    alerts: async function () {
+      var rows = await load('alerts');
+      return rows.length ? '<div class="scroll"><table><thead><tr><th>מתי</th><th>מי</th><th>מה קרה</th><th>מצב</th></tr></thead><tbody>'
+        + rows.map(function (a) { return '<tr><td>' + E(a.at) + '</td><td><b>' + E(a.who) + '</b></td><td class="alert">' + E(a.what) + '</td><td>' + E(a.status) + '</td></tr>'; }).join('') + '</tbody></table></div>' : '<p class="quiet">אין התראות. כל הכניסות נראות תקינות.</p>';
+    }
+  };
+  var current = 'offices';
+  async function show(t) { current = t; $('pane').innerHTML = '<p class="muted">טוען...</p>'; $('pane').innerHTML = await VIEWS[t](); }
+  document.querySelector('.tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    document.querySelectorAll('.tabs button').forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); });
+    show(b.getAttribute('data-t'));
+  });
+  $('pane').addEventListener('submit', async function (e) {
+    e.preventDefault(); var f = e.target, data = {};
+    new FormData(f).forEach(function (v, k) { data[k] = v; });
+    if (await act(f.getAttribute('data-act'), data)) show(current);
+  });
+  $('pane').addEventListener('click', async function (e) {
+    var b = e.target.closest('[data-a]'); if (!b) return;
+    if (!confirm('לבצע? הפעולה מנתקת את הגישה מיד.')) return;
+    if (await act(b.getAttribute('data-a'), { id: b.getAttribute('data-id') })) show(current);
+  });
+  window.addEventListener('hashchange', function () {
+    var m = location.hash.match(/ticket=([\w-]+)/);
+    if (m) { if (current !== 'tickets') selectTab('tickets'); else drawTicket(m[1].toUpperCase()); }
+    else if (location.hash === '#tickets') selectTab('tickets');
+  });
+  function selectTab(t) {
+    document.querySelectorAll('.tabs button').forEach(function (x) { x.setAttribute('aria-selected', String(x.getAttribute('data-t') === t)); });
+    show(t);
+  }
+  refreshCounts();
+  selectTab('tickets');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="he">
+<head>
+<meta charset="utf-8">
+<script>(function(){var t;try{t=localStorage.getItem("lm-theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}document.documentElement.setAttribute("data-theme",t)})();</script>
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>האזור האישי | LEGAL MIND</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/clients/portal.css">
+<style>
+.hello{padding:clamp(40px,6vw,72px) 0 clamp(28px,3.4vw,40px)}
+.hello h1{font-size:clamp(42px,5.6vw,66px);line-height:1.08;font-weight:400}
+.hello p{margin:12px 0 0;font-size:clamp(18px,1.6vw,20px);color:var(--body);max-width:52ch}
+.tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(18px,2.2vw,28px)}
+.tiles .tile{grid-column:span 2;min-height:210px}
+.tiles .tile.wide{grid-column:span 3}
+.fresh{margin:clamp(44px,5vw,60px) 0 0}
+.fresh h2{font:600 17px var(--sans);color:var(--muted);margin:0 0 14px}
+.fresh ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.fresh a{display:flex;align-items:center;gap:14px;min-height:76px;padding:12px 16px;border-radius:18px;text-decoration:none;color:var(--ink);background:var(--soft-card);border:1px solid var(--line);transition:border-color .2s,transform .2s}
+.fresh a:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.fresh .ic{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;color:var(--ti);background:linear-gradient(165deg,var(--tf),var(--tf2));box-shadow:inset 0 1px 0 var(--tile-hl),0 2px 0 var(--te)}
+.fresh b{font:500 16.5px/1.35 var(--head)}
+.foot-note{margin:clamp(48px,6vw,72px) 0 72px;color:var(--muted);font-size:15px;text-align:center}
+@media (max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tiles .tile,.tiles .tile.wide{grid-column:span 1}.tiles .tile.full{grid-column:1/-1}.fresh ul{grid-template-columns:1fr}}
+@media (max-width:520px){.tiles{gap:16px}.tiles .tile{min-height:150px;padding:18px 16px;gap:8px;border-radius:20px}.tile .tb{width:52px;height:52px;border-radius:16px}.tile .tb .ico{width:27px;height:27px}.tile .tt{font-size:21px}.tile .td{font-size:14.5px}.tile .tc{font-size:14px}.hello h1{font-size:38px}}
+@media (max-width:360px){.tiles{grid-template-columns:1fr}.tiles .tile{min-height:120px}}
+@media (prefers-reduced-motion:reduce){.fresh a{transition:none}.fresh a:hover{transform:none}}
+</style>
+</head>
+<body dir="rtl">
+<div class="demo hide" id="demo">תצוגת דוגמה: הנתונים בדף הזה אינם אמיתיים.</div>
+<header class="top"></header>
+<main class="wrap">
+  <section class="hello">
+    <h1 id="hi">שלום</h1>
+    <p>כל מה ש-<span dir="ltr">LEGAL MIND</span> הכינה בשבילכם, במקום אחד. בוחרים ונכנסים.</p>
+  </section>
+  <nav class="tiles" id="tiles" aria-label="הספרייה"></nav>
+  <section class="fresh" id="fresh" hidden aria-labelledby="h-fresh"><h2 id="h-fresh">חדש בספרייה</h2><ul id="freshList"></ul></section>
+  <p class="foot-note" id="foot"></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="/clients/portal.js"></script>
+<script>
+(async function () {
+  var $ = function (id) { return document.getElementById(id); }, E = LM.esc, I = LM.ICONS;
+  var me = await LM.requireMember(); if (!me) return;
+  if (LM.MOCK) $('demo').classList.remove('hide');
+  LM.header(me, 'home');
+  $('hi').textContent = 'שלום ' + (me.first_name || me.full_name);
+  var d = LM.MOCK ? { items: LM.MOCKDATA.items, devices: LM.MOCKDATA.devices, companion: LM.MOCKDATA.companion }
+                  : ((await LM.rpc('portal_dashboard', { p_device: LM.deviceId() })).data || {});
+  var items = d.items || [];
+  var unread = LM.MOCK ? LM.MOCKDATA.tickets.filter(function (t) { return t.unread; }).length : (((await LM.rpc('portal_ticket_unread')).data) || 0);
+
+  var tones = {}, html = LM.SECTIONS.map(function (s) {
+    tones[s.kind] = s.tone;
+    var n = items.filter(function (i) { return i.kind === s.kind; }).length;
+    return LM.sectionTile(s, n, LM.link('/clients/library.html') + '#' + s.hash);
+  });
+  // the request tile: wide, warm clay
+  html.push('<a class="tile t-clay wide full" href="' + LM.link('/clients/support.html') + '#new"><span class="tb">' + I.chat + '</span><span class="tt">יש שאלה? כתבו לנו</span><span class="td">פנייה ישירה לצוות של <span dir="ltr">LEGAL MIND</span>. עונים תוך יום עסקים.</span><span class="tc">' + (unread ? '<span class="badge">' + unread + '</span>' + (unread === 1 ? 'תשובה חדשה מחכה לכם' : 'תשובות חדשות מחכות לכם') : 'פתיחת פנייה') + '</span></a>');
+  // five tiles: the first three a row of thirds, the prompts tile and the request tile share the second row
+  $('tiles').innerHTML = html.join('').replace('class="tile t-gold"', 'class="tile t-gold wide"');
+  LM.setUnread(unread);
+
+  var fresh = items.filter(function (i) { return i.is_new; }).slice(0, 3);
+  if (fresh.length) {
+    $('fresh').hidden = false;
+    $('freshList').innerHTML = fresh.map(function (it) {
+      return '<li class="' + (tones[it.kind] || 't-sand') + '"><a href="' + LM.link('/clients/library.html?open=' + encodeURIComponent(it.id)) + '"><span class="ic">' + (I[it.kind] || I.booklet) + '</span><b>' + E(it.title) + '</b></a></li>';
+    }).join('');
+  }
+  var c = d.companion || {};
+  $('foot').textContent = c.name ? 'מלווה את המשרד: ' + c.name : '';
+
+  LM.setDevices(d.devices || []);
+  if (location.hash === '#devices') { LM.openMenu(true); history.replaceState(null, '', location.pathname + location.search); }
+})();
+</script>
+</body>
+</html>
