@@ -286,3 +286,14 @@ a.tile:active,button.tile:active{transform:translateY(5px);box-shadow:inset 0 1p
 .acct-btn{border-color:var(--ink)!important;color:var(--ink)!important;font-weight:700}
 @media (max-width:860px){.hbtn .hl{display:none}.hbtn{padding:0 10px}}
 @media (max-width:520px){.hbtn{height:38px;padding:0 8px;font-size:13.5px;gap:4px}.theme-seg button{padding:0 7px;font-size:12.5px}.theme-seg button .ico{display:none}.acct-btn .nm,.acct-btn .chev{display:none}.acct-btn{padding:0 4px}}
+
+/* LIGHT MODE palette in LEGAL MIND colours (19.11): same 3D ceramic tiles, calmer brand tones
+   (aqua-teal, ivory-gold, slate-blue, gold, warm stone) instead of green / pink pastels. Dark mode untouched. */
+.tile .art{display:none}
+:root[data-theme="light"]{
+  --teal-f:#DDEFEC; --teal-f2:#C9E4DF; --teal-e:#8BBDB5; --teal-k:#0F2236; --teal-i:#1C6A62;
+  --sand-f:#F5EEDF; --sand-f2:#EADFC8; --sand-e:#C4B190; --sand-k:#0F2236; --sand-i:#86672B;
+  --sage-f:#E4E9EF; --sage-f2:#D3DCE6; --sage-e:#9BAEC1; --sage-k:#0F2236; --sage-i:#2B4A6B;
+  --gold-f:#F4E8C6; --gold-f2:#EAD9A8; --gold-e:#C6A961; --gold-k:#0F2236; --gold-i:#7A5E13;
+  --clay-f:#EFEAE1; --clay-f2:#E2DACC; --clay-e:#B5A88F; --clay-k:#0F2236; --clay-i:#6B5532;
+}

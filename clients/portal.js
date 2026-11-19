@@ -257,9 +257,29 @@
     { kind: 'prompt', hash: 'prompts', tone: 't-gold', title: 'פרומפטים מוכנים', line: 'מעתיקים, מדביקים, וזה עובד', one: 'פרומפט אחד', many: 'פרומפטים', soon: 'בקרוב יעלו לכאן פרומפטים' }
   ];
   function countText(sec, n) { return !n ? 'בקרוב' : n === 1 ? sec.one : n + ' ' + sec.many; }
+  var COVERS = ['v-claude-intro', 'v-office-assistant', 'v-writing-coach'];
+  function artFor(kind) {
+    if (kind === 'video') return '<span class="art art-v" aria-hidden="true">' + COVERS.map(function (c, i) { return '<img class="cv' + i + '" src="/clients/covers/' + c + '.webp" alt="" loading="lazy" decoding="async">'; }).join('') + '</span>';
+    if (kind === 'booklet') return '<span class="art art-b" aria-hidden="true"><i></i><i></i><i><b></b><em></em><em></em><em></em><em></em><em></em></i></span>';
+    if (kind === 'skill') return '<span class="art art-s" aria-hidden="true"><i dir="ltr"><b>SKILL.md</b><em></em><em></em><em></em></i></span>';
+    if (kind === 'prompt') return '<span class="art art-p" aria-hidden="true"><i><em></em><em></em><em></em><u>העתקה</u></i></span>';
+    if (kind === 'chat') return '<span class="art art-c" aria-hidden="true"><i></i><i></i></span>';
+    return '';
+  }
   function sectionTile(sec, n, href) {
-    return '<a class="tile ' + sec.tone + '" href="' + href + '"><span class="tb">' + ICONS[sec.kind] + '</span><span class="tt">' + sec.title + '</span><span class="td">' + sec.line + '</span><span class="tc">' + countText(sec, n) + '</span></a>';
+    return '<a class="tile k-' + sec.kind + ' ' + sec.tone + '" href="' + href + '">' + artFor(sec.kind) + '<span class="tb">' + ICONS[sec.kind] + '</span><span class="tt">' + sec.title + '</span><span class="td">' + sec.line + '</span><span class="tc">' + countText(sec, n) + '</span></a>';
   }
 
-  window.LM = { copyText: copyText, dur: dur, KINDS: KINDS, EMPTY: EMPTY, ICONS: ICONS, header: header, setUnread: setUnread, setDevices: setDevices, openMenu: openMenu, SECTIONS: SECTIONS, countText: countText, sectionTile: sectionTile, TICKET: TICKET, when: when, upload: upload, CFG: CFG, MOCK: MOCK, MOCKDATA: MOCKDATA, sb: sb, rpc: rpc, fn: fn, requireMember: requireMember, deviceId: deviceId, deviceLabel: deviceLabel, watermark: watermark, logout: logout, esc: esc, link: link };
+
+  // gentle 3D tilt that follows the pointer on home tiles (light mode only, mouse only, not with reduced motion)
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse' || document.documentElement.getAttribute('data-theme') !== 'light') return;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var t = e.target.closest && e.target.closest('.tiles .tile'); if (!t) return;
+    var r = t.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    t.style.setProperty('--rx', (-y * 5).toFixed(2) + 'deg'); t.style.setProperty('--ry', (x * 6).toFixed(2) + 'deg');
+    t.style.setProperty('--mx', ((x + .5) * 100).toFixed(1) + '%'); t.style.setProperty('--my', ((y + .5) * 100).toFixed(1) + '%');
+  });
+  document.addEventListener('pointerout', function (e) { var t = e.target.closest && e.target.closest('.tiles .tile'); if (t && !t.contains(e.relatedTarget)) { t.style.removeProperty('--rx'); t.style.removeProperty('--ry'); } });
+  window.LM = { copyText: copyText, dur: dur, KINDS: KINDS, EMPTY: EMPTY, ICONS: ICONS, header: header, setUnread: setUnread, setDevices: setDevices, openMenu: openMenu, SECTIONS: SECTIONS, countText: countText, sectionTile: sectionTile, artFor: artFor, TICKET: TICKET, when: when, upload: upload, CFG: CFG, MOCK: MOCK, MOCKDATA: MOCKDATA, sb: sb, rpc: rpc, fn: fn, requireMember: requireMember, deviceId: deviceId, deviceLabel: deviceLabel, watermark: watermark, logout: logout, esc: esc, link: link };
 })();

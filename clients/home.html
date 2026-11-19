@@ -64,9 +64,9 @@
     return LM.sectionTile(s, n, LM.link('/clients/library.html') + '#' + s.hash);
   });
   // the request tile: wide, warm clay
-  html.push('<a class="tile t-clay wide full" href="' + LM.link('/clients/support.html') + '#new"><span class="tb">' + I.chat + '</span><span class="tt">יש שאלה? כתבו לנו</span><span class="td">פנייה ישירה לצוות של <span dir="ltr">LEGAL MIND</span>. עונים תוך יום עסקים.</span><span class="tc">' + (unread ? '<span class="badge">' + unread + '</span>' + (unread === 1 ? 'תשובה חדשה מחכה לכם' : 'תשובות חדשות מחכות לכם') : 'פתיחת פנייה') + '</span></a>');
+  html.push('<a class="tile k-chat t-clay wide full" href="' + LM.link('/clients/support.html') + '#new">' + LM.artFor('chat') + '<span class="tb">' + I.chat + '</span><span class="tt">יש שאלה? כתבו לנו</span><span class="td">פנייה ישירה לצוות של <span dir="ltr">LEGAL MIND</span>. עונים תוך יום עסקים.</span><span class="tc">' + (unread ? '<span class="badge">' + unread + '</span>' + (unread === 1 ? 'תשובה חדשה מחכה לכם' : 'תשובות חדשות מחכות לכם') : 'פתיחת פנייה') + '</span></a>');
   // five tiles: the first three a row of thirds, the prompts tile and the request tile share the second row
-  $('tiles').innerHTML = html.join('').replace('class="tile t-gold"', 'class="tile t-gold wide"');
+  $('tiles').innerHTML = html.join('').replace('class="tile k-prompt t-gold"', 'class="tile k-prompt t-gold wide"');
   LM.setUnread(unread);
 
   var fresh = items.filter(function (i) { return i.is_new; }).slice(0, 3);
