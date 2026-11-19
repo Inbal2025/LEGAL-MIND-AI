@@ -200,6 +200,8 @@
     var nm = me ? (me.full_name || '') : '';
     h.innerHTML = '<a class="brand" href="' + link('/clients/home.html') + '" aria-label="LEGAL MIND - לדף הבית של האזור האישי"><img class="logo-light" src="/brand/legalmind-logo-light.webp" alt="LEGAL MIND" width="800" height="152"><img class="logo-dark" src="/brand/legalmind-logo.webp" alt="LEGAL MIND" width="800" height="152"><span class="brand-sub">האזור האישי</span></a>'
       + '<div class="hdr">' + THEMEBTN
+      + '<a class="hbtn" href="/" aria-label="חזרה לאתר של LEGAL MIND"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5L12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/></svg><span class="hl">לאתר <span dir="ltr">LEGAL MIND</span></span></a>'
+      + (me ? '<button type="button" class="hbtn hbtn-out" id="logoutTop"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h4"/><path d="M14 8l-4 4 4 4M10 12h10"/></svg><span>יציאה</span></button>' : '')
       + (me ? '<div class="acct"><button type="button" class="acct-btn" id="acctBtn" aria-haspopup="true" aria-expanded="false" aria-controls="acctMenu"><span class="av" aria-hidden="true">' + esc(nm.trim().charAt(0)) + '</span><span class="nm">' + esc(me.first_name || nm) + '</span><span class="dot hide" id="acctDot" aria-hidden="true"></span><svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></button>'
         + '<div class="acct-menu" id="acctMenu" hidden>'
         + '<div class="am-who"><b>' + esc(nm) + '</b><span>' + esc(me.office_name || '') + '</span></div>'
@@ -210,6 +212,7 @@
       + '</div>';
     bindTheme(); drawDevs();
     var lo = document.getElementById('logoutBtn'); if (lo) lo.addEventListener('click', logout);
+    var lt = document.getElementById('logoutTop'); if (lt) lt.addEventListener('click', logout);
     var b = document.getElementById('acctBtn'), m = document.getElementById('acctMenu');
     if (b) {
       b.addEventListener('click', function (e) { e.stopPropagation(); openMenu(m.hidden); });
