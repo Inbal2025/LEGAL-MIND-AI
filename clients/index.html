@@ -116,7 +116,7 @@ form .btn{width:100%;min-height:50px}
     b.disabled = true; cm.textContent = ''; cm.className = 'msg';
     var r = await LM.sb.auth.verifyOtp({ email: lastEmail, token: token, type: 'email' });
     b.disabled = false;
-    if (r.error || !r.data || !r.data.session) { cm.textContent = 'הקוד לא נכון או שכבר לא בתוקף. בדקו שזה הקוד מהמייל האחרון, או בקשו מייל חדש.'; cm.className = 'msg err'; return; }
+    if (r.error || !r.data || !r.data.session) { cm.textContent = 'הקוד הזה כבר שומש, פג תוקפו או שאינו נכון. כל כניסה מקבלת קוד חדש: הקלידו את הקוד מהמייל האחרון שהגיע (הוא מופיע גם בנושא המייל).'; cm.className = 'msg err'; return; }
     location.replace(LM.CFG.home);
   });
   document.getElementById('again').addEventListener('click', function () {
