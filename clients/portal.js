@@ -201,14 +201,14 @@
     h.innerHTML = '<a class="brand" href="' + link('/clients/home.html') + '" aria-label="LEGAL MIND - לדף הבית של האזור האישי"><img class="logo-light" src="/brand/legalmind-logo-light.webp" alt="LEGAL MIND" width="800" height="152"><img class="logo-dark" src="/brand/legalmind-logo.webp" alt="LEGAL MIND" width="800" height="152"><span class="brand-sub">האזור האישי</span></a>'
       + '<div class="hdr">' + THEMEBTN
       + '<a class="hbtn" href="/" aria-label="חזרה לאתר של LEGAL MIND"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5L12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/></svg><span class="hl">לאתר <span dir="ltr">LEGAL MIND</span></span></a>'
-      + (me ? '<button type="button" class="hbtn hbtn-out" id="logoutTop"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h4"/><path d="M14 8l-4 4 4 4M10 12h10"/></svg><span>יציאה</span></button>' : '')
+      + (me ? '<button type="button" class="hbtn hbtn-out" id="logoutTop" title="מנתק את המחשב הזה. בפעם הבאה תצטרכו קישור חדש במייל"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h4"/><path d="M14 8l-4 4 4 4M10 12h10"/></svg><span>התנתקות</span></button>' : '')
       + (me ? '<div class="acct"><button type="button" class="acct-btn" id="acctBtn" aria-haspopup="true" aria-expanded="false" aria-controls="acctMenu"><span class="av" aria-hidden="true">' + esc(nm.trim().charAt(0)) + '</span><span class="nm">' + esc(me.first_name || nm) + '</span><span class="dot hide" id="acctDot" aria-hidden="true"></span><svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg></button>'
         + '<div class="acct-menu" id="acctMenu" hidden>'
         + '<div class="am-who"><b>' + esc(nm) + '</b><span>' + esc(me.office_name || '') + '</span></div>'
         + '<a class="am-link" href="' + link('/clients/support.html') + '#mine">הפניות שלי <span class="badge hide" id="navUnread"></span></a>'
         + '<div class="am-sec"><span class="am-h">המכשירים שלי</span><p class="am-note">אפשר להיות מחוברים משני מכשירים. כניסה ממכשיר שלישי מנתקת את הוותיק מביניהם.</p><div id="acctDevs"></div></div>'
         + (me.is_admin ? '<a class="am-link" href="' + link('/clients/admin.html') + '"' + (active === 'admin' ? ' aria-current="page"' : '') + '>ניהול</a>' : '')
-        + '<button type="button" class="am-link am-out" id="logoutBtn">יציאה</button></div></div>' : '')
+        + '<button type="button" class="am-link am-out" id="logoutBtn">התנתקות מהמחשב הזה</button></div></div>' : '')
       + '</div>';
     bindTheme(); drawDevs();
     var lo = document.getElementById('logoutBtn'); if (lo) lo.addEventListener('click', logout);
