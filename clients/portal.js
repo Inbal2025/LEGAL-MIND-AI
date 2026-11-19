@@ -166,18 +166,17 @@
     arrow: '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>'
   };
   // light / dark switch: device setting on first visit, then the user's choice (localStorage, guarded)
-  var THEMEBTN = '<button type="button" class="theme-btn" id="themeBtn" aria-label="" title="">'
-    + '<svg class="ico i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>'
-    + '<svg class="ico i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg></button>';
+  var THEMEBTN = '<div class="theme-seg" id="themeSeg" role="group" aria-label="מצב תצוגה"><button type="button" data-th="light" aria-pressed="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg><span>בהיר</span></button><button type="button" data-th="dark" aria-pressed="false"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span>כהה</span></button></div>';
   function theme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
-  function labelTheme(b) { var t = theme() === 'light' ? 'מצב תצוגה כהה' : 'מצב תצוגה בהיר'; b.setAttribute('aria-label', t); b.title = t; }
+  function markTheme(g) { [].forEach.call(g.querySelectorAll('[data-th]'), function (x) { x.setAttribute('aria-pressed', String(x.getAttribute('data-th') === theme())); }); }
   function bindTheme() {
-    var b = document.getElementById('themeBtn'); if (!b || b.dataset.bound) return; b.dataset.bound = '1'; labelTheme(b);
-    b.addEventListener('click', function () {
-      var t = theme() === 'light' ? 'dark' : 'light';
+    var g = document.getElementById('themeSeg'); if (!g || g.dataset.bound) return; g.dataset.bound = '1'; markTheme(g);
+    g.addEventListener('click', function (e) {
+      var x = e.target.closest('[data-th]'); if (!x) return;
+      var t = x.getAttribute('data-th');
       document.documentElement.setAttribute('data-theme', t);
-      try { localStorage.setItem('lm-theme', t); } catch (e) {}
-      labelTheme(b);
+      try { localStorage.setItem('lm-theme', t); } catch (err) {}
+      markTheme(g);
     });
   }
   document.addEventListener('DOMContentLoaded', bindTheme);

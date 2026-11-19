@@ -259,3 +259,13 @@ a.tile:active,button.tile:active{transform:translateY(5px);box-shadow:inset 0 1p
 .note.how p{margin:0 0 8px}
 .note.how ol{margin:4px 0 10px;padding-inline-start:20px}
 .note.how li{margin:0 0 4px}
+
+/* light / dark: two labelled buttons, the chosen one filled (19.11) */
+.theme-seg{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line-2);border-radius:999px;flex:none}
+.theme-seg button{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border:0;border-radius:999px;background:transparent;color:var(--body);font:600 14px var(--sans);cursor:pointer}
+.theme-seg button .ico{width:16px;height:16px}
+.theme-seg button:hover{color:var(--hi)}
+.theme-seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg,#fff)}
+:root[data-theme="dark"] .theme-seg button[aria-pressed="true"]{background:#f3f0e8;color:#0b1520}
+.theme-seg button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+@media (max-width:520px){.theme-seg button{padding:0 9px;font-size:13px;gap:4px}.theme-seg button .ico{width:14px;height:14px}}
