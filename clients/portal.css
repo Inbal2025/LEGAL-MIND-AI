@@ -308,3 +308,11 @@ a.tile:active,button.tile:active{transform:translateY(5px);box-shadow:inset 0 1p
   --clay-f:#1B2B4B; --clay-f2:#14243A; --clay-e:#09111F; --clay-k:#F5F8F8; --clay-i:#3FE0CC;
   --soft-btn:#0F8F86; --soft-btn-h:#1FA89E; --soft-btn-edge:#06433F; --soft-btn-ink:#F5F8F8;
 }
+/* bigger, clearer brand in the top bar (19.11) */
+.top{height:84px}
+.top img{height:34px}
+.top .brand{gap:16px}
+.top .brand-sub{font:600 19px var(--sans);color:var(--ink);padding-inline-start:16px;border-inline-start:1.5px solid var(--line-2)}
+@media (max-width:860px){.top img{height:28px}}
+@media (max-width:520px){.top{height:68px}.top img{height:22px}}
+@media (max-width:380px){.top img{height:19px}}
