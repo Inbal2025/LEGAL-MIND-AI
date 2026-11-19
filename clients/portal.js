@@ -235,7 +235,8 @@
 
   async function logout() {
     if (!MOCK) { await rpc('portal_forget_device', { p_device: deviceId() }); await sb.auth.signOut(); }
-    location.href = '/clients/' + (MOCK ? '?mock=' + (EMPTY ? 'empty' : '1') : '');
+    // sign out = back to the main LEGAL MIND site (Tzahi, 19.11)
+    location.href = MOCK ? '/clients/?mock=' + (EMPTY ? 'empty' : '1') : '/';
   }
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
