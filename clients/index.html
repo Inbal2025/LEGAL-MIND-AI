@@ -71,8 +71,8 @@ form .btn{width:100%;min-height:50px}
         <div class="ring"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></div>
         <h2>המייל בדרך אליכם</h2>
         <p class="lead">אם המייל מאושר באזור האישי, נשלח אליו עכשיו מייל מ-LEGAL MIND עם כפתור כניסה וקוד. אפשר ללחוץ על הכפתור באותו מחשב, או להקליד כאן את הקוד. לא מוצאים? חפשו בתיבת המייל "קוד הכניסה". ב-Gmail המייל מגיע לפעמים ללשונית "עדכונים" (Updates) או לספאם. השולח: LEGAL MIND.</p>
-        <form id="fc" novalidate>
-          <div class="field"><label for="code">הקוד מהמייל</label><input id="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]*" placeholder="00000000" dir="ltr" style="text-align:center;letter-spacing:.4em;font-size:22px"></div>
+        <form id="fc" novalidate autocomplete="off">
+          <div class="field"><label for="code">הקוד מהמייל</label><input id="code" name="lm-code-entry" type="text" inputmode="numeric" autocomplete="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore maxlength="8" pattern="[0-9]*" placeholder="00000000" dir="ltr" style="text-align:center;letter-spacing:.4em;font-size:22px"></div>
           <button class="btn btn-gold" id="gocode" type="submit">כניסה עם הקוד</button>
           <p class="msg" id="cmsg" role="status" aria-live="polite"></p>
         </form>
@@ -103,6 +103,7 @@ form .btn{width:100%;min-height:50px}
     // same screen whether or not the address exists, so the page does not reveal who is a client
     if (r.error && r.error.status === 429) { msg.textContent = 'נשלחו יותר מדי בקשות. נסו שוב בעוד דקה.'; msg.className = 'msg err'; return; }
     lastEmail = email;
+    var ce = document.getElementById('code'); ce.value = ''; document.getElementById('cmsg').textContent = ''; document.getElementById('cmsg').className = 'msg';
     document.getElementById('step-ask').classList.add('hide');
     document.getElementById('step-sent').classList.remove('hide');
     setTimeout(function () { document.getElementById('code').focus(); }, 50);
