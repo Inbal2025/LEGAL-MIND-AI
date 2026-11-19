@@ -297,17 +297,20 @@ a.tile:active,button.tile:active{transform:translateY(5px);box-shadow:inset 0 1p
   --gold-f:#F4E8C6; --gold-f2:#EAD9A8; --gold-e:#C6A961; --gold-k:#0F2236; --gold-i:#7A5E13;
   --clay-f:#EFEAE1; --clay-f2:#E2DACC; --clay-e:#B5A88F; --clay-k:#0F2236; --clay-i:#6B5532;
 }
-/* DARK MODE in the official LEGAL MIND palette (19.11): #14243A #1B2B4B #0F8F86 #1FA89E #3FE0CC #F5F8F8.
-   Same 3D tiles; navy and teal only. */
+/* DARK MODE, strictly the LEGAL MIND palette (19.11c): variety by lightness, not by new hues.
+   videos #0F8F86 solid, booklets #F5F8F8 light, skills #1B2B4B with #3FE0CC, prompts #1FA89E->#3FE0CC bright, request #14243A deep. */
 :root[data-theme="dark"]{
   --page-a:#1B2B4B; --page-b:#14243A;
-  --teal-f:#0F8F86; --teal-f2:#0C7770; --teal-e:#06433F; --teal-k:#F5F8F8; --teal-i:#F5F8F8;
-  --sand-f:#22365C; --sand-f2:#1B2B4B; --sand-e:#0C1629; --sand-k:#F5F8F8; --sand-i:#3FE0CC;
-  --sage-f:#1C3150; --sage-f2:#16273F; --sage-e:#0A1424; --sage-k:#F5F8F8; --sage-i:#1FA89E;
-  --gold-f:#1FA89E; --gold-f2:#178D84; --gold-e:#0A4C47; --gold-k:#F5F8F8; --gold-i:#F5F8F8;
-  --clay-f:#1B2B4B; --clay-f2:#14243A; --clay-e:#09111F; --clay-k:#F5F8F8; --clay-i:#3FE0CC;
+  --teal-f:#0F8F86; --teal-f2:#0C7A72; --teal-e:#06433F; --teal-k:#F5F8F8; --teal-i:#F5F8F8;
+  --sand-f:#F5F8F8; --sand-f2:#E3EBEC; --sand-e:#9FB3B8; --sand-k:#14243A; --sand-i:#0F8F86;
+  --sage-f:#24375C; --sage-f2:#1B2B4B; --sage-e:#0B1428; --sage-k:#F5F8F8; --sage-i:#3FE0CC;
+  --gold-f:#3FE0CC; --gold-f2:#1FA89E; --gold-e:#0F6E67; --gold-k:#14243A; --gold-i:#14243A;
+  --clay-f:#172942; --clay-f2:#14243A; --clay-e:#070E19; --clay-k:#F5F8F8; --clay-i:#1FA89E;
   --soft-btn:#0F8F86; --soft-btn-h:#1FA89E; --soft-btn-edge:#06433F; --soft-btn-ink:#F5F8F8;
 }
+:root[data-theme="dark"] .tile.t-sand .tb{background:linear-gradient(160deg,#FFFFFF,#E9F0F1)}
+:root[data-theme="dark"] .tile.t-gold .tb{background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,.25))}
+:root[data-theme="dark"] .tile.t-clay{outline:1px solid rgba(63,224,204,.35);outline-offset:-1px}
 /* bigger, clearer brand in the top bar (19.11) */
 .top{height:84px}
 .top img{height:34px}
@@ -316,3 +319,4 @@ a.tile:active,button.tile:active{transform:translateY(5px);box-shadow:inset 0 1p
 @media (max-width:860px){.top img{height:28px}}
 @media (max-width:520px){.top{height:68px}.top img{height:22px}}
 @media (max-width:380px){.top img{height:19px}}
+
