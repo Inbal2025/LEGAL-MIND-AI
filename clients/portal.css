@@ -323,3 +323,19 @@ a.tile:active,button.tile:active{transform:translateY(5px);box-shadow:inset 0 1p
 
 /* 19.11: "can't find the e-mail" box on the code step */
 .note.find{margin:14px 0 18px;padding:14px 16px;border-radius:12px;border:1.5px solid var(--gold,#C9A227);background:rgba(201,162,39,.10);font-size:15px;line-height:1.6}
+
+/* 19.11: little demo - typing "קוד הכניסה" in a mail search box and clicking the magnifier */
+.mdemo{position:relative;margin:4px 0 20px;padding:14px;border-radius:14px;background:rgba(127,140,160,.10);border:1px solid rgba(127,140,160,.25);overflow:hidden}
+.mbar{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px;border-radius:22px;background:#fff;color:#1f2a37;box-shadow:0 1px 3px rgba(0,0,0,.15);direction:rtl}
+.mglass{width:22px;height:22px;flex:none;border-radius:50%;display:grid;place-items:center;transition:background .2s}
+.mglass svg{width:20px;height:20px;fill:none;stroke:#5f6368;stroke-width:2;stroke-linecap:round}
+.mdemo.click .mglass{background:rgba(26,115,232,.18)}
+.mtxt{font-size:16px;white-space:nowrap}
+.mcar{width:1.5px;height:20px;background:#1a73e8;animation:mblink 1s steps(1) infinite;margin-inline-start:-6px}
+@keyframes mblink{50%{opacity:0}}
+.mres{display:flex;gap:12px;align-items:center;margin-top:10px;padding:10px 14px;border-radius:10px;background:#fff;color:#1f2a37;font-size:14px;opacity:0;transform:translateY(-6px);transition:opacity .35s,transform .35s;direction:rtl}
+.mres.on{opacity:1;transform:none}
+.mres b{flex:none}.mres span{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mres i{font-style:normal;color:#5f6368;flex:none}
+.mptr{position:absolute;width:18px;height:18px;border-radius:50%;background:rgba(26,115,232,.55);box-shadow:0 0 0 4px rgba(26,115,232,.18);right:60%;top:70%;opacity:0;transition:right .7s ease,top .7s ease,opacity .3s}
+.mptr.go{opacity:1;right:24px;top:26px}
+.mdemo.click .mptr{transform:scale(.7)}
