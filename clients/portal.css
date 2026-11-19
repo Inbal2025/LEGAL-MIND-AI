@@ -320,3 +320,6 @@ a.tile:active,button.tile:active{transform:translateY(5px);box-shadow:inset 0 1p
 @media (max-width:520px){.top{height:68px}.top img{height:22px}}
 @media (max-width:380px){.top img{height:19px}}
 
+
+/* 19.11: "can't find the e-mail" box on the code step */
+.note.find{margin:14px 0 18px;padding:14px 16px;border-radius:12px;border:1.5px solid var(--gold,#C9A227);background:rgba(201,162,39,.10);font-size:15px;line-height:1.6}
