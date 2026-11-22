@@ -116,6 +116,7 @@ button:disabled{opacity:.6;cursor:default}
 
 <script>
 (function(){
+  function lmStrictMail(v){v=String(v||'').trim();var p=v.split('@');if(p.length!==2)return false;var l=p[0],d=p[1].toLowerCase();if(l.length>64||!/^[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*$/i.test(l))return false;var L=d.split('.');if(L.length<2||d.length>253)return false;for(var i=0;i<L.length;i++){if(!/^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(L[i]))return false}return /^[a-z]{2,24}$/.test(L[L.length-1])}
   var SUPABASE_URL = "https://fezwwmvdcnbunxnlndxf.supabase.co";
   var PUBLISHABLE  = "sb_publishable_TBXgx4aqWDM1crgOavZcCw_eidoQKFa";
   var f = document.getElementById('wl-form');
@@ -129,6 +130,7 @@ button:disabled{opacity:.6;cursor:default}
     var d = Object.fromEntries(new FormData(f).entries());
     if (d.lm_hp_xq) { return; } // honeypot
     var consent = f.querySelector('[name=consent]').checked;
+    if (d.email && !lmStrictMail(d.email)) { msg.classList.add('err'); msg.textContent='כתובת האימייל לא תקינה. בדקו שוב את הכתובת'; return; }
     if (!d.full_name || !d.phone || !d.email) { msg.classList.add('err'); msg.textContent='נא למלא שם, טלפון ואימייל.'; return; }
     if (!f.querySelector('[name=privacy]').checked) { msg.classList.add('err'); msg.textContent='נא לאשר את מדיניות הפרטיות.'; return; }
 

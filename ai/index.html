@@ -1415,6 +1415,9 @@ body{font-weight:400}
       if(FIX[dom])return{warn:local+'@'+FIX[dom]};
       return{};
     }
+function lmStrictMail(v){v=String(v||'').trim();var p=v.split('@');if(p.length!==2)return false;var l=p[0],d=p[1].toLowerCase();if(l.length>64||!/^[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*$/i.test(l))return false;var L=d.split('.');if(L.length<2||d.length>253)return false;for(var i=0;i<L.length;i++){if(!/^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(L[i]))return false}return /^[a-z]{2,24}$/.test(L[L.length-1])}
+var _lm_check=check;check=function(v){var r=_lm_check(v);if(r.err)return r;if(!lmStrictMail(v))return{err:'כתובת האימייל לא תקינה. בדקו שוב את הכתובת'};return r};
+
     document.querySelectorAll('input[type=email]').forEach(function(inp){
       var box=inp.closest('.fx'),msg=box.querySelector('.fmsg'),touched=false;
       function show(r){
