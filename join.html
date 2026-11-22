@@ -93,7 +93,11 @@ button:disabled{opacity:.6;cursor:default}
       <div class="hp"><label>אל תמלאו<input type="text" name="lm_hp_xq" tabindex="-1" autocomplete="off" /></label></div>
 
       <label class="consent">
-        <input type="checkbox" name="consent" required />
+        <input type="checkbox" name="privacy" value="yes" required />
+        <span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>. *</span>
+      </label>
+      <label class="consent">
+        <input type="checkbox" name="consent" value="yes" />
         <span>אני מאשר/ת קבלת תכנים ועדכונים מ-Legal Mind בהתאם ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a>.</span>
       </label>
 
@@ -126,7 +130,7 @@ button:disabled{opacity:.6;cursor:default}
     if (d.lm_hp_xq) { return; } // honeypot
     var consent = f.querySelector('[name=consent]').checked;
     if (!d.full_name || !d.phone || !d.email) { msg.classList.add('err'); msg.textContent='נא למלא שם, טלפון ואימייל.'; return; }
-    if (!consent) { msg.classList.add('err'); msg.textContent='נא לאשר את מדיניות הפרטיות.'; return; }
+    if (!f.querySelector('[name=privacy]').checked) { msg.classList.add('err'); msg.textContent='נא לאשר את מדיניות הפרטיות.'; return; }
 
     btn.disabled = true; var orig = btn.textContent; btn.textContent = 'שולח...';
     try {
@@ -144,7 +148,7 @@ button:disabled{opacity:.6;cursor:default}
           email: d.email.trim(),
           area: d.area || null,
           source: d.source || null,
-          consent: true,
+          consent: consent,
           user_agent: navigator.userAgent.slice(0,300)
         })
       });
