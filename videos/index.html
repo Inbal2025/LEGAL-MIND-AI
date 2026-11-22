@@ -194,8 +194,8 @@
     text-shadow: 0 1px 0 rgba(255,245,200,.7);
   }
   /* this cover has its title near the top-left, so the badge sits smaller and higher */
-  #gpts-to-skills .newest, #skill-security .newest, #claude-outlook .newest { top: 19px; left: 10px; font-size: 13px; padding: 3px 11px; }
-  @media (max-width: 600px) { #gpts-to-skills .newest, #skill-security .newest, #claude-outlook .newest { font-size: 12px; padding: 2px 10px; } }
+  #gpts-to-skills .newest, #skill-security .newest, #claude-outlook .newest, #claude-meetings .newest { top: 19px; left: 10px; font-size: 13px; padding: 3px 11px; }
+  @media (max-width: 600px) { #gpts-to-skills .newest, #skill-security .newest, #claude-outlook .newest, #claude-meetings .newest { font-size: 12px; padding: 2px 10px; } }
   .vcard.feat .prompt { grid-column: 1 / -1; }
   .vlink {
     display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 14px; text-align: start;
@@ -278,10 +278,22 @@
 
   <div class="vgrid">
 
+  <div class="vcard" id="claude-meetings">
+    <button class="film" type="button" data-yt="nv74Od865nM" aria-label="ניגון הסרטון: Claude Meetings">
+      <img src="yt/claude-meetings-cover.webp?v=2211" alt="" width="960" height="540">
+      <span class="newest">החדש ביותר</span>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
+      <span class="film-time" aria-hidden="true">23:25</span>
+    </button>
+    <div class="vcard-kind">הדרכה · <bdi dir="ltr">Claude Meetings</bdi></div>
+    <h2><bdi dir="ltr">Claude Meetings</bdi>: <bdi dir="ltr">Claude</bdi> מצטרף לישיבת הצוות שלכם</h2>
+    <p>מוסיפים את <bdi dir="ltr">Claude</bdi> לשיחת <bdi dir="ltr">Google Meet</bdi>, ובזמן הישיבה הוא בונה איתכם לוח משימות ומסמכים. בסוף נשארים סיכום ותמלול מלא, בעברית. הסרטון עובר על הכול בשישה שלבים, מההפעלה אצל מנהל החשבון ועד דף הפגישה, כולל ישיבה עם אורח מבחוץ, אבטחת מידע וחמישה טיפים. היכולת עדיין בגרסת בטא.</p>
+    <span class="vcard-note" style="margin-inline-start:0">כ-23 דקות</span>
+  </div>
+
   <div class="vcard" id="claude-outlook">
     <button class="film" type="button" data-yt="P6-ODXEApgA" aria-label="ניגון הסרטון: Claude ב-Outlook לעורכי דין">
       <img src="yt/claude-outlook-cover.webp?v=1511" alt="" width="960" height="540">
-      <span class="newest">החדש ביותר</span>
       <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
       <span class="film-time" aria-hidden="true">6:57</span>
     </button>
