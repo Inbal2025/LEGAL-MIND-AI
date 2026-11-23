@@ -88,6 +88,7 @@
 .vtool .ico{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .vstage{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
 .vmodal.full .vstage{aspect-ratio:auto;flex:1}
+.vmodal.doc .vframe{width:min(1180px,94vw);max-width:none;height:92vh}.vmodal.doc .vstage{aspect-ratio:auto;flex:1;background:#fff}.vmodal.doc.full .vframe{width:100vw;height:100vh}
 .vstage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .vstage .shield{position:absolute;top:0;right:0;width:84px;height:72px;z-index:4}
 .vstage .wm{z-index:3}
@@ -145,7 +146,7 @@
     }
     document.title = sec.title.replace(/<[^>]+>/g, '') + ' | LEGAL MIND';
     var list = items.filter(function (i) { return i.kind === sec.kind; });
-    if (sec.kind === 'video' && list.length) {
+    if ((sec.kind === 'video' || sec.kind === 'booklet') && list.length) {
       var card = function (i) {
         return '<button class="vcard" type="button" data-id="' + E(i.id) + '" aria-label="' + E(i.title) + '"><span class="cv">' + (i.is_new ? '<span class="new">חדש</span>' : '') + (!i.pub ? '<span class="excl"><span aria-hidden="true">★</span>בלעדי ללקוחות</span>' : '')
           + '<img src="/clients/covers/' + encodeURIComponent(i.id) + '.webp" alt="" loading="lazy" decoding="async" width="1600" height="900" onerror="this.remove()"></span>'
@@ -153,10 +154,11 @@
       };
       // three shelves: exclusive to Legal Mind clients first, then the public videos, then the Legal Mind x Nevo series
       var NEVO = 'Legal Mind × נבו';
+      var DOC = sec.kind === 'booklet';
       var shelves = [
-        { k: 'excl', c: '', h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות LEGAL MIND', n: '<span class="st" aria-hidden="true">★</span> בלעדי ללקוחות', p: 'סרטונים שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return !i.pub; }) },
-        { k: 'lm', c: '', h: 'סרטונים נוספים של LEGAL MIND', n: 'LEGAL MIND', p: 'הדרכות פתוחות שפורסמו גם באתר ובערוץ היוטיוב.', l: list.filter(function (i) { return i.pub && i.topic !== NEVO; }) },
-        { k: 'nevo', c: ' nevo', h: 'סרטונים - שיתוף פעולה של LEGAL MIND עם NVLOGO', n: 'שיתוף פעולה עם NVLOGO', p: 'הסדרה המשותפת של LEGAL MIND ונבו, לפי הסדר.', l: list.filter(function (i) { return i.pub && i.topic === NEVO; }) }
+        { k: 'excl', c: '', h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות LEGAL MIND', n: '<span class="st" aria-hidden="true">★</span> בלעדי ללקוחות', p: (DOC ? 'מדריכים' : 'סרטונים') + ' שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return !i.pub; }) },
+        { k: 'lm', c: '', h: (DOC ? 'מדריכים' : 'סרטונים') + ' נוספים של LEGAL MIND', n: 'LEGAL MIND', p: DOC ? 'מדריכים פתוחים שפורסמו גם באתר.' : 'הדרכות פתוחות שפורסמו גם באתר ובערוץ היוטיוב.', l: list.filter(function (i) { return i.pub && i.topic !== NEVO; }) },
+        { k: 'nevo', c: ' nevo', h: (DOC ? 'מדריכים' : 'סרטונים') + ' - שיתוף פעולה של LEGAL MIND עם NVLOGO', n: 'שיתוף פעולה עם NVLOGO', p: DOC ? 'המדריכים הרשמיים של נבו לחיבור נבו ל-Claude.' : 'הסדרה המשותפת של LEGAL MIND ונבו, לפי הסדר.', l: list.filter(function (i) { return i.pub && i.topic === NEVO; }) }
       ].filter(function (x) { return x.l.length; });
       var vc = shelves.map(function (x) { return '<section class="shelf' + x.c + '" id="shelf-' + x.k + '"><h2>' + x.h + '</h2><p>' + x.p + '</p><div class="vitems">' + x.l.map(card).join('') + '</div></section>'; }).join('');
       var nav = shelves.length > 1 ? '<nav class="shelf-nav" aria-label="קפיצה למדף">' + shelves.map(function (x) { return '<button type="button" data-shelf="shelf-' + x.k + '">' + x.n + ' <span class="cnt">' + x.l.length + '</span></button>'; }).join('') + '</nav>' : '';
@@ -216,7 +218,14 @@
   VM.addEventListener('contextmenu', function (e) { e.preventDefault(); });
   document.addEventListener('fullscreenchange', function () { if (!document.fullscreenElement && VM.classList.contains('full')) vmSize(false); });
   document.addEventListener('keydown', function (e) { if (!VM.classList.contains('hide') && e.key === 'Escape' && !document.fullscreenElement) vmClose(); });
+  function openDoc(it) {   // public guide (also on the site): read it here, inside the client area
+    $('vmTitle').textContent = it.title; VM.classList.add('doc'); vmSize(false); VM.classList.remove('hide');
+    VS.innerHTML = '<iframe src="' + E(it.pub) + '" title="' + E(it.title) + '"></iframe>';
+    $('vmClose').focus();
+    if (!LM.MOCK) LM.rpc('portal_progress', { p_item: it.id, p_progress: Math.max(it.progress || 0, 0.1) });
+  }
   async function openVideo(it) {
+    VM.classList.remove('doc');
     $('vmTitle').textContent = it.title; vmSize(false); VM.classList.remove('hide');
     VS.innerHTML = '<p style="color:#cfd8dc;text-align:center;padding-top:20%">טוען את הסרטון...</p>';
     if (it.pub) {   // public video (also on the site and YouTube): no signed link needed
@@ -238,6 +247,7 @@
   async function open(id) {
     var it = items.find(function (i) { return i.id === id; }); if (!it) return;
     if (it.kind === 'video' && !LM.MOCK) { openVideo(it); return; }
+    if (it.kind === 'booklet' && it.pub) { openDoc(it); return; }
     $('vTitle').textContent = it.title; VB.innerHTML = '<p class="muted">טוען...</p>'; V.classList.remove('hide');
     if (it.kind === 'prompt') {
       VB.innerHTML = '<div class="card skillbox promptbox t-gold"><h3>' + E(it.title) + '</h3><p style="margin:0">' + E(it.desc) + '</p><pre>' + E(it.body || '') + '</pre><button class="copy" type="button" data-copy="' + E(it.id) + '">' + LM.ICONS.copy + '<span>העתקה</span></button></div>';
