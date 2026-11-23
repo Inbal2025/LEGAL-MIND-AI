@@ -241,7 +241,7 @@
     var topN = list.filter(function (i) { return i.top; }).length;
     var chips = [{ k: 'top', t: 'הכי שימושיים', n: topN }].concat(groups.map(function (g) { return { k: g, t: g, n: list.filter(function (i) { return i.topic === g; }).length }; }), [{ k: 'all', t: 'הכול', n: list.length }]);
     $('view').innerHTML = '<div class="sec-head ' + sec.tone + '"><span class="tb">' + I.skill + '</span><div><h1>הסקילים של המשרד</h1><p>' + list.length + ' סקילים, עם חוברת הדרכה לכל סקיל</p></div></div>'
-      + '<div class="sk-intro"><span class="sk-on"><i></i><span>הסקילים פעילים אצלכם בתוך <bdi>Claude</bdi></span></span><span class="sk-how">אין מה להוריד ואין מה להתקין.</span></div>'
+      + '<div class="sk-intro"><span class="sk-on"><i></i><span>הסקילים פעילים אצלכם בתוך <bdi>Claude</bdi></span></span><span class="sk-how">הסקילים שייכים ל-<bdi>LEGAL MIND</bdi> ופועלים אצלכם כל עוד המנוי פעיל. אין מה להוריד ואין מה להתקין: אנחנו משפרים ומוסיפים סקילים כל הזמן, והם מגיעים אליכם אוטומטית.</span></div>'
       + '<ol class="sk-steps" aria-label="איך משתמשים בסקיל">'
       + '<li><b>בוחרים סקיל</b>מוצאים כאן את הסקיל שמתאים למשימה, בחיפוש או לפי תחום, ולוחצים עליו.</li>'
       + '<li><b>פותחים את <bdi>Claude</bdi></b>באתר <a href="https://claude.ai/new" target="_blank" rel="noopener"><bdi>claude.ai</bdi></a> או באפליקציה, בשיחה חדשה.</li>'
