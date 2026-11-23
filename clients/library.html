@@ -59,7 +59,17 @@
 .vcard .vi span{font-size:15.5px;color:var(--body)}
 .vcard .vi i{font-style:normal;font-weight:600;font-size:14.5px;color:var(--muted)}
 @media (max-width:760px){.vitems{grid-template-columns:1fr}}
-.shelf+.shelf{margin-top:clamp(36px,4vw,56px)}
+.shelf{scroll-margin-top:96px}.shelf+.shelf{margin-top:clamp(36px,4vw,56px)}
+.shelf-nav{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 clamp(22px,2.6vw,34px)}
+.shelf-nav button{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card,#fff);color:var(--ink);font:600 15px var(--sans);cursor:pointer;box-shadow:0 6px 16px -12px rgba(15,34,54,.5)}
+.shelf-nav button:hover{border-color:#c99a3e}
+.shelf-nav button:focus-visible{outline:3px solid var(--teal,#2a7f7a);outline-offset:2px}
+.shelf-nav .cnt{font-weight:500;color:var(--muted)}
+.shelf-nav .st{color:#c99a3e}
+.nv-logo{display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:8px;padding:3px 8px;box-shadow:inset 0 0 0 1px rgba(15,34,54,.12);vertical-align:middle}
+.nv-logo img{display:block;height:20px;width:auto}
+.shelf>h2 .nv-logo img{height:28px}
+.shelf.nevo{background:linear-gradient(180deg,rgba(201,163,107,.13),rgba(201,163,107,.04));border:1px solid rgba(201,163,107,.35);border-radius:24px;padding:clamp(20px,2.4vw,32px)}
 .shelf>h2{display:flex;align-items:center;gap:12px;font:400 clamp(22px,2vw,27px)/1.25 var(--head);color:var(--ink);margin:0 0 6px}
 .shelf>p{margin:0 0 clamp(16px,1.8vw,22px);color:var(--muted);font-size:15.5px}
 .shelf>h2 .star{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#f2dc9b,#c99a3e);color:#fff;font-size:17px;box-shadow:0 4px 12px -4px rgba(150,110,30,.6)}
@@ -143,12 +153,14 @@
       // three shelves: exclusive to Legal Mind clients first, then the public videos, then the Legal Mind x Nevo series
       var NEVO = 'Legal Mind × נבו';
       var shelves = [
-        { h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות Legal Mind', p: 'סרטונים שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return !i.pub; }) },
-        { h: 'סרטונים נוספים של Legal Mind', p: 'הדרכות פתוחות שפורסמו גם באתר ובערוץ היוטיוב.', l: list.filter(function (i) { return i.pub && i.topic !== NEVO; }) },
-        { h: 'סדרת Legal Mind × נבו', p: 'הסדרה המשותפת עם נבו, לפי הסדר.', l: list.filter(function (i) { return i.pub && i.topic === NEVO; }) }
+        { k: 'excl', c: '', h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות LEGAL MIND', n: '<span class="st" aria-hidden="true">★</span> בלעדי ללקוחות', p: 'סרטונים שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return !i.pub; }) },
+        { k: 'lm', c: '', h: 'סרטונים נוספים של LEGAL MIND', n: 'LEGAL MIND', p: 'הדרכות פתוחות שפורסמו גם באתר ובערוץ היוטיוב.', l: list.filter(function (i) { return i.pub && i.topic !== NEVO; }) },
+        { k: 'nevo', c: ' nevo', h: 'סרטונים - שיתוף פעולה של LEGAL MIND עם NVLOGO', n: 'שיתוף פעולה עם NVLOGO', p: 'הסדרה המשותפת של LEGAL MIND ונבו, לפי הסדר.', l: list.filter(function (i) { return i.pub && i.topic === NEVO; }) }
       ].filter(function (x) { return x.l.length; });
-      var vc = shelves.map(function (x) { return '<section class="shelf"><h2>' + x.h + '</h2><p>' + x.p + '</p><div class="vitems">' + x.l.map(card).join('') + '</div></section>'; }).join('');
-      $('view').innerHTML = '<div class="sec-head ' + sec.tone + '"><span class="tb">' + I[sec.kind] + '</span><div><h1>' + sec.title + '</h1><p>' + LM.countText(sec, list.length) + '</p></div></div>' + vc;
+      var vc = shelves.map(function (x) { return '<section class="shelf' + x.c + '" id="shelf-' + x.k + '"><h2>' + x.h + '</h2><p>' + x.p + '</p><div class="vitems">' + x.l.map(card).join('') + '</div></section>'; }).join('');
+      var nav = shelves.length > 1 ? '<nav class="shelf-nav" aria-label="קפיצה למדף">' + shelves.map(function (x) { return '<button type="button" data-shelf="shelf-' + x.k + '">' + x.n + ' <span class="cnt">' + x.l.length + '</span></button>'; }).join('') + '</nav>' : '';
+      $('view').innerHTML = ('<div class="sec-head ' + sec.tone + '"><span class="tb">' + I[sec.kind] + '</span><div><h1>' + sec.title + '</h1><p>' + LM.countText(sec, list.length) + '</p></div></div>' + nav + vc).split('NVLOGO').join('<span class="nv-logo"><img src="/brand/nevo-logo.webp" alt="נבו" width="360" height="170"></span>');
+      $('view').querySelectorAll('[data-shelf]').forEach(function (b) { b.addEventListener('click', function () { var t = document.getElementById(b.getAttribute('data-shelf')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
       return;
     }
     var cards = list.map(function (i) {
