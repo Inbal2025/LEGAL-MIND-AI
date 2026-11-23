@@ -155,9 +155,11 @@
       // three shelves: exclusive to Legal Mind clients first, then the public videos, then the Legal Mind x Nevo series
       var NEVO = 'Legal Mind × נבו';
       var DOC = sec.kind === 'booklet';
+      var COURSE = 'קורס Cowork';
       var shelves = [
-        { k: 'excl', c: '', h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות LEGAL MIND', n: '<span class="st" aria-hidden="true">★</span> בלעדי ללקוחות', p: (DOC ? 'מדריכים' : 'סרטונים') + ' שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return !i.pub || i.excl; }) },
+        { k: 'excl', c: '', h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות LEGAL MIND', n: '<span class="st" aria-hidden="true">★</span> בלעדי ללקוחות', p: (DOC ? 'מדריכים' : 'סרטונים') + ' שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return (!i.pub || i.excl) && i.topic !== COURSE; }) },
         { k: 'lm', c: '', h: (DOC ? 'מדריכים' : 'סרטונים') + ' נוספים של LEGAL MIND', n: 'LEGAL MIND', p: DOC ? 'מדריכים פתוחים שפורסמו גם באתר.' : 'הדרכות פתוחות שפורסמו גם באתר ובערוץ היוטיוב.', l: list.filter(function (i) { return i.pub && !i.excl && i.topic !== NEVO; }) },
+        { k: 'course', c: ' course', h: '<span class="star" aria-hidden="true">★</span>קורס <span dir="ltr">Claude Cowork</span> עם אסף', n: '<span class="st" aria-hidden="true">★</span> קורס <span dir="ltr">Cowork</span>', p: 'סדרת סרטונים בלעדית ללקוחות, לפי הסדר: מההתקנה ועד עבודה מלאה עם Cowork.', l: list.filter(function (i) { return i.topic === COURSE; }) },
         { k: 'nevo', c: ' nevo', h: (DOC ? 'מדריכים' : 'סרטונים') + ' - שיתוף פעולה של LEGAL MIND עם NVLOGO', n: 'שיתוף פעולה עם NVLOGO', p: DOC ? 'המדריכים הרשמיים של נבו לחיבור נבו ל-Claude.' : 'הסדרה המשותפת של LEGAL MIND ונבו, לפי הסדר.', l: list.filter(function (i) { return i.pub && !i.excl && i.topic === NEVO; }) }
       ].filter(function (x) { return x.l.length; });
       var vc = shelves.map(function (x) { return '<section class="shelf' + x.c + '" id="shelf-' + x.k + '"><h2>' + x.h + '</h2><p>' + x.p + '</p><div class="vitems">' + x.l.map(card).join('') + '</div></section>'; }).join('');
