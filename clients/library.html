@@ -59,6 +59,11 @@
 .vcard .vi span{font-size:15.5px;color:var(--body)}
 .vcard .vi i{font-style:normal;font-weight:600;font-size:14.5px;color:var(--muted)}
 @media (max-width:760px){.vitems{grid-template-columns:1fr}}
+.shelf+.shelf{margin-top:clamp(36px,4vw,56px)}
+.shelf>h2{display:flex;align-items:center;gap:12px;font:400 clamp(22px,2vw,27px)/1.25 var(--head);color:var(--ink);margin:0 0 6px}
+.shelf>p{margin:0 0 clamp(16px,1.8vw,22px);color:var(--muted);font-size:15.5px}
+.shelf>h2 .star{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#f2dc9b,#c99a3e);color:#fff;font-size:17px;box-shadow:0 4px 12px -4px rgba(150,110,30,.6)}
+.vcard .cv .excl{position:absolute;top:12px;inset-inline-end:12px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:5px 12px 6px;border-radius:999px;font:700 14px/1 var(--sans);color:#3b2a08;background:linear-gradient(145deg,#f6e3a8,#d4a84a);box-shadow:0 6px 16px -6px rgba(120,85,20,.7),inset 0 0 0 1px rgba(255,255,255,.5)}
 @media (prefers-reduced-motion:reduce){.vcard{transition:none}.vcard:hover,.vcard:active{transform:none}}
 .vmodal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:rgba(8,16,24,.72);backdrop-filter:blur(4px)}
 .vmodal.hide{display:none}
@@ -130,12 +135,20 @@
     document.title = sec.title.replace(/<[^>]+>/g, '') + ' | LEGAL MIND';
     var list = items.filter(function (i) { return i.kind === sec.kind; });
     if (sec.kind === 'video' && list.length) {
-      var vc = list.map(function (i) {
-        return '<button class="vcard" type="button" data-id="' + E(i.id) + '" aria-label="' + E(i.title) + '"><span class="cv">' + (i.is_new ? '<span class="new">חדש</span>' : '')
+      var card = function (i) {
+        return '<button class="vcard" type="button" data-id="' + E(i.id) + '" aria-label="' + E(i.title) + '"><span class="cv">' + (i.is_new ? '<span class="new">חדש</span>' : '') + (!i.pub ? '<span class="excl"><span aria-hidden="true">★</span>בלעדי ללקוחות</span>' : '')
           + '<img src="/clients/covers/' + encodeURIComponent(i.id) + '.webp" alt="" loading="lazy" decoding="async" width="1600" height="900" onerror="this.remove()"></span>'
           + '<span class="vi"><b>' + E(i.title) + '</b><span>' + E(i.desc) + '</span>' + (i.duration_sec ? '<i><span dir="ltr">' + LM.dur(i.duration_sec) + '</span> דקות</i>' : '') + '</span></button>';
-      }).join('');
-      $('view').innerHTML = '<div class="sec-head ' + sec.tone + '"><span class="tb">' + I[sec.kind] + '</span><div><h1>' + sec.title + '</h1><p>' + LM.countText(sec, list.length) + '</p></div></div><div class="vitems">' + vc + '</div>';
+      };
+      // three shelves: exclusive to Legal Mind clients first, then the public videos, then the Legal Mind x Nevo series
+      var NEVO = 'Legal Mind × נבו';
+      var shelves = [
+        { h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות Legal Mind', p: 'סרטונים שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return !i.pub; }) },
+        { h: 'סרטונים נוספים של Legal Mind', p: 'הדרכות פתוחות שפורסמו גם באתר ובערוץ היוטיוב.', l: list.filter(function (i) { return i.pub && i.topic !== NEVO; }) },
+        { h: 'סדרת Legal Mind × נבו', p: 'הסדרה המשותפת עם נבו, לפי הסדר.', l: list.filter(function (i) { return i.pub && i.topic === NEVO; }) }
+      ].filter(function (x) { return x.l.length; });
+      var vc = shelves.map(function (x) { return '<section class="shelf"><h2>' + x.h + '</h2><p>' + x.p + '</p><div class="vitems">' + x.l.map(card).join('') + '</div></section>'; }).join('');
+      $('view').innerHTML = '<div class="sec-head ' + sec.tone + '"><span class="tb">' + I[sec.kind] + '</span><div><h1>' + sec.title + '</h1><p>' + LM.countText(sec, list.length) + '</p></div></div>' + vc;
       return;
     }
     var cards = list.map(function (i) {
@@ -193,6 +206,14 @@
   async function openVideo(it) {
     $('vmTitle').textContent = it.title; vmSize(false); VM.classList.remove('hide');
     VS.innerHTML = '<p style="color:#cfd8dc;text-align:center;padding-top:20%">טוען את הסרטון...</p>';
+    if (it.pub) {   // public video (also on the site and YouTube): no signed link needed
+      VS.innerHTML = /^https:\/\/www\.youtube-nocookie\.com\//.test(it.pub)
+        ? '<iframe src="' + E(it.pub) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + E(it.title) + '"></iframe>'
+        : '<video src="' + E(it.pub) + '" controls autoplay playsinline controlslist="nodownload" style="position:absolute;inset:0;width:100%;height:100%;background:#000"></video>';
+      $('vmClose').focus();
+      LM.rpc('portal_progress', { p_item: it.id, p_progress: Math.max(it.progress || 0, 0.1) });
+      return;
+    }
     var r = await LM.fn('sign-url', { item_id: it.id, device: LM.deviceId() });
     if (r.error || !r.data || !r.data.url) { VS.innerHTML = '<p class="msg err" style="margin:20% auto 0;max-width:420px;text-align:center">לא הצלחנו לפתוח את הסרטון. נסו שוב, או פתחו פנייה ל-LEGAL MIND.</p>'; return; }
     VS.innerHTML = '<iframe src="' + E(r.data.url) + '" allow="autoplay; fullscreen" allowfullscreen title="' + E(it.title) + '"></iframe><div class="shield" aria-hidden="true"></div>';
