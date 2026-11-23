@@ -148,7 +148,7 @@
     var list = items.filter(function (i) { return i.kind === sec.kind; });
     if ((sec.kind === 'video' || sec.kind === 'booklet') && list.length) {
       var card = function (i) {
-        return '<button class="vcard" type="button" data-id="' + E(i.id) + '" aria-label="' + E(i.title) + '"><span class="cv">' + (i.is_new ? '<span class="new">חדש</span>' : '') + (!i.pub ? '<span class="excl"><span aria-hidden="true">★</span>בלעדי ללקוחות</span>' : '')
+        return '<button class="vcard" type="button" data-id="' + E(i.id) + '" aria-label="' + E(i.title) + '"><span class="cv">' + (i.is_new ? '<span class="new">חדש</span>' : '') + ((!i.pub || i.excl) ? '<span class="excl"><span aria-hidden="true">★</span>בלעדי ללקוחות</span>' : '')
           + '<img src="/clients/covers/' + encodeURIComponent(i.id) + '.webp" alt="" loading="lazy" decoding="async" width="1600" height="900" onerror="this.remove()"></span>'
           + '<span class="vi"><b>' + E(i.title) + '</b><span>' + E(i.desc) + '</span>' + (i.duration_sec ? '<i><span dir="ltr">' + LM.dur(i.duration_sec) + '</span> דקות</i>' : '') + '</span></button>';
       };
@@ -156,9 +156,9 @@
       var NEVO = 'Legal Mind × נבו';
       var DOC = sec.kind === 'booklet';
       var shelves = [
-        { k: 'excl', c: '', h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות LEGAL MIND', n: '<span class="st" aria-hidden="true">★</span> בלעדי ללקוחות', p: (DOC ? 'מדריכים' : 'סרטונים') + ' שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return !i.pub; }) },
-        { k: 'lm', c: '', h: (DOC ? 'מדריכים' : 'סרטונים') + ' נוספים של LEGAL MIND', n: 'LEGAL MIND', p: DOC ? 'מדריכים פתוחים שפורסמו גם באתר.' : 'הדרכות פתוחות שפורסמו גם באתר ובערוץ היוטיוב.', l: list.filter(function (i) { return i.pub && i.topic !== NEVO; }) },
-        { k: 'nevo', c: ' nevo', h: (DOC ? 'מדריכים' : 'סרטונים') + ' - שיתוף פעולה של LEGAL MIND עם NVLOGO', n: 'שיתוף פעולה עם NVLOGO', p: DOC ? 'המדריכים הרשמיים של נבו לחיבור נבו ל-Claude.' : 'הסדרה המשותפת של LEGAL MIND ונבו, לפי הסדר.', l: list.filter(function (i) { return i.pub && i.topic === NEVO; }) }
+        { k: 'excl', c: '', h: '<span class="star" aria-hidden="true">★</span>בלעדי ללקוחות LEGAL MIND', n: '<span class="st" aria-hidden="true">★</span> בלעדי ללקוחות', p: (DOC ? 'מדריכים' : 'סרטונים') + ' שנמצאים רק כאן, באזור האישי.', l: list.filter(function (i) { return !i.pub || i.excl; }) },
+        { k: 'lm', c: '', h: (DOC ? 'מדריכים' : 'סרטונים') + ' נוספים של LEGAL MIND', n: 'LEGAL MIND', p: DOC ? 'מדריכים פתוחים שפורסמו גם באתר.' : 'הדרכות פתוחות שפורסמו גם באתר ובערוץ היוטיוב.', l: list.filter(function (i) { return i.pub && !i.excl && i.topic !== NEVO; }) },
+        { k: 'nevo', c: ' nevo', h: (DOC ? 'מדריכים' : 'סרטונים') + ' - שיתוף פעולה של LEGAL MIND עם NVLOGO', n: 'שיתוף פעולה עם NVLOGO', p: DOC ? 'המדריכים הרשמיים של נבו לחיבור נבו ל-Claude.' : 'הסדרה המשותפת של LEGAL MIND ונבו, לפי הסדר.', l: list.filter(function (i) { return i.pub && !i.excl && i.topic === NEVO; }) }
       ].filter(function (x) { return x.l.length; });
       var vc = shelves.map(function (x) { return '<section class="shelf' + x.c + '" id="shelf-' + x.k + '"><h2>' + x.h + '</h2><p>' + x.p + '</p><div class="vitems">' + x.l.map(card).join('') + '</div></section>'; }).join('');
       var nav = shelves.length > 1 ? '<nav class="shelf-nav" aria-label="קפיצה למדף">' + shelves.map(function (x) { return '<button type="button" data-shelf="shelf-' + x.k + '">' + x.n + ' <span class="cnt">' + x.l.length + '</span></button>'; }).join('') + '</nav>' : '';
