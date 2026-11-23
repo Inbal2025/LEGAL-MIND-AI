@@ -355,7 +355,7 @@
       VB.innerHTML = '<div class="player"><iframe src="' + E(r.data.url) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + E(it.title) + '"></iframe></div>';
     } else {
       VB.innerHTML = '';
-      var pdf = await pdfjsLib.getDocument({ url: r.data.url, disableAutoFetch: true }).promise;
+      var pdf = await pdfjsLib.getDocument({ url: r.data.url, disableAutoFetch: true, disableFontFace: true, cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/', cMapPacked: true, standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/' }).promise;
       for (var n = 1; n <= pdf.numPages; n++) {
         var page = await pdf.getPage(n), vp = page.getViewport({ scale: 1.6 });
         var cv = document.createElement('canvas'); cv.width = vp.width; cv.height = vp.height; VB.appendChild(cv);
