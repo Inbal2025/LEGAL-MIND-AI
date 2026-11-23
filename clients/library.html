@@ -10,7 +10,7 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/clients/portal.css?v=20261123a">
+<link rel="stylesheet" href="/clients/portal.css?v=20261124a">
 <style>
 .lib-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.2vw,28px);margin-top:clamp(24px,3vw,36px)}
 .lib-tiles .tile{min-height:200px}
@@ -31,6 +31,47 @@
 @media (max-width:900px){.items{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.items{grid-template-columns:1fr}.items .tile{min-height:0}.lib-tiles{gap:16px}.lib-tiles .tile{min-height:150px;padding:18px 16px}.lib-tiles .tile .tb{width:52px;height:52px}.lib-tiles .tile .tt{font-size:21px}.lib-tiles .tile .td{font-size:14.5px}}
 @media (prefers-reduced-motion:reduce){.copy{transition:none}.copy:hover,.copy:active{transform:none}}
+
+/* skills: rows, search, groups */
+.sk-intro{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:6px 0 18px;color:var(--body);font-size:16px}
+.sk-on{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:rgba(46,160,110,.14);color:#1f7a52;font:600 14px var(--sans)}
+[data-theme="dark"] .sk-on{background:rgba(80,200,140,.16);color:#7fdcaa}
+.sk-on i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.sk-how{font-size:15px;color:var(--muted)}
+.sk-how kbd{font:600 14px var(--sans);padding:1px 7px;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+.sk-search{width:100%;height:52px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 17px var(--sans);padding:0 18px;margin-bottom:14px}
+.sk-search:focus{outline:2px solid var(--teal);outline-offset:1px}
+.sk-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.sk-chips button{height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--body);font:600 14.5px var(--sans);cursor:pointer}
+.sk-chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg,#fff);border-color:var(--ink)}
+[data-theme="dark"] .sk-chips button[aria-pressed="true"]{background:#e2be68;color:#14202b;border-color:#e2be68}
+.sk-chips .n{opacity:.6;margin-inline-start:6px;font-weight:500}
+.sk-group{margin:0 0 26px}
+.sk-group h2{font:400 21px var(--head);color:var(--ink);margin:0 0 10px}
+.sk-list{border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden}
+.sk-row{border-top:1px solid var(--line)}
+.sk-row:first-child{border-top:0}
+.sk-head{display:flex;align-items:center;gap:14px;width:100%;padding:14px 18px;background:none;border:0;text-align:right;cursor:pointer;color:inherit;font:inherit}
+.sk-head:hover{background:rgba(127,127,127,.06)}
+.sk-ic{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(201,154,62,.14);color:#a9791f}
+[data-theme="dark"] .sk-ic{color:#e2be68}
+.sk-ic .ico{width:20px;height:20px}
+.sk-tx{flex:1;min-width:0}
+.sk-tx b{display:block;font:600 17px var(--sans);color:var(--ink)}
+.sk-tx span{display:block;font-size:15px;color:var(--muted);margin-top:2px}
+.sk-top{flex:none;font:600 12.5px var(--sans);color:#a9791f;background:rgba(201,154,62,.14);padding:3px 9px;border-radius:999px}
+[data-theme="dark"] .sk-top{color:#e2be68}
+.sk-chev{flex:none;width:18px;height:18px;color:var(--muted);transition:transform .2s}
+.sk-row.open .sk-chev{transform:rotate(180deg)}
+.sk-body{display:none;padding:0 18px 18px;padding-inline-start:72px}
+.sk-row.open .sk-body{display:block}
+.sk-say{border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:15.5px;color:var(--body)}
+.sk-say q{display:block;font:600 16.5px var(--sans);color:var(--ink);margin:4px 0 10px}
+.sk-say .sl{font-size:14px;color:var(--muted);margin-top:10px}
+.sk-say .sl code{font:600 14px ui-monospace,Consolas,monospace;direction:ltr;unicode-bidi:isolate;color:var(--ink)}
+.sk-acts{display:flex;flex-wrap:wrap;gap:10px}
+.sk-none{padding:30px;text-align:center;color:var(--muted)}
+@media (max-width:600px){.sk-body{padding-inline-start:18px}.sk-head{padding:12px 14px}.sk-top{display:none}}
 /* viewer */
 .viewer{position:fixed;inset:0;z-index:40;background:var(--viewer-bg);display:flex;flex-direction:column}
 .vbar{position:relative;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px;padding:0 clamp(16px,3vw,32px);border-bottom:1px solid var(--line)}
@@ -120,7 +161,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
-<script src="/clients/portal.js?v=20261119h"></script>
+<script src="/clients/portal.js?v=20261124a"></script>
 <script>
 (async function () {
   var $ = function (id) { return document.getElementById(id); }, E = LM.esc;
@@ -168,6 +209,7 @@
       $('view').querySelectorAll('[data-shelf]').forEach(function (b) { b.addEventListener('click', function () { var t = document.getElementById(b.getAttribute('data-shelf')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
       return;
     }
+    if (sec.kind === 'skill' && list.length) { drawSkills(sec, list); return; }
     var cards = list.map(function (i) {
       if (i.kind === 'prompt') return '<div class="tile pr ' + sec.tone + '"><span class="tt">' + E(i.title) + '</span><span class="td">' + E(i.desc) + '</span><button class="copy" type="button" data-copy="' + E(i.id) + '" aria-label="העתקת הפרומפט: ' + E(i.title) + '">' + I.copy + '<span>העתקה</span></button></div>';
       var facts = [];
@@ -178,6 +220,50 @@
     }).join('');
     $('view').innerHTML = '<div class="sec-head ' + sec.tone + '"><span class="tb">' + I[sec.kind] + '</span><div><h1>' + sec.title + '</h1><p>' + (list.length ? LM.countText(sec, list.length) : sec.line) + '</p></div></div>'
       + (list.length ? '<div class="items">' + cards + '</div>' : '<div class="calm-empty"><b>' + sec.soon + '…</b>כשיעלה משהו חדש, הוא יופיע כאן. בינתיים אפשר <a href="' + LM.link('/clients/support.html') + '#new">לכתוב לנו</a>.</div>');
+  }
+
+  // ---- skills: one row per skill, grouped; the skill itself runs in Claude through the LEGAL MIND connector
+  var SKQ = '', SKG = 'top';
+  function drawSkills(sec, list) {
+    list = list.slice().sort(function (a, b) { return (a.sort || 999) - (b.sort || 999); });
+    var ORDER = ['חוזים והסכמים', 'נדל"ן', 'ליטיגציה', 'מכתבים, מסמכים וצוואות', 'ניהול משרד', 'עבודה עם Word', 'שיווק ותוכן', 'כללי'];
+    var groups = []; list.forEach(function (i) { if (groups.indexOf(i.topic) < 0) groups.push(i.topic); });
+    groups.sort(function (a, b) { var x = ORDER.indexOf(a), y = ORDER.indexOf(b); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); });
+    var topN = list.filter(function (i) { return i.top; }).length;
+    var chips = [{ k: 'top', t: 'הכי שימושיים', n: topN }].concat(groups.map(function (g) { return { k: g, t: g, n: list.filter(function (i) { return i.topic === g; }).length }; }), [{ k: 'all', t: 'הכול', n: list.length }]);
+    $('view').innerHTML = '<div class="sec-head ' + sec.tone + '"><span class="tb">' + I.skill + '</span><div><h1>הסקילים של המשרד</h1><p>' + list.length + ' סקילים, עם חוברת הדרכה לכל סקיל</p></div></div>'
+      + '<div class="sk-intro"><span class="sk-on"><i></i>פעילים אצלכם ב-<span dir="ltr">Claude</span></span><span class="sk-how">אין מה להתקין. כותבים ל-<span dir="ltr">Claude</span> כרגיל, או מקלידים <kbd>/</kbd> ובוחרים את הסקיל.</span></div>'
+      + '<input class="sk-search" id="skq" type="search" placeholder="מה צריך לעשות? למשל: להשוות טיוטות" aria-label="חיפוש סקיל" value="' + E(SKQ) + '">'
+      + '<div class="sk-chips" role="group" aria-label="סינון לפי תחום">' + chips.map(function (c) { return '<button type="button" data-g="' + E(c.k) + '" aria-pressed="' + (SKG === c.k) + '">' + E(c.t) + '<span class="n">' + c.n + '</span></button>'; }).join('') + '</div>'
+      + '<div id="sklist"></div>';
+    var row = function (i) {
+      var slash = 'legalmind-' + i.id.replace(/^s-/, '');
+      return '<div class="sk-row"><button class="sk-head" type="button" aria-expanded="false"><span class="sk-ic">' + I.skill + '</span><span class="sk-tx"><b>' + E(i.title) + '</b><span>' + E(i.desc) + '</span></span>' + (i.top && SKG !== 'top' ? '<span class="sk-top">★ שימושי</span>' : '') + '<svg class="sk-chev ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>'
+        + '<div class="sk-body"><div class="sk-say">כותבים ל-<span dir="ltr">Claude</span>:<q>' + E(i.body || '') + '</q><button class="copy" type="button" data-copy="' + E(i.id) + '">' + I.copy + '<span>העתקה</span></button><div class="sl">או בוחרים אותו בעצמכם: מקלידים <code>/' + E(slash) + '</code></div></div>'
+        + '<div class="sk-acts">' + (i.pages ? '<button class="btn btn-gold" type="button" data-book="' + E(i.id) + '">פתיחת חוברת ההדרכה · ' + i.pages + ' עמודים</button>' : '<span class="muted" style="font-size:14px">חוברת ההדרכה תעלה בקרוב</span>') + '</div></div></div>';
+    };
+    function fill() {
+      var q = SKQ.trim(), L;
+      if (q) { var w = q.split(/\s+/); L = list.filter(function (i) { var t = i.title + ' ' + i.desc + ' ' + (i.body || '') + ' ' + i.topic; return w.every(function (x) { return t.indexOf(x) >= 0; }); }); }
+      else L = SKG === 'top' ? list.filter(function (i) { return i.top; }) : SKG === 'all' ? list : list.filter(function (i) { return i.topic === SKG; });
+      var html;
+      if (!L.length) html = '<div class="sk-list"><div class="sk-none">לא נמצא סקיל כזה. נסו מילה אחרת, או <a href="' + LM.link('/clients/support.html') + '#new">כתבו לנו</a> ונבנה אותו.</div></div>';
+      else if (!q && SKG === 'all') html = groups.map(function (g) { var x = L.filter(function (i) { return i.topic === g; }); return x.length ? '<section class="sk-group"><h2>' + E(g) + '</h2><div class="sk-list">' + x.map(row).join('') + '</div></section>' : ''; }).join('');
+      else html = '<div class="sk-list">' + L.map(row).join('') + '</div>';
+      $('sklist').innerHTML = html;
+    }
+    fill();
+    $('skq').addEventListener('input', function () { SKQ = this.value; fill(); });
+    $('view').querySelector('.sk-chips').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-g]'); if (!b) return; SKG = b.getAttribute('data-g'); SKQ = ''; $('skq').value = '';
+      this.querySelectorAll('[data-g]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); fill();
+    });
+    $('sklist').addEventListener('click', function (e) {
+      if (e.target.closest('[data-copy]')) return;   // copy is handled by the page-wide listener
+      var bk = e.target.closest('[data-book]'); if (bk) { open(bk.getAttribute('data-book')); return; }
+      var h = e.target.closest('.sk-head'); if (!h) return;
+      var r = h.parentNode, on = !r.classList.contains('open'); r.classList.toggle('open', on); h.setAttribute('aria-expanded', String(on));
+    });
   }
   window.addEventListener('hashchange', function () { draw(); window.scrollTo(0, 0); });
   draw();
@@ -256,23 +342,7 @@
       VB.querySelector('[data-copy]').addEventListener('click', function () { copyPrompt(this, it.id); });
       return;
     }
-    if (it.kind !== 'skill') LM.watermark(me, V);   // personal watermark over the content only (protection 13)
-    if (it.kind === 'skill') {
-      VB.innerHTML = '<div class="card skillbox"><h3>' + E(it.title) + '</h3><p style="margin:0">' + E(it.desc) + '</p>'
-        + '<ol><li>מורידים את הקובץ <span dir="ltr">' + E(it.file_name || '') + '</span>.</li><li>ב-<span dir="ltr">Claude</span> נכנסים להגדרות, ואז ליכולות.</li><li>מעלים את הקובץ באזור הסקילים.</li></ol>'
-        + '<button class="btn btn-gold" id="dl" type="button">הורדת הסקיל</button><p class="muted" style="font-size:13.5px;margin:14px 0 0">הקובץ מיועד למשרד שלכם בלבד. ההורדה נרשמת, והקישור תקף לשעה.</p>'
-        + (it.related && byId[it.related] ? '<p class="rel">' + LM.ICONS.video.replace('class="ico"', 'class="ico" style="width:16px;height:16px;vertical-align:-3px;margin-inline-end:6px;color:var(--teal)"') + 'סרטון קשור: <button class="link" type="button" id="relv">' + E(byId[it.related].title) + '</button></p>' : '')
-        + '<p class="msg" id="dlmsg" role="status"></p></div>';
-      if ($('relv')) $('relv').addEventListener('click', function () { open(it.related); });
-      $('dl').addEventListener('click', async function () {
-        if (LM.MOCK) { $('dlmsg').className = 'msg ok'; $('dlmsg').textContent = 'בתצוגת הדוגמה אין קובץ אמיתי להורדה.'; return; }
-        var r = await LM.fn('sign-url', { item_id: id, device: LM.deviceId() });
-        if (r.error || !r.data || !r.data.url) { $('dlmsg').className = 'msg err'; $('dlmsg').textContent = 'ההורדה לא הצליחה. נסו שוב, או פתחו פנייה ל-LEGAL MIND.'; return; }
-        location.href = r.data.url;
-        LM.rpc('portal_progress', { p_item: id, p_progress: 1 });
-      });
-      return;
-    }
+    LM.watermark(me, V);   // personal watermark over the content only (protection 13)
     if (LM.MOCK) {
       VB.innerHTML = it.kind === 'video'
         ? '<div class="player">כאן ינוגן הסרטון בנגן הפרטי, עם השם והמשרד שלכם עליו.<br>תצוגת דוגמה.</div>'

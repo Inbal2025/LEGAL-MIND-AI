@@ -50,8 +50,9 @@
       { id: 'v2', kind: 'video', topic: 'נבו', title: 'סרטון: הקונקטור של נבו בתוך Claude', desc: 'שאלה משפטית, ותשובה עם מקורות לאימות.', is_new: false, progress: 0.95, office_only: false, duration_sec: 512 },
       { id: 'v3', kind: 'video', topic: 'Claude במשרד', title: 'סרטון: החשבון הראשון ב-Claude', desc: 'הרשמה, הגדרות פרטיות ושיחה ראשונה.', is_new: false, progress: 1, office_only: false, duration_sec: 405 },
       { id: 'o1', kind: 'booklet', topic: 'חומרים של המשרד', title: 'נוהל העבודה עם בינה מלאכותית במשרד', desc: 'הכללים שנקבעו יחד באפיון.', is_new: true, progress: 0, office_only: true, pages: 6, updated_at: new Date(Date.now() - 86400000 * 2).toISOString() },
-      { id: 's1', kind: 'skill', topic: 'סקילים', title: 'סקיל: קליטת לקוח חדש', desc: 'מסכם שיחת היכרות לכרטיס לקוח ורשימת מסמכים חסרים.', file_name: 'lm-client-intake.skill', is_new: true, progress: 0, office_only: false, related: 'v1' },
-      { id: 's2', kind: 'skill', topic: 'סקילים', title: 'סקיל: תזכורות מועדים מתוך החלטה', desc: 'מחלץ מועדים מהחלטה ומכין רשימה לבדיקה.', file_name: 'lm-deadlines.skill', is_new: false, progress: 1, office_only: false, related: 'v2' },
+      { id: 's-compare', kind: 'skill', topic: 'חוזים והסכמים', title: 'השוואת מסמכים', desc: 'טבלה של כל ההבדלים בין שתי טיוטות, עם סוג השינוי', body: 'מה ההבדלים בין שתי הטיוטות?', pages: 12, top: true, sort: 2, is_new: false, progress: 0, office_only: false },
+      { id: 's-ba-yoman', kind: 'skill', topic: 'ליטיגציה', title: 'מועדים מהחלטה ליומן', desc: 'כל מועד מתוך החלטה, מחושב לפי הדין, ישר ליומן', body: 'תכניס ליומן את המועדים מההחלטה', pages: 9, top: true, sort: 7, is_new: false, progress: 0, office_only: false },
+      { id: 's-will-generator', kind: 'skill', topic: 'מכתבים, מסמכים וצוואות', title: 'צוואה', desc: 'טיוטת צוואה בוורד לפי פרטי המצווה', body: 'תכין טיוטת צוואה לפי הפרטים', pages: 7, top: false, sort: 30, is_new: false, progress: 0, office_only: false },
       { id: 'p1', kind: 'prompt', topic: 'פרומפטים', title: 'סיכום פסק דין לשני עמודים', desc: 'כשצריך להבין פסק דין ארוך לפני פגישה.', body: 'לפניך פסק דין. סכם אותו בשני עמודים לכל היותר: העובדות הרלוונטיות, השאלות שהוכרעו, ההכרעה והנימוקים המרכזיים. ציין מספרי עמודים לכל טענה, וסמן במפורש כל מקום שבו אינך בטוח.', is_new: true, progress: 0, office_only: false },
       { id: 'p2', kind: 'prompt', topic: 'פרומפטים', title: 'מכתב ללקוח בשפה פשוטה', desc: 'הסבר מצב התיק ללקוח בלי מונחים משפטיים.', body: 'כתוב מכתב קצר ללקוח שמסביר את מצב התיק בשפה פשוטה וללא מונחים משפטיים. פתח במה שקרה, המשך במה שיקרה עכשיו, וסיים במה שנדרש מהלקוח ועד מתי. שמור על טון אדיב ומקצועי.', is_new: false, progress: 0, office_only: false },
       { id: 'p3', kind: 'prompt', topic: 'פרומפטים', title: 'השוואת שתי גרסאות של הסכם', desc: 'רשימת השינויים המהותיים בין טיוטות.', body: 'לפניך שתי גרסאות של אותו הסכם. הכן טבלה של כל השינויים המהותיים ביניהן: מספר הסעיף, הנוסח הקודם, הנוסח החדש, ומשמעות השינוי לצד שלנו. התעלם משינויי ניסוח ופיסוק שאינם משנים משמעות.', is_new: false, progress: 0, office_only: false }
@@ -254,7 +255,7 @@
   var SECTIONS = [
     { kind: 'video', hash: 'videos', tone: 't-teal', title: 'סרטונים', line: 'הדרכות קצרות, צעד אחר צעד', one: 'סרטון אחד', many: 'סרטונים', soon: 'בקרוב יעלו לכאן סרטונים' },
     { kind: 'booklet', hash: 'booklets', tone: 't-sand', title: 'חוברות הדרכה', line: 'מדריכים כתובים לקריאה בנחת', one: 'חוברת אחת', many: 'חוברות', soon: 'בקרוב יעלו לכאן חוברות הדרכה' },
-    { kind: 'skill', hash: 'skills', tone: 't-sage', title: 'סקילים', line: 'כלים מוכנים להתקנה ב-<span dir="ltr">Claude</span>', one: 'סקיל אחד', many: 'סקילים', soon: 'בקרוב יעלו לכאן סקילים' },
+    { kind: 'skill', hash: 'skills', tone: 't-sage', title: 'סקילים', line: 'פעילים אצלכם ב-<span dir="ltr">Claude</span>, עם חוברת לכל סקיל', one: 'סקיל אחד', many: 'סקילים', soon: 'בקרוב יעלו לכאן סקילים' },
     { kind: 'prompt', hash: 'prompts', tone: 't-gold', title: 'פרומפטים מוכנים', line: 'מעתיקים, מדביקים, וזה עובד', one: 'פרומפט אחד', many: 'פרומפטים', soon: 'בקרוב יעלו לכאן פרומפטים' }
   ];
   function countText(sec, n) { return !n ? 'בקרוב' : n === 1 ? sec.one : n + ' ' + sec.many; }
