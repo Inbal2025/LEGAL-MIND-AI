@@ -267,7 +267,7 @@
       + '<div class="sk-chips" role="group" aria-label="סינון לפי תחום">' + chips.map(function (c) { return '<button type="button" data-g="' + E(c.k) + '" aria-pressed="' + (SKG === c.k) + '"><bdi>' + E(c.t) + '</bdi><span class="n">' + c.n + '</span></button>'; }).join('') + '</div></div>'
       + '<div id="sklist"></div>';
     var row = function (i) {
-      var slash = 'legalmind-' + i.id.replace(/^s-/, '');
+      var slash = i.id.replace(/^s-/, '');
       return '<div class="sk-row"><button class="sk-head" type="button" aria-expanded="false"><span class="sk-ic">' + I.skill + '</span><span class="sk-tx"><b>' + E(i.title) + '</b><span>' + E(i.desc) + '</span></span>' + (i.top && SKG !== 'top' ? '<span class="sk-top">★ שימושי</span>' : '') + '<svg class="sk-chev ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>'
         + '<div class="sk-body"><div class="sk-say">איך מפעילים: ב-<bdi>Claude</bdi> מקלידים <code>/' + E(slash) + '</code>, מצרפים את הקבצים ושולחים. או כותבים ל-<bdi>Claude</bdi>:<q>' + E(i.body || '') + '</q><button class="copy" type="button" data-copy="' + E(i.id) + '">' + I.copy + '<span>העתקה</span></button><div class="sl">רוצים להבין לעומק מה הסקיל יודע לעשות? פתחו את חוברת ההדרכה.</div></div>'
         + '<div class="sk-acts">' + (i.pages ? '<button class="btn btn-gold" type="button" data-book="' + E(i.id) + '">פתיחת חוברת ההדרכה · ' + i.pages + ' עמודים</button>' : '<span class="muted" style="font-size:14px">חוברת ההדרכה תעלה בקרוב</span>') + '</div></div></div>';
