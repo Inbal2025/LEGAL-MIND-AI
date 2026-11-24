@@ -80,6 +80,19 @@
 .sk-say .sl code{font:600 14px ui-monospace,Consolas,monospace;direction:ltr;unicode-bidi:isolate;color:var(--ink)}
 .sk-acts{display:flex;flex-wrap:wrap;gap:10px}
 .sk-none{padding:30px;text-align:center;color:var(--muted)}
+.sk-intro{margin:4px 0 14px}
+.sk-howbtn{height:34px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--teal);font:600 14.5px var(--sans);cursor:pointer}
+.sk-howbtn:hover{background:rgba(127,127,127,.08)}
+.sk-steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+.sk-steps[hidden]{display:none}
+.sk-steps li{padding:12px 14px;font-size:14.5px}
+.sk-steps li b{font-size:15.5px;margin-bottom:4px}
+.sk-steps .sk-note{grid-column:1/-1;background:transparent;border-style:dashed;color:var(--muted);font-size:14px;padding:10px 14px}
+.sk-steps .sk-note::before{display:none}
+.sk-bar{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.sk-bar .sk-search{margin:0;height:48px}
+.sk-bar .sk-chips{flex-wrap:nowrap;overflow-x:auto;margin:0;padding-bottom:4px;scrollbar-width:thin}
+.sk-bar .sk-chips button{flex:none;height:36px}
 @media (max-width:600px){.sk-body{padding-inline-start:18px}.sk-head{padding:12px 14px}.sk-top{display:none}}
 /* viewer */
 .viewer{position:fixed;inset:0;z-index:40;background:var(--viewer-bg);display:flex;flex-direction:column}
@@ -241,15 +254,17 @@
     var topN = list.filter(function (i) { return i.top; }).length;
     var chips = [{ k: 'top', t: 'הכי שימושיים', n: topN }].concat(groups.map(function (g) { return { k: g, t: g, n: list.filter(function (i) { return i.topic === g; }).length }; }), [{ k: 'all', t: 'הכול', n: list.length }]);
     $('view').innerHTML = '<div class="sec-head ' + sec.tone + '"><span class="tb">' + I.skill + '</span><div><h1>הסקילים של המשרד</h1><p>' + list.length + ' סקילים, עם חוברת הדרכה לכל סקיל</p></div></div>'
-      + '<div class="sk-intro"><span class="sk-on"><i></i><span>הסקילים פעילים אצלכם בתוך <bdi>Claude</bdi></span></span><span class="sk-how">הסקילים שייכים ל-<bdi>LEGAL MIND</bdi> ופועלים אצלכם כל עוד המנוי פעיל. אין מה להוריד ואין מה להתקין: אנחנו משפרים ומוסיפים סקילים כל הזמן, והם מגיעים אליכם אוטומטית.</span></div>'
-      + '<ol class="sk-steps" aria-label="איך משתמשים בסקיל">'
-      + '<li><b>בוחרים סקיל</b>מוצאים כאן את הסקיל שמתאים למשימה, בחיפוש או לפי תחום, ולוחצים עליו.</li>'
-      + '<li><b>פותחים את <bdi>Claude</bdi></b>באתר <a href="https://claude.ai/new" target="_blank" rel="noopener"><bdi>claude.ai</bdi></a> או באפליקציה, בשיחה חדשה.</li>'
-      + '<li><b>מפעילים את הסקיל</b>מקלידים <code>/</code> ובוחרים את שם הסקיל, והוא מופיע בכחול. או פשוט מדביקים את משפט הדוגמה.</li>'
-      + '<li><b>מצרפים ושולחים</b>מצרפים את הקבצים, למשל את שתי הטיוטות, ושולחים. התוצאה מגיעה כרגיל.</li>'
+      + '<div class="sk-intro"><span class="sk-on"><i></i><span>פעילים אצלכם בתוך <bdi>Claude</bdi> כל עוד המנוי פעיל</span></span><button class="sk-howbtn" type="button" id="skhow" aria-expanded="false" aria-controls="sksteps">איך משתמשים?</button></div>'
+      + '<ol class="sk-steps" id="sksteps" hidden aria-label="איך משתמשים בסקיל">'
+      + '<li><b>בוחרים סקיל</b>כאן ברשימה, ולוחצים עליו.</li>'
+      + '<li><b>פותחים את <bdi>Claude</bdi></b>ב-<a href="https://claude.ai/new" target="_blank" rel="noopener"><bdi>claude.ai</bdi></a> או באפליקציה.</li>'
+      + '<li><b>מקלידים <code>/</code></b>ובוחרים את שם הסקיל. הוא מופיע בכחול.</li>'
+      + '<li><b>מצרפים ושולחים</b>את הקבצים, ומקבלים את התוצאה.</li>'
+      + '<li class="sk-note">הסקילים שייכים ל-<bdi>LEGAL MIND</bdi> ומתעדכנים אצלנו. אין מה להוריד ואין מה להתקין.</li>'
       + '</ol>'
+      + '<div class="sk-bar">'
       + '<input class="sk-search" id="skq" type="search" placeholder="מה צריך לעשות? למשל: להשוות טיוטות" aria-label="חיפוש סקיל" value="' + E(SKQ) + '">'
-      + '<div class="sk-chips" role="group" aria-label="סינון לפי תחום">' + chips.map(function (c) { return '<button type="button" data-g="' + E(c.k) + '" aria-pressed="' + (SKG === c.k) + '"><bdi>' + E(c.t) + '</bdi><span class="n">' + c.n + '</span></button>'; }).join('') + '</div>'
+      + '<div class="sk-chips" role="group" aria-label="סינון לפי תחום">' + chips.map(function (c) { return '<button type="button" data-g="' + E(c.k) + '" aria-pressed="' + (SKG === c.k) + '"><bdi>' + E(c.t) + '</bdi><span class="n">' + c.n + '</span></button>'; }).join('') + '</div></div>'
       + '<div id="sklist"></div>';
     var row = function (i) {
       var slash = 'legalmind-' + i.id.replace(/^s-/, '');
@@ -267,6 +282,7 @@
       else html = '<div class="sk-list">' + L.map(row).join('') + '</div>';
       $('sklist').innerHTML = html;
     }
+    $('skhow').addEventListener('click', function () { var o = $('sksteps').hidden; $('sksteps').hidden = !o; this.setAttribute('aria-expanded', String(o)); this.textContent = o ? 'סגירת ההסבר' : 'איך משתמשים?'; });
     fill();
     $('skq').addEventListener('input', function () { SKQ = this.value; fill(); });
     $('view').querySelector('.sk-chips').addEventListener('click', function (e) {
