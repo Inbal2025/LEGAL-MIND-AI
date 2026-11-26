@@ -44,6 +44,10 @@ tbody tr:hover td{background:rgba(var(--fg-rgb),.015)}
 .alert{color:var(--gold)}
 .scroll{overflow-x:auto}
 .quiet{color:var(--muted);font-size:15px;padding:var(--s2) 0}
+.sub-h{font-size:21px;margin:32px 0 var(--s2)}
+td.acts{white-space:nowrap}
+.edit-row .row-form{margin:0}
+tr.hide{display:none}
 .inbox{display:grid;grid-template-columns:340px minmax(0,1fr);gap:var(--s4);align-items:start}
 .ifl{display:flex;gap:2px;flex-wrap:wrap;margin-bottom:var(--s2)}
 .ifl button{border:0;background:transparent;color:var(--muted);border-radius:8px;padding:6px 10px;font:500 14px var(--sans);cursor:pointer}
@@ -95,7 +99,9 @@ tbody tr:hover td{background:rgba(var(--fg-rgb),.015)}
   LM.header(me, 'admin');
 
   var MOCK = {
-    offices: [{ id: 'o1', name: 'משרד לדוגמה ושות׳', seats: 8, used: 5, active: true, ends_at: '2027-11-18' }, { id: 'o2', name: 'משרד דוגמה ב׳', seats: 3, used: 3, active: true, ends_at: '2027-06-01' }],
+    offices: [{ id: 'o1', name: 'משרד לדוגמה ושות׳', seats: 8, used: 5, active: true, ends_at: '2027-11-18', companion_name: 'עו״ד אסף אברמזון' }, { id: 'o2', name: 'משרד דוגמה ב׳', seats: 3, used: 3, active: true, ends_at: '2027-06-01', companion_name: '' }],
+    inactive_offices: [{ id: 'o3', name: 'משרד שהסתיים', seats: 4, ends_at: '2026-10-01' }],
+    removed: [{ id: 'm3', office: 'משרד לדוגמה ושות׳', name: 'רונית אברהם', email: 'ronit@example.com', office_active: true }],
     members: [{ id: 'm1', office: 'משרד לדוגמה ושות׳', name: 'דנה לוי', email: 'dana@example.com', devices: 2, last: '2026-11-18', active: true }, { id: 'm2', office: 'משרד דוגמה ב׳', name: 'יואב כהן', email: 'yoav@example.com', devices: 1, last: '2026-11-15', active: true }],
     content: [{ id: 'b1', title: 'חוברת הדרכה: Claude לעורכי דין', kind: 'חוברת', scope: 'כל הלקוחות' }, { id: 'o1', title: 'נוהל העבודה עם בינה מלאכותית במשרד', kind: 'חוברת', scope: 'משרד לדוגמה ושות׳' }],
     log: [{ at: '2026-11-18 21:04', who: 'דנה לוי', office: 'משרד לדוגמה ושות׳', what: 'פתחה: חוברת הדרכה: Claude לעורכי דין', device: 'Windows Chrome', ip: '1.2.3.x' }],
@@ -226,15 +232,34 @@ tbody tr:hover td{background:rgba(var(--fg-rgb),.015)}
     },
     offices: async function () {
       var rows = await load('offices');
-      return '<form class="row-form" data-act="add_office"><div class="field"><label>שם המשרד</label><input name="name" dir="rtl" style="text-align:right" required></div><div class="field"><label>מכסת משתמשים</label><input name="seats" type="number" min="1" value="5" required></div><div class="field"><label>פתוח עד</label><input name="ends_at" type="date"></div><button class="btn btn-gold">הוספת משרד</button></form>'
-        + '<div class="scroll"><table><thead><tr><th>משרד</th><th>משתמשים</th><th>פתוח עד</th><th></th></tr></thead><tbody>'
-        + rows.map(function (o) { return '<tr><td><b>' + E(o.name) + '</b></td><td>' + o.used + ' מתוך ' + o.seats + '</td><td>' + E(o.ends_at || '') + '</td><td><button class="btn btn-ghost danger" data-a="deactivate_office" data-id="' + E(o.id) + '">סגירת גישה</button></td></tr>'; }).join('') + '</tbody></table></div>';
+      // the hidden skills office is a storage place, not a client: never offered for reopening here
+      var closed = (await load('inactive_offices')).filter(function (o) { return !/^מוסתר/.test(o.name); });
+      return '<form class="row-form" data-act="add_office"><div class="field"><label>שם המשרד</label><input name="name" dir="rtl" style="text-align:right" required></div><div class="field"><label>מכסת משתמשים</label><input name="seats" type="number" min="1" value="5" required></div><div class="field"><label>פתוח עד</label><input name="ends_at" type="date"></div><div class="field"><label>מי מלווה את המשרד</label><input name="companion_name" dir="rtl" style="text-align:right" placeholder="למשל: עו״ד אסף אברמזון"></div><button class="btn btn-gold">הוספת משרד</button></form>'
+        + '<div class="scroll"><table><thead><tr><th>משרד</th><th>משתמשים</th><th>פתוח עד</th><th>מלווה</th><th></th></tr></thead><tbody>'
+        + rows.map(function (o) {
+          return '<tr data-row="' + E(o.id) + '"><td><b>' + E(o.name) + '</b></td><td>' + o.used + ' מתוך ' + o.seats + '</td><td>' + E(o.ends_at || '') + '</td><td>' + E(o.companion_name || '') + '</td><td class="acts"><button class="btn btn-ghost" type="button" data-edit="office" data-id="' + E(o.id) + '">עריכה</button> <button class="btn btn-ghost danger" data-a="deactivate_office" data-id="' + E(o.id) + '">סגירת גישה</button></td></tr>'
+            + '<tr class="edit-row hide" data-edit-row="' + E(o.id) + '"><td colspan="5"><form class="row-form" data-act="update_office"><input type="hidden" name="id" value="' + E(o.id) + '">'
+            + '<div class="field"><label>שם המשרד</label><input name="name" dir="rtl" style="text-align:right" value="' + E(o.name) + '" required></div>'
+            + '<div class="field"><label>מכסת משתמשים</label><input name="seats" type="number" min="' + Math.max(1, o.used) + '" value="' + o.seats + '" required></div>'
+            + '<div class="field"><label>פתוח עד (ריק = בלי הגבלה)</label><input name="ends_at" type="date" value="' + E(o.ends_at || '') + '"></div>'
+            + '<div class="field"><label>מי מלווה את המשרד</label><input name="companion_name" dir="rtl" style="text-align:right" value="' + E(o.companion_name || '') + '"></div>'
+            + '<button class="btn btn-gold">שמירה</button><button class="btn btn-ghost" type="button" data-cancel="' + E(o.id) + '">ביטול</button></form></td></tr>';
+        }).join('') + '</tbody></table></div>'
+        + (closed.length ? '<h3 class="sub-h">משרדים שהגישה שלהם נסגרה</h3><div class="scroll"><table><thead><tr><th>משרד</th><th>מכסה</th><th>פתוח עד</th><th></th></tr></thead><tbody>'
+          + closed.map(function (o) { return '<tr><td><b>' + E(o.name) + '</b></td><td>' + o.seats + '</td><td>' + E(o.ends_at || '') + '</td><td><button class="btn btn-ghost" data-a="reactivate_office" data-id="' + E(o.id) + '" data-confirm="לפתוח מחדש את הגישה של ' + E(o.name) + '? העובדים לא חוזרים אוטומטית: מחזירים כל אחד בלשונית משתמשים.">פתיחה מחדש</button></td></tr>'; }).join('') + '</tbody></table></div>' : '');
     },
     members: async function () {
-      var rows = await load('members'), offs = await load('offices');
+      var rows = await load('members'), offs = await load('offices'), removed = await load('removed');
       return '<form class="row-form" data-act="add_member"><div class="field"><label>משרד</label><select name="office_id" dir="rtl" style="text-align:right">' + offs.map(function (o) { return '<option value="' + E(o.id) + '">' + E(o.name) + '</option>'; }).join('') + '</select></div><div class="field"><label>שם מלא</label><input name="full_name" dir="rtl" style="text-align:right" required></div><div class="field"><label>מייל</label><input name="email" type="email" required></div><button class="btn btn-gold">הוספת משתמש</button></form>'
         + '<div class="scroll"><table><thead><tr><th>שם</th><th>משרד</th><th>מייל</th><th>מכשירים</th><th>כניסה אחרונה</th><th></th></tr></thead><tbody>'
-        + rows.map(function (m) { return '<tr><td><b>' + E(m.name) + '</b></td><td>' + E(m.office) + '</td><td dir="ltr" style="text-align:right">' + E(m.email) + '</td><td>' + m.devices + '/2</td><td>' + E(m.last || '') + '</td><td><button class="btn btn-ghost danger" data-a="remove_member" data-id="' + E(m.id) + '">הסרה וניתוק</button></td></tr>'; }).join('') + '</tbody></table></div>';
+        + rows.map(function (m) {
+          return '<tr data-row="' + E(m.id) + '"><td><b>' + E(m.name) + '</b></td><td>' + E(m.office) + '</td><td dir="ltr" style="text-align:right">' + E(m.email) + '</td><td>' + m.devices + '/2</td><td>' + E(m.last || '') + '</td><td class="acts"><button class="btn btn-ghost" type="button" data-edit="member" data-id="' + E(m.id) + '">תיקון שם</button> <button class="btn btn-ghost danger" data-a="remove_member" data-id="' + E(m.id) + '">הסרה וניתוק</button></td></tr>'
+            + '<tr class="edit-row hide" data-edit-row="' + E(m.id) + '"><td colspan="6"><form class="row-form" data-act="update_member"><input type="hidden" name="id" value="' + E(m.id) + '">'
+            + '<div class="field"><label>שם מלא</label><input name="full_name" dir="rtl" style="text-align:right" value="' + E(m.name) + '" required></div>'
+            + '<button class="btn btn-gold">שמירה</button><button class="btn btn-ghost" type="button" data-cancel="' + E(m.id) + '">ביטול</button></form></td></tr>';
+        }).join('') + '</tbody></table></div>'
+        + (removed.length ? '<h3 class="sub-h">עובדים שהוסרו</h3><p class="muted" style="margin:0 0 var(--s2)">החזרה מחזירה את הגישה עם אותו מייל. העובד נכנס מחדש עם קוד למייל. צריך מקום פנוי במכסה של המשרד.</p><div class="scroll"><table><thead><tr><th>שם</th><th>משרד</th><th>מייל</th><th></th></tr></thead><tbody>'
+          + removed.map(function (m) { return '<tr><td><b>' + E(m.name) + '</b></td><td>' + E(m.office) + (m.office_active ? '' : ' <span class="muted">(הגישה של המשרד סגורה)</span>') + '</td><td dir="ltr" style="text-align:right">' + E(m.email) + '</td><td><button class="btn btn-ghost" data-a="restore_member" data-id="' + E(m.id) + '" data-confirm="להחזיר את ' + E(m.name) + ' לאזור האישי?">החזרה</button></td></tr>'; }).join('') + '</tbody></table></div>' : '');
     },
     content: async function () {
       var rows = await load('content');
@@ -265,8 +290,17 @@ tbody tr:hover td{background:rgba(var(--fg-rgb),.015)}
     if (await act(f.getAttribute('data-act'), data)) show(current);
   });
   $('pane').addEventListener('click', async function (e) {
+    var ed = e.target.closest('[data-edit]'), cn = e.target.closest('[data-cancel]');
+    if (ed || cn) {
+      var id = (ed || cn).getAttribute(ed ? 'data-id' : 'data-cancel');
+      var er = document.querySelector('[data-edit-row="' + id + '"]'), r = document.querySelector('[data-row="' + id + '"]');
+      if (er) er.classList.toggle('hide', !ed);
+      if (r) r.classList.toggle('hide', !!ed);
+      if (ed && er) { var inp = er.querySelector('input:not([type=hidden])'); if (inp) inp.focus(); }
+      return;
+    }
     var b = e.target.closest('[data-a]'); if (!b) return;
-    if (!confirm('לבצע? הפעולה מנתקת את הגישה מיד.')) return;
+    if (!confirm(b.getAttribute('data-confirm') || 'לבצע? הפעולה מנתקת את הגישה מיד.')) return;
     if (await act(b.getAttribute('data-a'), { id: b.getAttribute('data-id') })) show(current);
   });
   window.addEventListener('hashchange', function () {
