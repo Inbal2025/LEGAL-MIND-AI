@@ -100,5 +100,11 @@
       "source": "/skills-guide/:path*",
       "destination": "https://tsahinim.github.io/legal-mind-claude-guides/skills-compact/:path*"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/portal-keepalive",
+      "schedule": "17 6 * * *"
+    }
   ]
 }
