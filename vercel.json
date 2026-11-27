@@ -85,6 +85,31 @@
       "source": "/skills/:path*",
       "destination": "/skills-guide/:path*",
       "permanent": true
+    },
+    {
+      "source": "/Live",
+      "destination": "/live/",
+      "permanent": true
+    },
+    {
+      "source": "/Live/",
+      "destination": "/live/",
+      "permanent": true
+    },
+    {
+      "source": "/LIVE",
+      "destination": "/live/",
+      "permanent": true
+    },
+    {
+      "source": "/LIVE/",
+      "destination": "/live/",
+      "permanent": true
+    },
+    {
+      "source": "/Live/:path*",
+      "destination": "/live/:path*",
+      "permanent": true
     }
   ],
   "rewrites": [
