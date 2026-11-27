@@ -199,6 +199,8 @@
   /* this cover has artwork in the top-left corner; the badge sits on the empty wall to its right */
   #gemini-notebook .newest { top: 6%; left: 34%; font-size: 13px; padding: 3px 11px; }
   @media (max-width: 600px) { #gemini-notebook .newest { font-size: 11px; padding: 2px 9px; } }
+  #claude-sheets .newest { top: 2%; left: auto; right: 3%; font-size: 13px; padding: 3px 11px; }
+  @media (max-width: 600px) { #claude-sheets .newest { font-size: 11px; padding: 2px 9px; } }
   .vcard.feat .prompt { grid-column: 1 / -1; }
   .vlink {
     display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 14px; text-align: start;
@@ -281,10 +283,22 @@
 
   <div class="vgrid">
 
+  <div class="vcard" id="claude-sheets">
+    <button class="film" type="button" data-yt="FqiyrGZ0sc0" aria-label="ניגון הסרטון: הגיליון והלוח של Claude, Claude Sheets ו-Claude Whiteboards">
+      <img src="yt/claude-sheets-cover.webp?v=2711" alt="" width="960" height="540">
+      <span class="newest">החדש ביותר</span>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
+      <span class="film-time" aria-hidden="true">17:24</span>
+    </button>
+    <div class="vcard-kind">הדרכה · <bdi dir="ltr">Claude Sheets &amp; Whiteboards</bdi></div>
+    <h2>הגיליון והלוח של <bdi dir="ltr">Claude</bdi>: מנתוני התיק לתוכנית עבודה לצוות</h2>
+    <p>מעלים קובץ אקסל לגיליון שנמצא בתוך <bdi dir="ltr">Claude</bdi>, ו-<bdi dir="ltr">Claude</bdi> מסמן מועדים דחופים, מסכם שכר טרחה שטרם חויב ומסביר כל מספר. עובדים יחד באותה טבלה, משאירים לו הערות, משתפים עם הצוות ומורידים בחזרה כקובץ אקסל. בלוח כותבים מה צריך לעשות בתיק עם מועד קרוב, ומקבלים ציר זמן עם אחראים ותאריכים ורשימת משימות לצוות. ההדגמה נעשית על משרד בדוי לדיני עבודה, וזה עובד אותו דבר בכל תחום.</p>
+    <span class="vcard-note" style="margin-inline-start:0">כ-17 דקות</span>
+  </div>
+
   <div class="vcard" id="gemini-notebook">
     <button class="film" type="button" data-yt="lbOV0kXcimo" aria-label="ניגון הסרטון: Gemini Notebook, אתר אינטראקטיבי מהמסמכים שלכם">
       <img src="yt/gemini-notebook-cover.webp?v=2411" alt="" width="960" height="540">
-      <span class="newest">החדש ביותר</span>
       <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
       <span class="film-time" aria-hidden="true">6:04</span>
     </button>
