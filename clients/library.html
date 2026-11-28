@@ -122,6 +122,13 @@
 .vcard .vi b{font:400 clamp(20px,1.7vw,23px)/1.3 var(--head);color:var(--ink)}
 .vcard .vi span{font-size:15.5px;color:var(--body)}
 .vcard .vi i{font-style:normal;font-weight:600;font-size:14.5px;color:var(--muted)}
+.vcard .vi .att{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:8px;padding:8px 14px;border-radius:999px;background:rgba(201,154,62,.14);border:1px solid rgba(201,154,62,.45);color:var(--ink);font-weight:600;font-size:14.5px}
+.vcard .vi .att:hover{background:rgba(201,154,62,.24)}
+.vcard .vi .att svg{width:16px;height:16px;flex:none}
+.pr-group+.pr-group{margin-top:clamp(28px,3vw,44px)}
+.pr-group>h2{font:400 clamp(21px,1.9vw,25px)/1.3 var(--head);color:var(--ink);margin:0 0 6px}
+.pr-group>p{margin:0 0 clamp(14px,1.6vw,20px);color:var(--muted);font-size:15.5px}
+.items .tile.pr{cursor:pointer}
 @media (max-width:760px){.vitems{grid-template-columns:1fr}.shelf.nevo{padding:16px 10px;border-radius:18px}.shelf.nevo>h2,.shelf.nevo>p{padding:0 6px}}
 .shelf{scroll-margin-top:96px}.shelf+.shelf{margin-top:clamp(36px,4vw,56px)}
 .shelf-nav{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 clamp(22px,2.6vw,34px)}
@@ -211,10 +218,12 @@
     document.title = sec.title.replace(/<[^>]+>/g, '') + ' | LEGAL MIND';
     var list = items.filter(function (i) { return i.kind === sec.kind; });
     if ((sec.kind === 'video' || sec.kind === 'booklet') && list.length) {
+      // prompts that belong to a video (related_item) get a button on its card
+      var att = function (i) { var n = items.filter(function (p) { return p.kind === 'prompt' && p.related === i.id; }).length; return n ? '<span class="att" data-go="prompts">' + (I.prompt || '') + 'הפרומפטים מהסרטון · ' + n + ' להעתקה</span>' : ''; };
       var card = function (i) {
         return '<button class="vcard" type="button" data-id="' + E(i.id) + '" aria-label="' + E(i.title) + '"><span class="cv">' + (i.is_new ? '<span class="new">חדש</span>' : '') + ((!i.pub || i.excl) ? '<span class="excl"><span aria-hidden="true">★</span>בלעדי ללקוחות</span>' : '')
           + '<img src="/clients/covers/' + encodeURIComponent(i.id) + '.webp" alt="" loading="lazy" decoding="async" width="1600" height="900" onerror="this.remove()"></span>'
-          + '<span class="vi"><b>' + E(i.title) + '</b><span>' + E(i.desc) + '</span>' + (i.duration_sec ? '<i><span dir="ltr">' + LM.dur(i.duration_sec) + '</span> דקות</i>' : '') + '</span></button>';
+          + '<span class="vi"><b>' + E(i.title) + '</b><span>' + E(i.desc) + '</span>' + (i.duration_sec ? '<i><span dir="ltr">' + LM.dur(i.duration_sec) + '</span> דקות</i>' : '') + att(i) + '</span></button>';
       };
       // three shelves: exclusive to Legal Mind clients first, then the public videos, then the Legal Mind x Nevo series
       var NEVO = 'Legal Mind × נבו';
@@ -233,15 +242,24 @@
     }
     if (sec.kind === 'skill' && list.length) { drawSkills(sec, list); return; }
     var cards = list.map(function (i) {
-      if (i.kind === 'prompt') return '<div class="tile pr ' + sec.tone + '"><span class="tt">' + E(i.title) + '</span><span class="td">' + E(i.desc) + '</span><button class="copy" type="button" data-copy="' + E(i.id) + '" aria-label="העתקת הפרומפט: ' + E(i.title) + '">' + I.copy + '<span>העתקה</span></button></div>';
+      if (i.kind === 'prompt') return '<div class="tile pr ' + sec.tone + '" data-id="' + E(i.id) + '"><span class="tt">' + E(i.title) + '</span><span class="td">' + E(i.desc) + '</span><button class="copy" type="button" data-copy="' + E(i.id) + '" aria-label="העתקת הפרומפט: ' + E(i.title) + '">' + I.copy + '<span>העתקה</span></button></div>';
       var facts = [];
       if (i.kind === 'video' && i.duration_sec) facts.push('<span dir="ltr">' + LM.dur(i.duration_sec) + '</span> דקות');
       if (i.kind === 'booklet') { if (i.pages) facts.push(i.pages + ' עמודים'); if (i.updated_at) facts.push('עודכנה ' + D(i.updated_at)); }
       if (i.kind === 'skill') facts.push('הורדה והתקנה בשלושה צעדים');
       return '<button class="tile ' + sec.tone + '" type="button" data-id="' + E(i.id) + '">' + (i.is_new ? '<span class="new">חדש</span>' : '') + '<span class="tb">' + (I[i.kind] || I.booklet) + '</span><span class="tt">' + E(i.title) + '</span><span class="td">' + E(i.desc) + '</span>' + (facts.length ? '<span class="tc">' + facts.join(' · ') + '</span>' : '') + '</button>';
     }).join('');
+    if (sec.kind === 'prompt' && list.length) {   // grouped by topic; a group that belongs to a video links back to it
+      var tops = []; list.forEach(function (i) { if (tops.indexOf(i.topic) < 0) tops.push(i.topic); });
+      cards = tops.map(function (t) {
+        var g = list.filter(function (i) { return i.topic === t; }).sort(function (a, b) { return (a.sort || 999) - (b.sort || 999); });
+        var rel = g[0].related && byId[g[0].related];
+        return '<section class="pr-group"><h2>' + E(t) + '</h2>' + (rel ? '<p>מחליפים את השמות ואת שמות הקבצים בפרטים של התיק שלכם. <a href="?open=' + encodeURIComponent(rel.id) + '">לצפייה בסרטון</a></p>' : '')
+          + '<div class="items">' + g.map(function (i) { return '<div class="tile pr ' + sec.tone + '" data-id="' + E(i.id) + '"><span class="tt">' + E(i.title) + '</span><span class="td">' + E(i.desc) + '</span><button class="copy" type="button" data-copy="' + E(i.id) + '" aria-label="העתקת הפרומפט: ' + E(i.title) + '">' + I.copy + '<span>העתקה</span></button></div>'; }).join('') + '</div></section>';
+      }).join('');
+    }
     $('view').innerHTML = '<div class="sec-head ' + sec.tone + '"><span class="tb">' + I[sec.kind] + '</span><div><h1>' + sec.title + '</h1><p>' + (list.length ? LM.countText(sec, list.length) : sec.line) + '</p></div></div>'
-      + (list.length ? '<div class="items">' + cards + '</div>' : '<div class="calm-empty"><b>' + sec.soon + '…</b>כשיעלה משהו חדש, הוא יופיע כאן. בינתיים אפשר <a href="' + LM.link('/clients/support.html') + '#new">לכתוב לנו</a>.</div>');
+      + (list.length ? (sec.kind === 'prompt' ? cards : '<div class="items">' + cards + '</div>') : '<div class="calm-empty"><b>' + sec.soon + '…</b>כשיעלה משהו חדש, הוא יופיע כאן. בינתיים אפשר <a href="' + LM.link('/clients/support.html') + '#new">לכתוב לנו</a>.</div>');
   }
 
   // ---- skills: one row per skill, grouped; the skill itself runs in Claude through the LEGAL MIND connector
@@ -404,6 +422,7 @@
     if (ok) LM.rpc('portal_progress', { p_item: id, p_progress: 1 });
   }
   $('view').addEventListener('click', function (e) {
+    var go = e.target.closest('[data-go]'); if (go) { location.hash = go.getAttribute('data-go'); return; }
     var cp = e.target.closest('[data-copy]'); if (cp) { copyPrompt(cp, cp.getAttribute('data-copy')); return; }
     var c = e.target.closest('[data-id]'); if (c) open(c.getAttribute('data-id'));
   });
